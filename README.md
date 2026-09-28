@@ -1,12 +1,31 @@
-# MiganCore — an open lab notebook
+# MiganCore — Open-Source Indonesian AI Model (LLM) and Hallucination Research
 
-**A one-person attempt to own a small Indonesian language model that knows where its knowledge ends,
-with everything measured, pre-registered, and written down, including what failed.**
+**MiganCore is an open-source AI model project: a small Indonesian large language model (LLM), fine-tuned
+from Qwen3-4B with LoRA and served locally with Ollama.** It was built around one goal: an AI that knows where
+its knowledge ends, and says "I don't know" instead of hallucinating. This repository publishes the whole
+research record:
+- the model lineage;
+- the hallucination benchmark;
+- 39 pre-registered experiments and every verdict, including what failed.
 
 English · [Bahasa Indonesia](README.id.md) · MIT License · Status: **closed on 28 September 2026** (archived,
 nothing deleted)
 
 ![MiganCore at a glance](docs/img/infographics/01-at-a-glance.svg)
+
+## Quick facts
+
+| | |
+|---|---|
+| **What** | An open-source Indonesian LLM research project: a small language model, a hallucination benchmark, and an evaluation toolkit |
+| **Base model** | Qwen3-4B-Instruct-2507 (Apache-2.0), fine-tuned with LoRA and TIES merges |
+| **Served model** | `migancore:0.14`, GGUF Q4_K_M, runs on CPU with Ollama (research use only) |
+| **Focus** | AI hallucination and abstention ("I don't know") in Bahasa Indonesia |
+| **Evidence** | 41 model variants, 39 pre-registered experiments, a 36-question hallucination benchmark, 316 findings |
+| **What worked** | Two layers that need no training: a knowledge-boundary prompt (fabrication 28.9 % → 8.9 %) and an abstention gate (52.2 % → 33.9 %) |
+| **License** | MIT (code, docs, data); the model weights follow the Apache-2.0 base license |
+| **Status** | Closed on 28 Sep 2026, fully archived |
+| **Author** | Fahmi Ghani, Indonesia |
 
 ---
 
@@ -235,6 +254,42 @@ Full list and method: [docs/privacy-and-release.md](docs/privacy-and-release.md)
 - Hosted explorer: [Tiranyx/migancore-explorer](https://huggingface.co/spaces/Tiranyx/migancore-explorer)
 - Served model (archived): [Tiranyx/migancore-0.14](https://huggingface.co/Tiranyx/migancore-0.14)
 - Predecessor project: [fahmiwol/sidix](https://github.com/fahmiwol/sidix)
+
+## FAQ
+
+**What is MiganCore?**
+MiganCore is an open-source Indonesian AI model project from 2026. It is a small large language model based on
+Qwen3-4B, fine-tuned with LoRA and run locally with Ollama. It was designed to abstain instead of
+hallucinating. The project is closed, and this repository is its complete, sanitized research record.
+
+**Is MiganCore open source?**
+Yes:
+- code, documentation and data are MIT-licensed;
+- the served model `migancore:0.14` is published as GGUF weights with its LoRA adapters on Hugging Face,
+  following the Apache-2.0 license of its base model.
+
+**Can I run MiganCore locally?**
+Yes. Download the GGUF file and its `Modelfile` from Hugging Face, then run `ollama create migancore-0.14 -f
+Modelfile`. It runs on CPU. Use it for research, not for factual answers.
+
+**Does MiganCore hallucinate?**
+Yes, and the record says so. On the `petak-jujur2` benchmark it fabricates on about half of the questions it
+should decline (49.9 %).
+
+**What reduced LLM hallucination in this project?**
+Not fine-tuning. Two layers in front of the model worked:
+- a one-paragraph knowledge boundary in the prompt (28.9 % → 8.9 % out-of-scope fabrication);
+- an abstention gate (52.2 % → 33.9 %).
+
+The gate helps more when the base model fabricates more (law C61).
+
+**Is this an AI model for Bahasa Indonesia?**
+Yes. The model was adapted for Bahasa Indonesia. The hallucination benchmark and the working files in
+`studio/`, `eval/` and `flywheel/` are in Indonesian. The main documentation is in English.
+
+**What is MAKSARA?**
+The planned successor model. It would have been "born" only if the final experiment, Gerbang-S1, had passed.
+Gerbang-S1 was stopped before it was run, so MAKSARA was never born.
 
 ## License and citation
 

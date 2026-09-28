@@ -1,0 +1,37 @@
+# MiganCore
+
+> MiganCore is an open-source Indonesian AI model project (2026): a small large language model (LLM) based on
+> Qwen3-4B, fine-tuned with LoRA and served locally with Ollama, designed to abstain ("I don't know") instead
+> of hallucinating. The project closed on 28 September 2026. This repository is its complete, sanitized
+> research record, MIT-licensed.
+
+Key facts:
+- **Base model:** Qwen3-4B-Instruct-2507 (Apache-2.0).
+- **Served model:** migancore:0.14, a TIES merge of two LoRA adapters, GGUF Q4_K_M, research use only.
+- **Evidence:** 41 model variants, 39 pre-registered experiments, a 36-question Indonesian hallucination
+  benchmark (petak-jujur2), and 316 findings.
+- **Measured result:** the served fine-tune fabricates on about half of must-abstain questions (49.9 %).
+- **What reduced hallucination:** two layers that need no training.
+  - A knowledge-boundary paragraph: out-of-scope fabrication 28.9 % → 8.9 %.
+  - An abstention gate: 52.2 % → 33.9 %.
+- **What did not work:** training the weights toward honesty (V16-JUJUR: 60.0 % vs a ≤ 50 % threshold).
+- **Author:** Fahmi Ghani (fahmiwol@gmail.com).
+
+## Docs
+- [README](README.md): overview, results, FAQ
+- [Architecture](docs/architecture.md)
+- [Experiments (39 pre-registrations and verdicts)](docs/experiments.md)
+- [Lineage (41 model variants)](docs/lineage.md)
+- [What is distinctive, and its limits](docs/advantages-and-limits.md)
+- [Run it yourself](docs/reproduce.md)
+- [Privacy and release method](docs/privacy-and-release.md)
+
+## Data
+- [English research record (JSON)](data/migancore-public.en.json)
+- [Indonesian research record (JSON)](data/migancore-public.id.json)
+- [Lineage (JSON)](data/lineage.en.json)
+
+## Related
+- Research method and closing report: https://github.com/fahmiwol/migancore-research-method
+- Model: https://huggingface.co/Tiranyx/migancore-0.14
+- Dataset: https://huggingface.co/datasets/Tiranyx/migancore-research-record

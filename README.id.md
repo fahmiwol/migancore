@@ -1,12 +1,31 @@
-# MiganCore — buku laboratorium terbuka
+# MiganCore — Model AI Open Source Bahasa Indonesia (LLM) dan Riset Halusinasi AI
 
-**Upaya satu orang untuk memiliki model bahasa Indonesia kecil yang tahu di mana batas pengetahuannya. Semuanya
-diukur, dipra-daftarkan, dan ditulis, termasuk yang gagal.**
+**MiganCore adalah proyek model AI open source: model bahasa besar (LLM) kecil untuk Bahasa Indonesia,
+di-fine-tune dari Qwen3-4B dengan LoRA dan dijalankan lokal dengan Ollama.** Tujuannya satu: AI yang tahu
+batas pengetahuannya dan berani berkata "saya tidak tahu" alih-alih berhalusinasi. Repositori ini menerbitkan
+seluruh catatan risetnya:
+- silsilah model;
+- tolok ukur halusinasi;
+- 39 eksperimen yang dipra-daftarkan beserta semua vonisnya, termasuk yang gagal.
 
 [English](README.md) · Bahasa Indonesia · Lisensi MIT · Status: **ditutup 28 September 2026** (diarsipkan,
 tidak ada yang dihapus)
 
 ![MiganCore sekilas](docs/img/infographics/01-at-a-glance.svg)
+
+## Fakta singkat
+
+| | |
+|---|---|
+| **Apa** | Proyek riset LLM Bahasa Indonesia open source: model bahasa kecil, tolok ukur halusinasi AI, dan perangkat evaluasi |
+| **Model dasar** | Qwen3-4B-Instruct-2507 (Apache-2.0), di-fine-tune dengan LoRA dan merge TIES |
+| **Model yang dilayankan** | `migancore:0.14`, GGUF Q4_K_M, jalan di CPU dengan Ollama (hanya untuk riset) |
+| **Fokus** | Halusinasi AI dan abstensi ("saya tidak tahu") dalam Bahasa Indonesia |
+| **Bukti** | 41 varian model, 39 eksperimen yang dipra-daftarkan, tolok ukur halusinasi 36 soal, 316 temuan |
+| **Yang berhasil** | Dua lapisan tanpa latihan: prompt batas pengetahuan (mengarang 28,9 % → 8,9 %) dan gerbang abstensi (52,2 % → 33,9 %) |
+| **Lisensi** | MIT (kode, dokumen, data); bobot model mengikuti lisensi Apache-2.0 model dasarnya |
+| **Status** | Ditutup 28 Sep 2026, diarsipkan utuh |
+| **Pembuat** | Fahmi Ghani, Indonesia |
 
 ---
 
@@ -240,6 +259,39 @@ Daftar lengkap dan caranya: [docs/privacy-and-release.md](docs/privacy-and-relea
 - Penjelajah yang di-hosting: [Tiranyx/migancore-explorer](https://huggingface.co/spaces/Tiranyx/migancore-explorer)
 - Model yang dilayankan (arsip): [Tiranyx/migancore-0.14](https://huggingface.co/Tiranyx/migancore-0.14)
 - Proyek pendahulu: [fahmiwol/sidix](https://github.com/fahmiwol/sidix)
+
+## Tanya jawab
+
+**Apa itu MiganCore?**
+MiganCore adalah proyek model AI open source Bahasa Indonesia dari tahun 2026. Modelnya LLM kecil berbasis
+Qwen3-4B, di-fine-tune dengan LoRA, dan dijalankan lokal dengan Ollama. Model ini dirancang untuk memilih
+abstain alih-alih berhalusinasi. Proyeknya sudah ditutup, dan repositori ini adalah catatan risetnya yang lengkap
+dan sudah dibersihkan.
+
+**Apakah MiganCore open source?**
+Ya:
+- kode, dokumen, dan datanya berlisensi MIT;
+- model `migancore:0.14` terbit di Hugging Face sebagai bobot GGUF beserta adapter LoRA-nya, mengikuti lisensi
+  Apache-2.0 model dasarnya.
+
+**Bisakah MiganCore dijalankan di komputer sendiri?**
+Bisa. Unduh berkas GGUF dan `Modelfile` dari Hugging Face, lalu jalankan `ollama create migancore-0.14 -f
+Modelfile`. Model ini jalan di CPU. Pakai untuk riset, bukan untuk mencari jawaban fakta.
+
+**Apakah MiganCore berhalusinasi?**
+Ya, dan catatannya menulis hal itu terus terang. Di tolok ukur `petak-jujur2`, model ini mengarang pada sekitar
+separuh soal yang seharusnya ia tolak (49,9 %).
+
+**Apa yang berhasil mengurangi halusinasi LLM di proyek ini?**
+Bukan fine-tuning. Yang berhasil adalah dua lapisan di depan model:
+- satu paragraf batas pengetahuan di prompt (28,9 % → 8,9 % mengarang di luar cakupan);
+- gerbang abstensi (52,2 % → 33,9 %).
+
+Gerbang itu makin membantu kalau model dasarnya makin sering mengarang (hukum C61).
+
+**Apa itu MAKSARA?**
+Model penerus yang direncanakan. MAKSARA baru akan "lahir" kalau eksperimen terakhir, Gerbang-S1, menang.
+Gerbang-S1 dihentikan sebelum dijalankan, jadi MAKSARA tidak pernah lahir.
 
 ## Lisensi dan sitasi
 
