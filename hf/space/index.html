@@ -183,7 +183,7 @@ function lineageBody(lineage,{interactive=false}={}) {
   const badge=s=>`<span class="badge ${states[s][1]}">${esc(states[s][0])}</span>`;
   const sectionHead=(title,sub)=>`<div class="section-head"><div><h2>${title}</h2><p>${sub}</p></div></div>`;
   const legend=()=>Object.entries(states).map(([k,[name,color]])=>`<span><i class="swatch ${color}"></i>${data.counts.verdictStates[k]} ${name.toLowerCase()}</span>`).join('');
-  $('language-note').textContent=`SOURCE / ${source} · ${language==='en'?'English snapshot':'English snapshot unavailable; source excerpts remain in Indonesian'}. Identifying details redacted; source excerpts may be truncated.`;
+  $('language-note').textContent=`SOURCE / ${source} · ${language==='en'?'English snapshot':'English snapshot unavailable; source excerpts remain in Indonesian'}. Identifying details redacted; full verdict texts from the pre-registration files.`;
   const c=data.counts;
   $('overview').innerHTML=sectionHead('An experiment in knowing when to stop.','A small-model research project for Indonesian. Released as an honest lab notebook: what held, what was refuted, and how it was measured.')+
     `<div class="stats">${[[c.lineageEntries,'model variants'],[c.preRegistrations,'pre-registrations'],[c.findings,'findings'],[c.laws,'laws']].map(([n,l])=>`<div class="stat"><span class="number">${n}</span><span class="label">${l}</span></div>`).join('')}</div>
