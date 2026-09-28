@@ -254,9 +254,9 @@ Full list and method: [docs/privacy-and-release.md](docs/privacy-and-release.md)
 - Hosted explorer: [Tiranyx/migancore-explorer](https://huggingface.co/spaces/Tiranyx/migancore-explorer)
 - Served model (archived): [Tiranyx/migancore-0.14](https://huggingface.co/Tiranyx/migancore-0.14)
 - Hugging Face collection:
-  [MiganCore: open-source Indonesian LLM research (2026)](https://huggingface.co/collections/Tiranyx/migancore-open-source-indonesian-llm-research-2026-6abad0de31e130496ebd6194)
+  [MiganCore: open-source Indonesian LLM research (2026)](https://huggingface.co/collections/Tiranyx/migancore-open-source-indonesian-llm-research-2026)
 - Predecessor project: [fahmiwol/sidix](https://github.com/fahmiwol/sidix), with its archived adapters in the
-  [SIDIX collection](https://huggingface.co/collections/Tiranyx/sidix-archived-research-build-apr-aug-2026-6abad0947994b29f55b1fff9)
+  [SIDIX collection](https://huggingface.co/collections/Tiranyx/sidix-archived-research-build-apr-aug-2026)
 
 ## FAQ
 
