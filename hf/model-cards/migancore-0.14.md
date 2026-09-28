@@ -10,12 +10,17 @@ tags:
 - lora
 - ties-merge
 - gguf
+- ollama
 - indonesian
+- bahasa-indonesia
+- llm
+- hallucination
+- open-source
 - research
 - archived
 ---
 
-# MiganCore 0.14 — archived research artifact
+# MiganCore 0.14 — open-source Indonesian LLM (archived research model, GGUF for Ollama)
 
 `migancore:0.14` was the served model of **MiganCore**, a one-person research project (May–September 2026).
 The project tried to give a small Indonesian model one ability: knowing where its own knowledge ends, and
