@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Prototipe open-world 3D MiganCore Studio — Kandungan, dunia kelahiran Migan.">
+  <meta name="theme-color" content="#050d0a">
+  <title>MiganCore Studio — Kandungan 3D</title>
+  <link rel="stylesheet" href="gaya.css">
+</head>
+<body>
+  <a class="skip-link" href="#konten-utama">Lewati dunia 3D</a>
+  <div id="app" class="app" data-mode="dunia">
+    <canvas id="dunia" aria-label="Dunia 3D Kandungan yang dapat dijelajahi"></canvas>
+    <div class="selubung-dunia" aria-hidden="true"></div>
+
+    <header class="bilah-atas" aria-label="Navigasi utama">
+      <a class="merek" href="#beranda" data-modul="beranda" aria-label="MiganCore Studio, Beranda">
+        <span class="merek-tanda" aria-hidden="true"></span>
+        <span><strong>MIGANCORE STUDIO</strong><small>KANDUNGAN · DUNIA KELAHIRAN MIGAN</small></span>
+      </a>
+      <nav id="navigasi-utama" class="navigasi-utama" aria-label="Modul MiganCore"></nav>
+      <div class="aksi-atas">
+        <span id="sumber-ringkas" class="sumber-ringkas">memuat data…</span>
+        <button id="mode-baca" class="tombol tombol-mode" type="button" aria-pressed="false"><span aria-hidden="true">▤</span> Mode Baca</button>
+      </div>
+    </header>
+
+    <main id="konten-utama">
+      <section class="hud-kiri" aria-label="Status penjelajahan">
+        <div class="lokasi-kini"><span class="alis">WILAYAH</span><strong id="nama-wilayah">Hutan Kandungan</strong><small id="nama-modul">Status kelahiran MAKSARA</small></div>
+        <div id="petunjuk-interaksi" class="petunjuk-interaksi" role="status" aria-live="polite"><kbd>E</kbd><span>Dekati landmark untuk berinteraksi</span></div>
+        <div class="kontrol-ringkas"><span><kbd>WASD</kbd> jalan</span><span><kbd>Shift</kbd> lari</span><span><kbd>Seret</kbd> kamera</span><span><kbd>Tab</kbd> menu</span></div>
+      </section>
+
+      <section class="hud-kanan" aria-label="Kompas dan peta mini">
+        <div class="kompas"><span>W</span><b id="arah-kompas">N</b><span>E</span></div>
+        <div id="minimap" class="minimap" role="group" aria-label="Peta mini dan pindah cepat">
+          <div class="peta-sungai" aria-hidden="true"></div>
+          <div id="titik-pemain" class="titik-pemain" aria-label="Posisi pemain"></div>
+        </div>
+        <p class="keterangan-mini">Klik ikon untuk pindah cepat lewat cincin.</p>
+      </section>
+
+      <button id="buka-menu" class="tombol-menu" type="button" aria-haspopup="dialog" aria-controls="menu-cepat"><span aria-hidden="true">◌</span><span>Menu cepat</span><kbd>Tab</kbd></button>
+
+      <section class="meter-kinerja" aria-label="Meter kinerja prototipe">
+        <span><b id="meter-fps">—</b> FPS</span><span><b id="meter-draw">—</b> draw</span><span><b id="meter-tri">—</b> segitiga</span><span id="fase-cahaya" class="cap">kandungan hening</span><span id="tingkat-kualitas" class="cap">adaptif</span>
+      </section>
+
+      <section id="mode-baca-isi" class="mode-baca-isi" aria-label="Semua modul dalam mode baca" hidden>
+        <div class="kepala-baca"><div><span class="alis">MODE BACA</span><h1>Dunia dibekukan. Data tetap sama.</h1><p>Semua angka berasal dari <code>data-nyata.json</code>; kartu tanpa data menyatakan kekosongannya.</p></div><button class="tombol" type="button" data-kembali-dunia>Kembali ke dunia</button></div>
+        <div id="kisi-baca" class="kisi-baca"></div>
+      </section>
+    </main>
+
+    <div id="menu-cepat" class="lapisan-menu" role="dialog" aria-modal="true" aria-labelledby="judul-menu" hidden>
+      <div class="menu-cepat">
+        <div class="inti-menu"><span class="alis">GERBANG CEPAT</span><h2 id="judul-menu">Pilih modul</h2><p>Panah memilih · Enter membuka · Esc menutup</p></div>
+        <div id="butir-menu" class="butir-menu"></div>
+      </div>
+    </div>
+
+    <div id="transisi-portal" class="transisi-portal" aria-hidden="true"><span></span><b>GERBANG MEMINDAHKAN PEZIARAH</b></div>
+
+    <section id="panel-modul" class="lapisan-panel" role="dialog" aria-modal="true" aria-labelledby="judul-panel" hidden>
+      <article class="panel-modul">
+        <header class="kepala-panel">
+          <div><span id="alis-panel" class="alis">MODUL</span><h2 id="judul-panel">Modul</h2><p id="subjudul-panel"></p></div>
+          <button id="tutup-panel" class="tombol-ikon" type="button" aria-label="Tutup panel">×</button>
+        </header>
+        <div id="isi-panel" class="isi-panel"></div>
+        <footer class="kaki-panel"><span id="sumber-panel">Sumber</span><span>Esc untuk menutup</span></footer>
+      </article>
+    </section>
+
+    <div id="pesan" class="pesan" role="status" aria-live="polite"></div>
+    <div id="galat-webgl" class="galat-webgl" hidden>
+      <h1>Dunia 3D tidak dapat dinyalakan.</h1><p>Gunakan Mode Baca untuk membuka semua modul tanpa WebGL.</p><button class="tombol utama" type="button" data-paksa-baca>Buka Mode Baca</button>
+    </div>
+  </div>
+  <script type="module" src="js/app.mjs"></script>
+</body>
+</html>

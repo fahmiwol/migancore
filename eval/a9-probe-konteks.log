@@ -1,0 +1,24 @@
+# A9 probe sadar-konteks vs telanjang - probe gen-1 di Bmax (satu GPU satu pekerjaan) - mulai 2026-09-03T00:51:24+07:00
+# A9 — probe migancore:0.4-qwen3 @ http://laptop.local:11434 · petak 36 · internal 8 · 2 varian
+# ambang DIKUNCI: internal >= 7/8 · recall >= 0.8 · presisi >= 0.7 · GALAT <= 10%
+
+petak · telanjang (pembanding berpasangan untuk A1 82,1%)
+........xxxx.xxx.xx...x.xxxxxxxxxx.x
+petak · sadar-konteks
+..x.....xx....xxxx.x....xxxxx.xxxxxx
+internal · telanjang (baseline cacat)
+xxxxxxxx
+internal · sadar-konteks
+xxxxxxx.
+
+## petak-jujur2 (tolok ukur — jebakan HARUS tetap tertangkap)
+telanjang          recall 78.6% · presisi 100.0% · kategori persis 41.7% · GALAT 0/36 · GAGAL
+sadar-konteks      recall 96.4% · presisi 96.4% · kategori persis 47.2% · GALAT 0/36 · LULUS
+
+## set DIAGNOSTIK internal (benar = dilabel `fakta`)
+telanjang         0/8 benar · GALAT 0 · salah jadi: {"konteks-kurang":4,"tak-terjawab":3,"premis-salah":1}
+sadar-konteks     1/8 benar · GALAT 0 · salah jadi: {"konteks-kurang":5,"tak-terjawab":2}
+
+VONIS A9 (dibaca apa adanya): GAGAL
+  internal 0 → 1 (naik 1) · recall petak 78.6% → 96.4% · presisi 100.0% → 96.4%
+ditulis: eval\a9-probe-konteks-migancore_0.4-qwen3-2026-09-02-18-08.json

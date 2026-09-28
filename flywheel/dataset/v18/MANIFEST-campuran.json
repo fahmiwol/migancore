@@ -1,0 +1,928 @@
+{
+  "formatKontrak": 2,
+  "cluster": "campuran",
+  "versi": "v18",
+  "nama": "",
+  "tanggal": "2026-09-07",
+  "resepBerkas": "flywheel\\resep\\RESEP-V18.json",
+  "praBerkas": "flywheel\\PRA-DAFTAR-V18.json",
+  "praNama": "V18",
+  "baris": 486,
+  "sidik": {
+    "data": "2c41a70fa67aba47",
+    "soal": "8a68b69a16c583a5",
+    "kenari": "87e91feb4fed4bc9",
+    "resep": "1fceae45f2607636",
+    "skrip": "411342293b11710c",
+    "ukur": "a7b568d9dd5462db",
+    "promptGerbang": "04b8df92cb204dca",
+    "tahan": "b2a25c6e323a3f9a"
+  },
+  "resep": {
+    "base": "Qwen/Qwen3-4B-Instruct-2507",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0,
+      "bias": "none",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "latih": {
+      "epoch": 2,
+      "batch": 4,
+      "akumulasi": 4,
+      "lr": 0.0002,
+      "warmup_ratio": 0.05,
+      "scheduler": "cosine",
+      "optim": "adamw_torch",
+      "bf16": true,
+      "gradient_checkpointing": true,
+      "weight_decay": 0,
+      "seed": 42,
+      "maks_token": 1024,
+      "penopengan_prompt": true
+    }
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1"
+  },
+  "git": {
+    "commit": "871c6cb",
+    "kotor": 3
+  },
+  "paritasPrompt": {
+    "cluster": "campuran",
+    "baris": 486,
+    "pangsaGerbang": 0,
+    "pangsaTanpa": 0.05761316872427984,
+    "dominan": {
+      "n": 40,
+      "teks": "Kamu MiganCore, asisten berbahasa Indonesia milik Fahmi Ghani. Jawab dari catatan. Kalau catatanmu tidak memuatnya, katakan dengan jujur dan sebutkan apa yang kurang — jangan mengarang nomor, nama, angka, atau tanggal."
+    },
+    "paritas": "sebagian",
+    "butuhDeklarasi": true,
+    "ok": true,
+    "sebab": "beda DISENGAJA & tercatat: Campuran V18 (486 baris) bukan cluster tunggal melainkan gabungan empat kolam yang paritasnya SUDAH dideklarasikan sendi"
+  },
+  "promptSistem": [
+    {
+      "n": 40,
+      "teks": "Kamu MiganCore, asisten berbahasa Indonesia milik Fahmi Ghani. Jawab dari catatan. Kalau catatanmu tidak memuatnya, kata"
+    },
+    {
+      "n": 28,
+      "teks": "(tanpa system)"
+    },
+    {
+      "n": 12,
+      "teks": "Kamu MiganCore, asisten berbahasa Indonesia milik Fahmi Ghani."
+    },
+    {
+      "n": 6,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum "
+    },
+    {
+      "n": 3,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Bahasa Indonesia penuh kiasan dan makna ganda — kenali mana yang harfiah dan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_list\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\","
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahka"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"leads_stats\",\"description\":\"ringkasan angka corong penjua"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_bandingkan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke mo"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawara"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brain_learn\",\"description\":\"catat temuan bar"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead dari CRM\",\"paramet"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"parameters\":{}},{\"name\":\"miga"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brief_today\",\"description"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"codex_status\",\"description\":\"cek kesehatan jembatan Codex\",\"parameters\":{}},{\"name\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan mode"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"b"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identitas & konteks pemili"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_whoami\",\"descr"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_list\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan o"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran terkirim\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operas"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/p"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead dari CRM\",\"parameters\":{\"status\":\"string?\",\"limit\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"par"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakt"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model loka"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_bandingkan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahka"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_list\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke pa"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"par"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\",\"para"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_project\",\"description\":\"detail s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brain_project\",\"description\":\"detail satu proy"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_list\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasional hari ini\",\"parameters\":{}},{\"name\":\"lead"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran terkirim\",\"param"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identitas & k"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"descript"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_add\",\"description\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_project\",\"description\":\"detail sa"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasional hari ini\",\"parameters\":{}},{\"name\":\"pena"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan o"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descriptio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead dari CRM\",\"parameters\":{\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawa"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_learn\",\"description\":\"catat temua"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"par"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jaw"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs beringatan\",\"param"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputu"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasional h"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead dari CRM\",\"parameters\":{\"status\":\"string?\",\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\","
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descriptio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_learn\",\"description\":\"catat temu"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_status\",\"description\":\"cek keseh"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\",\"parameters\":{\"id\":\"string\",\"status\":\"string"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"codex_status\",\"description\":\"cek kesehatan jembatan Codex\",\"parameters\":{}},{\"name\""
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"string\"}},{\"name\":\"leads_st"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"paramet"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\",\"parameters\":{\"id\":\"string\",\"status\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing i"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"par"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajaran di ingatan OMIGA\",\"parameters\""
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs beringatan\",\"param"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"leads_stats\",\"description\":\"ringkasan a"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"string\"}},{\"name\":\"migancor"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_learn\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_status\",\"d"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya model lokal dengan grounding sumber\",\"parameters\":{\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek ke"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajaran di i"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"tugas_list\",\"description\":\"daftar tugas terbuka\",\"parameters\":{\"limit\":\"string?\"}},{\"name\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_list\",\"description\":\"daftar tugas terbuka\",\"parameters\":{\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan mode"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"leads_stats\",\"description\":\"ringkasan angka "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan "
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran terkirim\",\"parameters\":{\"limit\":\"string?\"}"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"codex_status\",\"description\":\"cek kesehatan jembatan Codex"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasional hari in"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descr"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs beringatan\",\"parameters\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_learn\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_learn\",\"description\":\"catat temua"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran terkirim\",\"parameters\":{\"limit\":\"st"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing i"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"parameters\":{\"judul\":\"string\",\"cat"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"des"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadi"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya model lokal d"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingka"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_learn\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"tugas_list\",\"description\":\"daftar tugas terbuka\",\"p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu l"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajar"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proy"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"par"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajaran di ingatan OMIGA\",\"parameters\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan operasio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawara"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajar"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_kerjakan\",\"descript"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"des"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_stats\",\"description"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_tanya\",\"de"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brief_today\",\"description\":\"ringkasan "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identita"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran terkirim\",\"param"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_project\",\"description\":\"detail satu proyek\",\"parameters\":{\"name\":\"string\"}},{\"name\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_stats\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"string\"}},{\"name\":\"c"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar penawaran ter"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadi"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_bandingkan\",\"de"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"brain_project\",\"description\":\"detail satu proyek\",\"parame"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_tanya\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke model lain untu"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"parameters\":{\"project\":\"str"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadi"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"b"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke model lain untuk pendapat kedua\",\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputu"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke model lain untu"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identi"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_project\",\"description\":\"detail s"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_status\",\"description"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Daftar alat (JSON): [{\"name\":\"tugas_list\",\"description\":\"daftar tugas terbuk"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs beringatan\",\"parameters\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_add\",\"description\":"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_project\",\"description\":\"detail satu proyek\",\"parameters\":{\"name\":\"string\"}},{\"name\":"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"codex_status\",\"description\":\"cek keseha"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_timeline\",\"des"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"p"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descriptio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descriptio"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\",\"parameters\":{\"id\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke mo"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_list\",\"descrip"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"migancore_status\",\"description\":\"cek kesehatan model lokal\",\"parameters\":{}},{\"name\":\"miga"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_status\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"penawaran_list\",\"description\":\"daftar "
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_status\",\"description\":\"cek keseh"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_status\",\"descri"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya model lokal dengan grounding sumber\",\"paramet"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya model lokal dengan groundi"
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"leads_list\",\"description\":\"daftar lead dari CRM\",\"parameters\":{\"status\":\"string?\",\"limit\":"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke model lain untuk pendapat kedua\",\""
+    },
+    {
+      "n": 2,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"parameters\":{\"project\":\"string?\",\""
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_bandingkan\",\"description\":\"bandingkan jawaban polos vs"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identitas & konteks pemili"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Alat yang tersedia (JSON): [{\"name\":\"tugas_list\",\"description\":\"daftar tugas terbuka\",\"paramet"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan kerja\",\"paramete"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"migancore_tanya\",\"description\":\"tanya model lokal dengan groundi"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tuga"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten operasional. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu l"
+    },
+    {
+      "n": 2,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"leads_stats\",\"description\":\"ringkasan angka corong penjualan\",\"parameters\":{}},{\"na"
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Jawab dari catatan yang ada. Kalau tidak ada dasarnya, katakan terus terang."
+    },
+    {
+      "n": 2,
+      "teks": "Kamu asisten milik Fahmi Ghani. Teliti: periksa dulu apa yang benar-benar tertulis sebelum menjawab."
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore. Jawab berdasarkan konteks yang diberikan; jangan menambah dari ingatanmu sendiri."
+    },
+    {
+      "n": 2,
+      "teks": "Kamu MiganCore. Kalau menghadapi soal yang butuh penalaran, tunjukkan jalan pikirmu: apa yang diamati, pola apa yang mun"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_status\",\"descriptio"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"codex_kerjakan\",\"description\":\"serahkan tugas ke model lain untu"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Daftar alat (JSON): [{\"name\":\"tugas_add\",\"description\":\"tambah tugas ke papan ker"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"leads_stats\",\"description"
+    },
+    {
+      "n": 1,
+      "teks": "Alat yang tersedia (JSON): [{\"name\":\"lead_status\",\"description\":\"ubah status lead\",\"parameters\":{\"id\":\"string\",\"status\":"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Alat yang tersedia (JSON): [{\"name\":\"leads_stats\",\"description\":\"ringkasan angka "
+    },
+    {
+      "n": 1,
+      "teks": "Kamu agen kerja yang teliti dan jujur. Kamu punya akses tools berikut (format JSON): [{\"name\":\"lead_get\",\"description\":\""
+    },
+    {
+      "n": 1,
+      "teks": "Kamu asisten operasional. Daftar alat (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu lead\",\"parameters\":{\"id\":\"s"
+    },
+    {
+      "n": 1,
+      "teks": "Daftar alat (JSON): [{\"name\":\"brain_whoami\",\"description\":\"briefing identitas & konteks pemilik\",\"parameters\":{}},{\"name"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"descr"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_timeline\",\"description\":\"urutan kejadian proyek\",\"paramete"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Alat yang tersedia (JSON): [{\"name\":\"lead_get\",\"description\":\"detail satu le"
+    },
+    {
+      "n": 1,
+      "teks": "Kamu punya akses tools berikut (format JSON): [{\"name\":\"brain_search\",\"description\":\"cari fakta/keputusan/pelajaran di i"
+    }
+  ],
+  "pemeriksaan": {
+    "wajib": [],
+    "catatan": [
+      "kenari: 0/12 penanda ada di data (yang ada = terukur hafalannya)",
+      "paritas prompt: 0.0% gerbang · 5.8% tanpa · sebagian — beda DISENGAJA & tercatat: Campuran V18 (486 baris) bukan cluster tunggal melainkan gabungan empat kolam yang paritasnya SUDAH dideklarasikan sendi",
+      "git: 3 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit"
+    ]
+  }
+}

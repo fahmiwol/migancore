@@ -1,0 +1,57 @@
+{
+  "nama": "h-jalur-jujur",
+  "tanggal": "2026-08-30",
+  "ditulisSebelum": "Satu baris kode diubah. Ambang di bawah dikunci sebelum ada satu angka pun, dan di-commit TERPISAH supaya riwayat git membuktikan urutannya.",
+  "konteks": {
+    "masalah": "Piagam MAKSARA menyebut lima tugas: bahasa · gaya · nalar lokal · protokol alat · KEJUJURAN MENOLAK MENGARANG. Protokol alat sudah selesai (23/24 di petak tahan 29 Agu). Kejujuran adalah satu-satunya sumbu yang gerbangnya GAGAL (MENGARANG 8,4/14 vs ambang <=8) DAN satu-satunya yang mesin tidak bisa buatkan sendiri: generator bisa membuat skenario alat, ia tidak bisa memutuskan apa yang 'mengarang' di dunia Fahmi.",
+    "temuan30Agu": "Kejujuran belum punya jalur ke alat ajar sama sekali. Diperiksa: antrean ajar berisi hitung 21 · tool 17 · gaya 4, semuanya dari berkas gerbang di eval/. Kegagalan `uji-halusinasi` TIDAK PERNAH sampai ke sana.",
+    "tigaSambunganYangBOLONG": [
+      "1. eval/uji-halusinasi.mjs menulis hasilnya ke DIREKTORI KERJA, bukan ke eval/ — jadi pemindai antrean tidak pernah melihatnya.",
+      "2. Ia menulis LARIK TELANJANG; sistem/antre-ajar.mjs membaca `j.rinci ?? j.semua ?? j.hasil` — larik telanjang tidak cocok dengan satu pun.",
+      "3. Rekamannya tidak punya medan `ok`/`lulus`, jadi `muat()` tidak bisa mengenali mana yang gagal."
+    ],
+    "yangTIDAKdibutuhkan": "Klaster BARU. `gaya` (nama tampil: 'Batas Peran & Psikologi Jawab') ringkasnya sudah berbunyi 'dinilai dua arah: menolak saat HARUS, dan menjawab saat TIDAK perlu menolak' — itu persis sumbu kejujuran. Dan clusterDari() sudah memetakan `hasil-tolak` ke `gaya`. Membuat klaster baru berarti adapter baru + gerbang baru + hukum dosis baru untuk sumbu yang punya NOL baris; itu mendahului bukti."
+  },
+  "hipotesis": {
+    "H-JUJUR": {
+      "pertanyaan": "Bisakah kegagalan halusinasi sampai ke antrean ajar TANPA mengubah satu vonis pun di gerbang halusinasi, dan TANPA mengubah satu pun dari 42 antrean yang sudah ada?",
+      "kenapaIniRisiko": "Berkas yang disentuh adalah GERBANG (uji-halusinasi.mjs) dan PEMINDAI ANTREAN (antre-ajar.mjs). Gerbang yang berubah diam-diam membuat seluruh angka MENGARANG terdahulu tak sebanding (C29). Pemindai yang berubah diam-diam bisa menggeser cluster data ajar ke adapter yang keliru — dan itu merusak MODEL, bukan cuma UI.",
+      "rancangan": "Tanda-sumber `sumber: 'halu'` ikut ditulis di tiap baris. Jadi kalau suatu hari data kejujuran layak jadi klaster sendiri, ia bisa DIPISAH tanpa menebak asalnya. Struktur ditambah hanya kalau bukti menuntut, tapi jalannya disiapkan."
+    }
+  },
+  "ambang": {
+    "M-a KESETARAAN VONIS (mengikat)": "Vonis 14 soal jebakan `uji-halusinasi` IDENTIK sebelum vs sesudah, pada model dan pembungkus yang sama. Dibuktikan mekanis dengan membandingkan medan (id, jenis, hasil) satu per satu terhadap keluaran versi git SEBELUM perubahan. Satu vonis berubah = BATALKAN, karena artinya perubahan ini menyentuh gerbangnya sendiri.",
+    "M-b ANTREAN LAMA UTUH (mengikat)": "42 antrean yang sudah ada (hitung 21 · tool 17 · gaya 4) harus TETAP 42, dengan kunci soal yang sama persis. Antrean baru hanya boleh BERTAMBAH di belakangnya. Satu antrean lama hilang/berubah = BATALKAN.",
+    "M-c PENANDAAN (mengikat)": "Tiap antrean baru wajib bercluster `gaya` DAN bermedan `sumber: 'halu'`. Nol antrean halusinasi yang mendarat di cluster lain.",
+    "M-d C27 (mengikat)": "eval/jaga-modul.mjs tetap 'TIDAK ADA PELANGGAR BARU'. Berkas yang diimpor tidak boleh punya efek samping.",
+    "M-e HIDUP (mengikat)": "Di server yang sedang berjalan: antrean `gaya` bertambah, DAN satu baris kejujuran benar-benar bisa disimpan lewat gerbang `gaya` yang ada. Gerbang yang menolak semua = fitur tidak terpasang."
+  },
+  "kalauGagal": {
+    "M-a gagal": "BATALKAN seluruh perubahan pada uji-halusinasi.mjs. Kalau kegagalan halusinasi tidak bisa diekspor tanpa menyentuh vonisnya, tulis PENGEKSPOR TERPISAH yang membaca keluaran lama — gerbang tidak boleh disentuh demi kenyamanan hilir.",
+    "M-b gagal": "BATALKAN perubahan pada antre-ajar.mjs. Antrean yang sudah ada adalah kerja yang menunggu Fahmi; menggesernya lebih mahal daripada menunda fitur.",
+    "M-c gagal": "Fitur TIDAK dipasang. Data kejujuran yang mendarat di cluster keliru akan dilatih ke adapter yang salah, dan itu merusak model tanpa satu pun pesan galat — kelas cacat C31.",
+    "M-e gagal": "Fitur TIDAK dipasang, dan catat gerbang `gaya` mana yang menolak. Kemungkinan besar itu berarti gerbang `gaya` dikalibrasi untuk penolakan-peran, bukan penolakan-fakta — dan itu temuan yang lebih berharga daripada fiturnya."
+  },
+  "yangTIDAKdijawab": "Ini TIDAK menguji apakah gold kejujuran tulisan tangan menaikkan skor MENGARANG. Itu hipotesis latih yang butuh pra-daftarnya sendiri, sesudah datanya ada. Yang diuji di sini hanya: apakah jalurnya tersambung tanpa merusak apa pun.",
+  "catatanSASARAN_LOCK": "SASARAN-LOCK 26 Agu membekukan TRAINING, bukan pengumpulan data. Pekerjaan ini nol GPU dan nol rupiah. Tapi ia juga nol pendapatan, dan itu disebut terus terang ke Fahmi pada 30 Agu — keputusan meneruskannya ada di dia.",
+  "vonis": {
+    "hasil": "LULUS seluruh ambang - jalur dipasang",
+    "keadaan": "lulus",
+    "tanggal": "2026-08-30",
+    "angka": {
+      "M-a": "LULUS - nilai() & MENOLAK identik bita-per-bita vs a14a6a8; 72 rekaman NYATA dinilai ulang dengan kedua versi, 0 vonis berbeda",
+      "M-b": "LULUS - 42 antrean lama utuh, sebaran tetap hitung 21 - tool 17 - gaya 4",
+      "M-c": "LULUS - 15 antrean kejujuran, 15/15 cluster gaya, 15/15 sumber=halu, 15/15 ditandai soal gerbang",
+      "M-d": "LULUS - jaga-modul bersih; antre-ajar 20/20; server ajar 15/15; uji-jalur-jujur 20/20",
+      "M-e": "LULUS - server hidup menyajikan gaya 19 (4 lama + 15 kejujuran); gerbang gaya MENERIMA penolakan jujur"
+    },
+    "duaKALIgagalSEBELUMlulus": [
+      "1. Nol antrean masuk. Sebabnya daftar-izin di antre() yang tidak memuat `halu` - dan komentar di sekitarnya justru menjelaskan kenapa dua jalur masuk (hasil-* vs lapangan-*) tidak boleh dicampur. Menambahkan `halu` ke jalur GERBANG ternyata memang benar: 14 soal jebakannya ADALAH ujiannya, jadi soalGerbang() otomatis mengecualikannya dari latihan dan alat ajar meminta SOAL SAUDARA.",
+      "2. M-c gagal: tanda `sumber` tidak selamat melewati penggabungan antrean, karena objek gabungan dibangun ulang medan-per-medan. Ironisnya tepat di bawah komentar 'LABEL HARUS IKUT ASALNYA, BUKAN DIPAKU' yang ditulis untuk cacat sejenis. Ambang TIDAK diturunkan; kodenya yang dibetulkan."
+    ],
+    "ujiSAYAyangSALAH": "Percobaan pertama uji-jalur-jujur.mjs melaporkan 'sumber nilai() berubah' dua kali. Keduanya cacat UJINYA: (a) irisannya terlalu lebar sehingga ikut menyeret tanya() yang memang sengaja diubah; (b) `git show` mengeluarkan LF sedangkan berkas kerja Windows sudah CRLF. Kode produksinya benar sejak awal - dibuktikan oleh 72 rekaman nyata yang vonisnya identik.",
+    "temuanSAMPINGAN_lebih_penting_dari_fiturnya": "Hukum C33. `tanya()` di uji-halusinasi tidak pernah memeriksa `r.ok`; model yang salah ketik/mati dinilai mengarang 14/14 (100%) tanpa satu pun pesan galat. Dibuktikan pada berkas nyata: 24 rekaman, semua `teks` kosong, 18 divonis NGARANG. Sudah diperbaiki. 390 rekaman gerbang alat & petak TAHAN diperiksa: nol tercemar.",
+    "yangSENGAJAtidakDIPASANG": "Peringatan otomatis kalau jawaban ajar tidak cocok pola MENOLAK. Ia akan mendorong Fahmi menulis penolakan memakai kosakata pemeriksanya, sehingga skor gerbang naik tanpa model membaik - jebakan C30 plus bias pra-anotasi (LREC 2022). Gerbang `gaya` memeriksa BENTUK, bukan KEBENARAN; kebenarannya Fahmi. Batas ini disebut terus terang, bukan ditambal.",
+    "yangHarusDIPANTAU": "Apakah gold kejujuran tulisan tangan benar-benar menurunkan MENGARANG. Itu hipotesis LATIH yang butuh pra-daftarnya sendiri sesudah datanya ada - dan sekarang terhalang SASARAN-LOCK, bukan terhalang alat."
+  }
+}

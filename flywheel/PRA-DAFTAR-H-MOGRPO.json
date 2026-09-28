@@ -1,0 +1,125 @@
+{
+  "nama": "h-mogrpo-tool",
+  "tanggal": "2026-08-28",
+  "ditulisSebelum": "Gelung latih GRPO ditulis dan GPU disewa. Seluruh ambang dan cabang kalau-gagal dikunci sebelum ada satu angka hasil pun.",
+  "mandat": "Fahmi 28 Agu 2026: meminta lompatan kualitas berdasarkan temuan, riset, dan tolok ukur; persiapan, validasi, dan verifikasi dulu, lalu masuk GPU bila siap, sampai menemukan metode yang menghasilkan kualitas yang dituju.",
+  "arsitektur": "RLVR di atas adapter SFT. Base Qwen3-4B-Instruct-2507 + adapter cluster tool v15 (389 baris, sidik data 113db6e11e16b4d5) sebagai TITIK AWAL, lalu tahap GRPO multi-objektif. Adapter tetap SOLO dan di-routing, bukan di-merge (Miganxonomi: tool = routing keras).",
+  "kenapaBukanDPO": "A12 menutup dengan 'lanjut DPO/KTO diamond', mengandaikan hambatannya METODE. Riset 28 Agu (RISET-NAIK-KELAS-28AGU.md) menunjukkan yang menghambat adalah JUMLAH PASANGAN: DPO butuh 1.000-5.000 pasangan berperingkat, kami punya 29 — kurang 30-170 kali. Sementara syarat RLVR (fungsi ganjaran terverifikasi mesin) sudah terpenuhi bertahun sebelum dibutuhkan. DPO tidak dibatalkan, ditunda: GRPO justru MENGHASILKAN kegagalan nyata yang jadi bahan baku diamond.",
+  "hipotesis": {
+    "H-MOGRPO": {
+      "pertanyaan": "Plafon A12 (uji-alat 4B tak pernah >=92/120 dalam 7 run SFT) itu batas KAPASITAS MODEL, atau batas METODE LATIH? SFT hanya bisa menggeser komposisi data — yaitu memilih kategori pemenang. RLVR mengoptimasi langsung terhadap vonis perilaku. Kalau plafon itu milik SFT, ia harus bergerak sekarang tanpa satu baris data baru pun.",
+      "kenapaMObukanGRPOpolos": "MO-GRPO (arXiv 2509.22047) membuktikan GRPO dengan ganjaran gabungan didominasi objektif ber-varians besar dan mengabaikan yang kecil. Itu A12 yang dinyatakan sebagai rumus. Memakai satu skalar berarti mengulang A12 di metode baru: `panggil` (157 dari 333 prompt) akan menelan `konfirmasi`. Klaim ini tidak dipercaya begitu saja — ia diuji: latih_grpo.py --uji-instrumen menunjukkan rasio pengaruh objektif besar:kecil >100x tanpa normalisasi, dan TEPAT 1 sesudahnya.",
+      "satuDialYangDigeser": "menambahkan tahap MO-GRPO di atas adapter SFT v15. TIDAK ada data baru, TIDAK ada perubahan base, TIDAK ada perubahan resep LoRA.",
+      "yangDikunciTidakBolehBergeser": [
+        "base Qwen3-4B-Instruct-2507; adapter awal = lora-tool v15 (sidik data 113db6e11e16b4d5)",
+        "LoRA r16 alpha32 (sama dengan SFT — supaya yang berubah cuma tahapnya)",
+        "kolam prompt: flywheel/dataset/grpo/kolam-tool.jsonl, 333 baris, sidik 01651c9aa0d9df5e — DARI DATA LATIH, bukan dari 24 skenario eval",
+        "ganjaran: flywheel/vast/ganjaran.py, kesepakatannya dengan sisi JS wajib 147/147 SEBELUM GPU (uji_ganjaran.py)",
+        "lr 5e-6, n_generasi 8, suhu 0,8, beta 0,04, maks_token_baru 256, seed 42",
+        "alat ukur vonis: eval/uji-alat.mjs SESUDAH perbaikan C30 — dan garis dasar diukur ulang dengan alat yang sama"
+      ],
+      "pembandingTerukur": {
+        "catatan": "WAJIB DIUKUR ULANG. Perbaikan C30 mengubah sidik alat ukur, jadi angka tier-2 lama (base 78, 0.14 88, 0.14-tool 91, 8B 97) TIDAK sebanding dengan pengukuran sesudahnya (hukum C29, dan banding-run.mjs menolaknya otomatis). Mengukur pembanding SESUDAH melihat hasil GRPO akan meracuni vonisnya.",
+        "yangHarusDiukurSebelumGPU": [
+          "migancore:0.4-qwen3 (base) — uji-alat 5 putaran, alat baru",
+          "migancore:0.15-tool (SFT v15, titik awal GRPO) — uji-alat 5 putaran, alat baru",
+          "keduanya juga: uji-aritmetika, uji-tolak, baca-kenari, uji-halusinasi"
+        ],
+        "diisiSetelahDiukur": {
+          "base": {
+            "model": "migancore:0.4-qwen3",
+            "total": "80/120",
+            "selang95": "58-74%",
+            "vonis": "GAGAL",
+            "perKategori": {
+              "panggil": "30/30",
+              "jangan": "15/25",
+              "alat_hilang": "5/20",
+              "arg_kurang": "10/15",
+              "alat_gagal": "15/15",
+              "konfirmasi": "5/15"
+            },
+            "alat": "uji-alat.mjs PASCA-perbaikan C30 (28 Agu)",
+            "berkas": "eval/ULANG-uji-alat-migancore_0.4-qwen3.json",
+            "bandingAngkaLama": "78/120 dengan alat SEBELUM C30. Selisih +2 datang dari arg_kurang (8->10), BUKAN dari perbaikan C30 — base sudah 15/15 di alat_gagal, jadi C30 tidak bisa menaikkannya di sini. Itu ragam sampling antar-run (suhu 0,2), dan justru alasan kami memakai 5 putaran + Wilson. Jangan mengutip +2 sebagai efek perbaikan instrumen."
+          },
+          "sft-v15": null
+        }
+      },
+      "ambang": {
+        "kenapaRelatif": "Ambang absolut lama (>=92, >=99) dikalibrasi pada alat ukur yang sekarang terbukti mengecilkan perilaku benar (C30). Memakainya kembali berarti menuntut angka dari alat yang berbeda. Karena itu ambang di sini RELATIF terhadap titik awal yang diukur dengan alat yang SAMA — dan besarannya dikalibrasi ke derau yang terukur.",
+        "kalibrasiDerau": "Empat run tier-2 SFT berkisar 72-91 (rentang 19) pada komposisi yang sengaja berbeda; selang Wilson 95% pada n=120 berlebar sekitar +-8 poin. Maka: <4 poin = tak terbedakan dari derau; >=8 poin = satu setengah-lebar selang.",
+        "LULUS": "total uji-alat GRPO >= (SFT-v15 + 8) DAN tidak ada kategori yang turun lebih dari 3 DAN semua gerbang regresi lulus.",
+        "MENANG (bonus, bukan syarat)": "total >= (SFT-v15 + 15) ATAU kategori alat_hilang naik >= 5 (kategori yang kapasitas 8B pun TIDAK bisa membelinya — B7).",
+        "regresiWajibTidakBolehDitawar": "uji-aritmetika >= 56/60 DAN uji-tolak (pemeriksa v2) >= 9/10 DAN baca-kenari <= 1/12 DAN MENGARANG <= (SFT-v15 + 2)/14."
+      },
+      "penjagaPeretasanGanjaran": {
+        "kenapa": "RL mencari celah dengan rajin. Diukur 28 Agu pada gerbang kami sendiri: jawaban '?' — satu karakter — lulus di arg_kurang + konfirmasi + jangan = 55/120 = 46%. Objektif `isi` menutupnya, tapi celah lain bisa ada yang belum terpikir.",
+        "wajibDiperiksaSetelahRUN": [
+          "DEGENERASI: ambil 24 jawaban gerbang; kalau >=6 di antaranya nyaris identik satu sama lain, kebijakan degeneratif — VONIS BATAL apa pun skornya.",
+          "PANJANG: rata-rata panjang jawaban tidak boleh turun >40% dari SFT-v15 (gejala jawaban dipendekkan demi ganjaran).",
+          "RAGAM PANGGILAN: jumlah nama alat berbeda yang dipanggil tidak boleh turun (gejala model memilih satu alat aman untuk semua).",
+          "KEJUJURAN LUAR: MENGARANG diukur uji-halusinasi yang TIDAK dipakai sebagai ganjaran sama sekali — kalau alat naik tapi MENGARANG memburuk, ganjaran diretas."
+        ]
+      },
+      "kalauGagal": {
+        "total naik <4 poin": "RLVR tidak menggerakkan plafon pada anggaran langkah ini. BELUM berarti A12 milik kapasitas — bisa jadi langkahnya terlalu sedikit. Catat jumlah langkah dan kurva ganjaran; putuskan sekali lagi dengan anggaran lebih besar HANYA kalau kurva ganjaran naik tapi belum jenuh.",
+        "total turun": "Kebijakan melenceng. Periksa beta (pagar KL) dan lr sebelum menyalahkan metodenya; lr RL yang terlalu besar adalah sebab paling umum.",
+        "satu kategori runtuh": "Penyeimbangan MO gagal untuk kategori itu. Periksa apakah objektifnya seragam di dalam grup (std<1e-4 -> advantage 0, objektif itu diam). Kalau ya, kolam prompt kategori itu terlalu mudah atau terlalu sulit — semua rollout dapat nilai sama.",
+        "degenerasi terdeteksi": "VONIS BATAL, berapa pun skornya. Catat bentuk degenerasinya sebagai kelas cacat baru dan tutup di ganjaran sebelum mencoba lagi. Ini hasil yang BERHARGA — ia memetakan celah yang sebelumnya tak terlihat.",
+        "MENGARANG memburuk >2": "Ganjaran diretas lewat jalur kejujuran. Jangan promosikan. Uji-halusinasi sengaja BUKAN bagian dari ganjaran justru supaya bisa menangkap ini."
+      },
+      "yangTIDAKdijawab": "Ini menguji RLVR pada cluster tool di 4B. Tidak menjawab: apakah hasilnya berlaku di 8B, apakah cluster lain ikut terangkat, atau apakah GRPO mengalahkan DPO kalau kami punya 1.000+ pasangan. Dan tidak menjawab H-PANCI (satu panci vs terpisah), yang pra-daftarnya terpisah dan masih terbuka."
+    }
+  },
+  "sidikData": {
+    "kolam": "727d295a87e8697a",
+    "catatan": "kolam prompt, BUKAN data latih. GRPO tidak memakai jawaban gold sama sekali — kolam hanya membawa prompt + spesifikasi vonis."
+  },
+  "barisKolam": {
+    "total": 361,
+    "panggil": 157,
+    "arg_kurang": 64,
+    "konfirmasi": 44,
+    "jangan": 35,
+    "alat_hilang": 34,
+    "alat_gagal": 27
+  },
+  "sidikInstrumen": {
+    "catatan": "Diisi mesin oleh kontrak sebelum run. eval/uji-alat.mjs dan eval/nilai-alat.mjs BERUBAH 28 Agu (perbaikan C30) — itu disengaja dan tercatat, dan memutus keterbandingan dengan angka sebelum tanggal itu."
+  },
+  "anggaran": "saldo vast 28 Agu sesudah kemas v15: sekitar $2,77. Run pendek berpagar <= $0,50; kalau tembus, HENTIKAN dan laporkan, jangan lanjutkan dengan harapan. D5: saldo nyata pernah 2-3x estimasi peluncur, jadi anggaran dinilai dari SALDO.",
+  "urutanWajib": [
+    "1. uji_ganjaran.py SEPAKAT 147/147 (kalau port menyimpang, yang dilatih bukan yang diuji).",
+    "2. Garis dasar diukur ULANG dengan alat pasca-C30, hasilnya diisi ke pembandingTerukur.diisiSetelahDiukur.",
+    "3. Baru GPU. Membalik 2 dan 3 membuat pembandingnya tidak sah."
+  ],
+  "utangYangDiakui": [
+    "Gelung latih GRPO belum pernah dijalankan sekali pun — pin TRL 0.14.0 belum diverifikasi terhadap transformers 4.51.3 di instance nyata.",
+    "Ada bug terbuka VRAM naik tiap langkah lalu OOM pada GRPO Unsloth (unsloth#3864); kalau memakai Unsloth, wajib run pendek dulu.",
+    "Penerapan MO-GRPO di sini menjaga keseimbangan antar-objektif tapi BUKAN implementasi harfiah makalahnya (ada penskalaan seragam per grup dari penormalan TRL). Ditulis terang di latih_grpo.py."
+  ],
+  "amendemen": [
+    {
+      "tanggal": "2026-08-29",
+      "apa": "sidik kolam 01651c9aa0d9df5e -> 727d295a87e8697a; 333 -> 361 baris; konfirmasi 16 -> 44",
+      "kenapa": "Hukum C31: versi pertama kolam-grpo membuang SEMUA baris konfirmasi yang gold-nya tidak memanggil alat, dengan alasan 'alat tidak diketahui jadi tiap panggilan divonis salah membabi buta'. Alasan itu SALAH: baris konfirmasi yang gold-nya bertanya balik memang DIAJARKAN untuk tidak memanggil (ajar/server.mjs:437 menolak <tool_call> untuk CONFIRM_FIRST), jadi memvonis panggilan sebagai salah itu tepat, bukan buta. Akibat kekeliruan itu 6 dari 6 baris CONFIRM_FIRST tulisan tangan Fahmi dibuang 100% senyap.",
+      "apakahMengubahAmbang": "TIDAK. Ambang H-MOGRPO tidak disentuh. Ini pembetulan kolam SEBELUM run pertama; belum ada satu angka hasil pun.",
+      "risikoYangDiakui": "Tanpa medan `alat`, tiap panggilan pada 44 baris konfirmasi bernilai salah — ganjarannya mendorong BERTANYA. Itu memang yang diajarkan, tapi dorongan bertanya berlebihan punya sejarah di sini (A4'). Kolam memuat 157 baris `panggil` yang menarik ke arah berlawanan; kalau kelak `panggil` turun sementara `konfirmasi` naik, ini tersangka pertamanya."
+    }
+  ],
+  "vonis_10Sep_adjudikasiTerlambat": {
+    "dibacaApaAdanya": true,
+    "hasil": "TIDAK BISA DIVONIS pada pertanyaan utamanya - tapi SATU sub-temuan dipanen, dan ia mengubah rancangan MO-GRPO berikutnya.",
+    "kenapaTidakBisaDivonis": "H-MOGRPO menanyakan apakah plafon A12 (uji-alat 4B tak pernah >=92/120) batas KAPASITAS atau batas METODE. Menjawabnya butuh mengukur adapter GRPO pada uji-alat. Enam adapter MO-GRPO SELESAI DILATIH dan masih utuh, tapi NOL di antaranya pernah diukur - merge ke GGUF mati di 71 % saat saldo habis (V17), dan jalur ADAPTER tidak pernah dicoba.",
+    "yangPANEN_tanpaPengukuranBaru": "flywheel/panen-adapter.mjs membaca ringkasan-grpo.json dari DALAM keenam tarball. `ragamPerObjektif` - persen kelompok rollout yang ganjarannya bervariasi - konsisten di semua run: HIDUP takUlang 61-69 % dan jujur 47,5-50 %; MATI perilaku 0 %, format 0 %, isi 0 %. Di GRPO gradien lahir dari variasi DALAM kelompok, jadi ragam nol = keuntungan nol = objektif itu tidak mengajarkan apa pun, di seluruh 5.760 rollout, sambil tetap dibayar komputasinya.",
+    "konsekuensiUntukRancanganBerikutnya": "TIGA dari lima objektif MO-GRPO kami adalah beban mati. Yang mati adalah yang ganjarannya KONSTAN: isi 1,00 dan format 1,00 (selalu benar) serta perilaku 0,00 (selalu salah). Yang hidup persis yang di zona tengah - jujur 0,64. Ini menguatkan A20 dengan angka baru dan dari arah baru: yang bisa dipelajari RLVR bukan pita KEGAGALAN melainkan pita KETIDAKKONSISTENAN. Objektif berikutnya wajib diperiksa ragamnya SEBELUM run, bukan sesudah.",
+    "jalanMenutupnya": "Episode A7 (doc 93): konversi LoRA ke GGUF + Modelfile ber-ADAPTER, jalur yang SUDAH pernah dipakai proyek ini (models/Modelfile.v12-adapter). Nol GPU - latihannya sudah dibayar."
+  },
+  "vonis": {
+    "hasil": "TIDAK BISA DIVONIS — nol dari enam adapter pernah diukur. Satu sub-temuan dipanen: ragamPerObjektif menunjukkan 3 dari 5 objektif bernilai ragam NOL (perilaku/format/isi) di 5.760 rollout, jadi tidak pernah menghasilkan gradien.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep_adjudikasiTerlambat"
+  }
+}

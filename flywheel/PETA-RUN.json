@@ -1,0 +1,143 @@
+{
+  "catatan": "PETA RUN — sambungan antara run latih, model yang dikemas, dan hasil ukur tier-2. Dibaca flywheel/banding-run.mjs.",
+  "kenapaAda": "Rantai sidik kami mekanis hanya sampai ringkasan latih. Sesudah itu: adapter lora-<cluster>.tgz DITIMPA tiap run tanpa sidik, ringkasan kemas cuma menulis nama cluster ('adapters': ['tool']) tanpa sidik asal, tag ollama DIPAKAI ULANG (empat run berbeda semuanya bernama migancore:0.14-tool), dan hasil tier-2 dibedakan hanya oleh medan `sufiks` yang diketik tangan saat mengukur. Berkas ini menambal sambungan itu untuk RIWAYAT — dan setiap sambungan menyebut kalimat dokumen sumbernya, supaya bisa diperiksa ulang orang lain, bukan dipercaya karena saya yang menulis.",
+  "aturan": [
+    "Satu catatan = satu run LATIH. Kunci utamanya `ringkasan` (jalur berkas), BUKAN `sidikData` — dua run sah berbagi sidik data yang sama kalau yang digeser adalah base (lihat run-7 vs run-8b).",
+    "`keyakinan` wajib jujur: `pasti` = dokumen menyebut sidik atau jumlah baris run itu secara harfiah; `kuat` = dua petunjuk bebas saling menguatkan; `diduga` = satu petunjuk saja. Jangan pernah menulis `pasti` untuk sesuatu yang disimpulkan dari urutan nama berkas.",
+    "Run yang tier-2-nya memang tidak pernah diukur ditulis `tier2: null` dengan alasannya — itu berbeda artinya dari `belum tersambung`, dan bedanya penting.",
+    "Untuk run BARU, catatan ini seharusnya ditulis peluncur secara otomatis. Selama itu belum ada, tambahkan manual DI HARI YANG SAMA — sambungan yang ditulis dari ingatan seminggu kemudian adalah tebakan yang menyamar jadi catatan."
+  ],
+  "utang": "Sambungan otomatis dari luncurkan_cluster.py belum ada; catatan di bawah ditulis tangan dari dokumen. Juga: run-1, run-4, run-5 memang tidak punya tier-2 — dua di antaranya karena ditolak gerbang lebih dulu, jadi hukum A12 ('7 run, total berosilasi 81-91') sesungguhnya bersandar pada EMPAT pengukuran tier-2, bukan tujuh. Itu tidak membatalkan A12, tapi harus disebut waktu mengutipnya. | 28 Agu: sidik uji-alat BERUBAH (perbaikan C30) — angka tier-2 sebelum tanggal itu (72/91/81/86/97) TIDAK sebanding dengan sesudahnya; banding-run.mjs menolaknya otomatis (C29).",
+  "run": [
+    {
+      "label": "run-1",
+      "cluster": "tool",
+      "sidikData": "bb196721d11d3d00",
+      "baris": 145,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260824-0318.json",
+      "modelTag": null,
+      "tier2": null,
+      "kenapaTanpaTier2": "GAGAL tier-1 — tidak pernah dikemas, jadi tidak ada yang bisa diukur. Gerbangnya bekerja persis seperti maunya.",
+      "sambungan": "dokumen menyebut sidik",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:94 — judul '## 7. Run-1 (data bb196721d11d3d00): GAGAL tier-1 — dan gerbangnya BEKERJA'",
+      "keyakinan": "pasti"
+    },
+    {
+      "label": "run-2",
+      "cluster": "tool",
+      "sidikData": "e9ee4427cb03b7f5",
+      "baris": 147,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260824-0442.json",
+      "modelTag": "migancore:0.14-tool",
+      "tier2": "eval/ULANG-uji-alat-migancore_0.14-tool-r1t.json",
+      "sambungan": "dokumen menyebut sidik + vonis tier-2 bernomor run",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:121 — '147 baris, sidik **e9ee4427cb03b7f5**'; dan :184 — '## 7d. Vonis tier-2 run-2: GAGAL alat (72/120)'. Berkas r1t memuat 72/120.",
+      "keyakinan": "kuat"
+    },
+    {
+      "label": "run-3",
+      "cluster": "tool",
+      "sidikData": "f34c58a163a997a1",
+      "baris": 131,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260824-0724.json",
+      "modelTag": "migancore:0.14-tool",
+      "tier2": "eval/ULANG-uji-alat-migancore_0.14-tool-r2t.json",
+      "sambungan": "dokumen menyebut sidik + vonis tier-2 bernomor run",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:205 — '131 baris, sidik f34c58a163a997a1'; dan :227 — '## 7f. Tier-2 run-3: 91/120'. Berkas r2t memuat 91/120. Diperkuat A9 (PETA-DIAL): 12 baris lapor-jujur = 9,2% dari 131.",
+      "keyakinan": "pasti"
+    },
+    {
+      "label": "run-4 (iterasi-3)",
+      "cluster": "tool",
+      "sidikData": "6d0f044a327be519",
+      "baris": 147,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260824-0913.json",
+      "modelTag": null,
+      "tier2": null,
+      "kenapaTanpaTier2": "adapter run-4 gagal di tahap kemas — tidak pernah sampai GGUF.",
+      "sambungan": "dokumen menyebut sidik",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:246 — '**Iterasi-3** (data 6d0f044a327be519, 147 baris, generator 21/21)'; :309 — 'run-4 lora-tool.tgz (gagal)'",
+      "keyakinan": "pasti"
+    },
+    {
+      "label": "run-5",
+      "cluster": "tool",
+      "sidikData": "e21d3bafc34defe3",
+      "baris": 172,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260824-0931.json",
+      "modelTag": null,
+      "tier2": null,
+      "kenapaTanpaTier2": "DHAIF by-design — prompt ballast bucket-G identik dengan prompt gerbang, jadi angkanya tidak akan berarti apa pun. Dihentikan sebelum diukur.",
+      "sambungan": "urutan arsip + sifat run",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:274 — '**Run-5** ($0,03): DHAIF by-design — prompt ballast bucket-G identik prompt'. Sidiknya TIDAK disebut dokumen; sambungan ini bersandar pada urutan waktu arsip (24 Agu 09:31, sesudah run-4 dan sebelum run-6).",
+      "keyakinan": "diduga"
+    },
+    {
+      "label": "run-6",
+      "cluster": "tool",
+      "sidikData": "63db3fe40e2cefa6",
+      "baris": 169,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260825-0049.json",
+      "modelTag": "migancore:0.14-tool-run6",
+      "tier2": "eval/ULANG-uji-alat-migancore_0.14-tool-r3t.json",
+      "sambungan": "dua petunjuk bebas: urutan arsip + aritmetika dosis A10",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:278 — 'Run-6 ... tier-2: alat 81/120 ... MENGARANG 2->10/14'; berkas r3t memuat 81/120. Sidik tidak disebut dokumen, TAPI hukum A10 mencatat ballast '22 baris hitung (13%)' dan 22/169 = 13,0% — cocok dengan run bersidik ini, dan urutan arsipnya juga tepat di antara run-5 dan run-7.",
+      "keyakinan": "kuat"
+    },
+    {
+      "label": "run-7",
+      "cluster": "tool",
+      "sidikData": "a19db1a87bc87c55",
+      "baris": 201,
+      "ringkasan": "models/v14/ringkasan-tool-sebelum-20260828-0212.json",
+      "modelTag": "migancore:0.14-tool",
+      "tier2": "eval/ULANG-uji-alat-migancore_0.14-tool-r4t.json",
+      "sambungan": "dokumen menyebut komposisi baris yang unik",
+      "sumberSambungan": "STATUS-24-AGUSTUS-2026.md:373 — '**Run-7** (201 = 147 murni + 54 gold) ... tier-2 **86/120**'; berkas r4t memuat 86/120. Sidik 201-baris ini juga tercatat di RENCANA-V15-TERUKUR.md:80.",
+      "keyakinan": "pasti"
+    },
+    {
+      "label": "run-8b (base 8B, DATA SAMA dengan run-7)",
+      "cluster": "tool",
+      "sidikData": "a19db1a87bc87c55",
+      "baris": 201,
+      "ringkasan": "models/v14/ringkasan-tool-8b.json",
+      "modelTag": "migancore:0.14-tool-8b",
+      "tier2": "eval/ULANG-uji-alat-migancore_0.14-tool-8b-8bt.json",
+      "sambungan": "manifest terpisah + nama berkas",
+      "sumberSambungan": "flywheel/dataset/v14/MANIFEST-tool-8b.json memuat sidik.data a19db1a87bc87c55 dan baris 201 — DATA IDENTIK dengan run-7. eval/CEK-TOOL-migancore_0.14-tool-8b.md:13 memuat 97/120.",
+      "keyakinan": "pasti",
+      "kenapaPenting": "Ini perbandingan SATU DIAL paling bersih yang pernah kami punya: data, resep, dan alat ukur sama persis; yang berbeda hanya base 4B vs 8B. 86/120 -> 97/120. Itu bukti langsung bahwa sebagian plafon A12 adalah batas KAPASITAS, bukan komposisi."
+    },
+    {
+      "label": "v15-tool-volume (389 baris)",
+      "cluster": "tool",
+      "sidikData": "113db6e11e16b4d5",
+      "baris": 389,
+      "ringkasan": "models/v14/ringkasan-tool.json",
+      "praDaftar": "flywheel/PRA-DAFTAR-V15.json",
+      "modelTag": "migancore:0.15-tool (belum dibuat di ollama)",
+      "tier2": null,
+      "kenapaTanpaTier2": "GGUF selesai dan sedang diunduh 28 Agu 03:30; tier-2 belum dijalankan. Perhatian: sidik uji-alat BERUBAH 28 Agu (perbaikan C30), jadi tier-2 model ini hanya sebanding dengan pengukuran lain yang memakai alat pasca-perbaikan.",
+      "sambungan": "mekanis",
+      "sumberSambungan": "manifest flywheel/dataset/v14/MANIFEST-tool.json bersidik data sama dan menyebut praBerkas PRA-DAFTAR-V15.json",
+      "keyakinan": "pasti",
+      "kemas": "models/v14/ringkasan-migancore-15-tool.json",
+      "kemasHasil": "19,4 mnt GPU · arit 10/10 di KETIGA lengan · kenari 0/12 · kode7 true · cium_ok true · gguf true · tolak-ringkas v1 7/10 TAPI v2 9/10 (ketiga 'kegagalan' v1 adalah penolakan yang BENAR — hukum C30)"
+    },
+    {
+      "label": "v15-grpo (BELUM DIJALANKAN)",
+      "cluster": "tool-grpo",
+      "sidikData": "01651c9aa0d9df5e",
+      "baris": 333,
+      "ringkasan": "models/v15/ringkasan-tool-grpo.json",
+      "praDaftar": "flywheel/PRA-DAFTAR-H-MOGRPO.json",
+      "modelTag": null,
+      "tier2": null,
+      "kenapaTanpaTier2": "Belum dijalankan. Perkakas lengkap dan lulus uji (ganjaran 147/147, MO-GRPO 19/19, kolam 16/16); urutan wajib di pra-daftar: garis dasar diukur ULANG dengan alat pasca-C30 DULU.",
+      "sambungan": "rencana",
+      "sumberSambungan": "PRA-DAFTAR-H-MOGRPO.json + HANDOFF-28AGU-NAIK-KELAS.md",
+      "keyakinan": "belum ada hasil"
+    }
+  ]
+}

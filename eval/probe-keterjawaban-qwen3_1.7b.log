@@ -1,0 +1,52 @@
+# probe-keterjawaban — qwen3:1.7b · 36 soal · http://127.0.0.1:11434/api/chat
+✓ J2-F1     fakta           → fakta           509ms
+✓ J2-F2     fakta           → fakta           494ms
+✓ J2-F3     fakta           → fakta           515ms
+✓ J2-F4     fakta           → fakta           557ms
+✓ J2-F5     fakta           → fakta           542ms
+✓ J2-F6     fakta           → fakta           578ms
+✓ J2-F7     fakta           → fakta           562ms
+✓ J2-F8     fakta           → fakta           424ms
+✗ J2-A1     tak-terjawab    → fakta           516ms
+✗ J2-A2     tak-terjawab    → fakta           588ms
+~ J2-A3     tak-terjawab    → premis-salah    509ms
+✗ J2-A4     tak-terjawab    → fakta           662ms
+✗ J2-A5     tak-terjawab    → fakta           491ms
+~ J2-A6     tak-terjawab    → konteks-kurang  481ms
+✓ J2-B5     premis-salah    → premis-salah    614ms
+✗ J2-D5     maksud-kurang   → fakta           467ms
+✓ J2-B1     premis-salah    → premis-salah    704ms
+~ J2-B2     premis-salah    → konteks-kurang  637ms
+✗ J2-B3     premis-salah    → fakta           646ms
+~ J2-B4     premis-salah    → konteks-kurang  769ms
+✗ J2-C1     konteks-kurang  → fakta           462ms
+✗ J2-C2     konteks-kurang  → fakta           541ms
+✓ J2-C3     konteks-kurang  → konteks-kurang  617ms
+✗ J2-C4     konteks-kurang  → fakta           519ms
+✗ J2-D1     maksud-kurang   → fakta           756ms
+✗ J2-D2     maksud-kurang   → fakta           639ms
+✗ J2-D3     maksud-kurang   → fakta           595ms
+~ J2-D4     maksud-kurang   → premis-salah    801ms
+✗ J2-E1     kedaluwarsa     → fakta           543ms
+✗ J2-E2     kedaluwarsa     → fakta           645ms
+~ J2-E3     kedaluwarsa     → konteks-kurang  973ms
+✗ J2-E4     kedaluwarsa     → fakta           646ms
+~ J2-G1     subjektif       → premis-salah    998ms
+~ J2-G2     subjektif       → maksud-kurang   825ms
+~ J2-G3     subjektif       → maksud-kurang   665ms
+✗ J2-G4     subjektif       → fakta           621ms
+
+## Matriks jenis (baris) × label probe (kolom)
+jenis             fakta tak-te premis kontek maksud kedalu subjek  GALAT
+fakta                 8      0      0      0      0      0      0      0
+tak-terjawab          4      0      1      1      0      0      0      0
+premis-salah          1      0      2      2      0      0      0      0
+konteks-kurang        3      0      0      1      0      0      0      0
+maksud-kurang         4      0      1      0      0      0      0      0
+kedaluwarsa           3      0      0      1      0      0      0      0
+subjektif             1      0      1      0      2      0      0      0
+
+recall abstain-perlu 42.9% · presisi 100.0% · kategori persis 30.6% · fakta dikira jebakan 0.0% · GALAT 0/36
+H-G3 (baris vonis Fahmi): 0/1 tertangkap probe
+VONIS H-G1 (ambang dikunci: recall ≥0.8 & presisi ≥0.7): GAGAL
+ditulis: eval\probe-keterjawaban-qwen3_1.7b-2026-09-02-12-29.json

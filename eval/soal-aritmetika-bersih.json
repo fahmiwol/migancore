@@ -1,0 +1,67 @@
+{
+  "korpus": "migancore-curated.jsonl",
+  "disusun": "susun-soal-bersih.mjs",
+  "catatan": "Soal & kunci diverifikasi TIDAK ada di korpus latih. Susun ulang setiap kali data latih berubah.",
+  "soal": [
+    {
+      "soal": "19 ton x Rp15.500/kg, berapa total?",
+      "kunci": 294500000,
+      "jenis": "ton-harga",
+      "hitung": "19 * 1000 * 15500"
+    },
+    {
+      "soal": "14 ton x Rp31.500/kg, berapa total?",
+      "kunci": 441000000,
+      "jenis": "ton-harga",
+      "hitung": "14 * 1000 * 31500"
+    },
+    {
+      "soal": "Rp520.000 didiskon 20%, lalu didiskon 15% lagi dari harga baru. Berapa harga akhirnya?",
+      "kunci": 353600,
+      "jenis": "diskon-berantai",
+      "hitung": "520000 * 0.8 * 0.85"
+    },
+    {
+      "soal": "Rp360.000 didiskon 35%, lalu didiskon 10% lagi dari harga baru. Berapa harga akhirnya?",
+      "kunci": 210600,
+      "jenis": "diskon-berantai",
+      "hitung": "360000 * 0.65 * 0.9"
+    },
+    {
+      "soal": "9 orang rata-rata 62, dan 21 orang rata-rata 92. Berapa rata-rata gabungannya?",
+      "kunci": 83,
+      "jenis": "rata-berbobot",
+      "hitung": "(9*62 + 21*92) / 30"
+    },
+    {
+      "soal": "3 orang rata-rata 40, dan 27 orang rata-rata 80. Berapa rata-rata gabungannya?",
+      "kunci": 76,
+      "jenis": "rata-berbobot",
+      "hitung": "(3*40 + 27*80) / 30"
+    },
+    {
+      "soal": "18 ton x Rp15.500/kg. Berapa DP 25% dari totalnya?",
+      "kunci": 69750000,
+      "jenis": "dp-persen",
+      "hitung": "18*1000*15500*25/100"
+    },
+    {
+      "soal": "14 ton x Rp15.500/kg. Berapa DP 25% dari totalnya?",
+      "kunci": 54250000,
+      "jenis": "dp-persen",
+      "hitung": "14*1000*15500*25/100"
+    },
+    {
+      "soal": "Harga A Rp28.500/kg dan harga B Rp15.500/kg. Berapa selisih biaya untuk 2600 kg?",
+      "kunci": 33800000,
+      "jenis": "selisih-kali",
+      "hitung": "(28500-15500)*2600"
+    },
+    {
+      "soal": "Harga A Rp31.500/kg dan harga B Rp12.500/kg. Berapa selisih biaya untuk 3800 kg?",
+      "kunci": 72200000,
+      "jenis": "selisih-kali",
+      "hitung": "(31500-12500)*3800"
+    }
+  ]
+}

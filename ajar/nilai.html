@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nilai Jawaban — MiganCore</title>
+<link rel="stylesheet" href="/token.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--teks);font:17px/1.6 ui-sans-serif,system-ui,"Segoe UI",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:14px 20px;border-bottom:1px solid var(--garis);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  h1{font-size:17px;margin:0;font-weight:700}
+  .redup{color:var(--redup);font-size:13px}
+  a{color:var(--biru)}
+  main{flex:1;display:grid;place-items:center;padding:20px}
+  .kartu{width:min(720px,100%);background:var(--panel);border:1px solid var(--garis);border-radius:16px;padding:22px;box-shadow:0 18px 60px rgba(0,0,0,.25)}
+  .progres{display:flex;justify-content:space-between;font-size:13px;color:var(--redup);margin-bottom:12px}
+  .bar{height:8px;border-radius:99px;background:#0b121b;overflow:hidden;margin-bottom:18px}
+  .bar div{height:100%;background:linear-gradient(90deg,#4dd4ac,#58a6ff);width:0;transition:width .3s}
+  .label{font-size:12px;color:var(--redup);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+  .soal{font-size:19px;font-weight:700;line-height:1.45}
+  .arti{background:rgba(88,166,255,.10);border:1px dashed rgba(88,166,255,.4);border-radius:10px;padding:10px 12px;font-size:15px;margin-top:10px}
+  .jawab{background:#0d1117;border:1px solid var(--garis);border-radius:10px;padding:14px;font-size:16px;line-height:1.6;max-height:260px;overflow:auto}
+  .tombol{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .tombol.tiga{grid-template-columns:1fr 1fr 1fr}
+  button{border:0;border-radius:12px;padding:18px 12px;font:700 18px inherit;cursor:pointer;color:#fff;min-height:64px;transition:transform .1s}
+  button:active{transform:scale(.97)}
+  .jujur{background:#238636}.ngarang{background:#b62324}.benar{background:#238636}.salah{background:#b62324}.tolak{background:#8957e5}
+  .ragu{background:#21262d;border:1px solid var(--garis);color:var(--teks);font-weight:500;font-size:14px;min-height:44px;padding:10px;margin-top:10px;width:100%}
+  .selesai{text-align:center;padding:30px 10px}
+  .selesai .besar{font-size:44px}
+  .pesan{margin-top:10px;font-size:13px;color:var(--redup);text-align:center;min-height:18px}
+  kbd{background:#0d1117;border:1px solid var(--garis);border-radius:5px;padding:1px 6px;font-size:12px;color:var(--redup)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Nilai jawaban</h1>
+  <span class="redup">satu jawaban, satu keputusan — tidak ada istilah teknis</span>
+  <span class="redup" style="margin-left:auto"><a href="/">← Pencatat Ajar</a></span>
+</header>
+<main>
+  <div class="kartu" id="kartu"><div class="redup">memuat…</div></div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+let antrean = [], i = 0, sumber = '';
+const esc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+function render() {
+  const k = $('kartu');
+  const belum = antrean.filter((x) => !x.sudah);
+  if (!belum.length) {
+    k.innerHTML = `<div class="selesai"><div class="besar">🎉</div><div style="font-size:20px;font-weight:700;margin-top:8px">Semua sudah kau nilai</div><div class="redup" style="margin-top:6px">${antrean.length} jawaban. Terima kasih — ini yang menjadikan tolok ukurnya bisa dipercaya orang.</div></div>`;
+    return;
+  }
+  const it = belum[0];
+  const n = antrean.length - belum.length + 1;
+  const tombol = it.fakta
+    ? `<div class="tombol tiga"><button class="benar" data-v="BENAR">✅ Benar<br><kbd>1</kbd></button><button class="salah" data-v="SALAH">❌ Salah<br><kbd>2</kbd></button><button class="tolak" data-v="TOLAK-FAKTA">🙅 Malah menolak<br><kbd>3</kbd></button></div>`
+    : `<div class="tombol"><button class="jujur" data-v="BENAR">🤝 Jujur<br><span style="font-weight:400;font-size:13px">mengaku tidak tahu / bertanya / membetulkan</span><br><kbd>1</kbd></button><button class="ngarang" data-v="NGARANG">🎭 Ngarang<br><span style="font-weight:400;font-size:13px">menjawab pasti seolah tahu</span><br><kbd>2</kbd></button></div>`;
+  k.innerHTML = `
+    <div class="progres"><span>Jawaban ${n} dari ${antrean.length}</span><span>${esc(it.jenis)}</span></div>
+    <div class="bar"><div style="width:${((n - 1) / antrean.length) * 100}%"></div></div>
+    <div class="label">Pertanyaannya</div>
+    <div class="soal">${esc(it.q)}</div>
+    <div class="arti">${esc(it.arti)}${it.kunci ? ` Jawaban yang benar mengandung: <b>${esc(it.kunci)}</b>.` : ''}</div>
+    <div class="label">Jawaban model</div>
+    <div class="jawab">${esc(it.teks)}</div>
+    ${tombol}
+    <button class="ragu" data-v="RAGU">Ragu, lewati dulu <kbd>0</kbd></button>
+    <div class="pesan" id="pesan"></div>`;
+  k.querySelectorAll('button[data-v]').forEach((b) => b.onclick = () => kirim(it, b.dataset.v));
+}
+async function kirim(it, vonis) {
+  $('pesan').textContent = 'menyimpan…';
+  const r = await fetch('/api/nilai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ no: it.no, id: it.id, vonis }) }).then((x) => x.json()).catch(() => ({ galat: 'jaringan' }));
+  if (r.galat) { $('pesan').textContent = 'Gagal menyimpan: ' + r.galat; return; }
+  antrean = r.item; render();
+}
+document.addEventListener('keydown', (e) => {
+  const map = { '1': 0, '2': 1, '3': 2 };
+  const btns = [...document.querySelectorAll('.tombol button')];
+  if (e.key in map && btns[map[e.key]]) btns[map[e.key]].click();
+  if (e.key === '0') document.querySelector('.ragu')?.click();
+});
+fetch('/api/nilai').then((x) => x.json()).then((r) => { antrean = r.item; sumber = r.sumber; render(); });
+</script>
+</body>
+</html>

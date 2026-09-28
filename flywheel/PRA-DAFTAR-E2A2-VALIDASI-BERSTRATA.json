@@ -1,0 +1,111 @@
+{
+  "episode": "E2A2",
+  "nama": "E2A2 — analisis ulang data run E2A dengan validasi buta BERSTRATA atas kedua model",
+  "dikunci": true,
+  "dibuat": "2026-09-23T19:52Z (draf pertama) · amandemen kritik silang 20:13Z · DIKUNCI 20:15Z (jam `date -u`) — semuanya SEBELUM sampel #3 ada.",
+  "sidikWajib": {
+    "eval/e2a2-validasi-berstrata.mjs": "9f29956b4a5aa485a459c0caa8eb5c0a9af3d40f",
+    "eval/e2a-bobot-atau-paragraf.mjs": "40d6e2b39663963dbb89fa97362e2cf4b8ce8c0c",
+    "eval/rubrik-label-e2a.json": "45a5585bd9e266c06fb27742fd308c2746c4a1e5"
+  },
+  "induk": "flywheel/PRA-DAFTAR-E2A-BOBOT-ATAU-PARAGRAF.json — vonis INSTRUMEN_TIDAK_SAH (63c0e1f), yang aturan hentinya menyatakan: pengukuran ulang butuh pra-daftar baru. Inilah pra-daftar itu.",
+  "kenapaAda": "E2A tidak bervonis (F-276). Validasi buta #2 gagal terhadap Codex HANYA di dimensi tercakup (setuju 0,95, kappa −0,026) karena sampel acak 39/40 positif — kappa ditentukan satu butir. Dan amandemen 17:20Z mengubah instrumen tanpa memvalidasi ulang baris migancore:0.14. Pertanyaan doc 107 lengan A — efek batas milik paragraf atau paket bobot? — belum terjawab, padahal data run 960 giliran sah dan belum pernah dianalisis per lengan.",
+  "prasyarat_DIATESTASI_sebelumKunci": [
+    "Vonis E2A ditulis mekanis (63c0e1f) SEBELUM berkas ini dibuat; hasil validasi #2 dikomit apa adanya (bbbe25e).",
+    "Berkas -kunci.json sampel #1 dan #2 E2A TIDAK pernah dibuka siapa pun.",
+    "Metrik hasil (karangan, tercakup, menolak) per lengan atau per model TIDAK pernah dihitung siapa pun. Yang pernah terlihat per sel hanya deskriptif keabsahan yang diwajibkan E2A (galat, bocor '<think', terpotong, latensi).",
+    "Perancang (Claude) SUDAH melihat teks 200 baris stok (sampel #1 dan #2, buta lengan) dan keluaran instrumen untuk butir-butir itu saat mendiagnosis. Karena itu ramalan baru TIDAK dibuat untuk Q_A1/Q_A2 — lihat ramalan_DINILAI_NANTI."
+  ],
+  "yangDipakaiUlang_TIDAK_BERUBAH": {
+    "dataRun": "eval/e2a-bobot-atau-paragraf-2026-09-23T15-27-30.jsonl (commit 812962e) — 960 giliran, digest kedua model terpatok, empat sel sah.",
+    "instrumen": "blob yang sama dengan pra-daftar E2A dan diperiksa oleh hitungVonis E2A: entitas-karangan 5554025bcb5e230451097e7b142a4bb8fe52dddc · nilai-e2-npc fb4d158f7a456605c95fb5d98c11adcbce23d675 · beban-e2-npc a9f5cccb41087222beacf35b7f56cae60d17cfe5 · e2-kejujuran-npc 30c0057e075811b294573002bba21b30cbdaa1ee · e1-latensi-npc 8a8b55abc9e86145f0c5ed57957c2385a7d53b8f.",
+    "aturanDanAmbangKeputusan": "Q_A1 dan Q_A2 dihitung oleh hitungVonis() di eval/e2a-bobot-atau-paragraf.mjs (blob 40d6e2b39663963dbb89fa97362e2cf4b8ce8c0c) dengan pra-daftar E2A (blob b41d6f7cfae5f8ebda85d9559e854ecead513b0d) apa adanya: aturanKeputusan_DIKUNCI, ambangTerstruktur_Q_A2, ambang E2' ambangJujur, bootstrap B 10.000 benih 20260923. Tidak satu angka pun diubah.",
+    "rubrik": "eval/rubrik-label-e2a.json dibekukan 6a9a61d (blob 45a5585bd9e266c06fb27742fd308c2746c4a1e5); pelabel membaca definisi dan contoh kasus batas yang sama.",
+    "pelabel": "Dua, sama dengan E2A: (1) Claude — penulis instrumen, bias bersama DIAKUI; (2) Codex — bukan penulis instrumen, bekerja di folder bersih berisi tepat tiga berkas (rubrik, sumber NPC, sampel). Label dikomit SEBELUM --validasi."
+  },
+  "yangBerubah_HANYA_rancanganValidasi": {
+    "kolam": "Baris KEDUA model (stok Instruct-2507 dan migancore:0.14), kedua lengan, non-asap, tanpa galat, yang teksnya belum pernah muncul di sampel #1 atau #2 (kunci npc|q|teks). Baris 0.14 masuk karena amandemen 17:20Z mengubah instrumen — validasi E2' atas 0.14 berlaku untuk instrumen LAMA (celah kedua F-276).",
+    "luar": "15 butir per sel (model × lengan) = 60, acak di dalam sel.",
+    "tahu": "Berstrata PER SEL (model × lengan) pada label INSTRUMEN: di tiap sel, semua baris minoritas (instrumen menilai tidak tercakup ATAU menolak) sampai 10, ditambah 10 baris mayoritas — paling banyak 80 butir. Label instrumen dipakai HANYA untuk memilih strata; tidak ditulis ke sampel; model, lengan, strata, dan peluang terambil disimpan di berkas -kunci terpisah.",
+    "benih": "20260925 (Mulberry32 + Fisher–Yates, algoritma yang sama dengan sampel #1 dan #2).",
+    "kode": "eval/e2a2-validasi-berstrata.mjs — buatSampelBerstrata, nilaiBiner, validasiBerstrata, vonisE2A2; blob dipatok di sidikWajib saat kunci."
+  },
+  "kriteriaValidasi_DIKUNCI": "Lulus harus terhadap MASING-MASING pelabel. (1) Entitas pada 60 butir 'luar' — TIDAK berubah dari E2A: recall ≥ 0,85, presisi ≥ 0,85, kappa ≥ 0,75, dengan recall/presisi tak terdefinisi dihitung gagal. (2) Tiap dimensi biner (tercakup, menolak) pada 40 butir 'tahu': (a) setuju ≥ 0,85 — tidak berubah; (b) BARU dan lebih ketat: di tiap kelas menurut label instrumen, jumlah beda ≤ floor(0,2 × n kelas), artinya kelas berisi 1–4 butir tidak boleh beda sama sekali, 5–9 butir boleh satu beda, 10–14 dua, 15–19 tiga, 20 empat; (c) kappa ≥ 0,7 (0,70, sama dengan E2A) DITUNTUT bila kelas minoritas instrumen di sampel berisi ≥ 10 butir; di bawah itu kappa dilaporkan tetapi tidak dituntut, karena pada kelas sekecil itu kappa ditentukan 1–2 butir (Feinstein & Cicchetti 1990, J Clin Epidemiol 43(6), 'High agreement but low kappa'). (3) BARU dari kritik silang: syarat per kelas (b) diulang PER MODEL untuk ketiga dimensi (entitas, tercakup, menolak) — di tiap model × kelas instrumen, beda ≤ floor(0,2 × n). (4) Label hilang, bukan boolean, atau strata wajib yang tidak bisa dibentuk = gagal. DILAPORKAN, bukan syarat: kesepakatan tertimbang populasi (bobot = ukuran kolam sel-strata ÷ jumlah terambil), dan hasil per lengan di dalam model.",
+  "kriteriaTerstruktur": {
+    "_": "Angka yang sama dengan kalimat kriteriaValidasi_DIKUNCI dan yangBerubah_HANYA_rancanganValidasi, dalam bentuk yang dibaca kode. Uji modul menuntut tiap angka di sini tertulis di kalimat berkas ini.",
+    "benih": 20260925,
+    "nLuarPerSel": 15,
+    "nMinorPerSel": 10,
+    "nMayorPerSel": 10,
+    "entitasRecallMin": 0.85,
+    "entitasPresisiMin": 0.85,
+    "entitasKappaMin": 0.75,
+    "binerSetujuMin": 0.85,
+    "binerBedaPerKelasFraksi": 0.2,
+    "binerKappaMin": 0.7,
+    "binerKappaWajibBilaMinoritasMin": 10
+  },
+  "bandingJujurDenganE2A": {
+    "lebihKetat": [
+      "Kolam mencakup baris migancore:0.14 (menutup celah kedua F-276).",
+      "Kelas minoritas diuji di TIAP sel (sampai 10 per sel, sampai 40 total), bukan 1–2 kebetulan.",
+      "Syarat per kelas instrumen (beda ≤ floor(0,2·n)) ditambahkan di atas setuju ≥ 0,85 — gabungan DAN per model, untuk ketiga dimensi.",
+      "Sampel 'tahu' sampai 80 butir (E2A: 40)."
+    ],
+    "lebihLonggar": [
+      "Kappa tidak dituntut bila kelas minoritas instrumen di sampel < 10 butir."
+    ],
+    "ujiKejujuranAturanBaru": "Di bawah aturan ini validasi #2 E2A (Codex) TETAP GAGAL: kelas 'tidak tercakup' menurut instrumen berisi 1 butir (S039) dan Codex berbeda di butir itu — 1 beda > floor(0,2 × 1) = 0. Aturan baru tidak menyelamatkan kegagalan yang melahirkannya; uji modul 'aturan baru TIDAK menyelamatkan validasi #2' memeriksanya.",
+    "yangDiakui": "Aturan ini ditulis SESUDAH melihat kegagalan E2A. Yang menahan jalan bercabang: sampel baru yang belum pernah dilihat, kriteria yang lebih ketat di sisi yang gagal, satu kali validasi saja, dan tidak ada hasil per lengan yang diketahui siapa pun."
+  },
+  "aturanBerhenti": "Satu sampel (#3), satu putaran pelabelan, satu --validasi per pelabel. Bila gagal terhadap pelabel mana pun: E2A2 = INSTRUMEN_TIDAK_SAH, final untuk data 812962e — pertanyaan lengan A lalu butuh RUN BARU dengan penilai yang dirancang ulang (mis. set emas berlabel manusia), bukan analisis ulang ketiga. Bila lulus terhadap keduanya: vonis Q_A1/Q_A2 dihitung SEKALI dengan vonisE2A2 → hitungVonis E2A atas SELURUH baris (analisis terkunci), ditambah analisis kepekaan WAJIB tanpa baris yang pernah dilabel (sampel #1–#3). Bila kategori kepekaan berbeda, vonis utama tetap berlaku tetapi ditulis RAPUH. Semua ditulis ke berkas ini, apa pun hasilnya.",
+  "prosedurPelabel_DIBEKUKAN": {
+    "codex": "Satu jalan codex exec di folder bersih berisi tepat tiga berkas (rubrik beku, sumber NPC, sampel #3); instruksi = templat putaran #2 dengan nama sampel diganti — blob instruksinya dicatat di commit label. Model dicatat dari log Codex. Tidak ada jalan ulang sesudah melihat hasil; galat teknis (keluaran bukan JSON sah/label kurang) = gagal, bukan diulang.",
+    "claude": "Label ditulis dari sampel, sumber NPC, dan rubrik saja; dikomit SEBELUM --validasi; tidak direvisi sesudahnya.",
+    "kunci": "Sidik SHA-256 berkas -kunci dicatat di pesan commit sampel; berkas itu tidak dibuka sebelum vonis."
+  },
+  "ramalan_DINILAI_NANTI": {
+    "_": "Q_A1/Q_A2 dinilai terhadap ramalan E2A yang dibuat SEBELUM data (olehSaya dan olehCodex_sebelumData di pra-daftar E2A) — bukan ramalan baru, karena perancang sudah melihat 200 baris stok (buta lengan). Ramalan baru hanya untuk hal yang belum pernah terlihat: lulusnya validasi berstrata.",
+    "validasiLulusKeduaPelabel": {
+      "olehClaude_draf": 0.45,
+      "olehClaude_sesudahAmandemen": 0.35,
+      "olehCodex_sebelumAmandemen": 0.35
+    }
+  },
+  "kritikSilang_sebelumKunci": {
+    "oleh": "Codex (codex exec, sandbox baca-saja, GPT-5.6 Sol), rancangan generik tanpa nama proyek — 2026-09-23 ±20:00Z.",
+    "vonisKritik": "Dapat dipertahankan HANYA sebagai analisis ulang pasca-gagal yang dipra-daftarkan secara terbuka: vonis E2A tetap dilaporkan, validasi #1 dan #2 dilaporkan, dan kelolosan tidak boleh disajikan sebagai validasi mundur atas studi asal atau sebagai replikasi independen.",
+    "diadopsi_semuaLebihKetat": {
+      "K1_selDanModel": "Sampel 40 'tahu' gabungan lemah untuk galat per sel/model → 'tahu' per sel (minoritas s.d. 10 + mayoritas 10) dan syarat per kelas diulang per model untuk ketiga dimensi.",
+      "K2_bobotPopulasi": "Stratifikasi mengubah prevalensi sampel → kesepakatan tertimbang populasi DILAPORKAN; syarat tetap pada metrik bersyarat per kelas.",
+      "K3_kepekaan": "Baris validasi tetap berada di 960 baris → analisis kepekaan tanpa baris #1–#3 wajib; bila kategori berubah, vonis ditulis RAPUH.",
+      "K4_prosedurBeku": "Instruksi, model, satu jalan, tanpa jalan ulang; galat teknis = gagal (prosedurPelabel_DIBEKUKAN).",
+      "K5_sidikKunci": "Sidik SHA-256 berkas kunci dicatat di commit sampel."
+    },
+    "tidakDiadopsi": {
+      "pelabelManusia": "Tidak ada pelabel manusia independen tanpa mengambil waktu Fahmi dari pekerjaan F1/F2 (prioritas yang sama yang disarankan majelis). Diakui sebagai batas: validasi = kesepakatan dengan DUA pelabel AI, bukan standar emas manusia — kalimat ini wajib ikut di setiap pelaporan.",
+      "kappaTanpaSyarat": "C55: menjadikan gerbang statistik yang ditentukan 1–2 butir membuat ambang tak bisa dimenangkan secara konstruksi, dan menambah derau, bukan informasi. Aturan per kelas (nol toleransi di bawah 5 butir) lebih ketat pada kelas minoritas; kappa tetap dituntut bila kelas minoritas ≥ 10.",
+      "penjagaKunciIndependen": "Operasi satu orang; diganti sidik SHA-256 + urutan commit.",
+      "buangBarisValidasiDariAnalisisUtama": "Mengganti himpunan analisis utama sesudah gagal adalah jalan bercabang tersendiri; diadopsi sebagai analisis kepekaan wajib (K3), bukan pengganti analisis terkunci."
+    },
+    "ramalanCodex": 0.35
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "Semua yang diakui pra-daftar E2A tetap berlaku: bobot murni tidak diisolasi (templat, sampler, dan penanganan thinking ikut berbeda — F-272), klaim tanpa entitas tidak diukur, daya uji Q_A2 terbatas (n = 90), satu mesin, satu hari, satu beban 6 NPC.",
+    "Perancang adalah salah satu pelabel dan mengetahui rancangan strata; pelabel kedua (Codex) tidak diberi tahu soal strata.",
+    "Kappa pada kelas minoritas kecil dilaporkan tanpa dituntut — pembaca yang lebih suka kriteria E2A lama bisa membacanya langsung dari berkas -hasil."
+  ],
+  "vonis": {
+    "hasil": "INSTRUMEN_TIDAK_SAH — final untuk data 812962e. Validasi berstrata #3 GAGAL terhadap KEDUA pelabel, di dimensi tercakup SAJA: dari 19 butir yang oleh instrumen dinilai 'tidak tercakup', 11 dinilai TERCAKUP oleh Claude dan oleh Codex secara identik (kappa 0,504; kelas 'tidak tercakup' 11 beda > batas 3; gagal di kedua model). Entitas (recall 0,909/0,870 · presisi 0,952 · kappa 0,891/0,857) dan menolak (setuju 0,984) SAH terhadap keduanya. Q_A1/Q_A2 tidak dijawab; hasil per lengan tidak dihitung.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-23",
+    "ditulis": "2026-09-23T20:26Z (jam `date -u`) — mekanis lewat vonisE2A2 (memotong sebelum hitungVonis; tidak ada hasil lengan yang dihitung); hasil validasi dikomit apa adanya (4a54a56) sebelum vonis ditulis.",
+    "urutanBukti": "kunci 17e9931 → sampel #3 377ade5 (SHA-256 kunci 21a37af8…) → label Claude 7dcf1de → label Codex 9be8d48 (gpt-5.6-sol, instruksi bad0b67…) → --validasi → hasil 4a54a56.",
+    "bedaDenganE2A_bukanParadoks": "Kegagalan E2A adalah artefak prevalensi (1 butir negatif menentukan kappa). Kegagalan ini BUKAN: kelas 'tidak tercakup' berisi 19 butir, dan kedua pelabel — yang bekerja terpisah — membantah 11 di antaranya dengan cara yang sama. Detektor tercakup (pencocokan fakta kunci) melewatkan parafrase: ia terlalu ketat pada kelas negatif. Rancangan berstrata melakukan tugasnya — kelemahan ini tersembunyi di sampel acak E2A #1/#2 (1–2 butir negatif).",
+    "antarPelabel_DILAPORKAN": "Dicocokkan butir demi butir sesudah vonis: 63/63 label tercakup & menolak Claude = Codex; 59/60 butir 'luar' sama ada/tidaknya karangan (beda: S007). Kedua pelabel jauh lebih sepakat satu sama lain daripada dengan detektor tercakup.",
+    "tertimbangPopulasi_DILAPORKAN": "Kesepakatan tertimbang tercakup 0,960 (kedua pelabel) — tinggi karena kelas negatif jarang di populasi; justru karena itu syarat per kelas yang menentukan.",
+    "akibatUntukKlaimLain": "Metrik UTAMA E2' dan E2A (entitas karangan pada soal 'luar') sah di setiap validasi (E2', E2A #1–#3 sesudah perbaikan). Yang lemah adalah detektor tercakup, yang di E2' dipakai sebagai GERBANG (cakupan turun ≤ 10 pp). Galat yang ditemukan berarah menandai 'tidak tercakup' secara berlebih; bila galatnya setara di kedua lengan, selisih lengan tidak bias, dan bila tidak setara, arah biasnya belum diketahui — dicatat sebagai pertanyaan terbuka untuk gerbang E2', bukan pembatalan vonis E2'.",
+    "ramalanDinilai": "validasiLulusKeduaPelabel terjadi = 0. Brier: Claude-draf (0,45) 0,2025 · Claude-sesudah-amandemen (0,35) 0,1225 · Codex (0,35) 0,1225. Ramalan Q_A1/Q_A2 E2A tetap TIDAK DINILAI (tidak ada kategori yang terjadi).",
+    "jalanLanjut": "Menurut aturanBerhenti: pertanyaan lengan A butuh RUN BARU dengan penilai tercakup yang dirancang ulang (mis. set emas berlabel manusia, atau penilai cakupan semantik yang divalidasi berstrata SEBELUM data) — bukan analisis ulang ketiga atas 812962e. Data ini selesai."
+  }
+}

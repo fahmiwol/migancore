@@ -1,0 +1,83 @@
+{
+  "nama": "h-panci-cluster-vs-satu-panci",
+  "tanggal": "2026-08-28",
+  "ditulisSebelum": "Data panci dibuat dan GPU disewa. Seluruh ambang di bawah dikunci SEBELUM ada satu angka hasil pun.",
+  "kenapaPercobaanIni": "Fahmi bertanya 28 Agu 2026 apakah pembagian per-cluster sudah diriset dan dianalisis. Menelusuri ulang buktinya menemukan bahwa jawabannya lebih lemah daripada yang selama ini kami klaim. Yang terukur: v12 satu-panci GAGAL (ton dengan-sistem 0/12->6/12, total tanpa 90%->68%), dan data penolakan yang SAMA — yang di satu panci ikut merusak aritmetika — waktu dilatih terisolasi memberi batas-peran 10/10 dengan NOL degradasi aritmetika (Temuan 6, PELAJARAN-AKADEMIS §4.6). Yang TIDAK terukur: v12->v13 menggeser DUA dial sekaligus (pemisahan cluster DAN ragam bentuk angka DAN rotasi prompt), padahal mekanisme kegagalan v12 yang kami catat sendiri berbunyi 'bentuk penyajiannya SERAGAM' — bukan 'terlalu banyak disiplin dalam satu panci'. Jadi lompatan itu tidak bisa dikreditkan ke clustering saja. Itu persis anti-pola yang aturan kami sendiri larang: satu perubahan -> satu ukur -> satu vonis.",
+  "hipotesis": {
+    "H-PANCI": {
+      "pertanyaan": "Pada kualitas data HARI INI (bentuk sudah diragamkan, prompt sudah dirotasi, gerbang sudah ketat), apakah menggabung dua disiplin dalam satu adapter masih merusak — atau kerusakan v12 dulu sebenarnya datang dari bentuk data yang seragam, bukan dari pancinya?",
+      "kenapaPertanyaanIniTajam": "Hukum A10 mencatat 22 baris ballast hitung (13%) yang masuk cluster tool MENGHAPUS kejujuran: MENGARANG 2/14 -> 10/14. Percobaan ini adalah versi ekstrem dari ballast itu — 685 baris hitung, 64% dari panci. Kalau A10 berlaku umum, panci HARUS runtuh di sumbu kejujuran. Kalau tidak runtuh, berarti A10 khusus tentang ballast replay bergaya seragam, bukan tentang ko-latih dua disiplin, dan batasnya harus dipersempit.",
+      "satuDialYangDigeser": "isi satu adapter: tool 389 baris SAJA (lengan A, sudah dilatih 28 Agu) vs tool 389 + hitung 685 = 1.074 baris dalam SATU adapter (lengan B)",
+      "yangDikunciTidakBolehBergeser": [
+        "base Qwen3-4B-Instruct-2507",
+        "LoRA r16 alpha32, density 1,0",
+        "lr 2e-4 x 2 epoch, batch 4, akumulasi 4, seed 42, weight_decay 0, maks_token 1024 (RESEP-V13.json, sidik aa2d55baaca14ae1)",
+        "alat ukur: soal 8a68b69a16c583a5 · kenari 87e91feb4fed4bc9 · promptGerbang 04b8df92cb204dca · ukur a7b568d9dd5462db — WAJIB sama persis, kalau tidak banding-run.mjs akan menolak membandingkan (C29)",
+        "titik ukur GGUF Q4_K_M, 5 putaran, Wilson 95% (C3, C5)",
+        "isi baris kedua cluster TIDAK diubah sedikit pun — panci = penggabungan apa adanya, bukan kurasi ulang"
+      ],
+      "pembandingTerukur": {
+        "catatan": "Lengan A (tool 389 solo) tier-1 sudah terukur 28 Agu; tier-2-nya WAJIB diukur SEBELUM lengan B dilatih. Angka tier-2 lengan A adalah pembanding, dan mengukurnya sesudah melihat hasil lengan B akan meracuni vonisnya.",
+        "tier1-lengan-A": {
+          "arit-dengan": "10/10",
+          "arit-tanpa": "10/10",
+          "arit-latih": "10/10",
+          "kenari": "0/12",
+          "loss": 0.9264,
+          "petakTahanDelta": -1.0498
+        },
+        "tier2-lengan-A": "BELUM DIUKUR — diisi sebelum lengan B dilatih",
+        "sejarahTier2clusterTool": {
+          "run-2": "72/120",
+          "run-3": "91/120",
+          "run-6": "81/120",
+          "run-7": "86/120",
+          "catatan": "rentang 19 poin di antara komposisi yang memang sengaja dibuat berbeda — dipakai untuk mengkalibrasi berapa besar selisih yang layak disebut nyata"
+        }
+      },
+      "ambang": {
+        "kenapaAngkanya": "Empat pengukuran tier-2 cluster tool berkisar 72-91 (rentang 19) pada komposisi yang sengaja berbeda-beda, dan selang Wilson 95% pada n=120 berlebar sekitar +-8 poin. Maka selisih di bawah 4 poin tidak bisa dibedakan dari derau komposisi, dan 8 poin kira-kira setara satu setengah-lebar selang. Ambang di bawah memakai angka itu, bukan angka yang enak didengar.",
+        "INTERFERENSI TERBUKTI": "total uji-alat lengan B <= (lengan A - 8), ATAU MENGARANG naik >= 4/14, ATAU uji-aritmetika turun >= 6/60. Salah satu saja cukup — kerusakan v12 dulu juga muncul di satu sumbu, bukan di semuanya.",
+        "PEMISAHAN TIDAK TERBUKTI MEMBELI": "|total B - total A| <= 3 DAN MENGARANG dalam +-2/14 DAN aritmetika dalam +-3/60. Artinya pada data hari ini, panci tidak merusak — dan klaim 'cluster mencegah interferensi' harus diturunkan jadi klaim yang lebih kecil.",
+        "TIDAK KONKLUSIF": "selain dua di atas. Jangan diklaim ke arah mana pun; butuh replikasi seed kedua sebelum masuk PETA-DIAL-LATIH.md."
+      },
+      "sumbuUkurWajib": [
+        "uji-alat 120 (5 putaran) — sumbu tool",
+        "uji-halusinasi MENGARANG /14 — sumbu kejujuran, ini yang paling ditunggu (A10)",
+        "uji-aritmetika 60 (3 lengan x 20) — sumbu hitung DAN sekaligus gerbang regresi",
+        "uji-tolak 10 dan baca-kenari 12 — gerbang regresi wajib, tidak boleh ditawar"
+      ],
+      "kalauGagal": {
+        "panci runtuh di kejujuran saja": "A10 naik status: bukan cuma tentang ballast, tapi tentang ko-latih disiplin berwatak bertentangan. Pemisahan cluster TERBUKTI membeli sesuatu yang nyata dan bisa disebutkan namanya.",
+        "panci runtuh di semua sumbu": "Vonis v12 terkonfirmasi ulang pada data BERSIH — artinya sebabnya memang panci, bukan bentuk seragam. Klaim taksonomi kami menguat, dan kalimatnya boleh dikembalikan ke bentuk kuat.",
+        "panci setara atau lebih baik": "Klaim 'cluster mencegah interferensi' DITURUNKAN jadi 'cluster membuat interferensi terukur dan bisa didosis' — yang tetap berharga (A9 dan A10 tidak akan pernah terukur di satu panci) tapi jauh lebih kecil daripada yang selama ini kami tulis. TAKSONOMI-CLUSTER.md wajib diralat di hari yang sama.",
+        "lengan B gagal tier-1": "Bukan hasil tentang panci — itu hasil tentang resep pada 1.074 baris. Catat, jangan tafsirkan sebagai jawaban H-PANCI.",
+        "alat ukur terlanjur bergeser di antara dua lengan": "banding-run.mjs menolak vonis (C29). Ukur ULANG lengan A dengan alat yang sama; jangan menambal dengan angka lama."
+      },
+      "yangTIDAKdijawabPercobaanIni": "Ini menguji panci DUA disiplin (tool+hitung) pada 4B. Tidak menjawab: tiga disiplin atau lebih, base lain, atau apakah TIES-merge dua adapter solo lebih baik daripada keduanya. Tabel interferensi solo-vs-merged masih utang terbuka (R1.5 di RENCANA-V14-TERUKUR.md:66) dan tetap utang sesudah percobaan ini."
+    }
+  },
+  "sidikCluster": {
+    "panci": "DIISI setelah cluster-panci.jsonl dibuat dan lolos gerbang — pra-daftar ini belum terkunci sampai medan ini terisi"
+  },
+  "anggaran": "latih lengan B <= $0,05 · kemas kedua lengan <= $0,10 masing-masing. D5: SALDO nyata pernah 2-3x estimasi peluncur, jadi anggaran dinilai dari saldo. Saldo 28 Agu sesudah run v15: sekitar $3,11.",
+  "urutanWajib": [
+    "1. Ukur tier-2 lengan A (tool 389 solo). Isi medan tier2-lengan-A di atas.",
+    "2. Bangun cluster-panci.jsonl, jalankan gerbang data, kunci sidikCluster.panci di berkas ini.",
+    "3. Baru latih lengan B. Membalik urutan 1 dan 3 membuat pembandingnya tidak sah."
+  ],
+  "vonis_10Sep_adjudikasiTerlambat": {
+    "dibacaApaAdanya": true,
+    "hasil": "TIDAK PERNAH DIJALANKAN - dan pra-daftarnya sendiri menyatakan ia belum terkunci.",
+    "bukti": "Tiga langkah urutanWajib tidak satu pun selesai: (1) tier-2 lengan A tidak pernah diukur - medan pembandingTerukur masih berisi catatan, bukan angka; (2) flywheel/dataset/*/cluster-panci.jsonl TIDAK ADA; (3) tidak ada adapter panci di models/. Medan sidikCluster.panci masih berbunyi \"DIISI setelah cluster-panci.jsonl dibuat - pra-daftar ini belum terkunci sampai medan ini terisi\".",
+    "kenapaINIvonisYangBENAR": "Pra-daftar yang syarat penguncian-dirinya belum terpenuhi TIDAK BOLEH divonis LULUS maupun GAGAL. Memberi salah satunya berarti mengarang hasil untuk percobaan yang tidak terjadi. TIDAK DIJALANKAN adalah vonis yang sah, dan menuliskannya mencegah orang berikutnya menyangka pertanyaannya sudah terjawab.",
+    "pertanyaannyaMASIHTERBUKA": "Apakah menggabung dua disiplin dalam satu adapter merusak pada kualitas data hari ini? A10 mencatat 22 baris ballast hitung (13 %) menghapus kejujuran (MENGARANG 2/14 -> 10/14). H-PANCI adalah versi ekstremnya (685 baris hitung = 64 % panci) dan belum diuji.",
+    "relevansinya_SEKARANG": "Naik, bukan turun. Riset 10 Sep (arXiv 2405.05904, doc 94) menemukan melatih pada pengetahuan BARU menaikkan halusinasi tentang pengetahuan LAMA - mekanisme yang sejalan dengan A10 dan dengan H-PANCI. Kalau H-PANCI dijalankan nanti, ia wajib memakai gerbang data baru: contoh yang model tidak tahu dibuang atau dilabel ulang jadi \"tidak tahu\"."
+  },
+  "vonis": {
+    "hasil": "TIDAK PERNAH DIJALANKAN — pra-daftarnya sendiri menyatakan belum terkunci, jadi ia tidak boleh divonis LULUS maupun GAGAL.",
+    "keadaan": "belum",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep_adjudikasiTerlambat"
+  }
+}

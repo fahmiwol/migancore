@@ -1,0 +1,45 @@
+# MO-GRPO penuh — 4 langkah
+
+## 1. Gerbang pra-GPU
+   [32mganjaran JS<->Python[0m lulus
+   [32mmatematika MO-GRPO[0m lulus
+   [32mkolam bisa dimuat & dinilai[0m lulus
+   [32mkolam[0m sidik baab6e20c5b2fadf cocok pra-daftar (v17-rlvr-jujur)
+
+## 2. Sewa GPU (saldo $0.78)
+   3 layak; termurah RTX 4080S $0.195/jam
+   coba offer 33650203 · $0.195/jam
+   [ 0.0 mnt] menunggu…
+   [ 0.4 mnt] menunggu…
+   [ 0.8 mnt] menunggu…
+   [32msiap & SSH menjawab[0m
+
+## 2b. Kartu yang BENAR-BENAR didapat: NVIDIA GeForce RTX 4080 SUPER, 32760 MiB
+   [32mVRAM 32.0 GiB[0m — cukup
+
+## 3. Kirim bahan
+   terkirim: latih_grpo.py
+   terkirim: ganjaran.py
+   terkirim: ukur_latih.py
+   terkirim: kolam-jujur.jsonl
+   terkirim: lora-gaya.tgz
+   isi arsip adapter: lora/
+
+## 4. Pasang pustaka
+   NG: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)'))': /simple/trl/
+ERROR: Could not find a version that satisfies the requirement trl<0.15,>=0.14 (from versions: none)
+ERROR: No matching distribution found for trl<0.15,>=0.14
+
+## 5. Latih
+   [ 3.0 mnt] Traceback (most recent call last):
+   [ 3.0 mnt]   File "/workspace/latih_grpo.py", line 626, in <module>
+   [ 3.0 mnt]     jalankan()
+   [ 3.0 mnt]   File "/workspace/latih_grpo.py", line 369, in jalankan
+   [ 3.0 mnt]     from datasets import Dataset
+   [ 3.0 mnt] ModuleNotFoundError: No module named 'datasets'
+
+[31mBERHENTI[0m — diam 25 menit DAN GPU menganggur (0% · 15 MiB) — macet.
+
+## 7. Matikan instance
+   instance 49457625 dimatikan
+   hidup 29 menit · saldo sekarang $0.68

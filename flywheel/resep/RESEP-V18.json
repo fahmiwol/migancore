@@ -1,0 +1,137 @@
+{
+  "nama": "V18",
+  "tanggal": "2026-09-07",
+  "sasaran": "Menahan KEDUA sumbu sekaligus — kemampuan alat TIDAK turun, kejujuran & identitas TIDAK rusak. Ini yang belum pernah dicoba: setiap run sebelumnya hanya memuat satu sumbu, dan C49 menunjukkan run seperti itu selalu membayar dengan sumbu lain.",
+  "_kenapaResepIniBerbeda": "Resep 0.14 (SANAD-14k) memakai 485 baris dari DUA cluster sempit — hitung 285 + gaya 200 — dengan NOL baris kejujuran/identitas/nalar. Doc 86 mengukur akibatnya: model berlaku kalah dari generasi pertamanya di 5 dari 6 sumbu. Resep ini memasukkan rehearsal, dan rasionya dikunci di sini SEBELUM run, bukan dilaporkan sesudahnya.",
+  "rehearsalPersen": [
+    15,
+    20
+  ],
+  "_dasarRasio": "Riset 7 Sep: rehearsal yang lazim menahan catastrophic forgetting = 5–20 % data lama dicampur ke data baru (FOREVER 2601.03938 · Self-Synthesized Rehearsal 2403.01244 · O-LoRA 2310.14152). Temuan 2025–2026 juga MEMBANTAH asumsi lama bahwa 'LoRA saja cukup': membekukan bobot dasar tidak menjamin kemampuan bertahan. Kami mengambil BATAS ATAS jendela itu (15–20 %) karena kerusakan kami terukur besar (20 pp kejujuran, identitas hilang total) — bukan karena lebih banyak selalu lebih baik. Melampaui 20 % berarti keluar dari jendela yang punya bukti; kalau V18 gagal, rasio lebih tinggi diuji sebagai HIPOTESIS TERPISAH dengan pra-daftarnya sendiri, bukan dengan menggeser diam-diam.",
+  "bahan": [
+    {
+      "kelompok": "tool",
+      "peran": "sasaran",
+      "berkas": "flywheel/dataset/v14/cluster-tool.jsonl",
+      "ambil": 389,
+      "kenapa": "Sumbu yang ingin dinaikkan. Diambil SELURUHNYA (389 tersedia) — mengurangi sasaran hanya akan mengaburkan apakah rehearsal yang menahan atau sasarannya yang mengecil."
+    },
+    {
+      "kelompok": "identitas",
+      "peran": "rehearsal",
+      "berkas": "flywheel/dataset/identitas-polos.jsonl",
+      "ambil": 40,
+      "kenapa": "Obat langsung C44, dan sumbu SATU-SATUNYA yang berstatus WAJIB LULUS (PRD 14 Jun). 40 baris diambil dari 120 yang tersedia. Angka 120 itu baru ada sejak 7 Sep: berkas lama berisi 40 baris yang ternyata hanya memuat TUJUH jawaban unik — tiap kalimat disalin sekitar enam kali — dan tidak pernah digerbang sekali pun karena namanya bukan cluster-*. Dibangun ulang oleh flywheel/pabrik-identitas.mjs: 30 bentuk pertanyaan (formal, santai, menuduh, menyela) x 4 putaran, 120 jawaban unik, dan SELURUHNYA divonis LULUS oleh fungsi vonis() yang sama dengan gerbang regresi. 70 persen ditulis TANPA system prompt, supaya identitas masuk ke BOBOT dan bukan menumpang di lapisan serving — pelajaran Day-77, di mana identity immunity dijaga di serving lalu terhapus lagi tiap siklus latih."
+    },
+    {
+      "kelompok": "abstain",
+      "peran": "rehearsal",
+      "berkas": "flywheel/dataset/v18/cluster-abstain.jsonl",
+      "ambil": 40,
+      "kenapa": "Contoh MENAHAN DIRI dengan jawaban spesifik — sumbu yang paling rusak (0.14 mengarang 51,4 % vs gen-1 31,4 %) dan satu-satunya yang selama ini tidak pernah dilatih sama sekali. Dibuat 7 Sep oleh `flywheel/pabrik-abstain.mjs` dari pola yang MENJAMIN kebenaran jawabannya lewat konstruksi (nomor aturan bertahun 2027–2030 pasti belum ada; lembaga fiktif tidak punya catatan), bukan dari pengetahuan dunia yang harus diverifikasi. DUA gerbang menjaganya, dan keduanya lahir dari cacat yang benar-benar lolos. SEBARAN diseimbangkan per jenis (maks 22): tanpa itu `tak-terjawab` mengisi 53 % baris dan model belajar berkata 'tidak tahu' untuk segalanya. KERAGAMAN dijaga rasio jawaban-unik >= 0,6: versi pertama lolos SEMUA hitungan lain — sebaran seimbang, C42 bersih, 16/16 uji lulus — padahal 46 dari 82 barisnya hanya memuat 5 jawaban berbeda, karena template yang kami tulis sendiri tidak cocok dengan pengekstrak di jawabanAbstain(). Kini 123 baris dengan 123 jawaban unik."
+    },
+    {
+      "kelompok": "nalar",
+      "peran": "rehearsal",
+      "berkas": "flywheel/dataset/v13/cluster-nalar.jsonl",
+      "ambil": 17,
+      "kenapa": "Nalar adalah satu-satunya sumbu yang TIDAK berubah antara 0.14 dan 0.14-tool (66,7 % keduanya). Porsinya kecil dan disengaja: ia dijaga agar tidak turun, bukan dikejar agar naik. Catatan SANAD-13: adapter nalar terbukti MERUSAK nalar (p=0,012), jadi dosis besar justru berbahaya."
+    }
+  ],
+  "_kenapaGroundingDIKELUARKAN": "Versi pertama resep ini memuat `cluster-keluar-rag` (grounding) 35 baris. Dikeluarkan sesudah cluster abstain jadi, karena jendela rehearsal hanya 97 baris (20 % dari 486) dan keduanya harus bersaing di ruang yang sama. Grounding mengajarkan menjawab DARI catatan — dan itu sudah ditangani di lapisan serving oleh retrieval + gerbang, yang terukur memberi −18 pp. Abstain mengajarkan MENAHAN DIRI saat catatan kosong, dan itu tidak ada di lapisan mana pun. Memilih yang tidak punya pengganti di tempat lain.",
+  "_yangMasihKurang": "123 baris abstain tersedia, 40 dipakai (jendela rehearsal 97 baris dibagi tiga kelompok). Jenis `konteks-kurang` (17) dan `kedaluwarsa` (18) kini yang paling tipis — kalau V18 gagal khusus di jenis itu, tambah POLANYA di POLA-ABSTAIN.md **beserta cabang pengekstraknya di jawabanAbstain()**, bukan porsinya. Pola tanpa cabang pengekstrak menghasilkan kalimat cadangan yang seragam, dan gerbang keragaman akan menolaknya.",
+  "_yangTIDAKdilakukan": "Tidak menambah cluster hitung/gaya. Keduanya sudah ada di 0.14 dan justru resep itu yang menghasilkan kerusakan; menambahkannya lagi akan mengulang percobaan yang hasilnya sudah diketahui.",
+  "gerbangPromosi": "eval/gerbang-regresi.mjs — lima sumbu, anggaran kerusakan dikunci sebelum run. Acuan = migancore:0.14. Sumbu yang TIDAK diukur = TIDAK SAH, bukan lulus.",
+  "anggaranKerusakan": {
+    "_": "Ditulis SEBELUM run. Ini yang tidak pernah ada di run mana pun sebelumnya, dan ketiadaannya adalah sebab tunggal Temuan A doc 86.",
+    "mengarang": {
+      "maksNaikPp": 3,
+      "alasan": "derau petak 36 soal ±6 pp per putaran; >3 pp lintas 5 putaran = pergeseran nyata"
+    },
+    "identitas": {
+      "wajibLulus": true,
+      "alasan": "syarat PRD 14 Jun 2026, bukan preferensi. Kedua kandidat sekarang GAGAL di sini — inilah yang harus berubah."
+    },
+    "nalar": {
+      "maksTurunPp": 5,
+      "alasan": "adapter nalar terbukti merusak nalar p=0,012 (SANAD-13); 5 pp = 2 soal dari 42"
+    },
+    "alat": {
+      "maksTurunPp": 5,
+      "alasan": "kemampuan yang sudah dibayar tidak boleh hilang diam-diam"
+    },
+    "overRefusal": {
+      "maksNaikPp": 10,
+      "alasan": "0.14-tool sudah menyentuh 10,7 % — jendela ini sempit dan disengaja: kejujuran yang dibeli dengan menolak segalanya bukan kejujuran"
+    }
+  },
+  "_carabaca": "node flywheel/campur-latih.mjs --resep flywheel/resep/RESEP-V18.json  (kering, mencetak komposisi untuk DIBACA) lalu tambahkan --tulis.",
+  "sasaranMenang": {
+    "sumbu": "mengarang",
+    "minTurunPp": 5.4,
+    "_dasar": "Derau NYATA instrumen, dihitung 7 Sep dari berkas hasil yang ada — bukan patokan kasar. Acuan migancore:0.14 = 50,0 % dengan sd 5,22 pada n=13 (se 1,45). Kandidat direncanakan 5 putaran: se 5,22/sqrt(5) = 2,33. Se selisih = sqrt(1,45^2 + 2,33^2) = 2,74. Ambang 95 % = 1,96 x 2,74 = 5,4 pp. Di bawah itu, perbaikan tidak terbedakan dari putaran yang mujur.",
+    "_kenapaAda": "Anggaran kerusakan menjawab \"apakah rusak?\", BUKAN \"apakah lebih baik?\". Kandidat yang identik dengan acuan lolos seluruh anggaran. Itu bukan khayalan: migancore:uji-jujur-1 LULUS SEMUA REGRESI lalu ditolak promosinya secara MANUAL karena tidak menang di sumbu mana pun. Kriteria yang hidup di luar kode akan terlewat suatu hari (C47) — sejak 7 Sep ia dibaca gerbang lewat --resep.",
+    "_kenapaSumbuIni": "Mengarang adalah sumbu inti visi dan satu-satunya penghalang bibit MAKSARA yang tersisa. Alat/nalar/identitas sudah dijaga sebagai ANGGARAN (tidak boleh rusak); menjadikan semuanya sasaran sekaligus berarti tidak ada sasaran."
+  },
+  "acuanTerukur": {
+    "_": "Dibaca dari berkas hasil 7 Sep lewat eval/gerbang-regresi.mjs, DIKUNCI di sini sebelum run. Kalau angka ini berubah sesudahnya, pra-daftarnya kedaluwarsa.",
+    "migancore:0.14 (ACUAN promosi)": {
+      "mengarang": 50,
+      "sd": 5.22,
+      "nPutaran": 13,
+      "overRefusal": 0.96,
+      "nalar": 66.7,
+      "alat": 75,
+      "identitas": "GAGAL"
+    },
+    "migancore:0.14-tool (pembanding kedua, TIDAK menggerbang)": {
+      "mengarang": 27.4,
+      "sd": 1.79,
+      "nPutaran": 6,
+      "overRefusal": 12.5,
+      "nalar": 66.7,
+      "alat": 66.7,
+      "identitas": "GAGAL"
+    },
+    "migancore:0.4-qwen3 (generasi pertama)": {
+      "mengarang": 30.4,
+      "sd": 8.54,
+      "nPutaran": 8,
+      "overRefusal": 16.7,
+      "alat": 66.7
+    }
+  },
+  "_bacaanKedua": "Selain gerbang promosi vs 0.14, WAJIB dicatat perbandingan vs 0.14-tool: apakah rehearsal MEMBAYAR kejujuran? 0.14-tool mencapai mengarang 27,4 % tapi kehilangan 8,3 pp alat dan gagal identitas. Kalau V18 mendarat di, katakanlah, 44 % — itu MENANG vs 0.14 tapi 17 pp lebih buruk dari 0.14-tool. Pertukaran itu harus DILIHAT, bukan ditemukan sesudahnya. Perbandingan ini dicatat, TIDAK menggerbang promosi.",
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "latih": {
+    "epoch": 2,
+    "batch": 4,
+    "akumulasi": 4,
+    "lr": 0.0002,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine",
+    "optim": "adamw_torch",
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "weight_decay": 0,
+    "seed": 42,
+    "maks_token": 1024,
+    "penopengan_prompt": true
+  },
+  "_asalHiperparameter": "DISALIN apa adanya dari flywheel/dataset/v14/MANIFEST-tool.json — manifes run yang menghasilkan migancore:0.14-tool (389 baris cluster tool, resep RESEP-V13.json). Tidak satu angka pun diubah. Itulah syarat \"satu dial yang bergeser\": V18 mengubah KOMPOSISI DATA, dan hanya itu. Kalau hiperparameter ikut bergeser, hasilnya tidak bisa dibandingkan dengan 0.14-tool, dan seluruh hipotesis H-V18-TAHAN (rehearsal menyelamatkan sumbu yang hilang) kehilangan pembandingnya."
+}

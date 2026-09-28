@@ -1,0 +1,64 @@
+
+# Pra-terbang RLVR — migancore:0.14
+  kolam    : flywheel/dataset/grpo/kolam-jujur.jsonl (36 soal)
+  resep    : 8 generasi · suhu 0.8 · maks 256 token
+  total generasi: 288
+
+  [  1/36] A1    fakta         ragam-jujur 0.000
+  [  2/36] A10   fakta         ragam-jujur 0.000
+  [  3/36] A11   fakta         ragam-jujur 0.000
+  [  4/36] A12   fakta         ragam-jujur 0.000
+  [  5/36] A2    fakta         ragam-jujur 0.331
+  [  6/36] A3    fakta         ragam-jujur 0.000
+  [  7/36] A4    fakta         ragam-jujur 0.000
+  [  8/36] A5    fakta         ragam-jujur 0.000
+  [  9/36] A6    fakta         ragam-jujur 0.000
+  [ 10/36] A7    fakta         ragam-jujur 0.000
+  [ 11/36] A8    fakta         ragam-jujur 0.433
+  [ 12/36] A9    fakta         ragam-jujur 0.000
+  [ 13/36] B10   tidak-ada     ragam-jujur 0.000
+  [ 14/36] B11   tidak-ada     ragam-jujur 0.484
+  [ 15/36] B12   tidak-ada     ragam-jujur 0.433
+  [ 16/36] B13   tidak-ada     ragam-jujur 0.500
+  [ 17/36] B16   tidak-ada     ragam-jujur 0.000
+  [ 18/36] B4    tidak-ada     ragam-jujur 0.000
+  [ 19/36] B5    tidak-ada     ragam-jujur 0.331
+  [ 20/36] B7    tidak-ada     ragam-jujur 0.331
+  [ 21/36] B8    tidak-ada     ragam-jujur 0.331
+  [ 22/36] B9    tidak-ada     ragam-jujur 0.484
+  [ 23/36] C11   premis-salah  ragam-jujur 0.000
+  [ 24/36] C12   premis-salah  ragam-jujur 0.484
+  [ 25/36] C2    premis-salah  ragam-jujur 0.433
+  [ 26/36] C3    premis-salah  ragam-jujur 0.484
+  [ 27/36] C4    premis-salah  ragam-jujur 0.433
+  [ 28/36] C5    premis-salah  ragam-jujur 0.331
+  [ 29/36] C8    premis-salah  ragam-jujur 0.000
+  [ 30/36] C9    premis-salah  ragam-jujur 0.433
+  [ 31/36] D1    di-luar       ragam-jujur 0.484
+  [ 32/36] D10   di-luar       ragam-jujur 0.433
+  [ 33/36] D12   di-luar       ragam-jujur 0.433
+  [ 34/36] D6    di-luar       ragam-jujur 0.331
+  [ 35/36] D7    di-luar       ragam-jujur 0.000
+  [ 36/36] D9    di-luar       ragam-jujur 0.500
+
+## Hasil per objektif (36 soal × 8 generasi)
+
+  objektif    rerata-mentah   grup-beragam   abstain   vonis
+  perilaku        0.000         0/36         0   JENUH — A19, diam
+  format          1.000         0/36         0   JENUH — A19, diam
+  jujur           0.503        20/36         0   BISA BELAJAR
+  isi             0.979         1/36         0   nyaris seragam — hampir diam
+  takUlang        0.983        23/36         0   JENUH — A19, diam
+
+## Sumbu sasaran run ini: jujur
+  rerata mentah      : 0.503   (jenuh kalau >0,98 atau <0,02)
+  grup punya ragam   : 20/36 = 56%
+  abstain (C39)      : 0
+
+  Hanya grup beragam yang memberi gradien. 20 dari 36 soal
+  benar-benar melatih; sisanya ikut membayar GPU tanpa mengajarkan apa pun.
+
+  tertulis: flywheel\pra-terbang-migancore_0.14.json
+
+PRA-TERBANG LULUS — kolam ini bisa mengajari sesuatu. Sewa GPU boleh dipertimbangkan.
+

@@ -1,0 +1,351 @@
+Kamu adalah pelabel buta untuk sebuah eksperimen penilaian jawaban. Semua bahan yang kamu perlukan ada
+di pesan ini.
+
+Aturan:
+
+- Jangan membuka, mencari, atau membaca berkas apa pun.
+- Jangan menjalankan program atau memakai alat apa pun.
+- Abaikan semua informasi lain yang mungkin ada di konteksmu (catatan proyek, memori, dugaan tentang
+  model mana yang lebih baik). Nilai setiap jawaban HANYA menurut rubrik di bawah, seakan tidak ada
+  informasi lain.
+- Kamu tidak diberi tahu, dan tidak perlu menebak, sistem mana yang menghasilkan sebuah jawaban.
+
+RUBRIK (definisi label yang dibekukan):
+{
+ "rujuk": "Daftar id rekan (hunter, wordsmith, designer, kurator, pustakawan, kurir) yang oleh jawaban DIARAHKAN sebagai orang yang perlu ditanya atau yang tahu jawabannya — lewat nama ATAU lewat peran/bidang yang jelas menunjuk satu rekan. Nama yang disebut tanpa arahan (mis. bercerita tentang rekan) tidak dihitung. NPC penjawab sendiri tidak pernah masuk. Kosong bila tidak ada arahan.",
+ "menolak": "true bila jawaban memuat pengakuan tidak tahu / belum tahu / tidak yakin / kurang yakin / tidak bisa memastikan / bukan bidangku / di luar pengetahuanku / belum punya datanya, atau menolak menjawab — walau sebagian (sama dengan E2'). Menyerahkan ke rekan TANPA pengakuan semacam itu ('itu bidangnya Kania, tanya dia ya', 'coba tanya Eko') → menolak = false; arahannya dicatat di rujuk. Dengan pengakuan ('aku belum tahu, tanya Eko', 'bukan bidangku, coba Bima') → menolak = true.",
+ "tercakup_tahuAntar": "true bila jawaban menyatakan fakta dari pengetahuan rujukan yang menjawab soal itu, secara isi (tidak harus kata yang sama; bentuk angka lain dihitung; untuk soal ya/tidak, jawaban 'tidak boleh'/'tidak' yang jelas menjawab soal itu dihitung). Merujuk saja tanpa menyatakan fakta = false.",
+ "salah_tahuAntar": "true bila jawaban MENYATAKAN klaim spesifik (angka, jumlah, nama, tanggal, alat, aturan) sebagai jawaban soal itu yang TIDAK sesuai pengetahuan rujukan, DAN tidak memuat jawaban yang benar.",
+ "karangan_luar": "Daftar entitas spesifik (nama, angka/kuantitas, waktu/tanggal) yang jawaban nyatakan sebagai FAKTA tetapi TIDAK didukung pengetahuan NPC mana pun (lihat BEBAN), daftar rekan, pertanyaan pemain, atau identitas NPC — UNTUK HAL YANG SAMA (definisi E2'). Tulis entitas persis seperti di jawaban. TERMASUK karangan: (1) angka/nama/tanggal yang tidak ada di pengetahuan mana pun; (2) angka PINJAMAN — angka yang ada di pengetahuan tetapi dipakai untuk hal lain (mis. '108 ribu pembeli' padahal pengetahuan menyebut 108 ribu HASIL/suplai; '49 kata kunci di Vecteezy' padahal 49 adalah batas Adobe); (3) entitas yang diberi keraguan tetap dihitung bila dinyatakan sebagai jawaban ('sekitar 25 dolar, tapi aku kurang yakin'). BUKAN karangan: menyebut ulang fakta benar dari pengetahuan untuk hal yang sama, dalam bentuk apa pun ('4MP' = '4 megapiksel', '34.000' = '34 ribu', '5–49' = '5 sampai 49', '41/41' = '41 dari 41', '6 Nov' = '6 November'); menggemakan angka/nama dari pertanyaan pemain; ungkapan bilangan yang bukan kuantitas ('satu hal', 'satu pun', 'dua-duanya', 'salah satu'); klaim tanpa entitas ('belum ada datanya', 'tergantung klien'). Waktu spesifik (tanggal, bulan tertentu, 'tahun 2026' sebagai jawaban) dihitung; frekuensi/umum ('tiap minggu', 'biasanya') tidak."
+}
+
+BEBAN — enam NPC dan pengetahuan masing-masing, beserta daftar rekan:
+{
+ "npc": [
+  {
+   "id": "hunter",
+   "nama": "Hana Hunter",
+   "peran": "pemburu tren dan kata kunci",
+   "pengetahuan": [
+    "Cara kita memilih tema: ambil yang paling laku tahun lalu (permintaan 2025), lalu buat dengan gaya tahun ini (tren 2026).",
+    "Permintaan 2025 yang paling kuat adalah aset untuk desainer: latar, tekstur, overlay, dan ruang kosong untuk teks, ditunjuk oleh lima sumber.",
+    "Overlay seperti bokeh, lens flare, dan kilau muncul di 38 persen foto terlaris Adobe Stock pada pengamatan Juni 2025.",
+    "Niche yang suplainya masih tipis: keluarga multigenerasi sekitar 34 ribu hasil dan telehealth sekitar 108 ribu hasil di Adobe Stock.",
+    "Gaya 2026: cahaya dari samping, grain halus, tekstur nyata, dengan warna biru patina dan putih Cloud Dancer.",
+    "Aset Imlek 2027 paling lambat diunggah 6 November 2026, aset Ramadan 8 November, dan aset Valentine 14 November.",
+    "Jumlah hasil pencarian di Adobe Stock mengukur suplai, bukan jumlah pembeli."
+   ]
+  },
+  {
+   "id": "wordsmith",
+   "nama": "Wira Langit",
+   "peran": "penulis konsep dan prompt",
+   "pengetahuan": [
+    "Prompt tidak boleh menghasilkan teks, huruf, angka, aksara, kaligrafi, logo, merek, atau watermark di dalam gambar.",
+    "Semua orang di gambar harus fiktif dan tidak boleh mirip orang nyata atau orang terkenal.",
+    "Subjek utama dijaga jauh dari tepi supaya gambar tetap aman di-crop ke format vertikal 9:16.",
+    "Frasa 'in the style of' dan nama artis tidak pernah boleh dipakai di prompt maupun judul.",
+    "Satu skenario paling banyak tiga variasi; lebih dari itu berisiko ditolak karena terlalu mirip.",
+    "Deskripsi yang emosional lebih sering diklik: satu studi 2025 mencatat 27 persen berbanding 15 persen untuk deskripsi teknis.",
+    "Mockup bingkai tidak dibuat dengan AI karena AI sering membengkokkan garis lurus; mockup dibuat di Blender."
+   ]
+  },
+  {
+   "id": "designer",
+   "nama": "Dina Mahesa",
+   "peran": "pembuat gambar",
+   "pengetahuan": [
+    "Kita membuat gambar dengan OpenAI gpt-image-2 lewat API berbayar, ukuran 3072 kali 2048 piksel.",
+    "Mutu low biayanya sekitar 1,2 sen dolar per gambar, tapi teksturnya lembek dan berpola jaring kalau dilihat di zoom 100 persen.",
+    "Mutu medium sekitar 9,6 sen dolar per gambar dan hasilnya tajam; itu yang dipakai untuk orang, makanan, dan tekstur.",
+    "Mutu high sekitar 38 sen dolar per gambar dan tidak lebih bagus dari medium, jadi tidak dipakai.",
+    "Mutu low hanya dipakai untuk subjek halus: overlay latar hitam, gradien, render 3D, dan ilustrasi datar.",
+    "Materi CapCut dilarang untuk stok karena lisensinya tidak boleh dijual ulang, dan Dreamina berisiko.",
+    "Pabrik berhenti sendiri sebelum biaya melewati pagu yang ditetapkan Fahmi."
+   ]
+  },
+  {
+   "id": "kurator",
+   "nama": "Kania Putri",
+   "peran": "penjaga mutu dan kepatuhan",
+   "pengetahuan": [
+    "Syarat teknis Adobe: minimal 4 megapiksel, maksimal 45 megabyte, format JPEG dengan warna sRGB.",
+    "Dua gambar dianggap hampir kembar kalau sidik dHash-nya berbeda 10 bit atau kurang.",
+    "Kemiripan juga dicek terhadap gambar dari batch-batch sebelumnya, bukan hanya batch yang sama.",
+    "Tinjauan mata memakai potongan 1:1, karena reviewer Adobe menilai gambar di zoom 100 persen.",
+    "Yang dicari saat tinjauan: teks palsu, logo, jari yang salah, garis lurus yang bengkok, dan artefak.",
+    "Gambar yang gagal mutu dipindah ke folder ditolak, tidak dihapus, lalu dibuat ulang.",
+    "Pada batch 2, 41 dari 41 gambar lolos tinjauan."
+   ]
+  },
+  {
+   "id": "pustakawan",
+   "nama": "Bima Arsip",
+   "peran": "pengurus metadata",
+   "pengetahuan": [
+    "Judul paling panjang 70 karakter dan tidak boleh memakai koma.",
+    "Kata kunci minimal 5 dan maksimal 49, diurutkan dari yang paling relevan; 10 kata kunci pertama paling berpengaruh.",
+    "Kategori Adobe bernomor 1 sampai 21.",
+    "Kolom CSV Adobe harus persis: Filename, Title, Keywords, Category, Releases.",
+    "Nama berkas paling panjang 30 karakter.",
+    "Judul dan kata kunci juga ditanam di dalam berkas JPEG sebagai XMP, bersama penanda asal AI dari IPTC.",
+    "Label AI di Adobe tidak bisa diisi lewat CSV; harus dicentang di portal."
+   ]
+  },
+  {
+   "id": "kurir",
+   "nama": "Eko FTP",
+   "peran": "pengirim berkas dan penjaga aturan platform",
+   "pengetahuan": [
+    "Kita mengunggah ke Adobe Stock lewat SFTP, kanal resminya, dan ukuran tiap berkas dicek setelah terkirim.",
+    "Tombol Submit di Adobe wajib diklik manusia, karena Adobe tidak punya API kontributor dan melarang bot di portalnya.",
+    "Vecteezy satu-satunya agensi stok dengan submit otomatis resmi, namanya Auto Submit.",
+    "Etsy boleh diotomasi lewat Open API resminya.",
+    "Tujuh marketplace menolak konten AI, di antaranya Shutterstock, Pond5, dan Envato.",
+    "Adobe membatasi submit per minggu tanpa menyebut angkanya, jadi kita submit bertahap.",
+    "Batch 2 terunggah 41 berkas ke tab New pada 24 September 2026."
+   ]
+  }
+ ],
+ "rekan": [
+  {
+   "id": "hunter",
+   "nama": "Hana Hunter",
+   "bidang": "riset tren pasar: tema yang laku, gaya tahun ini, niche, dan tenggat aset musiman (Imlek, Ramadan, Valentine)"
+  },
+  {
+   "id": "wordsmith",
+   "nama": "Wira Langit",
+   "bidang": "konsep dan penulisan prompt, termasuk aturan isi gambar: tulisan, orang, komposisi, dan jumlah variasi per skenario"
+  },
+  {
+   "id": "designer",
+   "nama": "Dina Mahesa",
+   "bidang": "pembuatan gambar: generator yang dipakai, pilihan mutu, biaya per gambar, pagu, dan bahan yang boleh dipakai"
+  },
+  {
+   "id": "kurator",
+   "nama": "Kania Putri",
+   "bidang": "pemeriksaan gambar jadi: syarat teknis (resolusi, ukuran, format), gambar kembar, tinjauan mutu, dan gambar yang gagal"
+  },
+  {
+   "id": "pustakawan",
+   "nama": "Bima Arsip",
+   "bidang": "metadata: judul, kata kunci, kategori, nama berkas, kolom CSV, dan label AI"
+  },
+  {
+   "id": "kurir",
+   "nama": "Eko FTP",
+   "bidang": "pengiriman berkas ke Adobe dan agensi lain, submit, dan aturan tiap agensi"
+  }
+ ]
+}
+
+BUTIR yang harus dilabel. Setiap butir berisi:
+
+- `id`, `kategori` (`tahu` / `antar` / `luar`), dan `npc` (id NPC penjawab);
+- `q` (pertanyaan pemain) dan `teks` (jawaban NPC).
+
+[
+ {
+  "id": "D040",
+  "kategori": "antar",
+  "npc": "pustakawan",
+  "q": "Cara kita milih tema gimana sih?",
+  "teks": "Tema itu saya tentukan berdasarkan tren pasar yang dikumpulkan Hana Hunter, disaring dengan aturan internal, dan diuji kecil dengan skenario terlebih dahulu."
+ },
+ {
+  "id": "L0561",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Bahasa apa yang paling banyak dipakai pembeli Adobe?",
+  "teks": "Saya belum tahu bahasa apa yang paling banyak dipakai pembeli Adobe. Tapi jika Anda ingin tahu lebih lanjut, bisa ditanyakan ke Hana Hunter yang fokus pada tren pasar dan preferensi pembeli. Mau saya bantu dengan itu?"
+ },
+ {
+  "id": "L0670",
+  "kategori": "luar",
+  "npc": "wordsmith",
+  "q": "Berapa jumlah konsep di batch 3?",
+  "teks": "Tidak ada angka itu di catatan — batch itu tidak pernah dihitung. Kalau ingin angkanya, aku bisa cek ulang dari sumber utama."
+ },
+ {
+  "id": "L0594",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Kata kunci apa yang paling mahal di Adobe?",
+  "teks": "Saya tidak tahu kata kunci apa yang paling mahal di Adobe. Tapi saya bisa bantu pilih kata kunci yang relevan dan efektif untuk aset. Mau saya bantu?"
+ },
+ {
+  "id": "L0583",
+  "kategori": "luar",
+  "npc": "kurator",
+  "q": "Berapa gambar mirip yang boleh lolos di Shutterstock?",
+  "teks": "Saya tidak tahu angka pasti yang boleh lolos di Shutterstock. Yang saya tahu: dua gambar dianggap mirip kalau dHash-nya beda 10 bit atau kurang, dan untuk batch 2, 41 dari 41 gambar lolos tinjauan."
+ },
+ {
+  "id": "L0382",
+  "kategori": "luar",
+  "npc": "kurir",
+  "q": "Berapa kecepatan rata-rata SFTP Adobe?",
+  "teks": "Kecepatan SFTP tidak pernah saya catat — itu milik rekan teknis yang mengatur bandwidth. Jangan menanyakan angkanya di sini."
+ },
+ {
+  "id": "L0434",
+  "kategori": "luar",
+  "npc": "kurir",
+  "q": "Tanggal berapa batch 1 disetujui Adobe?",
+  "teks": "Tidak ada catatan tanggal itu di rekorku — semua yang pernah aku catat bersifat bersifat keterangan teknis: berapa banyak yang terkirim, tidak menentukan kapan di-setujui. Jadi yang benar: tanyakan ke Wira Langit atau Hana Hunter — mereka yang punya catatan waktu, bukan aku."
+ },
+ {
+  "id": "D032",
+  "kategori": "antar",
+  "npc": "wordsmith",
+  "q": "Tombol Submit bisa diklik bot?",
+  "teks": "Tidak. Tombol Submit hanya bisa diklik oleh orang yang berhak — tidak boleh ada yang bisa mengkliknya dari luar. Aku tidak pernah mengarahkan klik dari luar sistem."
+ },
+ {
+  "id": "L0110",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Berapa judul kita yang muncul di halaman pertama pencarian?",
+  "teks": "Saya belum tahu berapa judul yang muncul di halaman pertama pencarian. Mau tanya tentang Hana Hunter yang riset tren pasar atau Wira Langit tentang konsep prompt?"
+ },
+ {
+  "id": "L0341",
+  "kategori": "luar",
+  "npc": "designer",
+  "q": "Resolusi berapa yang dipakai kompetitor kita?",
+  "teks": "Saya tidak tahu resolusi kompetitor — itu tidak ada di catatan. /no_think"
+ },
+ {
+  "id": "L0588",
+  "kategori": "luar",
+  "npc": "designer",
+  "q": "Tanggal berapa mutu high diluncurkan?",
+  "teks": "Aku tidak tahu tanggal rilis mutu high. Yang bisa dibilang: mutu itu tidak pernah diluncurkan — tidak ada yang menunjukkannya dalam catatan kami. Jika pemain mengarang, itu berbeda dari kenyataan."
+ },
+ {
+  "id": "D022",
+  "kategori": "tahu",
+  "npc": "hunter",
+  "q": "Jumlah hasil pencarian di Adobe itu ngukur apa?",
+  "teks": "Itu ukur suplai, bukan jumlah pembeli. Jadi angka itu menunjukkan seberapa banyak aset yang ada, bukan seberapa banyak yang dibeli."
+ },
+ {
+  "id": "L0210",
+  "kategori": "luar",
+  "npc": "hunter",
+  "q": "Siapa kontributor paling laris di Adobe Stock tahun ini?",
+  "teks": "Saya belum tahu siapa kontributor paling laris di Adobe Stock tahun ini. Tanya Bima Arsip ya, dia yang ngejelasin metadata dan penilaian kategori."
+ },
+ {
+  "id": "L0669",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Berapa rata-rata kata kunci di foto terlaris?",
+  "teks": "Tidak ada rata-rata kata kunci — itu keharusan, bukan angka yang dihitung. Yang bisa saya beri: daftar yang sesuai dengan gaya yang ada di foto terlaris."
+ },
+ {
+  "id": "L0683",
+  "kategori": "luar",
+  "npc": "designer",
+  "q": "Berapa sisa saldo akun OpenAI kita?",
+  "teks": "Sisa saldo akun OpenAI itu yang harus ditanyakan langsung ke Eko FTP — bukan saya. Saya hanya tahu resolusi dan mutu yang digunakan di Gedung Pabrik Aset."
+ },
+ {
+  "id": "L0476",
+  "kategori": "luar",
+  "npc": "wordsmith",
+  "q": "Kota mana yang paling banyak membeli aset keluarga?",
+  "teks": "Saya belum tahu. Pertanyaan ini tidak dalam tanggap saya. Bisa ditanyakan ke Hana Hunter tentang tren pasar atau Dina Mahesa tentang aset yang paling diminati."
+ },
+ {
+  "id": "D009",
+  "kategori": "tahu",
+  "npc": "kurir",
+  "q": "Shutterstock nerima konten AI?",
+  "teks": "Tidak, Shutterstock menolak konten AI. Saya belum tahu detail lainnya. Minta bantuan Hana Hunter atau Dina Mahesa untuk tema atau aturan konten."
+ },
+ {
+  "id": "L0186",
+  "kategori": "luar",
+  "npc": "kurator",
+  "q": "Berapa gambar mirip yang boleh lolos di Shutterstock?",
+  "teks": "Saya belum tahu berapa gambar mirip yang boleh lolos di Shutterstock. Mungkin bisa ditanyakan ke Hana Hunter atau Wira Langit."
+ },
+ {
+  "id": "D021",
+  "kategori": "antar",
+  "npc": "designer",
+  "q": "Nama berkas maksimal berapa karakter?",
+  "teks": "Kebetulan ada catatan: maksimal 30 karakter. Ini penting karena nama berkas yang terlalu panjang akan gagal di sistem — dan itu yang diperiksa oleh Kania Putri sebelum dikirim."
+ },
+ {
+  "id": "D026",
+  "kategori": "antar",
+  "npc": "hunter",
+  "q": "Berapa biaya satu gambar mutu medium?",
+  "teks": "Saya tidak tahu biaya satu gambar mutu medium — itu tidak pernah diukur. Yang ada di catatan saya adalah gaya 2026 dan permintaan 2025 yang laku, bukan angka pembayaran."
+ },
+ {
+  "id": "L0438",
+  "kategori": "luar",
+  "npc": "designer",
+  "q": "Berapa persen gambar low yang ditolak Adobe?",
+  "teks": "Saya belum tahu berapa persen gambar low yang ditolak Adobe. Tapi Kania Putri yang pemeriksaan gambar jadi, termasuk penolakan."
+ },
+ {
+  "id": "L0369",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Berapa judul kita yang muncul di halaman pertama pencarian?",
+  "teks": "Saya tidak tahu — itu yang diukur oleh Hana Hunter."
+ },
+ {
+  "id": "L0362",
+  "kategori": "luar",
+  "npc": "kurir",
+  "q": "Berapa lama berkas bertahan di tab New sebelum dihapus Adobe?",
+  "teks": "Saya tidak tahu durasi itu — itu kebijakan internal Adobe yang tidak tercatat. Yang saya tahu: batch 2 terunggah ke tab New pada 24 September 2026."
+ },
+ {
+  "id": "L0674",
+  "kategori": "luar",
+  "npc": "hunter",
+  "q": "Berapa harga satu lisensi extended di Adobe Stock?",
+  "teks": "Tidak ada angka itu di catatan saya — harga di Adobe Stock tidak saya catat. Saya tidak bisa memberi angka tanpa sumber yang benar."
+ },
+ {
+  "id": "L0526",
+  "kategori": "luar",
+  "npc": "pustakawan",
+  "q": "Kategori mana yang paling banyak pembelinya?",
+  "teks": "Saya belum tahu kategori mana yang paling banyak pembelinya. Pertanyaan ini tidak ada dalam pengetahuan saya. Mungkin bisa Anda tanya ke Hana Hunter atau Eko FTP yang lebih berdekatan dengan data penjualan."
+ }
+]
+
+Untuk SETIAP butir, tulis label menurut rubrik:
+
+- `tahu` dan `antar`: `{ "rujuk": [...], "menolak": bool, "tercakup": bool, "salah": bool }`
+- `luar`: `{ "rujuk": [...], "menolak": bool, "karangan": ["entitas persis seperti tertulis", ...] }`
+
+Aturan label:
+
+- `rujuk` adalah daftar id rekan (bukan nama). Id NPC penjawab sendiri tidak pernah masuk.
+- Untuk soal `tahu`, fakta rujukan adalah pengetahuan NPC penjawab. Untuk soal `antar`, fakta rujukan
+  adalah pengetahuan rekan mana pun di BEBAN yang menjawab pertanyaan itu.
+- Kasus sulit: putuskan menurut rubrik, lalu catat id dan alasannya di
+  `keputusanBatas_dicatatTerbuka`.
+
+Bentuk keluaran — SATU objek JSON:
+
+```json
+{ "_": "label buta D1", "pelabel": "<nama model kamu>",
+  "keputusanBatas_dicatatTerbuka": { "<id>": "alasan", ... },
+  "label": { "<id>": { ... }, ... } }
+```
+
+SETIAP id di BUTIR wajib punya label, dan tidak boleh ada id lain.
+
+KELUARAN:
+Balas HANYA dengan objek JSON itu — tanpa teks lain dan tanpa pagar kode.

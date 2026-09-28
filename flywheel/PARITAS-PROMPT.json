@@ -1,0 +1,41 @@
+{
+  "catatan": "DEKLARASI perbedaan prompt latih vs prompt ukur, per cluster. Diperiksa eval/periksa-prompt-paritas.mjs: cluster yang promptnya beda dari eval/prompt-gerbang.json WAJIB punya disengaja:true + alasan >= 20 huruf, kalau tidak alur latih DITAHAN. Ditulis 23 Agu 2026 sesudah pengukuran: gerbang hanya muncul di 2/285 hitung (0,7%), 0/314 nalar, 0/200 gaya, 0/26 tool.",
+  "prinsip": "Gerbang SENGAJA memakai prompt netral yang tidak ada di data latih, plus lengan tanpa-prompt. Alasannya: temuan 22 Agu (naskah bersyarat pemicu) — kerusakan v11 hanya muncul di bawah prompt tertentu. Gerbang yang memakai prompt latih akan mengukur hafalan-di-bawah-pemicu, bukan kemampuan. Yang BELUM diukur sampai 23 Agu: lengan ketiga = prompt latih dominan (untuk memetakan kepekaan pemicu). Tier-1 sejak 23 Agu menambah lengan 'latih' bila data punya prompt dominan.",
+  "cluster": {
+    "hitung": {
+      "disengaja": true,
+      "alasan": "data memakai prompt identitas MiganCore (70,5% + 26,7%); gerbang memakai prompt netral + tanpa prompt untuk mengukur kemampuan di luar pemicu latih. Dua baris ajar memakai prompt gerbang (0,7%) — asal Pencatat Ajar; diterima, bukan pencemaran soal (soal gerbang tetap bebas 8-gram)."
+    },
+    "nalar": {
+      "disengaja": true,
+      "alasan": "9 prompt identitas/penalaran di data, 0% prompt gerbang; gerbang kias/aritmetika sengaja netral. Catatan: gerbang kias v13 GAGAL (over-branching) — belum diketahui apakah gagal juga di bawah prompt latih dominan; lengan 'latih' tier-1 akan menjawab ini pada run berikutnya."
+    },
+    "gaya": {
+      "disengaja": true,
+      "alasan": "data = prompt identitas + prompt alat (15%); gerbang tolak memakai prompt netral. Penegakan batas peran harus berlaku tanpa bergantung prompt identitas — itu justru yang diuji."
+    },
+    "tool": {
+      "disengaja": true,
+      "alasan": "panen-tool-v2 (24 Agu): 4 preambule dirotasi (identitas MiganCore / operasional / teliti / tanpa) x 3 varian protokol; kalimat protokol '<tool_call> ... Panggil HANYA tool yang terdaftar' SENGAJA separitas dengan SISTEM gerbang uji-alat & produksi — itu konvensi protokol, bukan bocoran soal (temuan periksa-pencemaran Tingkat-2 24 Agu dibaca tangan: hanya 2 kelas paritas protokol, 0 soal gerbang bocor — penjaga miripSoal>=0,8 di generator menolak kembar). Paritas SEBAGIAN by rotasi: kombinasi persis gerbang ~1/12 baris."
+    },
+    "gaya-promptragam": {
+      "disengaja": true,
+      "alasan": "rotasi prompt (A asli 26% · G gerbang 19% · P parafrasa 12,5% · N tanpa 27,5%); 30 baris (15%) ber-daftar-alat SENGAJA utuh karena jawabannya memanggil alat yang didefinisikan di prompt itu — G+N 46,5% = sebagian, bukan penuh."
+    },
+    "hitung-promptragam": {
+      "disengaja": true,
+      "alasan": "rotasi prompt A31/G27/P18/N25 — paritas penuh (51,2%); deklarasi ini hanya catatan desain."
+    },
+    "campuran": {
+      "disengaja": true,
+      "alasan": "Campuran V18 (486 baris) bukan cluster tunggal melainkan gabungan empat kolam yang paritasnya SUDAH dideklarasikan sendiri-sendiri: tool 389 (rotasi 4 preambule x 3 varian protokol), identitas 40, abstain 40, nalar 17. Angka yang terukur pada campuran: 0,0 % memakai prompt gerbang, 5,6 % tanpa prompt sistem, 50 prompt sistem berbeda dengan yang terbesar hanya 41 baris (8,4 %) — tidak ada satu prompt pun yang mendominasi. Nol persen prompt gerbang adalah yang DIINGINKAN: gerbang sengaja memakai prompt netral yang tidak ada di data latih, supaya yang diukur kemampuan, bukan hafalan-di-bawah-pemicu (temuan 22 Agu, naskah bersyarat pemicu). Lengan 5,6 % tanpa prompt juga disengaja dan justru menjadi salah satu tujuan run ini: 27 dari 40 baris identitas ditulis TANPA prompt sistem supaya identitas masuk ke BOBOT, bukan menumpang di lapisan serving. C44 (model menyebut dirinya Qwen) tidak bisa diperbaiki oleh prompt yang hilang saat prompt itu dilepas.",
+      "terukur": {
+        "pangsaGerbang": 0,
+        "pangsaTanpa": 5.6,
+        "promptBerbeda": 50,
+        "dominanPangsa": 8.4
+      },
+      "tanggal": "2026-09-07"
+    }
+  }
+}

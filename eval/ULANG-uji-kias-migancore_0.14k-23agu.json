@@ -1,0 +1,69 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.14k",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "23agu",
+  "sistemTambahan": "",
+  "keseluruhan": {
+    "lulus": 40,
+    "coba": 62,
+    "lo": 0.5208089986340214,
+    "hi": 0.7525743942361396,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 20,
+      "total": 20,
+      "v": "LULUS",
+      "lo": 0.8388698745050667,
+      "hi": 0.9999999999999998
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 12,
+      "total": 13,
+      "v": "TIDAK PASTI",
+      "lo": 0.6668546607175265,
+      "hi": 0.9862899336203037
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 0,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0,
+      "hi": 0.20388926630434784
+    },
+    {
+      "kategori": "kias",
+      "lulus": 8,
+      "total": 14,
+      "v": "GAGAL",
+      "lo": 0.3259026690286935,
+      "hi": 0.7861949006959947
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Apa arti \"mata air\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

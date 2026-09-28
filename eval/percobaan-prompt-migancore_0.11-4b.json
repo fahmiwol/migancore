@@ -1,0 +1,111 @@
+{
+  "model": "migancore:0.11-4b",
+  "putaran": 5,
+  "ulangArit": 3,
+  "kalimat": "Frasa majemuk yang maknanya sudah beku dalam bahasa Indonesia — misalnya \"buah tangan\" atau \"kaki tangan\" — hanya punya satu makna. Untuk frasa seperti itu jawab tunggal dan tegas; jangan menawarkan tafsir lain.",
+  "baris": [
+    {
+      "ukuran": "kias · lugas",
+      "a": [
+        18,
+        20
+      ],
+      "b": [
+        14,
+        20
+      ],
+      "p": 0.23511623511623522,
+      "lo": -0.43055185485773473,
+      "hi": 0.053563111260743757,
+      "nyata": false,
+      "selisih": -0.20000000000000007
+    },
+    {
+      "ukuran": "kias · majas_mati",
+      "a": [
+        8,
+        17
+      ],
+      "b": [
+        7,
+        13
+      ],
+      "p": 0.9999999999999981,
+      "lo": -0.2627729126080255,
+      "hi": 0.3782239256784266,
+      "nyata": false,
+      "selisih": 0.0678733031674208
+    },
+    {
+      "ukuran": "kias · cabang",
+      "a": [
+        2,
+        15
+      ],
+      "b": [
+        7,
+        15
+      ],
+      "p": 0.10864567716141883,
+      "lo": 0.0046375332497303745,
+      "hi": 0.5845549908047238,
+      "nyata": false,
+      "selisih": 0.33333333333333337
+    },
+    {
+      "ukuran": "kias · kias",
+      "a": [
+        9,
+        16
+      ],
+      "b": [
+        8,
+        16
+      ],
+      "p": 1,
+      "lo": -0.3642488430163917,
+      "hi": 0.2563011454874286,
+      "nyata": false,
+      "selisih": -0.0625
+    },
+    {
+      "ukuran": "kias · KESELURUHAN",
+      "a": [
+        37,
+        68
+      ],
+      "b": [
+        36,
+        64
+      ],
+      "p": 0.8623656786014292,
+      "lo": -0.14753373269548864,
+      "hi": 0.18252642956034074,
+      "nyata": false,
+      "selisih": 0.018382352941176516
+    },
+    {
+      "ukuran": "**ARITMETIKA (pemeriksa kebocoran)**",
+      "a": [
+        27,
+        36
+      ],
+      "b": [
+        22,
+        36
+      ],
+      "p": 0.31207757081401727,
+      "lo": -0.33650424748934415,
+      "hi": 0.07493322777209466,
+      "nyata": false,
+      "selisih": -0.13888888888888884
+    }
+  ],
+  "aturan": {
+    "R1": false,
+    "R3": false,
+    "R4": false
+  },
+  "putusan": "R2 — kemampuan benar-benar TERGERUS",
+  "tindakan": "Prompt tidak menolong, jadi ini kerusakan bobot. P2 harus jadi paket PEMULIHAN sungguhan: pasangan beku-vs-hidup dalam jumlah memadai di data latih."
+}

@@ -1,0 +1,418 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-A3I-JANGKAR-INSTRUCT.json",
+ "stempel": "2026-09-23T17-03-47",
+ "asap": false,
+ "host": "http://measure-host.local:11434",
+ "petak": 36,
+ "kesetaraanSampler": null,
+ "badanSetara": {
+  "lulus": true,
+  "sM": true,
+  "bS": true
+ },
+ "sisipan": {
+  "disisipi": 360,
+  "dilewatkan": 720
+ },
+ "digestAkhir": {
+  "cocok": false,
+  "alasan": "qwen3:4b-instruct-2507-q4_K_M=tidak ada (harus 0edcdef34593); migancore:0.14=tidak ada (harus d334393c0815)"
+ },
+ "triplet": [
+  {
+   "t": 1,
+   "urutan": "S>B>M",
+   "lengan": {
+    "S": {
+     "sah": true,
+     "MENGARANG": 14.8,
+     "over": 12.5,
+     "fakta": 0.5,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p1-2026-09-23T17-03-47.json",
+     "detik": 2461
+    },
+    "B": {
+     "sah": true,
+     "MENGARANG": 18.5,
+     "over": 0,
+     "fakta": 0.625,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p1-2026-09-23T17-03-47.json",
+     "detik": 2562
+    },
+    "M": {
+     "sah": true,
+     "MENGARANG": 55.6,
+     "over": 0,
+     "fakta": 0.625,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p1-2026-09-23T17-03-47.json",
+     "detik": 515
+    }
+   }
+  },
+  {
+   "t": 2,
+   "urutan": "B>M>S",
+   "lengan": {
+    "B": {
+     "sah": true,
+     "MENGARANG": 14.3,
+     "over": 25,
+     "fakta": 0.625,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p2-2026-09-23T17-03-47.json",
+     "detik": 2531
+    },
+    "M": {
+     "sah": true,
+     "MENGARANG": 39.3,
+     "over": 12.5,
+     "fakta": 0.375,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p2-2026-09-23T17-03-47.json",
+     "detik": 508
+    },
+    "S": {
+     "sah": true,
+     "MENGARANG": 17.9,
+     "over": 25,
+     "fakta": 0.625,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p2-2026-09-23T17-03-47.json",
+     "detik": 2457
+    }
+   }
+  },
+  {
+   "t": 3,
+   "urutan": "M>S>B",
+   "lengan": {
+    "M": {
+     "sah": true,
+     "MENGARANG": 55.6,
+     "over": 0,
+     "fakta": 0.375,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p3-2026-09-23T17-03-47.json",
+     "detik": 1655
+    },
+    "S": {
+     "sah": true,
+     "MENGARANG": 17.9,
+     "over": 0,
+     "fakta": 0.625,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p3-2026-09-23T17-03-47.json",
+     "detik": 2392
+    },
+    "B": {
+     "sah": true,
+     "MENGARANG": 22.2,
+     "over": 0,
+     "fakta": 0.375,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p3-2026-09-23T17-03-47.json",
+     "detik": 2418
+    }
+   }
+  },
+  {
+   "t": 4,
+   "urutan": "S>B>M",
+   "lengan": {
+    "S": {
+     "sah": true,
+     "MENGARANG": 10.7,
+     "over": 0,
+     "fakta": 0.5,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p4-2026-09-23T17-03-47.json",
+     "detik": 2470
+    },
+    "B": {
+     "sah": true,
+     "MENGARANG": 25,
+     "over": 0,
+     "fakta": 0.5,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p4-2026-09-23T17-03-47.json",
+     "detik": 2451
+    },
+    "M": {
+     "sah": true,
+     "MENGARANG": 53.6,
+     "over": 0,
+     "fakta": 0.5,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p4-2026-09-23T17-03-47.json",
+     "detik": 609
+    }
+   }
+  },
+  {
+   "t": 5,
+   "urutan": "B>M>S",
+   "lengan": {
+    "B": {
+     "sah": true,
+     "MENGARANG": 14.3,
+     "over": 12.5,
+     "fakta": 0.375,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p5-2026-09-23T17-03-47.json",
+     "detik": 2563
+    },
+    "M": {
+     "sah": true,
+     "MENGARANG": 44.4,
+     "over": 0,
+     "fakta": 0.375,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p5-2026-09-23T17-03-47.json",
+     "detik": 1621
+    },
+    "S": {
+     "sah": true,
+     "MENGARANG": 14.3,
+     "over": 12.5,
+     "fakta": 0.75,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p5-2026-09-23T17-03-47.json",
+     "detik": 2594
+    }
+   }
+  },
+  {
+   "t": 6,
+   "urutan": "M>S>B",
+   "lengan": {
+    "M": {
+     "sah": true,
+     "MENGARANG": 57.7,
+     "over": 0,
+     "fakta": 0.375,
+     "galat": 2,
+     "pikir": 0,
+     "digest": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497",
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p6-2026-09-23T17-03-47.json",
+     "detik": 1723
+    },
+    "S": {
+     "sah": true,
+     "MENGARANG": 17.9,
+     "over": 50,
+     "fakta": 0.375,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p6-2026-09-23T17-03-47.json",
+     "detik": 2467
+    },
+    "B": {
+     "sah": true,
+     "MENGARANG": 21.4,
+     "over": 25,
+     "fakta": 0.5,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p6-2026-09-23T17-03-47.json",
+     "detik": 2535
+    }
+   }
+  },
+  {
+   "t": 7,
+   "urutan": "S>B>M",
+   "lengan": {
+    "S": {
+     "sah": true,
+     "MENGARANG": 17.9,
+     "over": 37.5,
+     "fakta": 0.625,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p7-2026-09-23T17-03-47.json",
+     "detik": 2522
+    },
+    "B": {
+     "sah": true,
+     "MENGARANG": 7.4,
+     "over": 25,
+     "fakta": 0.625,
+     "galat": 1,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p7-2026-09-23T17-03-47.json",
+     "detik": 2587
+    },
+    "M": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p7-2026-09-23T17-03-47.json",
+     "detik": 0
+    }
+   }
+  },
+  {
+   "t": 8,
+   "urutan": "B>M>S",
+   "lengan": {
+    "B": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p8-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "M": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p8-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "S": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p8-2026-09-23T17-03-47.json",
+     "detik": 0
+    }
+   }
+  },
+  {
+   "t": 9,
+   "urutan": "M>S>B",
+   "lengan": {
+    "M": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p9-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "S": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p9-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "B": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p9-2026-09-23T17-03-47.json",
+     "detik": 0
+    }
+   }
+  },
+  {
+   "t": 10,
+   "urutan": "S>B>M",
+   "lengan": {
+    "S": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-S-p10-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "B": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-a3i-B-p10-2026-09-23T17-03-47.json",
+     "detik": 0
+    },
+    "M": {
+     "sah": false,
+     "MENGARANG": null,
+     "over": null,
+     "fakta": null,
+     "galat": 36,
+     "pikir": 0,
+     "digest": null,
+     "berkas": "hasil-jujur2-migancore_0.14-a3i-M-p10-2026-09-23T17-03-47.json",
+     "detik": 0
+    }
+   }
+  }
+ ],
+ "vonis": "INSTRUMEN_TIDAK_SAH",
+ "alasan": [
+  "10 putaran dengan digest model ≠ pin",
+  "digest berubah sesudah run: qwen3:4b-instruct-2507-q4_K_M=tidak ada (harus 0edcdef34593); migancore:0.14=tidak ada (harus d334393c0815)"
+ ]
+}

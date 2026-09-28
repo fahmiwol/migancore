@@ -1,0 +1,56 @@
+{
+  "nama": "E5-pasang — otak NPC Galantara di jalur HIDUP (VPS-2 → jalur → Bmax): setara, latensi, beban, gagal-terbuka",
+  "episode": "E5-pasang",
+  "tanggal": "2026-09-23",
+  "dikunci": true,
+  "dikunciPada": "2026-09-23 — commit pertama yang memuat berkas ini (ditulis ~16:00Z; jalur hidup BELUM ada, jadi belum ada satu data pun)",
+  "buktiKunci": "`git log --diff-filter=A -- flywheel/PRA-DAFTAR-E5-PASANG.json`",
+  "induk": "docs/jarvis/106_OTAK_NPC_KLIEN_PERTAMA.md §6 · F-267 (E2' PASANG_BATAS) · F-273 · doc 108 (Mesin A) · runbook Galantara docs/OTAK-NPC.md",
+  "pertanyaan": "Apakah otak NPC yang dipasang di galantara.io — lewat jalur jaringan yang dipilih Fahmi — melayani PERSIS yang diukur E2', cukup cepat bagi pemain, dan gagal dengan anggun? Ini uji penerimaan pemasangan, bukan eksperimen berdial.",
+  "diisiLewatAmandemenSebelumData": {
+    "_": "Dua fakta ini belum ada saat kunci. Masing-masing dicatat lewat amandemen bertanggal SEBELUM run hidup pertama; amandemen itu tidak boleh menyentuh ambang atau aturan di bawah.",
+    "jalur": "jalur jaringan VPS-2 → Bmax yang dipilih Fahmi (terowongan SSH balik atau WireGuard — runbook docs/OTAK-NPC.md), beserta ujung lokalnya (mis. 127.0.0.1:11435).",
+    "model": "OTAK_NPC_MODEL yang dilayankan — bawaan migancore:0.14 (yang diukur E2'); berubah HANYA bila vonis E2A menyatakannya, dan penjaga paritas wajib tetap LULUS untuk model itu."
+  },
+  "metrik_dan_aturan_DIKUNCI": {
+    "Q_SETARA": {
+      "ukur": "(a) `node eval/paritas-otak-npc-galantara.mjs --config http<local-dir>` — config.js yang LIVE menghasilkan persona identik lengan batas E2' untuk keenam NPC; (b) sha256 `/www/galantara-server/otak-npc.js` di VPS-2 (pemeriksaan baca-saja) = sha256 isi komit yang diuji (`hashBlobDiuji`).",
+      "LULUS": "(a) LULUS semua cek DAN (b) hash identik. Satu byte beda = GAGAL."
+    },
+    "Q_LATENSI": {
+      "ukur": "Klien socket.io yang di-vendor Galantara lewat URL publik, satu klien, 6 NPC × 8 giliran (kalimat & urutan sesi 1 E2'), sesudah pemanasan satu 'Halo!' per NPC dari soket terpisah yang ditutup. Jam = emit npc_tanya → npc_potong pertama, di KLIEN (termasuk internet, nginx, sakelar, jalur, Bmax).",
+      "LULUS": "Ambang DIBACA dari pra-daftar E1 (E1.bacaAmbang, bukan diketik ulang): token pertama p50 ≤ 2,0 dtk DAN p95 ≤ 4,0 dtk DAN galat (sibuk/habis waktu) ≤ 2,0 %. Laju token tidak diukur di klien — tidak menjadi syarat."
+    },
+    "Q_BEBAN_deskriptif": {
+      "ukur": "2 lalu 4 klien serentak, tiap klien satu NPC berbeda, 8 giliran masing-masing.",
+      "aturanAntrean": "OTAK_NPC_ANTREAN_MAKS tetap 4 bila pada 4 klien p95 token pertama ≤ 15 dtk DAN tidak ada 'antrean penuh'; selain itu turun ke 2. Tidak mengubah vonis."
+    },
+    "Q_GAGAL": {
+      "ukur": "Jalur ke Bmax diputus (terowongan dimatikan) oleh operator; lalu `--gagal`: 10 pertanyaan dari soket baru.",
+      "LULUS": "10 dari 10 berakhir npc_sibuk dalam ≤ 1,0 dtk. Pohon dialog tidak bergantung pada otak (diperiksa manual: panel NPC tetap bisa dipakai)."
+    },
+    "VONIS": "PASANG_UNTUK_PEMAIN hanya bila Q_SETARA, Q_LATENSI, dan Q_GAGAL ketiganya LULUS; selain itu JANGAN_DULU — otak dimatikan (runbook: satu perintah) sampai sebabnya diperbaiki dan E5 dijalankan ulang di bawah amandemen bertanggal. Membuka untuk pemain tetap keputusan Fahmi; vonis mekanis adalah izin, bukan tindakan."
+  },
+  "alat": "eval/e5-pasang.mjs (16 uji luring; terdaftar di periksa) · eval/paritas-otak-npc-galantara.mjs (--config URL).",
+  "ramalan_DINILAI_NANTI": {
+    "Q_SETARA_LULUS": 0.9,
+    "Q_LATENSI_LULUS": 0.6,
+    "Q_GAGAL_LULUS": 0.85,
+    "alasan": "Q_SETARA: config live hari ini sudah 11/11 identik (23 Sep ~15:56Z) — risikonya deploy statis yang tertinggal atau berkas terpasang yang beda. Q_LATENSI: E2' p95 1,04 dtk di LAN; jalur hidup menambah internet + nginx + sakelar + terowongan, dan Bmax di jaringan rumah — ketidakpastian terbesar. Q_GAGAL: koneksi ke port lokal tanpa pendengar ditolak seketika; risikonya jalur yang menggantung alih-alih menolak."
+  },
+  "operasional": {
+    "asap": "`--url htt<local-dir> --asap` terhadap demo lokal (laptop → Bmax) — BUKAN data; hanya membuktikan runner. Hanya saat Bmax tidak mengukur.",
+    "hidup": "Sesudah (1) 'ya' Fahmi untuk jalur & env, (2) amandemen jalur + model, (3) otak dinyalakan. Bmax eksklusif selama run (±20 menit). Tidak ada pemain yang diarahkan ke fitur ini sebelum vonis.",
+    "privasi": "Pertanyaan terskrip dari beban E2' (bukan pertanyaan pemain); telemetri server tanpa isi pesan."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "Tidak mengukur ulang kejujuran di jalur hidup — Q_SETARA membuktikan permintaannya identik dengan yang diukur E2'; kejujuran adalah sifat permintaan + model yang sama itu.",
+    "Tidak mengukur beban lebih dari 4 pemain — CPU Bmax satu antrean; angka di atas itu adalah keputusan kapasitas, bukan kelulusan.",
+    "Gagal-terbuka hanya diuji untuk jalur yang MENOLAK; jalur yang menggantung dibatasi OTAK_NPC_BATAS_DETIK (45 dtk) dan dilaporkan bila terlihat."
+  ],
+  "vonis": {
+    "hasil": "BELUM DIJALANKAN — menunggu 'ya' Fahmi untuk jalur jaringan & env (doc 108 §4 butir 1).",
+    "keadaan": "belum",
+    "tanggal": null
+  }
+}

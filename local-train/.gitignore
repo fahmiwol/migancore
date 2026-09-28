@@ -1,0 +1,23 @@
+.venv/
+data/raw/
+data/prepared/
+runs/*/
+!runs/baseline_*.json
+!runs/ledger.jsonl
+*.safetensors
+*.gguf
+__pycache__/
+eval/__pycache__/
+eval/gate_local_*.json
+
+# Ephemeral eksekusi Vast (2026-07-27)
+.vast_instance_id
+pilot_paket.tgz
+data/_eval_probe_tmp/
+*.INCOMPLETE.json.bak
+
+# Adapter hasil training: bobot sudah ter-gitignore (*.safetensors), tapi berkas
+# pendampingnya (tokenizer.json ~11 MB per adapter) juga tak perlu masuk repo —
+# seluruh adapter diarsipkan utuh di KVM8-BACKUP/lineage/.../adapters/ dengan
+# sha256 terverifikasi, dan hasil evalnya tercatat di eval/gate_*.json.
+adapters/

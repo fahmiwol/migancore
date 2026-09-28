@@ -1,0 +1,29 @@
+
+# E1 latensi NPC — jawab migancore:0.14 · probe migancore:0.4-qwen3 · http://measure-host.local:11434
+# 5 sesi × 6 NPC × 8 giliran · pra-daftar flywheel/PRA-DAFTAR-E1-LATENSI-NPC.json
+
+# duduk sebelum: migancore:0.14, migancore:0.4-qwen3
+# start-dingin (TIDAK dirata): jawab 8.0s · probe 8.8s
+# duduk sesudah pemanasan: migancore:0.14, migancore:0.4-qwen3
+
+sesi 1: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.19s · PRODUK 11.16s · 717s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 2: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.29s · PRODUK 11.22s · 686s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 3: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.56s · PRODUK 11.35s · 711s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 4: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 1.93s · PRODUK 10.73s · 674s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 5: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.08s · PRODUK 10.93s · 707s · duduk: migancore:0.14, migancore:0.4-qwen3
+
+## Q_MODEL — model di jalur ramping: GAGAL
+   ✗ 1_awal_p50   2.16  (ambang <= 2)
+   ✗ 2_awal_p95   6.73  (ambang <= 4)
+   ✓ 3_laju_p50   8.98  (ambang >= 4.8)
+   ✓ 4_galat_pct  0.00  (ambang <= 2)
+
+## Q_PRODUK — model + gerbang tanpa cache: GAGAL
+   ✗ 1_awal_p50   11.02  (ambang <= 2)
+   ✗ 2_awal_p95   15.81  (ambang <= 4)
+   ✓ 3_laju_p50   8.98  (ambang >= 4.8)
+   ✓ 4_galat_pct  0.00  (ambang <= 2)
+
+   probe jalan 96 % giliran · probe p50 8.15s · probe galat 0 · nalar bocor 0 giliran
+   ringkasan → HASIL-E1-LATENSI-NPC-2026-09-22T21-55-45.json
+

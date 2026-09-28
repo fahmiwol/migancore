@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ajar &amp; Balai Bicara — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>LAPANGAN AJAR · BALAI BICARA</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">Belajar melalui kegagalan nyata</div><h1>Lapangan Ajar &amp; Balai Bicara</h1><p class="subjudul">Dua ruang berdampingan: playground disiplin untuk merancang contoh ajar, dan percakapan berpemandu avatar. Keduanya masih simulasi konsep.</p></div><div class="legenda-ringkas"><span class="status status-belum">mesin belum dihubungkan</span></div></header>
+    <div id="ajar-chat"><div class="panel pemuatan">menyiapkan ruang…</div></div>
+  </main>
+  <footer class="kaki"><span>Interaksi di layar ini hanya berubah di memori halaman.</span><span>Tidak ada data disimpan dan tidak ada model dipanggil.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded',async()=>{
+      const root=document.querySelector('#ajar-chat');let d;try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      root.innerHTML=`<div class="ajar-layout">
+        <section id="ajar" class="tumpuk">
+          <article class="panel panel-pad"><span class="label-panel">Playground Ajar</span><h2 style="margin-top:7px">Tanya → nilai → koreksi</h2><p class="redup">Urutan berasal dari Studio Ajar: jangan menulis data latih sebelum melihat kegagalan model yang nyata.</p><div class="form-grid">
+            <label>Model sumber yang berlaku <div class="masukan">${Nadi.angka(d.modelBerlaku.tag,d,'modelBerlaku.tag')}</div></label>
+            <label>Disiplin<select class="masukan" id="disiplin"><option>Aritmetika &amp; konversi</option><option>Logika &amp; penalaran</option><option>Pemakaian alat</option><option>Bahasa &amp; gaya</option></select></label>
+            <label>Pertanyaan<textarea class="masukan" id="pertanyaan" placeholder="Tulis pertanyaan untuk menguji model…">Mengapa angka lintas instrumen tidak boleh dibandingkan tanpa label?</textarea></label>
+            <div><button class="tombol utama" id="coba-ajar">Coba alur konsep</button></div>
+          </div></article>
+          <article class="panel panel-pad" id="hasil-ajar" aria-live="polite"><span class="label-panel">Jawaban model</span><div class="kosong-jujur" style="margin-top:10px"><strong>Belum ada jawaban</strong>Klik “Coba alur konsep”. Mockup akan menunjukkan keadaan antarmuka, bukan menjalankan model.</div></article>
+          <article class="panel panel-pad"><span class="label-panel">Koreksi &amp; gerbang</span><label class="redup" for="koreksi">Jawaban yang seharusnya</label><textarea class="masukan" id="koreksi" placeholder="Koreksi baru ditulis setelah jawaban model dinilai."></textarea><div class="pita-peringatan" style="margin-top:12px"><span>!</span><div><b>Simpan dinonaktifkan.</b><br>Ini mockup visual; gerbang identitas, nyaris-kembar, ekor verbatim, dan pembuka berulang belum dijalankan.</div></div></article>
+        </section>
+
+        <section id="bicara" class="panel chat">
+          <div class="chat-kepala"><div><span class="label-panel">Balai Bicara</span><h2 style="margin:3px 0 0">Migan · pemandu pratinjau</h2></div><span class="status status-belum">STATIS</span></div>
+          <div class="avatar-panggung"><div class="wajah-partikel" aria-label="Avatar abstrak Migan"><span class="orbit"></span><span class="mata kiri"></span><span class="mata kanan"></span><span class="mulut"></span></div><div class="avatar-label"><span>MESIN · belum dihubungkan</span><span>MODEL · ${Nadi.angka(d.modelBerlaku.tag,d,'modelBerlaku.tag')}</span></div></div>
+          <div class="pesan-list" id="pesan" aria-live="polite"><div class="gelembung"><small>Migan · pemandu mockup</small>Aku bisa membantumu menjelajah data yang sudah dimuat. Namun aku belum terhubung ke mesin percakapan.</div></div>
+          <form class="chat-input" id="form-chat"><input class="masukan" id="chat-in" aria-label="Pesan untuk Migan" placeholder="Contoh: jelaskan status kelahiran" autocomplete="off"><button class="tombol oranye" type="submit">Kirim</button></form>
+        </section>
+      </div>
+      <section class="grid grid-2" style="margin-top:16px"><div class="kosong-jujur"><strong>Majelis &amp; guru — belum ada data</strong>Playground belum mempunyai daftar guru atau forum peninjau dari sumber.</div><div class="kosong-jujur"><strong>Retrieval — belum ada data</strong>Balai Bicara belum dapat mengklaim akses ke korpus atau sumber pengetahuan.</div></section>`;
+
+      document.querySelector('#coba-ajar').addEventListener('click',()=>{
+        const t=document.querySelector('#pertanyaan').value.trim();
+        document.querySelector('#hasil-ajar').innerHTML=`<span class="label-panel">Jawaban model · simulasi keadaan</span><div class="kosong-jujur" style="margin-top:10px"><strong>Model tidak dipanggil</strong>Pertanyaan “${Nadi.esc(t||'—')}” siap dikirim pada aplikasi sungguhan. Pada mockup ini, kekosongan ditampilkan jujur agar tidak dianggap hasil model.</div>`;
+      });
+      document.querySelector('#form-chat').addEventListener('submit',e=>{
+        e.preventDefault(); const input=document.querySelector('#chat-in'),v=input.value.trim();if(!v)return;
+        document.querySelector('#pesan').insertAdjacentHTML('beforeend',`<div class="gelembung anda"><small>Anda</small>${Nadi.esc(v)}</div><div class="gelembung"><small>Migan · pemandu mockup</small>Pesan diterima di antarmuka, tetapi tidak dikirim ke model. Mesin belum dihubungkan; model sumber yang ditampilkan adalah ${Nadi.angka(d.modelBerlaku.tag,d,'modelBerlaku.tag')}.</div>`);input.value='';document.querySelector('#pesan').scrollTop=1e9;
+      });
+    });
+  </script>
+</body></html>

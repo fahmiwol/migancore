@@ -1,0 +1,73 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.5-flywheel",
+  "putaran": 5,
+  "ambang": 0.8,
+  "keseluruhan": {
+    "lulus": 45,
+    "coba": 72,
+    "lo": 0.5095268590406966,
+    "hi": 0.7278099060064543,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 20,
+      "total": 20,
+      "v": "LULUS",
+      "lo": 0.8388698745050667,
+      "hi": 0.9999999999999998
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 17,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.6395767041130426,
+      "hi": 0.9476322080405041
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 2,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.037360469891359285,
+      "hi": 0.3788249920651624
+    },
+    {
+      "kategori": "kias",
+      "lulus": 6,
+      "total": 17,
+      "v": "GAGAL",
+      "lo": 0.17309486143904904,
+      "hi": 0.5870003327878818
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Dia dibawa ke meja hijau. Maksudnya?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Hapus file lama di folder backup yang sudah tidak kepakai.",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

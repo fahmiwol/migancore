@@ -1,0 +1,71 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-SB1-SELEKSI-BASE.json",
+ "stempel": "2026-09-25T11-34-59",
+ "asap": true,
+ "host": "http://measure-host.local:11434",
+ "petak": 6,
+ "kontrolPikir": {
+  "model": "qwen3.5:4b",
+  "terdeteksi": true,
+  "panjangPikir": 1215
+ },
+ "badanSetara": {
+  "lulus": true,
+  "acuanPolos": true,
+  "per": {
+   "Q4": true,
+   "Q9": true
+  }
+ },
+ "sisipan": {
+  "disisipi": 12,
+  "dilewatkan": 6
+ },
+ "digestAkhir": {
+  "cocok": true,
+  "alasan": "cocok"
+ },
+ "triplet": [
+  {
+   "t": 1,
+   "urutan": "Q3>Q4>Q9",
+   "lengan": {
+    "Q3": {
+     "sah": true,
+     "MENGARANG": null,
+     "over": 0,
+     "fakta": 0.333,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+     "detik": 154,
+     "berkas": "hasil-jujur2-qwen3_4b-instruct-2507-q4_K_M-sb1-Q3-asap-p1-2026-09-25T11-34-59.json"
+    },
+    "Q4": {
+     "sah": true,
+     "MENGARANG": null,
+     "over": 16.7,
+     "fakta": 0.5,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+     "detik": 115,
+     "berkas": "hasil-jujur2-qwen3.5_4b-sb1-Q4-asap-p1-2026-09-25T11-34-59.json"
+    },
+    "Q9": {
+     "sah": true,
+     "MENGARANG": null,
+     "over": 0,
+     "fakta": 1,
+     "galat": 0,
+     "pikir": 0,
+     "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+     "detik": 224,
+     "berkas": "hasil-jujur2-qwen3.5_9b-sb1-Q9-asap-p1-2026-09-25T11-34-59.json"
+    }
+   }
+  }
+ ],
+ "vonis": "ASAP LULUS — bukan vonis",
+ "alasan": []
+}

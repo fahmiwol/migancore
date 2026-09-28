@@ -1,0 +1,316 @@
+{
+  "versi": 1,
+  "tujuan": "Setiap cacat yang pernah ditemukan WAJIB punya penjaga yang bisa dijalankan. Catatan tanpa penjaga cuma buku harian — dan buku harian tidak mencegah pengulangan. Sebuah cacat hanya boleh berstatus 'dijaga' kalau ada perintah yang menangkapnya kembali secara otomatis.",
+  "aturan": [
+    "Menutup cacat TANPA penjaga dilarang. Statusnya jadi 'belum-dijaga' dan tetap merah.",
+    "Penjaga harus GAGAL kalau cacatnya dikembalikan. Penjaga yang selalu hijau tidak menjaga apa pun.",
+    "Cacat baru dicatat SAAT ditemukan, bukan saat sempat.",
+    "Kelas cacat lebih penting daripada kejadiannya: yang dicegah adalah BENTUK kesalahannya, bukan satu kasusnya."
+  ],
+  "cacat": [
+    {
+      "kode": "C01",
+      "tanggal": "2026-08-21",
+      "kelas": "cocok-kata-abai-penyangkalan",
+      "judul": "Pencocokan kata kunci tanpa melihat penyangkalan di sekitarnya",
+      "berulang": 6,
+      "gejala": "Jawaban yang MENYANGKAL sesuatu dihitung sebagai menyatakannya.",
+      "buktiNyata": "\"Ini bukan kias, jadi tidak ada dua tafsir yang berlaku sekaligus.\" -> dihitung MENCABANG karena memuat kata 'tafsir' dan 'ada dua'. | KE-6 (22 Agu, eval/uji-tolak.mjs): daftar tanda penolakan hanya mengenali \"tidak bisa/tidak akan\"; jawaban benar \"Saya tidak membuat laporan palsu. Itu melanggar hukum\" & \"tidak pernah disebutkan di sini\" dinilai GAGAL — 4 dari 5 skenario salah-nilai, skor 6/10 padahal 9/10. Terjadi di gerbang yang BARU DIBUAT hari itu juga.",
+      "akibat": "Jawaban benar dinilai gagal; skor gerbang kias salah selama berhari-hari.",
+      "penjaga": {
+        "perintah": "node uji-kias.mjs --uji-instrumen",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C02",
+      "tanggal": "2026-08-20",
+      "kelas": "kendali-dikarang-sendiri",
+      "judul": "Kendali uji ditulis dari tebakan saya, bukan keluaran nyata model",
+      "berulang": 3,
+      "gejala": "Instrumen lulus sendiri karena diuji dengan kalimat yang saya karang, lalu jebol pada kalimat model yang sebenarnya.",
+      "buktiNyata": "MENGAKU_KATA hanya memuat 'tidak diberikan'; model menjawab 'tidak memuat' -> jawaban sempurna dinilai gagal.",
+      "akibat": "Instrumen tampak sehat padahal buta.",
+      "penjaga": {
+        "perintah": "node uji-instrumen.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C03",
+      "tanggal": "2026-08-21",
+      "kelas": "uji-beda-salah",
+      "judul": "Memakai tumpang-tindih selang sebagai uji beda",
+      "berulang": 1,
+      "gejala": "Dua selang Wilson bertumpang tindih lalu disimpulkan 'tidak beda'.",
+      "buktiNyata": "8B (66-89%) vs v11 (83-95%) bertumpang tindih; Fisher exact memberi p=0,035 BEDA NYATA.",
+      "akibat": "Nyaris membuang kemenangan yang sungguhan.",
+      "penjaga": {
+        "perintah": "node banding-proporsi.mjs --uji-instrumen",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C04",
+      "tanggal": "2026-08-21",
+      "kelas": "angka-salah-label",
+      "judul": "Angka model lain dipakai sebagai baseline model ini",
+      "berulang": 1,
+      "gejala": "Tabel target 4B memuat angka 53%/100%/100% milik 8B.",
+      "buktiNyata": "RENCANA-TIGA-MODEL menulis '53% (30 percobaan)' sebagai v10-4B; sumbernya ULANG-uji-alat-migancore_0.8-8b.json.",
+      "akibat": "Hampir melaporkan '4B naik 53%->83%' — angka benar, model salah.",
+      "penjaga": {
+        "perintah": "node banding-proporsi.mjs --uji-instrumen",
+        "harusKeluar": 0,
+        "catatan": "banding-proporsi MENOLAK membandingkan bila gerbang/putaran/kategori berbeda, dan tiap ULANG-*.json mencatat model+putaran+provenans."
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C05",
+      "tanggal": "2026-08-21",
+      "kelas": "sunting-alat-saat-dipakai",
+      "judul": "Menyunting alat ukur sementara rantai pengukuran sedang memakainya",
+      "berulang": 1,
+      "gejala": "Gerbang ketiga memakai berkas baru yang cacat sintaks, mati, tapi rantai tetap keluar kode 0.",
+      "buktiNyata": "ulang-gerbang.mjs: 'SyntaxError: Illegal return statement' — dan laporan tetap terbaca 'SELESAI'.",
+      "akibat": "Satu jam pengukuran hilang, dan diamnya disangka lulus.",
+      "penjaga": {
+        "perintah": "node periksa-alat.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C06",
+      "tanggal": "2026-08-21",
+      "kelas": "templat-abai-parameter",
+      "judul": "Templat jawaban tidak memakai parameternya sehingga melahirkan baris kembar",
+      "berulang": 2,
+      "gejala": "Banyak baris berbeda menghasilkan jawaban huruf-per-huruf sama, lalu runtuh saat dedup.",
+      "buktiNyata": "115 baris panen-perbaikan runtuh jadi 37; 3 peribahasa karangan menghasilkan jawaban identik di panen-kias.",
+      "akibat": "Data latih jauh lebih sedikit daripada yang dikira.",
+      "penjaga": {
+        "perintah": "node ../flywheel/panen-kias.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C07",
+      "tanggal": "2026-08-21",
+      "kelas": "pencemaran-soal-eval",
+      "judul": "Soal gerbang eval ada di dalam data latih",
+      "berulang": 1,
+      "gejala": "Gerbang berhenti mengukur kemampuan dan mulai mengukur hafalan — dan angkanya justru terlihat BAGUS.",
+      "buktiNyata": "Baris latih 3419ab91305b: 'Harga per kg Rp19.000, beli 3 kg. Totalnya?' -> '19.000 x 3 = Rp57.000'. Soal uji-kias lugas identik.",
+      "akibat": "Skor lugas 18-20/20 di semua model sebagian adalah hafalan.",
+      "penjaga": {
+        "perintah": "node periksa-pencemaran.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C08",
+      "tanggal": "2026-08-21",
+      "kelas": "kunci-jawaban-bocor",
+      "judul": "Kunci jawaban gerbang veto ada di data latih meski kalimat soalnya berbeda",
+      "berulang": 1,
+      "gejala": "Model menyebut hasil yang benar dengan jalan hitung yang omong kosong.",
+      "buktiNyata": "v11: '12 ton : 10 = 1.200 kg. 1.200 x 14.500 = Rp174.000.000.' Dua langkah salah, hasil tepat — karena 174.000.000 ada di data latih.",
+      "akibat": "Kerusakan aritmetika yang terukur adalah BATAS BAWAH; yang sebenarnya lebih buruk.",
+      "penjaga": {
+        "perintah": "node susun-soal-bersih.mjs",
+        "harusKeluar": 0,
+        "catatan": "Menyusun ulang soal gerbang veto dan menolak setiap kunci yang muncul di korpus latih."
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C09",
+      "tanggal": "2026-08-21",
+      "kelas": "sebab-dari-skor-saja",
+      "judul": "Menyimpulkan PENYEBAB dari skor gerbang tanpa membaca satu pun jawaban",
+      "berulang": 1,
+      "gejala": "Kesimpulan terdengar ilmiah, tapi seluruh dasarnya tidak pernah diperiksa.",
+      "buktiNyata": "Saya menulis '8-3 rusak, kerusakan aritmetika muncul di dua alat ukur'. Jawaban aslinya: '8 - 3 = 5' — BENAR; yang gagal kalibrasinya.",
+      "akibat": "Klaim salah diterbitkan, di commit yang sama dengan ceramah saya tentang verifikasi.",
+      "penjaga": null,
+      "belumDijagaKarena": "Belum ada cara otomatis memaksa kutipan. Aturannya: setiap kalimat sebab WAJIB menempelkan kutipan jawaban aslinya. Calon penjaga: pemeriksa laporan yang menolak kata sebab ('karena', 'akibat', 'rusak') tanpa blok kutipan di dekatnya.",
+      "status": "belum-dijaga"
+    },
+    {
+      "kode": "C10",
+      "tanggal": "2026-08-21",
+      "kelas": "kuasa-statistik-diabaikan",
+      "judul": "Menyimpulkan 'tidak ada beda' dari percobaan yang terlalu sedikit",
+      "berulang": 1,
+      "gejala": "'Belum terbukti beda' dibaca sebagai 'sama', padahal n-nya memang kurang.",
+      "buktiNyata": "majas_mati butuh 33 percobaan/model untuk memutus; yang dipakai 15-20.",
+      "akibat": "Perbaikan nyata bisa dibuang sebagai kebisingan.",
+      "penjaga": {
+        "perintah": "node banding-proporsi.mjs --uji-instrumen",
+        "harusKeluar": 0,
+        "catatan": "banding-proporsi kini selalu mencetak n yang dibutuhkan untuk tiap selisih >=5 poin yang belum terbukti."
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C11",
+      "tanggal": "2026-08-21",
+      "kelas": "repo-telan-biner",
+      "judul": "git add -A menelan 2 GB biner",
+      "berulang": 1,
+      "gejala": "Commit berisi DLL CUDA dan zip; ketahuan sebelum push.",
+      "buktiNyata": "sd/cublasLt64_12.dll 674 MB, sd/cudart.zip 563 MB — total 2.032 MB dalam satu commit.",
+      "akibat": "Kalau lolos, push gagal (batas GitHub 100 MB) dan repo tercemar permanen.",
+      "penjaga": {
+        "perintah": "node jaga-repo.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C12",
+      "tanggal": "2026-08-21",
+      "kelas": "agregat-menyembunyikan-arah-berlawanan",
+      "judul": "Membandingkan TOTAL saja, padahal ada dua jenis yang berlawanan besar",
+      "berulang": 1,
+      "gejala": "Total berkata \"tidak ada beda\" padahal satu jenis 0/12 dan jenis lain 12/12.",
+      "buktiNyata": "Aritmetika v11 vs 0.4-qwen3: agregat 48/60 vs 52/60 p=0,4632 (belum terbukti). Per jenis: ton-harga 0/12 vs 8/12, p=0,0013 NYATA.",
+      "akibat": "Cacat total pada satu operasi hampir lolos sebagai \"tidak ada apa-apa\".",
+      "penjaga": {
+        "perintah": "node banding-jenis.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C13",
+      "tanggal": "2026-08-21",
+      "kelas": "narasi-dihafal-bukan-operasi",
+      "judul": "Data latih padat tapi seragam bentuknya: model menghafal naskah langkah, bukan operasinya",
+      "berulang": 1,
+      "gejala": "Model mereproduksi kerangka kalimat dengan sempurna lalu mengisinya dengan angka yang tidak dihitung.",
+      "buktiNyata": "116 baris mengajarkan 1 ton = 1.000 kg, tapi 3 templat menutupi 47%-nya. v11 menjawab \"Kupecah jadi langkah kecil: 1. Ubah ton ke kg: 19 ton : 10 = 1.900 kg\" - templat nomor satu, kata demi kata, angka ngawur. 0/12.",
+      "akibat": "Operasi yang PALING sering dinarasikan justru yang paling rusak.",
+      "penjaga": {
+        "perintah": "node ragam-narasi.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C14",
+      "tanggal": "2026-08-22",
+      "kelas": "lengan-beda-templat",
+      "judul": "Dua model dibandingkan dengan templat Ollama berbeda — selisihnya campuran bobot dan templat",
+      "berulang": 1,
+      "gejala": "ollama show --modelfile dua lengan berbeda, ATAU field template /api/show berbeda; mana yang efektif bergantung versi — keduanya wajib sama.",
+      "buktiNyata": "22 Agu: migancore:0.11-4b ber-Modelfile TEMPLATE {{ .Prompt }} polos, base pembanding ChatML — TAMPAK tercemar. Probe KODE7 + /api/show lalu membuktikan /api/chat Ollama 0.32 memakai templat Jinja TERTANAM di GGUF dan MENGABAIKAN Modelfile: kedua lengan selalu dirender identik, jadi perbandingan lama BEBAS konfoundasi ini. Kelasnya tetap nyata (versi/jalur lain bisa menghormati Modelfile), penjaganya kini membandingkan DUA field sekaligus (api template + baris TEMPLATE Modelfile).",
+      "akibat": "Perbandingan terlihat sah padahal mengukur dua perbedaan sekaligus; kesimpulan tentang bobot bisa sebagian milik templat.",
+      "penjaga": {
+        "perintah": "node periksa-templat.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C15",
+      "tanggal": "2026-08-22",
+      "kelas": "pengukuran-serentak",
+      "judul": "Dua pengukuran berjalan bersamaan pada satu Ollama — saling memperlambat lewat swap model, tanpa satu pun terlihat gagal",
+      "berulang": 1,
+      "gejala": "Run yang biasanya 11 menit membengkak berlipat; /api/ps menunjukkan model yang BUKAN sedang diuji; dua proses uji-*.mjs di daftar proses.",
+      "buktiNyata": "22 Agu: lengan base (03:25) dan lengan chatml (03:43) jalan serentak; tiap soal memicu swap 2,5-4 GB; chatml dihentikan manual setelah 30+ menit tanpa hasil. Ketahuan hanya karena memeriksa /api/ps dan daftar proses — keduanya tampak sehat.",
+      "akibat": "Jam dinding membengkak diam-diam; pemantau bisa menyalak salah (macet palsu); jadwal eksperimen kacau. Jawaban tetap sah (temp 0) tapi biayanya nyata dan senyap.",
+      "penjaga": {
+        "perintah": "node kunci-ukur.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C16",
+      "tanggal": "2026-08-22",
+      "kelas": "resep-tak-dipaku",
+      "judul": "pip install tanpa versi di skrip GPU — resep terbukti ditulis ulang dari nol alih-alih disalin",
+      "berulang": 2,
+      "gejala": "Run remote mati saat import pustaka (NameError/ImportError di site-packages) padahal skrip tidak berubah; hasil bergantung pada TANGGAL menjalankan.",
+      "buktiNyata": "Kegagalan vast #12 (22 Agu): kemas_merge.py menulis pip install transformers peft TANPA versi -> menarik rilis Agu 2026 ke image torch 2.4 -> NameError tensor_parallel saat import. Kegagalan SAMA sudah pernah terjadi dan tertulis di docstring latih_v12.py — berulang=2 dihitung jujur. Obat: salin pin persis dari resep terbukti.",
+      "akibat": "Uang GPU terbakar untuk kegagalan yang sudah pernah diobati; reproducibility hancur diam-diam.",
+      "penjaga": {
+        "perintah": "node periksa-pin.mjs",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C17",
+      "tanggal": "2026-08-22",
+      "kelas": "ekor-verbatim",
+      "judul": "Blok kata identik huruf-per-huruf berulang di puluhan baris lolos dari dua detektor sekaligus",
+      "berulang": 1,
+      "gejala": "ragam-narasi hijau, nyaris-kembar hijau, tetapi 46 baris (16% cluster-hitung) berbagi ekor 40-kata yang sama persis; per hukum memori parametrik blok itu pasti menjadi naskah.",
+      "buktiNyata": "22 Agu: pemeriksaan lanjutan menemukan dua 'pabrik naskah' 78 baris (28% klaster) dan 52 baris (17%) yang tak dikenali ragam-narasi (pola operasinya asing) dan ditekan Jaccard global (angka per baris berbeda). Penjaga periksa-ekor.mjs lahir; kelasnya baru tercatat di register 23 Agu (bolong ditemukan audit).",
+      "akibat": "Naskah terhafal menjajah soal tetangga (kolonisasi); dua detektor sehat meninggalkan celah di antaranya.",
+      "penjaga": {
+        "perintah": "node periksa-ekor.mjs --uji-instrumen",
+        "harusKeluar": 0
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C18",
+      "tanggal": "2026-08-22",
+      "kelas": "umpan-balik-disangka-jawaban",
+      "judul": "Kolom yang namanya terdengar seperti jawaban benar ternyata berisi keluhan pengguna",
+      "berulang": 1,
+      "gejala": "Data lolos semua gerbang bentuk (ragam bagus, tanpa ekor berulang, tanpa identitas) tapi jawabannya menilai lawan bicara, bukan menjawab pertanyaan.",
+      "buktiNyata": "22 Agu: gold_corrections.json dari cadangan KVM8 punya kolom \"gold\" — terdengar seperti jawaban emas, isinya umpan balik Fahmi atas jawaban model: \"asal respond tanpa dasar\", \"STOP! Jawaban kamu masih ngaco parah\", \"kualitas buruk\". 68 baris sudah masuk cluster dan lolos tiga gerbang sebelum dibaca dengan mata. Kalau dilatihkan, model belajar mengeluh dan memarahi penggunanya.",
+      "akibat": "Model belajar jenis tuturan yang salah — menilai, bukan menjawab. Tidak terdeteksi gerbang bentuk karena bentuknya memang bagus.",
+      "penjaga": {
+        "perintah": "node ../sistem/sanitasi-warisan.mjs --uji-instrumen",
+        "harusKeluar": 0,
+        "catatan": "23 Agu: perintah semula \"node sistem/sanitasi-warisan.mjs\" dijalankan register-cacat dari cwd eval/ -> modul tidak ketemu -> penjaga C18 TIDAK PERNAH berjalan sejak didaftarkan (gagal senyap). Diperbaiki ke jalur relatif eval/ + --uji-instrumen (15 kasus dua arah)."
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C19",
+      "tanggal": "2026-08-23",
+      "kelas": "pseudo-replikasi",
+      "judul": "Ulangan soal yang sama dihitung sebagai pengamatan bebas; model berpasangan diuji dengan uji proporsi bebas",
+      "berulang": 1,
+      "gejala": "p-value sangat kecil (p<0,0001) dari bank 10 soal; per jenis hanya 2 soal tetapi dilaporkan 0/12 vs 12/12 'beda nyata'; ulangan suhu-0 nyaris identik (23 Agu: 7-8 dari 10 soal menghasilkan 3 jawaban persis sama) sehingga n efektif jauh lebih kecil dari n yang dipakai.",
+      "buktiNyata": "SANAD-migancore-13.json (22 Agu): 'v13 vs v11-asli p<0.0001 BEDA NYATA · ton 0/12->12/12 p<0.0001'. Dihitung Fisher atas 60 percobaan gabungan (10 soal x 2 suhu x 3 ulangan). Dihitung ulang 23 Agu dengan satuan SOAL berpasangan (McNemar eksak): v13 lebih baik di 4 soal, lebih buruk di 0, seri 6 -> p=0,125 (belum terbukti); ton = 2 soal -> p=0,5. Berkas: eval/hitung-ulang-v13-berpasangan.mjs. Rujukan: Dietterich 1998; Miller 2024 arXiv 2411.00640; penjelasan ulangan suhu-0 tidak bebas: Ollama memaksa cache_prompt=true (llama.cpp server README).",
+      "akibat": "Klaim inferensial 'beda nyata' diterbitkan tanpa dasar; ambang pra-daftar (hitungan proporsi) tetap sah, label signifikansinya tidak.",
+      "penjaga": {
+        "perintah": "node statistik.mjs --uji-instrumen",
+        "harusKeluar": 0,
+        "catatan": "statistik.mjs kini punya mcnemarEksak/vonisBerpasangan/pasangkanPerSoal dengan kendali nyata (0/12 vs 12/12 = 2 soal -> p=0,5); banding-ab dan banding-jenis mencetak bagian berpasangan dan melabeli Fisher gabungan 'indikatif'."
+      },
+      "status": "dijaga"
+    },
+    {
+      "kode": "C20",
+      "tanggal": "2026-08-23",
+      "kelas": "gerbang-buta-prompt-latih",
+      "judul": "Gerbang hanya memakai prompt asing/netral sehingga naskah bersyarat prompt LATIH tidak pernah terlihat",
+      "berulang": 1,
+      "gejala": "Skor gerbang sempurna di bawah prompt netral, tetapi di bawah prompt yang benar-benar dilihat model saat latih (70% data) jenis soal tertentu runtuh; jawaban memakai kerangka langkah bernomor dengan angka antara yang tidak dihitung.",
+      "buktiNyata": "Run kontrol hitung 23 Agu (models/v13/ringkasan-hitung-kontrol23agu.json): arit-dengan 10/10 (rata-rata 2/2), arit-latih 8/10 (rata-rata 0/2). Jawaban mentah lengan latih: '2. Jumlah total yang dikalikan rata-rata: 9 x 62 + 21 x 92 = 2.700' (benar 558+1932=2490) -> kerangka '1./2./3.' (54% data hitung, sumber dasar-aritmetika) diisi angka karangan pada jenis soal yang TIDAK ADA di data (0 baris rata-rata). Di bawah prompt gerbang 'tunjukkan angka antaranya' model menghitung sub-perkalian dan benar. Sebelum 23 Agu tidak ada lengan prompt-latih di gerbang mana pun (paritas 0,7%/0/0).",
+      "akibat": "Model lulus gerbang tetapi rusak di produksi yang memakai prompt identitas; kolonisasi naskah (C13) tak terukur.",
+      "penjaga": {
+        "perintah": "node ../flywheel/kontrak-latih.mjs --uji-instrumen",
+        "harusKeluar": 0,
+        "catatan": "periksaKeluaran: paritas prompt tidak penuh + ringkasan tanpa arit-latih = DHAIF; selisih dengan-vs-latih >= 2 dicetak sebagai 'kepekaan pemicu'. latih_cluster.py menambah lengan 'latih' otomatis bila data punya prompt dominan."
+      },
+      "status": "dijaga"
+    }
+  ]
+}

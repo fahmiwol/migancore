@@ -1,0 +1,158 @@
+{
+ "rancangan": "E2A2-berstrata",
+ "hilang": [],
+ "entitas": {
+  "n": 60,
+  "TP": 20,
+  "FP": 1,
+  "FN": 2,
+  "recall": 0.9090909090909091,
+  "presisi": 0.9523809523809523,
+  "kappa": 0.8913043478260868,
+  "lulus": true
+ },
+ "tercakup": {
+  "n": 63,
+  "setuju": 0.8253968253968254,
+  "kappa": 0.5039370078740156,
+  "kappaDituntut": true,
+  "minoritas": 19,
+  "kelas": {
+   "true": {
+    "n": 44,
+    "beda": 0,
+    "bolehBeda": 8
+   },
+   "false": {
+    "n": 19,
+    "beda": 11,
+    "bolehBeda": 3
+   }
+  },
+  "lulus": false
+ },
+ "menolak": {
+  "n": 63,
+  "setuju": 0.9841269841269841,
+  "kappa": 0.9320388349514561,
+  "kappaDituntut": false,
+  "minoritas": 9,
+  "kelas": {
+   "true": {
+    "n": 9,
+    "beda": 1,
+    "bolehBeda": 1
+   },
+   "false": {
+    "n": 54,
+    "beda": 0,
+    "bolehBeda": 10
+   }
+  },
+  "lulus": true
+ },
+ "perModel": {
+  "entitas": {
+   "migancore:0.14": {
+    "kelas": {
+     "true": {
+      "n": 7,
+      "beda": 0,
+      "bolehBeda": 1
+     },
+     "false": {
+      "n": 23,
+      "beda": 2,
+      "bolehBeda": 4
+     }
+    },
+    "lulus": true
+   },
+   "qwen3:4b-instruct-2507-q4_K_M": {
+    "kelas": {
+     "true": {
+      "n": 14,
+      "beda": 1,
+      "bolehBeda": 2
+     },
+     "false": {
+      "n": 16,
+      "beda": 0,
+      "bolehBeda": 3
+     }
+    },
+    "lulus": true
+   }
+  },
+  "tercakup": {
+   "migancore:0.14": {
+    "kelas": {
+     "true": {
+      "n": 23,
+      "beda": 0,
+      "bolehBeda": 4
+     },
+     "false": {
+      "n": 11,
+      "beda": 6,
+      "bolehBeda": 2
+     }
+    },
+    "lulus": false
+   },
+   "qwen3:4b-instruct-2507-q4_K_M": {
+    "kelas": {
+     "true": {
+      "n": 21,
+      "beda": 0,
+      "bolehBeda": 4
+     },
+     "false": {
+      "n": 8,
+      "beda": 5,
+      "bolehBeda": 1
+     }
+    },
+    "lulus": false
+   }
+  },
+  "menolak": {
+   "migancore:0.14": {
+    "kelas": {
+     "true": {
+      "n": 6,
+      "beda": 1,
+      "bolehBeda": 1
+     },
+     "false": {
+      "n": 28,
+      "beda": 0,
+      "bolehBeda": 5
+     }
+    },
+    "lulus": true
+   },
+   "qwen3:4b-instruct-2507-q4_K_M": {
+    "kelas": {
+     "true": {
+      "n": 3,
+      "beda": 0,
+      "bolehBeda": 0
+     },
+     "false": {
+      "n": 26,
+      "beda": 0,
+      "bolehBeda": 5
+     }
+    },
+    "lulus": true
+   }
+  }
+ },
+ "tertimbang_DILAPORKAN": {
+  "entitas": 0.9416666666666667,
+  "tercakup": 0.9601449275362317,
+  "menolak": 0.9963768115942029
+ },
+ "lulus": false
+}

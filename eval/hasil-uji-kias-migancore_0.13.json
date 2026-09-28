@@ -1,0 +1,98 @@
+{
+  "model": "migancore:0.13",
+  "sistem": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kenali mana kalimat yang harfiah, mana yang kias, dan mana yang benar-benar bermakna ganda. Jangan mencabangkan yang baku; jangan menjawab tunggal yang benar-benar bercabang. Kalau tidak tahu, katakan tidak tahu.",
+  "sistemTambahan": "",
+  "hasil": [
+    {
+      "k": "lugas",
+      "t": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "j": "12 - 5 = 7. Itu satu-satunya artinya.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Satu dus isi 24 botol, ada 5 dus. Total botol?",
+      "j": "24 × 5 = 120. Satu catatan: kalau yang dimaksud \"dus\" bukan unit ukur, tapi kemasan yang berisi botol lain, hitungannya berubah.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kaki gunung\"?",
+      "j": "\"Kaki gunung\" bukan kiasan, bukan metafora, bukan perumpamaan. Ini istilah geografi yang benar-benar menggambarkan bagian bumi yang berada di bawah ketinggian gunung. Jadi artinya: daerah yang berada di bawah ketinggian gunung.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"mata air\"?",
+      "j": "\"Air mata\" = air yang keluar dari mata, bukan sumber air. \"Mata air\" = sumber air tawar yang mengalir dari tanah. Keduanya berbeda, dan tidak ada yang mengandung arti lain.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Dia dibawa ke meja hijau. Maksudnya?",
+      "j": "Ada tiga kemungkinan:\n1. Meja hijau di ruang baca (kiasan umum)\n2. Meja hijau di ruang baca yang berbeda (kiasan yang berbeda)\n3. Meja hijau di ruang baca yang sama (kiasan yang sama)\n\nKarena tidak ada konteks lebih lanjut, saya tidak bisa memilih satu. Yang benar-benar bermakna ganda itu yang tidak bisa saya cabangkan.",
+      "lulus": null
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kambing hitam\" dalam \"dia dijadikan kambing hitam\"?",
+      "j": "Kata \"kambing hitam\" di sini bukan kiasan yang bisa diartikan sendiri. Ini bentuk kiasan yang menggambarkan seseorang yang menanggung kesalahan kelompok, bukan yang benar-benar berbau kambing. Jadi artinya: orang yang menanggung kesalahan kelompok, bukan yang benar-benar kambing.",
+      "lulus": true
+    },
+    {
+      "k": "cabang",
+      "t": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "j": "Itu tidak mungkin. 7 dibagi 2 tidak menghasilkan makanan. Yang mungkin: 7 porsi dibagi 2 orang, sisa 1 porsi.",
+      "lulus": false
+    },
+    {
+      "k": "cabang",
+      "t": "Kue 10 dibagi 4 gimana?",
+      "j": "Kue 10 dibagi 4 = 2 kue sisa 2. Kalau yang dimaksud kue 10 dibagi 4 dalam arti lain, sebut saja.",
+      "lulus": false
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"besar pasak daripada tiang\"?",
+      "j": "Itu kiasan: yang benar-benar penting tidak perlu dibanggakan, yang kecil justru perlu diperhatikan. Jangan membandingkan ukuran fisik — artinya di mana keseimbangan antara yang benar dan yang tampak.",
+      "lulus": null
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"nasi sudah menjadi bubur\"?",
+      "j": "Itu peribahasa yang menunjukkan sesuatu yang sudah tidak bisa dikembalikan lagi. Kalau nasi sudah bubur, tidak bisa kembali ke bentuk aslinya. Dalam kehidupan nyata, ini berlaku untuk keputusan yang sudah diambil — tidak bisa dibatalkan, meski nanti ternyata salah.",
+      "lulus": true
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "j": "Itu kiasan: keranjang belanja penuh berarti membeli banyak barang, hati kosong berarti tidak ada yang menentukan keputusan. Jadi yang dimaksud: membeli banyak tanpa mempertimbangkan kebutuhan sebenarnya.",
+      "lulus": true
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "j": "Itu kiasan: yang menanggung beban besar (server) justru yang mengalami kegagalan (dingin). Kalau yang lain menanggung, dia yang mengalami akibatnya.",
+      "lulus": false
+    },
+    {
+      "k": "lugas",
+      "t": "Harga per kg Rp21.500, beli 6 kg. Totalnya berapa?",
+      "j": "6 × Rp21.500 = Rp129.000. Satu-satu: 6 × 21.500 = 129.000.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Pesanan masuk 14, sudah diproses 6. Berapa yang belum diproses?",
+      "j": "Yang belum diproses: 14 - 6 = 8. Ini hitungan langsung, tidak ada arti ganda.",
+      "lulus": true
+    },
+    {
+      "k": "cabang",
+      "t": "Arsipkan laporan bulan lalu di folder ekspor yang sudah tidak dipakai.",
+      "j": "Itu arsip yang benar-benar bermakna ganda: \"ekspor\" bisa berarti folder yang tidak pernah dipakai, atau folder yang berisi file yang diproses. Saya tidak tahu yang mana, jadi tidak mengarifkan.",
+      "lulus": true
+    }
+  ],
+  "semua": false
+}

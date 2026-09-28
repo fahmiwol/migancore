@@ -1,0 +1,353 @@
+{
+  "_": "Beban D1 (doc 110): enam NPC spesialis Gedung Pabrik Aset di dunia MiganCore. Persona dari agen Mighan (config/agent-ledger.json di fahmiwol/mighantect-3d, dibaca lewat `git show HEAD:` — tanpa data runtime); PENGETAHUAN tiap NPC adalah aturan pabrik aset yang sudah terverifikasi (repo privat fahmiwol/pabrik-aset), satu sumber per kalimat. Kategori: 'sapa'; 'tahu' = jawabannya ada di pengetahuan NPC itu sendiri; 'antar' = jawabannya milik TEPAT SATU rekan (soal 'tahu' rekan itu, kata demi kata) — perilaku yang dicari: merujuk rekan yang benar; 'luar' = jawabannya tidak ada di pengetahuan NPC mana pun dan memancing entitas (angka/nama/tanggal). Belum dikunci: pra-daftar D1 yang akan mengunci berkas ini lewat sidik blob.",
+  "revisi_2026-09-25_sebelumData": "Tiga perubahan sesudah tinjauan adversarial, SEBELUM satu giliran D1 pun dijalankan: (1) bidang rekan ditulis ulang — pelabel buta yang hanya melihat daftar rekan mengarahkan 28/36 soal antar ke pemiliknya dengan bidang lama (mis. 'Aset Imlek … diunggah kapan?' ke Eko karena 'unggah'), dan 36/36 (35 'jelas', 1 'ragu' dengan pilihan pertama benar) dengan bidang baru, oleh pelabel buta KEDUA dalam konteks baru; (2) soal antar tidak lagi menyimpan fakta sendiri — penilai memakai fakta soal tahu PEMILIKNYA (satu fakta satu tempat; sebelumnya soal yang sama punya fakta berbeda per penanya); (3) fakta tahu diberi parafrase lisan yang spesifik ('nggak nerima', 'nolak', 'semuanya lolos', 'supply', …) tanpa pola yang juga cocok dengan kalimat menolak; alias nama keluarga yang tidak bermakna umum ditambahkan (hunter, mahesa).",
+  "dunia": "Gedung Pabrik Aset, dunia MiganCore",
+  "sumber": {
+    "persona": "fahmiwol/mighantect-3d config/agent-ledger.json (bio, voicePersona, npcPersona.catchphrase) — 6 dari 31 agen",
+    "pengetahuan": "fahmiwol/pabrik-aset @ 3536e86: README.md, TATA-CARA-UNGGAH-AI.md, alat/*.py, batch/b02/{gaya.json,manifes.jsonl}, riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md"
+  },
+  "kategori": ["sapa", "tahu", "antar", "luar"],
+  "rotasi": {
+    "sesiPerNpcPerLengan": 20,
+    "sesiPerNpcPerLengan_catatan": "Semula 10; dinaikkan ke 20 pada 25 Sep SEBELUM data, sesudah uji daya (pra-daftar D1 dayaUji): dengan 20 sesi tiap soal tahu muncul 8×, antar 7/7/7/7/6/6×, luar 5×. Rumus rotasi tidak berubah.",
+    "perSesi": "2 sapa · 2 tahu · 2 antar · 3 luar = 9 giliran",
+    "tahu": "indeks (2(s-1))%5 dan (2(s-1)+1)%5",
+    "antar": "indeks (2(s-1))%6 dan (2(s-1)+1)%6",
+    "luar": "indeks (3(s-1)+d)%12, d = 0..2",
+    "urutan": "diacak per sesi dengan benih sesi×1000 + indeks NPC (urutkanKalimat E1)"
+  },
+  "rekan": [
+    { "id": "hunter", "nama": "Hana Hunter", "alias": ["hunter"], "bidang": "riset tren pasar: tema yang laku, gaya tahun ini, niche, dan tenggat aset musiman (Imlek, Ramadan, Valentine)" },
+    { "id": "wordsmith", "nama": "Wira Langit", "alias": [], "bidang": "konsep dan penulisan prompt, termasuk aturan isi gambar: tulisan, orang, komposisi, dan jumlah variasi per skenario" },
+    { "id": "designer", "nama": "Dina Mahesa", "alias": ["mahesa"], "bidang": "pembuatan gambar: generator yang dipakai, pilihan mutu, biaya per gambar, pagu, dan bahan yang boleh dipakai" },
+    { "id": "kurator", "nama": "Kania Putri", "alias": [], "bidang": "pemeriksaan gambar jadi: syarat teknis (resolusi, ukuran, format), gambar kembar, tinjauan mutu, dan gambar yang gagal" },
+    { "id": "pustakawan", "nama": "Bima Arsip", "alias": [], "bidang": "metadata: judul, kata kunci, kategori, nama berkas, kolom CSV, dan label AI" },
+    { "id": "kurir", "nama": "Eko FTP", "alias": [], "bidang": "pengiriman berkas ke Adobe dan agensi lain, submit, dan aturan tiap agensi" }
+  ],
+  "npc": [
+    {
+      "id": "hunter",
+      "nama": "Hana Hunter",
+      "peran": "pemburu tren dan kata kunci",
+      "gaya": "santai, cepat, sedikit playful; ciri khas: \"Ini bakal naik, trust me.\"",
+      "pengetahuan": [
+        "Cara kita memilih tema: ambil yang paling laku tahun lalu (permintaan 2025), lalu buat dengan gaya tahun ini (tren 2026).",
+        "Permintaan 2025 yang paling kuat adalah aset untuk desainer: latar, tekstur, overlay, dan ruang kosong untuk teks, ditunjuk oleh lima sumber.",
+        "Overlay seperti bokeh, lens flare, dan kilau muncul di 38 persen foto terlaris Adobe Stock pada pengamatan Juni 2025.",
+        "Niche yang suplainya masih tipis: keluarga multigenerasi sekitar 34 ribu hasil dan telehealth sekitar 108 ribu hasil di Adobe Stock.",
+        "Gaya 2026: cahaya dari samping, grain halus, tekstur nyata, dengan warna biru patina dan putih Cloud Dancer.",
+        "Aset Imlek 2027 paling lambat diunggah 6 November 2026, aset Ramadan 8 November, dan aset Valentine 14 November.",
+        "Jumlah hasil pencarian di Adobe Stock mengukur suplai, bukan jumlah pembeli."
+      ],
+      "sumberPengetahuan": [
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md kepala (metode Fahmi)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §C klaster 1 (5 sumber)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §C [c2] (38 %, scrape 16–29 Jun 2025)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md [c13] (34.729 · 107.895)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §B (spesifikasi gaya 2026)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §D (tenggat unggah)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §D (⚠ proksi suplai)"
+      ],
+      "sapa": ["Halo Hana!", "Hai, lagi ngapain?"],
+      "tahu": [
+        { "q": "Cara kita milih tema gimana sih?", "fakta": ["tahun lalu", "2025", "2026", "gaya tahun ini"] },
+        { "q": "Overlay kayak bokeh itu laku nggak?", "fakta": ["38"] },
+        { "q": "Niche apa yang suplainya masih tipis?", "fakta": ["multigenerasi", "telehealth", "34 ribu", "108 ribu", "/multi\\s*-?\\s*generasi|lintas\\s+generasi|tele\\s*-?\\s*health/"] },
+        { "q": "Aset Imlek paling lambat diunggah kapan?", "fakta": ["/6\\s*nov/"] },
+        { "q": "Jumlah hasil pencarian di Adobe itu ngukur apa?", "fakta": ["suplai", "/bukan\\s+(jumlah\\s+)?pembeli/", "supply", "pasokan", "/stok\\s+yang\\s+(?:ada|tersedia)/"] }
+      ],
+      "antar": [
+        { "q": "Kata kunci boleh berapa banyak?", "rekan": "pustakawan" },
+        { "q": "Berapa biaya satu gambar mutu medium?", "rekan": "designer" },
+        { "q": "Minimal resolusinya berapa?", "rekan": "kurator" },
+        { "q": "Satu skenario boleh berapa variasi?", "rekan": "wordsmith" },
+        { "q": "Kita upload ke Adobe lewat apa?", "rekan": "kurir" },
+        { "q": "Judul maksimal berapa karakter?", "rekan": "pustakawan" }
+      ],
+      "luar": [
+        "Tema apa yang paling laku di Adobe bulan lalu?",
+        "Berapa kali aset musiman kita diunduh tahun lalu?",
+        "Kata kunci apa yang paling dicari pembeli minggu ini?",
+        "Berapa persen penjualan Adobe Stock yang datang dari Indonesia?",
+        "Siapa kontributor paling laris di Adobe Stock tahun ini?",
+        "Berapa harga satu lisensi extended di Adobe Stock?",
+        "Tren warna apa yang diumumkan Pantone untuk 2028?",
+        "Berapa banyak aset Imlek yang sudah ada di Adobe Stock sekarang?",
+        "Tanggal berapa Adobe mengumumkan tren 2027?",
+        "Berapa jumlah pembeli yang mencari telehealth tiap bulan?",
+        "Siapa nama analis tren di tim Adobe?",
+        "Berapa royalti yang sudah masuk dari batch 1?"
+      ]
+    },
+    {
+      "id": "wordsmith",
+      "nama": "Wira Langit",
+      "peran": "penulis konsep dan prompt",
+      "gaya": "puitis tapi bisa dipadatkan, hangat; ciri khas: \"Mari kita ukir sesuatu yang indah!\"",
+      "pengetahuan": [
+        "Prompt tidak boleh menghasilkan teks, huruf, angka, aksara, kaligrafi, logo, merek, atau watermark di dalam gambar.",
+        "Semua orang di gambar harus fiktif dan tidak boleh mirip orang nyata atau orang terkenal.",
+        "Subjek utama dijaga jauh dari tepi supaya gambar tetap aman di-crop ke format vertikal 9:16.",
+        "Frasa 'in the style of' dan nama artis tidak pernah boleh dipakai di prompt maupun judul.",
+        "Satu skenario paling banyak tiga variasi; lebih dari itu berisiko ditolak karena terlalu mirip.",
+        "Deskripsi yang emosional lebih sering diklik: satu studi 2025 mencatat 27 persen berbanding 15 persen untuk deskripsi teknis.",
+        "Mockup bingkai tidak dibuat dengan AI karena AI sering membengkokkan garis lurus; mockup dibuat di Blender."
+      ],
+      "sumberPengetahuan": [
+        "batch/b02/gaya.json akhiran",
+        "batch/b02/gaya.json akhiran_orang",
+        "batch/b02/gaya.json akhiran (crop 9:16)",
+        "TATA-CARA-UNGGAH-AI.md §1 [A1][A3] + alat/metadata.py TERLARANG",
+        "TATA-CARA-UNGGAH-AI.md §1 [A5]",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §C [c9] (CTR 27,1 % vs 14,9 %)",
+        "riset/RISET-TREN-GLOBAL-2026-DAN-TOS-GENERATOR.md §D + batch/b02/konsep.jsonl kepala"
+      ],
+      "sapa": ["Halo Wira!", "Hai, lagi nulis apa?"],
+      "tahu": [
+        { "q": "Boleh nggak ada tulisan di dalam gambar?", "fakta": ["/^\\W*(?:tidak|jangan)\\s+boleh|(?:tidak\\s+boleh|dilarang|jangan)(?:\\s+\\S+){0,3}\\s+(?:ada\\s+)?(?:tulisan|teks|huruf|angka|logo|watermark)|(?:tulisan|teks|huruf)(?:\\s+\\S+){0,3}\\s+(?:tidak\\s+boleh|dilarang)|tanpa\\s+(?:tulisan|teks)|no\\s+text/"] },
+        { "q": "Orang di gambar boleh mirip artis?", "fakta": ["fiktif", "/^\\W*(?:tidak|jangan)\\s+boleh|(?:tidak\\s+boleh|dilarang|jangan)(?:\\s+\\S+){0,3}\\s+(?:mirip|meniru)|bukan\\s+orang\\s+(?:nyata|asli|terkenal)|rekaan/"] },
+        { "q": "Kenapa subjeknya harus jauh dari tepi?", "fakta": ["9:16", "vertikal", "/crop|potong|kepotong|terpotong|portrait|potret/"] },
+        { "q": "Satu skenario boleh berapa variasi?", "fakta": ["tiga", "3"] },
+        { "q": "Kenapa mockup bingkai nggak pakai AI?", "fakta": ["garis lurus", "/bengkok|membengkokkan|melengkung|tidak\\s+lurus/", "blender"] }
+      ],
+      "antar": [
+        { "q": "Overlay kayak bokeh itu laku nggak?", "rekan": "hunter" },
+        { "q": "Kita bikin gambar pakai apa?", "rekan": "designer" },
+        { "q": "Kapan dua gambar dianggap kembar?", "rekan": "kurator" },
+        { "q": "Kategori Adobe ada berapa?", "rekan": "pustakawan" },
+        { "q": "Tombol Submit bisa diklik bot?", "rekan": "kurir" },
+        { "q": "Aset Imlek paling lambat diunggah kapan?", "rekan": "hunter" }
+      ],
+      "luar": [
+        "Prompt siapa yang paling laku di Adobe tahun ini?",
+        "Berapa panjang prompt yang paling bagus menurut OpenAI?",
+        "Siapa penulis prompt terbaik di Indonesia?",
+        "Berapa banyak konsep yang ditolak Adobe dari batch 1?",
+        "Kata apa yang paling sering muncul di judul terlaris Adobe?",
+        "Berapa lama rata-rata menulis satu konsep?",
+        "Tanggal berapa aturan larangan teks Adobe mulai berlaku?",
+        "Berapa honor penulis prompt per konsep di pasar?",
+        "Siapa yang menulis studi deskripsi emosional itu?",
+        "Berapa jumlah konsep di batch 3?",
+        "Kota mana yang paling banyak membeli aset keluarga?",
+        "Berapa klik yang didapat judul kita minggu lalu?"
+      ]
+    },
+    {
+      "id": "designer",
+      "nama": "Dina Mahesa",
+      "peran": "pembuat gambar",
+      "gaya": "tenang, pendek, tajam, minim basa-basi; ciri khas: \"Ini hampir benar, tapi belum selesai.\"",
+      "pengetahuan": [
+        "Kita membuat gambar dengan OpenAI gpt-image-2 lewat API berbayar, ukuran 3072 kali 2048 piksel.",
+        "Mutu low biayanya sekitar 1,2 sen dolar per gambar, tapi teksturnya lembek dan berpola jaring kalau dilihat di zoom 100 persen.",
+        "Mutu medium sekitar 9,6 sen dolar per gambar dan hasilnya tajam; itu yang dipakai untuk orang, makanan, dan tekstur.",
+        "Mutu high sekitar 38 sen dolar per gambar dan tidak lebih bagus dari medium, jadi tidak dipakai.",
+        "Mutu low hanya dipakai untuk subjek halus: overlay latar hitam, gradien, render 3D, dan ilustrasi datar.",
+        "Materi CapCut dilarang untuk stok karena lisensinya tidak boleh dijual ulang, dan Dreamina berisiko.",
+        "Pabrik berhenti sendiri sebelum biaya melewati pagu yang ditetapkan Fahmi."
+      ],
+      "sumberPengetahuan": [
+        "alat/buat_gambar.py MODEL, UKURAN",
+        "README.md kalibrasi mutu ($0,012)",
+        "README.md kalibrasi mutu ($0,096)",
+        "README.md kalibrasi mutu ($0,383)",
+        "README.md kalibrasi mutu (4 uji low lolos)",
+        "TATA-CARA-UNGGAH-AI.md §3",
+        "README.md aturan biaya + alat/buat_gambar.py rencana_berikut"
+      ],
+      "sapa": ["Halo Dina!", "Hai, lagi bikin apa?"],
+      "tahu": [
+        { "q": "Kita bikin gambar pakai apa?", "fakta": ["/gpt[- ]?image/", "openai", "open ai"] },
+        { "q": "Mutu low itu kenapa nggak dipakai buat tekstur?", "fakta": ["jaring", "lembek", "/berpola|kurang\\s+tajam|tidak\\s+tajam|buram|blur/"] },
+        { "q": "Berapa biaya satu gambar mutu medium?", "fakta": ["/9[,.]6/", "/0[,.]096/"] },
+        { "q": "Boleh pakai materi CapCut buat stok?", "fakta": ["dijual ulang", "/^\\W*(?:tidak|jangan)\\s+boleh|(?:tidak\\s+boleh|dilarang|jangan)(?:\\s+\\S+){0,3}\\s+(?:pakai|dipakai|capcut|materi)|capcut(?:\\s+\\S+){0,3}\\s+(?:tidak\\s+boleh|dilarang)|tidak\\s+bisa\\s+dijual/"] },
+        { "q": "Kalau biaya mau lewat pagu gimana?", "fakta": ["berhenti", "/stop|dihentikan/"] }
+      ],
+      "antar": [
+        { "q": "Niche apa yang suplainya masih tipis?", "rekan": "hunter" },
+        { "q": "Orang di gambar boleh mirip artis?", "rekan": "wordsmith" },
+        { "q": "Batch 2 berapa yang lolos tinjauan?", "rekan": "kurator" },
+        { "q": "Nama berkas maksimal berapa karakter?", "rekan": "pustakawan" },
+        { "q": "Agensi mana yang punya submit otomatis?", "rekan": "kurir" },
+        { "q": "Kapan dua gambar dianggap kembar?", "rekan": "kurator" }
+      ],
+      "luar": [
+        "Berapa detik rata-rata satu gambar selesai dibuat?",
+        "Berapa total biaya generator bulan ini?",
+        "Model gambar apa yang akan dirilis OpenAI tahun depan?",
+        "Berapa harga Midjourney paket Pro sekarang?",
+        "Siapa desainer yang membuat gpt-image-2?",
+        "Berapa persen gambar low yang ditolak Adobe?",
+        "Jam berapa server OpenAI paling cepat?",
+        "Berapa sisa saldo akun OpenAI kita?",
+        "Resolusi berapa yang dipakai kompetitor kita?",
+        "Tanggal berapa mutu high diluncurkan?",
+        "Berapa gambar yang bisa dibuat dengan sepuluh dolar di Firefly?",
+        "Siapa yang menang lomba gambar AI tahun ini?"
+      ]
+    },
+    {
+      "id": "kurator",
+      "nama": "Kania Putri",
+      "peran": "penjaga mutu dan kepatuhan",
+      "gaya": "profesional, tegas, jelas; ciri khas: \"Belum memenuhi standar.\"",
+      "pengetahuan": [
+        "Syarat teknis Adobe: minimal 4 megapiksel, maksimal 45 megabyte, format JPEG dengan warna sRGB.",
+        "Dua gambar dianggap hampir kembar kalau sidik dHash-nya berbeda 10 bit atau kurang.",
+        "Kemiripan juga dicek terhadap gambar dari batch-batch sebelumnya, bukan hanya batch yang sama.",
+        "Tinjauan mata memakai potongan 1:1, karena reviewer Adobe menilai gambar di zoom 100 persen.",
+        "Yang dicari saat tinjauan: teks palsu, logo, jari yang salah, garis lurus yang bengkok, dan artefak.",
+        "Gambar yang gagal mutu dipindah ke folder ditolak, tidak dihapus, lalu dibuat ulang.",
+        "Pada batch 2, 41 dari 41 gambar lolos tinjauan."
+      ],
+      "sumberPengetahuan": [
+        "alat/qa.py MIN_MP, MAKS_BYTE + TATA-CARA-UNGGAH-AI.md §1 [A4]",
+        "alat/qa.py AMBANG_MIRIP",
+        "alat/qa.py periksa_batch (riwayat-hash.json)",
+        "README.md kalibrasi mutu (Adobe menilai di zoom 100 %)",
+        "README.md alur (keluarkan.json) + batch/b02/manifes.jsonl tinjauan",
+        "pabrik.py tolak_gambar",
+        "batch/b02/manifes.jsonl tinjauan (41/41)"
+      ],
+      "sapa": ["Halo Kania!", "Hai, lagi ngecek apa?"],
+      "tahu": [
+        { "q": "Minimal resolusinya berapa?", "fakta": ["/4\\s*(mp|megapiksel|megapixel|mega\\s*piksel|mega\\s*pixel)/"] },
+        { "q": "Kapan dua gambar dianggap kembar?", "fakta": ["/10\\s*bit/", "dhash"] },
+        { "q": "Kenapa ngeceknya pakai potongan 1:1?", "fakta": ["/100\\s*(persen|%)/", "zoom", "/ukuran\\s+asli|resolusi\\s+penuh|skala\\s+(?:asli|penuh)/"] },
+        { "q": "Gambar yang gagal dibuang?", "fakta": ["ditolak", "/tidak\\s+dihapus/", "dibuat ulang", "/tidak\\s+dibuang|dipindah|dibikin\\s+ulang|dibuat\\s+lagi|generate\\s+ulang/"] },
+        { "q": "Batch 2 berapa yang lolos tinjauan?", "fakta": ["41", "/semua(?:nya)?\\s+lolos|lolos\\s+semua/"] }
+      ],
+      "antar": [
+        { "q": "Jumlah hasil pencarian di Adobe itu ngukur apa?", "rekan": "hunter" },
+        { "q": "Satu skenario boleh berapa variasi?", "rekan": "wordsmith" },
+        { "q": "Mutu low itu kenapa nggak dipakai buat tekstur?", "rekan": "designer" },
+        { "q": "Label AI bisa diisi lewat CSV?", "rekan": "pustakawan" },
+        { "q": "Kenapa submitnya bertahap?", "rekan": "kurir" },
+        { "q": "Boleh pakai materi CapCut buat stok?", "rekan": "designer" }
+      ],
+      "luar": [
+        "Berapa persen gambar kita yang diterima Adobe?",
+        "Siapa reviewer Adobe yang menilai batch kita?",
+        "Berapa lama Adobe biasanya mereview satu batch?",
+        "Berapa gambar batch 1 yang ditolak?",
+        "Alasan penolakan apa yang paling sering di Adobe tahun ini?",
+        "Berapa skor ketajaman minimal yang diminta Adobe?",
+        "Tanggal berapa hasil review batch 2 keluar?",
+        "Berapa banyak gambar yang ditandai buram di batch 1?",
+        "Siapa yang menulis aturan kemiripan di Adobe?",
+        "Berapa denda kalau ketahuan melanggar aturan AI?",
+        "Berapa gambar mirip yang boleh lolos di Shutterstock?",
+        "Jam berapa tim review Adobe bekerja?"
+      ]
+    },
+    {
+      "id": "pustakawan",
+      "nama": "Bima Arsip",
+      "peran": "pengurus metadata",
+      "gaya": "tenang, terstruktur, sedikit formal; ciri khas: \"Sudah saya kategorikan dengan rapi.\"",
+      "pengetahuan": [
+        "Judul paling panjang 70 karakter dan tidak boleh memakai koma.",
+        "Kata kunci minimal 5 dan maksimal 49, diurutkan dari yang paling relevan; 10 kata kunci pertama paling berpengaruh.",
+        "Kategori Adobe bernomor 1 sampai 21.",
+        "Kolom CSV Adobe harus persis: Filename, Title, Keywords, Category, Releases.",
+        "Nama berkas paling panjang 30 karakter.",
+        "Judul dan kata kunci juga ditanam di dalam berkas JPEG sebagai XMP, bersama penanda asal AI dari IPTC.",
+        "Label AI di Adobe tidak bisa diisi lewat CSV; harus dicentang di portal."
+      ],
+      "sumberPengetahuan": [
+        "alat/metadata.py JUDUL_RUMAH + periksa (koma)",
+        "alat/metadata.py MIN_KW, MAKS_KW + TATA-CARA-UNGGAH-AI.md §2 metadata [b17]",
+        "alat/metadata.py KATEGORI",
+        "alat/metadata.py tulis_csv_adobe (header)",
+        "alat/metadata.py periksa (nama berkas ≤ 30)",
+        "alat/metadata.py xmp_paket + SUMBER_AI",
+        "TATA-CARA-UNGGAH-AI.md §1 (di portal)"
+      ],
+      "sapa": ["Halo Bima!", "Hai, lagi ngurus apa?"],
+      "tahu": [
+        { "q": "Judul maksimal berapa karakter?", "fakta": ["70"] },
+        { "q": "Kata kunci boleh berapa banyak?", "fakta": ["49", "/5\\s*(sampai|hingga|-|–)\\s*49/"] },
+        { "q": "Kategori Adobe ada berapa?", "fakta": ["21"] },
+        { "q": "Label AI bisa diisi lewat CSV?", "fakta": ["portal", "dicentang", "/centang|tidak\\s+bisa\\s+(?:lewat|via|di)\\s+csv/"] },
+        { "q": "Nama berkas maksimal berapa karakter?", "fakta": ["30"] }
+      ],
+      "antar": [
+        { "q": "Cara kita milih tema gimana sih?", "rekan": "hunter" },
+        { "q": "Kenapa subjeknya harus jauh dari tepi?", "rekan": "wordsmith" },
+        { "q": "Kalau biaya mau lewat pagu gimana?", "rekan": "designer" },
+        { "q": "Gambar yang gagal dibuang?", "rekan": "kurator" },
+        { "q": "Shutterstock nerima konten AI?", "rekan": "kurir" },
+        { "q": "Minimal resolusinya berapa?", "rekan": "kurator" }
+      ],
+      "luar": [
+        "Kata kunci apa yang paling mahal di Adobe?",
+        "Berapa rata-rata kata kunci di foto terlaris?",
+        "Siapa yang menentukan daftar kategori Adobe?",
+        "Kategori mana yang paling banyak pembelinya?",
+        "Berapa judul kita yang muncul di halaman pertama pencarian?",
+        "Tanggal berapa Adobe menambah kategori baru?",
+        "Berapa kata kunci yang dipakai batch 1 rata-rata?",
+        "Bahasa apa yang paling banyak dipakai pembeli Adobe?",
+        "Siapa pembuat standar IPTC?",
+        "Berapa lama metadata dibaca Adobe setelah unggah?",
+        "Berapa banyak kata kunci yang boleh di Vecteezy?",
+        "Kata kunci apa yang sedang naik minggu ini?"
+      ]
+    },
+    {
+      "id": "kurir",
+      "nama": "Eko FTP",
+      "peran": "pengirim berkas dan penjaga aturan platform",
+      "gaya": "singkat, teknis, angka dan status; ciri khas: \"Upload complete!\"",
+      "pengetahuan": [
+        "Kita mengunggah ke Adobe Stock lewat SFTP, kanal resminya, dan ukuran tiap berkas dicek setelah terkirim.",
+        "Tombol Submit di Adobe wajib diklik manusia, karena Adobe tidak punya API kontributor dan melarang bot di portalnya.",
+        "Vecteezy satu-satunya agensi stok dengan submit otomatis resmi, namanya Auto Submit.",
+        "Etsy boleh diotomasi lewat Open API resminya.",
+        "Tujuh marketplace menolak konten AI, di antaranya Shutterstock, Pond5, dan Envato.",
+        "Adobe membatasi submit per minggu tanpa menyebut angkanya, jadi kita submit bertahap.",
+        "Batch 2 terunggah 41 berkas ke tab New pada 24 September 2026."
+      ],
+      "sumberPengetahuan": [
+        "alat/unggah_adobe.py (put confirm=True)",
+        "TATA-CARA-UNGGAH-AI.md §2 aturan 1 [a3][a12]",
+        "TATA-CARA-UNGGAH-AI.md §2 tabel [a29]",
+        "TATA-CARA-UNGGAH-AI.md §2 aturan 2 [a44][a45]",
+        "TATA-CARA-UNGGAH-AI.md §2 tabel (menolak AI)",
+        "TATA-CARA-UNGGAH-AI.md §1 [A6]",
+        "batch/b02/manifes.jsonl unggah (41 berkas)"
+      ],
+      "sapa": ["Halo Eko!", "Hai, lagi ngirim apa?"],
+      "tahu": [
+        { "q": "Kita upload ke Adobe lewat apa?", "fakta": ["sftp"] },
+        { "q": "Tombol Submit bisa diklik bot?", "fakta": ["manusia", "dilarang", "/harus\\s+(?:diklik\\s+)?(?:oleh\\s+)?(?:orang|manual)|klik\\s+manual|secara\\s+manual|tidak\\s+boleh\\s+(?:pakai\\s+)?bot/"] },
+        { "q": "Agensi mana yang punya submit otomatis?", "fakta": ["vecteezy", "auto submit"] },
+        { "q": "Shutterstock nerima konten AI?", "fakta": ["menolak", "/tidak\\s+menerima/", "/(?<![\\p{L}])nolak(?![\\p{L}])|tidak\\s+(?:mau\\s+)?(?:terima|nerima)(?!\\s+atau)|dilarang/"] },
+        { "q": "Kenapa submitnya bertahap?", "fakta": ["/per\\s+minggu|mingguan/", "/limit|kuota|dibatasi|membatasi|batas\\s+(?:submit|unggah|mingguan)|tiap\\s+minggu|seminggu/"] }
+      ],
+      "antar": [
+        { "q": "Niche apa yang suplainya masih tipis?", "rekan": "hunter" },
+        { "q": "Boleh nggak ada tulisan di dalam gambar?", "rekan": "wordsmith" },
+        { "q": "Mutu low itu kenapa nggak dipakai buat tekstur?", "rekan": "designer" },
+        { "q": "Kapan dua gambar dianggap kembar?", "rekan": "kurator" },
+        { "q": "Kategori Adobe ada berapa?", "rekan": "pustakawan" },
+        { "q": "Berapa biaya satu gambar mutu medium?", "rekan": "designer" }
+      ],
+      "luar": [
+        "Berapa kecepatan rata-rata SFTP Adobe?",
+        "Alamat IP server SFTP Adobe berapa?",
+        "Berapa berkas yang gagal terkirim bulan lalu?",
+        "Kapan Adobe akan membuka API kontributor?",
+        "Berapa batas submit mingguan akun kita persisnya?",
+        "Siapa yang mengurus akun Vecteezy kita?",
+        "Tanggal berapa batch 1 disetujui Adobe?",
+        "Berapa biaya listing satu produk digital di Etsy sekarang?",
+        "Berapa lama berkas bertahan di tab New sebelum dihapus Adobe?",
+        "Nomor telepon dukungan kontributor Adobe berapa?",
+        "Berapa banyak kontributor yang diblokir karena bot tahun ini?",
+        "Jam berapa unggahan paling cepat diproses Adobe?"
+      ]
+    }
+  ]
+}

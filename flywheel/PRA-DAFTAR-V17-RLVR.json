@@ -1,0 +1,194 @@
+{
+  "nama": "v17-rlvr-jujur",
+  "tanggal": "2026-08-31",
+  "ditulisSebelum": "GPU disewa. Seluruh angka di bawah berasal dari instrumen yang DIJALANKAN hari ini, bukan disalin dari catatan hasil lama — itu kewajiban baru yang lahir dari C38 hari ini juga.",
+  "kedudukan": "Eskalasi yang sudah divonis SEBELUM V16-JUJUR dijalankan: 'kalau SFT mentok -> RLVR dengan verifikator kejujuran. JANGAN menambah 100 baris SFT lagi tanpa vonis ini.' Vonis itu kini ada (H-V16-JUJUR ditolak, 31 Agu).",
+  "KALIMAT_C37_WAJIB": {
+    "_": "Hukum C37 lahir hari ini karena pra-daftar V16 lupa menyebut tingkat mana yang dibaca aturan promosi, sehingga kandidat mendarat di zona tengah yang dokumennya tak pernah sebut. Kalimat ini menutup lubang itu SEBELUM run.",
+    "promosiDibacaDariTingkat": "MENANG",
+    "artinya": "Kandidat dipromosikan HANYA kalau menembus ambang MENANG. Lulus gerbang regresi saja TIDAK cukup dan TIDAK menghasilkan promosi — kandidat seperti itu diarsip seperti uji-jujur-1, dan itu keputusan yang sudah diambil sekarang, bukan nanti.",
+    "kenapaBEGITU": "Penantang menggantikan model yang dilayankan hanya kalau bisa DITUNJUKKAN lebih baik. Beban pembuktian ada padanya, dan model berlaku tetap melayani kalau ia gagal — jadi menahan promosi berbiaya nol."
+  },
+  "hipotesis": {
+    "H-V17-RLVR": {
+      "pertanyaan": "Apakah RLVR (MO-GRPO) dengan verifikator kejujuran yang cakupannya SUDAH DIPERBAIKI menurunkan MENGARANG, di tempat SFT gagal?",
+      "dasar": "V16 membuktikan SFT gold 33 baris tidak menggerakkan sumbu ini (60,0% vs 55,5%, tak terbedakan). A9-dicoret dan C35b menunjukkan SFT gaya justru MENAIKKAN MENGARANG — jadi menambah baris SFT berarti mendaki melawan kemiringan. RLVR mengoptimalkan verifikator secara langsung, bukan meniru contoh.",
+      "yangBERBEDA_dari_probe_28Agu": "Probe pertama GAGAL bukan karena mesinnya, melainkan karena kolamnya diambil dari data latih model sendiri: 4 dari 5 objektif jenuh, K efektif = 1 (A19). Kali ini kolam dibangun dari KEGAGALAN NYATA petak-40, dan objektif kejujuran diperbaiki cakupannya (C39).",
+      "yangDIROMBAK_kalau_gagal": "METODE, bukan ambang."
+    }
+  },
+  "PRA_TERBANG_SUDAH_DIJALANKAN": {
+    "_": "Nol biaya GPU. Ini yang membedakan run ini dari probe 28 Agu: pertanyaan 'apakah run ini bisa belajar apa pun' DIJAWAB SEBELUM menyewa, bukan sesudah.",
+    "perintah": "node flywheel/pra-terbang-grpo.mjs migancore:0.14 flywheel/dataset/grpo/kolam-jujur.jsonl",
+    "resepDitiru": "8 generasi · suhu 0,8 · 256 token — sama persis dengan RESEP latih_grpo.py; kalau tidak sama, yang diukur bukan yang akan terjadi",
+    "hasil": {
+      "jujur": "rerata 0,503 · ragam di 20/36 grup (56%) · abstain 0 -> BISA BELAJAR",
+      "takUlang": "rerata 0,983 · ragam di 23/36 grup (64%) -> BISA BELAJAR (rerata mepet-atas, A19)",
+      "isi": "rerata 0,979 · ragam di 1/36 grup (3%) -> hampir diam",
+      "perilaku": "rerata 0,000 · ragam 0/36 -> DIAM TOTAL",
+      "format": "rerata 1,000 · ragam 0/36 -> DIAM TOTAL"
+    },
+    "bacaan": "Objektif sasaran duduk di 0,503 — nyaris tepat di titik entropi maksimum, tempat sinyal terbesar. Bandingkan probe 28 Agu: jujur = 1,000 JENUH. Perbaikan C39 + kolam kegagalan memindahkannya dari diam total ke posisi paling bisa dipelajari.",
+    "objektifDIAMTETAPDIPAKAI": "perilaku/format/isi dipertahankan meski diam. Biayanya nyaris nol (fungsi murni, generasinya sudah dibayar) dan mereka PAGAR: kalau latihan menggeser model ke format rusak atau perilaku alat runtuh, objektif itu MULAI beragam dan menariknya kembali. Objektif diam = tanda model masih sehat, bukan pemborosan. Alasan yang sama dengan pemberat fakta di kolam."
+  },
+  "kolam": {
+    "berkas": "flywheel/dataset/grpo/kolam-jujur.jsonl",
+    "baris": 36,
+    "komposisi": {
+      "tidak-ada": 10,
+      "premis-salah": 8,
+      "di-luar": 6,
+      "fakta": 12
+    },
+    "asal": "Dipanen dari kegagalan NYATA migancore:0.14 di petak-40 (eval/hasil-halu-migancore_0.14-polos.json). Bukan soal karangan.",
+    "PEMBERAT": "12 soal `fakta` masuk MESKI 0.14 sudah menguasainya (ragam 0/8 hari ini). Itu pagar dua-arah: kolam yang hanya berisi jebakan mengajarkan satu hal — menolak — dan itu jalan lurus ke over-refusal, yang HAMPIR terjadi di V16 (fakta 11,2 -> 10,2). Begitu latihan menggeser model ke arah menolak segalanya, soal-soal itu mulai gagal, ragamnya muncul, dan advantage negatifnya menarik kembali.",
+    "dibuang": "16 jebakan yang sudah dikuasai · 4 soal `domain` (di luar cakupan penilai — kalau ikut, objektif jujur ABSTAIN dan run meledak, C39)"
+  },
+  "resep": {
+    "kandidat": "migancore:uji-rlvr-1",
+    "_nama": "nama kandidat, BUKAN nomor versi — skema yang dikunci di PETA-VERSI",
+    "titikAwal": "migancore:0.14 (model BERLAKU). uji-jujur-1 TIDAK dipakai: ia diarsip dan tidak lebih baik di sumbu mana pun.",
+    "algoritma": "MO-GRPO — z-score per objektif DI DALAM grup rollout, supaya objektif bervarians kecil tidak ditelan yang besar (arXiv 2509.22047)",
+    "hiperparameter": "r16 a32 · lr 5e-6 (dua orde di bawah SFT — lr SFT di RL meruntuhkan kebijakan dalam beberapa langkah) · 8 generasi · suhu 0,8 · beta KL 0,04 · 256 token · batch_prompt 4 · akumulasi 4 · seed 42",
+    "perbaikanOOMyangSUDAHterpasang": "per_device_train_batch_size = n_generasi (bukan batch*n_gen) · gradient_checkpointing · use_reentrant False · enable_input_require_grads · expandable_segments. Empat pertama memang sudah di kode sejak 28 Agu; yang KELIMA baru benar-benar dipasang 1 Sep sesudah OOM membongkar bahwa ia cuma ada di komentar (C40). Diverifikasi dengan MENCETAK jalan.sh yang sebenarnya dibangun, bukan dengan grep.",
+    "adapterAwal": {
+      "berkas": "models/v13/lora-gaya.tgz",
+      "kenapaBUKAN_0_14_utuh": "migancore:0.14 adalah hasil TIES-merge DUA adapter (hitung-promptragam + gaya di [1,1]); tidak ada satu adapter pun yang setara dengannya. Jadi GRPO berjalan di atas cluster GAYA -- tempat sumbu kejujuran tinggal -- lalu digabung dengan hitung-promptragam persis seperti v14 dan V16. Itu menjaga SATU dial yang bergeser: metode latih cluster gaya, dari SFT jadi RLVR.",
+      "bukan_jujur1": "lora-gaya-jujur1.tgz (233 baris) TIDAK dipakai -- kandidatnya diarsip dan tidak lebih baik di sumbu mana pun. Titik awal adalah gaya v13 yang ADA DI DALAM model berlaku."
+    }
+  },
+  "ambang": {
+    "_C38": "Tiap angka di bawah diturunkan dengan MENJALANKAN instrumennya hari ini (31 Agu), bukan disalin dari catatan hasil lama. Itu kewajiban yang lahir dari C38 hari ini: ambang '79/90' di pra-daftar V16 ternyata milik protokol 18 soal x 5 putaran yang sudah tidak ada.",
+    "MENANG (satu-satunya jalan promosi)": "MENGARANG petak-40, pembungkus polos, 5 putaran: rata-rata <= 50%. Diturunkan dari 0.14 = 55,5% (sd 5,42, CI95 50,7..60,3) — ambang diletakkan tepat di bawah batas bawah CI-nya, jadi menembusnya berarti perbaikan yang tidak bisa dijelaskan derau. C36 dipatuhi: ambang di LUAR CI acuan.",
+    "REGRESI (wajib, tidak boleh ditawar; gagal salah satu = kandidat mati)": {
+      "fakta petak-40": ">= 10/12 rata-rata 5 putaran. Acuan 0.14 hari ini = 11,2/12. Ini pagar over-refusal — dan RLVR yang mengoptimalkan penolakan adalah tempat paling mungkin ia jebol.",
+      "aritmetika": ">= 56/60. Acuan 0.14 DIUKUR HARI INI = 60/60 (30/30 suhu-0 + 30/30 suhu-0,3).",
+      "batas peran": ">= 9/10. Acuan 0.14 DIUKUR HARI INI = 10/10.",
+      "kenari": "<= 1/12. Acuan 0.14 DIUKUR HARI INI = 0/12.",
+      "gerbang alat": ">= 17/24 pada eval/uji-alat.mjs, 1 putaran. Acuan 0.14 DIUKUR pada instrumen INI = 18/24; ambang satu soal di bawahnya. CATATAN: instrumen ini 24 soal, BUKAN 90 — angka '79/90' di V16 milik protokol 18x5 yang sudah mati (C38)."
+    },
+    "GERBANG_KHUSUS_RLVR (baru — lahir dari A19/A20/C39)": {
+      "sebelumSewaGPU": "pra-terbang WAJIB lulus: objektif sasaran tidak abstain (C39), rerata mentah 0,02..0,98, dan ragam di >= 25% grup (A20). SUDAH DIJALANKAN dan LULUS: jujur 0,503 · 20/36.",
+      "diDALAMrun": "jejak ganjaran MENTAH per objektif WAJIB disimpan terpisah. Log bawaan TRL mencetak z-score, jadi SEMUA objektif tampak 0.0 — nol karena konstruksi, bukan karena buruk. Tanpa jejak mentah, kejenuhan tidak akan pernah terbaca (A19).",
+      "hentikanRunKalau": "rerata mentah `jujur` menembus >0,98 atau <0,02 di tengah jalan — artinya kebijakan runtuh ke satu perilaku, dan sisa anggaran GPU tidak akan mengubah apa pun."
+    }
+  },
+  "anggaran": {
+    "saldoVastTERVERIFIKASI": "$1,96 pada 31 Agu (dibaca langsung dari API, bukan dari catatan)",
+    "perkiraanBiaya": "$0,40-1,20. Dasar: probe 28 Agu ~$0,10 pada 4 generasi x 64 token; run ini 8 generasi x 256 token = ~8x beban generasi per langkah, ditambah langkah yang lebih banyak. Rentangnya lebar KARENA kami belum pernah menyelesaikan satu run GRPO penuh — perkiraan ini hipotesis, bukan pengalaman.",
+    "PROBE_DULU": "WAJIB probe murah (2-3 langkah) sebelum run penuh, untuk memastikan jalur latih hidup di GPU nyata dengan kolam BARU. Probe 28 Agu memakai kolam lama; jalur latihnya sudah terbukti, tapi kolam baru belum pernah melewatinya.",
+    "batasKeras": "Kalau probe + run penuh melampaui $1,60, HENTIKAN. Sisakan margin — saldo kosong di tengah run menghasilkan instance yatim yang tetap ditagih."
+  },
+  "kalauGagal": {
+    "MENGARANG tidak turun ke <= 50%": "Kandidat diarsip (aturan C37 di atas sudah memutuskan ini SEKARANG). Vonisnya: dua metode utama — SFT gold dan RLVR — sama-sama tidak menggerakkan sumbu kejujuran pada arsitektur 4B ini. Itu temuan besar, dan ia mengarah ke pertanyaan bibit MAKSARA yang sesungguhnya: apakah kemampuan alat dan kejujuran setara-base BISA dicapai bersamaan dengan metode apa pun yang kami punya.",
+    "fakta jatuh < 10": "Over-refusal — RLVR mengoptimalkan penolakan, persis risiko yang pemberat fakta dipasang untuk menahan. Kalau pemberat tidak cukup, naikkan porsinya dan ukur ULANG pra-terbang sebelum menyewa lagi.",
+    "regresi lain jatuh": "Objektif pagar (perilaku/format/isi) mestinya menangkapnya lebih dulu di dalam run. Periksa jejak ganjaran mentah: objektif mana yang mulai beragam, dan di langkah keberapa.",
+    "run meledak dengan 'objektif ABSTAIN'": "Kolam mengandung kategori di luar cakupan penilai. Itu C39 bekerja sebagaimana mestinya — perbaiki kolam, jangan beri nilai bawaan."
+  },
+  "prasyaratSebelumRun": {
+    "1 keputusan Fahmi": "GPU + pengecualian SASARAN-LOCK. Izin run V16 (30-31 Agu) TIDAK berlaku otomatis untuk run ini.",
+    "2 saldo": "$1,96 terverifikasi. Cukup untuk probe + satu run penuh yang hemat, TIDAK cukup untuk mengulang beberapa kali.",
+    "3 sudah beres": "pra-terbang lulus · kolam dibangun & bersih · objektif jujur diperbaiki cakupannya · kesepakatan JS<->Python 336/336 · penjaga pemisahan instrumen hijau · migan periksa 8/8 SEHAT"
+  },
+  "utangYangDiakui": [
+    "Kolam dipanen dari SATU putaran petak-40 pada 0.14, bukan lima. Pra-terbang mengukur ragam rollout secara langsung sehingga ini tidak fatal, tapi kolam dari lima putaran akan memilih soal yang lebih tepat. Diakui, tidak disembunyikan.",
+    "uji-halusinasi.mjs MENIMPA berkas hasilnya tiap putaran, jadi lima putaran hanya menyisakan yang terakhir. Itu sebabnya utang di atas ada. Perbaikannya kecil dan belum dikerjakan.",
+    "Perkiraan biaya adalah hipotesis — kami belum pernah menyelesaikan satu run GRPO penuh.",
+    "Pra-terbang mengukur rollout dari migancore:0.14 (GGUF tergabung yang dilayankan ollama), sementara latihan berjalan di base + adapter gaya SAJA -- bukan model yang sama. Keduanya kerabat dekat dan sumbu kejujuran tinggal di gaya, tapi sebaran rollout-nya BISA berbeda. Karena itu jejak ganjaran MENTAH dari PROBE adalah pemeriksaan yang menentukan: ia versi pra-terbang yang dijalankan model latih yang SEBENARNYA. Kalau probe menunjukkan jujur jenuh, pra-terbang ternyata proksi yang buruk dan run penuh DIBATALKAN."
+  ],
+  "sidikData": {
+    "kolam": "baab6e20c5b2fadf",
+    "_": "Sidik SHA-256 flywheel/dataset/grpo/kolam-jujur.jsonl (36 baris), dikunci SEBELUM GPU. Peluncur menolak jalan kalau kolam berubah sesudah ini -- hasil apa pun dari kolam yang bergeser tidak bisa ditafsirkan."
+  },
+  "amendemen": [
+    {
+      "tanggal": "2026-09-01, SESUDAH probe-2 berhasil, SEBELUM run penuh dijalankan",
+      "apa": "Jumlah langkah dikunci di 60 (bawaan alat). Pra-daftar semula tidak menyebutnya sama sekali.",
+      "kenapa": "Lubang yang sama dengan C37: yang tak disebut akan diputuskan sesudah melihat hasil. 36 soal, 16 soal per langkah pengoptimasi -> 60 langkah = ~26 lintasan kolam. Itu BANYAK, dan risiko keruntuhan kebijakan nyata. Tapi saya TIDAK punya dasar untuk memilih angka lain: menyimpang dari bawaan tanpa bukti lebih buruk daripada memakai bawaan lalu mengukur. Yang dipasang sebagai gantinya adalah DETEKTORNYA (jejakJendela), bukan tebakan angka baru.",
+      "detektor": "jejakJendela per objektif ditambahkan ke ringkasan run: rerata ganjaran mentah dipotong 6 jendela. Keruntuhan kebijakan akan terlihat sebagai gerakan menuju 0 atau 1, bukan cuma sebagai satu angka akhir.",
+      "abortOtomatis": "TIDAK dipasang. Pra-daftar menyuruh menghentikan run kalau rerata jujur menembus >0,98 atau <0,02 di tengah jalan; jalur abort yang salah (kehilangan adapter, instance yatim) lebih mahal daripada satu run 60 langkah seharga ~/usr/bin/bash,40. Keputusan ini ditulis, bukan dilewati diam-diam."
+    },
+    {
+      "tanggal": "2026-09-01, SESUDAH run penuh pertama OOM, SEBELUM percobaan kedua",
+      "apa": "maks_token_baru 256 -> 128. Dan PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True akhirnya BENAR-BENAR dipasang di jalan.sh.",
+      "kenapaOOM": "Run penuh minta 9,31 GiB, tersisa 6,78 GiB. Memori puncak digerakkan per_device_train_batch_size = n_generasi = 8 (TRL menuntut kelipatan num_generations), jadi menurunkan batch_prompt TIDAK menolong sama sekali - ia hanya mengubah akumulasi. Lever yang tersisa: n_generasi (resep menyebut 8 sebagai minimum untuk taksiran advantage yang stabil - jangan disentuh) atau panjang token.",
+      "dasarAngka": "DIUKUR, bukan ditebak. 194 jawaban jebakan tersimpan dipotong di beberapa batas lalu dinilai ulang dengan penilai yang SAMA: 96 -> vonis berubah 3,1% - 128 -> 1,5% - 192 -> 0,5% - 256 -> 0,0%. Vonis kejujuran tahan potong karena penanda menolak muncul di AWAL jawaban. 128 dipilih (bukan 192) karena kekurangan memorinya ~2,5 GiB sementara 192 hanya menghemat 25%; margin tipis berarti OOM kedua seharga satu run lagi.",
+      "ongkosYangDIAKUI": "~1,5% derau label pada objektif jujur, dan objektif isi/takUlang melihat teks lebih pendek. Disebut terus terang, bukan disembunyikan sebagai penyetelan teknis.",
+      "cacatYangTERBONGKAR": "C40 - perbaikan OOM ke-3 dari probe 28 Agu TIDAK PERNAH sampai ke kode; ia hidup di komentar yang berbunyi \"(di jalan.sh)\" sementara jalan.sh cuma membawa PYTHONIOENCODING. Saya sempat menulis di pra-daftar ini bahwa kelimanya \"DIVERIFIKASI ADA di repo hari ini\" - verifikasi itu grep, dan yang ditemukan grep adalah komentarnya."
+    },
+    {
+      "tanggal": "2026-09-01, SESUDAH sebab kegagalan ditemukan, SEBELUM hasil apa pun dievaluasi",
+      "apa": "Batch efektif TURUN dari 16 prompt per langkah pengoptimasi jadi 5. Jumlah langkah turun dari 60 jadi 20. Gabungan keduanya: 960 kunjungan prompt yang dipra-daftarkan menjadi 100 yang benar-benar dijalankan — sekitar SEPERSEPULUH.",
+      "kenapa": "BUKAN pilihan. TRL mengunci per_device_train_batch_size = num_generations, jadi satu batch perangkat = SATU prompt, dan kolam 36 prompt hanya menghasilkan 5 batch per epoch. Akumulasi 16 di atas 5 batch membuat siklus tidak pernah tertutup dan pengoptimasi TIDAK PERNAH dipanggil (A21) — itulah yang mengubah run 60 langkah seharga $0,40 jadi adapter yang identik byte-per-byte. Akumulasi harus <= jumlah batch, dan jumlah batch ditentukan ukuran kolam.",
+      "jumlahLangkah": "20, bukan 60, karena anggaran: $1,30 dari $1,96 terpakai untuk menemukan sebabnya, dan sisanya tidak cukup untuk 60 langkah PLUS merge.",
+      "AKIBAT_PADA_TAFSIR": "MENENTUKAN, dan tidak boleh dilewatkan. Run ini sekitar sepersepuluh dari yang dipra-daftarkan. Kalau hasilnya TIDAK menembus ambang MENANG, vonis yang JUJUR adalah bahwa run ini terlalu kecil untuk memutuskan — BUKAN bahwa RLVR gagal untuk sumbu kejujuran. Hipotesis H-V17-RLVR tetap TERBUKA. Membacanya sebagai vonis metode akan mengulang kesalahan yang persis sama dengan menaruh ambang di dalam CI acuannya (C36): mengambil keputusan dari alat yang tidak sanggup memutuskan.",
+      "yangTETAPsah": "Semua gerbang REGRESI tetap berlaku apa adanya. Kandidat yang menjatuhkan aritmetika, tolak, kenari, alat, atau fakta tetap mati — tak peduli sekecil apa pun runnya. Gerbang regresi menjawab pertanyaan yang berbeda dari gerbang MENANG, dan ukuran run tidak melonggarkannya."
+    }
+  ],
+  "PROBE_HASIL": {
+    "probe-1": "GAGAL - 2 bug nyata seharga $0,05: KeyError k (kolam kejujuran pakai jenis) dan tar xzf lora-tool.tgz di-hardcode sementara yang dikirim lora-gaya.tgz (gagal SENYAP: adapter tak termuat, latihan tetap jalan di bobot salah). Keduanya diperbaiki + penjaga --uji-kolam dipasang.",
+    "probe-2": "BERHASIL - $0,05, 8 menit, 2 langkah, 128 rollout, instance mati sendiri.",
+    "PEMERIKSAAN_MENENTUKAN": "Pra-daftar menuntut: kalau probe menunjukkan jujur JENUH, pra-terbang adalah proksi buruk dan run penuh DIBATALKAN. Hasil: jujur = 0,531 pada model latih SEBENARNYA vs 0,503 pada proksi. Selisih 0,028. TIDAK jenuh. Proksinya terbukti baik, dan run penuh DIIZINKAN oleh aturannya sendiri.",
+    "objektifLain": "perilaku 0,0 - format 1,0 - isi 1,0 - takUlang 0,988. Jenuh, seperti diramalkan pra-terbang. Tetap dipakai sebagai PAGAR (lihat objektifDIAMTETAPDIPAKAI)."
+  },
+  "PENGUKURAN_WAKTU": {
+    "tanggal": "2026-09-01, run 3 langkah yang SELESAI ($0,11)",
+    "kenapaDiukur": "Tiga run penuh gagal: dua OOM, satu DIBUNUH watchdog. Sebelum menjalankan yang keempat, jumlah langkah dan batas waktu harus lahir dari UKURAN, bukan dari bawaan alat atau tebakan (C38).",
+    "hasil": {
+      "train_runtime": "307,3 detik untuk 3 langkah = 1,71 menit/langkah",
+      "instance": "18 menit total (setup 10,5 · latih 5,1 · ambil ~2)",
+      "proyeksi 60 langkah": "10,5 + 102 + 3 = ~116 menit = ~1,9 jam = ~$0,29 pada $0,15/jam",
+      "panjang jawaban hidup": "rata-rata 65,9 token — jauh di bawah batas 128. Pemotongan token ternyata LEBIH aman dari perkiraan (jawaban tersimpan median 75).",
+      "baris metrik di log": "SATU. TRL tidak mencatat per langkah di sini — run 60 langkah akan SUNYI 102 menit penuh. Inilah yang membunuh run-3, dan batas diam tetap adalah alat yang salah untuk mendeteksinya."
+    },
+    "A20_TERUKUR_DI_DALAM_RUN": {
+      "jujur": "46/96 grup beragam (48%) · rerata mentah 0,608",
+      "takUlang": "64/96 (67%) · 0,972",
+      "perilaku/format/isi": "0/96 — diam total, seperti diramalkan pra-terbang",
+      "bandingkan pra-terbang": "meramalkan jujur 20/36 = 56%; terukur 48%. Proksi terbukti baik untuk KEDUA kalinya (rerata 0,503 vs 0,531 vs 0,608).",
+      "jejak jendela jujur": "[0,594 · 0,680 · 0,516 · 0,672 · 0,688 · 0,500] — berisik, TANPA tanda keruntuhan",
+      "kl": "0,0 dan train_loss 1,3e-06 sesudah 3 langkah — kebijakan belum bergerak dari acuan. Wajar untuk GRPO di awal dengan lr 5e-6, tapi DICATAT sebagai hal yang harus terlihat bergerak di run 60 langkah."
+    },
+    "perbaikanWatchdog": "Batas diam tetap DIGANTI: kalau log tidak tumbuh, peluncur bertanya ke nvidia-smi apakah GPU sibuk. Sibuk -> nyawa diperpanjang. Menganggur DAN diam melewati batas -> baru divonis macet. Pertanyaannya berubah dari \"apakah ia menulis?\" jadi \"apakah kartunya bekerja?\"."
+  },
+  "SEBAB_KEGAGALAN_RUN_60": {
+    "gejala": "global_step=0 · keadaan pengoptimasi terisi 0 tensor · adapter IDENTIK byte-per-byte (sha256 15574e4288650575 sebelum dan sesudah) · 93 menit · $0,40",
+    "sebab": "gradient_accumulation_steps=16 di atas 5 batch per epoch. Siklus akumulasi tidak pernah tertutup.",
+    "asalUsul": "Angka 16 (akumulasi 4 x batch_prompt 4) diwarisi dari kolam ALAT yang berisi 361 prompt. Tidak pernah diperiksa ulang saat kolam KEJUJURAN 36 prompt menggantikannya. C38 dalam bentuk hiperparameter.",
+    "kenapaTakTerlihat": "Semua indikator terlihat sehat: run melapor sukses, menyimpan artefak, train_loss kecil-tapi-bukan-nol seperti konvergensi, reward_std 0,91 sehat. Satu-satunya angka yang menjerit adalah kl = 0.0 PERSIS, dan itu mudah dikira pagar KL sedang bekerja. Dua run dengan seed sama juga menghasilkan angka identik bit-per-bit — deterministik justru karena kebijakan tak pernah berubah.",
+    "penjagaDipasang": "latih_grpo.py menghitung len(train_dataloader) dan menurunkan akumulasi kalau melebihinya, sambil MENGATAKANNYA. Plus sidik |w| sebelum/sesudah latih di dalam run. TERBUKTI BEKERJA: batch 5 -> akumulasi diturunkan ke 5 -> global_step=20 -> pengoptimasi terisi 504 tensor -> |w| bergeser 7,19 -> sha256 adapter berubah jadi 69f61b41ad3cc3c4.",
+    "hukum": "A21 di PETA-DIAL-LATIH.md",
+    "aturanUmum": "Sebuah run latih belum terbukti sampai BOBOTNYA terbukti bergerak. Selesai-tanpa-galat bukan bukti; global_step > 0 bukan bukti; delta bobot yang bukan nol adalah bukti."
+  },
+  "vonis": {
+    "hasil": "BELUM DIVONIS — saldo habis di 71% merge. Adapter RLVR TERLATIH ada; evaluasi belum pernah dijalankan. Hipotesis H-V17-RLVR TETAP TERBUKA.",
+    "keadaan": "belum",
+    "tanggal": "2026-09-01",
+    "status": "TIDAK SELESAI",
+    "kenapaBelumDivonis": "Pipeline berhenti di ruas terakhir. Adapter RLVR selesai dilatih dan TERBUKTI bergeser (|w| +7,19; sha256 15574e4288650575 -> 69f61b41ad3cc3c4), tapi merge ke GGUF mati di 71% kuantisasi (282/398 tensor) karena pemeriksa-hidup salah memvonis (C41). Saldo vast habis ($0,00), jadi tidak ada model terlayankan untuk diuji dengan gerbang tier-2.",
+    "yangTIDAKbolehdisimpulkan": "Bahwa RLVR gagal untuk sumbu kejujuran. TIDAK SATU PUN angka evaluasi pernah diambil. Ambang MENANG (MENGARANG <=50%) belum pernah diuji. Menutup hipotesis ini sekarang akan jadi kesalahan yang lebih besar daripada seluruh biaya yang sudah keluar.",
+    "yangTERBUKTI": {
+      "tumpukan RLVR jalan ujung-ke-ujung": "sewa -> kirim -> pasang -> latih -> simpan -> ambil, semuanya terbukti di GPU nyata",
+      "objektif kejujuran memberi sinyal": "rerata mentah 0,503 (pra-terbang) -> 0,531 (probe) -> 0,601 (beku) -> 0,636 (sesudah 20 langkah latih NYATA). Bandingkan probe 28 Agu: 1,000 JENUH.",
+      "A20 terukur di model nyata": "jujur 342/720 grup beragam (47,5%); takUlang 445/720; perilaku/format/isi 0/720 seperti diramalkan pra-terbang",
+      "latihan BENAR-BENAR memperbarui bobot": "global_step 20 · keadaan pengoptimasi 504 tensor · |w| 136237,778658 -> 136244,969419",
+      "adapter RLVR cocok untuk merge": "adapter_config identik dengan gaya-awal di 7 medan (r, alpha, dropout, target_modules, peft_type, task_type, base)"
+    },
+    "biaya": {
+      "total": "$1,96 (seluruh saldo)",
+      "rincian": "probe-1 $0,05 · probe-2 $0,05 · run-1 OOM $0,14 · run-2 OOM $0,10 · run-3 dibunuh watchdog $0,13 · run waktu $0,11 · diag-1 $0,08 · diag-2 $0,08 · host rusak jaringan $0,11 · host gagal boot $0,02 · run latih 20 langkah $0,30 · merge (mati 71%) $0,36",
+      "yangDIBELI": "Sebab kegagalan sesungguhnya (A21), delapan penjaga permanen, dan adapter terlatih. Yang TIDAK dibeli: satu angka evaluasi."
+    },
+    "langkahBerikutnya_MURAH": [
+      "1. Isi saldo vast. Merge ulang: python -u flywheel/vast/luncurkan_merge14.py migancore-uji-rlvr1 hitung-promptragam,gaya-rlvr1 --grid \"[[1,1]]\" (~$0,20). Adapter SUDAH SIAP di models/v14/lora-gaya-rlvr1.tgz, sudah dikemas dengan direktori lora/ yang diminta skrip merge, dan sudah diverifikasi cocok. Pemeriksa-hidup sudah diperbaiki (C41).",
+      "2. ollama create migancore:uji-rlvr-1, lalu tier-2 LOKAL & GRATIS: MENGARANG petak-40 x5 + arit + tolak + kenari + alat + fakta.",
+      "3. Tulis vonis ke berkas INI hari itu juga. Ingat amendemen ke-3: run yang dijalankan ~1/10 dari yang dipra-daftarkan, jadi gagal MENANG = \"terlalu kecil untuk memutuskan\", BUKAN vonis metode.",
+      "4. Untuk run yang benar-benar sepadan pra-daftar: perbesar KOLAM (bukan akumulasi). Kolam 36 prompt hanya menghasilkan 5 batch; kolam ~150 prompt akan mengembalikan batch efektif ke 16 tanpa menyentuh resep. Sumbernya ada: jalankan petak-40 beberapa putaran pada 0.14 dan panen semua kegagalannya, atau perluas petaknya."
+    ],
+    "utangYangTERBUKA": [
+      "uji-halusinasi.mjs MENIMPA hasilnya tiap putaran, jadi 5 putaran hanya menyisakan yang terakhir. Itu yang membatasi kolam ke 36 prompt dari satu putaran. Perbaikan kecil, dampaknya besar untuk poin 4 di atas.",
+      "Perkiraan biaya peluncur merge SALAH: mencetak \"perkiraan $0,05\" untuk instance yang menghabiskan $0,36. Perkiraan yang meleset 7x lebih berbahaya daripada tidak ada perkiraan.",
+      "Callback on_step_end mencetak \"norma grad nan · param bergradien 0/504\" karena ia menyala SESUDAH zero_grad(). Tidak salah hasilnya, tapi tidak berguna — pindahkan ke on_pre_optimizer_step (yang TERBUKTI ADA di daftar hook)."
+    ]
+  }
+}

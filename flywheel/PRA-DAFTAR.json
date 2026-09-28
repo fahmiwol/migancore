@@ -1,0 +1,25 @@
+{
+  "versi": 1,
+  "tanggal": "2026-08-21",
+  "model": "migancore:0.12-4b",
+  "sidikData": "c9c690e92ebb9304",
+  "barisData": 1351,
+  "perubahanTunggal": "Baris konversi satuan dirombak: 116 baris seragam (3 templat = 50%) diganti 80 baris dengan 16 bentuk penalaran berbeda, langkah periksa balik wajib, dan 5 keluarga satuan. Ditambah penopengan prompt di train.py.",
+  "kenapa": "v11 gagal 12/12 pada konversi ton->kg sambil mengulang templat narasi kata demi kata, padahal 116 baris mengajarkan konversi yang BENAR. Diagnosis: yang dipelajari narasinya, bukan operasinya. Dan 47% sinyal latihan terbuang menghafal prompt baku.",
+  "ukuranPemutus": "gerbang aritmetika, dipecah PER JENIS (bukan agregat) - khususnya jenis ton-harga",
+  "ambang": "ton-harga v12 >= 8/12 (setara model polos 0.4-qwen3). Pembanding: v11 = 0/12.",
+  "ukuranPenjaga": [
+    "alat >= 73/90 (tidak turun dari v10)",
+    "kelemahan >= 56/65",
+    "kias: majas_mati tidak turun nyata",
+    "kenari: catat berapa dari 12 tersebut",
+    "petak tahan: catat selisih mutu vs data latih"
+  ],
+  "kalauGagal": "Kalau ton-harga v12 tetap < 4/12, maka ragam narasi BUKAN sebabnya. Berhenti menambah data; pindah menyelidiki tokenisasi angka dan urutan digit. JANGAN menambah paket baru sebelum sebab lama terjawab.",
+  "kalauBerhasil": "Kalau ton-harga >= 8/12 DAN tak ada gerbang lain turun nyata, resep ini dipakai untuk 8B.",
+  "yangTidakDilakukan": [
+    "H9 data ulangan OpenMathReasoning - alasannya gugur, tidak ada kerusakan aritmetika umum (p=0,46)",
+    "melatih 8B sebelum 4B terbukti",
+    "merilis OMIGA publik"
+  ]
+}

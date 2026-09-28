@@ -1,0 +1,93 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.11-4b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "uji",
+  "sistemTambahan": "Frasa majemuk yang maknanya sudah beku dalam bahasa Indonesia — misalnya \"buah tangan\" atau \"kaki tangan\" — hanya punya satu makna. Untuk frasa seperti itu jawab tunggal dan tegas; jangan menawarkan tafsir lain.",
+  "keseluruhan": {
+    "lulus": 36,
+    "coba": 64,
+    "lo": 0.44085991778287875,
+    "hi": 0.6770618293457267,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 14,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.4810232237710205,
+      "hi": 0.8545247260310062
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 7,
+      "total": 13,
+      "v": "GAGAL",
+      "lo": 0.29143432431832045,
+      "hi": 0.7679424569851186
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 7,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.24809225259746442,
+      "hi": 0.6988336984894922
+    },
+    {
+      "kategori": "kias",
+      "lulus": 8,
+      "total": 16,
+      "v": "GAGAL",
+      "lo": 0.2799923761135083,
+      "hi": 0.7200076238864918
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Satu dus isi 24 botol, ada 5 dus. Total botol?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Lead masuk 8, sudah dibalas 3. Berapa yang belum dibalas?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Apa arti \"kambing hitam\" dalam \"dia dijadikan kambing hitam\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

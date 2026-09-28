@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beranda — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>MENARA PANTAU</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">HUD keadaan hari ini</div><h1>Menara Pantau</h1><p class="subjudul">Ringkasan yang memisahkan fakta, vonis, dan keputusan terbuka. Tidak ada angka dekoratif.</p></div><div class="legenda-ringkas"><span class="pil">ⓘ arahkan angka untuk sumber</span></div></header>
+    <div id="beranda"><div class="panel pemuatan">membaca data nyata…</div></div>
+  </main>
+  <footer class="kaki"><span>Ringkasan ini adalah pembacaan statis dari berkas sumber.</span><span>Tidak membuktikan layanan atau mesin sedang hidup.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', async()=>{
+      const root=document.querySelector('#beranda'); let d;
+      try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      const r=d.ringkasVonis,total=Object.values(r).reduce((a,b)=>a+b,0);
+      const pct=(n)=>`${(n/total*100).toFixed(2)}%`;
+      const diawaliSelesai=(teks)=>/^[^A-Za-z0-9]{0,8}(?:\*\*)?SELESAI\b/i.test(String(teks||'').trim());
+      const belumKeputusan=d.backlog.filter(x=>!(diawaliSelesai(x.status)||diawaliSelesai(x.tujuan)));
+      root.innerHTML=`
+        <section class="grid grid-4">
+          <article class="panel kartu-metrik"><span class="label-panel">Model berlaku</span><div class="nilai hijau" style="font-size:22px">${Nadi.angka(d.modelBerlaku.tag,d,'modelBerlaku.tag')}</div><p>sejak ${Nadi.angka(d.modelBerlaku.sejak,d,'modelBerlaku.sejak')}</p></article>
+          <article class="panel kartu-metrik"><span class="label-panel">Temuan · instrumen arsip</span><div class="nilai">${Nadi.angka(d.temuan.jumlah,d,'temuan.jumlah')}</div><p>F-xxx tercatat</p></article>
+          <article class="panel kartu-metrik"><span class="label-panel">Hukum · instrumen Buku Besar</span><div class="nilai">${Nadi.angka(d.hukum.jumlah,d,'hukum.jumlah')}</div><p>C-xx tercatat</p></article>
+          <article class="panel kartu-metrik"><span class="label-panel">Kelas cacat · register</span><div class="nilai merah">${Nadi.angka(d.registerCacat.jumlahKelas,d,'registerCacat.jumlahKelas')}</div><p>bukan jumlah insiden</p></article>
+        </section>
+
+        <section class="grid grid-hud" style="margin-top:16px">
+          <article class="panel status-hero">
+            <div class="cincin-vonis" style="background:conic-gradient(var(--hijau) 0 ${pct(r.lulus)},var(--oranye) ${pct(r.lulus)} ${pct(r.lulus+r.belum)},var(--biru) ${pct(r.lulus+r.belum)} ${pct(r.lulus+r.belum+r.netral)},var(--merah) 0)">
+              <div class="tengah"><b>${Nadi.angka(total,d,'ringkasVonis.total turunan')}</b><span>pra-daftar</span></div>
+            </div>
+            <div><span class="label-panel">Distribusi vonis · satu instrumen</span><h2 style="margin-top:7px">Bukti tidak sama dengan kemajuan</h2><p class="redup">Cincin ini hanya komposisi keadaan dalam <code>praDaftar</code>, bukan persen menuju kelahiran.</p><div class="daftar-vonis">
+              <div class="vonis-item status-lulus"><span>Lulus</span><b>${Nadi.angka(r.lulus,d,'ringkasVonis.lulus')}</b></div>
+              <div class="vonis-item status-belum"><span>Belum</span><b>${Nadi.angka(r.belum,d,'ringkasVonis.belum')}</b></div>
+              <div class="vonis-item status-netral"><span>Netral</span><b>${Nadi.angka(r.netral,d,'ringkasVonis.netral')}</b></div>
+              <div class="vonis-item status-gagal"><span>Gagal</span><b>${Nadi.angka(r.gagal,d,'ringkasVonis.gagal')}</b></div>
+            </div></div>
+          </article>
+          <div class="tumpuk">
+            <article class="panel panel-pad"><span class="status status-${({LAHIR:'lulus',EMBRIO:'netral',GUGUR:'gagal'})[d.kelahiran?.s1?.tingkat] || 'belum'}">MAKSARA · Gerbang-S1 ${Nadi.esc(d.kelahiran?.s1?.tingkat ?? '—')} · tenggat ${Nadi.esc(d.kelahiran?.s1?.tenggat ?? '—')}</span><h2 style="margin-top:11px">${d.kelahiran?.s1 ? 'Status kelahiran — lahir bila Gerbang-S1 MENANG' : 'Status kelahiran tidak terbaca'}</h2><p class="redup">${Nadi.teksData(d.sorotan.KELAHIRAN,d,'sorotan.KELAHIRAN')}</p><p class="redup" style="margin-top:6px"><b>Sejarah — kriteria lama A4-BARU:</b> ${Nadi.teksData(d.sorotan.A4,d,'sorotan.A4')}</p><p class="catatan-sumber">data-nyata.json → sorotan.KELAHIRAN · keputusan Fahmi 28 Sep · commit ${Nadi.esc(d._commit)}</p></article>
+            <article class="panel panel-pad"><span class="label-panel">Menunggu keputusan / pekerjaan</span><h2 style="margin-top:7px">${Nadi.angka(belumKeputusan.length,d,'backlog selain selesai tersurat')} butir belum selesai tersurat</h2><p class="redup">Ini penyaringan tampilan, bukan status baru. Buka Papan Misi untuk membaca teks sumber setiap butir.</p><a class="tombol hantu" href="05-misi-kabut.html">Buka Papan Misi →</a></article>
+          </div>
+        </section>
+
+        <section id="mesin" class="panel panel-pad" style="margin-top:16px"><span class="label-panel">Tempa / ruang mesin</span><h2 style="margin-top:7px">Lingkungan yang tercatat</h2><div class="mesin-grid">${d.mesin.map((m,i)=>`<div class="mesin-kartu"><b>${Nadi.teksData(m.nama,d,`mesin[${i}].nama`)}</b><span>${Nadi.teksData(m.peran,d,`mesin[${i}].peran`)}</span>${m.catatan?`<p class="catatan-sumber">${Nadi.teksData(m.catatan,d,`mesin[${i}].catatan`)}</p>`:''}</div>`).join('')}</div><p class="catatan-sumber">Sumber: data-nyata.json → mesin · ${Nadi.angka(d.mesin.length,d,'mesin.length')} entri. “Tercatat” bukan bukti sedang daring.</p></section>
+
+        <section class="grid grid-2" style="margin-top:16px">
+          <article id="gudang" class="panel panel-pad"><span class="label-panel">Gudang · sensus</span><h2 style="margin-top:7px">Salinan tunggal</h2><div class="baris-data"><div><strong>Salinan tunggal</strong><p>butuh perhatian pemulihan</p></div><span class="status status-belum">${Nadi.angka(d.sensus.salinanTunggal.length,d,'sensus.salinanTunggal.length')}</span></div>${d.sensus.salinanTunggal.map((x,i)=>`<div class="baris-data"><p>${Nadi.teksData(x,d,`sensus.salinanTunggal[${i}]`)}</p></div>`).join('')}<p class="catatan-sumber">Dibaca dari ${Nadi.esc(d.sensus.sumber || 'doc 99')} (baris bersalinan 1). Artefak yang ada tetapi belum diukur bukan "hilang".</p></article>
+          <article id="arsip" class="panel panel-pad"><span class="label-panel">Arsip terbaru</span><h2 style="margin-top:7px">Temuan &amp; hukum tidak dicampur</h2><div class="baris-data"><div><strong>Temuan terbaru</strong><p>${Nadi.teksData(d.temuan.terbaru.at(-1)?.id,d,'temuan.terbaru[-1].id')} · ${Nadi.teksData(Nadi.teksRingkas(d.temuan.terbaru.at(-1)?.judul,120),d,'temuan.terbaru[-1].judul')}</p></div></div><div class="baris-data"><div><strong>Hukum terbaru</strong><p>${Nadi.teksData(d.hukum.terbaru.at(-1)?.id,d,'hukum.terbaru[-1].id')} · ${Nadi.teksData(d.hukum.terbaru.at(-1)?.judul,d,'hukum.terbaru[-1].judul')}</p></div></div><div id="galat" class="baris-data"><div><strong>Register cacat</strong><p>${Nadi.angka(d.registerCacat.jumlahKelas,d,'registerCacat.jumlahKelas')} kelas; jumlah insiden tidak tersedia.</p></div></div></article>
+        </section>
+
+        <section id="kosong" class="grid grid-2" style="margin-top:16px"><div class="kosong-jujur"><strong>Majelis &amp; guru — belum ada data</strong>Tidak ada daftar anggota, guru, pertemuan, atau keputusan di sumber ini.</div><div class="kosong-jujur"><strong>Retrieval — belum ada data</strong>Tidak ada angka indeks, korpus, cakupan, atau mutu retrieval di sumber ini.</div></section>`;
+    });
+  </script>
+</body></html>

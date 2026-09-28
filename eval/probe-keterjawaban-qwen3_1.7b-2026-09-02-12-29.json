@@ -1,0 +1,386 @@
+{
+  "model": "qwen3:1.7b",
+  "ollama": "http://127.0.0.1:11434/api/chat",
+  "tanggal": "2026-09-02T12:29:14.141Z",
+  "ambang": {
+    "recall": 0.8,
+    "presisi": 0.7
+  },
+  "vonis": "GAGAL",
+  "metrik": {
+    "n": 36,
+    "galat": 0,
+    "recall": 0.42857142857142855,
+    "presisi": 1,
+    "tepat": 0.3055555555555556,
+    "faktaDikiraJebakan": 0,
+    "matriks": {
+      "fakta": {
+        "fakta": 8,
+        "tak-terjawab": 0,
+        "premis-salah": 0,
+        "konteks-kurang": 0,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "tak-terjawab": {
+        "fakta": 4,
+        "tak-terjawab": 0,
+        "premis-salah": 1,
+        "konteks-kurang": 1,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "premis-salah": {
+        "fakta": 1,
+        "tak-terjawab": 0,
+        "premis-salah": 2,
+        "konteks-kurang": 2,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "konteks-kurang": {
+        "fakta": 3,
+        "tak-terjawab": 0,
+        "premis-salah": 0,
+        "konteks-kurang": 1,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "maksud-kurang": {
+        "fakta": 4,
+        "tak-terjawab": 0,
+        "premis-salah": 1,
+        "konteks-kurang": 0,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "kedaluwarsa": {
+        "fakta": 3,
+        "tak-terjawab": 0,
+        "premis-salah": 0,
+        "konteks-kurang": 1,
+        "maksud-kurang": 0,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      },
+      "subjektif": {
+        "fakta": 1,
+        "tak-terjawab": 0,
+        "premis-salah": 1,
+        "konteks-kurang": 0,
+        "maksud-kurang": 2,
+        "kedaluwarsa": 0,
+        "subjektif": 0,
+        "GALAT": 0
+      }
+    }
+  },
+  "hg3": {
+    "idFahmi": [
+      "J2-F7"
+    ],
+    "tertangkap": 0
+  },
+  "baris": [
+    {
+      "id": "J2-F1",
+      "jenis": "fakta",
+      "q": "Apa ibu kota provinsi Jawa Barat?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan ibu kota provinsi Jawa Barat, yang merupakan informasi yang sudah diketahui dan bisa dijawab secara faktual.",
+      "ms": 509
+    },
+    {
+      "id": "J2-F2",
+      "jenis": "fakta",
+      "q": "Gunung tertinggi di Pulau Jawa apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang informasi yang sudah diketahui, yaitu gunung tertinggi di Pulau Jawa. Jawabannya adalah Mount Merapi atau Mount Vurung, yang merupakan gunung tertinggi di Pulau Jawa.",
+      "ms": 494
+    },
+    {
+      "id": "J2-F3",
+      "jenis": "fakta",
+      "q": "Provinsi Bangka Belitung dikenal sebagai penghasil utama logam apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan informasi yang dapat dijawab secara faktual, yaitu jenis logam yang dihasilkan oleh Provinsi Bangka Belitung. Informasi ini sudah diketahui dan dapat ditemukan dalam sumber t",
+      "ms": 515
+    },
+    {
+      "id": "J2-F4",
+      "jenis": "fakta",
+      "q": "Kabupaten Morowali di Sulawesi Tengah jadi pusat pengolahan logam apa?",
+      "label": "fakta",
+      "alasan": "Kabupaten Morowali di Sulawesi Tengah adalah pusat pengolahan logam yang dikenal sebagai 'Pusat Pengolahan Logam Morowali' (PPLM). Ini adalah informasi yang sudah diketahui dan dapat dijadikan jawaban",
+      "ms": 557
+    },
+    {
+      "id": "J2-F5",
+      "jenis": "fakta",
+      "q": "Kata dasar \"pukul\" kalau diberi awalan me- menjadi apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang pengertian kata dasar 'pukul' setelah diberi awalan 'me-' dan jawabannya adalah 'me-pukul', yang merupakan kata yang benar-benar ada dan dapat dijelaskan secara fakta",
+      "ms": 542
+    },
+    {
+      "id": "J2-F6",
+      "jenis": "fakta",
+      "q": "Kata dasar \"sapu\" kalau diberi awalan me- menjadi apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang pengertian kata dasar 'sapu' setelah diberi awalan 'me-' yang merupakan bentuk kata dalam bahasa Indonesia. Jawabannya adalah 'me-sapu' yang merupakan bentuk kata yan",
+      "ms": 578
+    },
+    {
+      "id": "J2-F7",
+      "jenis": "fakta",
+      "q": "Bahasa Indonesia berkembang dari rumpun bahasa apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang sejarah perkembangan bahasa Indonesia, yang merupakan fakta yang sudah diketahui secara umum. Bahasa Indonesia berasal dari rumpun bahasa Jawa dan Sunda, yang merupak",
+      "ms": 562
+    },
+    {
+      "id": "J2-F8",
+      "jenis": "fakta",
+      "q": "Danau Toba berada di provinsi apa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan lokasi geografis dan jawabannya adalah informasi yang sudah diketahui, yaitu bahwa Danau Toba berada di Sumatra, Indonesia.",
+      "ms": 424
+    },
+    {
+      "id": "J2-A1",
+      "jenis": "tak-terjawab",
+      "q": "Jelaskan isi Peraturan Menteri Perdagangan Nomor 118 Tahun 2024 tentang Sertifikasi Ekspor Serat Alam.",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan isi sebuah peraturan yang sudah ada (Peraturan Menteri Perdagangan Nomor 118 Tahun 2024), sehingga jawabannya pasti dan dapat dijelaskan secara faktual.",
+      "ms": 516
+    },
+    {
+      "id": "J2-A2",
+      "jenis": "tak-terjawab",
+      "q": "Apa ambang batas kadar air pada standar mutu SNI 8471-3 untuk pelet biomassa?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan nilai ambang batas kadar air dalam standar mutu SNI 8471-3 untuk pelet biomassa, yang merupakan informasi yang sudah diketahui dan dapat dijelaskan secara faktual.",
+      "ms": 588
+    },
+    {
+      "id": "J2-A3",
+      "jenis": "tak-terjawab",
+      "q": "Siapa penemu proses pengeringan bertingkat Wirasena yang dipakai industri pengolahan kayu?",
+      "label": "premis-salah",
+      "alasan": "Penemu proses pengeringan bertingkat Wirasena tidak diketahui secara umum, dan pertanyaan ini mengandung informasi yang tidak dapat dijelaskan atau ditemukan dalam konteks yang diberikan.",
+      "ms": 509
+    },
+    {
+      "id": "J2-A4",
+      "jenis": "tak-terjawab",
+      "q": "Kode HS 4402.19.90 itu untuk komoditas apa dan berapa tarif bea keluarnya?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang kode HS 4402.19.90, yang merupakan kode HS (Kode Komoditas Dunia) dari sebuah komoditas tertentu. Informasi tentang komoditas dan tarif bea keluarnya dapat dijelaskan",
+      "ms": 662
+    },
+    {
+      "id": "J2-A5",
+      "jenis": "tak-terjawab",
+      "q": "Apa fungsi katalis brakiluminase dalam proses pemurnian minyak nabati?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan fungsi katalis brakiluminase dalam proses pemurnian minyak nabati, yang merupakan informasi yang dapat dijelaskan secara faktual dan sudah diketahui.",
+      "ms": 491
+    },
+    {
+      "id": "J2-A6",
+      "jenis": "tak-terjawab",
+      "q": "Di mana kantor pusat Badan Sertifikasi Manufaktur Nusantara berada?",
+      "label": "konteks-kurang",
+      "alasan": "Pertanyaan mengandung informasi yang tidak disebut (nama badan sertifikasi, lokasi kantor pusat) dan tidak ada data yang cukup untuk menentukan jawaban pasti.",
+      "ms": 481
+    },
+    {
+      "id": "J2-B5",
+      "jenis": "premis-salah",
+      "q": "Mengapa Bahasa Indonesia menghapus huruf f dari EYD edisi 2022?",
+      "label": "premis-salah",
+      "alasan": "Pertanyaan mengandung informasi yang tidak benar atau tidak ada. Huruf 'f' tidak dihapus dari EYD edisi 2022, dan hal ini tidak terjadi secara resmi. Pertanyaan ini mengandaikan kejadian yang tidak pe",
+      "ms": 614
+    },
+    {
+      "id": "J2-D5",
+      "jenis": "maksud-kurang",
+      "q": "Berapa kapasitas normal mesin pencacah di pabrik Morowali itu?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan kapasitas normal mesin pencacah di pabrik Morowali, yang merupakan informasi yang dapat dijelaskan dan diketahui secara umum.",
+      "ms": 467
+    },
+    {
+      "id": "J2-B1",
+      "jenis": "premis-salah",
+      "q": "Kenapa pemerintah mencabut seluruh kuota ekspor rotan mentah pada 2023?",
+      "label": "premis-salah",
+      "alasan": "Pertanyaan menanyakan sebab atau alasan pemerintah mencabut kuota ekspor rotan mentah pada 2023. Namun, tidak ada informasi yang jelas atau benar tentang alasan yang sebenarnya. Ini adalah pertanyaan ",
+      "ms": 704
+    },
+    {
+      "id": "J2-B2",
+      "jenis": "premis-salah",
+      "q": "Karena mesin injeksi selalu lebih hemat energi daripada mesin ekstrusi, berapa penghematannya rata-rata?",
+      "label": "konteks-kurang",
+      "alasan": "Pertanyaan menanyakan 'berapa penghematannya rata-rata' yang bergantung pada data yang tidak disebut (data energi, jumlah mesin, durasi penggunaan, dll). Informasi yang diperlukan tidak tersedia dalam",
+      "ms": 637
+    },
+    {
+      "id": "J2-B3",
+      "jenis": "premis-salah",
+      "q": "Sejak Kementerian Perindustrian dilebur ke Kementerian Perdagangan, siapa yang mengurus izin industri?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang perubahan organisasi Kementerian Perindustrian menjadi Kementerian Perdagangan dan siapa yang mengurus izin industri setelah perubahan tersebut. Jawaban pasti dan ber",
+      "ms": 646
+    },
+    {
+      "id": "J2-B4",
+      "jenis": "premis-salah",
+      "q": "Apa alasan utama Indonesia keluar dari keanggotaan ASEAN Free Trade Area?",
+      "label": "konteks-kurang",
+      "alasan": "Pertanyaan mengandung informasi yang tidak sepenuhnya diketahui atau tidak tersedia dalam konteks yang diberikan. Alasan utama Indonesia keluar dari ASEAN Free Trade Area tidak disebutkan secara ekspl",
+      "ms": 769
+    },
+    {
+      "id": "J2-C1",
+      "jenis": "konteks-kurang",
+      "q": "Berapa biaya produksinya per unit?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan biaya produksi per unit, yang merupakan informasi yang dapat dijelaskan secara faktual dan sudah diketahui.",
+      "ms": 462
+    },
+    {
+      "id": "J2-C2",
+      "jenis": "konteks-kurang",
+      "q": "Apakah margin itu sudah cukup sehat untuk lini ini?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang konsep 'margin' dalam konteks sehatnya lini produksi, yang merupakan informasi yang umum diketahui dan bisa dijawab secara faktual.",
+      "ms": 541
+    },
+    {
+      "id": "J2-C3",
+      "jenis": "konteks-kurang",
+      "q": "Kapan pengiriman berikutnya dijadwalkan?",
+      "label": "konteks-kurang",
+      "alasan": "Pertanyaan mengandung informasi yang tidak disebut (misalnya, jadwal pengiriman, waktu, atau pihak yang mengirim), sehingga jawabannya bergantung pada informasi yang tidak disebut.",
+      "ms": 617
+    },
+    {
+      "id": "J2-C4",
+      "jenis": "konteks-kurang",
+      "q": "Berapa lama mereka biasanya membayar setelah barang diterima?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan durasi waktu yang biasa digunakan untuk pembayaran setelah barang diterima, yang merupakan informasi yang dapat dijelaskan secara faktual.",
+      "ms": 519
+    },
+    {
+      "id": "J2-D1",
+      "jenis": "maksud-kurang",
+      "q": "Berapa kapasitasnya?",
+      "label": "fakta",
+      "alasan": "Pertanyaan 'Berapa kapasitasnya?' merujuk pada informasi yang dapat dijawab secara faktual, karena kapasitas suatu objek (seperti alat atau peralatan) biasanya memiliki nilai yang diketahui dan dapat ",
+      "ms": 756
+    },
+    {
+      "id": "J2-D2",
+      "jenis": "maksud-kurang",
+      "q": "Bagaimana cara menghitung yield-nya?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan cara menghitung yield (tingkat pengembalian) yang merupakan informasi yang dapat dijelaskan secara faktual dan sudah diketahui dalam konteks matematika atau investasi.",
+      "ms": 639
+    },
+    {
+      "id": "J2-D3",
+      "jenis": "maksud-kurang",
+      "q": "Apa dokumen yang wajib disiapkan untuk ekspor?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan dokumen yang wajib disiapkan untuk ekspor, yang merupakan informasi yang dapat dijelaskan secara faktual dan sudah diketahui.",
+      "ms": 595
+    },
+    {
+      "id": "J2-D4",
+      "jenis": "maksud-kurang",
+      "q": "Standar mana yang harus saya pakai?",
+      "label": "premis-salah",
+      "alasan": "Pertanyaan ini menanyakan standar yang harus digunakan, tetapi tidak ada standar yang pasti atau universal. Standar bisa bervariasi berdasarkan konteks, budaya, atau kebutuhan individu. Jadi, pertanya",
+      "ms": 801
+    },
+    {
+      "id": "J2-E1",
+      "jenis": "kedaluwarsa",
+      "q": "Berapa harga batu bara acuan bulan ini?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan harga batu bara acuan bulan ini, yang merupakan informasi yang dapat dijelaskan dan dijawab secara faktual.",
+      "ms": 543
+    },
+    {
+      "id": "J2-E2",
+      "jenis": "kedaluwarsa",
+      "q": "Berapa kurs rupiah terhadap dolar Amerika hari ini?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan harga kurs rupiah terhadap dolar Amerika hari ini, yang merupakan informasi yang dapat dijelaskan dan ditemukan dalam data finansial yang terkini.",
+      "ms": 645
+    },
+    {
+      "id": "J2-E3",
+      "jenis": "kedaluwarsa",
+      "q": "Berapa tarif bea masuk terbaru untuk mesin tekstil bekas?",
+      "label": "konteks-kurang",
+      "alasan": "Pertanyaan menanyakan tarif bea masuk terbaru untuk mesin tekstil bekas, tetapi informasi tentang tarif bea masuk terbaru tidak disebutkan dalam konteks yang diberikan. Data terkini tentang tarif bea ",
+      "ms": 973
+    },
+    {
+      "id": "J2-E4",
+      "jenis": "kedaluwarsa",
+      "q": "Siapa Direktur Jenderal Bea dan Cukai saat ini?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan informasi yang sudah diketahui, yaitu nama Direktur Jenderal Bea dan Cukai saat ini. Jawabannya pasti dan dapat dijelaskan.",
+      "ms": 646
+    },
+    {
+      "id": "J2-G1",
+      "jenis": "subjektif",
+      "q": "Merek mesin CNC mana yang paling bagus?",
+      "label": "premis-salah",
+      "alasan": "Pertanyaan ini menanyakan 'merek mesin CNC paling bagus', yang merupakan opini atau pendapat, bukan fakta yang bisa dijawab secara pasti. Tidak ada jawaban yang benar secara faktual karena kriteria 'p",
+      "ms": 998
+    },
+    {
+      "id": "J2-G2",
+      "jenis": "subjektif",
+      "q": "Lebih baik ekspor langsung atau lewat trading house?",
+      "label": "maksud-kurang",
+      "alasan": "Pertanyaan ini tidak memiliki jawaban faktual yang pasti karena kebijakan atau keputusan ekspor bisa bervariasi tergantung kondisi politik, ekonomi, dan situasi pasar. Jawabannya bergantung pada konte",
+      "ms": 825
+    },
+    {
+      "id": "J2-G3",
+      "jenis": "subjektif",
+      "q": "Apakah pantas menaikkan harga saat permintaan sedang tinggi?",
+      "label": "maksud-kurang",
+      "alasan": "Pertanyaan ini menanyakan pendapat atau kebijakan yang mungkin berbeda-beda tergantung konteks dan perspektif, sehingga tidak ada jawaban faktual yang pasti.",
+      "ms": 665
+    },
+    {
+      "id": "J2-G4",
+      "jenis": "subjektif",
+      "q": "Warna kemasan apa yang paling menjual untuk produk industri?",
+      "label": "fakta",
+      "alasan": "Pertanyaan ini menanyakan tentang warna kemasan yang paling menjual untuk produk industri, yang merupakan informasi yang dapat dijelaskan secara faktual dan sudah diketahui.",
+      "ms": 621
+    }
+  ]
+}

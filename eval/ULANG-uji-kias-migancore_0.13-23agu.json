@@ -1,0 +1,87 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.13",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "23agu",
+  "sistemTambahan": "",
+  "keseluruhan": {
+    "lulus": 41,
+    "coba": 69,
+    "lo": 0.4763567368169741,
+    "hi": 0.7021127092138654,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 17,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.6395767041130426,
+      "hi": 0.9476322080405041
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 14,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.4810232237710205,
+      "hi": 0.8545247260310062
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 0,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0,
+      "hi": 0.20388926630434784
+    },
+    {
+      "kategori": "kias",
+      "lulus": 10,
+      "total": 14,
+      "v": "TIDAK PASTI",
+      "lo": 0.4535045882751561,
+      "hi": 0.882788120898909
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Satu dus isi 24 botol, ada 5 dus. Total botol?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Apa arti \"kaki gunung\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Pesanan masuk 14, sudah diproses 6. Berapa yang belum diproses?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    }
+  ]
+}

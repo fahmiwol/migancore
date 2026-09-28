@@ -1,0 +1,67 @@
+# Latih adapter v14-tool
+
+## 1. Segel pra-daftar
+   tool · sidik a19db1a87bc87c55 [32mcocok pra-daftar[0m
+
+## 1b. Kontrak masukan (manifest)
+     [33mcatatan[0m git: 4 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit
+   
+     sidik: data=a19db1a87bc87c55 · soal=8a68b69a16c583a5 · kenari=87e91feb4fed4bc9 · resep=665acff53b6663ca · skrip=411342293b11710c · ukur=a7b568d9dd5462db · promptGerbang=04b8df92cb204dca · tahan=b2a25c6e323a3f9a
+     manifest: flywheel\dataset\v14\MANIFEST-tool-8b.json
+   
+   [32mSIAP[0m — semua syarat wajib terpenuhi (3 catatan). [2mberikutnya: migan latih tool[0m
+
+## 2. Kredensial & host
+   saldo: $4.16
+   9 layak; termurah RTX 3090 $0.141/jam
+
+   percobaan 1/3 — RTX 3090 $0.141/jam (id 36760633)
+   instance 48591475 disewa
+   [ 0.0 mnt] ?
+   [ 0.4 mnt] loading
+   [ 0.8 mnt] running
+   [32msiap & SSH menjawab[0m
+
+## 3. Kirim bahan
+   terkirim: cluster.jsonl
+   terkirim: latih_cluster.py
+   terkirim: ukur_latih.py
+   terkirim: soal-aritmetika-bersih.json
+   terkirim: kenari.json
+   terkirim: resep.json
+   terkirim: prompt-gerbang.json
+   terkirim: tahan.jsonl
+   [32mterbukti utuh[0m: 201 baris
+
+## 4. Latih + gerbang tingkat-1
+   [32mproses hidup[0m
+   [ 2 mnt] Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+   [ 3 mnt]   8%|?         | 2/24 [00:14<02:40,  7.30s/it]
+   [ 4 mnt]  38%|????      | 9/24 [01:03<01:46,  7.07s/it]
+   [ 5 mnt]  67%|???????   | 16/24 [01:56<00:59,  7.47s/it]
+   [ 6 mnt]  96%|??????????| 23/24 [02:46<00:07,  7.11s/it]
+   [ 7 mnt]   warnings.warn(
+   [ 8 mnt]    arit-dengan: 9/10 ? ton 3/4 ? rata 2/2 ? terpotong 0
+   [13 mnt]    arit-tanpa: 0/10 ? ton 0/4 ? rata 0/2 ? terpotong 10
+   [14 mnt] SELESAI dalam 12.5 menit
+
+## 5. Ambil (adapter DULU)
+   terambil: lora-tool-8b.tgz
+   terambil: ringkasan-tool-8b.json
+
+   loss 1.4844 · arit dengan 9/10 tanpa 0/10 · kenari 0/12 · terpotong data 0
+   petak tahan: base 3.4970 -> adapter 2.4036 (delta -1.0934)
+
+## 5b. Kontrak keluaran
+   # Kontrak keluaran — tool-8b (v14)
+   
+     [33mcatatan[0m arit-tanpa: 10 jawaban gerbang TERPOTONG (n_baru habis) — skor gagal bisa = buntung, bukan salah hitung
+     [33mcatatan[0m petak tahan: loss base 3.4970412254333496 -> adapter 2.4036333560943604 (delta -1.0934)
+   
+   [32mSAHIH[0m — sidik masukan cocok manifest; sanad run ini bersambung otomatis.
+
+## 6. Matikan instance
+   [32minstance 48591475 dimatikan[0m
+   hidup 16 menit · perkiraan $0.04
+
+[32mSELESAI tool[0m - ringkasan: models/v14/ringkasan-tool-8b.json

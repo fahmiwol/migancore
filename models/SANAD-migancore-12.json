@@ -1,0 +1,57 @@
+{
+  "catatan": "SANAD ARTEFAK — rantai periwayatan bobot v12. Metode: kritik sanad Imam Muslim diterapkan ke artefak model (usul Fahmi, 22 Agu 2026). Pengukuran hanya sah bila sanadnya bersambung dan tiap mata rantai terverifikasi. Status: sahih (terverifikasi) / dhaif (dicurigai cacat) / belum-diperiksa.",
+  "matan": {
+    "apa": "bobot LoRA v12 (r=16, alfa=32, Qwen3-4B-Instruct-2507, 2 epoch, penopengan prompt)",
+    "sumberData": "flywheel/dataset/migancore-curated.jsonl",
+    "sidikData": "c9c690e92ebb9304",
+    "baris": 1351,
+    "praDaftar": "flywheel/PRA-DAFTAR.json (terkunci ke sidik di atas)"
+  },
+  "rantai": [
+    {
+      "mata": "latih",
+      "riwayat": "vast run 6, latih_v12.py, loss 1.4256, 17.6 mnt, token dilatih 52.2%",
+      "bukti": "models/ringkasan.json + reproduksi run kedua loss 1.4269",
+      "status": "sahih",
+      "alasan": "loss wajar dan tereproduksi di dua run terpisah"
+    },
+    {
+      "mata": "adapter",
+      "riwayat": "lora.tgz (126 MB) diambil dari run 6 sebelum GGUF (aturan: yang berharga diamankan dulu)",
+      "bukti": "sha256 lora.tgz = terverifikasi utuh saat kirim kemas (byte cocok)",
+      "status": "sahih",
+      "alasan": "integritas byte terbukti; isi = adapter_model.safetensors + config lengkap"
+    },
+    {
+      "mata": "konversi-adapter-gguf",
+      "riwayat": "convert_lora_to_gguf.py b10549 di vast (kemas_v12.py), keluar migancore-12-lora.gguf 66 MB",
+      "bukti": "models/ringkasan-kemas.json",
+      "status": "dhaif",
+      "alasan": "JALUR BELUM PERNAH TERVALIDASI untuk qwen3; keluaran hilir hancur (48%/38%, istilah karangan 'HUJUNG', 'beratung', kurs fiktif) padahal loss latih normal — pola delta salah tempel"
+    },
+    {
+      "mata": "runtime-lora-ollama",
+      "riwayat": "ollama create migancore:0.12-adapter — ADAPTER gguf di atas base Q4_K_M (migancore:0.4-qwen3)",
+      "bukti": "ollama list 86104d16eec8",
+      "status": "dhaif",
+      "alasan": "aplikasi LoRA runtime pada arch qwen3 di Ollama 0.32 belum pernah tervalidasi; tercemar bersama mata konversi (tidak bisa dipisah tanpa jalur pembanding)"
+    },
+    {
+      "mata": "merge-sehat (pembanding)",
+      "riwayat": "kemas_ulang.py --merge: base bf16 + adapter -> merge di GPU -> UJI CIUM di transformers -> GGUF b10549",
+      "bukti": "ringkasan-kemas.json 22 Agu 05:40: {cium_ok: true, gguf: true, menit: 18.6, pin: b10549} — bobot merged menjawab konversi ton BENAR di transformers sebelum dikemas",
+      "status": "sahih",
+      "alasan": "kritik sanad tuntas: matan (bobot) terbukti waras; kehancuran 48%/38% milik rantai adapter (dhaif TERKONFIRMASI untuk mata konversi-adapter-gguf + runtime-lora-ollama)"
+    },
+    {
+      "mata": "gguf-merged-ollama",
+      "riwayat": "convert_hf_to_gguf + llama-quantize b10549 di vast -> migancore-12-merged-q4_k_m.gguf 2.497.278.784 byte -> ollama create migancore:0.12-merged SUKSES (f53885544776)",
+      "bukti": "ollama list 22 Agu; GGUF lepas dihapus setelah create (blob = salinan persis)",
+      "status": "sahih",
+      "alasan": "pin b10549 = tag yang GGUF-nya diterima Ollama 0.32; create sukses tanpa keluhan"
+    }
+  ],
+  "vonisSementara": "Sanad BERSAMBUNG penuh lewat rantai merge: data(sidik c9c690e92ebb9304) -> latih(loss 1.4256 reprodusibel) -> adapter(utuh) -> merge(cium_ok=true) -> GGUF(b10549, diterima) -> migancore:0.12-merged. Pengukuran pra-daftar yang SAH sedang berjalan pada rantai ini. Rantai adapter tetap dhaif — JANGAN pakai migancore:0.12-adapter untuk klaim apa pun.",
+  "tanggal": "2026-08-22",
+  "vonisAkhir": "DIUKUR SAH 22 Agu via migancore:0.12-merged: KONFIRMASI ton-dengan 6/12 (ambang >=8) = TIDAK LULUS; ton-tanpa 12/12; total kedua lengan 41/60 (68%) — regresi -22 poin vs v11-tanpa terlokalisasi di rata-rata gabungan, mekanisme: naskah P1-prime menjajah jenis tetangga (bukti kutipan di brain L723487914a). Keputusan pra-daftar: 8B tidak dilatih; lini data ini berhenti; v11 tetap produksi; jalur maju v13 cluster-LoRA. Matan waras (cium_ok) — yang gagal adalah RESEP satu-panci, bukan bobot yang korup."
+}

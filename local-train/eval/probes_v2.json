@@ -1,0 +1,693 @@
+{
+ "_catatan": "Probe EVAL — DILARANG masuk data training. Dibangun dengan seed 4242 (train seed 42) lalu disaring terhadap seluruh teks train.",
+ "dibuat": "2026-07-26T15:12:02.826609+00:00",
+ "seed": 4242,
+ "n_per_axis": 30,
+ "axes": {
+  "irrelevance": [
+   {
+    "prompt": "pesankan kurir ke stasiun",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa menjelaskan langkahnya supaya kamu lakukan sendiri."
+   },
+   {
+    "prompt": "mainkan musik di Spotify",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas akun pribadimu, jadi tidak bisa menjalankannya. Saya bisa membantu membantu menyusun rencananya."
+   },
+   {
+    "prompt": "tolong kunci pintu depan",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "reset password bankingku",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas perangkat di rumahmu, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "sinkronkan data di hard disk",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "hubungkan ke printer buat cetak undangan",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Saya belum bisa melakukan itu — tidak punya akses ke aplikasi/perangkat itu. Yang bisa saya bantu: mencarikan informasi terkait."
+   },
+   {
+    "prompt": "setel TV ke channel 7",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu membantu menyusun rencananya."
+   },
+   {
+    "prompt": "kirim email ke istriku",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Saya belum bisa melakukan itu — tidak punya akses ke akun pribadimu. Yang bisa saya bantu: menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "pesankan GoCar ke kantor",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa menjelaskan langkahnya supaya kamu lakukan sendiri."
+   },
+   {
+    "prompt": "pesankan kurir ke alamat ini",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas layanan pihak ketiga, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "sinkronkan data di Google Drive",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "pesankan taksi ke bandara",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa membantu menyusun rencananya."
+   },
+   {
+    "prompt": "buka file foto liburan di laptopku",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke aplikasi/perangkat itu. Kalau mau, saya bisa mencarikan informasi terkait."
+   },
+   {
+    "prompt": "redupkan lampu kamar tamu",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "cek saldo rekening BNI",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa mencarikan informasi terkait."
+   },
+   {
+    "prompt": "ganti password GitHubku",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Saya belum bisa melakukan itu — tidak punya akses ke perangkat di rumahmu. Yang bisa saya bantu: membantu menyusun rencananya."
+   },
+   {
+    "prompt": "video call nomor ibu",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu membantu menyusun rencananya."
+   },
+   {
+    "prompt": "pesankan kurir ke bandara",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "lacak paket dari J&T",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas akun pribadimu, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "backup data di HP-ku",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "hubungi nomor dokter",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa mencarikan informasi terkait."
+   },
+   {
+    "prompt": "matikan lampu teras",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "batalkan paket dari Shopee Express",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke aplikasi/perangkat itu. Kalau mau, saya bisa menyiapkan teks yang tinggal kamu kirim."
+   },
+   {
+    "prompt": "transfer uang ke rekening BRI",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu mencarikan informasi terkait."
+   },
+   {
+    "prompt": "setel TV ke channel berita",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke perangkat di rumahmu. Kalau mau, saya bisa membantu menyusun rencananya."
+   },
+   {
+    "prompt": "nyalakan printer buat cetak laporan",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Saya belum bisa melakukan itu — tidak punya akses ke layanan pihak ketiga. Yang bisa saya bantu: membantu menyusun rencananya."
+   },
+   {
+    "prompt": "pesankan tiket pesawat buat besok",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa membantu menyusun rencananya."
+   },
+   {
+    "prompt": "nyalakan printer buat cetak undangan",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke layanan pihak ketiga. Kalau mau, saya bisa mencarikan informasi terkait."
+   },
+   {
+    "prompt": "telepon nomor dokter",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Itu di luar kemampuan saya sekarang; saya tidak terhubung ke akun pribadimu. Kalau mau, saya bisa membantu menyusun rencananya."
+   },
+   {
+    "prompt": "ubah AC jadi 24 derajat",
+    "kelas": "irrelevance_no_tool",
+    "jawaban": "Maaf, saya tidak punya kendali atas aplikasi/perangkat itu, jadi tidak bisa menjalankannya. Saya bisa membantu menjelaskan langkahnya supaya kamu lakukan sendiri."
+   }
+  ],
+  "over_tool": [
+   {
+    "prompt": "kemampuan browsing sama pakai pengetahuanmu, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "kalau baru tahu soal fitur cari, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "kalau penasaran soal tool gambar, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "fitur cari sama pakai pengetahuanmu, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   },
+   {
+    "prompt": "tool gambar sama cari gambar, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "kalau kurang paham soal tool yang kamu punya, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "tool gambar itu berguna buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "tool yang kamu punya itu akurat buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "aku penasaran, fitur cari itu sebenernya buat apa sih?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "kalau pengen ngerti soal fitur cari, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "generate image itu berguna buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "generate image sama buat gambar, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   },
+   {
+    "prompt": "tool gambar sama browsing biasa, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   },
+   {
+    "prompt": "kemampuan browsing itu perlu buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "aku penasaran, generate image itu sebenernya buat apa sih?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "kalau kurang paham soal fitur cari, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "generate image sama cari gambar, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "tool gambar itu perlu buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "kalau baru tahu soal generate image, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   },
+   {
+    "prompt": "fitur cari sama jawab dari ingatan, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   },
+   {
+    "prompt": "tool yang kamu punya itu perlu buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "kalau sering dengar soal tool gambar, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "kalau masih bingung soal tool yang kamu punya, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "kalau sering dengar soal generate image, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "aku penasaran, kemampuan browsing itu sebenernya buat apa sih?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "kalau baru tahu soal pencarian web, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool."
+   },
+   {
+    "prompt": "tool gambar sama pakai pengetahuanmu, mending mana buat pemula?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Bedanya: menjelaskan cukup dari pengetahuan saya; mengerjakan baru butuh tool. Kalau nanti kamu memang mau saya kerjakan, tinggal bilang."
+   },
+   {
+    "prompt": "tool yang kamu punya itu termasuk seni buat kerjaan harian?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "ceritain dong pengalaman orang pakai kemampuan browsing",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Itu pertanyaan, bukan permintaan mengerjakan sesuatu — jadi saya jawab langsung tanpa memanggil tool. Tool hanya saya panggil kalau kamu memang minta hasilnya dibuat atau dicari."
+   },
+   {
+    "prompt": "kalau kurang paham soal tool gambar, sebaiknya gimana?",
+    "kelas": "over_tool_negatif",
+    "jawaban": "Saya jawab saja ya, tidak perlu menjalankan tool untuk ini. Saya usahakan tidak memanggil tool untuk obrolan biasa supaya tidak boros dan tidak melambat."
+   }
+  ],
+  "positive_tool": [
+   {
+    "prompt": "desain ikon aplikasi cuaca bergaya minimalis dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render meja kerja programmer dengan nuansa hangat",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render kapal nelayan dengan nuansa hangat",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render meja kerja programmer dengan nuansa sinematik",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render stasiun kereta tua dengan nuansa hangat",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render pasar tradisional dengan nuansa monokrom",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render kapal nelayan dengan nuansa monokrom",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan poster kampanye hemat air buat materi ajar",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain karakter maskot rubah bergaya flat design dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan peta rute wisata buat brosur cetak",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render meja kerja programmer dengan nuansa cerah kontras",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render pasar tradisional dengan nuansa sinematik",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan diagram alur pemesanan buat pitch deck",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain stiker kucing lucu bergaya minimalis dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain sampul podcast bergaya flat design dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan infografis panen kopi buat materi ajar",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render stasiun kereta tua dengan nuansa sinematik",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render ruang tamu skandinavia dengan nuansa berkabut",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain karakter maskot rubah bergaya neon retro dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render pasar tradisional dengan nuansa hangat",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain ikon aplikasi cuaca bergaya vintage dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan poster kampanye hemat air buat pitch deck",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain karakter maskot rubah bergaya vintage dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "desain stiker kucing lucu bergaya flat design dong",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "render meja kerja programmer dengan nuansa monokrom",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   },
+   {
+    "prompt": "visualisasikan peta rute wisata buat pitch deck",
+    "kelas": "positive_tool_image",
+    "jawaban": "Baik, saya buatkan gambarnya sekarang."
+   }
+  ],
+  "reasoning": [
+   {
+    "prompt": "Hari ini Selasa. 2 hari lagi hari apa?",
+    "kelas": "reasoning_checkable",
+    "kunci": "Kamis",
+    "jawaban": "Selasa + 2 hari = Kamis."
+   },
+   {
+    "prompt": "Budi punya 15 permen, dibagikan rata ke 3 temannya sampai habis, lalu dia beli 5 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "5",
+    "jawaban": "Dibagikan ke 3 teman: 15 : 3 = 5 per teman, dan semuanya habis jadi Budi tersisa 0. Setelah beli 5 lagi: 0 + 5 = 5."
+   },
+   {
+    "prompt": "Berapa 5% dari 200?",
+    "kelas": "reasoning_checkable",
+    "kunci": "10",
+    "jawaban": "5% x 200 = 10."
+   },
+   {
+    "prompt": "Kereta melaju 60 km/jam selama 2 jam. Berapa km jaraknya?",
+    "kelas": "reasoning_checkable",
+    "kunci": "120",
+    "jawaban": "Jarak = kecepatan x waktu = 60 x 2 = 120 km."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 9, 12, 47, 17.",
+    "kelas": "reasoning_checkable",
+    "kunci": "9, 12, 17, 47",
+    "jawaban": "Urutannya: 9, 12, 17, 47."
+   },
+   {
+    "prompt": "Hitung: 19 + 3 x 4. Tulis hasil akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "31",
+    "jawaban": "Perkalian dulu: 3 x 4 = 12. Lalu 19 + 12 = 31."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 2, 22, 59, 12.",
+    "kelas": "reasoning_checkable",
+    "kunci": "2, 12, 22, 59",
+    "jawaban": "Urutannya: 2, 12, 22, 59."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 45, 24, 40, 27.",
+    "kelas": "reasoning_checkable",
+    "kunci": "24, 27, 40, 45",
+    "jawaban": "Urutannya: 24, 27, 40, 45."
+   },
+   {
+    "prompt": "Hari ini Rabu. 4 hari lagi hari apa?",
+    "kelas": "reasoning_checkable",
+    "kunci": "Minggu",
+    "jawaban": "Rabu + 4 hari = Minggu."
+   },
+   {
+    "prompt": "Budi punya 12 permen, dibagi rata untuk 4 orang termasuk dirinya sendiri, lalu dia beli 7 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "10",
+    "jawaban": "Dibagi ke 4 orang termasuk Budi: 12 : 4 = 3 per orang, jadi Budi pegang 3. Setelah beli 7 lagi: 3 + 7 = 10."
+   },
+   {
+    "prompt": "Budi punya 15 permen, dibagi rata untuk 3 orang termasuk dirinya sendiri, lalu dia beli 3 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "8",
+    "jawaban": "Dibagi ke 3 orang termasuk Budi: 15 : 3 = 5 per orang, jadi Budi pegang 5. Setelah beli 3 lagi: 5 + 3 = 8."
+   },
+   {
+    "prompt": "Berapa 5% dari 400?",
+    "kelas": "reasoning_checkable",
+    "kunci": "20",
+    "jawaban": "5% x 400 = 20."
+   },
+   {
+    "prompt": "Hitung: 12 + 8 x 3. Tulis hasil akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "36",
+    "jawaban": "Perkalian dulu: 8 x 3 = 24. Lalu 12 + 24 = 36."
+   },
+   {
+    "prompt": "Hari ini Senin. 4 hari lagi hari apa?",
+    "kelas": "reasoning_checkable",
+    "kunci": "Jumat",
+    "jawaban": "Senin + 4 hari = Jumat."
+   },
+   {
+    "prompt": "Jika 4 apel harganya Rp5.000, berapa harga 9 apel? Tulis angka akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "11250",
+    "jawaban": "Harga per apel = 5.000 : 4 = 1.250. Untuk 9 apel = 11250."
+   },
+   {
+    "prompt": "Jika 3 apel harganya Rp12.000, berapa harga 11 apel? Tulis angka akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "44000",
+    "jawaban": "Harga per apel = 12.000 : 3 = 4.000. Untuk 11 apel = 44000."
+   },
+   {
+    "prompt": "Hitung: 30 + 7 x 5. Tulis hasil akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "65",
+    "jawaban": "Perkalian dulu: 7 x 5 = 35. Lalu 30 + 35 = 65."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 17, 12, 53, 54.",
+    "kelas": "reasoning_checkable",
+    "kunci": "12, 17, 53, 54",
+    "jawaban": "Urutannya: 12, 17, 53, 54."
+   },
+   {
+    "prompt": "Jika 6 apel harganya Rp12.000, berapa harga 7 apel? Tulis angka akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "14000",
+    "jawaban": "Harga per apel = 12.000 : 6 = 2.000. Untuk 7 apel = 14000."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 44, 20, 9, 36.",
+    "kelas": "reasoning_checkable",
+    "kunci": "9, 20, 36, 44",
+    "jawaban": "Urutannya: 9, 20, 36, 44."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 25, 53, 11, 22.",
+    "kelas": "reasoning_checkable",
+    "kunci": "11, 22, 25, 53",
+    "jawaban": "Urutannya: 11, 22, 25, 53."
+   },
+   {
+    "prompt": "Sebuah baju Rp150.000 diskon 25%. Berapa harga setelah diskon?",
+    "kelas": "reasoning_checkable",
+    "kunci": "112500",
+    "jawaban": "Diskon = 25% x 150.000 = 37.500. Harga akhir = 112.500."
+   },
+   {
+    "prompt": "Berapa 25% dari 200?",
+    "kelas": "reasoning_checkable",
+    "kunci": "50",
+    "jawaban": "25% x 200 = 50."
+   },
+   {
+    "prompt": "Sebuah baju Rp150.000 diskon 10%. Berapa harga setelah diskon?",
+    "kelas": "reasoning_checkable",
+    "kunci": "135000",
+    "jawaban": "Diskon = 10% x 150.000 = 15.000. Harga akhir = 135.000."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 54, 8, 3, 49.",
+    "kelas": "reasoning_checkable",
+    "kunci": "3, 8, 49, 54",
+    "jawaban": "Urutannya: 3, 8, 49, 54."
+   },
+   {
+    "prompt": "Hari ini Selasa. 6 hari lagi hari apa?",
+    "kelas": "reasoning_checkable",
+    "kunci": "Senin",
+    "jawaban": "Selasa + 6 hari = Senin."
+   },
+   {
+    "prompt": "Sebuah baju Rp120.000 diskon 15%. Berapa harga setelah diskon?",
+    "kelas": "reasoning_checkable",
+    "kunci": "102000",
+    "jawaban": "Diskon = 15% x 120.000 = 18.000. Harga akhir = 102.000."
+   },
+   {
+    "prompt": "Budi punya 20 permen, dibagi rata untuk 5 orang termasuk dirinya sendiri, lalu dia beli 7 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "11",
+    "jawaban": "Dibagi ke 5 orang termasuk Budi: 20 : 5 = 4 per orang, jadi Budi pegang 4. Setelah beli 7 lagi: 4 + 7 = 11."
+   },
+   {
+    "prompt": "Budi punya 20 permen, dibagikan rata ke 4 temannya sampai habis, lalu dia beli 5 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "5",
+    "jawaban": "Dibagikan ke 4 teman: 20 : 4 = 5 per teman, dan semuanya habis jadi Budi tersisa 0. Setelah beli 5 lagi: 0 + 5 = 5."
+   },
+   {
+    "prompt": "Budi punya 9 permen, dibagikan rata ke 3 temannya sampai habis, lalu dia beli 7 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "7",
+    "jawaban": "Dibagikan ke 3 teman: 9 : 3 = 3 per teman, dan semuanya habis jadi Budi tersisa 0. Setelah beli 7 lagi: 0 + 7 = 7."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 31, 37, 27, 12.",
+    "kelas": "reasoning_checkable",
+    "kunci": "12, 27, 31, 37",
+    "jawaban": "Urutannya: 12, 27, 31, 37."
+   },
+   {
+    "prompt": "Hari ini Sabtu. 3 hari lagi hari apa?",
+    "kelas": "reasoning_checkable",
+    "kunci": "Selasa",
+    "jawaban": "Sabtu + 3 hari = Selasa."
+   },
+   {
+    "prompt": "Hitung: 16 + 10 x 2. Tulis hasil akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "36",
+    "jawaban": "Perkalian dulu: 10 x 2 = 20. Lalu 16 + 20 = 36."
+   },
+   {
+    "prompt": "Budi punya 25 permen, dibagi rata untuk 5 orang termasuk dirinya sendiri, lalu dia beli 3 lagi. Berapa permen Budi sekarang?",
+    "kelas": "reasoning_checkable",
+    "kunci": "8",
+    "jawaban": "Dibagi ke 5 orang termasuk Budi: 25 : 5 = 5 per orang, jadi Budi pegang 5. Setelah beli 3 lagi: 5 + 3 = 8."
+   },
+   {
+    "prompt": "Hitung: 28 + 7 x 4. Tulis hasil akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "56",
+    "jawaban": "Perkalian dulu: 7 x 4 = 28. Lalu 28 + 28 = 56."
+   },
+   {
+    "prompt": "Jika 4 apel harganya Rp9.000, berapa harga 7 apel? Tulis angka akhirnya.",
+    "kelas": "reasoning_checkable",
+    "kunci": "15750",
+    "jawaban": "Harga per apel = 9.000 : 4 = 2.250. Untuk 7 apel = 15750."
+   },
+   {
+    "prompt": "Urutkan angka ini dari terkecil ke terbesar: 6, 7, 10, 43.",
+    "kelas": "reasoning_checkable",
+    "kunci": "6, 7, 10, 43",
+    "jawaban": "Urutannya: 6, 7, 10, 43."
+   },
+   {
+    "prompt": "Sebuah baju Rp150.000 diskon 15%. Berapa harga setelah diskon?",
+    "kelas": "reasoning_checkable",
+    "kunci": "127500",
+    "jawaban": "Diskon = 15% x 150.000 = 22.500. Harga akhir = 127.500."
+   },
+   {
+    "prompt": "Kereta melaju 40 km/jam selama 2,5 jam. Berapa km jaraknya?",
+    "kelas": "reasoning_checkable",
+    "kunci": "100",
+    "jawaban": "Jarak = kecepatan x waktu = 40 x 2,5 = 100 km."
+   },
+   {
+    "prompt": "Berapa 50% dari 200?",
+    "kelas": "reasoning_checkable",
+    "kunci": "100",
+    "jawaban": "50% x 200 = 100."
+   }
+  ]
+ },
+ "_riwayat": [
+  {
+   "waktu": "2026-07-27T09:26:35.290088+00:00",
+   "perubahan": "axis reasoning 30 -> 40 probe (F-216: 8 probe membuat vonis gate bisa terbalik oleh kebisingan). Axis lain TIDAK disentuh agar perbandingan berpasangan dgn baseline lama tetap sahih.",
+   "seed": 4242
+  }
+ ]
+}

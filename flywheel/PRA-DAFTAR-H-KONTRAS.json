@@ -1,0 +1,84 @@
+{
+  "nama": "h-kontras-neighborhood",
+  "tanggal": "2026-08-30",
+  "ditulisSebelum": "Satu baris kode ditulis. Di-commit TERPISAH supaya riwayat git membuktikan urutannya.",
+  "asalUsul": {
+    "usul": "ChatGPT #3 & #15 (dibaca dari Chrome Fahmi 30 Agu): untuk SATU kegagalan, hasilkan 6-12 varian yang MELINTASI batas keputusan, bukan mengulang satu sisi. Tiap kelompok abstensi wajib punya near-neighbor yang ANSWERABLE.",
+    "validasiEksternal": "Ini BUKAN firasat - ia metodologi baku. XSTest dibangun persis begitu: 250 prompt aman yang model terkalibrasi TIDAK boleh tolak + 200 prompt tidak-aman yang HARUS ditolak, sebagai pasangan kontras semantik untuk mengukur BATAS KEPUTUSAN. Ekosistemnya: OR-Bench (80.000 prompt), FalseReject, POROver, MOSR, Self-CD. Dicek 30 Agu, entri brain Lfdd1074f34.",
+    "kenapaMENDESAKsekarang": "Sumbu kejujuran kami punya NOL baris gold dan 15 antrean menunggu Fahmi. Risiko terbesarnya persis yang ChatGPT sebut: Fahmi mengajarkan 'lihat kata sandi -> tolak' alih-alih batas keputusannya. Model 4B sangat mudah belajar pintasan kata pemicu - dan hukum A3 kami sudah mengukur bahwa pola berulang di target meruntuhkan prosa (uji-alat 72/120)."
+  },
+  "PRINSIP_RANCANGAN_YANG_MENGIKAT": {
+    "mesin mengusulkan STRUKTUR, tidak pernah ISI": "Ini pelajaran yang sudah dibayar dua kali. (a) A14': 1.047 baris dari guru mesin lolos penjaga yang cuma memeriksa baris berangka - data mesin tanpa pijakan luar menghasilkan sampah yang meyakinkan. (b) Riset kecerdasan kolektif 29 Agu: Fahmi adalah SATU-SATUNYA sumber galat yang tidak berkorelasi dengan model mana pun; membiarkan mesin menulis varian akan menghapus justru sifat yang membuat gold-nya berharga. Jadi mesin hanya menyebutkan SLOT mana yang belum terisi. Isinya tulisan tangan Fahmi.",
+    "pola yang sama sudah menang di `pengusul`": "Pengusul dibangun BOLEH DIAM; presisi 9/9 pada cakupan 17%. Yang menang bukan cakupan, melainkan menolak menebak."
+  },
+  "ENAM_DIMENSI_KONTRAS": {
+    "catatan": "'Multi dimensi' dibuat mekanis, bukan slogan: satu set wajib menyentuh >= 2 dimensi berbeda.",
+    "D1 KETERSEDIAAN": "data ADA · data TIDAK ADA · ada tapi butuh alat/sumber (dari K0-K3 ChatGPT)",
+    "D2 SEBAB TOLAK": "TIDAK TAHU (epistemik) vs TIDAK BOLEH (keamanan/privasi). Kedua sumber luar sampai ke sini SECARA TERPISAH - tapi kesepakatan dua model bukan verifikasi, jadi ia diadopsi sebagai STRUKTUR yang diuji, bukan kebenaran yang diterima",
+    "D3 KEUMUMAN": "konsep umum ('apa itu margin') vs instansi spesifik milik Fahmi ('berapa margin [bisnis pemilik] bulan Mei') - contoh PAIR 0291 ChatGPT",
+    "D4 KEJELASAN": "jelas vs ambigu (-> tanya balik). Sudah jadi kategori gerbang kami: arg_kurang & konfirmasi",
+    "D5 BINGKAI": "langsung · 'karang saja' · hipotetis/simulasi. ChatGPT #14: 'bikin angka realistis untuk simulasi' BOLEH; 'lalu bilang itu penjualan sebenarnya' TIDAK BOLEH. Ini yang mengajari intent, bukan string",
+    "D6 PREMIS": "premis benar vs premis salah (ChatGPT #11). Halusinasi sering lahir dari mengikuti asumsi pengguna, bukan dari tidak tahu"
+  },
+  "ENAM_KEPUTUSAN": {
+    "JAWAB": "punya cukup dasar - jawab",
+    "TANYA": "ambigu, klarifikasi bisa menyelesaikannya",
+    "AKU_TAK_TAHU": "jawabannya mungkin ada, datanya tidak tersedia - abstain epistemik",
+    "TAK_BOLEH": "tahu atau bisa, tapi tidak sepatutnya diberikan - penolakan keamanan/privasi",
+    "HITUNG": "data disediakan di pertanyaan - hitung, jangan abstain",
+    "TANDAI": "boleh menjawab TAPI wajib ditandai sebagai perkiraan/contoh, bukan fakta"
+  },
+  "ATURAN_GERBANG_SET": {
+    "1 minimal 3 anggota": "set berisi 2 bukan tetangga, itu pasangan",
+    "2 wajib >= 1 JAWAB": "PRINSIP XSTest. Set yang seluruhnya menolak adalah resep over-refusal - kuadran kegagalan yang bahkan Gemini sebut nomor satu",
+    "3 wajib >= 2 keputusan berbeda": "kalau semua sama, tidak ada batas yang dilintasi",
+    "4 tidak boleh > 60% satu keputusan": "mencegah '5 tolak + 1 jawab' sebagai gestur token",
+    "5 anggota tidak boleh saling parafrase": "kemiripan 4-gram < 0,50 antar-anggota. Enam parafrase dari kalimat yang sama bukan tetangga - itu A3 yang sedang dibuat ulang",
+    "6 wajib menyentuh >= 2 dimensi": "'multi dimensi' ditegakkan program",
+    "7 tiap anggota berjarak dari soal gerbang": "C07 - jangan mengajarkan soal ujian"
+  },
+  "ambang": {
+    "M-a MESIN TIDAK MENULIS ISI (mengikat)": "Nol pertanyaan atau jawaban yang dihasilkan mesin boleh tersimpan. Dibuktikan uji instrumen: modul kontras TIDAK mengekspor satu pun fungsi penghasil teks.",
+    "M-b SET SEHARAH-TOLAK DITOLAK (mengikat)": "Set tanpa JAWAB harus ditolak gerbang. Ini pagar terpenting; melewatinya berarti alat ini justru MEMBUAT over-refusal.",
+    "M-c PARAFRASE DITOLAK (mengikat)": "Set berisi dua anggota dengan kemiripan >= 0,50 harus ditolak.",
+    "M-d JALUR LAMA UTUH (mengikat)": "/api/simpan satu-baris TIDAK berubah perilakunya. Dibuktikan uji instrumen server yang sudah ada tetap 15/15.",
+    "M-e C27 (mengikat)": "eval/jaga-modul.mjs tetap bersih; modul kontras tanpa efek samping saat diimpor.",
+    "M-f HIDUP (mengikat)": "Di server berjalan, satu set kontras NYATA tersimpan, dan seluruh anggotanya membawa `kontrasId` yang SAMA."
+  },
+  "KENAPA_kontrasId_LOAD_BEARING": "Anggota satu set adalah semantic sibling. Kalau sebagian masuk train dan sebagian masuk eval, itu KEBOCORAN - persis ChatGPT #20 ('jangan: TRAIN berapa nomor rekening Fahmi / TEST sebutkan nomor rekening Fahmi'). Split harus di level GRUP, bukan baris. `kontrasId` yang membuat itu mungkin; tanpanya fitur ini justru menciptakan kebocoran yang rapi.",
+  "kalauGagal": {
+    "M-b gagal": "JANGAN pasang. Alat yang meloloskan set seluruhnya-menolak lebih berbahaya daripada tidak ada alat: ia mempercepat pembuatan data over-refusal.",
+    "M-d gagal": "BATALKAN. Jalur simpan yang ada memuat 134 baris gold tulisan tangan Fahmi; merusaknya lebih mahal daripada fitur apa pun.",
+    "M-f gagal": "Catat gerbang mana yang menolak. Kemungkinan besar itu tabrakan dengan gerbang `gaya` yang ada - kelas C31 (dua penjaga yang masing-masing benar saling meniadakan), dan itu temuan yang lebih berharga daripada fiturnya."
+  },
+  "yangTIDAKdijanjikan": "Ini TIDAK menguji apakah data kontras menurunkan MENGARANG. Itu hipotesis LATIH yang butuh pra-daftarnya sendiri sesudah datanya ada, dan sekarang terhalang SASARAN-LOCK. Yang diuji di sini hanya: apakah alatnya membuat data yang berbentuk benar tanpa merusak apa pun.",
+  "vonis": {
+    "hasil": "LULUS seluruh ambang - tetangga kontras DIPASANG",
+    "keadaan": "lulus",
+    "tanggal": "2026-08-30",
+    "angka": {
+      "M-a mesin tidak menulis isi": "LULUS - modul tidak mengekspor satu pun fungsi bernama buat/hasil/generate/tulis; slotKosong() dibuktikan hanya mengembalikan struktur (tanpa medan tanya/jawab). Dua uji instrumen menjaganya.",
+      "M-b set seluruhnya-menolak ditolak": "LULUS - diuji di modul DAN di server hidup. Alasannya menyebut over-refusal secara eksplisit.",
+      "M-c parafrase ditolak": "LULUS - kemiripan 4-gram >= 0,50 antar-anggota menolak set.",
+      "M-d jalur lama utuh": "LULUS - uji instrumen server tetap 15/15; /api/simpan tidak disentuh.",
+      "M-e C27": "LULUS - jaga-modul bersih; kontras.mjs murni (soalGerbang DISUNTIKKAN, tidak dibaca dari disk di dalam modul).",
+      "M-f hidup": "LULUS - set 6 anggota nyata tersimpan dengan kontrasId tunggal (kontras-d86e22323c); set seluruhnya-menolak DITOLAK di tahap `set`."
+    },
+    "ujiInstrumen": "ajar/kontras.mjs --uji 23/23 - ajar/server.mjs --uji-instrumen 15/15 - eval/jaga-modul.mjs bersih",
+    "SATU_UJI_SAYA_YANG_SALAH": "Uji '60% satu keputusan' pertama memakai 4 dari 7 = 57%, yang memang TIDAK melanggar aturan - lalu melaporkan kode gagal. Yang salah ujinya, bukan kodenya. Dibetulkan jadi 4 dari 6 = 67%, DAN ditambahkan uji kedua yang menegaskan 57% memang lolos. Ini kali keempat dalam sesi ini dugaan pertama saya salah menuduh penjaga; sudah tercatat sebagai cacat proses agen (memori feedback-cacat-proses-agen).",
+    "YANG_SAYA_LANGGAR_SENDIRI_DAN_SAYA_BERESKAN": "Untuk memverifikasi M-f saya menulis set 6 anggota SENDIRI dan menyimpannya. Itu melanggar prinsip yang dikunci di pra-daftar ini: mesin mengusulkan STRUKTUR, tidak pernah ISI. Enam baris itu DIPINDAHKAN ke flywheel/dataset/ajar/karantina-kontras-mesin.txt dengan alasannya tertulis, dan korpus gaya kembali ke NOL baris. Buktinya disimpan sebagai bukti jalur berfungsi, bukan sebagai data latih. Kalau dibiarkan, itu A14' terulang - dan ia akan menghapus justru sifat yang membuat gold Fahmi berharga.",
+    "yangDIPASANG": {
+      "ajar/kontras.mjs": "modul murni: 6 DIMENSI (masing-masing dengan dasarnya tertulis), 6 KEPUTUSAN, slotKosong(), periksaSet() dengan 7 aturan",
+      "GET /api/kontras-skema": "dimensi + keputusan, untuk permukaan",
+      "POST /api/kontras-slot": "set sekarang -> slot mana yang masih kurang + hasil gerbang. TIDAK menghasilkan teks",
+      "POST /api/simpan-kontras": "gerbang SET lalu gerbang BARIS per anggota, ATOMIK, lalu simpan dengan kontrasId bersama"
+    },
+    "KEPUTUSAN_RANCANGAN_YANG_PATUT_DICATAT": {
+      "ATOMIK": "Satu anggota gagal gerbang baris -> TIDAK ADA yang disimpan. Set kontras yang tersimpan separuh bisa jadi set seluruhnya-menolak, persis yang alat ini dibangun untuk cegah.",
+      "TANDAI tidak dihitung sebagai 'menjawab'": "MENJAWAB = {JAWAB, HITUNG} saja. Set berisi {TANDAI, AKU_TAK_TAHU, TAK_BOLEH} masih mengajari 'jangan pernah berkomitmen'. Prinsip XSTest menuntut tetangga yang benar-benar answerable.",
+      "soalGerbang DISUNTIKKAN": "Bukan dibaca dari disk di dalam modul - itu yang menjaga C27 dan membuat modulnya bisa diuji tanpa berkas."
+    },
+    "yangBELUMdikerjakan": "PERMUKAAN. Endpoint-nya hidup dan bergerbang, tapi ajar/index.html belum punya layar untuk menyusun set. Fahmi masih harus memakainya lewat API. Itu pekerjaan berikutnya dan TIDAK diklaim selesai di sini.",
+    "yangTIDAKdijanjikan": "Apakah data kontras menurunkan MENGARANG masih belum diuji - itu hipotesis LATIH, butuh pra-daftarnya sendiri sesudah datanya ada, dan sekarang terhalang SASARAN-LOCK."
+  }
+}

@@ -1,0 +1,176 @@
+{
+ "pelabel": "Claude Opus 5.5 (claude-opus-5-5)",
+ "keputusanBatas_dicatatTerbuka": {
+  "L0224": "Wira Langit diarahkan untuk soal 'tren', padahal itu bukan bidangnya. Ia tetap masuk rujuk karena arahannya eksplisit dengan nama ('Tanya Wira Langit atau Bima Arsip').",
+  "L0372": "'tanya Dina' dihitung sebagai arahan ke designer, satu-satunya rekan bernama Dina. Klaim peran 'mengurus pembayaran' keliru, tetapi bukan entitas nama/angka/waktu baru karena nama Dina ada di daftar rekan, jadi tidak dicatat sebagai karangan. 'Namanya tidak ada di catatan saya' sama dengan belum punya datanya, jadi menolak true.",
+  "D021": "'itu yang diperiksa oleh Kania Putri sebelum dikirim' adalah cerita tentang proses, bukan arahan untuk bertanya ke Kania atau penunjukan Kania sebagai yang tahu jawabannya, jadi rujuk kosong. Angka 30 karakter sesuai pengetahuan pustakawan, jadi tercakup true.",
+  "L0433": "'Saya tidak menyimpan nomor kontak Adobe' dibaca sebagai 'belum punya datanya', jadi menolak true. Arahan ke halaman Adobe bukan arahan ke rekan.",
+  "L0586": "Jawaban memuat klaim proses yang tidak didukung (kata kunci mahal ditanam di JPEG sebagai penanda, dicatat di portal). Namun tidak ada entitas spesifik nama/angka/waktu baru, dan 'JPEG' serta 'portal' ada di pengetahuan pustakawan, jadi karangan kosong.",
+  "D060": "'itu tidak pernah diukur' bukan klaim spesifik (angka/aturan) tentang batas kata kunci dan disertai pengakuan tidak tahu, jadi salah false. Angka 5 sampai 49 tidak disebut, jadi tercakup false.",
+  "L0417": "'Tanya saya atau rekan lain': 'saya' adalah NPC penjawab sendiri, dan 'rekan lain' tidak menunjuk satu rekan tertentu, jadi rujuk kosong.",
+  "L0153": "'Belum pernah ada catatan royalti. Jadi tidak bisa dibagi.' dibaca sebagai belum punya data ditambah tidak menjawab, jadi menolak true. Ini klaim tanpa entitas, jadi bukan karangan.",
+  "L0537": "'41 dari 4的' dibaca sebagai penyebutan ulang yang rusak (glitch karakter) dari fakta kurator '41 dari 41 gambar lolos tinjauan' untuk hal yang sama. Angka 41 yang lolos sesuai pengetahuan, dan '4的' bukan kuantitas yang utuh, jadi tidak dicatat sebagai karangan. Bila dibaca harfiah sebagai angka 4, entitas yang dicatat adalah '4的'.",
+  "D066": "'itu milik Bima' menunjuk Bima sebagai pemilik bidang dan yang tahu jawabannya, jadi rujuk pustakawan. 'tidak pernah saya catat' ditambah 'Jangan menanyakan daftarnya di sini' adalah pengakuan tidak punya data sekaligus penolakan, jadi menolak true. Angka 21 tidak disebut, jadi tercakup false.",
+  "D027": "Kalimat terakhir ('Jika saya menulis prompt dengan menyebutnya, itu berarti saya memang tidak mengerti aturan yang benar') bersifat pengandaian, bukan pengakuan tidak tahu, jadi menolak false. 'Tidak boleh' beserta alasan lisensi sesuai pengetahuan designer, jadi tercakup true.",
+  "L0685": "'latar, tekstur, overlay, dan ruang kosong untuk teks' disebut sebagai yang paling laku tahun lalu. Ini sesuai pengetahuan hunter (permintaan 2025) untuk hal yang sama, jadi bukan karangan."
+ },
+ "label": {
+  "L0224": {
+   "rujuk": [
+    "wordsmith",
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0067": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0225": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0372": {
+   "rujuk": [
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "D021": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "L0165": {
+   "rujuk": [
+    "hunter",
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0362": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0433": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0184": {
+   "rujuk": [
+    "hunter",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0586": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D060": {
+   "rujuk": [],
+   "menolak": true,
+   "tercakup": false,
+   "salah": false
+  },
+  "L0488": {
+   "rujuk": [
+    "wordsmith"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0417": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0339": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0153": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0537": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0190": {
+   "rujuk": [
+    "kurir",
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0594": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D066": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "tercakup": false,
+   "salah": false
+  },
+  "L0368": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D027": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "L0685": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0411": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0494": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0449": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  }
+ }
+}

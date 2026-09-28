@@ -1,0 +1,47 @@
+# Merge TIES migancore-uji-rlvr1 <- ['hitung-promptragam', 'gaya-rlvr1'] (grid [[1,1]]) + gerbang 3 lengan + GGUF
+
+   2 adapter siap (236 MB total)
+   saldo: $0.36
+   7 layak; termurah RTX 3090 Ti $0.148/jam
+
+   percobaan 1/3 — RTX 3090 Ti $0.148/jam (id 35612014)
+   instance 49469048 disewa
+   [32msiap & SSH menjawab[0m
+
+## Kirim bahan
+   terkirim: kemas_merge14.py
+   terkirim: soal-aritmetika-bersih.json
+   terkirim: kenari.json
+   terkirim: lora-hitung-promptragam.tgz
+   terkirim: lora-gaya-rlvr1.tgz
+
+## Merge + gerbang + GGUF
+   [32mproses hidup[0m
+   [ 2 mnt] Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+   [ 3 mnt] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]   ...detak 1 mnt (proses hidup)
+   [ 4 mnt] Fetching 3 files:  33%|????      | 1/3 [01:07<02:15, 67.51s/it]   ...detak 2 mnt (proses hidup)
+   [ 5 mnt]   warnings.warn(
+   [ 5 mnt]    ...detak 3 mnt (proses hidup)
+   [ 6 mnt]    ...detak 4 mnt (proses hidup)
+   [ 7 mnt]   warnings.warn(
+   [ 8 mnt]    ...detak 6 mnt (proses hidup)
+   [ 9 mnt]    ...detak 7 mnt (proses hidup)
+   [10 mnt]    ...detak 8 mnt (proses hidup)
+   [11 mnt]    ...detak 9 mnt (proses hidup)
+   [12 mnt]    ...detak 10 mnt (proses hidup)
+   [13 mnt]    ...detak 11 mnt (proses hidup)
+   [14 mnt]    ...detak 12 mnt (proses hidup)
+   [15 mnt]    ...detak 13 mnt (proses hidup)
+   [15 mnt] Writing:  59%|??????    | 4.71G/8.05G [00:12<00:08, 374Mbyte/s]
+   [16 mnt] [ 40%] Building CXX object src/CMakeFiles/llama.dir/models/falcon-h1.cpp.o
+   [17 mnt] [100%] Building CXX object tools/quantize/CMakeFiles/llama-quantize-impl.dir/quantize.cpp.o
+   [18 mnt] [ 282/ 398] blk.25.attn_q.weight                 - [  2560,   4096,      1,      1], type =    f16, conve
+
+## Matikan instance
+   [32minstance 49469048 dimatikan[0m
+   hidup 20 menit · perkiraan $0.05
+Traceback (most recent call last):
+  File "./flywheel\vast\luncurkan_merge14.py", line 241, in <module>
+    raise RuntimeError("proses MATI:\n" + (penuh.stdout or "")[-1400:])
+RuntimeError: proses MATI:
+

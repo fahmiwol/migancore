@@ -1,0 +1,120 @@
+{
+  "_": "Beban kerja E1 (dan kelak E2): enam NPC ASLI Galantara + kalimat pemain. Dikunci sebelum data, bersama PRA-DAFTAR-E1-LATENSI-NPC.json.",
+  "sumber": {
+    "berkas": "<local-dir>/src/data/config.js (NPCS)",
+    "sha256_16": "a70bc43191d6aea0",
+    "commit": "45a5de1 (2026-09-10)",
+    "kenapaDisalin": "Supaya pengukuran bisa diulang walau Galantara berubah. Pengetahuan NPC di bawah adalah salinan PERSIS pesan pohon dialognya; bila sumbernya berubah, sidik jari di atas tidak cocok dan itu terlihat."
+  },
+  "kategori": {
+    "sapa": "Basa-basi. Jawaban tidak menuntut fakta.",
+    "tahu": "Terjawab dari pengetahuan NPC sendiri (pohon dialognya).",
+    "luar": "TIDAK ada di pengetahuan NPC. Jawaban jujur = mengaku tidak tahu. Untuk E1 hanya dicatat; untuk E2 inilah kebenaran-dasar tanpa penilai."
+  },
+  "npc": [
+    {
+      "id": "guide", "nama": "Guide", "peran": "Pemandu Oola",
+      "pengetahuan": [
+        "Hei! Selamat datang di Oola, gerbang menuju seluruh Galantara! Kamu baru pertama kali ke sini?",
+        "Keren! Di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia, Dev Hub untuk kontributor, dan banyak warga yang bisa diajak ngobrol. Santai aja, tidak ada yang dipaksa login dulu!",
+        "Welcome back! Ada update baru — dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau timer muncul di atas, buruan masuk!"
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Halo!" },
+        { "k": "sapa", "q": "Hai, kamu siapa?" },
+        { "k": "tahu", "q": "Oola itu tempat apa sih?" },
+        { "k": "tahu", "q": "Warp Portal buat apa?" },
+        { "k": "tahu", "q": "Harus login dulu nggak?" },
+        { "k": "luar", "q": "Ada berapa pemain online sekarang?" },
+        { "k": "luar", "q": "Siapa yang bikin Galantara?" },
+        { "k": "luar", "q": "Server Galantara ada di mana?" }
+      ]
+    },
+    {
+      "id": "budi", "nama": "Budi", "peran": "Warga Oola",
+      "pengetahuan": [
+        "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+        "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Hai Budi, apa kabar?" },
+        { "k": "sapa", "q": "Makasih ya!" },
+        { "k": "tahu", "q": "Kamu sering ke Spot mana?" },
+        { "k": "tahu", "q": "Malioboro kayak gimana?" },
+        { "k": "tahu", "q": "Gimana caranya ke Malioboro?" },
+        { "k": "luar", "q": "Berapa harga batik di Malioboro?" },
+        { "k": "luar", "q": "Siapa wali kota Oola sekarang?" },
+        { "k": "luar", "q": "Kamu umur berapa?" }
+      ]
+    },
+    {
+      "id": "maya", "nama": "Maya", "peran": "Travel Guide",
+      "pengetahuan": [
+        "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+        "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Halo Maya!" },
+        { "k": "sapa", "q": "Aku bosan nih" },
+        { "k": "tahu", "q": "Rekomendasiin Spot dong" },
+        { "k": "tahu", "q": "Ada apa aja di Kuta?" },
+        { "k": "tahu", "q": "Berapa travel fee ke Kuta?" },
+        { "k": "luar", "q": "Jam berapa performer mulai tampil?" },
+        { "k": "luar", "q": "Siapa nama performer-nya?" },
+        { "k": "luar", "q": "Hotel mana yang paling murah di Kuta?" }
+      ]
+    },
+    {
+      "id": "sari", "nama": "Sari", "peran": "Dungeon Scout",
+      "pengetahuan": [
+        "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+        "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Psst, ada info apa?" },
+        { "k": "sapa", "q": "Oke, sip!" },
+        { "k": "tahu", "q": "Dungeon itu apa?" },
+        { "k": "tahu", "q": "Reward-nya apa aja?" },
+        { "k": "tahu", "q": "Dungeon bertahan berapa lama?" },
+        { "k": "luar", "q": "Kapan tepatnya dungeon berikutnya muncul?" },
+        { "k": "luar", "q": "Berapa Berlian yang bisa didapat?" },
+        { "k": "luar", "q": "Bos dungeon-nya siapa?" }
+      ]
+    },
+    {
+      "id": "dev", "nama": "Dev", "peran": "Core Developer",
+      "pengetahuan": [
+        "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+        "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+        "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Halo Dev!" },
+        { "k": "sapa", "q": "Keren, makasih infonya" },
+        { "k": "tahu", "q": "Galantara open source nggak?" },
+        { "k": "tahu", "q": "Aku bukan programmer, bisa ikut kontribusi?" },
+        { "k": "tahu", "q": "Daftar kontributor di mana?" },
+        { "k": "luar", "q": "Kapan dev.galantara.io rilis?" },
+        { "k": "luar", "q": "Pakai bahasa pemrograman apa?" },
+        { "k": "luar", "q": "Berapa gaji kontributor?" }
+      ]
+    },
+    {
+      "id": "dewi", "nama": "Dewi", "peran": "Merchant Kuta",
+      "pengetahuan": [
+        "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+        "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+      ],
+      "kalimat": [
+        { "k": "sapa", "q": "Halo Dewi!" },
+        { "k": "sapa", "q": "Wah menarik" },
+        { "k": "tahu", "q": "Lagi ada promo apa?" },
+        { "k": "tahu", "q": "Gimana caranya ke booth kamu?" },
+        { "k": "tahu", "q": "Ongkirnya gratis sampai mana?" },
+        { "k": "luar", "q": "Berapa harga kerajinan yang paling murah?" },
+        { "k": "luar", "q": "Bisa bayar pakai QRIS nggak?" },
+        { "k": "luar", "q": "Stok barangnya masih ada berapa?" }
+      ]
+    }
+  ]
+}

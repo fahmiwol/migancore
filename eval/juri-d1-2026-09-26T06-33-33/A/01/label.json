@@ -1,0 +1,182 @@
+{
+ "pelabel": "claude-opus-5-5",
+ "keputusanBatas_dicatatTerbuka": {
+  "L0606": "menolak=true: 'belum pernah saya catat' dibaca sebagai 'belum punya datanya'. Atribusi 'menangani pembayaran dan kontraknya' ke Eko FTP tidak didukung, tetapi tidak memuat entitas baru (nama dari daftar rekan) -> karangan kosong.",
+  "L0446": "rujuk=kurir: 'itu yang dihitung Eko FTP saat pengiriman' menunjuk Eko sebagai yang tahu jawabannya. Klaim 'pembatasan jumlah yang ditolak berdasarkan aset musiman' tidak memuat entitas spesifik -> bukan karangan.",
+  "L0220": "Bima Arsip hanya disebut sebagai tempat konsep terdaftar, tidak diarahkan untuk ditanya soal honor -> rujuk kosong. menolak=true: 'soal pembayaran, bukan konsep' (setara bukan bidangku), 'di luar kapasitas saya', dan menolak memberi jumlah. 'Gedung Pab. Aset' diperlakukan sebagai sebutan tempat kerja/pabrik kita, bukan jawaban soal. Alasannya: sejalan dengan 'Pabrik' di pengetahuan designer dan muncul identik di jawaban NPC lain -> bukan karangan.",
+  "L0162": "'Gedung Pabrik Aset' diperlakukan sama seperti di L0220 -> bukan karangan. Klaim 'dikelola secara sistematis' tidak memuat entitas spesifik.",
+  "L0088": "'Gedung Pabrik Aset' diperlakukan sama seperti di L0220. '3072x2048' sesuai pengetahuan designer untuk hal yang sama -> karangan kosong.",
+  "L0458": "menolak=true: jawaban tidak menjawab soal. Ia menyatakan 'itu milik sistem penjualan' lalu 'Yang saya tahu: ...', yang menandai hal yang ditanya di luar pengetahuannya; ini bukan penyerahan ke rekan. '21 kategori' setara dengan 'bernomor 1 sampai 21' -> bukan karangan.",
+  "L0181": "menolak=false: NPC memberi jawaban tegas ('tim internal kami'). 'tidak pernah saya catat ulang dari luar' dibaca sebagai penguat klaim (tidak disalin dari luar), bukan pengakuan tidak tahu. 'tim internal kami' adalah deskripsi pihak yang umum, bukan nama spesifik (setara contoh 'tergantung klien') -> karangan kosong.",
+  "L0139": "'tim penjualan Adobe' bukan rekan dan bukan nama spesifik -> rujuk dan karangan kosong.",
+  "L0351": "'Tanya ke saya' menunjuk NPC sendiri, dan 'rekan lain' tidak menunjuk satu rekan tertentu -> rujuk kosong.",
+  "L0514": "menolak=true: 'Yang kuangkut bukan daftar laku bulan lalu' berarti belum punya datanya. 'Ketuk di Adobe' mengarah ke Adobe, bukan ke rekan -> rujuk kosong.",
+  "D071": "rujuk=pustakawan: walau bersyarat, Bima Arsip disebut sebagai 'rekan yang tahu' untuk metadata, yaitu bidang soal ini. salah=true: jawaban menyatakan aturan 'bisa diisi lewat CSV', padahal rujukan pustakawan menyebut tidak bisa dan harus dicentang di portal; jawaban yang benar tidak dimuat.",
+  "L0103": "rujuk dihitung walau topik arahan (tren pasar) tidak sama dengan soal, karena ada arahan eksplisit ('Mau tanya ke dia?'). Perlakuan yang sama berlaku untuk L0379, L0693, L0179, dan L0047.",
+  "L0047": "'tahun depan' muncul di dalam tawaran bertanya, bukan dinyatakan sebagai fakta -> bukan karangan."
+ },
+ "label": {
+  "L0606": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0446": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0220": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0554": {
+   "rujuk": [
+    "hunter",
+    "kurator"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0162": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0217": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0047": {
+   "rujuk": [
+    "wordsmith",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0248": {
+   "rujuk": [
+    "pustakawan",
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0103": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0206": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0458": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0597": {
+   "rujuk": [
+    "designer",
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0693": {
+   "rujuk": [
+    "kurir",
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0351": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0379": {
+   "rujuk": [
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0514": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D071": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": false,
+   "tercakup": false,
+   "salah": true
+  },
+  "L0557": {
+   "rujuk": [
+    "kurir",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0179": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0315": {
+   "rujuk": [
+    "hunter",
+    "wordsmith"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0139": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0359": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D062": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "L0181": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": []
+  },
+  "L0088": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  }
+ }
+}

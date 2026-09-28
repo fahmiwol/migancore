@@ -1,0 +1,78 @@
+# probe-keterjawaban — qwen3:4b · 36 soal · http://127.0.0.1:11434/api/chat
+✓ J2-F1     fakta           → fakta           31289ms
+✓ J2-F2     fakta           → fakta           4241ms
+✓ J2-F3     fakta           → fakta           4724ms
+✓ J2-F4     fakta           → fakta           6139ms
+✓ J2-F5     fakta           → fakta           6388ms
+✓ J2-F6     fakta           → fakta           6553ms
+✓ J2-F7     fakta           → fakta           4730ms
+✓ J2-F8     fakta           → fakta           4142ms
+✓ J2-A1     tak-terjawab    → tak-terjawab    4113ms
+⚠ GALAT J2-A2     tak-terjawab    → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan ambang batas kadar  6266ms
+⚠ GALAT J2-A3     tak-terjawab    → bukan JSON: {
+  "jenis": "tak-terjawab",
+  "alasan": "Pertanyaan ini menanyakan tentang pene 6247ms
+⚠ GALAT J2-A4     tak-terjawab    → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan kode HS (Harmonized 6228ms
+⚠ GALAT J2-A5     tak-terjawab    → bukan JSON: {
+  "jenis": "tak-terjawab",
+  "alasan": "Katalis brakiluminase tidak dikenal da 6373ms
+⚠ GALAT J2-A6     tak-terjawab    → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan lokasi kantor pusat 6292ms
+⚠ GALAT J2-B5     premis-salah    → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan mengapa Bahasa Indo 6307ms
+⚠ GALAT J2-D5     maksud-kurang   → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan kapasitas normal me 6224ms
+⚠ GALAT J2-B1     premis-salah    → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan alasan spesifik men 6294ms
+⚠ GALAT J2-B2     premis-salah    → bukan JSON: {
+  "jenis": "tak-terjawab",
+  "alasan": "Pertanyaan ini menanyakan penghematan  6269ms
+✓ J2-B3     premis-salah    → premis-salah    5287ms
+⚠ GALAT J2-B4     premis-salah    → bukan JSON: {
+  "jenis": "tak-terjawab",
+  "alasan": "Pertanyaan ini menanyakan alasan utama 6296ms
+~ J2-C1     konteks-kurang  → kedaluwarsa     4396ms
+~ J2-C2     konteks-kurang  → premis-salah    5998ms
+~ J2-C3     konteks-kurang  → kedaluwarsa     3853ms
+~ J2-C4     konteks-kurang  → kedaluwarsa     4958ms
+~ J2-D1     maksud-kurang   → tak-terjawab    6111ms
+✓ J2-D2     maksud-kurang   → maksud-kurang   6448ms
+~ J2-D3     maksud-kurang   → konteks-kurang  5494ms
+✓ J2-D4     maksud-kurang   → maksud-kurang   5805ms
+✓ J2-E1     kedaluwarsa     → kedaluwarsa     3414ms
+✓ J2-E2     kedaluwarsa     → kedaluwarsa     3461ms
+✓ J2-E3     kedaluwarsa     → kedaluwarsa     5583ms
+⚠ GALAT J2-E4     kedaluwarsa     → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan nama Direktur Jende 6534ms
+~ J2-G1     subjektif       → maksud-kurang   4742ms
+~ J2-G2     subjektif       → maksud-kurang   4277ms
+⚠ GALAT J2-G3     subjektif       → bukan JSON: {
+  "jenis": "fakta",
+  "alasan": "Pertanyaan ini menanyakan tentang kebijakan h 6323ms
+⚠ GALAT J2-G4     subjektif       → bukan JSON: {
+  "jenis": "tak-terjawab",
+  "alasan": "Pertanyaan ini menanyakan tentang warn 6250ms
+
+## Matriks jenis (baris) × label probe (kolom)
+jenis             fakta tak-te premis kontek maksud kedalu subjek  GALAT
+fakta                 8      0      0      0      0      0      0      0
+tak-terjawab          0      1      0      0      0      0      0      5
+premis-salah          0      0      1      0      0      0      0      4
+konteks-kurang        0      0      1      0      0      3      0      0
+maksud-kurang         0      1      0      1      2      0      0      1
+kedaluwarsa           0      0      0      0      0      3      0      1
+subjektif             0      0      0      0      2      0      0      2
+
+recall abstain-perlu 100.0% · presisi 100.0% · kategori persis 65.2% · fakta dikira jebakan 0.0% · GALAT 13/36
+H-G3 (baris vonis Fahmi): 0/1 tertangkap probe
+VONIS H-G1 (ambang dikunci: recall ≥0.8 & presisi ≥0.7): TIDAK SAH (GALAT >10%)
+ditulis: eval\probe-keterjawaban-qwen3_4b-2026-09-02-05-18.json

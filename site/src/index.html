@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="A closed research project's open lab notebook: experiments, model lineage, measurements and lessons.">
+  <title>MiganCore — open lab notebook</title>
+  <style>/* INLINE_CSS */</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to notebook</a>
+  <div class="shell">
+    <header class="masthead">
+      <a class="wordmark" href="#overview" aria-label="MiganCore overview"><span class="mark" aria-hidden="true">m</span>MiganCore <span class="wordmark-sub">/ RESEARCH ARCHIVE</span></a>
+      <button id="theme" class="quiet-button" type="button" aria-pressed="false">Light theme</button>
+    </header>
+    <div class="intro">
+      <p class="eyebrow">MAY–SEP 2026 <span class="divider">/</span> CLOSED · OPEN SOURCE</p>
+      <h1>MiganCore <span>— open lab notebook</span></h1>
+      <p class="deck">Where does a model’s knowledge end?<br>And can it learn to stop there?</p>
+      <p class="archive-note">Research project, closed 28 Sep 2026. Numbers are verdict fields of pre-registered experiments.</p>
+    </div>
+    <nav aria-label="Notebook sections" class="tab-nav" role="tablist">
+      <button role="tab" id="tab-overview" aria-controls="overview" aria-selected="true" data-tab="overview">Overview</button>
+      <button role="tab" id="tab-experiments" aria-controls="experiments" aria-selected="false" tabindex="-1" data-tab="experiments">Experiments</button>
+      <button role="tab" id="tab-fabrication" aria-controls="fabrication" aria-selected="false" tabindex="-1" data-tab="fabrication">Fabrication</button>
+      <button role="tab" id="tab-lineage" aria-controls="lineage" aria-selected="false" tabindex="-1" data-tab="lineage">Lineage</button>
+      <button role="tab" id="tab-timeline" aria-controls="timeline" aria-selected="false" tabindex="-1" data-tab="timeline">Timeline</button>
+      <button role="tab" id="tab-lessons" aria-controls="lessons" aria-selected="false" tabindex="-1" data-tab="lessons">Lessons</button>
+    </nav>
+    <main id="main" tabindex="-1">
+      <p id="language-note" class="source-note"></p>
+      <section id="overview" role="tabpanel" aria-labelledby="tab-overview"></section>
+      <section id="experiments" role="tabpanel" aria-labelledby="tab-experiments" hidden></section>
+      <section id="fabrication" role="tabpanel" aria-labelledby="tab-fabrication" hidden></section>
+      <section id="lineage" role="tabpanel" aria-labelledby="tab-lineage" hidden></section>
+      <section id="timeline" role="tabpanel" aria-labelledby="tab-timeline" hidden></section>
+      <section id="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden></section>
+    </main>
+    <footer><span>MiganCore / The record remains.</span><span>Archived, nothing deleted. No external requests.</span></footer>
+  </div>
+  <dialog id="model-dialog" aria-labelledby="model-title"><div class="dialog-toolbar"><span class="eyebrow">MODEL RECORD</span><button id="close-dialog" type="button" class="quiet-button">Close ✕</button></div><div id="model-detail"></div></dialog>
+  <noscript>This notebook needs JavaScript to display the bundled data. The standalone SVG infographics can be read without JavaScript.</noscript>
+  <script type="application/json" id="research-data">/* INLINE_DATA */</script>
+  <script>/* INLINE_JS */</script>
+</body>
+</html>

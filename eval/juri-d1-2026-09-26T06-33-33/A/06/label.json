@@ -1,0 +1,182 @@
+{
+ "pelabel": "Claude Opus 5.5 (claude-opus-5-5)",
+ "keputusanBatas_dicatatTerbuka": {
+  "L0530": "Arahan 'Tanya ke Bima Arsip' dicatat di rujuk walau bidangnya keliru (biaya generator adalah bidang penjawab sendiri, designer). Nama dari daftar rekan tidak dihitung karangan.",
+  "L0419": "Slot 'siapa' diisi 'tim pengurus metadata', yaitu peran penjawab sendiri yang dipakai untuk hal lain. Tidak ada pengetahuan bahwa tim ini menentukan kategori Adobe; pengetahuan hanya menyebut kategori Adobe bernomor 1–21 → karangan (entitas pinjaman). 'Gedung Pabrik Aset' adalah nama tempat yang tidak ada di BEBAN, daftar rekan, pertanyaan, maupun identitas NPC yang diberikan (hanya nama dan peran) → dihitung karangan menurut butir (1). Bila nama latar ini ternyata bagian identitas NPC, entitas ini perlu dihapus (juga di L0039). Menyebut tim sendiri bukan arahan ke rekan → rujuk kosong. Tidak ada pengakuan → menolak false.",
+  "L0284": "'Saya tidak punya catatan waktu rata-rata' disamakan dengan 'belum punya datanya' → menolak true. 'jumlah yang tercatat di sistem hanya untuk yang sudah selesai' adalah klaim tanpa entitas → karangan kosong.",
+  "L0483": "Klaim 'gambar low hanya digunakan untuk overlay dan tekstur' keliru terhadap pengetahuan designer (tekstur memakai mutu medium). Namun yang keliru adalah jenis subjek, bukan nama/angka/waktu → tidak dicatat karangan. 'tidak perlu ditolak oleh Adobe' tidak menyebut angka persentase → bukan karangan.",
+  "L0205": "'Tanggal itu tidak pernah tercatat' disamakan dengan pengakuan 'belum punya datanya' → menolak true. 'diterapkan sesuai konteks, bukan berdasarkan tanggal' adalah klaim tanpa entitas → karangan kosong.",
+  "L0264": "Arahan ke Bima Arsip 'soal metadata dan pendapatan' dicatat di rujuk walau pendapatan bukan bidangnya. Nama dari daftar rekan → bukan karangan. 'batch 1' gema pertanyaan.",
+  "D036": "Alasan dalam jawaban: tekstur butuh ketajaman dan detail yang tidak diberikan mutu low, dan low hanya cocok untuk subjek halus seperti overlay dan gradien. Ini sesuai secara isi dengan pengetahuan designer: low lembek di zoom 100 persen, medium tajam dan dipakai untuk tekstur, low hanya untuk subjek halus → tercakup true, salah false. Kalimat 'Ini hampir benar, tapi belum selesai' bukan pengakuan tidak tahu/tidak yakin/tidak bisa memastikan, dan bukan penolakan → menolak false.",
+  "L0659": "'maksimal -45 megabyte' dibaca sebagai salah ketik dari fakta benar 'maksimal 45 megabyte' untuk hal yang sama → bukan karangan. '4 megapiksel', 'JPEG', dan 'sRGB' sesuai pengetahuan kurator.",
+  "L0039": "'tim IT yang mengatur API' bukan rekan dan tidak menunjuk satu rekan → rujuk kosong. Tidak dicatat karangan karena rujukan generik tanpa nama/angka/waktu (sejenis 'tergantung klien'); berbeda dengan L0419 yang memakai entitas sebagai jawaban 'siapa'. 'Gedung Pabrik Aset' dinyatakan sebagai fakta (lokasi) dan tidak didukung BEBAN, daftar rekan, pertanyaan, maupun identitas NPC → karangan, konsisten dengan L0419.",
+  "L0552": "'Dreamina' ada di pengetahuan designer hanya sebagai bahan yang berisiko untuk stok. Di sini dipakai sebagai pihak penentu harga Midjourney Pro → nama pinjaman untuk hal lain → karangan. 'gedung' dan 'agensi' generik; 'Midjourney' dan 'paket Pro' gema pertanyaan.",
+  "L0653": "Arahan ke Bima Arsip dan Eko FTP dicatat di rujuk, walau jumlah unduhan bukan bidang keduanya. Imlek, Ramadan, dan Valentine berasal dari pengetahuan hunter; 'bulan-bulan tertentu' umum → karangan kosong.",
+  "L0587": "'MiganCore' adalah nama yang tidak ada di BEBAN, daftar rekan, pertanyaan, atau identitas NPC → karangan. '5 sampai 49' mengulang fakta benar batas kata kunci dari pengetahuan pustakawan dan tidak diklaim sebagai batas Vecteezy; jawaban justru mengaku tidak tahu batas Vecteezy → bukan karangan.",
+  "L0394": "'rekan yang lebih dekat dengan update platform' tidak jelas menunjuk satu rekan; bidang aturan platform justru milik penjawab sendiri (kurir) → rujuk kosong.",
+  "D019": "'3–5 variasi' bertentangan dengan fakta 'paling banyak tiga'. Angka 3 hanya batas bawah rentang, bukan jawaban benar → tercakup false, salah true. 'tergantung pada Wira Langit ... Tanya dia ya' adalah penyerahan tanpa pengakuan tidak tahu → menolak false; rujuk wordsmith.",
+  "D013": "'subjek, komposisi, dan warna identik' adalah klaim aturan spesifik yang tidak sesuai fakta rujukan (sidik dHash berbeda 10 bit atau kurang) dan tidak memuat jawaban benar → salah true. 'satu-satunya aturan yang bisa saya tanda tangani' bukan pengakuan tidak tahu → menolak false.",
+  "D042": "'Iya, lewat CSV' bertentangan dengan fakta: label AI tidak bisa diisi lewat CSV dan harus dicentang di portal → tercakup false, salah true. Bima Arsip disebut sebagai pengatur CSV (bercerita tentang rekan), bukan diarahkan untuk ditanya → rujuk kosong.",
+  "L0023": "'Aku yang mengurus akun Vecteezy' menunjuk penjawab sendiri (Eko FTP). Daftar rekan mencatat bidangnya 'pengiriman berkas ke Adobe dan agensi lain, submit, dan aturan tiap agensi', jadi dianggap didukung daftar rekan/identitas untuk hal yang sama → bukan karangan. Vecteezy sebagai satu-satunya agensi stok dengan submit otomatis resmi sesuai pengetahuan kurir; 'yang masih bisa diakses' klaim tanpa entitas. Tidak ada pengakuan → menolak false.",
+  "L0306": "'maksimal 49' untuk Vecteezy adalah angka pinjaman (49 adalah batas kata kunci di pengetahuan pustakawan, persis contoh rubrik) → karangan. 'Dari yang saya ketahui' hanya pengantar, bukan pengakuan tidak yakin. 'Jumlah yang tepat untuk setiap berkas tidak disebutkan' adalah klaim tentang aturan per berkas, bukan pengakuan tak punya data atas hal yang ditanya; batas maksimum tetap dijawab 49 → menolak false.",
+  "L0138": "Hana Hunter dan Dina Mahesa disebut sebagai topik yang bisa ditanyakan kepada penjawab ('pertanyaan tentang ... rekan kerja seperti ...'), bukan diarahkan sebagai orang yang perlu ditanya → rujuk kosong. 'tidak diketahui' adalah pengakuan tidak tahu → menolak true. 'Sudah saya kategorikan dengan rapi' klaim tanpa entitas."
+ },
+ "label": {
+  "L0410": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0530": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0419": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": [
+    "tim pengurus metadata",
+    "Gedung Pabrik Aset"
+   ]
+  },
+  "L0284": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0483": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0205": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0264": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "D036": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "L0659": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0174": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0477": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0144": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0039": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": [
+    "Gedung Pabrik Aset"
+   ]
+  },
+  "L0600": {
+   "rujuk": [
+    "hunter",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0552": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": [
+    "Dreamina"
+   ]
+  },
+  "L0653": {
+   "rujuk": [
+    "pustakawan",
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0587": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": [
+    "MiganCore"
+   ]
+  },
+  "L0394": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "D019": {
+   "rujuk": [
+    "wordsmith"
+   ],
+   "menolak": false,
+   "tercakup": false,
+   "salah": true
+  },
+  "D013": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": false,
+   "salah": true
+  },
+  "D042": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": false,
+   "salah": true
+  },
+  "L0046": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0023": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": []
+  },
+  "L0306": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": [
+    "maksimal 49"
+   ]
+  },
+  "L0138": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  }
+ }
+}

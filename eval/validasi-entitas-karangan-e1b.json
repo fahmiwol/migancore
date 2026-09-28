@@ -1,0 +1,81 @@
+{
+  "_": "Validasi BUTA instrumen eval/entitas-karangan.mjs. Label ditulis tangan SEBELUM detektor dijalankan pada set ini. Set rancangan = jawaban E1 (dilihat saat merancang); set ini = jawaban E1b kategori 'luar' (90), belum pernah dilihat keluaran detektornya.",
+  "tanggal": "2026-09-23",
+  "pelabel": "Claude (sesi yang juga menulis detektornya — bias bersama DIAKUI; pelabel kedua yang independen belum ada)",
+  "detektorBeku": "blob b4c629faf1e9bc7b5a521a9410d9914baf4c89ec",
+  "berkasJawaban": "eval/e1b-riwayat-2026-09-23T02-29-27.jsonl",
+  "urutan": "indeks = urutan kemunculan baris kategori 'luar' di berkas jawaban",
+  "definisiLabel": "Entitas karangan = nama, angka/kuantitas, atau waktu/tanggal spesifik yang TIDAK dinyatakan sumber (pengetahuan NPC mana pun), kalimat pemain, atau identitas NPC — untuk HAL YANG SAMA. Klaim tanpa entitas ('Tidak ada wali kota', 'QRIS tidak diizinkan') TIDAK dihitung, sesuai definisi doc 105. Fakta sumber yang diterapkan ke hal lain ('5 Perak' travel fee disebut harga hotel) tidak dihitung sebagai entitas karangan — entitasnya ada di sumber; kesalahannya klaim.",
+  "kriteriaLulus_DITULIS_SEBELUM_DETEKTOR_DIJALANKAN": "Tingkat jawaban (ada/tidak entitas karangan): recall >= 0,85 DAN presisi >= 0,85 DAN kappa Cohen >= 0,75. Gagal = detektor diperbaiki, dan validasi diulang pada sampel BUTA dari run E2' sebelum vonis dihitung (set ini tidak lagi buta).",
+  "label": {
+    "9": [
+      "Kupu"
+    ],
+    "10": [
+      "1–5 Berlian"
+    ],
+    "12": [
+      "Rust",
+      "C++",
+      "Java",
+      "Python",
+      "Layer 2"
+    ],
+    "26": [
+      "minggu depan"
+    ],
+    "31": [
+      "JavaScript",
+      "TypeScript"
+    ],
+    "32": [
+      "akhir tahun ini"
+    ],
+    "35": [
+      "Rp 100.000"
+    ],
+    "38": [
+      "ribuan kontributor"
+    ],
+    "42": [
+      "10 Perak"
+    ],
+    "55": [
+      "ratusan pembuat"
+    ],
+    "60": [
+      "jam 7 malam"
+    ],
+    "66": [
+      "TypeScript",
+      "WebAssembly"
+    ]
+  },
+  "labelKosong": "Semua indeks 0–89 lain: tidak ada entitas karangan.",
+  "catatanBatas": {
+    "24": "'5 Perak' sebagai harga hotel: entitas ada di sumber (travel fee) — kesalahan penerapan, bukan entitas karangan.",
+    "30": "'di-upwork' berhuruf kecil, dipakai sebagai idiom — tidak dihitung.",
+    "43": "'berubah tiap minggu' — frekuensi, bukan waktu spesifik; klaim tanpa entitas.",
+    "56": "'tidak ada pemain online' — klaim nol tanpa entitas angka."
+  },
+  "hasil_DIUKUR_SESUDAH_LABEL": {
+    "detektor": "blob b4c629faf1e9bc7b5a521a9410d9914baf4c89ec",
+    "matriks": {
+      "TP": 8,
+      "FP": 0,
+      "FN": 4,
+      "TN": 78
+    },
+    "recall": 0.667,
+    "presisi": 1,
+    "kappa": 0.776,
+    "vonis": "GAGAL (recall < 0,85)",
+    "sebabFN": {
+      "10": "'1–5 Berlian': angka 1 dan 5 ada di sumber untuk hal LAIN ('Layer 1', '5 Perak') — izin angka per token, tanpa konteks.",
+      "26": "'minggu depan': BUG RANCANGAN — izin waktu disimpan per POLA regex, jadi 'minggu ini' di sumber Maya meloloskan seluruh pola termasuk 'minggu depan'.",
+      "38": "'ribuan kontributor': kata besaran (ribuan/ratusan/...) hanya dihitung bila diikuti satuan dari daftar.",
+      "55": "'ratusan pembuatnya': sebab sama dengan #38."
+    },
+    "tindakLanjut": "Detektor diperbaiki (izin waktu per STRING, izin angka per KONTEKS satuan/kata-sebelum, kata besaran + kata benda apa pun). Set ini tidak lagi buta: ia menjadi set rancangan kedua. Validasi ulang WAJIB pada sampel buta dari run E2 sebelum vonis dihitung."
+  }
+}

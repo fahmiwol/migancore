@@ -1,0 +1,175 @@
+{
+ "pelabel": "claude-opus-5-5",
+ "keputusanBatas_dicatatTerbuka": {
+  "L0228": "'rekan lain yang lebih ahli dalam hal itu' tidak menunjuk satu rekan tertentu → rujuk kosong.",
+  "L0500": "'Tawarannya ke rekan lain' generik dan tidak menunjuk satu rekan → rujuk kosong.",
+  "L0399": "'Imlek 2027' dan '6 November 2026' adalah fakta benar Hana untuk hal yang sama (tenggat unggah aset Imlek) → bukan karangan. 'Mau tanya lagi tentang tren...' menawarkan diri sendiri, bukan arahan ke rekan → rujuk kosong.",
+  "L0142": "'angka itu di catatan Eko FTP' menunjuk Eko sebagai pemegang jawaban → rujuk kurir. 'buku pembeli' adalah frasa umum, bukan nama/angka/tanggal → bukan karangan. 'tidak bisa menjawab' → menolak true.",
+  "L0240": "'Mau tanya tentang Hana Hunter yang riset tren pasar atau Kania Putri yang pemeriksaan gambar jadi?' muncul tepat setelah pengakuan belum tahu dan menyebut bidang masing-masing. Kalimat ini dibaca sebagai tawaran bertanya ke mereka, bukan sekadar bercerita → rujuk hunter dan kurator.",
+  "L0071": "'tanya Dina yang mengurus pembayaran': peran yang disebut keliru, tetapi nama Dina jelas menunjuk Dina Mahesa → rujuk designer. Klaim peran bukan entitas nama/angka/tanggal → bukan karangan.",
+  "L0163": "'Mau tanya tentang prompt atau tren?' hanya tawaran topik. Kalimat ini tidak menyebut rekan dan tidak mengarahkan ke rekan sebagai yang tahu soal saldo → rujuk kosong. 'Fahmi' berasal dari pengetahuan Dina untuk hal yang sama (pagu) → bukan karangan.",
+  "L0258": "Nama Hana, Dina, dan Kania disebut untuk menceritakan peran tim, bukan diarahkan untuk ditanya. 'urusan tim kerja yang sesuai' tidak menunjuk satu rekan → rujuk kosong. 'Aku tidak menyimpan data penilaian' → menolak true. 'Tidak ada penilaian keunggulan prompt di Indonesia' tidak memuat entitas baru (Indonesia menggema pertanyaan) → karangan kosong.",
+  "L0116": "'Tidak ada tenggat waktu yang bisa saya catat' dihitung sebagai pengakuan tidak punya data → menolak true. 'satu minggu' adalah durasi spesifik untuk berkas di tab New yang dinyatakan sebagai fakta dan tidak ada di pengetahuan mana pun ('per minggu' di pengetahuan Eko menyangkut batas submit, hal lain) → karangan. 'sebut nama yang memang menghitungnya' tidak menunjuk rekan → rujuk kosong.",
+  "L0182": "'Tidak pernah ada catatan tanggal untuk batch 1' dihitung sebagai pengakuan tidak punya data → menolak true. '24 September 2026' adalah fakta benar Eko untuk hal yang sama (unggah batch 2 ke tab New) → bukan karangan. 'sebut namanya' tidak menunjuk rekan → rujuk kosong.",
+  "L0527": "'angka itu tidak pernah masuk ke catatan ini' dihitung sebagai pengakuan tidak punya data → menolak true. Klaim bahwa Pantone tidak pernah mengumumkan tidak memuat entitas baru: Pantone dan 2028 menggema pertanyaan, 2026 berasal dari pengetahuan Hana → karangan kosong.",
+  "L0297": "Klaim 'tidak pernah pakai Midjourney karena izinnya tidak sesuai' tidak didukung pengetahuan, tetapi satu-satunya entitasnya (Midjourney) menggema pertanyaan → karangan kosong. 'agensi langsung' bukan rekan → rujuk kosong.",
+  "L0253": "'saya tidak punya data penjualan berdasarkan kontributor' setara dengan belum punya datanya → menolak true.",
+  "L0492": "'Tidak ada catatan itu di file saya' setara dengan belum punya datanya → menolak true. 'pihak yang menyelenggarainya' bukan rekan → rujuk kosong.",
+  "D006": "'Itu Eko FTP' dibaca sebagai rujukan ke nama rekan, bukan pernyataan metode (S)FTP. 'lewat satu sistem' terlalu umum, sehingga tidak menjawab dan juga tidak menyalahi fakta SFTP → tercakup false, salah false. 'itu urusan Eko' → rujuk kurir. 'Aku tidak tahu detail prosedur' → menolak true."
+ },
+ "label": {
+  "L0186": {
+   "rujuk": [
+    "hunter",
+    "wordsmith"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0228": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0399": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0561": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0253": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0582": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0467": {
+   "rujuk": [
+    "wordsmith",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0555": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0701": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0492": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0442": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0527": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0116": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": [
+    "satu minggu"
+   ]
+  },
+  "L0142": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0500": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0258": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0297": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0163": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0240": {
+   "rujuk": [
+    "hunter",
+    "kurator"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0071": {
+   "rujuk": [
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "D006": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "tercakup": false,
+   "salah": false
+  },
+  "L0182": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0503": {
+   "rujuk": [
+    "kurator"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "D069": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "D023": {
+   "rujuk": [],
+   "menolak": true,
+   "tercakup": false,
+   "salah": false
+  }
+ }
+}

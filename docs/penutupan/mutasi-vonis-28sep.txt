@@ -1,0 +1,55 @@
+TERTANGKAP M1 (1b) MIDr dimatikan ← (1b) MIDr: S tepat di titik tengah P–G → gagal walau (1)C1r dan (2)C
+TERTANGKAP M2 tahan penilai hanya baku ← arbitrase (b): penilai mengikat = baku saja → (1)C1r mengikuti baku 
+TERTANGKAP M3 batas per soal fakta dibuang ← rugi fakta terkonsentrasi di satu soal → batas per soal menggagalkan
+TERTANGKAP M4 lantai T2 tak pernah mengikat ← lantai T2 mengikat (laju latih ≥ 10 %) dan S tak menurunkan karangan
+TERTANGKAP M5 label templat DeepSeek diabaikan ← S menangkap semua karangan, G separuh → MENANG_*  ← {"(1)C1r":false,
+TERTANGKAP M6 tahan-soal selalu lolos ← menang yang bergantung pada satu soal gagal tahan-soal (7)  ← {"lolo
+TERTANGKAP M7 kontrol sepele selalu kalah ← kontrol panjang menyamai S → syarat (6) gagal  ← {"panjang":{"ci":{"
+TERTANGKAP M8 AUDIT-UJI diabaikan ← AUDIT-UJI: S 8/20 vs G 2/20 (Fisher p 0,032) → TIDAK_SAH_INSTRUMEN  
+TERTANGKAP M9 batas latensi 500 ms dibuang ← p95 700 ms dengan probe 20 dtk → gagal oleh batas ABSOLUT 500 ms  ← 
+TERTANGKAP M10 (2) C2r dimatikan ← S tak memblokir apa pun → TIDAK_MENANG  ← TIDAK_MENANG
+TERTANGKAP M11 rugi fakta: blokir SALAH ikut dihitung ← blokir fakta SALAH ≠ kerugian: rugiFakta 0 pp dan (3') lolos di T1  
+TERTANGKAP M12 putaran wajib dilonggarkan ← putaran < 16 → TIDAK_SAH_INSTRUMEN  ← 
+TERTANGKAP M13 penilai gabungan = baku saja ← penilai gabungan: lolos di baku & DeepSeek masing-masing, gagal di g
+TERTANGKAP M14 SALAH DeepSeek di jebakan tidak dihitung ← SALAH dari DeepSeek pada soal jebakan dihitung NGARANG  ← 
+TERTANGKAP M15 label DeepSeek hilang diabaikan ← label DeepSeek hilang → TIDAK_SAH_INSTRUMEN  ← 
+TERTANGKAP M16 label templat: yang TERINGAN dipakai ← label templat: yang PALING BERAT dari ulangan dipakai (NGARANG > … >
+TERTANGKAP M17 batas per soal T2 dijadikan mengikat lagi (C55) ← T2: satu soal fakta diblokir di KEDUA sampel (2/40 = 5 pp) → capGaga
+TERTANGKAP M18 batas per soal T1 dilepas ← rugi fakta terkonsentrasi di satu soal → batas per soal menggagalkan
+TERTANGKAP M19 skor: baris ganda dibiarkan ← periksaSkor: baris ganda, baris asing, sha salah, baris kurang → mas
+TERTANGKAP M20 skor: sha jawaban tidak diperiksa ← periksaSkor: baris ganda, baris asing, sha salah, baris kurang → mas
+TERTANGKAP M21 skor: mode kepala tidak diperiksa ← periksaSkor: kepala mode/kode/folder salah, kepala kedua, pemanasan 
+TERTANGKAP M22 ALT-B: soal sulit boleh ditekan seluruhnya (⌈BENAR/2⌉ dilepas) ← T2: satu soal fakta diblokir di KEDUA sampel (2/40 = 5 pp) → capGaga
+TERTANGKAP M22b ALT-B: soal sulit kembali ke batas lama maks(1, ⌊0,25·BENAR⌋) ← T1: soal sulit (BENAR < 8, putaran 4 SF5/ALT-B) → paling banyak ⌈BEN
+TERTANGKAP M29 kasus (b): label DeepSeek tidak ada tetap menggugurkan ← kasus (b): label DeepSeek hilang/tidak ada → catatan (vonis tetap di
+TERTANGKAP M23 arbitrase (b) diabaikan (tiga penilai tetap mengikat) ← arbitrase (b): penilai mengikat = baku saja → (1)C1r mengikuti baku 
+TERTANGKAP M24 skor: versi laya/torch tidak diperiksa ← periksaSkor: versi laya/torch saat skor ≠ manifes beku, atau manifes
+TERTANGKAP M25 T2: jawaban ganda per kunci tidak dihitung ← T2 efektif: dua jawaban bukan-GALAT satu kunci → ganda; kunci B hila
+TERTANGKAP M26 T2: GALAT lama dipakai walau ada jawaban ← T2 efektif: GALAT lalu jawaban → jawaban dipakai (bukan ganda); kunc
+TERTANGKAP M27 T2: kunci hilang tidak dihitung GALAT ← T2 efektif: dua jawaban bukan-GALAT satu kunci → ganda; kunci B hila
+TERTANGKAP M28 CI klaster kembali ke t 1,96 untuk df > 30 (F-290) ← CI klaster S1: 20 keluarga identik dengan seleksi; 78 keluarga t 1,9
+TERTANGKAP A1 audit: RAGU G tidak dihitung (asimetris lagi) ← RAGU simetris: RAGU sama di kedua lengan tidak menggugurkan (S 2+3, 
+TERTANGKAP A2 audit: α dilonggarkan ke 0,01 ← Fisher: S 8/20 vs G 2/20 → p 0,032 → GAGAL; S 5/20 vs G 1/20 → p 0,0
+TERTANGKAP A3 audit: kuota ganda arbitrase (a) hilang ← arbitrase (a): kuota 40/40; kasus lain 20/20; α sama 0,05  ← 
+TERTANGKAP A4 audit: kolam (b) tetap disaring aman-DeepSeek (karangan hanya-DeepSeek lolos audit) ← kolam per arbitrase: (a)/(c) saring aman-DeepSeek (DeepSeek mengikat
+TERTANGKAP A5 audit: kolam U1 kosong kembali TIDAK_SAH (S terkuat gugur) ← kolam U1 kosong (S memblokir semua jebakan) → lolos HAMPA, bukan TID
+TERTANGKAP D1 data: jebakan kembali ke kesepakatan saja (B5) ← sengketa JEBAKAN dilatih dengan label GABUNGAN (BLOKIR bila salah sa
+TERTANGKAP D2 data: fakta kembali ke kesepakatan saja (B3 putaran 4) ← sengketa FAKTA (putaran 4, B3) DILATIH dengan kelas nilai2 (SALAH → 
+TERTANGKAP K1 beku: batas (b) kembali ke nilai2 saja di semua kasus (C55) ← sengketa JEBAKAN (nilai2 BENAR, DeepSeek BLOKIR) tidak mengikat (b):
+TERTANGKAP K2 beku: batas (b) mengabaikan kasus arbitrase (SF4 putaran 4) ← kasus (b): batas (b) atas nilai2 BENAR → 10 sengketa jebakan (skor 0
+TERTANGKAP V1 validasi: ambang arbitrase (a) dilonggarkan ← arbitrase: (a) ≥ 70 % DeepSeek dari ≥ 20 · (b) ≥ 70 % nilai2 · (c) s
+TERTANGKAP P1 patok: blok (kunciPascaBeku/kunciPraVonis) boleh ditulis dua kali ← --pasca-beku (LF): kedua kali → menolak  ← 
+TERTANGKAP P2 patok: waktu kunci tanpa Z diterima ← --kunci: waktu tanpa Z → menolak  ← 
+TERTANGKAP P3 patok: penghitung baris dihapus buta ← --kunci (LF): dikunci = ISO, satu baris berubah + blok kunciAwal (si
+TERTANGKAP P4 patok: --kunci tanpa sidik kode diterima (B1 putaran 4) ← --kunci: tanpa sidik kode → menolak (B1 putaran 4)  ← 
+TERTANGKAP R1 riwayat: JSONL boleh mengubah baris lama ← hanya-tambah: label lama DIUBAH → ditolak  ← 
+TERTANGKAP R2 riwayat: label audit boleh diubah (undian ulang) ← hanya-tambah: label audit DIUBAH sesudah commit → ditolak (undian ul
+TERTANGKAP R3 riwayat: berkas hasil boleh lahir sebelum patok pasca-beku ← berkas hasil yang lahir SEBELUM commit pasca-beku → ditolak  ← 
+TERTANGKAP R4 riwayat: teks pra-daftar boleh kehilangan baris ← teks pra-daftar yang dibaca kehilangan baris terhadap commit patok →
+TERTANGKAP R5 riwayat: blok patok boleh berubah sesudah commitnya ← blok kunciPascaBeku diubah sesudah commitnya → masalah  ← ["pra-daft
+TERTANGKAP R6 riwayat: blok diperkenalkan di dua cabang diterima ← blok kunciPascaBeku diperkenalkan di DUA cabang → commitPatok menola
+TERTANGKAP W1 pemuat: riwayat tiga patok tidak diperiksa ← pemuat → riwayat git: label yang DIUNDI ULANG sebelum pra-vonis → ma
+TERTANGKAP W2 pemuat: riwayat berkas hasil tidak diperiksa ← pemuat → riwayat git: label yang DIUNDI ULANG sebelum pra-vonis → ma
+TERTANGKAP G1 pelari: run dengan < 16 pasangan sah menulis s1-selesai ← keputusan akhir (B2 putaran 4): 16 sah + digest sah → selesai; 15 sa
+TERTANGKAP G2 pelari: dua pasangan tidak sah berturut-turut tidak menghentikan ← dua pasangan tidak sah berturut-turut → berhenti; tidak sah berselan
+semua mutan tertangkap (54)

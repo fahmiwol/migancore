@@ -1,0 +1,65 @@
+{
+  "nama": "h-pengusul-klasifikasi",
+  "tanggal": "2026-08-29",
+  "ditulisSebelum": "Satu baris kode pengusul ditulis. Ambang di bawah dikunci sebelum ada satu angka akurasi pun, dan di-commit terpisah supaya riwayat git membuktikan urutannya.",
+  "konteks": "Pencatat Ajar sekarang menuntut Fahmi memilih cluster DAN keputusan agent (6 opsi) sebelum menulis jawaban. Riset 29 Agu (LREC 2022 Pre-annotation Bias): aturan pemeriksa SAJA berdampak minimal (p>30%); yang signifikan adalah aturan + pra-anotasi + rujukan silang dipakai bersama. Alat kami persis kasus pertama.",
+  "hipotesis": {
+    "H-PENGUSUL": {
+      "pertanyaan": "Bisakah mesin mengusulkan `keputusan` dari PERTANYAAN SAJA — cukup akurat untuk mengurangi kerja Fahmi, tanpa menanam label salah yang sistematis?",
+      "kenapaPertanyaanSaja": "Saat mengajar, jawaban gold BELUM ADA — itu yang sedang ditulis Fahmi. Pengusul yang butuh gold tidak berguna di titik pakainya. Ini membuat tugasnya jauh lebih sulit daripada pra-anotasi di makalah rujukan (mereka punya parser yang melihat kalimat lengkap).",
+      "rancanganYangDIPILIH_dan_kenapa": "Pengusul BOLEH DIAM. Kalau tidak ada aturan yang menyala meyakinkan, ia tidak mengusulkan apa pun. Alasannya langsung dari risikonya: anchoring hanya bisa terjadi pada usulan yang DIBUAT. Usulan yang ditahan tidak bisa meracuni label. Ini menggeser metriknya dari AKURASI ke PRESISI+CAKUPAN — dan presisi tinggi pada cakupan sedang jauh lebih berharga daripada akurasi sedang pada cakupan penuh.",
+      "pembandingTerukur": {
+        "garisDasarKelasMayoritas": "23/54 = 43% (MUST_TOOL). Diukur SEBELUM ambang ditulis.",
+        "sebaranLabelAjar": {
+          "MUST_TOOL": 23,
+          "DIRECT": 7,
+          "ASK_CLARIFICATION": 7,
+          "CONFIRM_FIRST": 6,
+          "TOOL_MISSING": 6,
+          "TOOL_FAILURE": 5
+        },
+        "catatan": "54 baris ajar = tulisan tangan Fahmi, sebaran NYATA. 147 baris generator berlabel-konstruksi dipakai HANYA sebagai pemeriksa kewarasan: pengusul bisa terlihat bagus di sana dengan menangkap gaya kalimat generator, bukan maknanya."
+      },
+      "ambang": {
+        "PRESISI pada yang diusulkan": ">= 85% di 54 baris ajar. Di bawah itu, tiap 1 dari 7 usulan yang diterima menanam label salah — dan Codex benar bahwa salahnya SISTEMATIS, bukan derau.",
+        "CAKUPAN": "dilaporkan, TIDAK diambang. Cakupan rendah dengan presisi tinggi tetap menang: yang tersisa cuma dipilih tangan, seperti sekarang.",
+        "KEBINGUNGAN BERBAHAYA": "pasangan DIRECT<->MUST_TOOL <= 5% dari yang diusulkan. Ini yang mengajari kapan agent boleh menjawab TANPA sumber — sumbu kejujuran yang baru saja kami buktikan sedang rusak (A9 dicoret 29 Agu). Melampaui ini = fitur TIDAK dipasang, berapa pun presisi totalnya.",
+        "KEBINGUNGAN KESELAMATAN": "pasangan ASK_CLARIFICATION<->CONFIRM_FIRST <= 10%. Keduanya sama-sama bertanya, tapi CONFIRM_FIRST menyangkut perubahan keadaan; menukarnya menggeser perilaku keselamatan."
+      },
+      "kalauGagal": {
+        "presisi < 85%": "JANGAN pasang pengusulnya. Permukaan baru tetap dibangun, tapi klasifikasi tetap manual. Ini hasil yang berharga: ia menghemat sehari kerja membangun fitur yang akan merusak data.",
+        "presisi >= 85% tapi kebingungan berbahaya > 5%": "Pasang HANYA untuk keputusan yang tidak ikut dalam pasangan berbahaya; DIRECT dan MUST_TOOL tetap dipilih tangan.",
+        "cakupan < 30%": "Pengusulnya terlalu penakut untuk menolong. Bukan kegagalan mutu, tapi tidak layak dipasang; catat aturan mana yang tidak pernah menyala."
+      },
+      "yangDIUKUR_setelah_dipasang": "diusulkan / diterima-tanpa-diubah / diubah / ditolak, per keputusan. Codex benar bahwa terima-tinggi + ubah-tinggi = automation bias, bukan UX bagus. Kalau tingkat-ubah naik melewati 20% dalam pemakaian nyata, fiturnya dimatikan tanpa perdebatan.",
+      "yangTIDAKdijawab": "Ini hanya menguji usul `keputusan` untuk cluster tool. Usul CLUSTER (hitung/nalar/gaya/tool) tidak diuji di sini dan tidak akan dipasang tanpa pra-daftarnya sendiri."
+    }
+  },
+  "sidikData": {
+    "cluster-tool.jsonl": "113db6e11e16b4d5",
+    "catatan": "54 baris ajar diambil dari berkas ini lewat medan sumber=ajar-tool."
+  },
+  "vonis": {
+    "hasil": "LULUS — boleh dipasang, dengan cakupan yang jujur disebut kecil",
+    "keadaan": "lulus",
+    "tanggal": "2026-08-29",
+    "angka": {
+      "diusulkan": "9/54 (cakupan 17%)",
+      "presisi": "9/9 = 100% (ambang >=85%)",
+      "kebingunganBerbahaya": "0/9 = 0% (ambang <=5%)",
+      "kebingunganKeselamatan": "0/9 = 0% (ambang <=10%)",
+      "garisDasarKelasMayoritas": "43%"
+    },
+    "perAturan": {
+      "mutasi-massal": "3/3",
+      "hitungan-murni": "3/3",
+      "riwayat-alat-gagal": "2/2",
+      "alat-tak-ada": "1/1"
+    },
+    "percobaanPERTAMA_GAGAL": "Presisi 75% (12/16), di bawah ambang. SELURUH kesalahan dari SATU aturan: `riwayat-hasil-alat` 5/9, dengan 4 salah MUST_TOOL->TOOL_FAILURE. Saya menyamakan 'alat sudah DIPANGGIL' dengan 'alat GAGAL'; empat baris itu punya hasil alat di riwayat tapi hasilnya BERHASIL (baris 5-giliran panggil->hasil->jawaban ter-grounding). Aturannya dibetulkan, AMBANGNYA TIDAK DISENTUH — menurunkan ambang sesudah melihat angka adalah anti-pola yang skill indikator-parameter larang.",
+    "cacatYangDITANGKAP_uji": "Sesudah perbaikan, satu uji instrumen GAGAL: cabang '0 hasil' tidak pernah cocok. Sebabnya karakter batas-kata yang ditulis lewat skrip Python berubah jadi BACKSPACE nyata (0x08) di dalam regex. Angka 100% yang pertama itu diperoleh dengan aturan yang SEBAGIAN rusak; sesudah regex diganti daftar harfiah tanpa escape, diukur ULANG dan hasilnya sama (9/9). Kalau ujinya tidak ada, regex rusak itu akan hidup di produksi dan tidak seorang pun tahu.",
+    "kejujuranCakupan": "Cakupan 17% berarti pengusul DIAM pada 45 dari 54 baris — dan itu memang rancangannya. Dua aturan (`permintaan-kabur`, `sapaan`) TIDAK PERNAH menyala di data ajar; masuk akal, karena Fahmi mengajarkan KEGAGALAN, bukan basa-basi. Keduanya dipertahankan untuk data generator, tapi dicatat sebagai belum terbukti berguna.",
+    "kenapaTIDAKmengusulkanMUST_TOOL": "MUST_TOOL adalah kelas mayoritas (43%). Mengusulkannya = menebak, dan kebingungan DIRECT<->MUST_TOOL justru yang paling berbahaya karena ia mengajari kapan agent boleh menjawab TANPA sumber — sumbu kejujuran yang baru terbukti rusak (A9 dicoret 29 Agu). Nol usulan MUST_TOOL dijaga uji instrumen.",
+    "yangHarusDIPANTAU": "diusulkan/diterima/diubah dalam pemakaian NYATA. Presisi 100% pada 9 baris bukan jaminan; n-nya kecil. Kalau tingkat-ubah melewati 20%, fiturnya dimatikan tanpa perdebatan."
+  }
+}

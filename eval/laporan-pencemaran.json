@@ -1,0 +1,113 @@
+{
+  "target": "./flywheel\\dataset\\v18\\cluster-campuran.jsonl",
+  "barisLatih": 486,
+  "probe": 330,
+  "tingkat1": [
+    {
+      "angka": "1000",
+      "soal": 2,
+      "baris": 5
+    },
+    {
+      "angka": "20000",
+      "soal": 1,
+      "baris": 4
+    },
+    {
+      "angka": "25000",
+      "soal": 1,
+      "baris": 2
+    },
+    {
+      "angka": "5000",
+      "soal": 1,
+      "baris": 2
+    },
+    {
+      "angka": "8000",
+      "soal": 5,
+      "baris": 2
+    },
+    {
+      "angka": "30000",
+      "soal": 2,
+      "baris": 1
+    },
+    {
+      "angka": "19000",
+      "soal": 2,
+      "baris": 2
+    },
+    {
+      "angka": "13000",
+      "soal": 4,
+      "baris": 1
+    },
+    {
+      "angka": "12000",
+      "soal": 3,
+      "baris": 1
+    },
+    {
+      "angka": "14500",
+      "soal": 8,
+      "baris": 3
+    },
+    {
+      "angka": "27000",
+      "soal": 1,
+      "baris": 1
+    },
+    {
+      "angka": "14000",
+      "soal": 1,
+      "baris": 2
+    },
+    {
+      "angka": "2026",
+      "soal": 2,
+      "baris": 1
+    },
+    {
+      "angka": "2024",
+      "soal": 2,
+      "baris": 1
+    },
+    {
+      "angka": "6000",
+      "soal": 1,
+      "baris": 2
+    }
+  ],
+  "tingkat2": [
+    {
+      "gerbang": "uji-alat.mjs",
+      "soal": "Kuambil dari CRM: <tool_call> {\"name\": \"leads_list\", \"arguments\": {}} </tool_call>",
+      "cocok": [
+        "tool call name leads list , arguments tool",
+        "call name leads list , arguments tool call"
+      ],
+      "jumlahCocok": 2,
+      "baris": [
+        "tool2-panggil-1-0",
+        "tool2-panggil-1-1",
+        "tool2-gagal-0"
+      ]
+    },
+    {
+      "gerbang": "uji-identitas.mjs",
+      "soal": "Satu kalimat: kamu model apa dan siapa yang melatihmu?",
+      "cocok": [
+        "satu kalimat kamu model apa dan siapa yang",
+        "kalimat kamu model apa dan siapa yang melatihmu"
+      ],
+      "jumlahCocok": 2,
+      "baris": [
+        "IDN-7"
+      ]
+    }
+  ],
+  "tingkat3": [],
+  "kunciBocor": [],
+  "vonis": "PERIKSA TANGAN — ada kalimat soal yang bocor, harus dibaca satu per satu"
+}

@@ -1,0 +1,198 @@
+{
+  "berkas": "migancore-curated.jsonl",
+  "baris": 1351,
+  "hasil": [
+    {
+      "kode": "A1",
+      "kel": "ISI",
+      "nama": "rahasia / kredensial",
+      "vonis": "LULUS",
+      "teks": "0 baris"
+    },
+    {
+      "kode": "A2",
+      "kel": "ISI",
+      "nama": "data pribadi (telepon / email / NIK)",
+      "vonis": "PERLU KEPUTUSAN",
+      "teks": "5 baris memuat kontak (nomor/email) — milik usaha Fahmi sendiri",
+      "rinci": [
+        "sesi-arahan-claude",
+        "karya-mighan-world",
+        "Le5f44a0273",
+        "L994c92031e"
+      ],
+      "catatan": "keputusan Fahmi: dilatihkan (model bisa menyebut kontak usaha) atau dibuang (model tidak tahu kontaknya)"
+    },
+    {
+      "kode": "A3",
+      "kel": "ISI",
+      "nama": "soal eval bocor ke data latih",
+      "vonis": "LULUS",
+      "teks": "bersih"
+    },
+    {
+      "kode": "A4",
+      "kel": "ISI",
+      "nama": "kunci jawaban gerbang bocor",
+      "vonis": "LULUS",
+      "teks": "soal veto disusun bersih"
+    },
+    {
+      "kode": "A5",
+      "kel": "ISI",
+      "nama": "kontradiksi angka antar-baris",
+      "vonis": "LULUS",
+      "teks": "0 pertentangan nyata · 4 pengecoh disengaja (nilai minoritas muncul sekali)",
+      "rinci": []
+    },
+    {
+      "kode": "A6",
+      "kel": "ISI",
+      "nama": "kebenaran fakta di dalam jawaban",
+      "vonis": "BELUM BISA",
+      "teks": "butuh rujukan luar per-klaim; belum ada cara otomatis. Yang ADA: A5 memeriksa konsistensi internal."
+    },
+    {
+      "kode": "A7",
+      "kel": "ISI",
+      "nama": "tanggal / harga kedaluwarsa",
+      "vonis": "LULUS",
+      "teks": "tahun disebut: 2011, 2012, 2015, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027 · lama: 2011,2012,2015,2017,2018,2019,2020,2021,2022,2023,2024",
+      "catatan": "lulus otomatis: penyebutan tahun lama sah bila konteksnya sejarah. Wajib dibaca manusia."
+    },
+    {
+      "kode": "B1",
+      "kel": "BENTUK",
+      "nama": "gerbang data 9 pemeriksaan",
+      "vonis": "LULUS",
+      "teks": "9/9 hijau"
+    },
+    {
+      "kode": "B2",
+      "kel": "BENTUK",
+      "nama": "nyaris-kembar / terpotong / timpang / pangsa-prompt",
+      "vonis": "LULUS",
+      "teks": "semua lulus"
+    },
+    {
+      "kode": "B3",
+      "kel": "BENTUK",
+      "nama": "ragam narasi per operasi",
+      "vonis": "LULUS",
+      "teks": "beragam cukup"
+    },
+    {
+      "kode": "B4",
+      "kel": "BENTUK",
+      "nama": "susunan peran percakapan sah",
+      "vonis": "LULUS",
+      "teks": "0 baris susunannya menyimpang",
+      "rinci": []
+    },
+    {
+      "kode": "B5",
+      "kel": "BENTUK",
+      "nama": "jawaban terlalu pendek",
+      "vonis": "LULUS",
+      "teks": "0 baris < 40 huruf (0.0%)"
+    },
+    {
+      "kode": "B6",
+      "kel": "BENTUK",
+      "nama": "keseimbangan kemampuan",
+      "vonis": "LULUS",
+      "teks": "dokumen 29% · hitung 21% · menolak 13% · kias 6% · kognitif 3% · agent 2%"
+    },
+    {
+      "kode": "C1",
+      "kel": "LATIH",
+      "nama": "penopengan prompt (loss hanya di jawaban)",
+      "vonis": "LULUS",
+      "teks": "prompt ditopengi"
+    },
+    {
+      "kode": "C2",
+      "kel": "LATIH",
+      "nama": "simpan bobot SEBELUM uji cium",
+      "vonis": "LULUS",
+      "teks": "simpan dulu, uji belakangan"
+    },
+    {
+      "kode": "C3",
+      "kel": "LATIH",
+      "nama": "seed tercatat",
+      "vonis": "LULUS",
+      "teks": "seed=42"
+    },
+    {
+      "kode": "C4",
+      "kel": "LATIH",
+      "nama": "epoch & laju belajar masuk akal untuk ukuran data",
+      "vonis": "LULUS",
+      "teks": "epoch=2 · lr=0.0002 · 1351 baris"
+    },
+    {
+      "kode": "C5",
+      "kel": "LATIH",
+      "nama": "token akhir (EOS/pad) ditangani",
+      "vonis": "LULUS",
+      "teks": "disebut di train.py"
+    },
+    {
+      "kode": "D1",
+      "kel": "UKUR",
+      "nama": "perkakas eval sehat (sintaks + uji instrumen)",
+      "vonis": "LULUS",
+      "teks": "siap terbang"
+    },
+    {
+      "kode": "D2",
+      "kel": "UKUR",
+      "nama": "register cacat: semua penjaga hijau",
+      "vonis": "PERLU KEPUTUSAN",
+      "teks": "KUNING — semua penjaga hijau, tapi ada kelas cacat yang belum berpenjaga (C09)"
+    },
+    {
+      "kode": "D3",
+      "kel": "UKUR",
+      "nama": "agregat tidak menyamarkan arah berlawanan",
+      "vonis": "LULUS",
+      "teks": "penjaga sehat"
+    },
+    {
+      "kode": "D4",
+      "kel": "UKUR",
+      "nama": "petak tahan (holdout) dari data kita sendiri",
+      "vonis": "LULUS",
+      "teks": "ada"
+    },
+    {
+      "kode": "D5",
+      "kel": "UKUR",
+      "nama": "baris kenari (canary) pengukur hafalan",
+      "vonis": "LULUS",
+      "teks": "ada"
+    },
+    {
+      "kode": "D6",
+      "kel": "UKUR",
+      "nama": "baseline diukur ulang sesudah instrumen berubah",
+      "vonis": "BELUM BISA",
+      "teks": "butuh mencatat versi instrumen di tiap berkas hasil lalu membandingkannya. Sekarang masih dijaga oleh disiplin, bukan kode."
+    },
+    {
+      "kode": "E1",
+      "kel": "PROSES",
+      "nama": "pra-daftar (kesimpulan dikunci sebelum diukur)",
+      "vonis": "LULUS",
+      "teks": "ada"
+    },
+    {
+      "kode": "E2",
+      "kel": "PROSES",
+      "nama": "repo tidak menyimpan ranjau biner",
+      "vonis": "LULUS",
+      "teks": "bersih"
+    }
+  ]
+}

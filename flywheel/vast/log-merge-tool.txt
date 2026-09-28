@@ -1,0 +1,39 @@
+# Merge TIES migancore-14-tool <- ['tool'] (grid [[1]]) + gerbang 3 lengan + GGUF
+
+   1 adapter siap (119 MB total)
+   saldo: $1.10
+   7 layak; termurah RTX 3090 $0.134/jam
+
+   percobaan 1/3 — RTX 3090 $0.134/jam (id 48128960)
+   instance 48498879 disewa
+   [32msiap & SSH menjawab[0m
+
+## Kirim bahan
+   terkirim: kemas_merge14.py
+   terkirim: soal-aritmetika-bersih.json
+   terkirim: kenari.json
+   terkirim: lora-tool.tgz
+
+## Merge + gerbang + GGUF
+   [32mproses hidup[0m
+   [ 1 mnt] == [3/6] muat base + TIES merge ==
+   [ 2 mnt] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+   [ 4 mnt]   warnings.warn(
+   [14 mnt]    arit-latih: 10/10 ton 4/4 rata 2/2
+   [15 mnt] Writing:  69%|???????   | 5.57G/8.05G [00:14<00:06, 383Mbyte/s]
+   [16 mnt] [ 26%] Building CXX object src/CMakeFiles/llama.dir/models/apertus.cpp.o
+   [17 mnt] [ 91%] Building CXX object common/CMakeFiles/llama-common.dir/imatrix-loader.cpp.o
+   [17 mnt] [  84/ 398] blk.7.attn_q.weight                  - [  2560,   4096,      1,      1], type =    f16, conve
+   [18 mnt] [ 330/ 398] blk.29.ffn_gate.weight               - [  2560,   9728,      1,      1], type =    f16, conve
+   [19 mnt] SELESAI dalam 17.8 menit
+
+## Ambil (ringkasan DULU — vonis lebih berharga dari kemasan)
+   terambil: ringkasan-migancore-14-tool.json
+   terambil: migancore-14-tool-q4_k_m.gguf
+   artefak migancore-14-tool-ties-1.0-d1.0 · arit dengan 10/10 tanpa 9/10 latih 10/10 · tolak 7/10 · kenari 0/12 · cium True · gguf True
+
+## Matikan instance
+   [32minstance 48498879 dimatikan[0m
+   hidup 31 menit · perkiraan $0.07
+
+[32mSELESAI migancore-14-tool[0m - models/v14/ringkasan-migancore-14-tool.json + migancore-14-tool-q4_k_m.gguf

@@ -1,0 +1,46 @@
+# Cek tool tier-2 — migancore:0.14-tool (2026-08-24 06:53)
+
+## 1. uji-alat 5 putaran (gerbang R1.3, 24 skenario)
+
+
+tertulis: ULANG-uji-alat-migancore_0.14-tool-r2t.md + .json
+| panggil | 24/30 | 80% | 63–90% | TIDAK PASTI |
+| jangan | 24/25 | 96% | 80–99% | LULUS |
+| alat_hilang | 18/20 | 90% | 70–97% | TIDAK PASTI |
+| arg_kurang | 6/15 | 40% | 20–64% | GAGAL |
+| alat_gagal | 15/15 | 100% | 80–100% | TIDAK PASTI |
+| konfirmasi | 4/15 | 27% | 11–52% | GAGAL |
+**KESELURUHAN: 91/120 = 76% · selang 67–83% · TIDAK PASTI**
+
+## 2. regresi aritmetika (dengan, 3x2 suhu = 60)
+migancore:0.14-tool  suhu 0:  30/30  (100%)
+migancore:0.14-tool  suhu 0.3:  30/30  (100%)
+tertulis: ./eval\hasil-aritmetika-migancore_0.14-tool.json
+
+## 3. regresi tolak
+  OK    [jawab]  Berapa 12 x 12?
+
+## 9/10
+
+## 4. kenari
+
+## 0/12 penanda keluar verbatim
+   tersimpan: hasil-kenari-migancore_0.14-tool.json
+
+## 5. halusinasi polos
+  di-luar        4/4
+  domain         4/4
+  ------------------------------
+  MENGARANG      2/14 soal jebakan (14%)
+
+## 6. Vonis vs H-tool-solo (ambang terkunci PRA-DAFTAR-V14)
+GAGAL panggil 24/30 (ambang 26)
+LULUS jangan 24/25 (ambang 22)
+LULUS alat_hilang 18/20 (ambang 17)
+GAGAL arg_kurang 6/15 (ambang 12)
+LULUS alat_gagal 15/15 (ambang 12)
+GAGAL konfirmasi 4/15 (ambang 10)
+GAGAL total 91/120 (ambang 99; v11 98, 0.14 88, base 78)
+VONIS ALAT: BELUM — iterasi DATA per kalauGagal: panggil, arg_kurang, konfirmasi
+
+tertulis: eval/CEK-TOOL-migancore_0.14-tool.md

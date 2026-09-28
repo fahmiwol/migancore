@@ -1,0 +1,418 @@
+{
+ "formatKontrak": 2,
+ "cluster": "hitung",
+ "baris": 364,
+ "sidik": {
+  "data": "c3c081feec27acd2",
+  "soal": "8a68b69a16c583a5",
+  "kenari": "87e91feb4fed4bc9",
+  "resep": "aa2d55baaca14ae1",
+  "skrip": "411342293b11710c",
+  "promptGerbang": "04b8df92cb204dca",
+  "tahan": "b2a25c6e323a3f9a"
+ },
+ "resep": {
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "lora": {
+   "r": 16,
+   "alpha": 32,
+   "dropout": 0.0,
+   "bias": "none",
+   "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+   ]
+  },
+  "latih": {
+   "epoch": 2,
+   "batch": 4,
+   "akumulasi": 4,
+   "lr": 0.0002,
+   "warmup_ratio": 0.05,
+   "scheduler": "cosine",
+   "optim": "adamw_torch",
+   "bf16": true,
+   "gradient_checkpointing": true,
+   "weight_decay": 0.0,
+   "seed": 42,
+   "maks_token": 1024,
+   "penopengan_prompt": true
+  }
+ },
+ "resepBedaDiizinkan": [],
+ "lingkungan": {
+  "python": "3.11.9",
+  "os": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "gitCommit": "1d074fa",
+  "torch": "2.4.0",
+  "transformers": "4.51.3",
+  "peft": "0.14.0",
+  "datasets": "3.2.0",
+  "accelerate": "1.2.1",
+  "cuda": "12.1",
+  "gpu": "NVIDIA GeForce RTX 3090"
+ },
+ "data": {
+  "promptSistem": [
+   {
+    "n": 201,
+    "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum menjawab. Kalau kamu tidak yakin, katakan tidak yakin — jangan menyodorkan angka atau kesimpulan yang belum kamu cek."
+   },
+   {
+    "n": 81,
+    "teks": "Kerjakan bertahap dan tunjukkan angka antaranya. Jawab dengan angka yang jelas."
+   },
+   {
+    "n": 76,
+    "teks": "Kamu MiganCore. Kerjakan hitungan bertahap, dan periksa hasilmu lewat jalan lain sebelum menyebutnya final."
+   },
+   {
+    "n": 6,
+    "teks": "Kamu MiganCore. Jawab dari catatan yang kamu punya."
+   }
+  ],
+  "sumber": {
+   "dasar-aritmetika": 201,
+   "ajar-hitung": 81,
+   "hitung-satuan": 76,
+   "kenari-hafalan": 6
+  },
+  "masalah": []
+ },
+ "token": {
+  "baris": 364,
+  "terpotong": 0,
+  "terpotongId": [],
+  "min": 84,
+  "median": 219,
+  "p95": 310,
+  "maks": 575,
+  "batas": 1024,
+  "labelPersen": 51.7
+ },
+ "kurva": {
+  "n": 4,
+  "titik": [
+   {
+    "step": 10,
+    "epoch": 0.44,
+    "loss": 1.8095,
+    "lr": 0.00018961655569610557
+   },
+   {
+    "step": 20,
+    "epoch": 0.879,
+    "loss": 0.7302,
+    "lr": 0.00013380168784085027
+   },
+   {
+    "step": 30,
+    "epoch": 1.308,
+    "loss": 0.3745,
+    "lr": 5.909313628286601e-05
+   },
+   {
+    "step": 40,
+    "epoch": 1.747,
+    "loss": 0.3844,
+    "lr": 7.249754889790539e-06
+   }
+  ],
+  "lossAwal": 1.8095,
+  "lossAkhir": 0.3844,
+  "lossMin": 0.3745,
+  "naikDiAkhir": false,
+  "nan": false
+ },
+ "loss": 0.3844,
+ "lossRata": 0.7782479470426386,
+ "tokenDilatihPersen": 51.7,
+ "petakTahan": {
+  "n": 86,
+  "lossBase": 3.665302276611328,
+  "lossAdapter": 2.473114252090454,
+  "delta": -1.1922
+ },
+ "promptGerbang": {
+  "sumber": "berkas",
+  "dasar": "Kerjakan bertahap dan tunjukkan angka antaranya. Jawab dengan angka yang jelas.",
+  "n_baru": 400,
+  "suhu": 0,
+  "latihDominan": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum menjawab. Kalau kamu tidak yakin, katakan tidak yakin — jangan menyodorkan angka atau kesimpulan yang belum kamu cek."
+ },
+ "arit-dengan": {
+  "benar": 10,
+  "total": 10,
+  "ton": "4/4",
+  "rata": "2/2",
+  "terpotong": 0,
+  "rinci": [
+   {
+    "soal": "19 ton x Rp15.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 59,
+    "terpotong": false,
+    "jawab": "19 ton = 19.000 kg.\n19.000 x Rp15.500 = Rp294.500.000.\nJadi totalnya Rp294.500.000."
+   },
+   {
+    "soal": "14 ton x Rp31.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 59,
+    "terpotong": false,
+    "jawab": "14 ton = 14.000 kg.\n14.000 x Rp31.500 = Rp441.000.000.\nJadi totalnya Rp441.000.000."
+   },
+   {
+    "soal": "Rp520.000 didiskon 20%, lalu didiskon 15",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 160,
+    "terpotong": false,
+    "jawab": "Diskon 20% dari Rp520.000:\nRp520.000 × 20% = Rp104.000.\nHarga setelah diskon pertama: Rp520.000 - Rp104.000 = Rp416.000.\n\nDiskon 15% dari Rp416.000:\nRp416.000 × 15% = Rp62.400.\nHarga akhir: Rp416.000 - Rp62.400 = Rp353.600.\n\nJadi harga akhirnya Rp353.600."
+   },
+   {
+    "soal": "Rp360.000 didiskon 35%, lalu didiskon 10",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 138,
+    "terpotong": false,
+    "jawab": "Diskon pertama: Rp360.000 × 35% = Rp126.000.\nHarga setelah diskon pertama: Rp360.000 - Rp126.000 = Rp234.000.\nDiskon kedua: Rp234.000 × 10% = Rp23.400.\nHarga akhir: Rp234.000 - Rp23.400 = Rp210.600.\nJadi harga akhirnya Rp210.600."
+   },
+   {
+    "soal": "9 orang rata-rata 62, dan 21 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": true,
+    "nTokenKeluar": 76,
+    "terpotong": false,
+    "jawab": "Jumlah total: 9 + 21 = 30.\nJumlah total yang dibagi: 9 × 62 + 21 × 92 = 558 + 1932 = 2490.\nRata-rata gabungan: 2490 : 30 = 83."
+   },
+   {
+    "soal": "3 orang rata-rata 40, dan 27 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": true,
+    "nTokenKeluar": 79,
+    "terpotong": false,
+    "jawab": "Jumlah total: 3 + 27 = 30.\nJumlah total dari kedua kelompok: 3 × 40 + 27 × 80 = 120 + 2160 = 2280.\nRata-rata gabungan: 2280 : 30 = 76."
+   },
+   {
+    "soal": "18 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 88,
+    "terpotong": false,
+    "jawab": "18 ton = 18.000 kg.\n18.000 x Rp15.500 = Rp279.000.000.\n25% x Rp279.000.000 = Rp69.750.000.\nJadi DP-nya Rp69.750.000."
+   },
+   {
+    "soal": "14 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 88,
+    "terpotong": false,
+    "jawab": "14 ton = 14.000 kg.\n14.000 x Rp15.500 = Rp217.000.000.\n25% x Rp217.000.000 = Rp54.250.000.\nJadi DP-nya Rp54.250.000."
+   },
+   {
+    "soal": "Harga A Rp28.500/kg dan harga B Rp15.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 89,
+    "terpotong": false,
+    "jawab": "Selisih harga per kg: Rp28.500 - Rp15.500 = Rp13.000.\nSelisih biaya untuk 2600 kg: Rp13.000 × 2600 = Rp33.800.000.\nJadi selisihnya Rp33.800.000."
+   },
+   {
+    "soal": "Harga A Rp31.500/kg dan harga B Rp12.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 84,
+    "terpotong": false,
+    "jawab": "Selisih per kg: Rp31.500 - Rp12.500 = Rp19.000.\nUntuk 3800 kg: Rp19.000 × 3800 = Rp72.200.000.\nJadi selisihnya Rp72.200.000."
+   }
+  ]
+ },
+ "arit-tanpa": {
+  "benar": 10,
+  "total": 10,
+  "ton": "4/4",
+  "rata": "2/2",
+  "terpotong": 0,
+  "rinci": [
+   {
+    "soal": "19 ton x Rp15.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 27,
+    "terpotong": false,
+    "jawab": "19 ton x Rp15.500/kg = Rp294.500.000."
+   },
+   {
+    "soal": "14 ton x Rp31.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 58,
+    "terpotong": false,
+    "jawab": "14 ton x Rp31.500/kg = Rp441.000.000.\nCatatan: 1 ton = 1.000 kg, jadi 14 ton = 14.000 kg."
+   },
+   {
+    "soal": "Rp520.000 didiskon 20%, lalu didiskon 15",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 144,
+    "terpotong": false,
+    "jawab": "Langkah 1: Hitung harga setelah diskon pertama.\nRp520.000 dikurangi 20% = Rp520.000 - (20% × Rp520.000) = Rp416.000.\n\nLangkah 2: Hitung harga setelah diskon kedua.\nRp416.000 dikurangi 15% = Rp416.000 - (15% × Rp416.000) = Rp353.600.\n\nJadi harga akhirnya Rp353.600."
+   },
+   {
+    "soal": "Rp360.000 didiskon 35%, lalu didiskon 10",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 179,
+    "terpotong": false,
+    "jawab": "Langkah 1: Hitung harga setelah diskon pertama.\nRp360.000 dikurangi 35% = Rp360.000 - (35% × Rp360.000) = Rp360.000 - Rp126.000 = Rp234.000.\n\nLangkah 2: Hitung harga setelah diskon kedua.\nRp234.000 dikurangi 10% = Rp234.000 - (10% × Rp234.000) = Rp234.000 - Rp23.400 = Rp210.600.\n\nJadi harga akhirnya"
+   },
+   {
+    "soal": "9 orang rata-rata 62, dan 21 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": true,
+    "nTokenKeluar": 118,
+    "terpotong": false,
+    "jawab": "Jumlah total: 9 + 21 = 30.\n\nJumlah total dari kelompok pertama: 9 × 62 = 558.\n\nJumlah total dari kelompok kedua: 21 × 92 = 1932.\n\nJumlah total gabungan: 558 + 1932 = 2490.\n\nRata-rata gabungan: 2490 ÷ 30 = 83.\n\nJadi rata-ratanya 83."
+   },
+   {
+    "soal": "3 orang rata-rata 40, dan 27 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": true,
+    "nTokenKeluar": 101,
+    "terpotong": false,
+    "jawab": "Rata-rata gabungan = jumlah seluruh nilai : jumlah seluruh orang.\n\nJumlah seluruh nilai = (3 × 40) + (27 × 80) = 120 + 2160 = 2280.\n\nJumlah seluruh orang = 3 + 27 = 30.\n\nRata-rata gabungannya = 2280 : 30 = 76."
+   },
+   {
+    "soal": "18 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 88,
+    "terpotong": false,
+    "jawab": "18 ton = 18.000 kg.\n18.000 x Rp15.500 = Rp279.000.000.\n25% x Rp279.000.000 = Rp69.750.000.\nJadi DP-nya Rp69.750.000."
+   },
+   {
+    "soal": "14 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 88,
+    "terpotong": false,
+    "jawab": "14 ton = 14.000 kg.\n14.000 x Rp15.500 = Rp217.000.000.\n25% x Rp217.000.000 = Rp54.250.000.\nJadi DP-nya Rp54.250.000."
+   },
+   {
+    "soal": "Harga A Rp28.500/kg dan harga B Rp15.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 89,
+    "terpotong": false,
+    "jawab": "Selisih harga per kg: Rp28.500 - Rp15.500 = Rp13.000.\nSelisih biaya untuk 2600 kg: Rp13.000 × 2600 = Rp33.800.000.\nJadi selisihnya Rp33.800.000."
+   },
+   {
+    "soal": "Harga A Rp31.500/kg dan harga B Rp12.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 89,
+    "terpotong": false,
+    "jawab": "Selisih harga per kg: Rp31.500 - Rp12.500 = Rp19.000.\nSelisih biaya untuk 3800 kg: Rp19.000 × 3800 = Rp72.200.000.\nJadi selisihnya Rp72.200.000."
+   }
+  ]
+ },
+ "arit-latih": {
+  "benar": 9,
+  "total": 10,
+  "ton": "4/4",
+  "rata": "1/2",
+  "terpotong": 0,
+  "rinci": [
+   {
+    "soal": "19 ton x Rp15.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 82,
+    "terpotong": false,
+    "jawab": "19 ton = 19.000 kg.\n19.000 x Rp15.500 = Rp294.500.000.\nItu sekitar Rp295 juta. Satu catatan: harga per kg tidak selalu sama — naik turun sesuai ketersediaan dan permintaan."
+   },
+   {
+    "soal": "14 ton x Rp31.500/kg, berapa total?",
+    "jenis": "ton-harga",
+    "ok": true,
+    "nTokenKeluar": 82,
+    "terpotong": false,
+    "jawab": "14 ton = 14.000 kg.\n14.000 x Rp31.500 = Rp441.000.000.\nItu sekitar Rp441 juta. Satu catatan: harga per kg tidak selalu sama — naik turun sesuai ketersediaan dan permintaan."
+   },
+   {
+    "soal": "Rp520.000 didiskon 20%, lalu didiskon 15",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 164,
+    "terpotong": false,
+    "jawab": "Kuhitung bertahap:\n1. Diskon 20% dari Rp520.000: Rp520.000 × (1 - 0.20) = Rp416.000.\n2. Diskon 15% dari Rp416.000: Rp416.000 × (1 - 0.15) = Rp353.600.\nJadi harga akhirnya Rp353.600. Satu catatan: persentase tanpa angka dasar gampang menipu — diskon 15% dari Rp1.000 beda artinya dengan dari Rp520.000"
+   },
+   {
+    "soal": "Rp360.000 didiskon 35%, lalu didiskon 10",
+    "jenis": "diskon-berantai",
+    "ok": true,
+    "nTokenKeluar": 137,
+    "terpotong": false,
+    "jawab": "Kuhitung bertahap:\n1. Diskon pertama: Rp360.000 × (1 - 35%) = Rp234.000.\n2. Diskon kedua: Rp234.000 × (1 - 10%) = Rp210.600.\nJadi harga akhirnya Rp210.600. Satu catatan: persentase tanpa angka dasar gampang menipu — diskon 10% dari Rp1.000 beda artinya dengan dari Rp10.000."
+   },
+   {
+    "soal": "9 orang rata-rata 62, dan 21 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": true,
+    "nTokenKeluar": 97,
+    "terpotong": false,
+    "jawab": "Langkahnya:\n1. Hitung jumlah total: 9 + 21 = 30.\n2. Hitung jumlah total yang dibagi: (9 × 62) + (21 × 92) = 558 + 1932 = 2490.\n3. Bagikan: 2490 : 30 = 83.\nJadi rata-ratanya 83."
+   },
+   {
+    "soal": "3 orang rata-rata 40, dan 27 orang rata-",
+    "jenis": "rata-berbobot",
+    "ok": false,
+    "nTokenKeluar": 85,
+    "terpotong": false,
+    "jawab": "Langkahnya:\n1. Hitung jumlah total: 3 + 27 = 30.\n2. Hitung jumlah total: 3 × 40 + 27 × 80 = 2,400.\n3. Bagikan: 2,400 : 30 = 80.\nJadi rata-rata gabungannya 80."
+   },
+   {
+    "soal": "18 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 149,
+    "terpotong": false,
+    "jawab": "1. Ubah 18 ton ke kg: 18.000 kg.\n2. Hitung total: 18.000 x Rp15.500 = Rp279.000.000.\n3. Hitung DP 25%: Rp279.000.000 x 25% = Rp69.750.000.\nItu sekitar Rp70.000.000. Satu catatan: pembagian pembulatan ke atas mengubah hasilnya — di sini pembulatan ke bawah, jadi angkanya kecil."
+   },
+   {
+    "soal": "14 ton x Rp15.500/kg. Berapa DP 25% dari",
+    "jenis": "dp-persen",
+    "ok": true,
+    "nTokenKeluar": 147,
+    "terpotong": false,
+    "jawab": "1. Ubah 14 ton ke kg: 14.000 kg.\n2. Hitung total: 14.000 x Rp15.500 = Rp217.000.000.\n3. Hitung DP 25%: Rp217.000.000 x 25% = Rp54.250.000.\nItu sekitar Rp54.3 juta. Satu catatan: pembagian di sini menghasilkan pembulatan ke atas, jadi Rp54.3 juta lebih besar dari yang sebenarnya."
+   },
+   {
+    "soal": "Harga A Rp28.500/kg dan harga B Rp15.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 125,
+    "terpotong": false,
+    "jawab": "Langkahnya:\n1. Selisih harga per kg: Rp28.500 - Rp15.500 = Rp13.000.\n2. Untuk 2600 kg: Rp13.000 × 2600 = Rp33.800.000.\nJadi selisihnya Rp33.800.000. Satu catatan: pembagian pembulatan ke atas mengubah hasilnya — di sini tidak perlu karena pembagiannya ke bawah."
+   },
+   {
+    "soal": "Harga A Rp31.500/kg dan harga B Rp12.500",
+    "jenis": "selisih-kali",
+    "ok": true,
+    "nTokenKeluar": 93,
+    "terpotong": false,
+    "jawab": "1. Selisih harga per kg: Rp31.500 - Rp12.500 = Rp19.000.\n2. Selisih biaya untuk 3800 kg: Rp19.000 × 3800 = Rp72.200.000.\nJadi selisihnya Rp72.200.000."
+   }
+  ]
+ },
+ "kenari": "0/12",
+ "kode7": true,
+ "menit": 7.4
+}

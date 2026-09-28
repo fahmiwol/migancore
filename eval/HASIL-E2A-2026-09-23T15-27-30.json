@@ -1,0 +1,88 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-E2A-BOBOT-ATAU-PARAGRAF.json",
+ "stempel": "2026-09-23T15-27-30",
+ "asap": false,
+ "host": "http://measure-host.local:11434",
+ "nGiliran": 960,
+ "digestModel": {
+  "awal": {
+   "qwen3:4b-instruct-2507-q4_K_M": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+   "migancore:0.14": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497"
+  },
+  "akhir": {
+   "qwen3:4b-instruct-2507-q4_K_M": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+   "migancore:0.14": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497"
+  }
+ },
+ "pengganti": {
+  "diganti": 540,
+  "dilewatkan": 540
+ },
+ "keabsahanInstrumen": {
+  "lulus": true,
+  "sel": {
+   "qwen3:4b-instruct-2507-q4_K_M|polos": {
+    "n": 240,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 0,
+    "digestBeda": 0
+   },
+   "qwen3:4b-instruct-2507-q4_K_M|batas": {
+    "n": 240,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 0,
+    "digestBeda": 0
+   },
+   "migancore:0.14|polos": {
+    "n": 240,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 0,
+    "digestBeda": 0
+   },
+   "migancore:0.14|batas": {
+    "n": 240,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 0,
+    "digestBeda": 0
+   }
+  },
+  "masalah": []
+ },
+ "deskriptif": {
+  "qwen3:4b-instruct-2507-q4_K_M|polos": {
+   "terpotong": 0,
+   "pikir": 0,
+   "n": 240,
+   "medianPanjang": 79.5
+  },
+  "qwen3:4b-instruct-2507-q4_K_M|batas": {
+   "terpotong": 0,
+   "pikir": 0,
+   "n": 240,
+   "medianPanjang": 99.5
+  },
+  "migancore:0.14|polos": {
+   "terpotong": 0,
+   "pikir": 0,
+   "n": 240,
+   "medianPanjang": 99.5
+  },
+  "migancore:0.14|batas": {
+   "terpotong": 0,
+   "pikir": 0,
+   "n": 240,
+   "medianPanjang": 110
+  }
+ },
+ "latensi_deskriptif": {
+  "qwen3:4b-instruct-2507-q4_K_M|polos": "LULUS",
+  "qwen3:4b-instruct-2507-q4_K_M|batas": "LULUS",
+  "migancore:0.14|polos": "LULUS",
+  "migancore:0.14|batas": "LULUS"
+ },
+ "jsonl": "e2a-bobot-atau-paragraf-2026-09-23T15-27-30.jsonl"
+}

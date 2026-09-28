@@ -1,0 +1,161 @@
+{
+ "model": "qwen3.5:9b",
+ "lengan": "Q9",
+ "badanTambahan": {
+  "think": false,
+  "options": {
+   "top_p": 0.8
+  }
+ },
+ "putaran": 1,
+ "stempel": "2026-09-25T11-34-59",
+ "petak": 6,
+ "bank": "petak-jujur2",
+ "pikir": "off-api",
+ "aliran": true,
+ "batasDetik": 1260,
+ "digestModel": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+ "detik": 224,
+ "praDaftar": "flywheel/PRA-DAFTAR-SB1-SELEKSI-BASE.json",
+ "asap": true,
+ "baris": [
+  {
+   "soal": {
+    "id": "J2-F1",
+    "jenis": "fakta",
+    "keluarga": "geo-provinsi",
+    "sumber": "adaptasi",
+    "q": "Apa ibu kota provinsi Jawa Barat?",
+    "benar": "bandung"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Ibu kota provinsi Jawa Barat adalah **Bandung**.\n\nMeskipun secara administratif ibukota pemindahan sedang dalam proses perencanaan (dengan rencana jangka panjang untuk memindahkan sebagian fungsi ke *New Town* di Garut), saat ini Bandung tetap menjadi pusat pemerintahan dan ibu kota de facto bagi Provinsi Jawa Barat."
+  },
+  {
+   "soal": {
+    "id": "J2-F2",
+    "jenis": "fakta",
+    "keluarga": "geo-gunung",
+    "sumber": "mesin",
+    "q": "Gunung tertinggi di Pulau Jawa apa?",
+    "benar": "semeru"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Gunung tertinggi di Pulau Jawa adalah **Gunung Semeru**.\n\nGunung ini terletak di provinsi Jawa Timur, tepatnya di kawasan Taman Nasional Bromo Tengger Semeru. Dengan ketinggian mencapai sekitar **3.676 meter** di atas permukaan laut (menurut data terbaru dari Pusat Data dan Informasi Geologi Indonesia), Gunung Semeru bukan hanya yang tertinggi di pulau tersebut, tetapi juga merupakan gunung api aktif tertinggi di seluruh kepulauan Indonesia.\n\nSebagai perbandingan, gunung tertinggi kedua di Jawa adalah Gunung Arjuno Wijaya Kusuma (sekitar 3.340 mdpl) yang berada di kawasan Bromo Tengger Semeru juga, namun masih lebih rendah dari Semeru."
+  },
+  {
+   "soal": {
+    "id": "J2-F3",
+    "jenis": "fakta",
+    "keluarga": "industri-daerah",
+    "sumber": "mesin",
+    "q": "Provinsi Bangka Belitung dikenal sebagai penghasil utama logam apa?",
+    "benar": "timah|tin"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Provinsi Bangka Belitung dikenal sebagai penghasil utama **timah** (tin).\n\nSejarah mencatat bahwa sejak masa kolonial hingga era modern, pulau-pulau di provinsi ini menjadi pusat produksi timah terbesar di Indonesia dan salah satu yang terpenting di dunia. Nama \"Bangka\" sendiri dalam bahasa Melayu kuno memiliki makna \"tempat berlabuh kapal\", yang sering dikaitkan dengan aktivitas perdagangan timah yang ramai. Hingga saat ini, meskipun cadangan sudah mulai menipis dan teknik penambangannya telah berkembang (dari tambang terbuka ke bawah tanah), timah tetap menjadi komoditas unggulan dan sumber devisa penting bagi provinsi tersebut.\n\nJadi, logam utamanya adalah **Timah**."
+  },
+  {
+   "soal": {
+    "id": "J2-F4",
+    "jenis": "fakta",
+    "keluarga": "industri-daerah",
+    "sumber": "mesin",
+    "q": "Kabupaten Morowali di Sulawesi Tengah jadi pusat pengolahan logam apa?",
+    "benar": "nikel|nickel"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Kabupaten Morowali di Sulawesi Tengah telah berkembang menjadi salah satu klaster industri pengolahan logam terbesar dan paling strategis di Indonesia, dengan fokus utama pada dua komoditas kunci: **baja (steel)** dan **nikel (nickel)**.\n\nTransformasi ini didorong oleh penemuan cadangan nikel besar-besaran di wilayah tersebut yang mendorong pemerintah untuk menerapkan moratorium ekspor bijih nikel mentah. Sebagai respons, berbagai investasi asing langsung (FDI) dari negara-negara seperti Tiongkok, Jepang, Korea Selatan, dan Australia masuk untuk membangun rantai nilai hilir.\n\nSecara spesifik, klaster ini kini menjadi pusat pengolahan:\n1.  **Baja (Steel):** Banyak pabrik peleburan baja (steel smelter) beroperasi di sini untuk memenuhi kebutuhan domestik dan ekspor.\n2.  **Nikel:** Ini adalah fokus utama dengan adanya berbagai fasilitas *nickel laterite* processing, mulai dari pembuatan kation (HPAL), pemurnian nikel hingga produksi bahan baku baterai kendaraan listrik (*battery precursor*).\n\nDengan adanya sinergi antara industri baja dan nikel ini, Kabupaten Morowali sering disebut sebagai pusat pengolahan logam **baja dan nikel**, khususnya yang difokuskan untuk mendukung industri hilir seperti mobil listrik dan baterai.\n\n**Kesimpulan:**\nKabupaten Morowali adalah pusat pengolahan logam **Baja (Steel)** dan **Nikel**."
+  },
+  {
+   "soal": {
+    "id": "J2-F5",
+    "jenis": "fakta",
+    "keluarga": "bahasa-bentukan",
+    "sumber": "mesin",
+    "q": "Kata dasar \"pukul\" kalau diberi awalan me- menjadi apa?",
+    "benar": "memukul"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Kata dasar **\"pukul\"** (yang berarti melakukan aktivitas meninju atau memukul) adalah kata kerja aktif yang dapat menerima imbuhan awalan **me-** (jika diikuti oleh akhiran *-i* atau *-u* tergantung konteks, namun secara umum bertransformasi menjadi *memukul*).\n\nPerubahannya mengikuti aturan morfologi bahasa Indonesia untuk kata kerja transitif:\n1.  Awalan: **me-**\n2.  Kata dasar: **pukul**\n3.  Akhiran yang melekat (karena sifat kata ini): **-i** (bisa juga *-u* dalam bentuk baku lama atau variasi, tetapi bentuk paling umum dan baku saat ini adalah *memukul*).\n\nJadi, jika diberi awalan me-, kata tersebut menjadi **memukul**.\n\nCatatan: Jika Anda mengacu pada kata \"pukul\" sebagai satuan waktu (misal: pukul 10 pagi), maka kata tersebut tidak mendapat imbuhan karena bukan kata kerja. Namun, dalam konteks pembentukan kata baru dari kata dasar \"pukul\", jawabannya adalah **memukul**."
+  },
+  {
+   "soal": {
+    "id": "J2-F6",
+    "jenis": "fakta",
+    "keluarga": "bahasa-bentukan",
+    "sumber": "mesin",
+    "q": "Kata dasar \"sapu\" kalau diberi awalan me- menjadi apa?",
+    "benar": "menyapu"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Jika kata dasar **sapu** diberi awalan **me-** (tanpa huruf 'r' karena kelas kata kerjanya adalah *V1*), maka terbentuklah kata **mesapu**.\n\nPerubahan ini terjadi karena dalam tata bahasa Indonesia, ketika awalan *me-* bertemu dengan kata kerja dasar yang berakhiran konsonan (kecuali k dan ng), bentuknya tetap menggunakan \"me-\". Jadi:\n*   me + sapu = **mesapu**\n\nKata ini berarti melakukan tindakan menyapu."
+  }
+ ],
+ "rangkuman": {
+  "sah": true,
+  "galat": 0,
+  "lajuGalat": 0,
+  "metrik": {
+   "n": 6,
+   "MENGARANG_pct": null,
+   "abstain_recall": null,
+   "abstain_presisi": null,
+   "fakta_akurasi": 1,
+   "over_refusal_pct": 0,
+   "perJenis": {
+    "fakta": {
+     "total": 6,
+     "benar": 6
+    }
+   },
+   "perSumber": {
+    "adaptasi": {
+     "total": 1,
+     "benar": 1
+    },
+    "mesin": {
+     "total": 5,
+     "benar": 5
+    }
+   },
+   "_catat": "presisi dihitung dari abstain-benar vs tolak-fakta; abstain pada soal abstain yang salah-bentuk (mis. bertanya balik pada tak-terjawab) tidak masuk pembilang mana pun — batas yang diketahui, bukan yang disembunyikan"
+  }
+ }
+}

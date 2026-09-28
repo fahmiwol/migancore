@@ -1,0 +1,56 @@
+{
+  "nama": "resep-v13-cluster-lora-epoch1",
+  "catatan": "VARIAN H-epoch (23 Agu): IDENTIK dengan RESEP-V13.json kecuali latih.epoch 2 -> 1. Dasar: epoch-2 = tempat baris \"baru\" dihafal (Gekhman 2405.05904); Raschka: 2x iterasi menurunkan mutu; Kalajdzievski: forgetting ~ jumlah langkah update. Skrip latih menolak tanpa RESEP_IZIN_BEDA=1 (peluncur --izin-beda); beda dicatat di ringkasan.",
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.0,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "latih": {
+    "epoch": 1,
+    "batch": 4,
+    "akumulasi": 4,
+    "lr": 0.0002,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine",
+    "optim": "adamw_torch",
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "weight_decay": 0.0,
+    "seed": 42,
+    "maks_token": 1024,
+    "penopengan_prompt": true
+  },
+  "keputusanSadar": {
+    "weight_decay": "0.0 = bawaan TrainingArguments yang selama ini dipakai tanpa disadari (Databricks memakai 0.01 untuk full fine-tune; LoRA berbeda). Dicatat sebagai keputusan, bukan kebetulan — RISET-SUMBER-LUAR-22AGU.md §10.",
+    "seed": "42 = bawaan TrainingArguments yang selama ini berlaku diam-diam; kini eksplisit dan ikut tercatat di ringkasan.",
+    "lr_2e-4": "10x lebih besar dari full fine-tune (2e-5) — wajar untuk LoRA, bukan celah.",
+    "epoch": "1 = keputusan eksperimen H-epoch; pembanding = run kontrol format-2 (2 epoch) pada data & seed yang sama."
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1",
+    "image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+  },
+  "gerbangTier1": {
+    "soal": "eval/soal-aritmetika-bersih.json",
+    "kenari": "flywheel/dataset/kenari.json",
+    "petakTahan": "flywheel/dataset/migancore-tahan.jsonl",
+    "promptGerbang": "eval/prompt-gerbang.json",
+    "n_baru": 400,
+    "suhu": 0
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.11-4b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "kendali",
+  "sistemTambahan": "",
+  "keseluruhan": {
+    "lulus": 37,
+    "coba": 68,
+    "lo": 0.4265639778429345,
+    "hi": 0.6569530930463552,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 18,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.6989617935882066,
+      "hi": 0.9721341060158467
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 8,
+      "total": 17,
+      "v": "GAGAL",
+      "lo": 0.26164801196088106,
+      "hi": 0.6903710268845051
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 2,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.037360469891359285,
+      "hi": 0.3788249920651624
+    },
+    {
+      "kategori": "kias",
+      "lulus": 9,
+      "total": 16,
+      "v": "GAGAL",
+      "lo": 0.3317819560677652,
+      "hi": 0.7690163666481449
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Lead masuk 8, sudah dibalas 3. Berapa yang belum dibalas?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

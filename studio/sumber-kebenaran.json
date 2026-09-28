@@ -1,0 +1,84 @@
+{
+  "_apa": "Registri sumber kebenaran MiganCore. SATU tempat kanonik per jenis fakta. Dibaca oleh MiganCore Studio DAN oleh agen sebelum bekerja. Jangan menyalin fakta ke tempat lain; tautkan ke sini.",
+  "_versi": "0.2",
+  "_diperbarui": "2026-09-28T08:37Z",
+  "_aturan": [
+    "Fakta ditulis HANYA di jalur kanonik, lewat alat penulisnya.",
+    "Berkas turunan (silsilah, sensus, cache) dibangkitkan ulang, tidak disunting tangan.",
+    "Kalau dua tempat bertentangan, yang kanonik benar dan yang lain dianggap basi.",
+    "Transkrip sesi dan berkas rahasia tidak pernah menjadi sumber tampilan."
+  ],
+  "akar": { "repo": ".", "omiga": "<memory-dir>" },
+  "entitas": {
+    "model_berlaku": {
+      "kanonik": "models/BERLAKU.json",
+      "penulis": "keputusan promosi tercatat (pra-daftar V1x + gerbang regresi)",
+      "penjaga": ["node migan.mjs periksa"]
+    },
+    "sanad_model": {
+      "kanonik": "models/SANAD-*.json",
+      "penulis": "flywheel/lajur-latihan.mjs dan skrip panen",
+      "penjaga": ["node migan.mjs status (mata dhaif/bersambung)"]
+    },
+    "silsilah_model": {
+      "turunan": true,
+      "pembangkit": "node flywheel/bangun-silsilah.mjs --ke <folder>",
+      "dari": ["models/BERLAKU.json", "models/SANAD-*.json", "SILSILAH-MODEL.md", "flywheel/PRA-DAFTAR-*.json", "PETA-DIAL-LATIH.md", "docs/jarvis/*.md", "eval/hasil-*.json"]
+    },
+    "pra_daftar_dan_vonis": {
+      "kanonik": "flywheel/PRA-DAFTAR-*.json",
+      "penulis": "agen — dikunci SEBELUM data (skill pra-daftar-eksperimen); vonis ditulis sesudah aturan berhenti",
+      "penjaga": ["eval/jaga-vonis.mjs", "eval/jaga-vonis-basi.mjs"]
+    },
+    "hasil_ukur": {
+      "kanonik": "eval/hasil-*.json",
+      "penulis": "eval/ukur-jujur2.mjs dan pelari gerbang lain",
+      "penjaga": ["tidak pernah disunting; C59: data yang tidak disimpan tidak bisa diuji"]
+    },
+    "instrumen": {
+      "kanonik": ["eval/petak-jujur2.mjs", "eval/instrumen-jujur2.mjs"],
+      "catatan": "angka lintas instrumen (petak-40, petak-jujur2, gerbang alat, regresi) tidak boleh dibandingkan tanpa label"
+    },
+    "temuan": { "kanonik": "docs/jarvis/FINDINGS_LOG.md", "pola_id": "^- \\*\\*(F-\\d+[a-z]?(?:/\\d+[a-z]?)*)", "pengurai": "flywheel/bangun-silsilah.mjs#kumpulkanTemuan", "catatan": "23 Sep: jumlah temuan = id unik (entri F-056/057/058 = 3 id), bukan jumlah baris; pakai penguraiannya, jangan salin pola" },
+    "hukum": { "kanonik": "PETA-DIAL-LATIH.md", "pola_id": "^##\\s+([AC]\\d+[a-z]?)\\s*[-–—]", "pengurai": "flywheel/bangun-silsilah.mjs#kumpulkanHukum", "catatan": "23 Sep: pola lama '^## C(\\d+) - ' melewatkan C22/C30/C31 (em dash); keluarga A = dial latih, hukum = keluarga C" },
+    "register_cacat": { "kanonik": "eval/REGISTER-CACAT.json" },
+    "backlog": {
+      "kanonik": ["docs/jarvis/96_BACKLOG_MENUJU_MAKSARA.md", "docs/jarvis/93_RENCANA_MENUJU_BIBIT.md"],
+      "catatan": "status episode diturunkan dari vonis pra-daftar bila tertaut"
+    },
+    "riwayat_model": {
+      "kanonik": ["docs/jarvis/MIGANCORE_MODEL_CHANGELOG.md", "PETA-VERSI-MENUJU-BIBIT.md", "SILSILAH-MODEL.md"]
+    },
+    "log_harian": { "kanonik": "docs/jarvis/CHANGELOG.md" },
+    "log_riset": { "kanonik": "riset/*/LIVING_LOG.md" },
+    "handoff": { "kanonik": "HANDOFF-*.md" },
+    "buku_eksperimen": { "kanonik": "docs/jarvis/EXPERIMENT_LEDGER.md" },
+    "radar_riset_harian": { "kanonik": "riset/radar/YYYY-MM-DD.md", "penulis": "tugas terjadwal radar-riset-migancore (07.00 WIB, sejak 28 Sep 2026; izin Fahmi 27 Sep)", "catatan": "satu berkas per hari; klaim wajib ber-URL sumber yang dibuka; dibaca layar Arah Studio. DIJEDA 28 Sep 2026 (MiganCore ditutup); belum pernah menghasilkan berkas" },
+    "sensus_data": {
+      "kanonik_manusia": ["docs/jarvis/99_SENSUS_DATA_MIGANCORE.md", "docs/jarvis/98_PETA_DATA_BMAX.md"],
+      "turunan_mesin": "studio/data/sensus-<lokasi>-<tanggal>.json",
+      "pembangkit": ["flywheel/inventaris-bmax/*.ps1 lewat flywheel/bmax.mjs", "skrip sensus laptop (PowerShell ASCII)", "pemeriksaan VPS-2 baca-saja", "gh repo list"]
+    },
+    "majelis": {
+      "kanonik": "majelis/",
+      "catatan": "lisensi dan izin distilasi tiap kursi wajib bersitasi sebelum menjadi guru"
+    },
+    "retrieval_audit": {
+      "kanonik_omiga": ["<memory-dir>/RETRIEVAL.md", "<memory-dir>/scripts/golden.jsonl", "<memory-dir>/corpus/eval/"],
+      "catatan": "pola audit (golden set, recall@k, sweep bobot) dipakai ulang untuk korpus MiganCore"
+    },
+    "pengetahuan_lintas_proyek": {
+      "kanonik": "OMIGA (brain_learn store + <memory-dir>/BOOK/)",
+      "akses": "MCP omiga-brain (brain_search, brain_recall, brain_learn)"
+    },
+    "keputusan_studio": { "kanonik": "studio/docs/ARD.md" },
+    "keputusan_estat": { "kanonik": "<memory-dir>/BOOK/09-DECISIONS.md" },
+    "situs_publik": { "kanonik": "docs/penutupan/situs-migancore-com/index.html", "penulis": "keputusan penutupan (doc 111 §6, F-293); dipasang ke VPS-2 <server-root>/migancore-web — cara pasang & kembalikan di README folder itu", "catatan": "sejak 2026-09-28: halaman pemberitahuan penutupan; halaman lama diarsip di folder yang sama, di VPS-2 dan di Bmax" }
+  },
+  "mesin": {
+    "laptop": { "peran": ["kerja Fahmi", "repo kanonik", "server Studio 127.0.0.1:8700"], "BUKAN": "mesin ukur model", "catatan": "Ollama laptop hidup untuk jembatan-gpu ke VPS-2; keputusan mematikannya menunggu Fahmi" },
+    "bmax": { "peran": ["mesin ukur Ollama (CPU)", "gudang model/adapter/dataset", "cadangan VPS-1"], "sidik": "lihat eval/pratinjau-a3.mjs capMesin", "alamat": "di studio/.env.studio (DHCP bisa bergeser)" },
+    "vps2": { "peran": ["server hidup banyak proyek", "Ollama cadangan (0.14, 0.14-tool, 0.14-tool-8b)"], "catatan": "beban tinggi; hanya pemeriksaan baca-saja berprioritas rendah" }
+  },
+  "tolak_dibaca": [".env", ".env.*", "*credential*", "memory/credentials_private.md", "KVM8-BACKUP/tier1*", "KVM8-BACKUP/tier1b*", "*.jsonl transkrip sesi .claude/projects"]
+}

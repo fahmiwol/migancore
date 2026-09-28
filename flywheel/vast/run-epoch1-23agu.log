@@ -1,0 +1,68 @@
+# Latih adapter v13-hitung
+
+## 1. Segel pra-daftar
+   hitung · sidik 500de80a5a2cd162 [32mcocok pra-daftar[0m
+
+## 1b. Kontrak masukan (manifest)
+     [33mcatatan[0m git: 35 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit
+   
+     sidik: data=500de80a5a2cd162 · soal=8a68b69a16c583a5 · kenari=87e91feb4fed4bc9 · resep=5e0e8c718272a0a1 · skrip=00f2593b636ccd58 · ukur=a7b568d9dd5462db · promptGerbang=04b8df92cb204dca · tahan=b2a25c6e323a3f9a
+     manifest: flywheel\dataset\v13\MANIFEST-hitung-epoch1.json
+   
+   [32mSIAP[0m — semua syarat wajib terpenuhi (3 catatan). [2mberikutnya: migan latih hitung[0m
+
+## 2. Kredensial & host
+   saldo: $1.76
+   7 layak; termurah RTX 3090 $0.129/jam
+
+   percobaan 1/3 — RTX 3090 $0.129/jam (id 43979793)
+   instance 48469368 disewa
+   [ 0.0 mnt] ?
+   [ 0.4 mnt] loading
+   [ 0.8 mnt] running
+   [32msiap & SSH menjawab[0m
+
+## 3. Kirim bahan
+   terkirim: cluster.jsonl
+   terkirim: latih_cluster.py
+   terkirim: ukur_latih.py
+   terkirim: soal-aritmetika-bersih.json
+   terkirim: kenari.json
+   terkirim: resep.json
+   terkirim: prompt-gerbang.json
+   terkirim: tahan.jsonl
+   [32mterbukti utuh[0m: 285 baris
+
+## 4. Latih + gerbang tingkat-1
+   [32mproses hidup[0m
+   [ 1 mnt] == [1/7] pustaka ==
+   [ 2 mnt] == [2/7] base & data ==
+   [ 3 mnt] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+   [ 4 mnt]   with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # ty
+   [ 5 mnt]  89%|????????? | 16/18 [00:51<00:06,  3.13s/it]
+   [ 6 mnt]   warnings.warn(
+   [ 7 mnt]    arit-dengan: 8/10 ? ton 4/4 ? rata 0/2 ? terpotong 0
+   [11 mnt]    arit-tanpa: 6/10 ? ton 4/4 ? rata 0/2 ? terpotong 2
+   [14 mnt]    arit-latih: 10/10 ? ton 4/4 ? rata 2/2 ? terpotong 0
+   [16 mnt] SELESAI dalam 14.8 menit
+
+## 5. Ambil (adapter DULU)
+   terambil: lora-hitung-epoch1.tgz
+   terambil: ringkasan-hitung-epoch1.json
+
+   loss 1.8095 · arit dengan 8/10 tanpa 6/10 · kenari 0/12 · terpotong data 0
+   petak tahan: base 3.6653 -> adapter 2.4347 (delta -1.2306)
+
+## 5b. Kontrak keluaran
+   # Kontrak keluaran — hitung-epoch1 (v13)
+   
+     [33mcatatan[0m arit-tanpa: 2 jawaban gerbang TERPOTONG (n_baru habis) — skor gagal bisa = buntung, bukan salah hitung
+     [33mcatatan[0m petak tahan: loss base 3.665302276611328 -> adapter 2.4346933364868164 (delta -1.2306)
+   
+   [32mSAHIH[0m — sidik masukan cocok manifest; sanad run ini bersambung otomatis.
+
+## 6. Matikan instance
+   [32minstance 48469368 dimatikan[0m
+   hidup 27 menit · perkiraan $0.06
+
+[32mSELESAI hitung[0m - ringkasan: models/v13/ringkasan-hitung-epoch1.json

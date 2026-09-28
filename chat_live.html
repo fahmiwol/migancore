@@ -1,0 +1,3896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiganCore — Chat</title>
+  <meta name="description" content="ADO yang belajar dari interaksi — brain Indonesia, voice direct, action over advice.">
+  <meta name="theme-color" content="#ff8a24">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MiganCore">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Resource hints — speed up critical-path origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://api.migancore.com">
+  <link rel="preload" as="script" href="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin>
+  <link rel="preload" as="script" href="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin>
+
+  <!-- Fonts (display=swap = render text immediately with fallback, swap when ready) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- React 18 + Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Day 40: CompressorJS for client-side image downscale (12KB gzipped, no build) -->
+  <!-- Used to keep base64 attachments under 1MB so React state doesn't freeze on big images -->
+  <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.2.1/dist/compressor.min.js"></script>
+
+  <!-- Cycle 11 UI: markdown render + sanitize + code highlight (artifact/mini-app + rich replies) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  <!-- hljs github-dark theme INLINED (CSP style-src blocks external css from jsdelivr) -->
+  <style>
+    .hljs{color:#c9d1d9;background:transparent}
+    .hljs-comment,.hljs-quote{color:#8b949e}
+    .hljs-keyword,.hljs-selector-tag,.hljs-built_in,.hljs-name,.hljs-tag{color:#ff7b72}
+    .hljs-string,.hljs-title,.hljs-section,.hljs-attribute,.hljs-literal,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-addition{color:#a5d6ff}
+    .hljs-number,.hljs-symbol,.hljs-bullet,.hljs-meta,.hljs-link{color:#79c0ff}
+    .hljs-variable,.hljs-attr{color:#ffa657}
+    .hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}
+    .hljs-function .hljs-title,.hljs-title.function_{color:#d2a8ff}
+    .hljs-deletion{color:#ffa198}
+  </style>
+  <!-- Cycle 11 UI: document upload text extraction (PDF via pdf.js UMD, DOCX via mammoth) -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.7.2/mammoth.browser.min.js"></script>
+
+  <style>
+    /* ===========================
+       DESIGN SYSTEM TOKENS
+    =========================== */
+    :root {
+      --bg-0: #07100e;
+      --bg-1: #0d1f1a;
+      --bg-2: #142920;
+      --orange: #ff8a24;
+      --orange-dim: rgba(255, 138, 36, 0.12);
+      --orange-border: rgba(255, 138, 36, 0.4);
+      --green: #2fe39a;
+      --green-dim: rgba(47, 227, 154, 0.10);
+      --green-border: rgba(47, 227, 154, 0.25);
+      --text: #e9f5ee;
+      --text-dim: #93b3a5;
+      --border: rgba(47, 227, 154, 0.15);
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Orbitron', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --radius: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-0);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow: hidden;
+    }
+
+    /* ===========================
+       BOOT SEQUENCE
+    =========================== */
+    .boot-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      gap: 2rem;
+    }
+
+    .boot-logo {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: 0.2em;
+    }
+
+    .boot-terminal {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      width: min(420px, 90vw);
+      padding: 1.25rem;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .boot-line {
+      padding: 2px 0;
+      opacity: 0;
+      animation: fadeSlide 0.25s ease forwards;
+    }
+
+    .boot-line.ok { color: var(--green); }
+    .boot-line.dim { color: var(--text-dim); }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateX(-6px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ===========================
+       LOGIN SCREEN
+    =========================== */
+    .auth-screen {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: var(--bg-0);
+    }
+
+    .auth-card {
+      width: min(420px, 100%);
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .auth-logo {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: 0.18em;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .auth-tagline {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.75rem;
+    }
+
+    .tabs {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.6rem;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      background: var(--orange-dim);
+      color: var(--orange);
+    }
+
+    .form-group { margin-bottom: 0.9rem; }
+
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.6rem 0.875rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: var(--orange); }
+    .form-input::placeholder { color: var(--text-dim); }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--orange);
+      border: none;
+      border-radius: var(--radius);
+      color: #000;
+      font-family: var(--display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #ff9c40;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .form-error {
+      padding: 0.6rem 0.875rem;
+      background: rgba(255, 68, 68, 0.1);
+      border: 1px solid rgba(255, 68, 68, 0.3);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+    }
+
+    /* ===========================
+       APP LAYOUT
+    =========================== */
+    .app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===========================
+       SIDEBAR
+    =========================== */
+    .sidebar {
+      width: 256px;
+      background: var(--bg-1);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      padding: 1.25rem 0.875rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-name {
+      font-family: var(--display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.12em;
+    }
+
+    .btn-new {
+      width: 100%;
+      padding: 0.6rem 0.875rem;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 6px;
+      color: var(--orange);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: all 0.2s;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+
+    .btn-new:hover { background: rgba(255, 138, 36, 0.22); }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .conv-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .conv-item {
+      padding: 0.55rem 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s;
+    }
+
+    .conv-item:hover, .conv-item.active {
+      background: var(--green-dim);
+      color: var(--text);
+    }
+
+    .empty-convs {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      padding: 0.4rem 0.75rem;
+      font-family: var(--mono);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .user-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .user-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--green);
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .user-email {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+    .nav-link-btn {
+      flex: 1;
+      padding: 0.35rem 0.25rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: block;
+    }
+    .nav-link-btn:hover { border-color: var(--green); color: var(--green); }
+
+    .btn-logout {
+      width: 100%;
+      padding: 0.45rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover { border-color: #ff5555; color: #ff6b6b; }
+
+    /* ===========================
+       CHAT AREA
+    =========================== */
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .chat-header {
+      padding: 0.875rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-1);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      animation: livePulse 2.2s ease-in-out infinite;
+      transition: background 0.3s;
+    }
+
+    /* Day 67: orange + fast pulse when streaming */
+    .dot-pulse.streaming {
+      background: var(--orange);
+      animation: livePulseActive 0.7s ease-in-out infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(47,227,154,0.7); }
+      50% { opacity: 0.75; box-shadow: 0 0 0 5px rgba(47,227,154,0); }
+    }
+
+    @keyframes livePulseActive {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,138,36,0.9); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(255,138,36,0); }
+    }
+
+    /* Day 52 Fix: NEW CHAT button glow when 2+ consec errors (context contamination prevention) */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(255,107,53,0.4); }
+      50% { box-shadow: 0 0 18px rgba(255,107,53,0.9); }
+    }
+
+    .header-agent {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--green);
+    }
+
+    .header-model {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-left: auto;
+    }
+
+    /* ===========================
+       MESSAGES
+    =========================== */
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+    }
+
+    /* Empty state */
+    .empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .empty-logo {
+      font-family: var(--display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: 0.2em;
+    }
+
+    .empty-sub {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+    }
+
+    .hint-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.25rem;
+      max-width: 520px;
+    }
+
+    .hint-chip {
+      padding: 0.5rem 0.875rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      background: var(--bg-1);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .hint-chip:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: var(--orange-dim);
+    }
+
+    /* Message bubbles */
+    .msg-row {
+      display: flex;
+      gap: 0.625rem;
+      max-width: 82%;
+    }
+
+    .msg-row.user { align-self: flex-end; flex-direction: row-reverse; }
+    .msg-row.assistant { align-self: flex-start; }
+
+    .msg-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .msg-row.user .msg-avatar {
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      color: var(--orange);
+    }
+
+    .msg-row.assistant .msg-avatar {
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+    }
+
+    .msg-bubble {
+      padding: 0.7rem 0.975rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .msg-row.user .msg-bubble {
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 138, 36, 0.25);
+      border-top-right-radius: 3px;
+    }
+
+    .msg-row.assistant .msg-bubble {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-top-left-radius: 3px;
+    }
+
+    .msg-bubble.streaming:not(:empty)::after {
+      content: '▋';
+      color: var(--green);
+      animation: blink 0.9s step-end infinite;
+      margin-left: 2px;
+    }
+
+    .msg-bubble.error-bubble { color: #ff6b6b; }
+
+    /* Day 36 — Thinking indicator (visible while waiting for first chunk) */
+    .thinking-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 0.975rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      border-top-left-radius: 3px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+    }
+    .thinking-indicator .dots {
+      display: inline-flex;
+      gap: 3px;
+    }
+    .thinking-indicator .dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: thinking-bounce 1.2s infinite ease-in-out;
+    }
+    .thinking-indicator .dots span:nth-child(2) { animation-delay: 0.15s; }
+    .thinking-indicator .dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes thinking-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .thinking-elapsed {
+      color: var(--text-faint, var(--text-dim));
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Tool calls badge */
+    .tool-badge {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(47, 227, 154, 0.1);
+      border: 1px solid var(--green-border);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--green);
+      letter-spacing: 0.06em;
+    }
+
+    /* ===========================
+       INPUT AREA
+    =========================== */
+    .input-area {
+      padding: 0.875rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-1);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.625rem;
+      align-items: flex-end;
+    }
+
+    .chat-input {
+      flex: 1;
+      min-height: 44px;
+      max-height: 160px;
+      padding: 0.625rem 0.975rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+
+    .chat-input:focus { border-color: var(--orange); }
+    .chat-input::placeholder { color: var(--text-dim); }
+    .chat-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Day 40 — pulsing red dot for mic recording indicator */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.3); opacity: 0.5; }
+    }
+
+    .btn-action {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .btn-action.send {
+      background: var(--orange);
+    }
+
+    .btn-action.send:hover:not(:disabled) {
+      background: #ff9c40;
+      transform: scale(1.05);
+    }
+
+    .btn-action.send:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-action.stop {
+      background: rgba(255, 85, 85, 0.15);
+      border: 1px solid rgba(255, 85, 85, 0.4);
+    }
+
+    .btn-action.stop:hover { background: rgba(255, 85, 85, 0.25); }
+
+    .input-hint {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      margin-top: 0.35rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===========================
+       INIT / LOADING SCREEN
+    =========================== */
+    .center-screen {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+    }
+
+    /* ===========================
+       SPAWN MODAL + AGENT LIST (Day 29)
+    =========================== */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(7, 16, 14, 0.85);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200;
+      padding: 1rem;
+    }
+    .modal-card {
+      width: min(520px, 100%);
+      background: var(--bg-1);
+      border: 1px solid var(--orange-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-title {
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .modal-sub {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-bottom: 1.25rem;
+    }
+    .modal-form-row { margin-bottom: 0.85rem; }
+    .modal-form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .modal-input, .modal-select, .modal-textarea {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+    .modal-textarea { resize: vertical; min-height: 80px; }
+    .modal-actions {
+      display: flex; gap: 0.5rem; justify-content: flex-end;
+      margin-top: 1rem;
+    }
+    .modal-btn-primary, .modal-btn-ghost {
+      padding: 0.55rem 1.25rem;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: none;
+    }
+    .modal-btn-primary { background: var(--orange); color: #1a0f00; }
+    .modal-btn-primary:hover { filter: brightness(1.1); }
+    .modal-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .modal-btn-ghost {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .agent-list-section {
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+    }
+    .agent-list { display: flex; flex-direction: column; gap: 2px; max-height: 32vh; overflow-y: auto; }
+    .agent-item {
+      padding: 0.5rem 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s;
+    }
+    .agent-item:hover { background: var(--bg-2); color: var(--text); }
+    .agent-item.active {
+      background: var(--orange-dim);
+      color: var(--orange);
+      border: 1px solid var(--orange-border);
+    }
+    .agent-gen-badge {
+      font-size: 0.6rem;
+      padding: 1px 5px;
+      background: var(--bg-2);
+      color: var(--text-faint, var(--text-dim));
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .agent-item.active .agent-gen-badge {
+      background: var(--orange);
+      color: #1a0f00;
+    }
+    .btn-spawn {
+      background: transparent;
+      color: var(--green);
+      border: 1px dashed var(--green-border);
+      padding: 0.55rem 0.75rem;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.15s;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .btn-spawn:hover {
+      background: var(--green-dim);
+      border-style: solid;
+    }
+
+    /* ===========================
+       SCROLLBAR
+    =========================== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--green); }
+
+    /* ===========================
+       CONV ITEM (Day 68 — Codex C1)
+    =========================== */
+    .conv-item-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 5px;
+      transition: all 0.15s;
+    }
+    .conv-item-row:hover, .conv-item-row.active {
+      background: var(--green-dim);
+    }
+    .conv-item-row:hover .conv-item, .conv-item-row.active .conv-item {
+      color: var(--text);
+    }
+    .conv-item-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 0.55rem 0.5rem 0.55rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      font-family: inherit;
+    }
+    .conv-item-row.active .conv-item-btn { color: var(--text); }
+    .conv-del {
+      opacity: 0;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.85rem;
+      transition: all 0.15s;
+    }
+    .conv-item-row:hover .conv-del { opacity: 0.7; }
+    .conv-del:hover { opacity: 1 !important; color: #ff6b6b; }
+
+    /* ===========================
+       MOBILE NAV (Day 68 — Codex C3 P1 fix)
+       Sidebar = slide-in drawer. Hamburger button toggles.
+    =========================== */
+    .mobile-nav-toggle { display: none; }
+    .mobile-overlay { display: none; }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 100vh;
+        z-index: 200;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease-out;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .mobile-nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--orange-dim);
+        border: 1px solid var(--orange-border);
+        color: var(--orange);
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+      }
+      .mobile-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 150;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .mobile-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .messages { padding: 1rem; }
+      .input-area { padding: 0.75rem 1rem; }
+      .msg-row { max-width: 95%; }
+      .chat-header { padding-left: 0.75rem; }
+    }
+    /* ── Cycle 11: markdown rendering inside assistant bubbles ── */
+    .md { line-height: 1.55; word-break: break-word; }
+    .md > *:first-child { margin-top: 0; }
+    .md > *:last-child { margin-bottom: 0; }
+    .md h1, .md h2, .md h3, .md h4 { margin: 0.7em 0 0.35em; line-height: 1.25; font-weight: 600; }
+    .md h1 { font-size: 1.25rem; } .md h2 { font-size: 1.12rem; } .md h3 { font-size: 1rem; }
+    .md p { margin: 0.45em 0; }
+    .md ul, .md ol { margin: 0.45em 0; padding-left: 1.4em; }
+    .md li { margin: 0.2em 0; }
+    .md a { color: var(--green); text-decoration: underline; }
+    .md strong { font-weight: 600; color: var(--text); }
+    .md em { font-style: italic; }
+    .md blockquote { margin: 0.5em 0; padding: 0.2em 0.9em; border-left: 3px solid var(--green-border, rgba(47,227,154,0.3)); color: var(--text-dim); }
+    .md code { background: var(--bg-2); padding: 0.1em 0.4em; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.82em; }
+    .md pre { margin: 0.5em 0; }
+    .md pre code { display: block; padding: 0.8em; overflow-x: auto; background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; }
+    .md table { border-collapse: collapse; margin: 0.5em 0; font-size: 0.85em; display: block; overflow-x: auto; }
+    .md th, .md td { border: 1px solid var(--border); padding: 0.35em 0.6em; text-align: left; }
+    .md th { background: var(--bg-2); font-weight: 600; }
+    .md hr { border: none; border-top: 1px solid var(--border); margin: 0.8em 0; }
+    .md img { max-width: 100%; border-radius: 6px; }
+    /* doc-attachment chip (knowledge ingest status) */
+    .doc-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px;
+      font-size: 0.68rem; border: 1px solid var(--border); background: var(--bg-2); }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="application/javascript">
+"use strict";
+
+const {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo
+} = React;
+
+// ===========================
+// CONFIG
+// ===========================
+const API_BASE = 'https://api.migancore.com';
+
+// ===========================
+// LOCAL STORAGE HELPERS
+// ===========================
+const LS = {
+  get: k => {
+    try {
+      return JSON.parse(localStorage.getItem(k));
+    } catch {
+      return null;
+    }
+  },
+  set: (k, v) => {
+    try {
+      localStorage.setItem(k, JSON.stringify(v));
+    } catch {}
+  },
+  del: k => localStorage.removeItem(k)
+};
+
+// ===========================
+// API HELPERS
+// ===========================
+// Day 43 — JWT silent refresh state. Single-flight: only one /auth/refresh
+// in-flight at a time; concurrent 401s wait for the same promise.
+let _refreshInFlight = null;
+async function _doRefreshToken() {
+  const rt = LS.get('refresh_token');
+  if (!rt) return false;
+  try {
+    const r = await fetch(`${API_BASE}/v1/auth/refresh`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        refresh_token: rt
+      })
+    });
+    if (!r.ok) return false;
+    const data = await r.json();
+    if (!data.access_token) return false;
+    LS.set('token', data.access_token);
+    if (data.refresh_token) LS.set('refresh_token', data.refresh_token);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+function tryRefreshToken() {
+  if (!_refreshInFlight) {
+    _refreshInFlight = _doRefreshToken().finally(() => {
+      // Allow next refresh attempt after a short cooldown
+      setTimeout(() => {
+        _refreshInFlight = null;
+      }, 1000);
+    });
+  }
+  return _refreshInFlight;
+}
+async function apiFetch(path, opts = {}, _retried = false) {
+  const token = LS.get('token');
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  if (opts.headers) Object.assign(headers, opts.headers);
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...opts,
+    headers
+  });
+
+  // Day 43 — silent JWT refresh on 401, retry once
+  if (res.status === 401 && !_retried && LS.get('refresh_token')) {
+    const refreshed = await tryRefreshToken();
+    if (refreshed) {
+      return apiFetch(path, opts, true); // retry once with new token
+    }
+  }
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(body.detail || `HTTP ${res.status}`);
+  }
+  return body;
+}
+const api = {
+  register: d => apiFetch('/v1/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: d.email,
+      password: d.password,
+      display_name: d.displayName || null,
+      tenant_name: d.tenantName,
+      tenant_slug: d.tenantSlug
+    })
+  }),
+  login: d => apiFetch('/v1/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: d.email,
+      password: d.password
+    })
+  }),
+  me: () => apiFetch('/v1/auth/me'),
+  createAgent: name => apiFetch('/v1/agents', {
+    method: 'POST',
+    body: JSON.stringify({
+      name,
+      description: 'Personal MiganCore agent',
+      visibility: 'private'
+    })
+  }),
+  listAgents: () => apiFetch('/v1/agents'),
+  listTemplates: () => apiFetch('/v1/agents/templates'),
+  spawnAgent: (parentId, name, persona_overrides, template_id) => apiFetch(`/v1/agents/${parentId}/spawn`, {
+    method: 'POST',
+    body: JSON.stringify({
+      name,
+      persona_overrides,
+      template_id
+    })
+  }),
+  chat: (agentId, message, convId) => apiFetch(`/v1/agents/${agentId}/chat`, {
+    method: 'POST',
+    body: JSON.stringify({
+      message,
+      conversation_id: convId || null
+    })
+  }),
+  // Day 37 — onboarding starter prompts (open endpoint, no auth required)
+  onboardingStarters: (usecase, lang) => apiFetch(`/v1/onboarding/starters?usecase=${encodeURIComponent(usecase || 'general')}&lang=${encodeURIComponent(lang || 'id')}`),
+  // Day 40 — vision describe (Bearer auth, image_base64 + question -> caption)
+  visionDescribe: body => apiFetch('/v1/vision/describe', {
+    method: 'POST',
+    body: JSON.stringify(body)
+  }),
+  // Cycle 11 — document upload: ingest extracted text into agent knowledge (RAG)
+  ingestKnowledge: (agentId, text, source) => apiFetch('/v1/memory/knowledge', {
+    method: 'POST',
+    body: JSON.stringify({
+      agent_id: agentId,
+      text,
+      source: source || 'dokumen'
+    })
+  }),
+  // Day 65 — user feedback signal (thumbs_up / thumbs_down on assistant messages)
+  submitFeedback: (convId, msgId, rating, comment) => apiFetch(`/v1/conversations/${convId}/messages/${msgId}/feedback`, {
+    method: 'POST',
+    body: JSON.stringify({
+      rating,
+      comment: comment || null
+    })
+  }),
+  // Day 68 — conversation history E2E (Codex C1 P1 fix)
+  listConversations: (limit = 30) => apiFetch(`/v1/conversations?limit=${limit}`),
+  getConversation: (convId, messageLimit = 100) => apiFetch(`/v1/conversations/${convId}?message_limit=${messageLimit}`),
+  deleteConversation: convId => apiFetch(`/v1/conversations/${convId}`, {
+    method: 'DELETE'
+  })
+};
+
+// ===========================
+// SSE STREAMING
+// ===========================
+function startStream(agentId, message, convId, {
+  onChunk,
+  onStart,
+  onDone,
+  onError,
+  onToolStart,
+  onToolResult
+}) {
+  const ctrl = new AbortController();
+
+  // Day 43 — helper to fire the actual stream POST. Used for original call AND
+  // for retry after silent JWT refresh on 401.
+  const doFetch = () => {
+    const token = LS.get('token');
+    // cycle9 A/B (opt-in): ?brain=migancore:0.2-qwen3 sets own-model for THIS browser (persists).
+    // Empty/unset = default brain (other users unaffected). Click badge to clear.
+    const _qp = new URLSearchParams(location.search).get('brain');
+    if (_qp !== null) localStorage.setItem('brainModel', _qp);
+    const _brain = (localStorage.getItem('brainModel') || '').trim();
+    if (_brain && !window.__brainBadge) {
+      window.__brainBadge = true;
+      try {
+        const _b = document.createElement('div');
+        _b.textContent = '🧪 brain: ' + _brain + ' (klik = default)';
+        _b.style.cssText = 'position:fixed;bottom:8px;right:8px;z-index:99999;background:#ff8a24;color:#000;font:12px sans-serif;padding:4px 8px;border-radius:6px;opacity:.92;cursor:pointer';
+        _b.onclick = () => { localStorage.removeItem('brainModel'); location.href = location.pathname; };
+        document.body.appendChild(_b);
+      } catch (e) {}
+    }
+    return fetch(`${API_BASE}/v1/agents/${agentId}/chat/stream`, {
+      method: 'POST',
+      headers: Object.assign({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }, _brain ? { 'X-Brain-Model': _brain } : {}),
+      body: JSON.stringify({
+        message,
+        conversation_id: convId || null
+      }),
+      signal: ctrl.signal
+    });
+  };
+  (async () => {
+    try {
+      let res = await doFetch();
+
+      // Day 43 — silent JWT refresh on 401, retry once
+      if (res.status === 401 && LS.get('refresh_token')) {
+        const refreshed = await tryRefreshToken();
+        if (refreshed) {
+          res = await doFetch();
+        }
+      }
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        onError(err.detail || `HTTP ${res.status}`);
+        return;
+      }
+      const reader = res.body.getReader();
+      const dec = new TextDecoder();
+      let buf = '';
+      while (true) {
+        const {
+          done,
+          value
+        } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, {
+          stream: true
+        });
+        const lines = buf.split('\n');
+        buf = lines.pop();
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          try {
+            const ev = JSON.parse(line.slice(6));
+            if (ev.type === 'start') onStart?.(ev.conversation_id, ev.thinking_mode || '');
+            if (ev.type === 'chunk') onChunk?.(ev.content || '');
+            if (ev.type === 'done') onDone?.(ev.conversation_id, ev.message_id || null, ev.sources || [], ev.kg_injected || false);
+            if (ev.type === 'error') onError?.(ev.message || 'Stream error');
+            // Day 40 — tool execution events from hybrid stream endpoint
+            if (ev.type === 'tool_start') onToolStart?.(ev.tools || []);
+            if (ev.type === 'tool_result') onToolResult?.({
+              tool: ev.tool,
+              ok: ev.ok,
+              result: ev.result,
+              error: ev.error
+            });
+            // ev.type === 'ping' — heartbeat, ignore silently
+          } catch {}
+        }
+      }
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      // Day 25: friendlier error for SSE drops (TypeError: network error, etc.)
+      const friendly = err.name === 'TypeError' ? 'Koneksi terputus. Server butuh waktu lama merespon — coba kirim ulang.' : String(err);
+      onError?.(friendly);
+    }
+  })();
+  return () => ctrl.abort();
+}
+
+// ===========================
+// BOOT SEQUENCE
+// ===========================
+// Day 68: dynamic boot label fetched from /health (Codex C4 fix)
+// Build the boot lines once health metadata is known; fallback if /health fails.
+function buildBootLines(meta) {
+  const versionLabel = meta?.day && meta?.commit_sha ? `${meta.day} ${meta.commit_sha}` : meta?.version || 'LIVE';
+  return [{
+    text: `> MIGANCORE ${versionLabel} INITIALIZING...`,
+    cls: 'dim'
+  }, {
+    text: '> NEURAL ENGINE.............. [OK]',
+    cls: 'ok'
+  }, {
+    text: '> MEMORY SUBSYSTEM........... [OK]',
+    cls: 'ok'
+  }, {
+    text: '> TOOL EXECUTOR.............. [OK]',
+    cls: 'ok'
+  }, {
+    text: '> HYBRID SEARCH.............. [OK]',
+    cls: 'ok'
+  }, {
+    text: '> AUTONOMOUS SYNTHESIS........ [OK]',
+    cls: 'ok'
+  }, {
+    text: '> CORE ONLINE — READY.',
+    cls: 'ok'
+  }];
+}
+function BootSequence({
+  onDone
+}) {
+  const [lines, setLines] = useState([]);
+  useEffect(() => {
+    if (sessionStorage.getItem('mc_booted')) {
+      onDone();
+      return;
+    }
+    let cancelled = false;
+    // Fetch health metadata (Day 68); time out at 1.5s so boot doesn't stall
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 1500);
+    fetch(`${API_BASE}/health`, {
+      signal: ctrl.signal
+    }).then(r => r.json()).catch(() => null).then(meta => {
+      clearTimeout(t);
+      if (cancelled) return;
+      const BOOT_LINES = buildBootLines(meta);
+      let i = 0;
+      const step = () => {
+        if (cancelled) return;
+        if (i < BOOT_LINES.length) {
+          setLines(p => [...p, BOOT_LINES[i++]]);
+          setTimeout(step, 300);
+        } else {
+          sessionStorage.setItem('mc_booted', '1');
+          setTimeout(onDone, 600);
+        }
+      };
+      setTimeout(step, 150);
+    });
+    return () => {
+      cancelled = true;
+      clearTimeout(t);
+    };
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "boot-screen"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "boot-logo"
+  }, "MIGANCORE"), /*#__PURE__*/React.createElement("div", {
+    className: "boot-terminal"
+  }, lines.map((l, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `boot-line ${l.cls}`
+  }, l.text))));
+}
+
+// ===========================
+// ONBOARDING MODAL (Day 37 — Two-Question Pattern)
+// Replaces multi-template picker (deprecated by Cursor/Claude Q1 2026).
+// Pattern: Perplexity Spaces / Letta blog Mar 2026 — ask 2 questions, then never again.
+// Q1: usecase (free text), Q2: language preference -> generate dynamic starters
+// ===========================
+function OnboardingModal({
+  user,
+  onComplete
+}) {
+  const [step, setStep] = useState(1); // 1 = Q1 usecase, 2 = Q2 lang, 3 = starters
+  const [usecase, setUsecase] = useState('');
+  const [lang, setLang] = useState('');
+  const [starters, setStarters] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [source, setSource] = useState('');
+  const submitQ1 = useCallback(e => {
+    e?.preventDefault?.();
+    if (!usecase.trim()) return;
+    setStep(2);
+  }, [usecase]);
+  const pickLang = useCallback(async chosen => {
+    setLang(chosen);
+    setLoading(true);
+    try {
+      const res = await api.onboardingStarters(usecase.trim() || 'general', chosen);
+      setStarters(res.starters || []);
+      setSource(res.source || 'unknown');
+    } catch (_) {
+      // Hard-fallback minimal (should never hit — server has its own fallback)
+      setStarters(['Apa yang bisa kamu lakukan? Kasih 3 contoh konkret', 'Bantu saya rencanakan to-do list hari ini', 'Jelaskan satu konsep kompleks dengan analogi sederhana']);
+      setSource('client_fallback');
+    }
+    setStep(3);
+    setLoading(false);
+  }, [usecase]);
+  const finish = useCallback(seedPrompt => {
+    LS.set('mc_onboarded', '1');
+    LS.set('mc_onboard_usecase', usecase.trim() || 'general');
+    LS.set('mc_onboard_lang', lang || 'id');
+    onComplete(seedPrompt || null);
+  }, [onComplete, usecase, lang]);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "modal-bg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal",
+    style: {
+      maxWidth: 520
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-head",
+    style: {
+      borderBottom: 'none',
+      paddingBottom: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "modal-title",
+    style: {
+      fontSize: 18
+    }
+  }, step === 1 && '👋 Selamat datang di MiganCore', step === 2 && '🌐 Bahasa pilihan', step === 3 && '✨ Mulai dari sini'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: 'var(--text-dim)',
+      fontSize: 12,
+      marginTop: 4
+    }
+  }, step === 1 && `Halo ${user?.display_name || user?.email?.split('@')[0] || 'kamu'}. Sebentar setup, sekali aja.`, step === 2 && 'Kami pakai bahasa apa untuk obrolan?', step === 3 && 'Pilih satu untuk mulai, atau tutup untuk chat bebas.')), /*#__PURE__*/React.createElement("button", {
+    className: "x-btn",
+    onClick: () => finish(null),
+    title: "Lewati"
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    className: "modal-body",
+    style: {
+      paddingTop: 16
+    }
+  }, step === 1 && /*#__PURE__*/React.createElement("form", {
+    onSubmit: submitQ1
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      fontSize: 12,
+      color: 'var(--text-dim)',
+      display: 'block',
+      marginBottom: 8
+    }
+  }, "Apa yang ingin kamu lakukan dengan MiganCore?"), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "text",
+    value: usecase,
+    onChange: e => setUsecase(e.target.value),
+    placeholder: "Contoh: riset AI agent, ngoding Python, nulis konten...",
+    autoFocus: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      marginTop: 16,
+      justifyContent: 'flex-end'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost",
+    type: "button",
+    onClick: () => finish(null)
+  }, "Lewati"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-primary",
+    type: "submit",
+    disabled: !usecase.trim()
+  }, "Lanjut \u2192"))), step === 2 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: 8
+    }
+  }, [{
+    k: 'id',
+    label: 'Indonesia',
+    sub: 'Bahasa utama'
+  }, {
+    k: 'mix',
+    label: 'Campuran',
+    sub: 'ID + EN'
+  }, {
+    k: 'en',
+    label: 'English',
+    sub: 'Primary'
+  }].map(opt => /*#__PURE__*/React.createElement("button", {
+    key: opt.k,
+    className: "btn-ghost",
+    style: {
+      padding: '14px 8px',
+      flexDirection: 'column',
+      display: 'flex',
+      gap: 4,
+      height: 'auto'
+    },
+    onClick: () => pickLang(opt.k),
+    disabled: loading
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600
+    }
+  }, opt.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--text-dim)'
+    }
+  }, opt.sub)))), loading && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14,
+      fontSize: 12,
+      color: 'var(--text-dim)',
+      textAlign: 'center'
+    }
+  }, "Menyiapkan saran khusus untuk kamu\u2026")), step === 3 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 8
+    }
+  }, starters.map((s, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    className: "btn-ghost",
+    style: {
+      textAlign: 'left',
+      padding: '12px 14px',
+      whiteSpace: 'normal',
+      height: 'auto',
+      lineHeight: 1.4
+    },
+    onClick: () => finish(s)
+  }, s))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14,
+      fontSize: 11,
+      color: 'var(--text-dim)',
+      textAlign: 'center'
+    }
+  }, source && !source.startsWith('fallback') && '✨ Saran dipersonalisasi', source && source.startsWith('fallback') && '📋 Saran umum', ' · ', "MiganCore mengingat 30 hari obrolan"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      marginTop: 16,
+      justifyContent: 'flex-end'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost",
+    onClick: () => finish(null)
+  }, "Lewati"))))));
+}
+
+// ===========================
+// SPAWN MODAL (Day 29 — Level 5 Visibility)
+// ===========================
+function SpawnModal({
+  parentAgent,
+  onClose,
+  onSpawned
+}) {
+  const [name, setName] = useState('');
+  const [voice, setVoice] = useState('');
+  const [tone, setTone] = useState('');
+  const [values, setValues] = useState('');
+  const [templateId, setTemplateId] = useState(''); // Day 31
+  const [templates, setTemplates] = useState([]);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+
+  // Day 31 — load templates on mount
+  useEffect(() => {
+    (async () => {
+      try {
+        const list = await api.listTemplates();
+        setTemplates(Array.isArray(list) ? list : []);
+      } catch {}
+    })();
+  }, []);
+
+  // When template selected — auto-fill voice/tone/values for visibility
+  useEffect(() => {
+    if (!templateId) return;
+    const t = templates.find(t => t.id === templateId);
+    if (t) {
+      if (!voice && t.voice) setVoice(t.voice);
+      if (!tone && t.tone) setTone(t.tone);
+      if (!values && t.values?.length) setValues(t.values.join(', '));
+    }
+  }, [templateId, templates]);
+  const submit = async e => {
+    e?.preventDefault();
+    if (!name.trim() || busy) return;
+    setBusy(true);
+    setErr('');
+    try {
+      const overrides = {};
+      if (voice.trim()) overrides.voice = voice.trim();
+      if (tone.trim()) overrides.tone = tone.trim();
+      if (values.trim()) overrides.values = values.split(',').map(v => v.trim()).filter(Boolean);
+      const child = await api.spawnAgent(parentAgent.id, name.trim(), Object.keys(overrides).length ? overrides : null, templateId || null // Day 31 — pass template_id
+      );
+      onSpawned(child);
+    } catch (e) {
+      setErr(e.message || 'Spawn failed');
+    } finally {
+      setBusy(false);
+    }
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: "modal-backdrop",
+    onClick: onClose
+  }, /*#__PURE__*/React.createElement("form", {
+    className: "modal-card",
+    onClick: e => e.stopPropagation(),
+    onSubmit: submit
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-title"
+  }, "SPAWN CHILD AGENT"), /*#__PURE__*/React.createElement("div", {
+    className: "modal-sub"
+  }, "Parent: ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--orange)'
+    }
+  }, parentAgent.name), ' · ', "gen: ", parentAgent.generation || 0, ' → ', "new: gen ", (parentAgent.generation || 0) + 1), /*#__PURE__*/React.createElement("div", {
+    className: "modal-form-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "modal-form-label"
+  }, "Agent Name *"), /*#__PURE__*/React.createElement("input", {
+    className: "modal-input",
+    value: name,
+    onChange: e => setName(e.target.value),
+    placeholder: "e.g. CustomerHelper",
+    autoFocus: true,
+    required: true
+  })), templates.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "modal-form-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "modal-form-label"
+  }, "Mode Template (Day 31)", templateId && /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: '0.5rem',
+      color: 'var(--green)',
+      fontSize: '0.65rem'
+    }
+  }, "\u2192 applies preset persona")), /*#__PURE__*/React.createElement("select", {
+    className: "modal-select",
+    value: templateId,
+    onChange: e => setTemplateId(e.target.value)
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "\u2014 No template (custom) \u2014"), templates.map(t => /*#__PURE__*/React.createElement("option", {
+    key: t.id,
+    value: t.id
+  }, t.name, " \u2014 ", t.description.slice(0, 50))))), /*#__PURE__*/React.createElement("div", {
+    className: "modal-form-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "modal-form-label"
+  }, "Voice (persona override, optional)"), /*#__PURE__*/React.createElement("input", {
+    className: "modal-input",
+    value: voice,
+    onChange: e => setVoice(e.target.value),
+    placeholder: "e.g. warm, patient, solution-oriented"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "modal-form-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "modal-form-label"
+  }, "Tone (optional)"), /*#__PURE__*/React.createElement("input", {
+    className: "modal-input",
+    value: tone,
+    onChange: e => setTone(e.target.value),
+    placeholder: "e.g. friendly, professional"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "modal-form-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "modal-form-label"
+  }, "Values (comma-separated, optional)"), /*#__PURE__*/React.createElement("input", {
+    className: "modal-input",
+    value: values,
+    onChange: e => setValues(e.target.value),
+    placeholder: "e.g. clarity, empathy, accuracy"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "modal-sub",
+    style: {
+      marginTop: '1rem'
+    }
+  }, "\u25B8 Child inherits parent's SOUL.md persona, model, and tools. \u25B8 Persona overrides merge on top (only if you fill them). \u25B8 Template selector (customer_success, etc.) coming Day 31."), err && /*#__PURE__*/React.createElement("div", {
+    className: "err",
+    style: {
+      color: 'var(--red, #ff5577)',
+      fontSize: '0.75rem',
+      fontFamily: 'var(--mono)',
+      marginTop: '0.5rem'
+    }
+  }, "\u26A0 ", err), /*#__PURE__*/React.createElement("div", {
+    className: "modal-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "modal-btn-ghost",
+    onClick: onClose,
+    disabled: busy
+  }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "modal-btn-primary",
+    disabled: busy || !name.trim()
+  }, busy ? 'spawning...' : 'spawn child'))));
+}
+
+// ===========================
+// BRAND LOGO SVG
+// ===========================
+function BrandSVG() {
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "26",
+    height: "26",
+    viewBox: "0 0 26 26",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "13",
+    cy: "13",
+    r: "12",
+    stroke: "#ff8a24",
+    strokeWidth: "1.5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "13",
+    cy: "13",
+    r: "5.5",
+    stroke: "#2fe39a",
+    strokeWidth: "1.5"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "13",
+    y1: "1",
+    x2: "13",
+    y2: "7.5",
+    stroke: "#ff8a24",
+    strokeWidth: "1.5",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "13",
+    y1: "18.5",
+    x2: "13",
+    y2: "25",
+    stroke: "#ff8a24",
+    strokeWidth: "1.5",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "1",
+    y1: "13",
+    x2: "7.5",
+    y2: "13",
+    stroke: "#ff8a24",
+    strokeWidth: "1.5",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "18.5",
+    y1: "13",
+    x2: "25",
+    y2: "13",
+    stroke: "#ff8a24",
+    strokeWidth: "1.5",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "13",
+    cy: "13",
+    r: "2",
+    fill: "#2fe39a"
+  }));
+}
+
+// ===========================
+// SEND ICON
+// ===========================
+function SendIcon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "17",
+    height: "17",
+    viewBox: "0 0 24 24",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13",
+    stroke: "#000",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }));
+}
+
+// ===========================
+// STOP ICON
+// ===========================
+function StopIcon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "15",
+    height: "15",
+    viewBox: "0 0 24 24",
+    fill: "#ff6b6b"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "5",
+    y: "5",
+    width: "14",
+    height: "14",
+    rx: "2"
+  }));
+}
+
+// ===========================
+// AUTH SCREEN
+// ===========================
+function AuthScreen({
+  onSuccess
+}) {
+  const [tab, setTab] = useState('login');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Login state
+  const [lEmail, setLEmail] = useState('');
+  const [lPass, setLPass] = useState('');
+
+  // Register state
+  const [rEmail, setREmail] = useState('');
+  const [rPass, setRPass] = useState('');
+  const [rName, setRName] = useState('');
+  const [rTName, setRTName] = useState('');
+  const [rTSlug, setRTSlug] = useState('');
+  const switchTab = t => {
+    setTab(t);
+    setError('');
+  };
+
+  // Auto-slug from tenant name
+  const onTenantName = v => {
+    setRTName(v);
+    setRTSlug(v.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 30));
+  };
+  const afterAuth = async data => {
+    LS.set('token', data.access_token);
+    LS.set('refresh_token', data.refresh_token);
+    try {
+      const me = await api.me();
+      onSuccess(me);
+    } catch {
+      onSuccess({});
+    }
+  };
+  const handleLogin = async e => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      const data = await api.login({
+        email: lEmail,
+        password: lPass
+      });
+      await afterAuth(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleRegister = async e => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      const data = await api.register({
+        email: rEmail,
+        password: rPass,
+        displayName: rName,
+        tenantName: rTName,
+        tenantSlug: rTSlug
+      });
+      await afterAuth(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: "auth-screen"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "auth-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "auth-logo"
+  }, "MIGANCORE"), /*#__PURE__*/React.createElement("div", {
+    className: "auth-tagline"
+  }, "CORE AI ENGINE \xB7 AUTONOMOUS DIGITAL ORGANISM"), /*#__PURE__*/React.createElement("div", {
+    className: "tabs"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === 'login' ? 'active' : ''}`,
+    onClick: () => switchTab('login')
+  }, "LOGIN"), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === 'register' ? 'active' : ''}`,
+    onClick: () => switchTab('register')
+  }, "REGISTER")), error && /*#__PURE__*/React.createElement("div", {
+    className: "form-error"
+  }, error), tab === 'login' ? /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleLogin
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "EMAIL"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "email",
+    placeholder: "you@example.com",
+    value: lEmail,
+    onChange: e => setLEmail(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "PASSWORD"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "password",
+    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+    value: lPass,
+    onChange: e => setLPass(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn-primary",
+    disabled: loading
+  }, loading ? 'AUTHENTICATING...' : 'LOGIN →')) : /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleRegister
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "DISPLAY NAME (opsional)"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "text",
+    placeholder: "Nama kamu",
+    value: rName,
+    onChange: e => setRName(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "EMAIL"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "email",
+    placeholder: "you@example.com",
+    value: rEmail,
+    onChange: e => setREmail(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "PASSWORD (min 8 karakter)"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "password",
+    placeholder: "Min. 8 karakter",
+    value: rPass,
+    onChange: e => setRPass(e.target.value),
+    required: true,
+    minLength: 8
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "NAMA WORKSPACE"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "text",
+    placeholder: "MiganCore Studio",
+    value: rTName,
+    onChange: e => onTenantName(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label"
+  }, "WORKSPACE ID (auto-generated, bisa diubah)"), /*#__PURE__*/React.createElement("input", {
+    className: "form-input",
+    type: "text",
+    placeholder: "migancore-studio",
+    value: rTSlug,
+    onChange: e => setRTSlug(e.target.value),
+    required: true,
+    pattern: "[a-z0-9\\-]+",
+    title: "Hanya huruf kecil, angka, dan tanda hubung"
+  })), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn-primary",
+    disabled: loading
+  }, loading ? 'MEMBUAT AKUN...' : 'BUAT AKUN →'))));
+}
+
+// ===========================
+// MESSAGE COMPONENT
+// ===========================
+// Day 40 — single tool execution chip rendered inside assistant bubble.
+// Memoized by tool key (name + index) so the chip doesn't re-render on every
+// streamed text chunk (research pitfall #2: re-rendering chips per SSE token).
+const ToolChip = React.memo(function ToolChip({
+  tool
+}) {
+  const icon = tool.state === 'running' ? '⏳' : tool.state === 'error' ? '⚠' : '✓';
+  const color = tool.state === 'running' ? 'var(--orange)' : tool.state === 'error' ? '#ff6b6b' : 'var(--green)';
+  const dim = tool.state === 'running' ? 'var(--orange-dim)' : tool.state === 'error' ? 'rgba(255, 107, 107, 0.10)' : 'var(--green-dim)';
+  const border = tool.state === 'running' ? 'var(--orange-border)' : tool.state === 'error' ? 'rgba(255, 107, 107, 0.40)' : 'var(--green-border)';
+  const previewable = tool.state !== 'running' && (tool.result !== null || tool.error);
+  const label = tool.state === 'running' ? `running ${tool.name}…` : tool.name;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 6,
+      padding: '4px 9px',
+      background: dim,
+      color: color,
+      border: `1px solid ${border}`,
+      borderRadius: 6,
+      fontFamily: 'var(--mono)',
+      fontSize: 11,
+      marginRight: 6,
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", null, icon), /*#__PURE__*/React.createElement("span", null, label), previewable && /*#__PURE__*/React.createElement("details", {
+    style: {
+      display: 'inline',
+      marginLeft: 4
+    }
+  }, /*#__PURE__*/React.createElement("summary", {
+    style: {
+      cursor: 'pointer',
+      opacity: 0.7,
+      fontSize: 10
+    }
+  }, "result"), /*#__PURE__*/React.createElement("pre", {
+    style: {
+      maxWidth: 380,
+      maxHeight: 140,
+      overflow: 'auto',
+      background: 'var(--bg-0)',
+      color: 'var(--text-dim)',
+      padding: 6,
+      marginTop: 4,
+      fontSize: 10,
+      borderRadius: 4,
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word'
+    }
+  }, tool.error ? `Error: ${tool.error}` : typeof tool.result === 'string' ? tool.result.slice(0, 800) : JSON.stringify(tool.result, null, 2).slice(0, 800))));
+});
+
+// Day 55 fix — linkify markdown [text](url) and bare URLs in message content
+function linkifyContent(text) {
+  if (!text) return text;
+  const parts = [];
+  let lastIndex = 0;
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(^|[^\w/])(https?:\/\/[^\s<>"){}|\\^`\[\]]+)/g;
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1] && match[2]) {
+      // Markdown link [text](url)
+      parts.push(/*#__PURE__*/React.createElement("a", {
+        key: match.index,
+        href: match[2],
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: {
+          color: 'var(--green)',
+          textDecoration: 'underline'
+        }
+      }, match[1]));
+    } else if (match[4]) {
+      // Bare URL with optional leading char (match[3] may be empty string at start of text)
+      if (match[3]) parts.push(match[3]);
+      parts.push(/*#__PURE__*/React.createElement("a", {
+        key: match.index + 1,
+        href: match[4],
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: {
+          color: 'var(--green)',
+          textDecoration: 'underline'
+        }
+      }, match[4]));
+    } else if (match[0].startsWith('http')) {
+      // Fallback bare URL at start
+      parts.push(/*#__PURE__*/React.createElement("a", {
+        key: match.index,
+        href: match[0],
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: {
+          color: 'var(--green)',
+          textDecoration: 'underline'
+        }
+      }, match[0]));
+    }
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts.length ? parts : text;
+}
+
+// ───────── Cycle 11 UI: rich renderer (markdown + artifact/mini-app + code) ─────────
+const _ART_LANGS = new Set(['html', 'svg', 'xml', 'xhtml']);
+function _looksLikeHTML(s) {
+  const t = (s || '').trim().toLowerCase();
+  return t.startsWith('<!doctype') || t.startsWith('<html') || t.startsWith('<svg') ||
+    (t.startsWith('<') && /<\/(div|section|main|body|svg|button|canvas|h1|table|ul)>/.test(t));
+}
+function CopyBtn({ getText, label }) {
+  const [done, setDone] = React.useState(false);
+  return React.createElement('button', {
+    onClick: async () => { try { await navigator.clipboard.writeText(getText()); setDone(true); setTimeout(() => setDone(false), 1500); } catch (e) {} },
+    style: { fontSize: '0.62rem', padding: '2px 8px', borderRadius: 6, cursor: 'pointer', background: 'var(--bg-2)', color: 'var(--text-dim)', border: '1px solid var(--border)' }
+  }, done ? '✓ disalin' : (label || 'Salin'));
+}
+function CodeBlock({ code, lang }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => { if (ref.current && window.hljs) { try { ref.current.removeAttribute('data-highlighted'); window.hljs.highlightElement(ref.current); } catch (e) {} } }, [code, lang]);
+  return React.createElement('div', { style: { position: 'relative', margin: '8px 0' } },
+    React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 8px', background: 'var(--bg-2)', borderRadius: '6px 6px 0 0', border: '1px solid var(--border)', borderBottom: 'none' } },
+      React.createElement('span', { style: { fontSize: '0.6rem', color: 'var(--text-dim)', letterSpacing: '0.05em' } }, (lang || 'code').toUpperCase()),
+      React.createElement(CopyBtn, { getText: () => code })),
+    React.createElement('pre', { style: { margin: 0, borderRadius: '0 0 6px 6px', border: '1px solid var(--border)', overflow: 'auto', maxHeight: 380 } },
+      React.createElement('code', { ref, className: lang ? ('language-' + lang) : '', style: { fontSize: '0.78rem' } }, code)));
+}
+function ArtifactCard({ code, lang }) {
+  const [view, setView] = React.useState('preview');
+  const isSvg = (lang === 'svg') || (code || '').trim().toLowerCase().startsWith('<svg');
+  const srcdoc = isSvg
+    ? `<!doctype html><meta charset=utf8><body style="margin:0;display:flex;align-items:center;justify-content:center;background:#fff">${code}</body>`
+    : (/<html[\s>]/i.test(code) ? code : `<!doctype html><meta charset=utf8><body style="margin:0;font-family:system-ui,sans-serif">${code}</body>`);
+  const download = () => { try { const b = new Blob([code], { type: 'text/html' }); const u = URL.createObjectURL(b); const a = document.createElement('a'); a.href = u; a.download = 'artifact.html'; a.click(); URL.revokeObjectURL(u); } catch (e) {} };
+  const tab = (id, txt) => React.createElement('button', { onClick: () => setView(id), style: { fontSize: '0.62rem', padding: '2px 8px', borderRadius: 6, cursor: 'pointer', background: view === id ? 'var(--green)' : 'var(--bg-1)', color: view === id ? '#000' : 'var(--text-dim)', border: '1px solid var(--border)' } }, txt);
+  return React.createElement('div', { style: { margin: '10px 0', border: '1px solid rgba(47,227,154,0.3)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-2)' } },
+    React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'rgba(47,227,154,0.06)', borderBottom: '1px solid var(--border)' } },
+      React.createElement('span', { style: { fontSize: '0.66rem', color: 'var(--green)', fontWeight: 600 } }, '◆ Mini-app / Artifact'),
+      React.createElement('div', { style: { display: 'flex', gap: 6 } }, tab('preview', 'Pratinjau'), tab('code', 'Kode'), React.createElement(CopyBtn, { getText: () => code }),
+        React.createElement('button', { onClick: download, style: { fontSize: '0.62rem', padding: '2px 8px', borderRadius: 6, cursor: 'pointer', background: 'var(--bg-1)', color: 'var(--text-dim)', border: '1px solid var(--border)' } }, 'Unduh'))),
+    view === 'preview'
+      ? React.createElement('iframe', { sandbox: 'allow-scripts allow-pointer-lock', srcDoc: srcdoc, style: { width: '100%', height: 340, border: 'none', background: '#fff', display: 'block' }, title: 'artifact' })
+      : React.createElement(CodeBlock, { code, lang: lang || 'html' }));
+}
+function MarkdownBlock({ text }) {
+  const html = React.useMemo(() => { try { return window.DOMPurify.sanitize(window.marked.parse(text, { breaks: true })); } catch (e) { return text; } }, [text]);
+  return React.createElement('div', { className: 'md', dangerouslySetInnerHTML: { __html: html } });
+}
+function renderRich(content, role, streaming) {
+  if (!content) return content;
+  // fast path: user bubbles + live streaming (avoid heavy parse per token)
+  if (role === 'user' || streaming || !window.marked || !window.DOMPurify) return linkifyContent(content);
+  const segs = []; const re = /```([\w-]*)\n([\s\S]*?)```/g; let last = 0, m;
+  while ((m = re.exec(content)) !== null) {
+    if (m.index > last) segs.push({ t: 'md', v: content.slice(last, m.index) });
+    const lang = (m[1] || '').toLowerCase(), code = m[2];
+    if (_ART_LANGS.has(lang) || _looksLikeHTML(code)) segs.push({ t: 'art', v: code, lang: lang || 'html' });
+    else segs.push({ t: 'code', v: code, lang });
+    last = re.lastIndex;
+  }
+  if (last < content.length) segs.push({ t: 'md', v: content.slice(last) });
+  if (segs.length === 0) return React.createElement(MarkdownBlock, { text: content });
+  return segs.map((s, i) => s.t === 'art' ? React.createElement(ArtifactCard, { key: i, code: s.v, lang: s.lang })
+    : s.t === 'code' ? React.createElement(CodeBlock, { key: i, code: s.v, lang: s.lang })
+    : React.createElement(MarkdownBlock, { key: i, text: s.v }));
+}
+
+function Msg({
+  msg,
+  onRetry,
+  convId
+}) {
+  const {
+    role,
+    content,
+    streaming,
+    toolCount,
+    error,
+    tools,
+    attachments,
+    sources,
+    kgInjected,     // Day 78 Sprint 2: true when KG context was used for this response
+    thinkingMode,   // Launch Sprint: mode from SSE start event ("kognitif", "inovatif", etc.)
+  } = msg;
+  const label = role === 'user' ? 'YOU' : 'MC';
+  const isError = !!error || (content || '').startsWith('⚠');
+  const errClass = isError ? ' error-bubble' : '';
+
+  // Day 36: Status hierarchy when streaming with NO content yet
+  const isThinking = streaming && !content;
+
+  // Day 65 — feedback state (thumbs_up / thumbs_down)
+  const [fbState, setFbState] = React.useState(null); // null | 'liked' | 'disliked'
+  const [fbSent, setFbSent] = React.useState(false);
+  const sendFeedback = async rating => {
+    if (!convId || !msg.serverId || fbSent) return;
+    setFbState(rating === 'thumbs_up' ? 'liked' : 'disliked');
+    setFbSent(true);
+    try {
+      await api.submitFeedback(convId, msg.serverId, rating, null);
+    } catch (err) {
+      // Day 69 — Lesson #156 Bug 2 fix (Kimi review): unlock on error so user can retry
+      setFbSent(false);
+      setFbState(null);
+      console.error('Feedback failed:', err?.message || err);
+    }
+  };
+
+  // Track elapsed seconds while thinking
+  const [elapsed, setElapsed] = React.useState(0);
+  React.useEffect(() => {
+    if (!isThinking) {
+      setElapsed(0);
+      return;
+    }
+    const start = Date.now();
+    const t = setInterval(() => setElapsed(Math.floor((Date.now() - start) / 1000)), 1000);
+    return () => clearInterval(t);
+  }, [isThinking]);
+
+  // 3-state status: Connecting → Thinking[mode] → Generating
+  const modeLabel = thinkingMode && thinkingMode !== 'reflex' ? ` [${thinkingMode}]` : '';
+  const statusText = elapsed < 3
+    ? 'Menghubungkan...'
+    : elapsed < 15
+      ? `Migan sedang berpikir${modeLabel}...`
+      : `Generating${modeLabel}...`;
+  return /*#__PURE__*/React.createElement("div", {
+    className: `msg-row ${role}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "msg-avatar"
+  }, label), /*#__PURE__*/React.createElement("div", null, isThinking ? /*#__PURE__*/React.createElement("div", {
+    className: "thinking-indicator"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "dots"
+  }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null)), /*#__PURE__*/React.createElement("span", null, statusText), elapsed > 5 && /*#__PURE__*/React.createElement("span", {
+    className: "thinking-elapsed"
+  }, "\xB7 ", elapsed, "s"), elapsed > 30 && /*#__PURE__*/React.createElement("span", {
+    className: "thinking-elapsed",
+    style: {
+      color: 'var(--orange)'
+    }
+  }, "\xB7 CPU 7B (lambat normal, jangan refresh)")) : /*#__PURE__*/React.createElement("div", {
+    className: `msg-bubble${streaming ? ' streaming' : ''}${errClass}`
+  }, role === 'assistant' && Array.isArray(tools) && tools.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: content ? 8 : 0
+    }
+  }, tools.map((t, i) => /*#__PURE__*/React.createElement(ToolChip, {
+    key: `${t.name}-${i}`,
+    tool: t
+  }))), role === 'user' && Array.isArray(attachments) && attachments.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 6,
+      marginBottom: content ? 8 : 0
+    }
+  }, attachments.map((a, i) => /*#__PURE__*/React.createElement("a", {
+    key: a.id || i,
+    href: a.dataUrl,
+    target: "_blank",
+    rel: "noreferrer",
+    title: a.name || `image ${i + 1}`,
+    style: {
+      display: 'inline-block',
+      lineHeight: 0
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: a.dataUrl,
+    alt: a.name || `image ${i + 1}`,
+    style: {
+      width: 96,
+      height: 96,
+      objectFit: 'cover',
+      borderRadius: 6,
+      border: '1px solid var(--border)',
+      display: 'block'
+    }
+  })))), renderRich(content, role, streaming), role === 'assistant' && !streaming && kgInjected && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'inline-flex', alignItems: 'center', gap: 4,
+      marginTop: 6, padding: '2px 8px', borderRadius: 10,
+      background: 'rgba(47,227,154,0.06)',
+      border: '1px solid rgba(47,227,154,0.15)',
+      fontSize: '0.62rem', color: 'var(--text-dim)',
+      letterSpacing: '0.03em'
+    }
+  }, "🧠 Migan menggunakan ingatannya"), role === 'assistant' && !streaming && Array.isArray(sources) && sources.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap'
+    }
+  }, sources.map((s, i) => /*#__PURE__*/React.createElement("a", {
+    key: 'src' + i,
+    href: s.url || '#',
+    target: s.url ? '_blank' : '_self',
+    rel: 'noopener noreferrer',
+    style: {
+      display: 'inline-flex', alignItems: 'center', gap: 4,
+      padding: '2px 8px', borderRadius: 10,
+      background: 'rgba(255,255,255,0.04)',
+      border: '1px solid rgba(255,255,255,0.10)',
+      fontSize: '0.65rem', color: 'var(--text-dim)',
+      textDecoration: 'none', cursor: s.url ? 'pointer' : 'default'
+    },
+    title: s.detail || ''
+  }, s.icon, ' ', (s.label || '').slice(0, 48)))), role === 'assistant' && !streaming && !isError && content && convId && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginTop: 10,
+      paddingTop: 8,
+      borderTop: '1px solid rgba(47,227,154,0.08)',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: '0.65rem',
+      color: 'var(--text-dim)',
+      letterSpacing: '0.05em',
+      marginRight: 4
+    }
+  }, fbSent ? fbState === 'liked' ? '✓ Berguna!' : '✓ Dicatat' : 'Bantu Migan belajar'), /*#__PURE__*/React.createElement("button", {
+    onClick: () => sendFeedback('thumbs_up'),
+    title: "Respons bagus \u2014 bantu ADO belajar",
+    disabled: fbSent || !msg.serverId,
+    style: {
+      background: fbState === 'liked' ? 'var(--green-dim)' : 'rgba(47,227,154,0.05)',
+      border: `1px solid ${fbState === 'liked' ? 'var(--green-border)' : 'rgba(47,227,154,0.2)'}`,
+      borderRadius: 6,
+      padding: '3px 10px',
+      cursor: fbSent || !msg.serverId ? 'default' : 'pointer',
+      fontSize: '0.85rem',
+      lineHeight: 1.4,
+      color: fbState === 'liked' ? 'var(--green)' : 'var(--text-dim)',
+      transition: 'all 0.15s',
+      opacity: fbSent && fbState !== 'liked' ? 0.3 : 1
+    }
+  }, "\uD83D\uDC4D"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => sendFeedback('thumbs_down'),
+    title: "Perlu diperbaiki \u2014 bantu ADO belajar",
+    disabled: fbSent || !msg.serverId,
+    style: {
+      background: fbState === 'disliked' ? 'var(--orange-dim)' : 'rgba(255,138,36,0.05)',
+      border: `1px solid ${fbState === 'disliked' ? 'var(--orange-border)' : 'rgba(255,138,36,0.2)'}`,
+      borderRadius: 6,
+      padding: '3px 10px',
+      cursor: fbSent || !msg.serverId ? 'default' : 'pointer',
+      fontSize: '0.85rem',
+      lineHeight: 1.4,
+      color: fbState === 'disliked' ? 'var(--orange)' : 'var(--text-dim)',
+      transition: 'all 0.15s',
+      opacity: fbSent && fbState !== 'disliked' ? 0.3 : 1
+    }
+  }, "\uD83D\uDC4E"))), isError && onRetry && msg.lastUserText && /*#__PURE__*/React.createElement("button", {
+    onClick: () => onRetry(msg),
+    style: {
+      marginTop: '0.5rem',
+      padding: '0.4rem 0.85rem',
+      background: 'var(--orange-dim)',
+      color: 'var(--orange)',
+      border: '1px solid var(--orange-border)',
+      borderRadius: '6px',
+      fontFamily: 'var(--mono)',
+      fontSize: '0.7rem',
+      fontWeight: 600,
+      letterSpacing: '0.05em',
+      cursor: 'pointer',
+      transition: 'all 0.15s'
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.background = 'var(--orange)';
+      e.currentTarget.style.color = '#1a0f00';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = 'var(--orange-dim)';
+      e.currentTarget.style.color = 'var(--orange)';
+    }
+  }, "\u21BB RETRY"), !Array.isArray(tools) && toolCount > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "tool-badge"
+  }, "\u2699 ", toolCount, " tool call", toolCount > 1 ? 's' : '')));
+}
+
+// ===========================
+// CHAT SCREEN
+// ===========================
+// Day 51: Research-validated chips (Vercel A/B 2025 — 3 chips beat 6 by 40%)
+// Strategy: showcase 3 unique moats (Wikipedia search + image generation + web read)
+// NOT generic "what can you do" — that triggers empty-state paralysis
+const HINTS = ['💭 Cari di Wikipedia tentang Soekarno', '🎨 Gambarkan kucing oranye lucu sedang tidur', '📄 Baca https://news.ycombinator.com'];
+function ChatScreen({
+  user,
+  onLogout
+}) {
+  const [msgs, setMsgs] = useState([]);
+  const [input, setInput] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [agentId, setAgentId] = useState(null);
+  const [agentName, setAgentName] = useState('MiganCore');
+  const [convId, setConvId] = useState(null);
+  const [convList, setConvList] = useState([]);
+  const [initErr, setInitErr] = useState('');
+  const [initing, setIniting] = useState(true);
+  // Day 52 Fix: track consecutive errors. >=2 = suggest NEW CHAT (prevents context contamination)
+  const [consecErrors, setConsecErrors] = useState(0);
+  // Day 67 — dynamic model label fetched from /health (was hardcoded qwen2.5:7b)
+  const [modelLabel, setModelLabel] = useState('migancore:0.3');
+  // Day 29 — agent list + spawn modal
+  const [agents, setAgents] = useState([]);
+  const [spawnOpen, setSpawnOpen] = useState(false);
+  // Launch Sprint — memory panel ("Apa yang Migan ingat tentangmu")
+  const [memOpen, setMemOpen] = useState(false);
+  const [memData, setMemData] = useState(null);
+  const [memLoading, setMemLoading] = useState(false);
+  // Day 37 — onboarding modal (two-question, dynamic starters)
+  const [showOnboarding, setShowOnboarding] = useState(() => !LS.get('mc_onboarded'));
+
+  // Day 68 — mobile drawer toggle (Codex C3 P1 fix) + conv loading state
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [convLoading, setConvLoading] = useState(false);
+
+  // Day 40 — multimodal sense inputs (vision + audio).
+  // attachments: list of {id, name, dataUrl, size, mime, status: 'compressing'|'ready'|'error'}
+  // Max 4 images per send (Anthropic Claude.ai limit).
+  const [attachments, setAttachments] = useState([]);
+  const [attachError, setAttachError] = useState('');
+  // Mic recording state
+  const [recording, setRecording] = useState(false);
+  const [recordSecs, setRecordSecs] = useState(0);
+  const [recordError, setRecordError] = useState('');
+  const endRef = useRef(null);
+  const taRef = useRef(null);
+  const stopRef = useRef(null);
+  const streamMsgId = useRef(null);
+  // Mic refs (kept outside state to avoid re-renders during recording)
+  const recRef = useRef(null); // MediaRecorder instance
+  const recChunks = useRef([]); // collected blobs
+  const recStream = useRef(null); // raw MediaStream (closed on stop)
+  const recTimer = useRef(null); // setInterval handle for elapsed counter
+  const recCapTo = useRef(null); // setTimeout handle for 90s hard cap
+
+  // ─── Init: ensure agent + load agent list (Day 29) ─────
+  const refreshAgents = useCallback(async () => {
+    try {
+      const list = await api.listAgents();
+      setAgents(Array.isArray(list) ? list : []);
+      return list;
+    } catch (e) {
+      return [];
+    }
+  }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        let aid = LS.get('agent_id');
+        let aname = LS.get('agent_name') || 'MiganCore';
+
+        // Day 29: Load all agents first
+        const list = await refreshAgents();
+
+        // Validate stored agent still exists
+        if (aid && list && Array.isArray(list)) {
+          const found = list.find(a => a.id === aid);
+          if (!found) {
+            aid = null;
+            aname = null;
+          }
+        }
+
+        // Pick from list, or create new
+        if (!aid) {
+          if (list && list.length > 0) {
+            const first = list[0];
+            aid = first.id;
+            aname = first.name;
+          } else {
+            const agent = await api.createAgent('MiganCore');
+            aid = agent.id;
+            aname = agent.name;
+            await refreshAgents();
+          }
+          LS.set('agent_id', aid);
+          LS.set('agent_name', aname);
+        }
+        setAgentId(aid);
+        setAgentName(aname);
+      } catch (err) {
+        setInitErr(`Failed to init agent: ${err.message}`);
+      } finally {
+        setIniting(false);
+      }
+    })();
+  }, [refreshAgents]);
+
+  // Day 67 — fetch current model from /health (no auth needed, open endpoint)
+  useEffect(() => {
+    fetch(`${API_BASE}/health`).then(r => r.json()).then(d => {
+      if (d.model) setModelLabel(d.model);
+    }).catch(() => {}); // keep default if fetch fails
+  }, []);
+
+  // Switch to a different agent
+  const switchAgent = useCallback(agent => {
+    if (!agent || agent.id === agentId) return;
+    setAgentId(agent.id);
+    setAgentName(agent.name);
+    LS.set('agent_id', agent.id);
+    LS.set('agent_name', agent.name);
+    // Reset chat state for the new agent context
+    setMsgs([]);
+    setConvId(null);
+    LS.del('mc_msgs');
+    LS.del('mc_conv');
+  }, [agentId]);
+
+  // After successful spawn — switch to new child + refresh list
+  const handleSpawned = useCallback(async child => {
+    setSpawnOpen(false);
+    await refreshAgents();
+    switchAgent({
+      id: child.id,
+      name: child.name,
+      generation: child.generation
+    });
+  }, [refreshAgents, switchAgent]);
+
+  // ─── Restore session ──────────────────────────────────
+  useEffect(() => {
+    const saved = LS.get('mc_msgs');
+    if (Array.isArray(saved)) setMsgs(saved);
+    const cid = LS.get('mc_conv');
+    if (cid) setConvId(cid);
+  }, []);
+
+  // ─── Day 68: Fetch conversation history from server (Codex C1 fix) ─────
+  // Replace localStorage-only history with server-sourced list.
+  const refreshConvList = useCallback(async () => {
+    try {
+      const list = await api.listConversations(30);
+      if (Array.isArray(list)) {
+        setConvList(list.map(c => ({
+          id: c.id,
+          title: c.title || 'Chat',
+          agent_id: c.agent_id,
+          last_message_at: c.last_message_at,
+          message_count: c.message_count
+        })));
+      }
+    } catch (e) {
+      // Silent fail — history is non-critical for chat function
+    }
+  }, []);
+  useEffect(() => {
+    refreshConvList();
+  }, [refreshConvList]);
+
+  // Auto-refresh history every 30s while user is active (cheap, paginated)
+  useEffect(() => {
+    const id = setInterval(refreshConvList, 30000);
+    return () => clearInterval(id);
+  }, [refreshConvList]);
+
+  // Launch Sprint — Memory panel: fetch + open
+  const openMemPanel = useCallback(async () => {
+    setMemOpen(true);
+    if (memData) return; // already loaded
+    setMemLoading(true);
+    try {
+      const d = await apiFetch(`/v1/memory/summary?agent_id=${agentId}`);
+      setMemData(d);
+    } catch(e) {
+      setMemData({ error: 'Gagal memuat ingatan.' });
+    } finally {
+      setMemLoading(false);
+    }
+  }, [agentId, memData]);
+
+  // ─── Day 68: Load past conversation when user clicks history item ─────
+  const loadConversation = useCallback(async cid => {
+    if (!cid || cid === convId || convLoading) return;
+    setConvLoading(true);
+    setMobileNavOpen(false); // close drawer on mobile after pick
+    try {
+      const detail = await api.getConversation(cid, 100);
+      const loadedMsgs = (detail.messages || []).map((m, i) => ({
+        id: Date.now() + i,
+        serverId: m.id,
+        role: m.role,
+        content: m.content
+      }));
+      setMsgs(loadedMsgs);
+      setConvId(cid);
+      LS.set('mc_msgs', loadedMsgs.slice(-60));
+      LS.set('mc_conv', cid);
+      // Switch agent if needed
+      if (detail.agent_id && detail.agent_id !== agentId) {
+        const found = agents.find(a => a.id === detail.agent_id);
+        if (found) {
+          setAgentId(found.id);
+          setAgentName(found.name);
+          LS.set('agent_id', found.id);
+          LS.set('agent_name', found.name);
+        }
+      }
+    } catch (e) {
+      console.error('Load conv failed:', e);
+      alert('Gagal memuat percakapan: ' + (e.message || 'unknown error'));
+    } finally {
+      setConvLoading(false);
+    }
+  }, [convId, convLoading, agentId, agents]);
+
+  // ─── Day 68: Delete conversation (soft archive) ─────
+  const deleteConversation = useCallback(async (cid, title) => {
+    if (!cid) return;
+    const ok = window.confirm(`Hapus percakapan "${title || 'ini'}"? Tidak bisa di-restore lewat UI.`);
+    if (!ok) return;
+    try {
+      await api.deleteConversation(cid);
+      // If deleting active conv, clear current chat
+      if (cid === convId) {
+        setMsgs([]);
+        setConvId(null);
+        LS.del('mc_msgs');
+        LS.del('mc_conv');
+      }
+      await refreshConvList();
+    } catch (e) {
+      alert('Gagal menghapus: ' + (e.message || 'unknown error'));
+    }
+  }, [convId, refreshConvList]);
+
+  // ─── Auto-scroll ──────────────────────────────────────
+  useEffect(() => {
+    endRef.current?.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }, [msgs]);
+
+  // ─── Persist messages ─────────────────────────────────
+  useEffect(() => {
+    if (msgs.length > 0) LS.set('mc_msgs', msgs.slice(-60));
+  }, [msgs]);
+
+  // ─── New chat (Day 68: server-sourced history, no localStorage merge) ───
+  const newChat = useCallback(() => {
+    setMsgs([]);
+    setConvId(null);
+    setInput('');
+    setMobileNavOpen(false); // close drawer on mobile after new chat
+    LS.del('mc_msgs');
+    LS.del('mc_conv');
+    // Refresh server list — current conv (if any) auto-shows since backend
+    // returns ordered by last_message_at desc. No localStorage merge needed.
+    refreshConvList();
+  }, [refreshConvList]);
+
+  // ─── Send message (Day 36: with retry support) ───────
+  // Internal helper — does NOT touch input field, can be reused for retry
+  const dispatchMessage = useCallback((text, opts = {}) => {
+    if (!text || busy || !agentId) return;
+    const uid = opts.userMsgId || Date.now();
+    const aid = uid + 1;
+    streamMsgId.current = aid;
+
+    // Day 36: track first chunk arrival for state hierarchy
+    let firstChunkAt = null;
+    if (!opts.retryOf) {
+      // Normal send — add user + assistant placeholder.
+      // Day 40 fix: when augmented (image attach), display ORIGINAL text + thumbnails
+      // in the user bubble; the augmented prompt is sent to the LLM but never shown.
+      const displayText = opts.displayText !== undefined ? opts.displayText : text;
+      const userAttachments = opts.attachments || null;
+      setMsgs(p => [...p, {
+        id: uid,
+        role: 'user',
+        content: displayText,
+        attachments: userAttachments
+      }, {
+        id: aid,
+        role: 'assistant',
+        content: '',
+        streaming: true,
+        toolCount: 0,
+        lastUserText: text,
+        lastUserMsgId: uid
+      }]);
+    } else {
+      // Retry — replace the failed assistant message
+      setMsgs(p => p.map(m => m.id === opts.retryOf ? {
+        ...m,
+        content: '',
+        streaming: true,
+        error: false,
+        lastUserText: text,
+        lastUserMsgId: opts.userMsgId
+      } : m));
+    }
+    setBusy(true);
+    let localConvId = convId;
+    const targetMsgId = opts.retryOf || aid;
+    const stop = startStream(agentId, text, localConvId, {
+      onStart: (cid, mode) => {
+        localConvId = cid;
+        setConvId(cid);
+        LS.set('mc_conv', cid);
+        // Launch Sprint: attach thinking mode to streaming message for indicator
+        if (mode) {
+          setMsgs(p => p.map(m => m.id === targetMsgId ? { ...m, thinkingMode: mode } : m));
+        }
+      },
+      // Day 40 — tool execution events from hybrid stream endpoint
+      onToolStart: tools => {
+        // Append running chips to message.tools[] (preserves order, idempotent on retry)
+        setMsgs(p => p.map(m => m.id === targetMsgId ? {
+          ...m,
+          tools: [...(m.tools || []), ...tools.map(t => ({
+            name: t.name,
+            state: 'running',
+            result: null,
+            error: null
+          }))],
+          toolCount: (m.toolCount || 0) + tools.length
+        } : m));
+      },
+      onToolResult: ev => {
+        setMsgs(p => p.map(m => {
+          if (m.id !== targetMsgId) return m;
+          // Find the most recent matching running chip and resolve it
+          const arr = [...(m.tools || [])];
+          for (let i = arr.length - 1; i >= 0; i--) {
+            if (arr[i].name === ev.tool && arr[i].state === 'running') {
+              arr[i] = {
+                ...arr[i],
+                state: ev.ok ? 'done' : 'error',
+                result: ev.result,
+                error: ev.error
+              };
+              break;
+            }
+          }
+          return {
+            ...m,
+            tools: arr
+          };
+        }));
+      },
+      onChunk: chunk => {
+        if (!firstChunkAt) firstChunkAt = Date.now();
+        setMsgs(p => p.map(m => m.id === targetMsgId ? {
+          ...m,
+          content: m.content + chunk
+        } : m));
+      },
+      onDone: (cid, serverMsgId, sources, kgInjected) => {
+        setMsgs(p => p.map(m => m.id === targetMsgId ? {
+          ...m,
+          streaming: false,
+          error: false,
+          serverId: serverMsgId || null,
+          sources: sources || [],
+          kgInjected: kgInjected || false  // Day 78 Sprint 2: "Migan ingat..." signal
+        } : m));
+        setConsecErrors(0); // Day 52 Fix: success → reset error counter
+        setBusy(false);
+        stopRef.current = null;
+        // Launch Sprint: refresh conv list after 5s so auto-generated title shows up
+        setTimeout(refreshConvList, 5000);
+      },
+      onError: msg => {
+        // Day 36: friendly error mapping
+        let friendly = msg;
+        const lower = (msg || '').toLowerCase();
+        if (lower.includes('typeerror') || lower.includes('network') || lower.includes('fetch') || lower.includes('koneksi')) {
+          friendly = 'Koneksi terputus. Pesan kamu aman — coba klik Retry di bawah.';
+        } else if (lower.includes('onamix timed out') || lower.includes('onamix timeout')) {
+          friendly = '⏱ Pencarian web timeout (30s). Coba Retry — atau gunakan query lebih spesifik, misal nama yang lebih pendek.';
+        } else if (lower.includes('timeout') || lower.includes('timed out')) {
+          friendly = '⏱ MiganCore butuh waktu lebih dari biasanya. Klik Retry — jika terus gagal, mulai New Chat.';
+        } else if (lower.includes('unauthorized') || lower.includes('401')) {
+          friendly = 'Sesi habis. Silakan logout + login lagi.';
+        } else if (lower.includes('rate limit') || lower.includes('429')) {
+          friendly = 'Terlalu banyak request. Tunggu sebentar lalu coba lagi.';
+        } else if (lower.includes('onamix') || lower.includes('hyperx')) {
+          friendly = '⚠ Pencarian web gagal. Coba Retry atau coba query berbeda.';
+        }
+        setMsgs(p => p.map(m => m.id === targetMsgId ? {
+          ...m,
+          content: friendly,
+          streaming: false,
+          error: true
+        } : m));
+        // Day 52 Fix: Track consecutive errors. After 2x errors, suggest NEW CHAT
+        // (prevents context contamination — "halo" continuing previous broken context)
+        setConsecErrors(c => c + 1);
+        setBusy(false);
+        stopRef.current = null;
+      }
+    });
+    stopRef.current = stop;
+  }, [busy, agentId, convId]);
+
+  // Public send — clears input + dispatches
+  // Day 40 — visioning state (separate from chat busy so user sees explicit progress)
+  const [visioning, setVisioning] = useState(false);
+  const send = useCallback(async txt => {
+    const text = (typeof txt === 'string' ? txt : input).trim();
+    const ready = attachments.filter(a => a.status === 'ready' && a.dataUrl);
+    const hasImages = ready.length > 0;
+    // Block: nothing to send, currently busy, or agent missing
+    if (!text && !hasImages) return;
+    if (busy || !agentId) return;
+    let augmentedText = text || 'Tolong bahas gambar yang saya lampirkan.';
+    let displayText = text || '';
+    let userAttachments = null;
+
+    // Day 40: pre-process images via /v1/vision/describe so the brain (Qwen2.5-7B)
+    // gets a text caption injected — no base64 in chat history (saves DB + tokens).
+    // ADO alignment: modality-as-tool routing (Anthropic Claude Skills Mar 2026).
+    if (hasImages) {
+      // Snapshot thumbnails for the user bubble BEFORE we clear attachments[]
+      userAttachments = ready.map(a => ({
+        id: a.id,
+        name: a.name,
+        dataUrl: a.dataUrl,
+        mime: a.mime
+      }));
+      setVisioning(true);
+      const captions = [];
+      for (let i = 0; i < ready.length; i++) {
+        const att = ready[i];
+        try {
+          const b64 = att.dataUrl.split(',')[1] || '';
+          const resp = await api.visionDescribe({
+            image_base64: b64,
+            mime_type: att.mime || 'image/jpeg',
+            question: text || 'Describe this image in detail. List notable elements and any visible text.',
+            lang: LS.get('mc_onboard_lang') === 'en' ? 'en' : 'id'
+          });
+          captions.push(resp?.answer || '(tanpa keterangan)');
+        } catch (e) {
+          captions.push(`[Gagal proses gambar ${i + 1}: ${e.message || e}]`);
+        }
+      }
+      // Reset attachments + clear pending error
+      setAttachments([]);
+      setAttachError('');
+      setVisioning(false);
+      const captionBlock = captions.map((c, i) => `Gambar ${i + 1}: ${c}`).join('\n\n');
+      const userQuestion = text || 'Tolong rangkum isi gambarnya.';
+      // Sent to LLM (verbose, with anti-tool-call instruction)
+      augmentedText = `[KONTEKS — Berikut deskripsi ${captions.length === 1 ? 'gambar' : `${captions.length} gambar`} yang dilampirkan user (sudah dianalisis backend Vision, ini final, JANGAN panggil tool apapun, JANGAN generate gambar baru):]\n\n` + `${captionBlock}\n\n` + `[PERTANYAAN USER]: ${userQuestion}\n\n` + `[INSTRUKSI]: Jawab pertanyaan di atas berdasarkan deskripsi gambar. Gunakan bahasa yang sama dengan pertanyaan user. JANGAN panggil tool generate_image / analyze_image / web_search — semua konteks sudah ada di atas.`;
+      // Shown in user bubble (clean — original text or fallback hint)
+      displayText = text || `(${captions.length === 1 ? 'gambar terlampir' : `${captions.length} gambar terlampir`})`;
+    }
+    setInput('');
+    if (taRef.current) {
+      taRef.current.style.height = 'auto';
+    }
+    // Pass augmented text to LLM, displayText + attachments to UI bubble
+    dispatchMessage(augmentedText, {
+      displayText,
+      attachments: userAttachments
+    });
+  }, [input, busy, agentId, dispatchMessage, attachments]);
+
+  // Day 36: Retry — re-send the last user prompt for a failed assistant message
+  const retry = useCallback(failedMsg => {
+    if (!failedMsg?.lastUserText) return;
+    dispatchMessage(failedMsg.lastUserText, {
+      retryOf: failedMsg.id,
+      userMsgId: failedMsg.lastUserMsgId
+    });
+  }, [dispatchMessage]);
+
+  // ─── Day 40: Image attach (paste + drop + picker) ──────────
+  // CompressorJS (CDN) downscales to 1568px (Anthropic Vision optimal) before
+  // base64 encoding, keeping React state under ~200KB per image.
+  const MAX_IMAGES = 4; // Anthropic Claude.ai limit
+  const MAX_IMAGE_BYTES = 8 * 1024 * 1024; // pre-compress cap
+
+  const compressImage = useCallback(file => new Promise((resolve, reject) => {
+    if (typeof Compressor === 'undefined') {
+      // CompressorJS CDN failed to load — pass through original (still works for small imgs)
+      const reader = new FileReader();
+      reader.onload = () => resolve({
+        dataUrl: reader.result,
+        size: file.size,
+        mime: file.type
+      });
+      reader.onerror = () => reject(new Error('FileReader failed'));
+      reader.readAsDataURL(file);
+      return;
+    }
+    // eslint-disable-next-line no-undef
+    new Compressor(file, {
+      quality: 0.75,
+      maxWidth: 1568,
+      maxHeight: 1568,
+      convertSize: 500_000,
+      // re-encode PNG > 500KB to JPEG
+      success(blob) {
+        const reader = new FileReader();
+        reader.onload = () => resolve({
+          dataUrl: reader.result,
+          size: blob.size,
+          mime: blob.type
+        });
+        reader.onerror = () => reject(new Error('FileReader failed'));
+        reader.readAsDataURL(blob);
+      },
+      error(err) {
+        reject(err);
+      }
+    });
+  }), []);
+  const attachImage = useCallback(async file => {
+    setAttachError('');
+    if (!file || !file.type?.startsWith('image/')) {
+      setAttachError('Bukan file gambar');
+      return;
+    }
+    if (file.size > MAX_IMAGE_BYTES) {
+      setAttachError(`Gambar terlalu besar (>${Math.round(MAX_IMAGE_BYTES / 1024 / 1024)}MB)`);
+      return;
+    }
+    const tempId = Date.now() + Math.random();
+    // Optimistic: show as "compressing" immediately
+    setAttachments(p => {
+      if (p.length >= MAX_IMAGES) {
+        setAttachError(`Maksimal ${MAX_IMAGES} gambar per pesan`);
+        return p;
+      }
+      return [...p, {
+        id: tempId,
+        name: file.name || 'image',
+        dataUrl: null,
+        size: file.size,
+        mime: file.type,
+        status: 'compressing'
+      }];
+    });
+    try {
+      const {
+        dataUrl,
+        size,
+        mime
+      } = await compressImage(file);
+      setAttachments(p => p.map(a => a.id === tempId ? {
+        ...a,
+        dataUrl,
+        size,
+        mime,
+        status: 'ready'
+      } : a));
+    } catch (e) {
+      setAttachments(p => p.filter(a => a.id !== tempId));
+      setAttachError(`Gagal proses gambar: ${e.message || e}`);
+    }
+  }, [compressImage]);
+  const removeAttachment = useCallback(id => {
+    setAttachments(p => p.filter(a => a.id !== id));
+  }, []);
+
+  // ─── Cycle 11: document upload (PDF/TXT/MD/DOCX) → extract text → ingest to knowledge RAG ───
+  const [docStatus, setDocStatus] = useState([]); // {id,name,status:'reading'|'ingesting'|'done'|'error',chunks,error}
+  const extractDocText = useCallback(async (file) => {
+    const name = (file.name || '').toLowerCase();
+    if (name.endsWith('.txt') || name.endsWith('.md') || name.endsWith('.markdown') || (file.type || '').startsWith('text/')) {
+      return await file.text();
+    }
+    if (name.endsWith('.pdf')) {
+      if (!window.pdfjsLib) throw new Error('Pembaca PDF belum siap, coba lagi');
+      const buf = await file.arrayBuffer();
+      const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+      let out = '';
+      const max = Math.min(pdf.numPages, 80);
+      for (let p = 1; p <= max; p++) {
+        const pg = await pdf.getPage(p);
+        const tc = await pg.getTextContent();
+        out += tc.items.map(it => it.str).join(' ') + '\n';
+      }
+      return out;
+    }
+    if (name.endsWith('.docx')) {
+      if (!window.mammoth) throw new Error('Pembaca DOCX belum siap, coba lagi');
+      const buf = await file.arrayBuffer();
+      const r = await window.mammoth.extractRawText({ arrayBuffer: buf });
+      return r.value || '';
+    }
+    throw new Error('Format tak didukung (pakai PDF, TXT, MD, atau DOCX)');
+  }, []);
+  const attachDocument = useCallback(async (file) => {
+    const id = Date.now() + Math.random();
+    setDocStatus(p => [...p, { id, name: file.name || 'dokumen', status: 'reading' }]);
+    try {
+      const text = await extractDocText(file);
+      if (!text || text.trim().length < 20) throw new Error('Dokumen kosong / terlalu pendek (min 20 karakter)');
+      setDocStatus(p => p.map(d => d.id === id ? { ...d, status: 'ingesting' } : d));
+      const res = await api.ingestKnowledge(agentId, text.slice(0, 200000), file.name || 'dokumen');
+      setDocStatus(p => p.map(d => d.id === id ? { ...d, status: 'done', chunks: res.chunks_indexed } : d));
+      setTimeout(() => setDocStatus(p => p.filter(d => d.id !== id)), 9000);
+    } catch (e) {
+      setDocStatus(p => p.map(d => d.id === id ? { ...d, status: 'error', error: (e.message || String(e)) } : d));
+      setTimeout(() => setDocStatus(p => p.filter(d => d.id !== id)), 9000);
+    }
+  }, [extractDocText, agentId]);
+  const IMG_RE = /^image\//;
+  const attachFile = useCallback((file) => {
+    if (file && IMG_RE.test(file.type || '')) attachImage(file);
+    else if (file) attachDocument(file);
+  }, [attachImage, attachDocument]);
+
+  // Paste handler — detects images in clipboard
+  useEffect(() => {
+    const handler = e => {
+      if (!e.clipboardData) return;
+      const items = [...e.clipboardData.items].filter(i => i.type.startsWith('image/'));
+      if (items.length === 0) return;
+      e.preventDefault();
+      items.forEach(i => {
+        const f = i.getAsFile();
+        if (f) attachImage(f);
+      });
+    };
+    window.addEventListener('paste', handler);
+    return () => window.removeEventListener('paste', handler);
+  }, [attachImage]);
+
+  // Drag-drop handler scoped to chat area (set up via JSX onDragOver/onDrop)
+  const onDragOver = useCallback(e => {
+    if (e.dataTransfer?.types?.includes('Files')) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+    }
+  }, []);
+  const onDrop = useCallback(e => {
+    const files = [...(e.dataTransfer?.files || [])];
+    if (files.length === 0) return;
+    e.preventDefault();
+    files.forEach(f => attachFile(f)); // images -> attach; docs -> ingest knowledge
+  }, [attachFile]);
+
+  // Picker (hidden input + button)
+  const fileInputRef = useRef(null);
+  const openFilePicker = useCallback(() => fileInputRef.current?.click(), []);
+  const onPickerChange = useCallback(e => {
+    const files = [...(e.target.files || [])];
+    files.forEach(f => attachFile(f)); // route by type (image vs document)
+    // Reset value so picking same file twice still triggers change
+    e.target.value = '';
+  }, [attachFile]);
+
+  // ─── Day 40: Mic toggle (MediaRecorder → /v1/speech/to-text) ──
+  const stopMic = useCallback(() => {
+    try {
+      recRef.current?.stop();
+    } catch {}
+    try {
+      recStream.current?.getTracks().forEach(t => t.stop());
+    } catch {}
+    if (recTimer.current) {
+      clearInterval(recTimer.current);
+      recTimer.current = null;
+    }
+    if (recCapTo.current) {
+      clearTimeout(recCapTo.current);
+      recCapTo.current = null;
+    }
+    setRecording(false);
+    setRecordSecs(0);
+  }, []);
+  const startMic = useCallback(async () => {
+    setRecordError('');
+    // Ask permission (must be on user gesture — Safari iOS quirk)
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: true
+      });
+    } catch (e) {
+      if (e.name === 'NotAllowedError') {
+        setRecordError('Akses mic ditolak. Aktifkan di setting browser.');
+      } else {
+        setRecordError('Tidak bisa akses mic: ' + (e.message || e.name));
+      }
+      return;
+    }
+    recStream.current = stream;
+    recChunks.current = [];
+    // Try opus (smallest); fall back to default
+    let mimeType = 'audio/webm;codecs=opus';
+    if (typeof MediaRecorder !== 'undefined' && !MediaRecorder.isTypeSupported(mimeType)) {
+      mimeType = '';
+    }
+    const rec = mimeType ? new MediaRecorder(stream, {
+      mimeType
+    }) : new MediaRecorder(stream);
+    recRef.current = rec;
+    rec.ondataavailable = e => {
+      if (e.data && e.data.size > 0) recChunks.current.push(e.data);
+    };
+    rec.onstop = async () => {
+      const blob = new Blob(recChunks.current, {
+        type: rec.mimeType || 'audio/webm'
+      });
+      recChunks.current = [];
+      // Reset stream + timers (already cleaned by stopMic, defensive)
+      try {
+        stream.getTracks().forEach(t => t.stop());
+      } catch {}
+      if (blob.size < 800) {
+        setRecordError('Rekaman terlalu pendek (<1 detik)');
+        return;
+      }
+      // Upload to STT
+      try {
+        const fd = new FormData();
+        // Pick filename based on mime
+        const ext = (rec.mimeType || '').includes('webm') ? 'webm' : 'mp4';
+        fd.append('file', blob, `mic_${Date.now()}.${ext}`);
+        fd.append('lang_code', 'id');
+        const sttToken = LS.get('token');
+        const resp = await fetch(`${API_BASE}/v1/speech/to-text`, {
+          method: 'POST',
+          headers: sttToken ? {
+            'Authorization': `Bearer ${sttToken}`
+          } : {},
+          body: fd
+          // Codex C7 fix Day 70: STT now requires auth (cost-bearing endpoint)
+        });
+        const json = await resp.json();
+        if (!resp.ok) {
+          const detail = json && json.detail ? typeof json.detail === 'string' ? json.detail : JSON.stringify(json.detail) : `HTTP ${resp.status}`;
+          setRecordError(`STT gagal: ${detail.slice(0, 120)}`);
+          return;
+        }
+        const text = (json.text || '').trim();
+        if (text) {
+          setInput(prev => (prev ? prev + ' ' : '') + text);
+          // Auto-grow textarea after insertion
+          requestAnimationFrame(() => {
+            if (taRef.current) {
+              taRef.current.style.height = 'auto';
+              taRef.current.style.height = Math.min(taRef.current.scrollHeight, 160) + 'px';
+              taRef.current.focus();
+            }
+          });
+        } else {
+          setRecordError('Suara tidak terdengar — coba lagi.');
+        }
+      } catch (e) {
+        setRecordError('Upload gagal: ' + (e.message || e));
+      }
+    };
+    rec.start();
+    setRecording(true);
+    setRecordSecs(0);
+    const startTs = Date.now();
+    recTimer.current = setInterval(() => {
+      setRecordSecs(Math.floor((Date.now() - startTs) / 1000));
+    }, 250);
+    // Hard cap 90s (research recommendation: ChatGPT 120s, Claude 60s; sweet spot)
+    recCapTo.current = setTimeout(() => {
+      if (recRef.current?.state === 'recording') stopMic();
+    }, 90_000);
+  }, [stopMic]);
+  const toggleMic = useCallback(() => {
+    if (recording) stopMic();else startMic();
+  }, [recording, startMic, stopMic]);
+  const stop = () => {
+    stopRef.current?.();
+    setMsgs(p => p.map(m => m.streaming ? {
+      ...m,
+      streaming: false
+    } : m));
+    setBusy(false);
+    stopRef.current = null;
+  };
+  const onKey = e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      send(input);
+    }
+  };
+  const onInput = e => {
+    setInput(e.target.value);
+    e.target.style.height = 'auto';
+    e.target.style.height = Math.min(e.target.scrollHeight, 160) + 'px';
+  };
+  const logout = () => {
+    ['token', 'refresh_token', 'agent_id', 'agent_name', 'mc_msgs', 'mc_conv', 'mc_convlist'].forEach(k => LS.del(k));
+    onLogout();
+  };
+  if (initing) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "center-screen"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "spinner"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "loading-label"
+    }, "INITIALIZING AGENT..."));
+  }
+  if (initErr) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "center-screen"
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#ff6b6b',
+        fontFamily: 'var(--mono)',
+        fontSize: '0.8rem',
+        padding: '2rem',
+        textAlign: 'center'
+      }
+    }, "\u26A0 ", initErr, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+      onClick: logout,
+      style: {
+        marginTop: '1rem',
+        padding: '0.5rem 1rem',
+        background: 'transparent',
+        border: '1px solid var(--border)',
+        borderRadius: '6px',
+        color: 'var(--text-dim)',
+        cursor: 'pointer',
+        fontFamily: 'var(--mono)',
+        fontSize: '0.7rem'
+      }
+    }, "LOGOUT & RETRY")));
+  }
+  const userInitial = (user?.email?.[0] || 'U').toUpperCase();
+  return /*#__PURE__*/React.createElement("div", {
+    className: "app"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `mobile-overlay ${mobileNavOpen ? 'open' : ''}`,
+    onClick: () => setMobileNavOpen(false)
+  }), /*#__PURE__*/React.createElement("aside", {
+    className: `sidebar ${mobileNavOpen ? 'open' : ''}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sidebar-brand"
+  }, /*#__PURE__*/React.createElement(BrandSVG, null), /*#__PURE__*/React.createElement("span", {
+    className: "brand-name"
+  }, "MIGANCORE")), /*#__PURE__*/React.createElement("button", {
+    className: "btn-new",
+    onClick: () => {
+      newChat();
+      setConsecErrors(0);
+    },
+    style: consecErrors >= 2 ? {
+      animation: 'pulseGlow 1.5s ease-in-out infinite',
+      borderColor: 'var(--orange)',
+      color: 'var(--orange)',
+      boxShadow: '0 0 12px rgba(255,107,53,0.6)'
+    } : {},
+    title: consecErrors >= 2 ? 'Brain mungkin bingung dengan konteks lama. Klik untuk reset chat.' : 'Mulai chat baru'
+  }, consecErrors >= 2 ? '⚠ + NEW CHAT (RESET)' : '+ NEW CHAT'), /*#__PURE__*/React.createElement("div", {
+    className: "agent-list-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "AGENTS (", agents.length, ")"), /*#__PURE__*/React.createElement("div", {
+    className: "agent-list"
+  }, agents.map(a => /*#__PURE__*/React.createElement("div", {
+    key: a.id,
+    className: `agent-item ${a.id === agentId ? 'active' : ''}`,
+    onClick: () => switchAgent(a),
+    title: `${a.name} (gen ${a.generation || 0})`
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap'
+    }
+  }, a.name), /*#__PURE__*/React.createElement("span", {
+    className: "agent-gen-badge"
+  }, "G", a.generation || 0)))), /*#__PURE__*/React.createElement("button", {
+    className: "btn-spawn",
+    onClick: () => setSpawnOpen(true),
+    title: "Spawn child agent from current"
+  }, "+ SPAWN CHILD")), /*#__PURE__*/React.createElement("div", {
+    className: "section-label",
+    style: {
+      marginTop: '0.75rem'
+    }
+  }, "RIWAYAT CHAT"), /*#__PURE__*/React.createElement("div", {
+    className: "conv-list"
+  }, convList.length === 0 ? /*#__PURE__*/React.createElement("div", {
+    className: "empty-convs"
+  }, "Belum ada chat") : convList.map(c => /*#__PURE__*/React.createElement("div", {
+    key: c.id,
+    className: `conv-item-row ${c.id === convId ? 'active' : ''}`
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "conv-item-btn",
+    onClick: () => loadConversation(c.id),
+    disabled: convLoading,
+    title: c.title
+  }, c.title), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "conv-del",
+    onClick: e => {
+      e.stopPropagation();
+      deleteConversation(c.id, c.title);
+    },
+    title: "Hapus percakapan",
+    "aria-label": "Delete"
+  }, "\xD7")))), /*#__PURE__*/React.createElement("div", {
+    className: "sidebar-footer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "nav-links"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-link-btn",
+    title: "Lihat apa yang Migan ingat tentangmu",
+    onClick: openMemPanel
+  }, "🧠 MEMORI"), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link-btn",
+    href: "/dashboard.html",
+    title: "Admin Dashboard"
+  }, "ADMIN"), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link-btn",
+    href: "/sandbox.html",
+    title: "Dev Organ Playground"
+  }, "SANDBOX")), /*#__PURE__*/React.createElement("div", {
+    className: "user-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "user-avatar"
+  }, userInitial), /*#__PURE__*/React.createElement("div", {
+    className: "user-email"
+  }, user?.email || 'user')), /*#__PURE__*/React.createElement("button", {
+    className: "btn-logout",
+    onClick: logout
+  }, "LOGOUT"))), /*#__PURE__*/React.createElement("main", {
+    className: "chat-area"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "chat-header"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "mobile-nav-toggle",
+    onClick: () => setMobileNavOpen(o => !o),
+    "aria-label": "Toggle navigation",
+    title: "Menu"
+  }, "\u2630"), /*#__PURE__*/React.createElement("div", {
+    className: `dot-pulse${busy ? ' streaming' : ''}`
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "header-agent"
+  }, agentName), /*#__PURE__*/React.createElement("span", {
+    className: "header-model"
+  }, modelLabel, busy ? ' · streaming' : ' · ready')), /*#__PURE__*/React.createElement("div", {
+    className: "messages"
+  }, msgs.length === 0 ? /*#__PURE__*/React.createElement("div", {
+    className: "empty-state"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "empty-logo"
+  }, "MIGANCORE"), /*#__PURE__*/React.createElement("div", {
+    className: "empty-sub"
+  }, "CORE AI ENGINE \u2014 SIAP MEMBANTU"), /*#__PURE__*/React.createElement("div", {
+    className: "hint-grid"
+  }, HINTS.map(h => /*#__PURE__*/React.createElement("div", {
+    key: h,
+    className: "hint-chip",
+    onClick: () => send(h)
+  }, h)))) : msgs.map(m => /*#__PURE__*/React.createElement(Msg, {
+    key: m.id,
+    msg: m,
+    onRetry: retry,
+    convId: convId
+  })), /*#__PURE__*/React.createElement("div", {
+    ref: endRef
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "input-area",
+    onDragOver: onDragOver,
+    onDrop: onDrop
+  }, /*#__PURE__*/React.createElement("input", {
+    ref: fileInputRef,
+    type: "file",
+    accept: "image/*,.pdf,.txt,.md,.markdown,.docx,text/plain,application/pdf",
+    multiple: true,
+    onChange: onPickerChange,
+    style: {
+      display: 'none'
+    }
+  }), docStatus.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: { display: 'flex', flexWrap: 'wrap', gap: 8, padding: '8px 0', marginBottom: 4 }
+  }, docStatus.map(d => /*#__PURE__*/React.createElement("div", {
+    key: d.id,
+    className: "doc-chip",
+    style: {
+      borderColor: d.status === 'done' ? 'var(--green-border, rgba(47,227,154,0.4))' : d.status === 'error' ? 'var(--orange-border, rgba(255,170,60,0.4))' : 'var(--border)',
+      color: d.status === 'error' ? 'var(--orange)' : 'var(--text-dim)'
+    },
+    title: d.error || d.name
+  },
+    d.status === 'reading' ? '📄 Membaca ' + d.name + '…'
+      : d.status === 'ingesting' ? '🧠 Migan mempelajari ' + d.name + '…'
+      : d.status === 'done' ? '✓ Migan tahu ' + d.name + ' (' + (d.chunks || 0) + ' bagian) — tanya isinya!'
+      : '⚠ ' + d.name + ': ' + (d.error || 'gagal')))),
+  (attachments.length > 0 || visioning || attachError) && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8,
+      padding: '8px 0',
+      borderBottom: '1px solid var(--border)',
+      marginBottom: 8
+    }
+  }, attachments.map(a => /*#__PURE__*/React.createElement("div", {
+    key: a.id,
+    style: {
+      position: 'relative',
+      width: 64,
+      height: 64,
+      borderRadius: 6,
+      overflow: 'hidden',
+      background: 'var(--bg-2)',
+      border: a.status === 'ready' ? '1px solid var(--green-border)' : '1px solid var(--orange-border)'
+    }
+  }, a.status === 'ready' && a.dataUrl ? /*#__PURE__*/React.createElement("img", {
+    src: a.dataUrl,
+    alt: a.name,
+    style: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+  }) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 18,
+      color: 'var(--orange)'
+    }
+  }, "\u23F3"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => removeAttachment(a.id),
+    style: {
+      position: 'absolute',
+      top: 2,
+      right: 2,
+      width: 18,
+      height: 18,
+      borderRadius: '50%',
+      background: 'rgba(0,0,0,0.7)',
+      color: 'white',
+      border: 'none',
+      cursor: 'pointer',
+      fontSize: 12,
+      lineHeight: 1,
+      padding: 0
+    },
+    title: "Remove"
+  }, "\xD7"))), visioning && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--orange)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6,
+      fontFamily: 'var(--mono)',
+      padding: '0 8px'
+    }
+  }, "\uD83D\uDC41 Vision menganalisis\u2026"), attachError && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: '#ff6b6b',
+      alignSelf: 'center',
+      fontFamily: 'var(--mono)',
+      padding: '0 8px'
+    }
+  }, attachError)), (recording || recordError) && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '6px 8px',
+      marginBottom: 8,
+      background: recording ? 'rgba(255, 107, 107, 0.10)' : 'transparent',
+      border: recording ? '1px solid rgba(255, 107, 107, 0.4)' : 'none',
+      borderRadius: 6,
+      fontFamily: 'var(--mono)',
+      fontSize: 12
+    }
+  }, recording && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'inline-block',
+      width: 10,
+      height: 10,
+      borderRadius: '50%',
+      background: '#ff6b6b',
+      animation: 'pulse 1.2s ease-in-out infinite'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#ff6b6b'
+    }
+  }, "Recording ", Math.floor(recordSecs / 60), ":", String(recordSecs % 60).padStart(2, '0'), " \xB7 klik mic untuk stop")), !recording && recordError && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#ff6b6b'
+    }
+  }, recordError)), /*#__PURE__*/React.createElement("div", {
+    className: "input-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-action",
+    onClick: openFilePicker,
+    disabled: busy || visioning || attachments.length >= 4,
+    title: "Lampirkan gambar (atau drag & drop / paste)",
+    style: {
+      background: 'var(--bg-2)',
+      color: 'var(--text-dim)',
+      border: '1px solid var(--border)',
+      width: 38,
+      height: 38
+    }
+  }, "\uD83D\uDCCE"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-action",
+    onClick: toggleMic,
+    disabled: busy || visioning,
+    title: recording ? 'Stop rekaman' : 'Bicara (mic toggle)',
+    style: {
+      background: recording ? 'rgba(255, 107, 107, 0.15)' : 'var(--bg-2)',
+      color: recording ? '#ff6b6b' : 'var(--text-dim)',
+      border: recording ? '1px solid rgba(255, 107, 107, 0.5)' : '1px solid var(--border)',
+      width: 38,
+      height: 38
+    }
+  }, recording ? '■' : '🎤'), /*#__PURE__*/React.createElement("textarea", {
+    ref: taRef,
+    className: "chat-input",
+    placeholder: attachments.length > 0 ? 'Tanya tentang gambarnya... (atau biarkan kosong)' : 'Ketik pesan... (Enter kirim · Shift+Enter baris baru · paste/drop gambar)',
+    value: input,
+    onChange: onInput,
+    onKeyDown: onKey,
+    disabled: busy || visioning,
+    rows: 1
+  }), busy ? /*#__PURE__*/React.createElement("button", {
+    className: "btn-action stop",
+    onClick: stop,
+    title: "Stop streaming"
+  }, /*#__PURE__*/React.createElement(StopIcon, null)) : /*#__PURE__*/React.createElement("button", {
+    className: "btn-action send",
+    onClick: () => send(input),
+    disabled: !input.trim() && attachments.length === 0 || visioning
+  }, /*#__PURE__*/React.createElement(SendIcon, null))), /*#__PURE__*/React.createElement("div", {
+    className: "input-hint"
+  }, visioning ? '👁 Vision processing… brain akan terima caption.' : 'ENTER kirim · SHIFT+ENTER baris baru · 📎 / paste / drop gambar · 🎤 mic'), /*#__PURE__*/React.createElement("a", {
+    href: 'https://wa.me/?text=' + encodeURIComponent('[MiganCore Beta Feedback]\n\nConv: ' + (convId || 'new') + '\nUser: ' + (user && user.email || 'guest') + '\n\nMy feedback:\n'),
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      display: 'inline-block',
+      marginTop: '0.5rem',
+      fontSize: '0.7rem',
+      color: 'var(--text-dim)',
+      textDecoration: 'none',
+      opacity: 0.7,
+      fontFamily: 'var(--mono)'
+    },
+    title: "Kirim feedback via WhatsApp (auto-fill conversation context)"
+  }, "\uD83D\uDCAC Beta feedback? Klik untuk WhatsApp"))), spawnOpen && /*#__PURE__*/React.createElement(SpawnModal, {
+    parentAgent: agents.find(a => a.id === agentId) || {
+      id: agentId,
+      name: agentName,
+      generation: 0
+    },
+    onClose: () => setSpawnOpen(false),
+    onSpawned: handleSpawned
+  }), showOnboarding && !initing && /*#__PURE__*/React.createElement(OnboardingModal, {
+    user: user,
+    onComplete: seedPrompt => {
+      setShowOnboarding(false);
+      if (seedPrompt) setInput(seedPrompt);
+    }
+  }),
+  // Launch Sprint — Memory Panel Modal
+  memOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
+      zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16
+    },
+    onClick: e => { if (e.target === e.currentTarget) setMemOpen(false); }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface)', borderRadius: 12, padding: 24, maxWidth: 520,
+      width: '100%', maxHeight: '80vh', overflowY: 'auto',
+      border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(0,0,0,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: { margin: 0, fontSize: '1rem', color: 'var(--accent)' }
+  }, "🧠 Apa yang Migan ingat tentangmu"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setMemOpen(false),
+    style: { background: 'none', border: 'none', color: 'var(--text-dim)', cursor: 'pointer', fontSize: '1.2rem' }
+  }, "×")),
+  memLoading
+    ? /*#__PURE__*/React.createElement("div", { style: { color: 'var(--text-dim)', textAlign: 'center', padding: 24 } }, "Memuat ingatan...")
+    : memData?.error
+      ? /*#__PURE__*/React.createElement("div", { style: { color: 'var(--red)' } }, memData.error)
+      : memData && /*#__PURE__*/React.createElement("div", null,
+          !memData.has_memories
+            ? /*#__PURE__*/React.createElement("p", {
+                style: { color: 'var(--text-dim)', textAlign: 'center', padding: '16px 0' }
+              }, "Belum ada ingatan — mulai chat dulu!")
+            : /*#__PURE__*/React.createElement("div", null,
+                /*#__PURE__*/React.createElement("div", {
+                  style: {
+                    background: 'rgba(47,227,154,0.06)', border: '1px solid rgba(47,227,154,0.15)',
+                    borderRadius: 8, padding: 12, marginBottom: 12, fontSize: '0.85rem',
+                    color: 'var(--text)', whiteSpace: 'pre-wrap', lineHeight: 1.5
+                  }
+                }, memData.summary_text || '(tidak ada ringkasan)'),
+                memData.kg_entity_count > 0 && /*#__PURE__*/React.createElement("div", {
+                  style: { fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: 8 }
+                }, `📍 ${memData.kg_entity_count} entitas · ${memData.kg_relation_count || 0} relasi diketahui`)
+              ),
+          /*#__PURE__*/React.createElement("button", {
+            onClick: () => { setMemData(null); setMemLoading(false); openMemPanel(); },
+            style: {
+              marginTop: 12, background: 'none', border: '1px solid var(--border)',
+              color: 'var(--text-dim)', borderRadius: 6, padding: '4px 12px',
+              cursor: 'pointer', fontSize: '0.75rem'
+            }
+          }, "↺ Refresh")
+        )
+  )));
+}
+
+// ===========================
+// APP ROOT
+// ===========================
+function App() {
+  // phase: 'boot' | 'auth' | 'chat'
+  const [phase, setPhase] = useState('boot');
+  const [user, setUser] = useState(null);
+  const onBootDone = useCallback(async () => {
+    const token = LS.get('token');
+    if (!token) {
+      setPhase('auth');
+      return;
+    }
+    try {
+      const me = await api.me();
+      setUser(me);
+      setPhase('chat');
+    } catch {
+      LS.del('token');
+      LS.del('refresh_token');
+      setPhase('auth');
+    }
+  }, []);
+  const onAuthSuccess = useCallback(me => {
+    setUser(me);
+    setPhase('chat');
+  }, []);
+  const onLogout = useCallback(() => {
+    setUser(null);
+    setPhase('auth');
+  }, []);
+  if (phase === 'boot') return /*#__PURE__*/React.createElement(BootSequence, {
+    onDone: onBootDone
+  });
+  if (phase === 'auth') return /*#__PURE__*/React.createElement(AuthScreen, {
+    onSuccess: onAuthSuccess
+  });
+  if (phase === 'chat') return /*#__PURE__*/React.createElement(ChatScreen, {
+    user: user,
+    onLogout: onLogout
+  });
+  return /*#__PURE__*/React.createElement("div", {
+    className: "center-screen"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "spinner"
+  }));
+}
+
+// ===========================
+// RELIABILITY LAYER (Day 71c)
+// ===========================
+// Error boundary — UI tetap render walaupun ada JS error tak terduga
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasError: false,
+      error: null
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+      error
+    };
+  }
+  componentDidCatch(error, info) {
+    console.error('[ErrorBoundary]', error, info);
+    // Best-effort telemetry (fire-and-forget, doesn't block recovery)
+    try {
+      const beacon = JSON.stringify({
+        msg: String(error && error.message || error),
+        stack: String(error && error.stack || '').slice(0, 800),
+        url: location.href,
+        ua: navigator.userAgent,
+        ts: Date.now()
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/v1/telemetry/error', new Blob([beacon], {
+          type: 'application/json'
+        }));
+      }
+    } catch (_) {}
+  }
+  render() {
+    if (this.state.hasError) {
+      return /*#__PURE__*/React.createElement("div", {
+        className: "center-screen",
+        style: {
+          flexDirection: 'column',
+          gap: '1rem',
+          padding: '1rem',
+          textAlign: 'center'
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontFamily: 'var(--display)',
+          color: 'var(--orange)',
+          fontSize: '1.5rem',
+          letterSpacing: '0.15em'
+        }
+      }, "SISTEM RECOVER"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: 'var(--text-dim)',
+          maxWidth: '32rem'
+        }
+      }, "Ada glitch di tampilan. Refresh untuk lanjut. Riwayat percakapan aman tersimpan."), /*#__PURE__*/React.createElement("button", {
+        onClick: () => location.reload(),
+        style: {
+          background: 'var(--orange)',
+          color: 'var(--bg-0)',
+          border: 0,
+          padding: '0.75rem 1.5rem',
+          borderRadius: '8px',
+          fontWeight: 600,
+          fontFamily: 'var(--mono)',
+          letterSpacing: '0.1em',
+          cursor: 'pointer'
+        }
+      }, "REFRESH APP"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: 'var(--text-dim)',
+          fontSize: '0.75rem',
+          fontFamily: 'var(--mono)'
+        }
+      }, String(this.state.error && this.state.error.message || 'unknown error').slice(0, 100)));
+    }
+    return this.props.children;
+  }
+}
+
+// Network status indicator — bilang user kalau offline
+function NetworkBanner() {
+  const [online, setOnline] = React.useState(typeof navigator !== 'undefined' ? navigator.onLine : true);
+  React.useEffect(() => {
+    const goOnline = () => setOnline(true);
+    const goOffline = () => setOnline(false);
+    window.addEventListener('online', goOnline);
+    window.addEventListener('offline', goOffline);
+    return () => {
+      window.removeEventListener('online', goOnline);
+      window.removeEventListener('offline', goOffline);
+    };
+  }, []);
+  if (online) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9999,
+      background: 'var(--orange)',
+      color: 'var(--bg-0)',
+      padding: '0.5rem 1rem',
+      textAlign: 'center',
+      fontFamily: 'var(--mono)',
+      fontSize: '0.8rem',
+      letterSpacing: '0.1em',
+      fontWeight: 600,
+      boxShadow: '0 2px 8px rgba(0,0,0,0.4)'
+    }
+  }, "\u26A0 OFFLINE \u2014 Chat realtime butuh koneksi internet. Pesan akan dikirim saat online kembali.");
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(NetworkBanner, null), /*#__PURE__*/React.createElement(App, null)));
+</script>
+
+<!-- Service Worker registration + update flow (Day 71c) -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then((reg) => {
+          // Check for updates every 60min while tab is open
+          setInterval(() => reg.update().catch(() => {}), 60 * 60 * 1000);
+          // When new SW takes over, soft-reload to pick up new assets
+          reg.addEventListener('updatefound', () => {
+            const newSw = reg.installing;
+            if (!newSw) return;
+            newSw.addEventListener('statechange', () => {
+              if (newSw.state === 'installed' && navigator.serviceWorker.controller) {
+                console.info('[SW] Update available — will activate on next navigation');
+              }
+            });
+          });
+        })
+        .catch((err) => console.warn('[SW] register failed:', err));
+    });
+  }
+</script>
+</body>
+</html>

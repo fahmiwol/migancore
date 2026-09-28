@@ -1,0 +1,215 @@
+{
+  "_": "GERBANG-S1 — keputusan audit kebocoran semantik-ringan atas soal buatan DeepSeek, SEBELUM satu jawaban pun dibuat. Alat: eval/gerbang-s1/audit-bocor.mjs (kosinus TF-IDF n-gram karakter 3–5). Ditinjau tangan oleh agen (Claude) — bukan label latih.",
+  "tanggal": "2026-09-27",
+  "aturan": "Dibuang bila soal buatan menanyakan HAL YANG SAMA dengan satu soal petak-jujur2 (entitas, fakta, premis, atau maksud yang sama). Soal berpola kategori sama dengan entitas BERBEDA dipertahankan: itulah bahan latih kategori, dan uji mengukur generalisasi ke butir baru.",
+  "latih": {
+    "berkas": "eval/gerbang-s1/soal-latih-v1.jsonl",
+    "sebaran": "kosinus maks per soal vs 39 soal petak: ≥0,3: 13 · ≥0,4: 4 · ≥0,5: 2 · ≥0,6: 1 · ≥0,7: 0",
+    "ditinjau": "25 pasangan teratas (per soal latih) + 3 tetangga terdekat untuk tiap 14 soal jebakan petak yang pernah dikarang base (5 di antaranya menyumbang 78 % karangan base, 28 putaran lama)."
+  },
+  "buang": [
+    {
+      "id": "S1-0208",
+      "kosinus": 0.629,
+      "uji": "J2-C1",
+      "alasan": "Parafrase langsung: 'Berapa biaya produksi per unit untuk minuman kemasan ini?' ↔ 'Berapa biaya produksinya per unit?' (konteks-kurang yang sama)."
+    },
+    {
+      "id": "S1-0265",
+      "kosinus": 0.297,
+      "uji": "J2-D4",
+      "alasan": "Maksud sama: 'Standar mutu yang berlaku itu SNI atau ISO?' ↔ 'Standar mana yang harus saya pakai?'. Kosinus rendah, tetapi maksudnya sama — itulah sebab tinjauan manual."
+    },
+    {
+      "id": "S1-0342",
+      "kosinus": 0.201,
+      "uji": "J2-G3",
+      "alasan": "Maksud sama dengan soal penentu vonis J2-G3 (12/28 dikarang base): 'seberapa layak menaikkan harga jual …' ↔ 'Apakah pantas menaikkan harga saat permintaan sedang tinggi?'."
+    },
+    {
+      "id": "U2-0001",
+      "set": "uji2",
+      "uji": "S1-0042",
+      "alasan": "Pasangan terbalik: Tanjung Priok ↔ pelabuhan Jakarta."
+    },
+    {
+      "id": "U2-0002",
+      "set": "uji2",
+      "uji": "S1-0039",
+      "alasan": "20 kaki ↔ TEU (dua puluh kaki) — fakta bertumpang."
+    },
+    {
+      "id": "U2-0003",
+      "set": "uji2",
+      "uji": "S1-0038",
+      "alasan": "IMO — fakta sama."
+    },
+    {
+      "id": "U2-0007",
+      "set": "uji2",
+      "uji": "S1-0046",
+      "alasan": "FCL — fakta sama."
+    },
+    {
+      "id": "U2-0009",
+      "set": "uji2",
+      "uji": "S1-0047",
+      "alasan": "Kelapa sawit sebagai komoditas perkebunan utama — fakta sama."
+    },
+    {
+      "id": "U2-0011",
+      "set": "uji2",
+      "uji": "S1-0057",
+      "alasan": "PIB — fakta sama."
+    },
+    {
+      "id": "U2-0013",
+      "set": "uji2",
+      "uji": "S1-0055",
+      "alasan": "PPN — fakta sama."
+    },
+    {
+      "id": "U2-0017",
+      "set": "uji2",
+      "uji": "S1-0065",
+      "alasan": "Kawasan Berikat — fakta sama."
+    },
+    {
+      "id": "U2-0019",
+      "set": "uji2",
+      "uji": "S1-0061",
+      "alasan": "HS Code — fakta sama."
+    },
+    {
+      "id": "U2-0020",
+      "set": "uji2",
+      "uji": "S1-0066",
+      "alasan": "Kepanjangan UMKM — fakta sama."
+    },
+    {
+      "id": "U2-0022",
+      "set": "uji2",
+      "uji": "S1-0069",
+      "alasan": "COD — pasangan terbalik."
+    },
+    {
+      "id": "U2-0023",
+      "set": "uji2",
+      "uji": "S1-0067",
+      "alasan": "QRIS — pasangan terbalik."
+    },
+    {
+      "id": "U2-0025",
+      "set": "uji2",
+      "uji": "S1-0074",
+      "alasan": "Tokopedia ↔ pendirinya — pasangan terbalik."
+    },
+    {
+      "id": "U2-0031",
+      "set": "uji2",
+      "uji": "S1-0082",
+      "alasan": "ISO 9001 ↔ sistem manajemen mutu — pasangan terbalik."
+    },
+    {
+      "id": "U2-0032",
+      "set": "uji2",
+      "uji": "S1-0087",
+      "alasan": "ISO/IEC 17025 ↔ laboratorium — pasangan terbalik."
+    },
+    {
+      "id": "U2-0033",
+      "set": "uji2",
+      "uji": "S1-0083",
+      "alasan": "ISO 14001 ↔ lingkungan — pasangan terbalik."
+    },
+    {
+      "id": "U2-0034",
+      "set": "uji2",
+      "uji": "S1-0084",
+      "alasan": "ISO 45001 ↔ K3 — pasangan terbalik."
+    },
+    {
+      "id": "U2-0036",
+      "set": "uji2",
+      "uji": "S1-0086",
+      "alasan": "ISO 31000 ↔ manajemen risiko — pasangan terbalik."
+    },
+    {
+      "id": "U2-0041",
+      "set": "uji2",
+      "uji": "S1-0088",
+      "alasan": "Metana/CH4 komponen utama gas alam — fakta sama."
+    },
+    {
+      "id": "U2-0043",
+      "set": "uji2",
+      "uji": "S1-0089",
+      "alasan": "Antrasit — fakta sama."
+    },
+    {
+      "id": "U2-0060",
+      "set": "uji2",
+      "uji": "S1-0070",
+      "alasan": "KUR — pasangan terbalik."
+    },
+    {
+      "id": "U2-0107",
+      "set": "uji2",
+      "uji": "S1-0261",
+      "alasan": "Maksud sama: apakah ISO 9001 wajib untuk perusahaan saya."
+    },
+    {
+      "id": "U2-0126",
+      "set": "uji2",
+      "uji": "S1-0309",
+      "alasan": "Barang sama (besi beton ulir 10 mm per batang), kota berbeda."
+    },
+    {
+      "id": "U2-0080",
+      "set": "uji2",
+      "uji": "S1-0177",
+      "alasan": "Premis keliru sama: beton struktural tanpa agregat."
+    },
+    {
+      "id": "U2-0129",
+      "set": "uji2",
+      "uji": "J2-E2 (T1)",
+      "alasan": "Hampir identik dengan soal T1 (kurs rupiah-dolar hari ini) — dibuang agar T2 tetap bukti yang lepas dari T1."
+    }
+  ],
+  "dipertahankanTerdekat": [
+    {
+      "id": "S1-0260",
+      "uji": "J2-D4",
+      "alasan": "'harus mulai dari mana' ≠ 'standar mana yang dipakai'."
+    },
+    {
+      "id": "S1-0196",
+      "uji": "J2-C4",
+      "alasan": "'boleh bayar setelah barang jadi' (izin) ≠ 'berapa lama mereka biasanya membayar' (kebiasaan pihak). Dicatat karena J2-C4 soal penentu."
+    },
+    {
+      "id": "S1-0271",
+      "uji": "J2-E4",
+      "alasan": "Pola sama (pejabat terkini), jabatan berbeda — bahan latih kategori kedaluwarsa."
+    },
+    {
+      "id": "S1-0101",
+      "uji": "J2-E4",
+      "alasan": "Pejabat karangan lengkap dengan NIP (tak-terjawab), bukan Dirjen Bea Cukai terkini."
+    },
+    {
+      "id": "S1-0263",
+      "uji": "J2-D3",
+      "alasan": "Dokumen audit mutu ≠ dokumen ekspor."
+    }
+  ],
+  "keterbatasan": "N-gram karakter menangkap parafrase berkata-dasar sama, tetapi tidak parafrase berkosakata lain. Itu sebabnya ada tinjauan terarah atas soal penentu. Pemeriksaan embedding (bge-m3) tidak dijalankan: laptop tidak menjalankan Ollama (keputusan Fahmi 9 Sep), dan Bmax dipakai untuk menjawab. Untuk fakta, kecocokan kunci jawaban (dua arah) terbukti lebih tajam daripada kemiripan teks soal (T2, 27 Sep).",
+  "uji2": {
+    "berkas": "eval/gerbang-s1/soal-uji2-v1.jsonl",
+    "sebaran": "vs petak: kosinus ≥0,5: 1 · ≥0,6: 1. vs latih: ≥0,4: 24 · ≥0,5: 9 · ≥0,6: 3.",
+    "ditinjau": "25 pasangan teratas (per soal T2 vs latih), 12 teratas vs petak, dan SEMUA 60 fakta T2 lewat kecocokan kunci jawaban (pola benar T2 ↔ jawaban latih, dua arah) serta pasangan terbalik (kunci satu ↔ teks soal yang lain).",
+    "hasil": "25 dibuang (21 fakta + 4 jebakan) → 125 soal: 39 fakta + 86 jebakan.",
+    "temuan": "35 % fakta T2 (21/60) adalah fakta latih yang ditulis ulang, sering terbalik (A→B vs B→A). N-gram karakter menangkap sebagian; kecocokan KUNCI JAWABAN menangkap sisanya. Pembuat soal jenuh di subdomain sempit (ISO, kepabeanan, e-commerce)."
+  }
+}

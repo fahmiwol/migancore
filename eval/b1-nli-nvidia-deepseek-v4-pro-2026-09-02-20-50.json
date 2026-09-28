@@ -1,0 +1,298 @@
+{
+ "tanggal": "2026-09-02T20:50:29.168Z",
+ "backend": "nvidia",
+ "model": "deepseek-v4-pro",
+ "set": "set-nli-2026-09-02-18-31.json",
+ "ambang": {
+  "sepakat": 0.85,
+  "recallTidakDidukung": 0.8,
+  "msPerKalimat": 2000
+ },
+ "vonis": "GAGAL",
+ "metrik": {
+  "n": 33,
+  "galat": 13,
+  "sepakat": 0.55,
+  "sepakatN": "11/20",
+  "recallTidakDidukung": 0.38461538461538464,
+  "recallTdN": "5/13",
+  "sepakatBiner": 0.6,
+  "sepakatBinerN": "12/20",
+  "recallBiner": 0.36363636363636365,
+  "recallBinerN": "8/22",
+  "bingung": {
+   "didukung → tidak-didukung": 3,
+   "netral → didukung": 3,
+   "tidak-didukung → didukung": 1,
+   "netral → tidak-didukung": 1,
+   "didukung → netral": 1
+  }
+ },
+ "msPerKalimat": 125607.39393939394,
+ "baris": [
+  {
+   "id": "NLI-001",
+   "emas": "didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 152882
+  },
+  {
+   "id": "NLI-002",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 165384
+  },
+  {
+   "id": "NLI-003",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 241999
+  },
+  {
+   "id": "NLI-004",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 262181
+  },
+  {
+   "id": "NLI-005",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 209753
+  },
+  {
+   "id": "NLI-006",
+   "emas": "didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 168304
+  },
+  {
+   "id": "NLI-007",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 294352
+  },
+  {
+   "id": "NLI-008",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 237041
+  },
+  {
+   "id": "NLI-009",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 183149
+  },
+  {
+   "id": "NLI-010",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 192521
+  },
+  {
+   "id": "NLI-011",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 154160
+  },
+  {
+   "id": "NLI-012",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 130536
+  },
+  {
+   "id": "NLI-013",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 114574
+  },
+  {
+   "id": "NLI-014",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 160241
+  },
+  {
+   "id": "NLI-015",
+   "emas": "didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 296382
+  },
+  {
+   "id": "NLI-016",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 109208
+  },
+  {
+   "id": "NLI-017",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 239563
+  },
+  {
+   "id": "NLI-018",
+   "emas": "netral",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 193459
+  },
+  {
+   "id": "NLI-019",
+   "emas": "didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 107488
+  },
+  {
+   "id": "NLI-020",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 130358
+  },
+  {
+   "id": "NLI-021",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 401257
+  },
+  {
+   "id": "NLI-022",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 71
+  },
+  {
+   "id": "NLI-023",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 29
+  },
+  {
+   "id": "NLI-024",
+   "emas": "didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 39
+  },
+  {
+   "id": "NLI-025",
+   "emas": "didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 11
+  },
+  {
+   "id": "NLI-026",
+   "emas": "netral",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 10
+  },
+  {
+   "id": "NLI-027",
+   "emas": "didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 18
+  },
+  {
+   "id": "NLI-028",
+   "emas": "netral",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 11
+  },
+  {
+   "id": "NLI-029",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 12
+  },
+  {
+   "id": "NLI-030",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 13
+  },
+  {
+   "id": "NLI-031",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 10
+  },
+  {
+   "id": "NLI-032",
+   "emas": "tidak-didukung",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 10
+  },
+  {
+   "id": "NLI-033",
+   "emas": "netral",
+   "ok": false,
+   "label": null,
+   "sebab": "fetch failed",
+   "ms": 12
+  }
+ ]
+}

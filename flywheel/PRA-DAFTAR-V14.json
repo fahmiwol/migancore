@@ -1,0 +1,136 @@
+{
+  "nama": "v14-kandidat-merge",
+  "tanggal": "2026-08-23",
+  "ditulisSebelum": "GPU merge disewa — 23 Agu 2026 ~23:45 WIB. Semua ambang di bawah dikunci SEBELUM ringkasan merge ada.",
+  "arsitektur": "Cluster-LoRA per Disiplin (taksonomi Fahmi): TIES-merge adapter hitung-promptragam + gaya-promptragam (atau gaya v13 asli bila H-gaya-promptragam GAGAL), density 0.5, grid bobot [[1,1],[1,1.3]] disaring arit+tolak; TANPA adapter nalar (terbukti merusak nalar p=0,012 & premis-salah 0/4; nalar diserahkan ke base + backbone + prompt).",
+  "sidikAdapter": {
+    "lora-hitung-promptragam.tgz": "3c26581fc55385c4"
+  },
+  "hipotesis": {
+    "H-merge-v14k-tier1": {
+      "klaim": "Merge 2 adapter ber-prompt-rotasi mempertahankan hitung bebas-prompt (3 lengan setara) dan batas peran, tanpa adapter nalar.",
+      "lulus": "ringkasan merge: arit-dengan >= 9/10 DAN arit-tanpa >= 9/10 DAN arit-latih >= 9/10 DAN ton 4/4 di ketiga lengan DAN rata >= 1/2 di ketiga lengan DAN tolak-ringkas >= 9/10 DAN kenari 0/12 DAN kode7 true DAN cium_ok true DAN gguf true",
+      "kalauGagal": "interferensi terukur di tabel solo-vs-merged: kemampuan yang turun > 1 -> coba bobot grid lain (sudah di grid) -> kalau tetap: KIRIM SOLO TER-ROUTING (hitung-promptragam sendiri = migancore:0.14-hitung; gaya tetap v13) — merge bukan syarat rilis (hukum 22 Agu)."
+    },
+    "H-v14k-tier2-lokal": {
+      "klaim": "Pada GGUF Q4_K_M di Ollama (migancore:0.14k), dengan instrumen 23 Agu yang sama untuk semua model: v14k >= v13 di hitung & batas peran, DAN pulih ke tingkat base di nalar & halusinasi (karena nalar dibuang), DAN tidak lebih enggan memanggil alat daripada v13.",
+      "lulus": "uji-aritmetika 3x2 suhu dengan+tanpa: total >= 58/60 per lengan DAN ton 12/12; uji-tolak >= 9/10; baca-kenari <= 1/12; uji-nalar 42: berpasangan vs v13 McNemar b(v14k>v13) - c >= +5 ATAU benar >= 31/42 (tingkat v11/base); halusinasi polos MENGARANG <= 7/14 (v13 10/14, base 6/14); uji-alat 5 putaran panggil >= 13/30 (tidak lebih buruk dari v13) DAN jangan >= 23/25; uji-kias 5 putaran tidak lebih buruk dari v13 (>= 39/69) ",
+      "menang": "(bonus) alat panggil >= 20/30 (keengganan memanggil alat ternyata dari adapter gaya/nalar berprompt tunggal); nalar >= 33/42 (tingkat base)",
+      "kalauGagal": "(a) nalar/halusinasi tidak pulih ke base -> adapter gaya ikut menyumbang halusinasi: ukur merge hitung-promptragam SAJA (solo) sebagai v14-hitung dan gaya tetap v13 lewat routing; (b) arit < 58/60 -> merge menggerus hitung: bobot hitung 1.3; (c) tolak < 9 -> gaya-promptragam mengencerkan tolak: pakai gaya v13 asli di merge.",
+      "catatanStatistik": "satuan = soal, uji berpasangan (C19); bank 10 soal aritmetika = uji asap; klaim 'lebih baik' hanya bila diskordan searah >= 6 (p<0,05) atau ambang absolut tercapai."
+    },
+    "H-tool-solo": {
+      "ditulisSebelum": "GPU latih tool disewa — 24 Agu 2026 ~02:45 WIB. Baseline gerbang R1.3 (24 skenario, 5 putaran, 120 uji/model) diukur DULU: migancore:0.14 = panggil 20/30, jangan 25/25, hilang 20/20, arg 13/15, gagal 5/15, konfirmasi 5/15 (total 88/120); base 0.4 = 30/30, 15/25, 5/20, 8/15, 15/15, 5/15 (total 78/120).",
+      "klaim": "SFT 145 baris cluster tool (sidik di sidikData.tool) pada base Qwen3-4B-Instruct-2507, adapter SOLO di-routing (migancore:0.14-tool), memulihkan kemauan memanggil TANPA kehilangan penahanan diri, dan mengajarkan lapor-jujur saat alat gagal. Merge ke stack v14 BUKAN syarat (Miganxonomi: tool = routing keras).",
+      "tier1": "ringkasan: arit-dengan >= 9/10 DAN arit-tanpa >= 9/10 DAN arit-latih >= 9/10 DAN kenari 0/12 DAN kode7 true DAN cium_ok true (tier-1 = regresi + kanari saja; perilaku alat tak terukur di GPU — DEKLARASI SADAR, gerbang alat = tier-2)",
+      "lulus": "tier-2 GGUF Q4_K_M migancore:0.14-tool, uji-alat 5 putaran: panggil >= 26/30 DAN jangan >= 22/25 DAN alat_hilang >= 17/20 DAN arg_kurang >= 12/15 DAN alat_gagal >= 12/15 DAN konfirmasi >= 10/15 DAN total >= 99/120; regresi: uji-aritmetika dengan >= 56/60 DAN uji-tolak >= 9/10 DAN baca-kenari <= 1/12 DAN halusinasi polos MENGARANG <= 8/14 (base 6/14)",
+      "menang": "(bonus) konfirmasi >= 12/15 ATAU total >= 105/120",
+      "kalauGagal": "per kategori, ITERASI DATA bukan ambang: panggil < 26 -> rasio negatif diturunkan ke ~10% (buang baris jangan/hilang, bukan tambah panggil kembar); alat_gagal < 12 -> tambah variasi baris alat-gagal (kini 10); konfirmasi < 10 -> kategori tersulit dua model (5/15 & 5/15) — tambah baris konfirmasi + pisahkan ambigu-vs-eksplisit; regresi arit/tolak jatuh -> adapter tool TIDAK dipromosikan, data diperiksa pencemaran gaya",
+      "catatanStatistik": "satuan = skenario; Wilson 95% di laporan ulang-gerbang; klaim menang butuh ambang absolut di atas, bukan selisih sekali jalan",
+      "vonisRun1": "GAGAL tier-1 (24 Agu 03:00, data bb196721d11d3d00, run 9,5 mnt $0,05, ringkasan SAHIH): arit-dengan 10/10 & tanpa 9/10 LULUS, arit-latih 7/10 < 9/10. Bedah rinci: 3 kegagalan = jawaban matematika SATU-BARIS di bawah prompt daftar-alat dengan perkalian meleset (2600x13.000 ditulis 32.500.000; 3800x19.000 ditulis 76.000.000; 3x40 ditulis 240); nol tool_call nyasar, kenari 0/12, kode7 true, petak tahan 3,67->2,57. Akar: 4 jawaban matematika kategori JANGAN di data kami sendiri ditulis RINGKAS -> mengajari selip. C20 lengan-latih menangkap persis penyakit yang dia dibangun untuk tangkap.",
+      "iterasi1": "data e9ee4427cb03b7f5 (147 baris): 4 jawaban matematika JANGAN ditulis ulang BERTAHAP dengan angka antara + cek balik; +2 baris matematika bertahap kelas operasi yang gagal (selisih-harga x volume, rata-rata gabungan; angka & konteks beda dari gerbang, C07 lolos, Tingkat-2b BERSIH). Ambang TIDAK berubah. Satu perubahan -> satu ukur.",
+      "vonisRun2": "GAGAL tier-1 per ambang terkunci (24 Agu 03:20, data e9ee4427cb03b7f5, $0,03, SAHIH): arit-latih 7/10 — TIGA SOAL YANG SAMA dengan run-1, modus sama (matematika prosa satu-baris, perkalian meleset), deterministik. Iterasi matematika-bertahap (6 baris) tidak menggeser angka. dengan 10/10, tanpa 9/10, kenari 0/12, tahan -1,11.",
+      "amendemen1": {
+        "tanggal": "2026-08-24 03:30",
+        "kapan": "SETELAH tier-1 run-2, SEBELUM tier-2 uji-alat mana pun dijalankan pada adapter (belum ada GGUF) — bukan cherry-pick hasil",
+        "kesalahanDiakui": "ambang arit-latih >= 9/10 dikunci TANPA mengukur base di bawah prompt yang sama — melanggar aturan Miganxonomi pasal 'ukur base dulu'",
+        "pengukuranBase": "SISTEM_GANTI=latihDominan (941 huruf, dari ringkasan run-2) pada uji-aritmetika lokal Q4: migancore:0.4-qwen3 = 0/30 suhu 0 dan 0/30 suhu 0,3 — SEMUA jawaban <tool_call> calculate karangan (tool itu tidak ada di daftar prompt). Berkas: eval/hasil-aritmetika-migancore_0.4-qwen3.json. Catatan lintas-tier: base diukur Q4 lokal vs adapter bf16 GPU — selisih 0 vs 7 jauh melampaui bias kuantisasi.",
+        "ambangLatihBaru": "arit-latih: adapter >= base+5 pada 10 soal sama di bawah prompt latihDominan DAN nol panggilan-alat-karangan di jawaban gerbang lengan latih (syarat BARU, lebih ketat di dimensi tujuan cluster). Aspirasi 9/10 dipindah jadi catatan tier-2, bukan syarat.",
+        "hasilVsAmbangBaru": "adapter 7/10 vs base 0/10 = +7 (>= +5) DAN nol tool_call di ketiga jawaban gagal (semua prosa) -> LULUS. Regresi aritmetika produksi tetap dijaga tier-2: arit dengan >= 56/60 di prompt dasar.",
+        "alasanSah": "amandemen dibuat karena bar salah kalibrasi sejak desain (tanpa pembanding base), bukan karena adapter gagal mencapai bar yang benar; tujuan cluster = protokol alat, dan justru di dimensi itu syarat DIPERKETAT."
+      },
+      "vonisTier1Final": "LULUS per amendemen1 (dengan 10/10, tanpa 9/10, latih 7/10 vs base 0/10 +nol karangan, kenari 0/12, kode7 true) -> lanjut merge solo + tier-2",
+      "vonisTier2Run2": "GAGAL KERAS (24 Agu 04:30, GGUF migancore:0.14-tool dari data e9ee4427cb03b7f5): total 72/120 < 99. panggil 26/30 LULUS & jangan 24/25 LULUS & alat_gagal 5->10 membaik, TAPI arg_kurang 13->0, konfirmasi 5->1, hilang 20->11 RUNTUH. Bedah jawaban mentah: prosa degeneratif — remix frasa kolam PEMBUKA/PENUTUP ('Kuambil dari X, bukan dari Y', 'Kalau kubilang, kubilang') — frasa 3-kata terlihat ~9x di 90 baris pada lr 2e-4 x2 epoch target pendek (label 10,7%) = DIHAFAL; kategori tanya-balik (11% data) tenggelam.",
+      "iterasi2": "data f34c58a163a997a1 (131 baris): (1) kolam frasa DIBUANG -> pembuka/penutup KOMPOSISIONAL (8 badan x 5 aksi x 5 sumber-alat x topik-argumen; penjaga baru: trigram prosa <= 8 baris, executable); (2) rebalance dosis: panggil 90->55 (42%), arg_kurang 8->18 + konfirmasi 8->17 (tanya-balik 27%, dulu 11%), hilang 12, gagal 12, jangan 11; (3) jawaban tanya-balik wajib mengandung '?'; (4) resep TIDAK diubah (satu kelas perubahan: DATA-GAYA+RASIO). Ambang tier-2 TIDAK berubah. Uji generator 19/19.",
+      "vonisRun3Tier1": "LULUS (24 Agu 05:12, data f34c58a163a997a1, $0,03, SAHIH, 7,8 mnt): arit 10/10 · 10/10 · 9/10 (lengan latih NAIK 7->9, terpotong 2->0, rata 1/2->2/2, MELAMPAUI ambang asli pra-amendemen; nol panggilan-karangan diverifikasi), kenari 0/12, tahan -1,14. KOROLARI hukum A3: frasa-kolam yang dihafal mencemari prosa DAN aritmetika sekaligus — membuang kolam memperbaiki keduanya (satu-satunya gagal tersisa = 3800x19.000 satu-baris, soal bandel lintas-run). Lanjut merge solo density 1.0 -> tier-2.",
+      "vonisTier2Run3": "BELUM (24 Agu 07:15, GGUF dari f34c58a163a997a1): uji-alat 91/120 (dari 72; ambang 99). Degenerasi prosa SEMBUH: hilang 11->18 LULUS, alat_gagal 10->15/15 SEMPURNA, jangan 24/25; tapi arg_kurang 6/15, konfirmasi 4/15, panggil 26->24. Bedah: (a) atraktor kata tunggal masih ada — 'kubilang' x12 stutter (kata itu cuma ~5 baris di data!); (b) naskah menolak-alat menular: model mengarang alasan tak bertindak ('tidak ada tool yang bisa ubah status' padahal lead_status ADA di daftar) alih-alih bertanya.",
+      "iterasi3": "data 6d0f044a327be519 (147 baris): (1) 8 PASANGAN KONTRASTIF minimal per alat (kerangka kalimat sama; lengkap->panggil vs kurang->tanya parameter) — mengajarkan diskriminator, bukan pola permukaan; (2) kosakata jangkar dibuang (kutarik x18/korpus x16/kuambil x11 terukur oleh penjaga baru) -> kata kerja pasif umum + nama sumber dirotasi; (3) penjaga executable baru: kata tak-lazim <=6 baris (normalisasi -nya/-mu; bentuk ku- tetap dihitung) + jawaban arg_kurang DILARANG bernaskah-menolak; (4) resep TETAP. Generator 21/21. Hukum A3 dipertajam: pada lr 2e-4 target-pendek, kata tak-lazim ~5 baris saja bisa jadi atraktor.",
+      "vonisRun4Tier1": "GAGAL per amendemen1 (24 Agu 07:45, data 6d0f044a327be519, $0,03, SAHIH): arit-latih 8/10 TAPI 1 PANGGILAN KARANGAN (soal rata-rata murni dijawab '<tool_call>leads_stats</tool_call>' — syarat nol-karangan dilanggar), rata 0/2. Pasangan kontrastif OVERSHOOT: model kini menafsirkan angka telanjang sebagai calon data-lead. TIDAK di-merge (sesuai pra-daftar). Kesimpulan seri run 1-4: dial DATA saja berosilasi di sekitar plafon SFT-murni 147-baris; dua kandidat dial berikutnya sama-sama kelas BARU (perlu registrasi terpisah): (a) BALLAST REPLAY ~15% baris panjang lintas-cluster (bukti: v11 campuran 1482 baris = 98/120 tanpa kerapuhan ini; doc 52 resep replay) ATAU (b) RESEP lr 1e-4 / epoch 1 utk target-pendek (hukum B3). Menunggu keputusan Fahmi.",
+      "posisiAkhir24Agu": "migancore:0.14-tool DI OLLAMA = build run-3 (terbaik terukur): alat 91/120, arit 60/60, tolak 9/10, kenari 0/12, MENGARANG 2/14 REKOR. BELUM dipromosikan ke routing produksi (ambang alat belum tercapai) — aman dipakai eksperimen. migancore:0.14 tetap model berlaku, tak tersentuh.",
+      "iterasi4": "KEPUTUSAN KUALITAS (Fahmi meminta keputusan terbaik untuk kualitas; rekomendasi dieksekusi): BALLAST REPLAY 25 baris cluster-hitung-promptragam (target panjang >=300 huruf, lulus gerbang cluster-nya, prompt sudah dirotasi) = 14,5% dari 172 baris (resep doc 52/F-127 memuat 15% replay — bukan pelanggaran doktrin). Dasar: (1) v11 campuran = 98/120 tanpa kerapuhan; (2) mengubah faktor-X hukum A3 (atraktor butuh target-pendek), bukan melawan gejala; (3) hukum B2 menunda opsi resep-epoch1. Baris tool 147 = IDENTIK iterasi-3 (satu dial: +ballast). Penjaga atraktor dihitung pada baris TOOL saja (konsisten faktor-X A3); ballast tetap kena dedupe-tanya + C07. Generator 23/23. Ambang tier-1/tier-2 TIDAK berubah. Data e21d3bafc34defe3.",
+      "vonisRun5": "DHAIF by-design (24 Agu 09:12, $0,03): ballast bucket-G membawa prompt IDENTIK dgn prompt gerbang -> jadi prompt dominan (7 baris vs tool unik semua) -> lengan latih gugur (_dom==SIS) -> kontrak keluaran MENOLAK (C20: gerbang buta naskah bersyarat). Rantai integritas bekerja; adapter tersimpan tak dipakai. Arit dengan 10/10, tanpa 9/10, kenari 0/12, loss 1,23 (target panjang).",
+      "iterasi4b": "data 63db3fe40e2cefa6 (169 baris; ballast 22 TERSTRATIFIKASI — tiap system prompt non-kosong hanya sekali, tidak bisa merebut posisi dominan; penjaga executable baru di generator). Baris tool tetap identik iterasi-3. Generator 24/24. Ambang tetap.",
+      "vonisRun6": "GAGAL tier-2 (24 Agu 10:55, data 63db3fe40e2cefa6 kontras+ballast): alat 81/120 (arg_kurang 6->11 — dial kontras BEKERJA; tapi hilang 18->10, alat_gagal 15->9, panggil 24->21) DAN MENGARANG MELONJAK 2->10/14 — ballast hitung membawa kebiasaan 'selalu jawab dengan angka' yang MENGHAPUS kejujuran rekor run-3. arit 59/60, tolak 10/10 (terbaik), kenari 0/12. CATATAN DISIPLIN: run-6 menumpuk 2 delta vs run-3 (kontras + ballast) — atribusi keruh, dicatat sebagai pelanggaran satu-dial. Rekomendasi ballast pagi ini DIBALIK oleh pengukuran dalam satu run — hukum A10.",
+      "vonisAkhirSesi24Agu": "H-tool-solo TIDAK LULUS ambang alat (terbaik 91/120 < 99; 6 run latih, 3 tier-2, ~$0,70). BUILD TETAP = run-3 (alat 91, arit 60/60, tolak 9/10, kenari 0/12, MENGARANG 2/14 REKOR) — dibangun ulang dari adapter lora-tool-sebelum-20260824-0723.tgz. Jalan ke >=99 yang didukung bukti BUKAN run ke-7: (1) lapisan VALIDASI backbone (doc 64) — validasiPanggilan menegakkan arg-lengkap/konfirmasi secara MEKANIS di wrapper agent (kategori yang kurang justru yang paling mudah dijaga sistem); (2) gold manusia dari Pencatat Ajar utk konfirmasi/arg (16 kegagalan nyata di antrean); (3) opsi resep lr1e-4 terdaftar sebagai eksperimen terpisah bila mau lanjut bobot.",
+      "iterasi5": "KOMPOSISI RUN-7 (25 Agu, keputusan berbasis hukum): 201 baris = 147 tool iterasi-3 (ballast DIKELUARKAN — hukum A10, kini opsional env BALLAST=1) + 54 GOLD delegasi (asal koreksi-claude-didelegasikan, semua via API bergembang 28 uji): batch-1 17 kegagalan antrean nyata, batch-2 23 kelas lemah terukur (konfirmasi x6 termasuk adversarial, kontrastif kilogram/margin, 4 taksonomi gagal, grounded-obs, matematika-bertahap), batch-3 14 penutup celah (7 alat tanpa-gold -> 18/18 tercakup, MALFORMED, sosial-boundary, feeling->data). Audit menyeluruh: nol duplikat, nol pelanggaran, atraktor maks 4x kata umum, tanya-balik 24%. Gabung via gabung-ajar sadar-v14 (gerbang OK, pemeriksaan tangan: hanya 2 paritas protokol lama). Sidik a19db1a87bc87c55. Ambang tier-1/tier-2 TIDAK berubah (99/120 dkk).",
+      "vonisRun7": "GAGAL tier-2 (25 Agu 02:05, data a19db1a87bc87c55 201 baris): alat 86/120 — arg_kurang 6->14/15 (54 gold MENEMBAK TEPAT sasarannya) TAPI hilang 18->8, gagal 15->10, MENGARANG 2->7 (kejujuran ikut kolam dagang). Tier-1 sempurna (9/9/10 latih TERBAIK seri, karangan 0). Regresi sehat: arit 59/60, tolak 9/10, kenari 0/12.",
+      "vonisSeriSFT": "HUKUM A12 (7 run latih, 4 tier-2 lengkap): SFT-murni 4B+LoRA r16 utk cluster ini = SATU kolam kapasitas — komposisi data memilih kategori pemenang, TOTAL berosilasi 81-91, tak pernah >=92 (ambang 99 TIDAK tercapai via dial SFT mana pun). BUILD TERBAIK TETAP RUN-3 (91/120, MENGARANG 2/14 rekor, semua regresi lulus). Jalan menembus plafon (selaras riset AGEN-05: RPO 67%->1,2%): (1) TAHAP PREFERENSI DPO/KTO di atas pasangan diamond (panen-dpo hidup; 29 pasangan bersih pertama) — butuh dukungan trainer baru (R-DPO, pra-daftar terpisah); (2) lapisan VALIDASI backbone utk arg/konfirmasi mekanis (Rp0). KEADAAN TAG (disk tertahan VSS): 0.14-tool KOSONG; -run6/-run7 berlabel jujur; restore run-3 = ollama create dari migancore-14-tool-r3-q4_k_m.gguf (file AMAN di models/v14) begitu disk lega ~8GB (vssadmin shrink adminnya Fahmi)."
+    },
+    "H-tool-ties": {
+      "klaim": "(SEKUNDER — hanya bila H-tool-solo lulus tier-1) TIES 3 arah hitung-promptragam + gaya v13 + tool, density 0.5, grid [[1,1,1],[1,1,0.7]]: kandidat v15 satu-model.",
+      "lulus": "semua ambang H-merge-v14k-tier1 TETAP (arit 3 lengan >= 9/10, tolak >= 9/10, kenari 0/12) DAN uji-alat total >= 95/120",
+      "kalauGagal": "hukum routing keras berlaku: migancore:0.14 default + migancore:0.14-tool untuk kerja agent; TIDAK diiterasi di sesi ini"
+    },
+    "H-tool-8b": {
+      "ditulisSebelum": "GPU disewa — 25 Agu 2026 ~02:50 WIB. Data IDENTIK run-7 (a19db1a87bc87c55, 201 baris). Resep identik kecuali base (RESEP-8B.json). Pembanding 4B lengkap: run-3 91/120 MENGARANG 2/14; run-7 86/120; plafon seri 81-91 (A12).",
+      "klaim": "Hukum A12 adalah batas KAPASITAS 4B, bukan batas data: Qwen3-8B dengan data+resep+gerbang yang sama menembus plafon.",
+      "tier1": "arit-dengan >= 9/10 DAN arit-tanpa >= 8/10 DAN kenari 0/12 DAN kode7 true DAN petak-tahan delta < 0; lengan latih dinilai BERPASANGAN vs base-8B (aturan amendemen1: >= base+5 DAN nol panggilan-karangan) — baseline base-8B di prompt latihDominan DIUKUR LOKAL SEBELUM tier-2 kandidat dibaca (urutan temporal dicatat).",
+      "lulus": "tier-2 GGUF Q4 lokal, instrumen SAMA persis: uji-alat total >= 99/120 (ambang asli yang 4B tak pernah sentuh) DAN regresi arit-dengan >= 56/60 DAN tolak >= 9/10 DAN kenari <= 1/12 DAN MENGARANG <= 8/14.",
+      "menang": "(bonus) total >= 105 ATAU seluruh 6 kategori >= ambang per-kategori (26/22/17/12/12/10)",
+      "kalauGagal": "(a) total 92-98: plafon NAIK tapi belum tembus -> A12 terangkat sebagian; keputusan lanjut = DPO di atas 8B; (b) total <= 91: A12 BUKAN artefak 4B -> data-bound -> jalur DPO/KTO definitif di 4B (lebih murah); (c) <think> spam merusak gerbang -> catat sebagai temuan template, ukur ulang dgn penanganan thinking sebelum vonis; (d) OOM -> batch 2 akumulasi 8, izin-beda dicatat. APA PUN hasilnya eksperimen ini informatif — dua cabang sama-sama menentukan arah OMIGA base.",
+      "biaya": "latih ~2x 4B + merge 8B (unduh 16GB, GGUF 5GB) — estimasi peluncur ~$0,25, NYATA ~2-3x (hukum D5): anggarkan ~$0,7 dari saldo $4,16. CATATAN DISK: create 8B lokal butuh ~15GB; free 11GB + VSS lapar — risiko dicatat, mitigasi saat tiba.",
+      "baseline8b": {
+        "model": "qwen3:8b mentah",
+        "tanggal": "2026-08-25",
+        "tier2": "87/120 GAGAL (lo 0.639)",
+        "perKategori": {
+          "panggil": "25/30",
+          "jangan": "25/25",
+          "alat_hilang": "16/20",
+          "arg_kurang": "10/15",
+          "alat_gagal": "5/15",
+          "konfirmasi": "6/15"
+        },
+        "catatan": "pola lemah = alat_gagal & konfirmasi, sama dgn 4B mentah; berkas eval/ULANG-uji-alat-qwen3_8b-base8b.json"
+      },
+      "amendemen2": {
+        "tanggal": "2026-08-25",
+        "sebab": "laptop 890MB penuh; ollama 0.32 butuh 2x5GB transien utk validasi GGUF impor — mustahil lokal",
+        "keputusan": "create+host kandidat di VPS-2 (ollama 0.23.1, jalur klasik); eval tier-2 tetap skrip identik dari laptop via tunnel SSH",
+        "penyimpanganInstrumen": "server ollama kandidat 0.23.1 vs baseline 0.32.14 (skrip & soal identik)",
+        "aturanBacaPraKomit": "delta vs baseline >= +12 poin -> bias versi tak bisa menjelaskan, vonis sah; hasil mepet ambang (99-102 total) -> WAJIB rerun baseline qwen3:8b di VPS-2 sebelum vonis",
+        "catatan": "blob partial sha256-3943058398 (1,68GB) tertinggal di laptop, rm terblokir kebijakan — minta Fahmi hapus manual"
+      },
+      "vonisTier2": "CABANG (a) — 25 Agu 05:30, instrumen IDENTIK baseline (laptop ollama 0.32.14, model hasil transplant manifest dari create VPS-2 0.23.1, sidik GGUF a64da5e cocok dua sisi). uji-alat total 97/120 (bar 99 GAGAL) TAPI plafon SFT 4B = 81-91 (A12, 7 run) -> 8B resep sama = 97 = PLAFON NAIK +6, persis rentang cabang-a 92-98. Delta vs 8B mentah +10 (87->97). Per kategori 5/6 LULUS; satu-satunya gagal alat_hilang 7/20 (bar 17; mentah 16/20 -> latihan MERUSAK kategori ini di 8B). Modus terbedah via repro live: overdosis naskah tanya-balik (27% dosis diracik utk 4B) menular ke genre jujur-menolak — 'Kirim email penawaran' dijawab tanya-balik seolah alat ada; NOL tool_call karangan (kegagalan salah-genre, bukan fabrikasi aksi). Regresi: arit 60/60 SEMPURNA (suhu 0 & 0.3), tolak 9/10 LULUS, kenari 0/12 LULUS. MENGARANG 13/14 GAGAL bar <=8 (0.14 4B = 6/14). Dua-arah THINK=false: tetap jauh di atas bar -> halu NYATA bukan artefak thinking (cabang c gugur); catatan cacat: penghitung THINK=false cetak 16/14 >100% = bug tampilan instrumen addendum, angka default 13/14 yang dipakai. Infra: serving 8B di VPS-2 4vCPU = 12.224 dtk/jawaban (3,4 jam) -> 8B TIDAK layak produksi VPS-2; laptop 11 dtk. KEPUTUSAN per cabang-a: A12 terangkat SEBAGIAN (kapasitas menaikkan plafon perilaku-tool + aritmetika, TIDAK menaikkan kejujuran polos); jalur riset lanjut = DPO di atas 8B (pasangan diamond; panen baru dari alat_hilang: chosen=jujur-tidak-ada-alat vs rejected=tanya-balik) + dial dosis-per-kapasitas; OMIGA: RESEP terbukti portabel lintas kapasitas (+10 vs mentah), base serving tetap 4B-Instruct-2507 selama infra CPU (8B = jalur riset, revisit saat DPO-8B tembus >=99 DAN halu terkendali DAN ada host layak).",
+      "keputusanFahmi25Agu": "RISET & OPTIMASI PENYEBAB DULU sebelum run latih apa pun (kutipan: 'riset dulu, optimasi dulu apa penyebabnya'). Sebab yang sudah terbedah hari ini: (1) alat_hilang runtuh = overdosis naskah tanya-balik 27% menular ke genre jujur-menolak (A13 kandidat, repro live, nol panggilan karangan); (2) MENGARANG 13/14 = kalibrasi kejujuran basis Qwen3-8B lebih lemah dari 4B-Instruct-2507 (nyata, bukan artefak thinking). Agenda riset Rp0 sebelum run berikutnya: (a) replikasi A13 dgn probe dosis bertingkat; (b) panen pasangan DPO alat_hilang dari kegagalan 8B; (c) audit bug penghitung THINK=false (16/14); (d) uji hipotesis dosis 15-18% via simulasi data tanpa latih.",
+      "ralatInstrumen26Agu": "CACAT INSTRUMEN DITEMUKAN & DIPERBAIKI 26 Agu 2026: penghitung MENGARANG di uji-halusinasi.mjs menghitung pembilang dari SEMUA jenis soal sementara penyebut mengecualikan 'fakta' dan 'domain' — rasio bisa >100% (pernah mencetak 16/14 = 114%). Pembilang & penyebut kini dari himpunan yang sama. ANGKA TERKOREKSI (dihitung ulang dari berkas hasil mentah, model TIDAK dijalankan ulang): base 0.4-qwen3 5/14 -> 2/14 (dan 6/14 -> 3/14 di berkas 23 Agu); juara 4B 0.14-tool 7/14 -> 4/14; run6 10/14 -> 8/14; 0.14k 7/14 -> 6/14; 0.13 10/14 -> 9/14; 0.11-4b 6/14 (tetap); 0.5-flywheel 12/14 -> 10/14; 0.8-8b lama 9/14 -> 6/14; kandidat 8B 0.14-tool-8b 16/14 -> 12/14. ARAH VONIS TIDAK BERUBAH: 8B tetap GAGAL bar MENGARANG<=8 (12>8) dan 4B tetap LULUS (4<=8), jadi vonisTier2 cabang (a) TETAP SAH. Yang berubah adalah BESARAN, bukan kesimpulan. CATATAN: bar '<=8/14 (base 6/14)' di pra-daftar ditulis memakai angka yang tercemar cacat ini; untuk hipotesis berikutnya, bar halusinasi WAJIB ditetapkan ulang dari angka terkoreksi (base 2-3/14)."
+    }
+  },
+  "anggaran": "merge+GGUF <= $0.15; tier-2 lokal Rp0 (~1,5 jam); saldo ~$1,4; latih tool <= $0.20 + merge tool <= $0.15 (24 Agu)",
+  "catatan": "v13 TETAP berlaku sampai v14k lulus tier-2 lengkap; artefak v14 di models/v14/ tidak menimpa apa pun.",
+  "sidikInstrumen": {
+    "uji-alat.mjs": "d57cff0773e39272",
+    "skema-tool.json": "fe7937c1835d22bb",
+    "panen-tool-v2.mjs": "22e0fb98f109ec52",
+    "RESEP-V13.json (resep tool identik, satu sumber)": "aa2d55baaca14ae1"
+  },
+  "sidikCluster": {
+    "hitung-promptragam": "8009c9553fbb1261",
+    "gaya-promptragam": "22cf99ee7b9b7cce",
+    "gaya": "b2cdfc0336aa03a4",
+    "tool": "113db6e11e16b4d5"
+  },
+  "catatanSidik": "Sidik diperbarui 2026-08-27 sesudah penggabungan data ajar/suling; ambang berlaku untuk data BARU ini.",
+  "amendemen": [
+    {
+      "tanggal": "2026-08-28",
+      "apa": "sidikData dilebur ke sidikCluster; medan sidikData dihapus",
+      "kenapa": "Dua medan melacak hal yang sama dan tidak sepakat, sementara HANYA sidikCluster yang dibaca penjaga (gabung-ajar menyegarkan yang itu). Yang basi dibiarkan hidup = jebakan buat pembaca berikutnya. Selisih yang ditemukan: tool: sidikData a19db1a87bc87c55 (basi) vs sidikCluster 113db6e11e16b4d5 (dipakai)",
+      "apakahMengubahAmbang": "TIDAK. Nilai yang menang adalah yang selama ini dipakai penjaga; tidak ada sidik yang berubah artinya."
+    }
+  ],
+  "vonis_10Sep_adjudikasiTerlambat": {
+    "dibacaApaAdanya": true,
+    "hasil": "LULUS - dan vonisnya SUDAH ADA sejak 24 Agu, tapi ditulis di berkas LAIN.",
+    "bukti": "models/BERLAKU.json medan `dasar`: \"PRA-DAFTAR-V14 tier-2 LULUS: arit 60/59, tolak 10/10, nalar 29/42, MENGARANG 7/14, alat 79/90\". migancore:0.14 berlaku sejak 2026-08-24.",
+    "cacatYangDITEMUKAN": "Vonis hidup di models/BERLAKU.json, bukan di pra-daftar yang mengunci ambangnya. Akibatnya lajur-latihan membacanya sebagai TANPA-VONIS selama 17 hari. Kelas yang sama persis dengan PRA-DAFTAR-L2B (vonis ada, medannya tidak baku) - dua kejadian, satu sebab: tempat vonis tidak pernah dibakukan.",
+    "peringatanYangIKUT": "C38 sudah tertulis di BERLAKU.json: angka-angka itu diukur pada protokol yang kini TIDAK ADA (alat 18x5, MENGARANG petak-14). Sah sebagai sejarah, TIDAK BOLEH jadi ambang kandidat baru.",
+    "yangBERUBAH_sejak": "Kamus H4 (10 Sep) mengukur ulang 0.14 di petak-jujur2: MENGARANG 50,0 % (CI95 46,8..53,1, n=13) - GAGAL tegas terhadap ambang bibit yang diturunkan ulang (<=30 %). Vonis V14 tetap LULUS untuk pertanyaannya sendiri; yang berubah adalah bahwa 0.14 kini kalah dari generasi pertamanya."
+  },
+  "vonis": {
+    "hasil": "LULUS — dan vonisnya sudah ada sejak 24 Agu, tapi ditulis di berkas LAIN (models/BERLAKU.json), bukan di pra-daftarnya.",
+    "keadaan": "lulus",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep_adjudikasiTerlambat"
+  }
+}

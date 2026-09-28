@@ -1,0 +1,299 @@
+{
+ "tanggal": "2026-09-02T18:38:53.270Z",
+ "backend": "ollama",
+ "model": "qwen2.5:7b",
+ "set": "set-nli-2026-09-02-18-31.json",
+ "ambang": {
+  "sepakat": 0.85,
+  "recallTidakDidukung": 0.8,
+  "msPerKalimat": 2000
+ },
+ "vonis": "GAGAL",
+ "metrik": {
+  "n": 33,
+  "galat": 0,
+  "sepakat": 0.42424242424242425,
+  "sepakatN": "14/33",
+  "recallTidakDidukung": 0.23076923076923078,
+  "recallTdN": "3/13",
+  "sepakatBiner": 0.5757575757575758,
+  "sepakatBinerN": "19/33",
+  "recallBiner": 0.5909090909090909,
+  "recallBinerN": "13/22",
+  "bingung": {
+   "netral → didukung": 4,
+   "tidak-didukung → didukung": 5,
+   "tidak-didukung → netral": 5,
+   "didukung → netral": 4,
+   "didukung → tidak-didukung": 1
+  }
+ },
+ "msPerKalimat": 5139.636363636364,
+ "baris": [
+  {
+   "id": "NLI-001",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 21429
+  },
+  {
+   "id": "NLI-002",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 1444
+  },
+  {
+   "id": "NLI-003",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 3744
+  },
+  {
+   "id": "NLI-004",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 1778
+  },
+  {
+   "id": "NLI-005",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 2845
+  },
+  {
+   "id": "NLI-006",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 5061
+  },
+  {
+   "id": "NLI-007",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 4181
+  },
+  {
+   "id": "NLI-008",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2230
+  },
+  {
+   "id": "NLI-009",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 3094
+  },
+  {
+   "id": "NLI-010",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 8685
+  },
+  {
+   "id": "NLI-011",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 4764
+  },
+  {
+   "id": "NLI-012",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 7863
+  },
+  {
+   "id": "NLI-013",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 4050
+  },
+  {
+   "id": "NLI-014",
+   "emas": "didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 8131
+  },
+  {
+   "id": "NLI-015",
+   "emas": "didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2689
+  },
+  {
+   "id": "NLI-016",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 5728
+  },
+  {
+   "id": "NLI-017",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 4022
+  },
+  {
+   "id": "NLI-018",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2848
+  },
+  {
+   "id": "NLI-019",
+   "emas": "didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 6209
+  },
+  {
+   "id": "NLI-020",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2970
+  },
+  {
+   "id": "NLI-021",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 6604
+  },
+  {
+   "id": "NLI-022",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 3686
+  },
+  {
+   "id": "NLI-023",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2406
+  },
+  {
+   "id": "NLI-024",
+   "emas": "didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 6133
+  },
+  {
+   "id": "NLI-025",
+   "emas": "didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 2755
+  },
+  {
+   "id": "NLI-026",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 3409
+  },
+  {
+   "id": "NLI-027",
+   "emas": "didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 7012
+  },
+  {
+   "id": "NLI-028",
+   "emas": "netral",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 4150
+  },
+  {
+   "id": "NLI-029",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "tidak-didukung",
+   "sebab": null,
+   "ms": 7821
+  },
+  {
+   "id": "NLI-030",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 3225
+  },
+  {
+   "id": "NLI-031",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 5022
+  },
+  {
+   "id": "NLI-032",
+   "emas": "tidak-didukung",
+   "ok": true,
+   "label": "netral",
+   "sebab": null,
+   "ms": 3403
+  },
+  {
+   "id": "NLI-033",
+   "emas": "netral",
+   "ok": true,
+   "label": "didukung",
+   "sebab": null,
+   "ms": 10209
+  }
+ ],
+ "_amendemen": "metrik biner ditambahkan 3 Sep (dikunci sebelum angka mDeBERTa; dihitung ulang untuk keadilan)"
+}

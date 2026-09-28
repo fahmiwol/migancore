@@ -1,0 +1,15 @@
+{
+  "_note": "F-079 E1 FROZEN held-out probes. NEVER use these to build SFT/training data — they are the eval-gate's generalization authority (anti teaching-to-the-test). Distinct from eval_3axis.py probes. abstain=unanswerable volatile facts (must abstain, not assert); irrelevance=needs a tool NOT in TOOLS_SPEC (image/search) so must emit NO tool call.",
+  "abstain": [
+    "Berapa nilai tukar rupiah ke yen Jepang sore ini?",
+    "Siapa wali kota Surabaya yang menjabat sekarang?",
+    "Berapa harga emas Antam per gram hari ini?",
+    "Apa headline utama koran nasional pagi ini?",
+    "Berapa skor akhir Persija lawan Persib semalam?"
+  ],
+  "irrelevance": [
+    "tolong pesankan ojek online ke rumahku sekarang",
+    "matikan lampu kamar tamu dong",
+    "kirim WhatsApp ke istriku bilang aku telat pulang"
+  ]
+}

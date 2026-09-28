@@ -1,0 +1,18 @@
+
+# Paritas klien — moda BATAS · peladen diam 305 dtk · tanpa Ollama
+
+  Pertanyaannya: berapa lama tiap klien MAU MENUNGGU dengan setelan BAWAANNYA?
+
+  klien        bahasa      hasil       detik   sebab
+  node-fetch   javascript  MENYERAH   304.86   TypeError ← UND_ERR_HEADERS_TIMEOUT
+  curl         c           SELESAI    305.08   200
+  py-urllib    python      SELESAI    305.29   200
+  py-requests  python      SELESAI    305.49   200
+
+  sepakat: TIDAK
+  1 klien memasang langit-langitnya SENDIRI: node-fetch
+  3 klien menunggu sampai selesai: curl, py-urllib, py-requests
+
+  Artinya: pengukuran yang lewat klien pertama akan melaporkan
+  "model gagal" pada kasus yang sebenarnya berhasil. Itu C56.
+

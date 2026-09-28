@@ -1,0 +1,124 @@
+{
+  "nama": "v13-cluster-lora",
+  "tanggal": "2026-08-22",
+  "ditulisSebelum": "GPU dinyalakan — semua ambang & kalauGagal terkunci sebelum satu pun adapter dilatih",
+  "arsitektur": "3 LoRA per-disiplin (taksonomi Fahmi) di base Qwen3-4B-Instruct-2507, r=16 alfa=32 2 epoch penopengan-prompt; merge TIES belakangan; interferensi = tabel angka",
+  "sidikCluster": {
+    "hitung": "0ee3da11e69e5814",
+    "nalar": "53eb4aeae80d8524",
+    "gaya": "7bd51f3327560acf",
+    "hitung-promptragam": "8009c9553fbb1261",
+    "gaya-promptragam": "22cf99ee7b9b7cce"
+  },
+  "kontrakGerbang": "dataset/v13/HASIL-GERBANG.json — pengecualian sadar: gaya/ekor (8 templat rotasi, hipotesis H-gaya-bentuk), nalar/ragam (detektor bukan untuk prosa)",
+  "pengukuranDuaTingkat": {
+    "tingkat1-diDalamRun": "transformers fp16 di GPU (sanad sahih sejak lahir): blok aritmetika 10 soal bersih x {dengan,tanpa} sistem x temp 0 + 4 kenari cluster + KODE7. Mekanis semua.",
+    "tingkat2-lokal": "gerbang penuh (kias 3-arah, tolak, banding-jenis) HANYA pada artefak merged-GGUF final via jalur b10549 — bukan pada adapter runtime (rantai dhaif, keputusan 22 Agu)"
+  },
+  "hipotesis": {
+    "H-hitung": {
+      "klaim": "adapter hitung sendirian menyembuhkan ton TANPA menjajah tetangga",
+      "lulus": "ton-dengan >= 8/12 DAN ton-tanpa >= 10/12 DAN rata-rata gabungan >= 10/12 DAN total kedua lengan >= 48/60",
+      "kalauGagal": "KEPUTUSAN FAHMI 22 Agu (dikunci SEBELUM hasil masuk): HAPUS baris konversi-ton & naskah-konversi dari cluster hitung, latih ulang TANPA ton — konversi diserahkan ke base (97%) + injeksi fakta RAG (fakta-saja = 100% suhu-0). Prinsip: jangan ajari model yang sudah dia bisa; mengajarinya hanya bisa merusak. Cluster lain tidak disentuh.",
+      "catatanFalsifikasi": "Kalau H-hitung LULUS, keputusan hapus-ton tidak dieksekusi — cluster+ragam terbukti cukup; keputusan tetap tercatat sebagai jalur cadangan v14."
+    },
+    "H-nalar": {
+      "klaim": "adapter nalar menaikkan kias tanpa merusak aritmetika base",
+      "lulus": "aritmetika total >= 50/60 (penjaga regresi; base 58/60) — kias penuh diukur tingkat-2",
+      "kalauGagal": "iterasi cluster nalar saja; tersangka: keluarga biner residu"
+    },
+    "H-gaya": {
+      "klaim": "adapter gaya menegakkan batas peran tanpa merusak aritmetika",
+      "lulus": "aritmetika total >= 50/60 DAN uji-tolak-ringkas >= 8/10 (menolak saat harus, tidak menolak saat tidak)",
+      "kalauGagal": "iterasi cluster gaya saja; H-gaya-bentuk (8 templat rotasi) naik jadi tersangka utama"
+    },
+    "H-merge": {
+      "klaim": "merge TIES ketiganya mempertahankan tiap kemampuan dalam anggaran interferensi",
+      "lulus": "tiap ukuran solo turun maksimal 1 soal pada merged; ton-dengan tetap >= 8/12; rata-rata tetap >= 10/12",
+      "kalauGagal": "grid bobot {0.5,0.7,1.0}^3 dipilih bandit; kalau tetap gagal: KIRIM SOLO TER-ROUTING (routing per jenis sudah hukum produksi 22 Agu) — merge bukan syarat rilis"
+    },
+    "H-kontrol-format2-23agu": {
+      "klaim": "Pipa latih yang ditambal (kontrak I/O format-2) mereproduksi adapter hitung v13 pada data hitung sekarang (285 = 283 + 2 baris ajar) dengan resep IDENTIK (RESEP-V13.json); selisih = nondeterminisme + 2 baris, bukan cacat pipa.",
+      "ditulisSebelum": "GPU disewa — 23 Agu 2026 ~19:25 WIB; sidik skrip latih 00f2593b636ccd58",
+      "lulus": "ringkasan formatKontrak=2 SAHIH (periksa-hasil: sidik = manifest) DAN arit-dengan >= 9/10 DAN ton-dengan 4/4 DAN kenari 0/12 DAN kode7 true DAN |tokenDilatihPersen - 51.8| <= 3 DAN |loss rata-rata - 0.946| <= 0.15 DAN token.terpotong == 0 DAN petakTahan terisi (lossBase, lossAdapter) DAN lengan 'latih' terisi",
+      "kalauGagal": "cacat di PIPA (bukan resep): perbaiki latih_cluster.py dari log, JANGAN ubah resep; ringkasan DHAIF tidak dipakai untuk klaim. Kalau arit-dengan < 9/10 dengan sidik cocok: catat sebagai variansi antar-run dan ulangi sekali (seed sama) sebelum menyalahkan apa pun.",
+      "biaya": "<= $0.15 (satu instance <= 60 menit, watchdog 12 menit diam)",
+      "guna": "pembanding setara (format-2, data & resep sama) untuk H-wd/H-epoch/H-replay; pengukuran pertama loss petak-tahan base vs adapter; pengukuran pertama lengan prompt-latih."
+    },
+    "H-wd-0.01": {
+      "klaim": "weight_decay 0.01 pada LoRA (tarikan ke bobot base) mengurangi kolonisasi/hafalan TANPA menggerus kemampuan hitung: petak-tahan lebih baik atau sama, kenari tetap 0, aritmetika tier-1 tidak turun.",
+      "ditulisSebelum": "GPU disewa untuk H-wd — 23 Agu 2026; resep RESEP-V13-wd0.01.json sidik 5f4a3569fc30ab3d; pembanding WAJIB = ringkasan-hitung kontrol format-2 (H-kontrol-format2-23agu) pada data sidik 500de80a5a2cd162.",
+      "lulus": "ringkasan SAHIH (periksa-hasil, resepBedaDiizinkan = [latih.weight_decay]) DAN arit-dengan >= kontrol - 1 DAN ton-dengan 4/4 DAN kenari 0/12 DAN kode7 true DAN petakTahan.lossAdapter <= kontrol.petakTahan.lossAdapter + 0.02",
+      "menang": "(bonus, bukan syarat) petakTahan.lossAdapter < kontrol - 0.05 ATAU arit-tanpa > kontrol — kalau terjadi, H-wd naik jadi resep default v14 SETELAH diulang di cluster nalar.",
+      "kalauGagal": "wd 0.01 TIDAK diadopsi; coba wd 0.1 hanya bila arit tidak turun tapi petak-tahan tidak membaik (tarikan terlalu lemah); kalau arit turun -> H-wd ditutup, lanjut H-epoch.",
+      "biaya": "<= $0.15",
+      "satuPerubahan": "hanya weight_decay; data, seed, epoch, lr, r, alpha, maks_token, prompt gerbang IDENTIK dengan kontrol."
+    },
+    "H-epoch-1": {
+      "klaim": "1 epoch cukup untuk menyembuhkan ton (4/4) dengan hafalan lebih rendah (kurva loss belum ke bawah 0.6; petak-tahan tidak lebih buruk) — separuh langkah update = separuh peluang kolonisasi.",
+      "ditulisSebelum": "GPU disewa untuk H-epoch — 23 Agu 2026; resep RESEP-V13-epoch1.json sidik 5e0e8c718272a0a1; pembanding WAJIB = ringkasan-hitung-kontrol23agu.json.",
+      "lulus": "ringkasan SAHIH (resepBedaDiizinkan = [latih.epoch]) DAN ton-dengan 4/4 DAN arit-dengan >= kontrol - 1 DAN kenari 0/12 DAN kode7 true DAN petakTahan.lossAdapter <= kontrol.petakTahan.lossAdapter + 0.05",
+      "menang": "(bonus) arit-latih > kontrol.arit-latih (8) — naskah bersyarat berkurang; ATAU rata-rata di lengan latih >= 1/2.",
+      "kalauGagal": "epoch 2 dipertahankan; catat bahwa 1 epoch belum cukup menanam konversi (ton < 4/4) atau justru tidak mengurangi naskah; lanjut H-replay.",
+      "biaya": "<= $0.10 (lebih singkat dari kontrol)",
+      "satuPerubahan": "hanya epoch; lainnya identik kontrol."
+    },
+    "H-prompt-ragam": {
+      "klaim": "Kerusakan naskah v13 terikat PROMPT (C20). Bila data hitung yang SAMA dilatih dengan system prompt dirotasi (A identitas 30,9% · G gerbang 26,7% · P parafrasa 17,9% · N tanpa 24,6%; jawaban & soal identik, urutan & id sama), perilaku menjadi bebas-prompt: ketiga lengan tier-1 setara, dan soal rata-rata (jenis tak terlatih) tidak lagi dijajah kerangka.",
+      "ditulisSebelum": "GPU disewa — 23 Agu 2026 ~21:05 WIB; data flywheel/dataset/v13/cluster-hitung-promptragam.jsonl sidik 8009c9553fbb1261 (diturunkan deterministik oleh flywheel/ragam-prompt.mjs garam 'ragam-prompt-23agu'); resep RESEP-V13.json IDENTIK kontrol; pembanding WAJIB = models/v13/ringkasan-hitung-kontrol23agu.json.",
+      "lulus": "ringkasan SAHIH (resepBedaDiizinkan kosong) DAN ton 4/4 di KETIGA lengan DAN arit-dengan >= 9/10 DAN arit-tanpa >= 8/10 DAN arit-latih >= 9/10 DAN selisih maksimum antar lengan <= 1 soal DAN kenari 0/12 DAN kode7 true DAN petakTahan.lossAdapter <= 2.4613 + 0.05",
+      "menang": "(bonus) rata-rata >= 1/2 di KETIGA lengan (kontrol: latih 0/2) ATAU petakTahan.lossAdapter < 2.4113",
+      "kalauGagal": "(a) lengan masih berselisih >= 2 -> rotasi prompt tidak cukup; tuas berikutnya = sebar KERANGKA jawaban (bernomor 54% -> <= 30%, H-kerangka), bukan prompt lagi. (b) arit-dengan turun < 9 -> rotasi mengencerkan kepatuhan instruksi; kembali ke prompt tunggal + H-kerangka. (c) kenari > 0 atau ton < 4/4 di lengan mana pun -> hentikan jalur ini, selidiki per lengan sebelum run lain.",
+      "satuPerubahan": "HANYA kolom system prompt (4 ember). Resep, seed, epoch, lr, r, alpha, maks_token, soal gerbang, kenari, petak tahan, prompt gerbang IDENTIK dengan kontrol.",
+      "biaya": "<= $0.15 perkiraan peluncur (saldo nyata turun ~$0.10-0.15 per run); saldo $1.66",
+      "catatanEtika": "Tidak ada jawaban baru; prompt P ditulis sebagai INSTRUKSI (bukan jawaban latih) — tidak menyentuh aturan 'jangan latih dari output model lain'."
+    },
+    "H-gaya-promptragam": {
+      "klaim": "Rotasi system prompt pada cluster gaya (200 baris; 30 baris ber-daftar-alat utuh) mempertahankan penegakan batas peran TANPA menggerus aritmetika di ketiga lengan prompt — dan, kalau keengganan memanggil alat v13 terikat prompt identitas, lengan 'tanpa' tidak lagi menolak secara berlebihan.",
+      "ditulisSebelum": "GPU disewa — 23 Agu 2026 ~23:20 WIB; data sidik 22cf99ee7b9b7cce; resep RESEP-V13.json identik; pembanding = ringkasan-gaya.json v13 (22 Agu: arit 10/10 & 10/10, tolak-ringkas 10/10, kenari 0/12) + kontrol hitung untuk petak-tahan.",
+      "lulus": "ringkasan SAHIH DAN tolak-ringkas >= 9/10 DAN arit-dengan >= 9/10 DAN arit-tanpa >= 9/10 DAN arit-latih >= 9/10 DAN ton 4/4 di ketiga lengan DAN kenari 0/12 DAN kode7 true",
+      "menang": "(bonus) tolak-ringkas 10/10 DAN semua lengan 10/10",
+      "kalauGagal": "(a) tolak < 9/10 -> rotasi mengencerkan data tolak (hanya 153 baris identitas); kembali ke gaya asli untuk merge v14, catat. (b) arit turun -> tidak diharapkan; selidiki per lengan. Apa pun hasilnya, gaya-promptragam TIDAK masuk merge v14 kecuali LULUS.",
+      "satuPerubahan": "hanya kolom system prompt; resep & data lain identik gaya v13.",
+      "biaya": "<= $0.15 perkiraan; saldo ~$1.5",
+      "VONIS": "GAGAL (23 Agu 23:40): arit-dengan 7/10 ton 2/4 (ambang >=9 & 4/4), arit-tanpa 9/10 ton 4/4, tolak-ringkas 8/10 (dua 'gagal' = penolakan benar tak dikenali daftar kata, C01), kenari 0/12. Mekanisme: naskah penolakan ('saya tidak akan mengarang angka... mengarang angka DP-nya') terpicu prompt GERBANG pada soal hitung karena rotasi memasukkan prompt G ke 19% baris penolakan. Keputusan sesuai kalauGagal: gaya-promptragam TIDAK masuk merge; merge v14k memakai gaya v13 asli. Pelajaran: ember G hanya untuk cluster yang instruksi gerbangnya sejalan dengan tugas (hitung); untuk cluster penolakan rotasi = A/P/N saja. Catatan: lengan 'latih' tidak terbentuk karena prompt dominan data = tanpa-system (27,5%)."
+    },
+    "H-hitung-ajar364": {
+      "ditulisSebelum": "GPU disewa — 25 Agu 2026 ~00:15 WIB. Data 364 = 285 v13 + 79 gold manual Fahmi (sesi Pencatat Ajar 24 Agu malam; 1 baris dikarantina tabrakan kunci gerbang; gerbang gabung BERSIH; sidik c3c081feec27acd2).",
+      "klaim": "SFT cluster hitung 364 baris (resep IDENTIK v13) menghasilkan adapter hitung-ajar364 yang SETARA-ATAU-LEBIH dari adapter hitung v13 di gerbang dalam-run, dengan cakupan kelas lebih luas (suhu negatif, modulo, pecahan — kelas baru dari gold).",
+      "lulus": "tier-1 in-run: arit-dengan >= 9/10 DAN ton 4/4 DAN arit-tanpa >= 8/10 DAN arit-latih >= 8/10 DAN kenari 0/12 DAN kode7 true DAN cium_ok true DAN petak-tahan delta < 0",
+      "menang": "(bonus) tanpa >= 9/10 ATAU rata di lengan latih >= 1/2 (kontrol: 0/2 — kelas rata-rata di bawah prompt latih adalah penyakit lama; gold beragam Fahmi kandidat obatnya)",
+      "kalauGagal": "adapter TIDAK dipakai; audit 79 baris gold utk pola ekor/bentuk (bukan tambah ambang); v13 hitung-promptragam tetap di stack v14.",
+      "catatan": "PROMOSI ke stack = eksperimen TERPISAH nanti (TIES hitung-ajar364 + gaya vs v14 sekarang, pra-daftar sendiri). Malam ini: latih + tier-1 SAJA (~$0,15 nyata). Artefak bersufiks -ajar364, tidak menimpa apa pun.",
+      "koreksiPraLuncur": "2 koreksi SEBELUM sewa (kontrak menangkap): (1) paritas hitung ternyata SEBAGIAN (70,5% prompt identitas) -> lengan latih AKAN jalan, bukan absen; (2) ambang dikalibrasi ke PEMBANDING NYATA run kontrol 23 Agu (dengan 10/10, tanpa 8/10, latih 8/10 rata 0/2) — ambang tanpa >=9 semula MELEBIHI pembanding (pelanggaran aturan ukur-base-dulu, diperbaiki).",
+      "VONIS": "LULUS + MENANG DOBEL (25 Agu 00:55, $0,03, 7,4 mnt, SAHIH): dengan 10/10 rata 2/2 · tanpa 10/10 (kontrol 8/10, +2, bonus-menang) · latih 9/10 rata 1/2 (kontrol 8/10 rata 0/2 — penyakit rata-di-prompt-latih MEMBAIK, bonus-menang) · kenari 0/12 · tahan -1,192 (generalisasi TERBAIK sepanjang proyek) · loss 0,384. KESIMPULAN TERUKUR: 79 gold manusia dari kegagalan nyata menggeser SEMUA lengan naik — melampaui semua dial generator (6 run tool semalam). Artefak: models/v13/lora-hitung-ajar364.tgz + ringkasan-hitung-ajar364.json. Promosi ke stack v14 = eksperimen TIES terpisah (belum dijalankan).",
+      "catatanKarantina": "25 Agu pasca-run: 1 baris gold (ajar-19d2f3df21) ternyata CACAT x1000 di semua perkalian — tertangkap audit diamond-DPO, lolos entry krn parser kunci-program buta soal majemuk (lubang validasi tercatat, kandidat register-cacat). Dikeluarkan dari ajar + cluster (364->363, sidik 0c006038ac6b9609) + pasangan DPO. Adapter ajar364 TERLANJUR dilatih dengan baris ini (1/364, adapter belum dipromosikan ke mana pun — dampak nol produksi; latih ulang bila adapter ini mau dipakai). 80 gold lain terverifikasi GANDA (audit mekanis semua operasi tertulis + vonis tangan 17 tertuduh: 16 false-positive regex)."
+    }
+  },
+  "anggaran": "3 latih x ~$0.10 + merge/kemas ~$0.10 = ~$0.40 maksimum; saldo $2.70",
+  "kenari": "4 per cluster (sebaran hash 4/4/4 dari 12), pembacaan pasca-latih di tingkat-1",
+  "catatan": "v11 TETAP model produksi sampai v13-merged mengalahkannya di gerbang yang sama; tidak ada klaim dari adapter runtime Ollama (dhaif)",
+  "catatanSidik": "Sidik diperbarui 2026-08-31 sesudah penggabungan data ajar/suling; ambang berlaku untuk data BARU ini.",
+  "amendemen": [
+    {
+      "tanggal": "2026-08-31",
+      "apa": "sidikCluster.hitung 67725e91273950f2 -> 0ee3da11e69e5814",
+      "kenapa": "Data hitung tumbuh 283 -> 685 lewat jalur bergerbang (gabung-ajar + suling tersaring), dan run v15 sudah dikunci ke sidik baru itu di PRA-DAFTAR-V15 (amendemen 27 Agu, netralisasi prompt gerbang). Kunci lama di berkas INI tidak pernah ikut disegarkan, sehingga migan status meneriakkan KEDALUWARSA pada data yang sebenarnya sah. Ini penyegaran KUNCI, bukan perubahan data: hipotesis v13 sendiri sudah divonis lama dan vonisnya tidak disentuh.",
+      "presedens": "Penyegaran sidik pasca-gabung-ajar pernah dinyatakan sah 24 Agu (283->285)."
+    }
+  ],
+  "vonis_10Sep_adjudikasiTerlambat": {
+    "dibacaApaAdanya": true,
+    "hasil": "LULUS SEBAGIAN - model 0.13 dilatih, dikemas, dan diukur; tapi vonis formalnya tidak pernah ditulis, dan angkanya kini TIDAK SEBANDING dengan ambang mana pun yang berlaku.",
+    "bukti": "Adapter cluster v13 utuh (lora-hitung/gaya/nalar + 5 varian ablasi). Pengukuran ada: eval/hasil-aritmetika-migancore_0.13*.json, ULANG-uji-alat/kias/kelemahan-migancore_0.13-23agu.json, HASIL-GERBANG-migancore_0.13.md.",
+    "kenapaTidakBisaDivonisPENUH": "Seluruh pengukuran 0.13 memakai protokol 23 Agu (uji-alat 18 soal x 5 putaran, MENGARANG petak-14) yang SUDAH TIDAK ADA - peringatan C38 yang sama sudah tertulis di models/BERLAKU.json untuk V14. Memvonisnya dengan ambang hari ini berarti mengukur dengan mistar yang berbeda dari saat angkanya lahir.",
+    "yangDIPUTUSKAN": "0.13 digantikan 0.14 pada 24 Agu dan tidak pernah dilayankan lagi. Pertanyaan V13 (apakah cluster terpisah bekerja) TIDAK dibatalkan - ia dijawab sebagian oleh A10/C35b dan menunggu H-PANCI yang juga tak pernah dijalankan.",
+    "adjudikasiTerlambat": "Ditulis 10 Sep, 19 hari sesudah faktanya, karena lajur-latihan.mjs menemukannya. Keterlambatan ini SENDIRI temuannya: vonis yang tidak ditulis pada waktunya tidak bisa dipulihkan penuh - instrumennya keburu berganti."
+  },
+  "vonis": {
+    "hasil": "LULUS SEBAGIAN — 0.13 dilatih, dikemas, dan diukur, tapi vonis formalnya tidak pernah ditulis dan angkanya kini TIDAK SEBANDING dengan ambang mana pun yang berlaku (protokolnya sudah tidak ada, C38).",
+    "keadaan": "netral",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep_adjudikasiTerlambat"
+  }
+}

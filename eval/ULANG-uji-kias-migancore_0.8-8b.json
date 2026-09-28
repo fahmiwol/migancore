@@ -1,0 +1,91 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.8-8b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "keseluruhan": {
+    "lulus": 49,
+    "coba": 75,
+    "lo": 0.5405453495587379,
+    "hi": 0.7511788163638207,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 17,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.6395767041130426,
+      "hi": 0.9476322080405041
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 15,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.5312949900419365,
+      "hi": 0.888139947210597
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 9,
+      "total": 15,
+      "v": "TIDAK PASTI",
+      "lo": 0.357464427565077,
+      "hi": 0.8017577191740534
+    },
+    {
+      "kategori": "kias",
+      "lulus": 8,
+      "total": 20,
+      "v": "GAGAL",
+      "lo": 0.21880396741419272,
+      "hi": 0.613422057684794
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Harga per kg Rp19.000, beli 3 kg. Totalnya berapa?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Lead masuk 8, sudah dibalas 3. Berapa yang belum dibalas?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Apa arti \"kaki gunung\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Dia dibawa ke meja hijau. Maksudnya?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"besar pasak daripada tiang\"?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

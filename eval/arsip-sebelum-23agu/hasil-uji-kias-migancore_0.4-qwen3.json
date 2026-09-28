@@ -1,0 +1,98 @@
+{
+  "model": "migancore:0.4-qwen3",
+  "sistem": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kenali mana kalimat yang harfiah, mana yang kias, dan mana yang benar-benar bermakna ganda. Jangan mencabangkan yang baku; jangan menjawab tunggal yang benar-benar bercabang. Kalau tidak tahu, katakan tidak tahu.",
+  "sistemTambahan": "",
+  "hasil": [
+    {
+      "k": "lugas",
+      "t": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "j": "Sisa = 12 - 5 = **7** briket.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Satu dus isi 24 botol, ada 5 dus. Total botol?",
+      "j": "1 dus = 24 botol  \n5 dus = 5 × 24 = **120 botol**.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kaki gunung\"?",
+      "j": "\"Kaki gunung\" secara harfiah berarti bagian bawah atau turunan sebuah gunung. Secara metaforis, istilah ini bisa menggambarkan sesuatu yang terletak di ambang batas — bisa jadi tempat yang tidak terlalu tinggi tapi sudah cukup menantang, seperti perjalanan awal menuju kesuksesan atau pengalaman baru.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"mata air\"?",
+      "j": "\"Mata air\" secara harfiah berarti sumber air yang mengalir dari tanah, biasanya terbuka dan tidak tertutup seperti sungai atau sumur. Secara metaforis, istilah ini bisa merujuk pada sumber inspirasi, ide, atau keberlanjutan sesuatu — misalnya \"mata air kreativitas\" yang menghasilkan banyak ide.\n\nJika konteksnya lebih spesifik (misalnya geografi, sastra, atau bisnis), maknanya bisa berbeda.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Dia dibawa ke meja hijau. Maksudnya?",
+      "j": "\"Meja hijau\" bisa berarti beberapa hal tergantung konteksnya:\n\n- **Warna** — orang itu diletakkan di atas permukaan yang berwarna hijau (lantai, tikar, atau alas meja)\n- **Nama/label** — ada meja bernama \"hijau\" dalam ruangan\n- **Metafora** — bisa nggak, tapi jarang dipakai begitu saja\n\nKalau ini dari cerita/film/sinematik, kadang \"meja hijau\" itu istilah khusus untuk warna yang digunakan dalam pemotretan (misalnya meja dengan pelapis tertentu). Tapi tanpa konteks lebih lanjut, maknanya paling sederhana: orang tersebut dipindahkan atau diletakkan di atas permukaan berwarna hijau.\n\nAda konteks lain yang ingin kamu sampaikan?",
+      "lulus": false
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kambing hitam\" dalam \"dia dijadikan kambing hitam\"?",
+      "j": "Dalam konteks \"dia dijadikannya kambing hitam\", istilah \"kambing hitam\" berarti seseorang yang dipilih untuk menanggung kesalahan atau masalah secara tidak adil, sehingga orang lain bisa menghindari tanggung jawab. Ini adalah bentuk penghinaan dan manipulasi sosial.",
+      "lulus": true
+    },
+    {
+      "k": "cabang",
+      "t": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "j": "Saya akan menghitung pembagian 7 oleh 2 untuk menentukan sisanya.\n\n**Langkah pertama:** Bagi 7 dengan 2.\n- Hasil bagi = 3 (karena 2 × 3 = 6)\n- Sisa = 1 (karena 7 - 6 = 1)\n\n**Jawaban akhir:** Sisanya adalah **1**.\n\nIni berarti jika Anda membagi 7 secara merata kepada 2 orang, setiap orang mendapat 3 bagian dan tersisa 1 bagian.",
+      "lulus": false
+    },
+    {
+      "k": "cabang",
+      "t": "Kue 10 dibagi 4 gimana?",
+      "j": "Saya akan menghitung pembagian kue 10 bagi 4.\n\n**Langkah pertama:** Kita perlu memahami maksud soal ini.\nAda dua kemungkinan:\n1. **Matematika murni** — 10 dibagi 4 secara aritmetika\n2. **Konteks lain** — misalnya pembagian harta, sumber daya, atau konsep simbolik\n\n---\n\n**Makna literal (matematika):**\n\\[\n10 \\div 4 = 2.5\n\\]\nJadi setiap orang mendapat 2,5 bagian kue.\n\n---\n\n**Makna implisit yang sering dimaksud:**\nPembagian secara **adil dan bulat** — berapa banyak yang bisa dibagi rata tanpa pecahan?\n\n- Kalau harus **bulat**: setiap orang dapat 2 bagian, tersisa 2 kue\n- Kalau boleh **berbagi sebagian**: 2.5 per orang\n\n---\n\n**Kesimpulan:**\nJawabannya tergantung konteksnya:\n- Secara matematis → **2,5**\n- Secara praktis (pembagian fisik) → setiap orang dapat **2 bagian**, tersisa **2 kue**\n\nMau saya jelaskan lebih lanjut so",
+      "lulus": false
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"besar pasak daripada tiang\"?",
+      "j": "Peribahasa **\"besar pasak daripada tiang\"** berarti: *sesuatu yang kecil tidak akan bisa menggantikan sesuatu yang besar*, atau lebih tepatnya — *orang yang tidak punya kapasitas untuk suatu pekerjaan tidak boleh diharapkan dapat melaksanakan tugas yang melebihi kemampuannya.*\n\n---\n\n**Penjelasan:**\n\n- **Pasak** adalah bagian dari bangunan yang berfungsi menahan struktur, sementara **tiang** adalah penopang utama.\n- Kalau pasak tidak cukup besar untuk menahan beban, maka tiang pun bisa rusak — artinya *komponen yang lebih kecil* dapat mempengaruhi *komponen yang lebih besar*.\n\n---\n\n**Makna dalam konteks sosial/kehidupan:**\n\n- **Tidak boleh mengharapkan orang yang tidak mampu** untuk melakukan tugas atau tanggung jawab yang melebihi kemampuannya.\n- Mengingatkan kita bahwa *kualitas dan kapasitas* harus sesuai dengan peran, karena jika salah, akibatnya bisa merugikan semua pihak.\n\n---\n\n**Contoh penggunaan:**\n\n> \"Dia tidak punya pengalaman di bidang ini. Tidak heran kalau hasil pro",
+      "lulus": null
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"nasi sudah menjadi bubur\"?",
+      "j": "Peribahasa **\"nasi sudah menjadi bubur\"** berarti sesuatu yang sudah terlambat atau tidak bisa lagi diubah — seperti nasi yang sudah empuk dan mengental, tidak bisa dikembalikan ke bentuknya yang awalnya.\n\nSecara makna: kalau suatu keputusan atau situasi sudah terlanjur, maka tidak ada cara untuk memulihkannya. Kata kuncinya adalah **ketidakmampuan untuk mengubah sesuatu yang sudah terjadi** — baik secara fisik maupun konseptual.\n\n---\n\n**Contoh penggunaan dalam kalimat:**\n\n> \"Kami sudah terlambat, nasi sudah menjadi bubur — tidak ada cara lagi untuk memperbaiki kesalahan ini.\"\n\n---\n\n**Catatan:** Peribahasa ini sering digunakan dalam konteks **keputusan yang terlanjur**, baik di bidang keuangan, hubungan sosial, maupun karier. Ini juga mengandung nuansa **kesedihan dan ketidakpastian** — karena menunjukkan bahwa sesuatu yang sudah tidak bisa diubah akan berdampak pada masa depan.\n\n---\n\n**Kesimpulan:** Makna intinya adalah **sesuatu yang sudah terlambat atau tidak dapat dikembalikan lagi**, baik secara fisik maupun konseptual.",
+      "lulus": true
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "j": "## Maksud Peribahasa\n\n**\"Keranjang belanja penuh, hati kosong\"** secara harfiah menggambarkan seseorang yang membeli banyak barang (keranjang penuh) namun tidak merasakan kepuasan atau kebahagiaan dalam dirinya (hati kosong).\n\n---\n\n### Makna Konseptual\n\nPeribahasa ini menyiratkan **konflik antara eksternal dan internal** — seseorang yang *secara materi* telah berhasil memenuhi kebutuhan, tetapi secara *emosional atau spiritual* merasa tidak puas. Ini bisa karena:\n\n- Belanja untuk mengisi rasa kosong, bukan untuk kebutuhan\n- Memiliki banyak tapi tidak ada yang benar-benar \"milik\" diri sendiri\n- Kepuasan yang didapat bersifat transien — selalu cari lagi\n\n---\n\n### Analogi dalam Konteks Lain\n\nPernyataan ini mirip dengan:\n> *\"Memiliki banyak uang tapi tidak punya kebahagiaan\"*  \n> *\"Bersih dari harta, tetapi kotor dari hati\"*\n\n---\n\n### Kesimpulan\n\nPeribahasa ini mengingatkan kita bahwa **kepuasan sejati tidak selalu terukur dalam jumlah barang atau uang**, melain",
+      "lulus": true
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "j": "## Maksud Peribahasa: \"Server Panas Membawa Rezeki Dingin\"\n\n---\n\n**Versi yang paling umum dan masuk akal secara konteks Indonesia:**\n\n> **\"Orang yang terlalu sibuk atau terlalu keras kerja, seringkali tidak dapat rezeki yang memuaskan.\"**\n\nAtau lebih ringkas:\n> **\"Terlalu panas dalam pekerjaan = rezeki yang dingin.\"**\n\n---\n\n**Penjelasan Konsepnya:**\n\n- \"Server panas\" → menggambarkan seseorang yang *terlalu keras bekerja*, terlalu banyak tanggung jawab, atau bahkan *overwhelmed*.\n- \"Rezeki dingin\" → tidak dapat rezeki yang memuaskan, bahkan bisa merugi secara finansial.\n\n---\n\n**Makna Kiasan:**\n\nPeribahasa ini mengingatkan kita bahwa **keseimbangan penting** — terlalu banyak kerja keras tanpa istirahat atau dukungan yang cukup tidak akan menghasilkan hasil yang baik. Ini juga bisa diartikan sebagai kritik terhadap budaya *\"kerja keras = dicintai\"* yang sebenarnya bisa jadi *ironi*.\n\n---\n\n**Catatan Penting:**\n\nPeribahasa ini **bukan dari bahasa Inggris**,",
+      "lulus": false
+    },
+    {
+      "k": "lugas",
+      "t": "Harga per kg Rp21.500, beli 6 kg. Totalnya berapa?",
+      "j": "Kalkulasi: 21.500 × 6 = 129.000. Jadi total harga adalah **Rp129.000**.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Pesanan masuk 14, sudah diproses 6. Berapa yang belum diproses?",
+      "j": "Belum diproses = total pesanan - sudah diproses  \n= 14 - 6  \n= **8**\n\nJawaban: **8** pesanan belum diproses.",
+      "lulus": true
+    },
+    {
+      "k": "cabang",
+      "t": "Arsipkan laporan bulan lalu di folder ekspor yang sudah tidak dipakai.",
+      "j": "1. **Pahami perintah:** Anda ingin mengarsipkan laporan bulan lalu ke dalam folder \"ekspor\" yang saat ini tidak aktif digunakan.\n2. **Identifikasi komponen:**\n   - Laporan bulan lalu (data/lokasi file)\n   - Folder ekspor (lokasi penyimpanan)\n   - Status folder (tidak dipakai)\n3. **Eksekusi:**\n   - Cari lokasi file laporan bulan lalu.\n   - Pastikan folder \"ekspor\" memang tidak aktif dan tersedia untuk penggunaan ulang.\n   - Pindahkan atau salin laporan ke dalam folder tersebut.\n4. **Verifikasi:**\n   - Periksa apakah laporan berhasil terdapat di folder ekspor.\n   - Pastikan tidak ada file yang hilang atau rusak selama proses.\n\n**Catatan:** Jika Anda tidak yakin tentang status folder \"ekspor\" atau lokasi file, sebaiknya konfirmasi dengan sistem atau administrator.",
+      "lulus": false
+    }
+  ],
+  "semua": false
+}

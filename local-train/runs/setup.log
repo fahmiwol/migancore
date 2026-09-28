@@ -1,0 +1,21 @@
+﻿powershell.exe : At ./local-train\scripts\00_setup_env.ps1:34 char:23
+At line:1 char:337
++ ... 'Continue'; & powershell -ExecutionPolicy Bypass -NoProfile -File C:\ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (At .....ps1:34 char:23:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
++ # "transformers>=4.44,<5" sebagai operator terpesan dan gagal saat pa ...
++                       ~
+Missing expression after ',' in pipeline element.
+At ./local-train\scripts\00_setup_env.ps1:34 char:23
++ # "transformers>=4.44,<5" sebagai operator terpesan dan gagal saat pa ...
++                       ~
+The '<' operator is reserved for future use.
+At ./local-train\scripts\00_setup_env.ps1:43 char:41
++ Write-Host "`nSelesai. Python venv: $vpy"
++                                         ~
+The string is missing the terminator: ".
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingExpression
+ 

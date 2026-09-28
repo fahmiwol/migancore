@@ -1,0 +1,88 @@
+{
+  "berkas": "cluster-abstain.jsonl",
+  "ukur": {
+    "baris": 123,
+    "terpotong": {
+      "jumlah": 0,
+      "rasio": 0
+    },
+    "nyarisKembar": {
+      "jumlah": 1,
+      "rasio": 0.008130081300813009,
+      "contoh": [
+        {
+          "a": "abstain:mesin",
+          "b": "abstain:mesin",
+          "j": 0.803030303030303
+        }
+      ]
+    },
+    "sumber": {
+      "total": 2,
+      "terbesar": [
+        "abstain:mesin",
+        88
+      ],
+      "rasioTerbesar": 0.7154471544715447,
+      "limaTeratas": [
+        [
+          "abstain:mesin",
+          88
+        ],
+        [
+          "abstain:artikel",
+          35
+        ]
+      ]
+    },
+    "pangsa": {
+      "sistem": 0.3441575110380943,
+      "tanya": 0.12398603552726152,
+      "jawab": 0.5318564534346442
+    },
+    "sistem": {
+      "unik": 1,
+      "terbanyak": [
+        "Kamu MiganCore, asisten berbahasa Indonesia milik Fahmi Ghani. Jawab dari catatan. Kalau catatanmu tidak memuatnya, katakan dengan jujur dan sebutkan apa yang kurang — jangan mengarang nomor, nama, angka, atau tanggal.",
+        123
+      ]
+    },
+    "menopengi": true,
+    "disiplin": false,
+    "sumberTerdaftar": null
+  },
+  "cek": [
+    {
+      "nama": "terpotong saat latih",
+      "nilai": 0,
+      "ambang": 0.01,
+      "arah": "maks",
+      "teks": "0 baris (0.0%)",
+      "lulus": true
+    },
+    {
+      "nama": "nyaris-kembar (Jaccard>=0,80)",
+      "nilai": 0.008130081300813009,
+      "ambang": 0.02,
+      "arah": "maks",
+      "teks": "1 pasangan (0.8%)",
+      "lulus": true
+    },
+    {
+      "nama": "sumber terbesar",
+      "nilai": 0.7154471544715447,
+      "ambang": 0.3,
+      "arah": "maks",
+      "teks": "abstain:mesin 71.5%",
+      "lulus": false
+    },
+    {
+      "nama": "pangsa loss di JAWABAN",
+      "nilai": 0.5318564534346442,
+      "ambang": 0.7,
+      "arah": "min",
+      "teks": "53.2% (sistem 34%, tanya 12%) — prompt DITOPENGI, jadi tidak jadi soal",
+      "lulus": true
+    }
+  ]
+}

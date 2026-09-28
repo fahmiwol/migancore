@@ -1,0 +1,55 @@
+{
+  "nama": "resep-v13-cluster-lora-wd0.01",
+  "catatan": "VARIAN H-wd (23 Agu): IDENTIK dengan RESEP-V13.json kecuali latih.weight_decay 0.0 -> 0.01. Dasar: pada LoRA, weight decay menarik A,B -> 0 sehingga W -> W_base (irhum.github.io/blog/lorawd) — satu-satunya regularizer yang langsung melawan kolonisasi naskah; Unsloth menyarankan 0.01-0.1. Skrip latih akan menolak resep ini tanpa RESEP_IZIN_BEDA=1 (peluncur: --izin-beda), dan mencatat bedanya di ringkasan.resepBedaDiizinkan.",
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.0,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "latih": {
+    "epoch": 2,
+    "batch": 4,
+    "akumulasi": 4,
+    "lr": 0.0002,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine",
+    "optim": "adamw_torch",
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "maks_token": 1024,
+    "penopengan_prompt": true
+  },
+  "keputusanSadar": {
+    "weight_decay": "0.01 = keputusan eksperimen H-wd; pembanding = run kontrol format-2 (wd 0.0) pada data & seed yang sama.",
+    "seed": "42 = bawaan TrainingArguments yang selama ini berlaku diam-diam; kini eksplisit dan ikut tercatat di ringkasan.",
+    "lr_2e-4": "10x lebih besar dari full fine-tune (2e-5) — wajar untuk LoRA, bukan celah."
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1",
+    "image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+  },
+  "gerbangTier1": {
+    "soal": "eval/soal-aritmetika-bersih.json",
+    "kenari": "flywheel/dataset/kenari.json",
+    "petakTahan": "flywheel/dataset/migancore-tahan.jsonl",
+    "promptGerbang": "eval/prompt-gerbang.json",
+    "n_baru": 400,
+    "suhu": 0
+  }
+}

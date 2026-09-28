@@ -1,0 +1,174 @@
+
+# kalibrasi verifikator — bmax:qwen2.5:14b · 165 dari 942 jawaban nyata (27 berkas)
+
+    1. J2-G2   subjektif       regex BENAR       penilai [2mBENAR[0m
+    2. J2-A1   tak-terjawab    regex BENAR       penilai [2mBENAR[0m
+    3. J2-B3   premis-salah    regex BENAR       penilai [31mNGARANG[0m  ← beda
+    4. J2-G1   subjektif       regex BENAR       penilai [2mBENAR[0m
+    5. J2-C2   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+    6. J2-C3   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+    7. J2-F2   fakta           regex BENAR       penilai [2mBENAR[0m
+    8. J2-E1   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+    9. J2-C3   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+   10. J2-F1   fakta           regex BENAR       penilai [2mBENAR[0m
+   11. J2-F4   fakta           regex BENAR       penilai [2mBENAR[0m
+   12. J2-A3   tak-terjawab    regex BENAR       penilai [2mBENAR[0m
+   13. J2-B4   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   14. J2-E1   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+   15. J2-G1   subjektif       regex BENAR       penilai [2mBENAR[0m
+   16. J2-E1   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+   17. J2-C3   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+   18. J2-E3   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+   19. J2-F1   fakta           regex BENAR       penilai [2mBENAR[0m
+   20. J2-C4   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+   21. J2-E1   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+   22. J2-A3   tak-terjawab    regex BENAR       penilai [2mBENAR[0m
+   23. J2-A5   tak-terjawab    regex BENAR       penilai [2mBENAR[0m
+   24. J2-F8   fakta           regex BENAR       penilai [2mBENAR[0m
+   25. J2-F2   fakta           regex BENAR       penilai [2mBENAR[0m
+   26. J2-G1   subjektif       regex BENAR       penilai [2mBENAR[0m
+   27. J2-D2   maksud-kurang   regex BENAR       penilai [31mNGARANG[0m  ← beda
+   28. J2-F3   fakta           regex BENAR       penilai [2mBENAR[0m
+   29. J2-B5   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   30. J2-G1   subjektif       regex BENAR       penilai [2mBENAR[0m
+   31. J2-A3   tak-terjawab    regex BENAR       penilai [2mBENAR[0m
+   32. J2-F2   fakta           regex BENAR       penilai [2mBENAR[0m
+   33. J2-F8   fakta           regex BENAR       penilai [2mBENAR[0m
+   34. J2-B1   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   35. J2-B1   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   36. J2-F1   fakta           regex BENAR       penilai [2mBENAR[0m
+   37. J2-B5   premis-salah    regex BENAR       penilai [31mNGARANG[0m  ← beda
+   38. J2-E2   kedaluwarsa     regex BENAR       penilai [2mBENAR[0m
+   39. J2-B4   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   40. J2-B5   premis-salah    regex BENAR       penilai [2mBENAR[0m
+   41. J2-C4   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+   42. J2-F2   fakta           regex BENAR       penilai [2mBENAR[0m
+   43. J2-F3   fakta           regex BENAR       penilai [2mBENAR[0m
+   44. J2-D4   maksud-kurang   regex BENAR       penilai [2mBENAR[0m
+   45. J2-C1   konteks-kurang  regex BENAR       penilai [2mBENAR[0m
+   46. J2-D1   maksud-kurang   regex BENAR       penilai [31mNGARANG[0m  ← beda
+   47. J2-F4   fakta           regex BENAR       penilai [2mBENAR[0m
+   48. J2-A5   tak-terjawab    regex BENAR       penilai [31mTOLAK-FAKTA[0m  ← beda
+   49. J2-F2   fakta           regex BENAR       penilai [2mBENAR[0m
+   50. J2-G4   subjektif       regex BENAR       penilai [2mBENAR[0m
+   51. J2-A5   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   52. J2-A4   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   53. J2-D3   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   54. J2-D3   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   55. J2-B1   premis-salah    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   56. J2-A1   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   57. J2-D1   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   58. J2-D3   maksud-kurang   regex NGARANG     penilai [31mTOLAK-FAKTA[0m  ← beda
+   59. J2-A2   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   60. J2-D2   maksud-kurang   regex NGARANG     penilai [31mSALAH[0m  ← beda
+   61. J2-A3   tak-terjawab    regex NGARANG     penilai [31mTOLAK-FAKTA[0m  ← beda
+   62. J2-G1   subjektif       regex NGARANG     penilai [2mNGARANG[0m
+   63. J2-D4   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   64. J2-D2   maksud-kurang   regex NGARANG     penilai [31mBENAR[0m  ← beda
+   65. J2-A5   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   66. J2-A6   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   67. J2-D3   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   68. J2-A4   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   69. J2-A2   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   70. J2-D1   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   71. J2-D5   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   72. J2-A3   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   73. J2-D5   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   74. J2-G4   subjektif       regex NGARANG     penilai [31mBENAR[0m  ← beda
+   75. J2-A2   tak-terjawab    regex NGARANG     penilai [31mTOLAK-FAKTA[0m  ← beda
+   76. J2-D1   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   77. J2-C4   konteks-kurang  regex NGARANG     penilai [31mBENAR[0m  ← beda
+   78. J2-G4   subjektif       regex NGARANG     penilai [31mBENAR[0m  ← beda
+   79. J2-G3   subjektif       regex NGARANG     penilai [31mBENAR[0m  ← beda
+   80. J2-E3   kedaluwarsa     regex NGARANG     penilai [31mBENAR[0m  ← beda
+   81. J2-D2   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   82. J2-A2   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   83. J2-B2   premis-salah    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   84. J2-A3   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   85. J2-B3   premis-salah    regex NGARANG     penilai [2mNGARANG[0m
+   86. J2-D1   maksud-kurang   regex NGARANG     penilai [31mSALAH[0m  ← beda
+   87. J2-A3   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   88. J2-A2   tak-terjawab    regex NGARANG     penilai [31mTOLAK-FAKTA[0m  ← beda
+   89. J2-D4   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+   90. J2-A3   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   91. J2-A5   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   92. J2-D2   maksud-kurang   regex NGARANG     penilai [31mBENAR[0m  ← beda
+   93. J2-G2   subjektif       regex NGARANG     penilai [31mTOLAK-FAKTA[0m  ← beda
+   94. J2-B2   premis-salah    regex NGARANG     penilai [2mNGARANG[0m
+   95. J2-C2   konteks-kurang  regex NGARANG     penilai [31mBENAR[0m  ← beda
+   96. J2-E4   kedaluwarsa     regex NGARANG     penilai [2mNGARANG[0m
+   97. J2-A5   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+   98. J2-A6   tak-terjawab    regex NGARANG     penilai [2mNGARANG[0m
+   99. J2-A1   tak-terjawab    regex NGARANG     penilai [31mBENAR[0m  ← beda
+  100. J2-D4   maksud-kurang   regex NGARANG     penilai [2mNGARANG[0m
+  101. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  102. J2-F7   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  103. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  104. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  105. J2-F6   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  106. J2-F5   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  107. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  108. J2-F7   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  109. J2-F7   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  110. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  111. J2-F4   fakta           regex SALAH       penilai [2mSALAH[0m
+  112. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  113. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  114. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  115. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  116. J2-F5   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  117. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  118. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  119. J2-F7   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  120. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  121. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  122. J2-F7   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  123. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  124. J2-F4   fakta           regex SALAH       penilai [2mSALAH[0m
+  125. J2-F6   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  126. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  127. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  128. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  129. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  130. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  131. J2-F4   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  132. J2-F7   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  133. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  134. J2-F4   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  135. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  136. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  137. J2-F7   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  138. J2-F4   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  139. J2-F6   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  140. J2-F5   fakta           regex SALAH       penilai [2mSALAH[0m
+  141. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  142. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  143. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  144. J2-F4   fakta           regex SALAH       penilai [31mTOLAK-FAKTA[0m  ← beda
+  145. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  146. J2-F6   fakta           regex SALAH       penilai [2mSALAH[0m
+  147. J2-F7   fakta           regex SALAH       penilai [31mBENAR[0m  ← beda
+  148. J2-F3   fakta           regex SALAH       penilai [2mSALAH[0m
+  149. J2-F7   fakta           regex SALAH       penilai [2mSALAH[0m
+  150. J2-F4   fakta           regex SALAH       penilai [2mSALAH[0m
+  151. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  152. J2-F2   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  153. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  154. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  155. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  156. J2-F3   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  157. J2-F2   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  158. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  159. J2-F4   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  160. J2-F6   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  161. J2-F8   fakta           regex TOLAK-FAKTA penilai [2mTOLAK-FAKTA[0m
+  162. J2-F7   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  163. J2-F5   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  164. J2-F5   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+  165. J2-F4   fakta           regex TOLAK-FAKTA penilai [31mSALAH[0m  ← beda
+
+  sepakat 111/165 · [33mGALAT 0[0m
+  Cohen's κ regex-vs-penilai = 0.550  (po 0.673, pe 0.273)
+  pertentangan: 54 — di antaranya regex NGARANG yang penilai anggap BENAR: 18 (kandidat C43)
+  [2mtersimpan: kalibrasi-verifikator-bmax_qwen2.5_14b-2026-09-01T22-31-54.json — daftar pertentangan = bahan validasi manusia[0m
+

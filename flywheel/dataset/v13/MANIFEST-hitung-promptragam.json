@@ -1,0 +1,102 @@
+{
+  "formatKontrak": 2,
+  "cluster": "hitung-promptragam",
+  "versi": "v13",
+  "nama": "",
+  "tanggal": "2026-08-23",
+  "resepBerkas": "flywheel\\RESEP-V13.json",
+  "baris": 285,
+  "sidik": {
+    "data": "8009c9553fbb1261",
+    "soal": "8a68b69a16c583a5",
+    "kenari": "87e91feb4fed4bc9",
+    "resep": "aa2d55baaca14ae1",
+    "skrip": "00f2593b636ccd58",
+    "ukur": "a7b568d9dd5462db",
+    "promptGerbang": "04b8df92cb204dca",
+    "tahan": "b2a25c6e323a3f9a"
+  },
+  "resep": {
+    "base": "Qwen/Qwen3-4B-Instruct-2507",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0,
+      "bias": "none",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "latih": {
+      "epoch": 2,
+      "batch": 4,
+      "akumulasi": 4,
+      "lr": 0.0002,
+      "warmup_ratio": 0.05,
+      "scheduler": "cosine",
+      "optim": "adamw_torch",
+      "bf16": true,
+      "gradient_checkpointing": true,
+      "weight_decay": 0,
+      "seed": 42,
+      "maks_token": 1024,
+      "penopengan_prompt": true
+    }
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1"
+  },
+  "git": {
+    "commit": "fd60005",
+    "kotor": 3
+  },
+  "paritasPrompt": {
+    "cluster": "hitung-promptragam",
+    "baris": 285,
+    "pangsaGerbang": 0.26666666666666666,
+    "pangsaTanpa": 0.24561403508771928,
+    "dominan": {
+      "n": 88,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum menjawab. Kalau kamu tidak yakin, katakan tidak yakin — jangan menyodorkan angka atau kesimpulan yang belum kamu cek."
+    },
+    "paritas": "penuh",
+    "butuhDeklarasi": false,
+    "ok": true,
+    "sebab": "paritas penuh"
+  },
+  "promptSistem": [
+    {
+      "n": 88,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum "
+    },
+    {
+      "n": 76,
+      "teks": "Kerjakan bertahap dan tunjukkan angka antaranya. Jawab dengan angka yang jelas."
+    },
+    {
+      "n": 70,
+      "teks": "(tanpa system)"
+    },
+    {
+      "n": 51,
+      "teks": "Kamu MiganCore, asisten Fahmi Ghani. Hitung selangkah demi selangkah, tuliskan tiap hasil antara, lalu cek ulang sebelum"
+    }
+  ],
+  "pemeriksaan": {
+    "wajib": [],
+    "catatan": [
+      "kenari: 6/12 penanda ada di data (yang ada = terukur hafalannya)",
+      "paritas prompt: 26.7% gerbang · 24.6% tanpa · penuh — paritas penuh",
+      "git: 3 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit"
+    ]
+  }
+}

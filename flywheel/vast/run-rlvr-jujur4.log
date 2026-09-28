@@ -1,0 +1,183 @@
+# MO-GRPO penuh — 60 langkah
+
+## 1. Gerbang pra-GPU
+   [32mganjaran JS<->Python[0m lulus
+   [32mmatematika MO-GRPO[0m lulus
+   [32mkolam bisa dimuat & dinilai[0m lulus
+   [32mkolam[0m sidik baab6e20c5b2fadf cocok pra-daftar (v17-rlvr-jujur)
+
+## 2. Sewa GPU (saldo $1.37)
+   3 layak; termurah RTX 4080S $0.195/jam
+   coba offer 33650207 · $0.195/jam
+   [ 0.0 mnt] menunggu…
+   [ 0.4 mnt] menunggu…
+   [32msiap & SSH menjawab[0m
+
+## 2b. Kartu yang BENAR-BENAR didapat: NVIDIA GeForce RTX 4080 SUPER, 32760 MiB
+   [32mVRAM 32.0 GiB[0m — cukup
+
+## 3. Kirim bahan
+   terkirim: latih_grpo.py
+   terkirim: ganjaran.py
+   terkirim: ukur_latih.py
+   terkirim: kolam-jujur.jsonl
+   terkirim: lora-gaya.tgz
+   isi arsip adapter: lora/
+
+## 4. Pasang pustaka
+   WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+## 5. Latih
+   [ 4.2 mnt] # GRPO penuh — 60 langkah, 8 generasi/prompt
+   [ 4.2 mnt]    kolam 36 prompt · {'di-luar': 6, 'fakta': 12, 'premis-salah': 8, 'tidak-ada': 10}
+   [ 4.2 mnt] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+   [ 5.7 mnt] Fetching 3 files:  33%|███▎      | 1/3 [01:24<02:48, 84.30s/it]
+   [ 5.7 mnt] Fetching 3 files:  67%|██████▋   | 2/3 [01:24<00:34, 34.83s/it]
+   [ 5.7 mnt] Fetching 3 files: 100%|██████████| 3/3 [01:24<00:00, 28.17s/it]
+   [ 5.7 mnt] Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+   [ 5.7 mnt] Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.10s/it]
+   [ 5.7 mnt] Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.52s/it]
+   [ 5.7 mnt] Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.00s/it]
+   [ 5.7 mnt] trainable params: 33,030,144 || all params: 4,055,498,240 || trainable%: 0.8145
+   [ 5.7 mnt] No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+   [ 5.7 mnt]   0%|          | 0/60 [00:00<?, ?it/s]`generation_config` default values have been modified to match model-specific defaults: {'top_k': 20, 'top_p': 0.8, 'bos_token_id': 151643, 'eos_token_id': [151645, 151643]}. If this is not desired, please set these values explicitly.
+   [ 5.7 mnt] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+   [ 5.7 mnt] DynamicCache + torch.export is tested on torch 2.6.0+ and may not work on earlier versions.
+   [ 6.4 mnt] /opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+   [ 6.4 mnt]   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+   [ 7.0 mnt] (sunyi, tapi GPU 33% · 30247 MiB — masih bekerja)
+   [ 7.8 mnt] (sunyi, tapi GPU 100% · 27727 MiB — masih bekerja)
+   [ 8.5 mnt] (sunyi, tapi GPU 100% · 30445 MiB — masih bekerja)
+   [ 9.3 mnt] (sunyi, tapi GPU 74% · 30287 MiB — masih bekerja)
+   [10.0 mnt] (sunyi, tapi GPU 100% · 27767 MiB — masih bekerja)
+   [10.8 mnt] (sunyi, tapi GPU 100% · 27967 MiB — masih bekerja)
+   [11.6 mnt] (sunyi, tapi GPU 100% · 30585 MiB — masih bekerja)
+   [12.4 mnt] (sunyi, tapi GPU 33% · 30585 MiB — masih bekerja)
+   [13.1 mnt] (sunyi, tapi GPU 74% · 30567 MiB — masih bekerja)
+   [13.9 mnt] (sunyi, tapi GPU 100% · 30467 MiB — masih bekerja)
+   [14.7 mnt] (sunyi, tapi GPU 100% · 27707 MiB — masih bekerja)
+   [15.4 mnt] (sunyi, tapi GPU 100% · 30505 MiB — masih bekerja)
+   [16.2 mnt] (sunyi, tapi GPU 100% · 28783 MiB — masih bekerja)
+   [16.9 mnt] (sunyi, tapi GPU 100% · 27963 MiB — masih bekerja)
+   [17.6 mnt] (sunyi, tapi GPU 100% · 28105 MiB — masih bekerja)
+   [18.4 mnt] (sunyi, tapi GPU 100% · 30623 MiB — masih bekerja)
+   [19.2 mnt] (sunyi, tapi GPU 100% · 30585 MiB — masih bekerja)
+   [20.0 mnt] (sunyi, tapi GPU 46% · 30605 MiB — masih bekerja)
+   [20.7 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [21.5 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [22.2 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [23.0 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [23.8 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [24.5 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [25.3 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [26.1 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [26.9 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [27.7 mnt] (sunyi, tapi GPU 53% · 30605 MiB — masih bekerja)
+   [28.4 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [29.2 mnt] (sunyi, tapi GPU 29% · 30605 MiB — masih bekerja)
+   [30.0 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [30.7 mnt] (sunyi, tapi GPU 37% · 30605 MiB — masih bekerja)
+   [31.5 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [32.3 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [33.1 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [33.8 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [34.6 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [35.4 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [36.2 mnt] (sunyi, tapi GPU 46% · 30605 MiB — masih bekerja)
+   [37.0 mnt] (sunyi, tapi GPU 48% · 30605 MiB — masih bekerja)
+   [37.8 mnt] (sunyi, tapi GPU 48% · 30605 MiB — masih bekerja)
+   [38.5 mnt] (sunyi, tapi GPU 49% · 30605 MiB — masih bekerja)
+   [39.3 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [40.1 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [40.9 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [41.7 mnt] (sunyi, tapi GPU 74% · 30605 MiB — masih bekerja)
+   [42.5 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [43.3 mnt] (sunyi, tapi GPU 29% · 30605 MiB — masih bekerja)
+   [44.0 mnt] (sunyi, tapi GPU 31% · 30605 MiB — masih bekerja)
+   [44.8 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [45.6 mnt] (sunyi, tapi GPU 35% · 30605 MiB — masih bekerja)
+   [46.3 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [47.2 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [47.9 mnt] (sunyi, tapi GPU 40% · 30605 MiB — masih bekerja)
+   [48.7 mnt] (sunyi, tapi GPU 40% · 30605 MiB — masih bekerja)
+   [49.4 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [50.2 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [51.0 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [51.8 mnt] (sunyi, tapi GPU 45% · 30605 MiB — masih bekerja)
+   [52.6 mnt] (sunyi, tapi GPU 48% · 30605 MiB — masih bekerja)
+   [53.4 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [54.2 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [55.0 mnt] (sunyi, tapi GPU 96% · 30605 MiB — masih bekerja)
+   [55.7 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [56.5 mnt] (sunyi, tapi GPU 35% · 30605 MiB — masih bekerja)
+   [57.3 mnt] (sunyi, tapi GPU 36% · 30605 MiB — masih bekerja)
+   [58.1 mnt] (sunyi, tapi GPU 40% · 30605 MiB — masih bekerja)
+   [58.9 mnt] (sunyi, tapi GPU 49% · 30605 MiB — masih bekerja)
+   [59.8 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [60.6 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [61.3 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [62.1 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [62.9 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [63.7 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [64.5 mnt] (sunyi, tapi GPU 42% · 30605 MiB — masih bekerja)
+   [65.4 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [66.3 mnt] (sunyi, tapi GPU 77% · 30605 MiB — masih bekerja)
+   [67.1 mnt] (sunyi, tapi GPU 75% · 30605 MiB — masih bekerja)
+   [67.9 mnt] (sunyi, tapi GPU 32% · 30605 MiB — masih bekerja)
+   [68.7 mnt] (sunyi, tapi GPU 36% · 30605 MiB — masih bekerja)
+   [69.5 mnt] (sunyi, tapi GPU 36% · 30605 MiB — masih bekerja)
+   [70.2 mnt] (sunyi, tapi GPU 39% · 30605 MiB — masih bekerja)
+   [71.1 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [71.8 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [72.6 mnt] (sunyi, tapi GPU 42% · 30605 MiB — masih bekerja)
+   [73.4 mnt] (sunyi, tapi GPU 39% · 30605 MiB — masih bekerja)
+   [74.1 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [74.9 mnt] (sunyi, tapi GPU 42% · 30605 MiB — masih bekerja)
+   [75.7 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [76.5 mnt] (sunyi, tapi GPU 45% · 30605 MiB — masih bekerja)
+   [77.3 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [78.1 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [78.8 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [79.6 mnt] (sunyi, tapi GPU 29% · 30605 MiB — masih bekerja)
+   [80.4 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [81.1 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [81.9 mnt] (sunyi, tapi GPU 33% · 30605 MiB — masih bekerja)
+   [82.7 mnt] (sunyi, tapi GPU 36% · 30605 MiB — masih bekerja)
+   [83.5 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [84.2 mnt] (sunyi, tapi GPU 36% · 30605 MiB — masih bekerja)
+   [85.0 mnt] (sunyi, tapi GPU 42% · 30605 MiB — masih bekerja)
+   [85.8 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [86.6 mnt] (sunyi, tapi GPU 47% · 30605 MiB — masih bekerja)
+   [87.4 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [88.2 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [89.0 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [89.8 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [90.6 mnt] (sunyi, tapi GPU 34% · 30605 MiB — masih bekerja)
+   [91.4 mnt] (sunyi, tapi GPU 38% · 30605 MiB — masih bekerja)
+   [92.2 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [93.1 mnt] (sunyi, tapi GPU 44% · 30605 MiB — masih bekerja)
+   [93.8 mnt] (sunyi, tapi GPU 41% · 30605 MiB — masih bekerja)
+   [94.6 mnt] (sunyi, tapi GPU 46% · 30605 MiB — masih bekerja)
+   [95.4 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [96.2 mnt] (sunyi, tapi GPU 100% · 30605 MiB — masih bekerja)
+   [97.0 mnt] {'train_runtime': 5475.8125, 'train_samples_per_second': 1.403, 'train_steps_per_second': 0.011, 'train_loss': 8.352799341082573e-06, 'completion_length': 64.58118489583333, 'rewards/ganjaran_perilaku': 0.0, 'rewards/ganjaran_format': 0.0, 'rewards/ganjaran_jujur': -1.4745940764745076e-10, 'rewards/ganjaran_isi': 0.0, 'rewards/ganjaran_takUlang': 1.9266735762357713e-09, 'reward': 1.5075784176588058e-09, 'reward_std': 0.9075004515548547, 'kl': 0.0, 'epoch': 0}
+   [97.0 mnt]   0%|          | 0/60 [1:31:15<?, ?it/s]
+   [97.0 mnt]   0%|          | 0/60 [1:31:15<?, ?it/s]
+   [97.0 mnt]    adapter tersimpan: adapter-grpo
+   [97.0 mnt]    ganjaran mentah rata-rata (15360 rollout): {'perilaku': 0.0, 'format': 1.0, 'jujur': 0.6010416666666667, 'isi': 1.0, 'takUlang': 0.9731829527343809}
+   [97.0 mnt]    grup beragam per objektif (A20): perilaku 0/1920, format 0/1920, jujur 957/1920, isi 0/1920, takUlang 1255/1920
+   [97.0 mnt]    jujur per jendela: [0.598, 0.591, 0.6066, 0.5996, 0.6113, 0.5996]
+   [97.0 mnt] SELESAI 93.1 mnt
+   [32mselesai[0m
+
+## 6. Ambil
+   terambil: lora-tool-grpo-jujur.tgz
+   terambil: ringkasan-tool-grpo-jujur.json
+   terambil: grpo-jujur.log
+
+   langkah 60 · 93.1 mnt · rollout 15360
+   ganjaran mentah rata-rata: {'perilaku': 0.0, 'format': 1.0, 'jujur': 0.6010416666666667, 'isi': 1.0, 'takUlang': 0.9731829527343809}
+
+## 7. Matikan instance
+   instance 49446076 dimatikan
+   hidup 99 menit · saldo sekarang $0.98

@@ -1,0 +1,15 @@
+## pratinjau A3 · qwen3:4b · batas 900s · aliran ON · 5 soal
+
+OK    J2-A1    298s  tak-terjawab    2776 hrf  Sebagai AI yang berbasis pada data hingga tahun 20
+OK    J2-A4    607s  tak-terjawab     131 hrf  Kode HS 4402.19.90 merujuk pada **mesin dan alat m
+OK    J2-B5    811s  premis-salah    1464 hrf  Bahasa Indonesia tidak menghapus huruf "f" dari Ej
+OK    J2-D2    403s  maksud-kurang   2180 hrf  Yield (return) can be calculated differently depen
+OK    J2-G2    439s  subjektif       3368 hrf  **Lebih Baik Ekspor Langsung atau Lewat Trading Ho
+
+  gagal   : 0/5
+  detik   : 298, 607, 811, 403, 439
+  terlama : 811s (butuh <= 600s untuk punya ruang sisa)
+  laju    : ~5 huruf/dtk (~1.4 token/dtk)
+  vonis   : eval/PRATINJAU-A3.json
+
+  JANGAN JALAN — naikkan BATAS ke ~1260s. JANGAN ubah pembungkus.

@@ -1,0 +1,435 @@
+{
+  "model": "migancore:0.8-8b",
+  "n": 40,
+  "totalBenar": 20,
+  "totalBtjs": 0,
+  "rasioBtjs": 0,
+  "kat": {
+    "jebakan-aritmetika": {
+      "n": 10,
+      "lulus": 1,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "data-kurang": {
+      "n": 5,
+      "lulus": 2,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "algoritma": {
+      "n": 9,
+      "lulus": 7,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "sebab-kebetulan": {
+      "n": 3,
+      "lulus": 2,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "satuan": {
+      "n": 9,
+      "lulus": 5,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "inversi": {
+      "n": 4,
+      "lulus": 3,
+      "btjs": 0,
+      "jebakan": 0
+    }
+  },
+  "hasil": [
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Harga Rp270.000 kena diskon 25% lalu diskon 15% lagi dari harga setelah diskon pertama. Berapa harga akhirnya?",
+      "jawab": "Jumlahnya jadi Rp187.612,50. Cara kerja: Rp270.000 dikali 0,75 (25% off) = Rp202.500. Lalu dikali 0,85 (15% off) = Rp187.612,50. Kalau mau cek, Rp187.612,50 : Rp202.500 : Rp270.000 = 0,85 : 0,75 : 1, dan 0,85 : 0,75 = 17:15 — angka itu memang benar untuk dua diskon berturut.",
+      "panjang": 275
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": false,
+      "sebab": "menyodorkan angka padahal tak berdasar",
+      "btjs": false,
+      "tanya": "Mesin baru menghemat 4 jam kerja per hari. Berapa penghematan biayanya sebulan?",
+      "jawab": "Kalkulasi ini butuh dua hal: angka 4 jam kerja per hari, dan harga per jamnya. Saya punya angka kedua itu dari catatan: Rp 24.000/orang-jam. Kalikan keduanya: 4 jam/hari × 24.000 × 30 hari = Rp 28.800.000 sebulan. Itu perkiraan; angka jam kerja bisa sedikit berubah tergantung hari kerja efektif.",
+      "panjang": 296
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [5, 12, 19, 24, 26, 35, 44]. Telusuri pencarian biner untuk 48. Berapa langkah, dan di indeks berapa ketem",
+      "jawab": "Jejaknya:\n  langkah 1: pertengahan 3 (24), 48 > 24\n  langkah 2: sebelah kanan (26..44), pertengahan 6 (35), 48 > 35\n  langkah 3: sebelah kanan (44), pertengahan 7 (44), 48 == 44\nKetemu di indeks 6 dalam 3 langkah. Satu langkah terakhir itu penting — pencarian biner tidak pernah memeriksa angka di sebelah kanan setelah menutup ruang, jadi angka terakhir di daftar yang tidak disinggahi sama sekali adalah bug, bukan optimasi.",
+      "panjang": 426
+    },
+    {
+      "kategori": "sebab-kebetulan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Model yang dilatih lebih lama punya loss lebih kecil. Berarti latih lebih lama selalu lebih baik?",
+      "jawab": "Tidak. Latihan lebih lama bisa menurunkan loss, tapi bisa juga membuat model rusak — tergantung apa yang sedang dilatih. Yang memutuskan kualitas bukan cuma loss, melainkan apa yang benar-benar dipakai: kecepatan menjawab, tidak mengarang, dan mampu menyelesaikan tugas yang diberikan.",
+      "panjang": 285
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 37 ton, harga Rp28.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "37 ton sama dengan 37.000 kilogram. Kalikan 37.000 x Rp28.000 = Rp1.036.000.000. Tagihan sebesar itu baru berlaku setelah harga dan volume disetujui tertulis — saya tidak menebak dan tidak mencetak tagihan palsu.",
+      "panjang": 212
+    },
+    {
+      "kategori": "inversi",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Kalau tujuanmu memastikan sebuah proyek GAGAL total, apa lima hal yang kamu lakukan?",
+      "jawab": "1. Cari dulu apa yang pernah gagal di jalur yang sama — ulangi kegagalan itu atau kamu cuma menumpuk kerjaan yang sama. 2. Ukur kebutuhan sebenarnya, bukan impianmu. \"Kita butuh 100 orang\" itu impian; \"butuh 5 orang untuk 3 minggu\" itu angka yang bisa dihitung. 3. Pisahkan pekerjaan dari biaya. Pekerjaan bisa dikerjakan, biaya bisa dihitung, dan keduanya bisa diverifikasi. 4. Buat daftar kegagalan yang sudah terjadi di proyek sebelumnya, lalu buktikan bahwa jalur ini tidak menabraknya. 5. Uji sebelum meluncurkan apa pun. Uji yang paling murah dan paling cepat — satu orang memakai produknya, lalu kamu melihat apa yang terjadi.",
+      "panjang": 633
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Harga naik 25% dari Rp266.000. Berapa persen harus turun supaya kembali ke harga semula?",
+      "jawab": "1. Harga baru: Rp266.000 x 1,25 = Rp332.500.\n2. Turun ke Rp266.000: (332.500 - 266.000) : 332.500 x 100 = 20%.\nJadi harus turun 20%. Satu hal penting: persentase naik dan turun diukur atas angka berbeda, jadi kenaikan 20% lalu penurunan 20% tidak kembali ke titik awal — jangan menyuap diri dengan mengira penurunan setara kenaikannya.",
+      "panjang": 335
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Sebuah truk mengangkut briket ke Surabaya. Berapa ongkos per kilogramnya?",
+      "jawab": "Angka ongkos kurang ada di catatan saya, dan saya tidak menebaknya. Yang bisa saya lakukan: cari pengepul briket di Surabaya, lalu kamu tanya langsung. Atau kalau kamu punya angka dari pengiriman sebelumnya, catat dulu supaya bisa saya pakai untuk perbandingan.",
+      "panjang": 261
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Untuk 1.000 data, kira-kira berapa kali lebih banyak operasi O(n²) dibanding O(n log n)?",
+      "jawab": "Hitung dulu:\n- O(n²): 1.000 x 1.000 = 1.000.000 operasi.\n- O(n log n): 1.000 x log2(1.000) = sekitar 9.966 operasi.\nMembagi keduanya: 1.000.000 : 9.966 = sekitar 100 kali.\nJadi O(n²) kira-kira 100 kali lebih banyak operasi untuk 1.000 data. Catatan: angka log2 di sini adalah perkiraan — nilai tepatnya bergantung pada algoritma.",
+      "panjang": 329
+    },
+    {
+      "kategori": "sebab-kebetulan",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Bulan yang penjualannya tinggi selalu bulan yang biaya iklannya tinggi. Berarti iklan menyebabkan penjualan?",
+      "jawab": "Tidak. Itu korelasi, bukan sebab-akibat. Bisa jadi bulan-bulan yang sama-sama sibuk (lebaran, promo musiman) membuat keduanya tinggi. Sebelum menyimpulkan iklan menyebabkan penjualan, buktikan dulu dengan uji ketiga: ubah biaya iklan di satu bulan yang lainnya sama, lalu lihat apakah penjualan ikut berubah.",
+      "panjang": 308
+    },
+    {
+      "kategori": "satuan",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 33 ton, harga Rp25.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "33 ton sama dengan 3.300 kilogram. Kalau harga Rp25.000 per kilogram, total tagihannya 3.300 x 25.000 = Rp81.000.000. Sebelum menagih, pastikan kualitas dan jumlah kiriman sesuai spek — tagihan yang keliru bisa mencemari seluruh catatan.",
+      "panjang": 237
+    },
+    {
+      "kategori": "inversi",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Kalau semua alat yang biasa kamu pakai hilang, dengan apa tujuannya tetap tercapai?",
+      "jawab": "Tujuannya tetap tercapai lewat cara lain, bukan lewat alat yang hilang. Contoh yang paling jelas: melaporkan keadaan tidak bergantung pada satu alat melaporkan — ia bergantung pada keadaan yang tercatat dan orang yang membacanya. Kalau alatnya hilang, catatan tetap ada dan orang tetap bisa membacanya. Yang perlu dijaga: catatan tidak dihapus dan orang yang membacanya tetap orang yang benar.",
+      "panjang": 393
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Kelompok pertama 4 orang dengan rata-rata 45. Kelompok kedua 24 orang dengan rata-rata 80. Berapa rata-rata gabungannya?",
+      "jawab": "(4 × 45 + 24 × 80) : 28 = 72,14. Satu cara menipu: menaruh angka kecil di kelompok kecil dan besar di kelompok besar lalu mengaku rata-rata gabungan. Itu hanya menambah kepercayaan diri saja — rata-rata gabungan tetap di antara dua kelompok itu.",
+      "panjang": 245
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": false,
+      "sebab": "menyodorkan angka padahal tak berdasar",
+      "btjs": false,
+      "tanya": "Bulan ini penjualan naik 30%. Berapa rupiah kenaikannya?",
+      "jawab": "Kenaikannya berapa pun tergantung angka sebelumnya. Kalau bulan lalu Rp10.000.000, ini cara kerjanya: Rp10.000.000 x 30% = Rp3.000.000. Jadi naik Rp3.000.000. Kalau bulan lalu angkanya beda, hitungannya beda juga — saya tidak menebak angka lama.",
+      "panjang": 245
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [5, 13, 18, 25, 27, 34, 35, 44, 49, 55]. Telusuri pencarian biner untuk 25. Berapa langkah, dan di indeks ",
+      "jawab": "Langkah 1: lo=0 hi=9 mid=4 → data[4]=27. 25 < 27 → sekarang hi=3.\nLangkah 2: lo=0 hi=3 mid=1 → data[1]=13. 25 > 13 → sekarang lo=2.\nLangkah 3: lo=2 hi=3 mid=2 → data[2]=18. 25 > 18 → sekarang lo=3.\nLangkah 4: lo=3 hi=3 mid=3 → data[3]=25. KETEMU, indeks 3. Total 4 langkah. (Diperiksa: data[3] memang 25.)",
+      "panjang": 305
+    },
+    {
+      "kategori": "sebab-kebetulan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Sejak kami memasang iklan, penjualan naik 40%. Berarti iklannya berhasil, kan?",
+      "jawab": "Belum tentu — itu kenaikan bersama, bukan bukti sebab. Sebelum menyimpulkan, ukur dulu: kalau iklan sudah dilepas, bandingkan penjualan sebelum dan sesudah lewat jalur yang sama. Kalau iklan baru, bandingkan dengan periode yang sama dan tanpa iklan. Jangan mengira korelasi jadi sebab.",
+      "panjang": 285
+    },
+    {
+      "kategori": "satuan",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 38 ton, harga Rp17.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "38 ton = 38.000 kg. Kalau harga Rp17.000 per kg, total tagihannya 38.000 kg x Rp17.000 = Rp649.000.000. Itu sebelum pajak, dan pembayaran biasanya dicairkan bertahap.",
+      "panjang": 166
+    },
+    {
+      "kategori": "inversi",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Apa cara paling murah untuk MEMBUKTIKAN idemu salah, bukan membuktikannya benar?",
+      "jawab": "Uji yang paling murah adalah uji yang menuntut sesuatu yang tidak kamu punya. Kalau kamu tidak punya data, kamu tidak bisa membuktikan apa pun — jadi jangan mengarang data untuk menutupi ketidaktahuanmu. Yang paling murah untuk membuktikan sesuatu yang kamu duga benar: uji satu variabel, ukur sebelum dan sesudah, lalu hitung efeknya. Itu satu-satunya cara yang tidak menipu.",
+      "panjang": 376
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Berangkat 87 km dengan kecepatan 16 km/jam, pulang jalur yang sama dengan 64 km/jam. Berapa kecepatan rata-rata seluruh ",
+      "jawab": "Jarak total 87 × 2 = 174 km. Waktu ke kantor 87 : 16 = 5,4375 jam, pulang 87 : 64 = 1,3594 jam. Total 6,7969 jam. Kecepatan rata-ratanya 174 : 6,7969 = 25,69 km/jam. Satu hal yang sering terlupa: rata-rata hitung tidak menolong soal seperti ini — yang dipakai harus rata-rata HARAPAN, dan itu dihitung dengan jumlah jarak, bukan jumlah waktu.",
+      "panjang": 342
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Tim menyelesaikan 12 tugas minggu ini. Apakah mereka lebih produktif dari minggu lalu?",
+      "jawab": "Tidak ada angka minggu lalu untuk dibandingkan. Mengklaim lebih produktif tanpa angka lama adalah mengarang.",
+      "panjang": 108
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Untuk 20.000 data, kira-kira berapa kali lebih banyak operasi O(n²) dibanding O(n log n)?",
+      "jawab": "Kalau n = 20.000:\n- O(n²) = 400.000.000 operasi\n- O(n log n) = 20.000 × log2(20.000) = 20.000 × 14,3 = 286.000 operasi\nMaka O(n²) = 400.000.000 : 286.000 = 1.400 kali lebih banyak. Itu kira-kira selisih antara 20 menit dan 2 detik. Ukur dulu sebelum menentukan algoritma — untuk data kecil dua-duanya terasa sama dan salah menentukan harganya mahal.",
+      "panjang": 349
+    },
+    {
+      "kategori": "satuan",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 40 ton, harga Rp8.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "40 ton x 10 : 8.000 = Rp3.200.000. Satuan ini berantakan jadi sering tercampur: ton biasanya dibeli per kg, jadi saya nyatakan dulu sebelum menghitung. Kalau klien menagih per ton, itu kesepakatan khusus yang harus disebut, bukan asumsi saya.",
+      "panjang": 242
+    },
+    {
+      "kategori": "inversi",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Apa yang harus BENAR supaya keputusan ini menjadi keputusan terburuk tahun ini?",
+      "jawab": "Yang harus benar-benar terjadi: (1) harga briket turun 10% sebelum 1 Juli, dan (2) permintaan briket turun 20% sebelum 1 Juli. Keduanya bersama-sama. Kalau salah satunya tidak terjadi, keputusan ini tetap baik. Yang membuat keputusan ini buruk adalah dua hal itu terjadi bersamaan — dan itu tidak bisa diprediksi dari angka yang ada sekarang.",
+      "panjang": 342
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Harga naik 20% dari Rp295.000. Berapa persen harus turun supaya kembali ke harga semula?",
+      "jawab": "1. Harga baru: Rp295.000 x 1,20 = Rp354.000.\n2. Turun ke Rp295.000 dari Rp354.000 = (295.000 : 354.000) x 100 = 83,4%.\n3. Jadi harus turun: 100% - 83,4% = 16,6%.\nJadi turun 16,6% dari harga naiknya. Satu hal yang sering terlupa: persentase naik dan turun dihitung dari basis yang berbeda, jadi keduanya tidak bisa dicampur.",
+      "panjang": 323
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Kadar abu produk A lebih rendah dari produk B. Mana yang lebih menguntungkan dijual?",
+      "jawab": "Tidak tentu — kadar abu menentukan harga, bukan keuntungan. Produk A bisa jadi lebih murah di pasaran, dan produk B lebih mahal. Untuk memutuskan, cari harga pasar masing-masing, baru kalikan dengan volume dan bandingkan. Satu angka tidak cukup.",
+      "panjang": 245
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [9, 11, 12, 18, 19, 22, 25, 26, 34, 38, 40]. Telusuri pencarian biner untuk 11. Berapa langkah, dan di ind",
+      "jawab": "Jejaknya:\n  langkah 1: data tengah = 18, 11 < 18 -> sebelah kiri\n  langkah 2: data tengah = 12, 11 < 12 -> sebelah kiri\n  langkah 3: data tengah = 11, KETEMU\nKetemu di indeks 1 dalam 3 langkah. Kenapa cepat: tiap langkah membuang separuh sisa, jadi 11 data cukup ditanya 4 kali maksimal. Ini pencarian biner pada data terurut — kalau datanya acak, biner bukan pilihan terbaik.",
+      "panjang": 376
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 22 ton, harga Rp15.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "22 ton = 22.000 kg. 22.000 kg x Rp15.000 = Rp330.000.000. Itu kira-kira harga kotor; tagihan akhir biasanya menambah margin dan pajak. Kalau mau pasti, tanya dulu soal margin dan pajak yang diminta pembeli.",
+      "panjang": 206
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Kelompok pertama 5 orang dengan rata-rata 45. Kelompok kedua 29 orang dengan rata-rata 103. Berapa rata-rata gabungannya",
+      "jawab": "(5 × 45 + 29 × 103) : (5 + 29) = 3.220 : 34 = 94,7. Satu catatan: rata-rata gabungan itu menyerupai rata-rata kelompok yang jumlah datanya lebih besar — bukan rata-rata kelompok yang angkanya lebih tinggi. Jadi jangan menaruh bobot pada kelompok yang lebih besar.",
+      "panjang": 263
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Untuk 5.000 data, kira-kira berapa kali lebih banyak operasi O(n²) dibanding O(n log n)?",
+      "jawab": "Kalau n = 5.000:\n- O(n²) = 25.000.000 operasi\n- O(n log n) = 5.000 × log2(5.000) ≈ 5.000 × 12,287 ≈ 61.435 operasi\n- Perbandingan: 25.000.000 : 61.435 ≈ 407 kali lebih banyak\n\nItu perkiraan berdasarkan rumus. Angka sebenarnya bisa sedikit berbeda tergantung algoritma spesifik, tapi orde besarnya benar: O(n²) jadi masalah saat n mendekati puluhan ribu, sementara O(n log n) masih layak untuk jutaan data.",
+      "panjang": 405
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 18 ton, harga Rp23.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "18 ton = 18.000 kg. Kalau harga Rp23.000 per kg, total tagihannya 18.000 x 23.000 = Rp414.000.000. Itu sebelum pajak dan sebelum biaya pengiriman — ukurannya.",
+      "panjang": 158
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Berangkat 173 km dengan kecepatan 20 km/jam, pulang jalur yang sama dengan 80 km/jam. Berapa kecepatan rata-rata seluruh",
+      "jawab": "Jarak total 346 km, waktu total 17 jam. Kecepatan rata-rata 346 : 17 = 20,35 km/jam. Pembagiannya bukan sekadar menjumlahkan angka kecepatan lalu dibagi dua — jalur pulang pergi berbeda jaraknya, jadi rata-rata harus dihitung dari jumlah jarak dan jumlah waktu.",
+      "panjang": 261
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [4, 12, 19, 21, 23, 28, 31, 36, 45, 50, 54]. Telusuri pencarian biner untuk 56. Berapa langkah, dan di ind",
+      "jawab": "Ketemu dalam 5 langkah, di indeks 10 (data ke-56). Langkah-langkahnya:\n1. Baca 28 (nilai tengah). 56 > 28 → ke kanan.\n2. Baca 45 (tengah kanan). 56 > 45 → ke kanan.\n3. Baca 50 (tengah baru). 56 > 50 → ke kanan.\n4. Baca 54 (tengah kanan). 56 > 54 → ke kanan.\n5. Baca 56 (tengah akhir). KETEMU.\nKetentuan pencarian biner: tiap langkah membuang separuh sisa. Jadi 11 data cukup 4 langkah untuk menyingkirkan semua kecuali satu — dan 5 langkah lagi untuk menemukan tepatnya. Pencarian biner cuma menang kalau datanya terurut; pada data acak ia sama saja mencoba satu per satu.",
+      "panjang": 572
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 3 ton, harga Rp30.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "3 ton sama dengan 3.000 kilogram. Kalikan 3.000 x Rp30.000 = Rp90.000.000. Tagihan sebesar itu baru muncul setelah barang diterima dan dicek, bukan setelah pesanannya dibaca.",
+      "panjang": 174
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Harga naik 10% dari Rp149.000. Berapa persen harus turun supaya kembali ke harga semula?",
+      "jawab": "1. Harga baru: Rp149.000 x 1,10 = Rp163.900.\n2. Turun ke Rp149.000: (163.900 - 149.000) : 163.900 x 100 = 8,5%.\nJadi harus turun 8,5%. Satu hal yang sering terlupa: persentase naik dan turun dihitung atas dasar yang berbeda, jadi keduanya tidak sama.",
+      "panjang": 250
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [7, 11, 18, 26, 34, 43, 52, 58]. Telusuri pencarian biner untuk 43. Berapa langkah, dan di indeks berapa k",
+      "jawab": "Sebutan \"pencarian biner\" menunjukkan struktur, bukan kecepatan — jadi saya kerjakan langkahnya saja, tanpa mengira-ngira angka. Mula di indeks 0..7. Tengah = (0+7)//2 = 3. Data[3] = 26. Karena 43 > 26, geser kiri ke 4. Tengah = (4+7)//2 = 5. Data[5] = 43 — ketemu, dalam 2 langkah. Langkah ke-2 itu satu-satunya kemungkinan, jadi saya tidak mengarang angka.",
+      "panjang": 358
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 21 ton, harga Rp19.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "21 ton sama dengan 21.000 kilogram. Kalikan 21.000 kg x Rp19.000/kg = Rp399.000.000. Itu kira-kira berapa? Kalau perlu kebundelannya ke rupiah yang dibulatkan, tanya dulu — saya tunjukkan sebelum dibulatkan.",
+      "panjang": 207
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Kelompok pertama 2 orang dengan rata-rata 55. Kelompok kedua 27 orang dengan rata-rata 94. Berapa rata-rata gabungannya?",
+      "jawab": "(2 × 55 + 27 × 94) : 29 = 87,6. Satu cara menipu yang sering muncul: menaruh 27 di penyebut. Rata-rata gabungan tidak pernah separuh antara dua angka bila kelompoknya berbeda ukuran — dan di sini bedanya memang besar.",
+      "panjang": 217
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Untuk 100.000 data, kira-kira berapa kali lebih banyak operasi O(n²) dibanding O(n log n)?",
+      "jawab": "Kalau n = 100.000:\n- O(n²) = 10.000.000.000 operasi\n- O(n log n) = 100.000 × log2(100.000) = sekitar 1.660.964 operasi\n- Perbandingan: 10.000.000.000 : 1.660.964 = sekitar 6.022 kali lebih banyak\n\nJadi O(n²) kira-kira 6.022 kali lebih banyak operasi untuk 100.000 data. Namun jangan hafal angka ini — hitung saat membandingkan algoritma, dan ukur dulu sebelum menjanjikan kecepatan.",
+      "panjang": 382
+    },
+    {
+      "kategori": "satuan",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 33 ton, harga Rp8.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "33 ton sama dengan 3.300 kilogram. Kalau harga Rp8.000 per kilogram, total tagihannya 3.300 x Rp8.000 = Rp26.400.000. Satuan di sini penting: ton ke kilogram itu perkalian 1.000, jadi salah satunya saja sudah keliru.",
+      "panjang": 216
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Berangkat 117 km dengan kecepatan 26 km/jam, pulang jalur yang sama dengan 79 km/jam. Berapa kecepatan rata-rata seluruh",
+      "jawab": "Jumlahkan jarak dulu: 117 + 117 = 234 km. Waktu ke kota: 117 : 26 = 4,5 jam. Waktu pulang: 117 : 79 = 1,474 jam. Total waktu: 4,5 + 1,474 = 5,974 jam. Kecepatan rata-ratanya: 234 : 5,974 = 39,2 km/jam. Satu hal yang sering terlupa: rata-rata hitung tidak sama dengan rata-rata perjalanan. Itu keduanya beda, dan bedanya berarti.",
+      "panjang": 328
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+ "stempel": "2026-09-10T08:45:28.161Z",
+ "model": "qwen3:4b",
+ "host": "http://measure-host.local:11434",
+ "batas": 900,
+ "aliran": true,
+ "ruangSisa": 1.5,
+ "soal": [
+  "J2-A1",
+  "J2-A4",
+  "J2-B5",
+  "J2-D2",
+  "J2-G2"
+ ],
+ "terlama": 811,
+ "gagal": 0,
+ "cukup": false,
+ "saran": 1260,
+ "hurufPerDetik": 5,
+ "baris": [
+  {
+   "id": "J2-A1",
+   "jenis": "tak-terjawab",
+   "detik": 298,
+   "ok": true,
+   "huruf": 2776,
+   "sebab": null
+  },
+  {
+   "id": "J2-A4",
+   "jenis": "tak-terjawab",
+   "detik": 607,
+   "ok": true,
+   "huruf": 131,
+   "sebab": null
+  },
+  {
+   "id": "J2-B5",
+   "jenis": "premis-salah",
+   "detik": 811,
+   "ok": true,
+   "huruf": 1464,
+   "sebab": null
+  },
+  {
+   "id": "J2-D2",
+   "jenis": "maksud-kurang",
+   "detik": 403,
+   "ok": true,
+   "huruf": 2180,
+   "sebab": null
+  },
+  {
+   "id": "J2-G2",
+   "jenis": "subjektif",
+   "detik": 439,
+   "ok": true,
+   "huruf": 3368,
+   "sebab": null
+  }
+ ],
+ "mesin": {
+  "model": [
+   "aya-expanse:8b",
+   "gemma3:12b",
+   "llama3.1:8b",
+   "migancore:0.14",
+   "migancore:0.14-tool",
+   "migancore:0.4-qwen3",
+   "migancore:uji-jujur-1",
+   "mistral-nemo:12b",
+   "phi4:14b",
+   "qwen2.5:14b",
+   "qwen3.8:27b",
+   "qwen3:4b"
+  ],
+  "versi": "0.33.2",
+  "cap": "12m-303d5f0f-0.33.2"
+ },
+ "hostLama": "http://laptop.local:11434",
+ "amandemen": [
+  {
+   "tanggal": "2026-09-10",
+   "apa": "Alamat Bmax berubah http://laptop.local:11434 -> http://measure-host.local:11434 (DHCP sesudah dinyalakan ulang). Waktu terukur TIDAK diukur ulang.",
+   "kenapaSah": "Yang dijaga gerbang adalah MESINNYA, bukan alamatnya. Daftar model di alamat baru identik persis dengan yang tercatat di alamat lama pukul ~06:00Z hari yang sama - 12 model, termasuk EMPAT migancore:* yang bangunan kami sendiri dan tidak ada di mesin lain. Versi Ollama sama (0.33.2). Waktu tempuh adalah sifat mesin, dan mesinnya sama.",
+   "yangDIUBAH": "host + sidik mesin ditambahkan",
+   "yangTIDAKdiubah": "detik, terlama, gagal, cukup, saran, baris — tidak satu pun angka pengukuran disentuh",
+   "pelajaran": "Alamat IP adalah fakta yang berubah sendiri. Menyimpannya sebagai tetapan berarti menyimpan sesuatu yang akan basi tanpa memberi tahu siapa pun - dan mesin yang sehat lalu terbaca \"mati\". Gerbang sekarang membandingkan sidik mesin, bukan alamat."
+  }
+ ]
+}

@@ -1,0 +1,538 @@
+{
+ "setelan": {
+  "model": "deepseek-flash",
+  "thinking": {
+   "type": "enabled"
+  },
+  "reasoning_effort": "high",
+  "max_tokens": 32768
+ },
+ "sasaran": {
+  "fakta": 60,
+  "tak-terjawab": 15,
+  "premis-salah": 15,
+  "konteks-kurang": 15,
+  "maksud-kurang": 15,
+  "kedaluwarsa": 15,
+  "subjektif": 15
+ },
+ "banding": 350,
+ "awalan": "U2",
+ "geserTambah": 3,
+ "hitung": {
+  "fakta": 60,
+  "tak-terjawab": 15,
+  "premis-salah": 15,
+  "konteks-kurang": 15,
+  "maksud-kurang": 15,
+  "kedaluwarsa": 15,
+  "subjektif": 15
+ },
+ "lintasJenis": [],
+ "panggilan": [
+  {
+   "t": "2026-09-27T11:57:53.288Z",
+   "jenis": "subjektif",
+   "sub": "tekstil & garmen",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 210,
+    "completion_tokens": 2790,
+    "total_tokens": 3000,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1929
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 210
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 12,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:57:56.332Z",
+   "jenis": "konteks-kurang",
+   "sub": "kayu & furnitur",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 217,
+    "completion_tokens": 3619,
+    "total_tokens": 3836,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 2731
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 217
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 12,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:57:57.101Z",
+   "jenis": "kedaluwarsa",
+   "sub": "kimia industri",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 230,
+    "completion_tokens": 3824,
+    "total_tokens": 4054,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 2952
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 230
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 4,
+   "bocorUji": 1,
+   "duplikat": 7
+  },
+  {
+   "t": "2026-09-27T11:58:00.302Z",
+   "jenis": "subjektif",
+   "sub": "kayu & furnitur",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 210,
+    "completion_tokens": 1361,
+    "total_tokens": 1571,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1039
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 210
+   },
+   "hasil": 3,
+   "cacat": [],
+   "diterima": 3,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:01.095Z",
+   "jenis": "maksud-kurang",
+   "sub": "standar mutu (SNI/ISO)",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 213,
+    "completion_tokens": 4949,
+    "total_tokens": 5162,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 3880
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 213
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 12,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:02.922Z",
+   "jenis": "konteks-kurang",
+   "sub": "logistik & pelabuhan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 218,
+    "completion_tokens": 1308,
+    "total_tokens": 1526,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1046
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 218
+   },
+   "hasil": 3,
+   "cacat": [],
+   "diterima": 3,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:05.555Z",
+   "jenis": "tak-terjawab",
+   "sub": "energi & bahan bakar industri",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 245,
+    "completion_tokens": 5701,
+    "total_tokens": 5946,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 4471
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 245
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 12,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:09.962Z",
+   "jenis": "premis-salah",
+   "sub": "konstruksi & material",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 205,
+    "completion_tokens": 6340,
+    "total_tokens": 6545,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 4693
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 205
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 11,
+   "bocorUji": 0,
+   "duplikat": 1
+  },
+  {
+   "t": "2026-09-27T11:58:12.227Z",
+   "jenis": "maksud-kurang",
+   "sub": "energi & bahan bakar industri",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 209,
+    "completion_tokens": 2210,
+    "total_tokens": 2419,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1907
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 209
+   },
+   "hasil": 3,
+   "cacat": [],
+   "diterima": 3,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:12.973Z",
+   "jenis": "tak-terjawab",
+   "sub": "pertanian & perikanan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 247,
+    "completion_tokens": 1418,
+    "total_tokens": 1665,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1128
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 247
+   },
+   "hasil": 3,
+   "cacat": [],
+   "diterima": 3,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:21.441Z",
+   "jenis": "premis-salah",
+   "sub": "otomotif & suku cadang",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 209,
+    "completion_tokens": 2108,
+    "total_tokens": 2317,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1598
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 209
+   },
+   "hasil": 4,
+   "cacat": [],
+   "diterima": 4,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:58:28.986Z",
+   "jenis": "fakta",
+   "sub": "logistik & pelabuhan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 353,
+    "completion_tokens": 12158,
+    "total_tokens": 12511,
+    "prompt_tokens_details": {
+     "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 11019
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 225
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 8,
+   "bocorUji": 0,
+   "duplikat": 4
+  },
+  {
+   "t": "2026-09-27T11:58:30.071Z",
+   "jenis": "kedaluwarsa",
+   "sub": "konstruksi & material",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 231,
+    "completion_tokens": 7826,
+    "total_tokens": 8057,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 6927
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 231
+   },
+   "hasil": 11,
+   "cacat": [],
+   "diterima": 10,
+   "bocorUji": 0,
+   "duplikat": 1
+  },
+  {
+   "t": "2026-09-27T11:58:33.580Z",
+   "jenis": "kedaluwarsa",
+   "sub": "otomotif & suku cadang",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 235,
+    "completion_tokens": 593,
+    "total_tokens": 828,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 475
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 235
+   },
+   "hasil": 1,
+   "cacat": [],
+   "diterima": 1,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T11:59:59.088Z",
+   "jenis": "fakta",
+   "sub": "ekspor komoditas perkebunan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 355,
+    "completion_tokens": 22550,
+    "total_tokens": 22905,
+    "prompt_tokens_details": {
+     "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 21647
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 227
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 2,
+   "bocorUji": 0,
+   "duplikat": 10
+  },
+  {
+   "t": "2026-09-27T12:01:22.726Z",
+   "jenis": "fakta",
+   "sub": "bea cukai & perpajakan usaha",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 357,
+    "completion_tokens": 21875,
+    "total_tokens": 22232,
+    "prompt_tokens_details": {
+     "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 20754
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 229
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 9,
+   "bocorUji": 0,
+   "duplikat": 3
+  },
+  {
+   "t": "2026-09-27T12:02:38.748Z",
+   "jenis": "fakta",
+   "sub": "UMKM & e-commerce",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 352,
+    "completion_tokens": 18890,
+    "total_tokens": 19242,
+    "prompt_tokens_details": {
+     "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 18006
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 224
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 11,
+   "bocorUji": 0,
+   "duplikat": 1
+  },
+  {
+   "t": "2026-09-27T12:03:23.751Z",
+   "jenis": "fakta",
+   "sub": "standar mutu (SNI/ISO)",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 356,
+    "completion_tokens": 11759,
+    "total_tokens": 12115,
+    "prompt_tokens_details": {
+     "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 10718
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 228
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 8,
+   "bocorUji": 0,
+   "duplikat": 4
+  },
+  {
+   "t": "2026-09-27T12:04:52.121Z",
+   "jenis": "fakta",
+   "sub": "energi & bahan bakar industri",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 352,
+    "completion_tokens": 22137,
+    "total_tokens": 22489,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 21213
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 352
+   },
+   "hasil": 12,
+   "cacat": [],
+   "diterima": 12,
+   "bocorUji": 0,
+   "duplikat": 0
+  },
+  {
+   "t": "2026-09-27T12:05:44.296Z",
+   "jenis": "fakta",
+   "sub": "pertanian & perikanan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 354,
+    "completion_tokens": 12113,
+    "total_tokens": 12467,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 11281
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 354
+   },
+   "hasil": 10,
+   "cacat": [],
+   "diterima": 9,
+   "bocorUji": 0,
+   "duplikat": 1
+  },
+  {
+   "t": "2026-09-27T12:06:31.955Z",
+   "jenis": "fakta",
+   "sub": "keuangan usaha & perbankan",
+   "selesai": "stop",
+   "pakai": {
+    "prompt_tokens": 354,
+    "completion_tokens": 10635,
+    "total_tokens": 10989,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 10536
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 354
+   },
+   "hasil": 1,
+   "cacat": [],
+   "diterima": 1,
+   "bocorUji": 0,
+   "duplikat": 0
+  }
+ ]
+}

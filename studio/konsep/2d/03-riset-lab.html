@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Riset &amp; Laboratorium — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>OBSERVATORIUM RISET</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">Pra-daftar &amp; hasil</div><h1>Observatorium Riset</h1><p class="subjudul">Hipotesis, keadaan, dan vonis dibaca apa adanya. Grafik hanya untuk satu instrumen: <b>petak-jujur2</b>.</p></div><div class="legenda-ringkas"><span class="pil">MENGARANG · petak-jujur2</span><span class="pil">n = putaran sah</span></div></header>
+    <div id="lab"><div class="panel pemuatan">menyalakan instrumen…</div></div>
+  </main>
+  <footer class="kaki"><span>Bar lebih panjang berarti MENGARANG lebih tinggi, bukan lebih baik.</span><span>Model frontier tetap menampilkan n kecil.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded',async()=>{
+      const root=document.querySelector('#lab');let d;try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      const maksimum=Math.max(...d.tanggaMengarang_petakJujur2.map(x=>x.mengarangRata),1);
+      root.innerHTML=`
+        <section class="sorotan-grid">
+          <article class="panel sorotan"><span class="status status-lulus">A3 · LULUS</span><h2 style="margin-top:10px">Jangkar non-sirkular</h2><p>${Nadi.teksData(d.sorotan.A3,d,'sorotan.A3')}</p></article>
+          <article class="panel sorotan"><span class="status status-belum">A4 · TERKUNCI</span><h2 style="margin-top:10px">Syarat bibit patah</h2><p>${Nadi.teksData(d.sorotan.A4,d,'sorotan.A4')}</p></article>
+          <article class="panel sorotan"><span class="status status-netral">H-RAGU · NETRAL</span><h2 style="margin-top:10px">Keraguan bukan sinyal</h2><p>${Nadi.teksData(d.sorotan.HRAGU,d,'sorotan.HRAGU')}</p></article>
+        </section>
+
+        <section id="tangga" class="panel panel-pad" style="margin-top:16px"><div class="kepala-layar" style="margin:0 0 12px"><div><span class="label-panel">Tangga MENGARANG</span><h2 style="margin-top:6px">Instrumen: petak-jujur2</h2><p class="redup">Setiap baris menyebut model, perlakuan, dan n putaran sah. Panjang bar dinormalisasi hanya untuk gambar; nilai tetap persen sumber.</p></div></div><div class="grafik">${d.tanggaMengarang_petakJujur2.map((x,i)=>`<div class="grafik-baris"><div class="grafik-label"><b>${Nadi.teksData(x.model,d,`tanggaMengarang_petakJujur2[${i}].model`)}</b><small>n = ${Nadi.angka(x.putaranSah,d,`tanggaMengarang_petakJujur2[${i}].putaranSah`)} putaran sah · over-refusal ${Nadi.angka(x.overRefusalRata,d,`tanggaMengarang_petakJujur2[${i}].overRefusalRata`,'%')} · fakta ${Nadi.angka(x.faktaRata,d,`tanggaMengarang_petakJujur2[${i}].faktaRata`)}</small></div><div class="jalur-bar" aria-hidden="true"><span class="isi-bar" style="width:${x.mengarangRata/maksimum*100}%"></span></div><div class="grafik-nilai">${Nadi.angka(x.mengarangRata,d,`tanggaMengarang_petakJujur2[${i}].mengarangRata`,'%')}</div></div>`).join('')}</div><p class="catatan-sumber">Catatan sumber: ${Nadi.esc(d._catatan)}</p></section>
+
+        <section class="panel panel-pad" style="margin-top:16px"><div class="kepala-layar" style="margin:0 0 14px"><div><span class="label-panel">Buku pra-daftar</span><h2 style="margin-top:6px">Hipotesis &amp; vonis</h2></div><div class="filter" role="group" aria-label="Saring keadaan"><button class="tombol hantu" data-filter="semua" aria-pressed="true">Semua</button><button class="tombol hantu" data-filter="lulus">Lulus</button><button class="tombol hantu" data-filter="gagal">Gagal</button><button class="tombol hantu" data-filter="netral">Netral</button><button class="tombol hantu" data-filter="belum">Belum</button></div></div><div class="grid grid-3" id="kartu-pradaftar">${d.praDaftar.map((x,i)=>`<article class="panel panel-tanpa-bayang kartu-pradaftar" data-keadaan="${Nadi.esc(x.keadaan)}"><div class="kepala-kartu"><div><span class="label-panel">${Nadi.teksData(x.id,d,`praDaftar[${i}].id`)}</span><h3 style="margin-top:6px">${Nadi.teksData(x.judul||'Judul tidak tersedia di sumber',d,`praDaftar[${i}].judul`)}</h3></div><span class="status status-${Nadi.status(x.keadaan)}">${Nadi.esc(x.keadaan).toUpperCase()}</span></div><p>${x.tanggal?`Tanggal ${Nadi.angka(x.tanggal,d,`praDaftar[${i}].tanggal`)}`:'Tanggal belum ada'}</p><details><summary>Baca hasil sumber</summary><p>${Nadi.teksData(x.hasil,d,`praDaftar[${i}].hasil`)}</p>${x.dikunci?`<p class="catatan-sumber">Dikunci ${Nadi.angka(x.dikunci,d,`praDaftar[${i}].dikunci`)}</p>`:''}</details></article>`).join('')}</div></section>`;
+      document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+        const f=btn.dataset.filter; document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===btn)));
+        document.querySelectorAll('[data-keadaan]').forEach(x=>x.hidden=f!=='semua'&&x.dataset.keadaan!==f);
+      }));
+    });
+  </script>
+</body></html>

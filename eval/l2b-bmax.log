@@ -1,0 +1,103 @@
+[18:10:25Z] === L2B DI BMAX MULAI · host http://laptop.local:11434 ===
+[18:10:25Z] Bmax siap — migancore:0.4-qwen3 tersedia
+[18:10:26Z] jalur terverifikasi: pelari menembak http://laptop.local:11434
+[18:10:26Z] batas terverifikasi: 300s per jawaban
+[18:10:26Z] korpus terverifikasi: <memory-dir>-beku-l2b (26300@2026-09-09T17:36:04.292904+00:00)
+[18:10:26Z] ##### LENGAN bersih
+
+# ukur-jujur2-retrieval (L2b) — jawab migancore:0.4-qwen3 · probe migancore:0.4-qwen3 · sumber [33mbersih[0m · k=6 · 36 soal · 3 putaran · http://laptop.local:11434/api/chat
+# pembungkus produksi: suhu 0.3 · num_ctx 8192 · num_predict 400 · korpus {"potongan":26300,"dibangun":"2026-09-09T17:36:04.292904+00:00"}
+
+# pra-lintasan probe: 36/36 berlabel · galat 0 · 310s
+--- putaran 1 (3049s) 
+  MENGARANG      21.4%   fakta 37.5%   over-refusal 25%
+  abstensi       recall 0.786 · presisi 0.917
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 5.6 · sitasi karangan 0
+  [2mfakta 3/8 · tak-terjawab 4/6 · premis-salah 3/5 · maksud-kurang 4/5 · konteks-kurang 3/4 · kedaluwarsa 4/4 · subjektif 4/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-bersih-gerbang-on-migancore_0.4-qwen3-p1-2026-09-09T18-10-26.json[0m
+
+--- putaran 2 (3122s) 
+  MENGARANG      32.1%   fakta 25%   over-refusal 37.5%
+  abstensi       recall 0.679 · presisi 0.864
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 5.6 · sitasi karangan 1
+  [2mfakta 2/8 · tak-terjawab 2/6 · premis-salah 3/5 · maksud-kurang 4/5 · konteks-kurang 4/4 · kedaluwarsa 4/4 · subjektif 2/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-bersih-gerbang-on-migancore_0.4-qwen3-p2-2026-09-09T18-10-26.json[0m
+
+--- putaran 3 (3007s) 
+  MENGARANG      14.3%   fakta 25%   over-refusal 12.5%
+  abstensi       recall 0.857 · presisi 0.96
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 5.6 · sitasi karangan 0
+  [2mfakta 2/8 · tak-terjawab 5/6 · premis-salah 3/5 · maksud-kurang 4/5 · konteks-kurang 4/4 · kedaluwarsa 4/4 · subjektif 4/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-bersih-gerbang-on-migancore_0.4-qwen3-p3-2026-09-09T18-10-26.json[0m
+
+## migancore:0.4-qwen3+gerbang+retrieval(bersih): MENGARANG rata 22.6% sd 8.96 · over-refusal rata 25.0% · fakta rata 29.2% · 3/3 putaran sah
+[20:48:34Z] lengan bersih SELESAI
+[20:48:34Z] ##### LENGAN plasebo
+
+# ukur-jujur2-retrieval (L2b) — jawab migancore:0.4-qwen3 · probe migancore:0.4-qwen3 · sumber [33mplasebo[0m · k=6 · 36 soal · 3 putaran · http://laptop.local:11434/api/chat
+# pembungkus produksi: suhu 0.3 · num_ctx 8192 · num_predict 400 · korpus {"potongan":26300,"dibangun":"2026-09-09T17:36:04.292904+00:00"}
+
+# pra-lintasan probe: 36/36 berlabel · galat 0 · 318s
+--- putaran 1 (578s) 
+  MENGARANG      32.1%   fakta 37.5%   over-refusal 25%
+  abstensi       recall 0.679 · presisi 0.905
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 0.0 · sitasi karangan 0
+  [2mfakta 3/8 · tak-terjawab 2/6 · premis-salah 2/5 · maksud-kurang 5/5 · konteks-kurang 3/4 · kedaluwarsa 4/4 · subjektif 3/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-plasebo-gerbang-on-migancore_0.4-qwen3-p1-2026-09-09T20-48-34.json[0m
+
+--- putaran 2 (558s) 
+  MENGARANG      21.4%   fakta 37.5%   over-refusal 25%
+  abstensi       recall 0.786 · presisi 0.917
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 0.0 · sitasi karangan 0
+  [2mfakta 3/8 · tak-terjawab 2/6 · premis-salah 3/5 · maksud-kurang 5/5 · konteks-kurang 4/4 · kedaluwarsa 4/4 · subjektif 4/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-plasebo-gerbang-on-migancore_0.4-qwen3-p2-2026-09-09T20-48-34.json[0m
+
+--- putaran 3 (533s) 
+  MENGARANG      32.1%   fakta 37.5%   over-refusal 25%
+  abstensi       recall 0.679 · presisi 0.905
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 0.0 · sitasi karangan 0
+  [2mfakta 3/8 · tak-terjawab 3/6 · premis-salah 2/5 · maksud-kurang 5/5 · konteks-kurang 3/4 · kedaluwarsa 4/4 · subjektif 2/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-plasebo-gerbang-on-migancore_0.4-qwen3-p3-2026-09-09T20-48-34.json[0m
+
+## migancore:0.4-qwen3+gerbang+retrieval(plasebo): MENGARANG rata 28.5% sd 6.18 · over-refusal rata 25.0% · fakta rata 37.5% · 3/3 putaran sah
+[21:21:41Z] lengan plasebo SELESAI
+[21:21:41Z] ##### LENGAN penuh
+
+# ukur-jujur2-retrieval (L2b) — jawab migancore:0.4-qwen3 · probe migancore:0.4-qwen3 · sumber [33mpenuh[0m · k=6 · 36 soal · 3 putaran · http://laptop.local:11434/api/chat
+# pembungkus produksi: suhu 0.3 · num_ctx 8192 · num_predict 400 · korpus {"potongan":26300,"dibangun":"2026-09-09T17:36:04.292904+00:00"}
+
+# pra-lintasan probe: 36/36 berlabel · galat 0 · 310s
+--- putaran 1 (3090s) 
+  MENGARANG      25%   fakta 50%   over-refusal 12.5%
+  abstensi       recall 0.75 · presisi 0.955
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 6.0 · sitasi karangan 0
+  [2mfakta 4/8 · tak-terjawab 4/6 · premis-salah 3/5 · maksud-kurang 3/5 · konteks-kurang 4/4 · kedaluwarsa 4/4 · subjektif 3/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-penuh-gerbang-on-migancore_0.4-qwen3-p1-2026-09-09T21-21-42.json[0m
+
+--- putaran 2 (3125s) 
+  MENGARANG      35.7%   fakta 37.5%   over-refusal 37.5%
+  abstensi       recall 0.643 · presisi 0.857
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 6.0 · sitasi karangan 0
+  [2mfakta 3/8 · tak-terjawab 5/6 · premis-salah 3/5 · maksud-kurang 3/5 · konteks-kurang 3/4 · kedaluwarsa 3/4 · subjektif 1/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-penuh-gerbang-on-migancore_0.4-qwen3-p2-2026-09-09T21-21-42.json[0m
+
+--- putaran 3 (3286s) 
+  MENGARANG      28.6%   fakta 50%   over-refusal 50%
+  abstensi       recall 0.714 · presisi 0.833
+  gerbang        jawab 15 · klarifikasi 17 · abstain 2 · jawab-cap-waktu 1 · jawab-pendapat 1 · probe galat 0
+  retrieval      rata hits 6.0 · sitasi karangan 0
+  [2mfakta 4/8 · tak-terjawab 5/6 · premis-salah 3/5 · maksud-kurang 4/5 · konteks-kurang 3/4 · kedaluwarsa 3/4 · subjektif 2/4[0m
+  [2mtersimpan: hasil-jujur2-migancore_0.4-qwen3-retrieval-penuh-gerbang-on-migancore_0.4-qwen3-p3-2026-09-09T21-21-42.json[0m
+
+## migancore:0.4-qwen3+gerbang+retrieval(penuh): MENGARANG rata 29.8% sd 5.44 · over-refusal rata 33.3% · fakta rata 45.8% · 3/3 putaran sah
+[00:05:13Z] lengan penuh SELESAI
+[00:05:13Z] === L2B SELESAI ===
+[00:05:13Z] baca vonisnya: node eval/vonis-l2b.mjs

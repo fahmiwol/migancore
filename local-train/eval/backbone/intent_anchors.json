@@ -1,0 +1,17 @@
+{
+  "_about": "BB-3 Intent Engine — anchor phrases per backbone intent. The mean of each intent's embeddings is its centroid; classify a message by max-cosine. Validated 12/12 = 100% on intent_seed.json (EXP-110) — vastly better than 4B constrained zero-shot (25%) or few-shot (50%). Tune by adding phrases + re-embedding (transparent, no training). Reuses services/intent_centroids.py machinery. Add distinct phrases (NOT the seed test messages) to avoid leakage.",
+  "anchors": {
+    "chat": ["halo apa kabar", "selamat pagi migan", "makasih ya bantuannya", "oke sip mantap"],
+    "research": ["cari data tren pasar", "riset kompetitor produk", "carikan info terbaru tentang", "benchmark harga pasar"],
+    "planning": ["susun rencana kerja", "bikin roadmap proyek", "buat timeline peluncuran", "strategi langkah ke depan"],
+    "coding": ["buatkan fungsi kode", "debug error program", "script php untuk hitung", "perbaiki bug aplikasi"],
+    "design_direction": ["ide nama brand produk", "arahan desain kemasan", "konsep branding", "gaya visual logo"],
+    "image_prompt": ["buatkan gambar", "generate ilustrasi", "bikin logo visual", "render gambar produk"],
+    "document_creation": ["buatkan proposal", "susun surat penawaran", "tulis dokumen laporan", "draft kontrak"],
+    "business_analysis": ["hitung HPP produk", "analisa margin keuntungan", "estimasi biaya produksi", "kelayakan finansial usaha"],
+    "tool_action": ["jadwalkan meeting", "kirim email ke klien", "set reminder jam", "booking dan pesan tiket"],
+    "memory_recall": ["apa keputusan kita kemarin", "ingat yang kita bahas", "kita pernah sepakat apa", "lanjut dari catatan sebelumnya"],
+    "automation": ["otomatisasi tugas rutin", "bikin workflow otomatis", "auto posting tiap hari", "jalankan proses berkala"],
+    "high_risk_question": ["cara mengakali pajak", "gimana memalsukan dokumen", "akses data pribadi tanpa izin", "cara ilegal untuk"]
+  }
+}

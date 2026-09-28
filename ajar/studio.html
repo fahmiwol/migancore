@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio — MiganCore</title>
+<link rel="stylesheet" href="/token.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--teks);
+    font:var(--teks-base)/var(--tinggi-baris) var(--huruf)}
+  header{padding:var(--sela-4) var(--sela-5);border-bottom:1px solid var(--garis);
+    display:flex;gap:var(--sela-3);align-items:center;flex-wrap:wrap}
+  h1{font-size:var(--teks-lg);margin:0;font-weight:var(--tebal-tebal);letter-spacing:-.01em}
+  .redup{color:var(--redup);font-size:var(--teks-md)}
+  nav{display:flex;gap:var(--sela-2);margin-left:auto}
+  nav a{color:var(--redup);text-decoration:none;font-size:var(--teks-md);
+    padding:6px 12px;border-radius:var(--sudut);border:1px solid transparent}
+  nav a:hover{color:var(--biru-terang);border-color:var(--garis)}
+  nav a.aktif{color:var(--teks);background:var(--panel);border-color:var(--garis)}
+  main{max-width:1120px;margin:0 auto;padding:var(--sela-5)}
+  .kartu{background:var(--panel);border:1px solid var(--garis);
+    border-radius:var(--sudut-besar);padding:var(--sela-4)}
+  .kartu h2{font-size:var(--teks-sm);margin:0 0 var(--sela-3);color:var(--redup);
+    font-weight:var(--tebal-tebal);text-transform:uppercase;letter-spacing:.06em}
+  .grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sela-3)}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sela-4);
+    margin-top:var(--sela-4)}
+  @media(max-width:860px){.grid4,.grid2{grid-template-columns:1fr}}
+  .angka{font-size:var(--teks-xl);font-weight:680;letter-spacing:-.02em;margin-top:2px}
+  .kecil{font-size:var(--teks-xs);color:var(--redup)}
+  table{width:100%;border-collapse:collapse;font-size:var(--teks-sm)}
+  th{text-align:left;color:var(--redup);font-weight:var(--tebal-biasa);
+    padding:0 var(--sela-2) var(--sela-2) 0}
+  td{padding:5px var(--sela-2) 5px 0;border-top:1px solid var(--garis)}
+  .naik{color:var(--hijau)} .turun{color:var(--merah)} .setara{color:var(--redup)}
+  .pil{border-radius:var(--sudut-pil);padding:1px 9px;font-size:var(--teks-xs);
+    border:1px solid var(--garis)}
+  .pil.ok{color:var(--hijau);border-color:var(--hijau-tepi);background:var(--hijau-lembut)}
+  .pil.awas{color:var(--kuning);border-color:var(--kuning-tepi);background:var(--kuning-lembut)}
+  .bar{height:7px;background:var(--cekung);border-radius:var(--sudut-kecil);overflow:hidden;flex-grow:1}
+  .bar i{display:block;height:100%;border-radius:var(--sudut-kecil)}
+  .baris{display:flex;align-items:center;gap:var(--sela-3);margin-bottom:9px}
+  .catatan{font-size:var(--teks-sm);color:var(--redup);margin-top:var(--sela-3);
+    padding-top:var(--sela-3);border-top:1px solid var(--garis);line-height:1.65}
+  .muat{padding:var(--sela-6);text-align:center;color:var(--redup)}
+</style>
+</head>
+<body>
+<header>
+  <h1>MiganCore Studio</h1>
+  <span class="redup">keadaan dibaca langsung dari berkas hasil kerja</span>
+  <nav>
+    <a href="/studio" class="aktif">Studio</a>
+    <a href="/">Ajar</a>
+  </nav>
+</header>
+
+<main id="isi"><div class="muat">membaca keadaan…</div></main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[<>&"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+
+/* Angka tanpa pembanding tidak memberi tahu apa pun — itu pelajaran termahal
+   proyek ini. Jadi tiap selisih dibaca sebagai arah, bukan sekadar warna. */
+function arah(a) {
+  if (!a) return '<span class="setara">—</span>';
+  if (a.naik) return `<span class="naik">▲ +${(a.beda * 100).toFixed(0)} poin</span>`;
+  if (a.turun) return `<span class="turun">▼ ${(a.beda * 100).toFixed(0)} poin</span>`;
+  return '<span class="setara">setara</span>';
+}
+
+function gambar(d) {
+  const model = Object.entries(d.model).filter(([, m]) => m.arit);
+  const terbaik = d.analisa.terbaikArit;
+
+  const kartu = (label, nilai, warna, catatan) => `
+    <div class="kartu">
+      <div class="kecil">${esc(label)}</div>
+      <div class="angka" style="color:${warna}">${esc(nilai)}</div>
+      <div class="kecil">${esc(catatan)}</div>
+    </div>`;
+
+  const totalAjar = Object.values(d.ajar).reduce((a, b) => a + b, 0);
+  const sanadRapuh = Object.entries(d.sanad).filter(([, s]) => s.dhaif > 0);
+
+  $('#isi').innerHTML = `
+    <div class="grid4">
+      ${kartu('model terbaik (aritmetika)', terbaik ? terbaik.replace('migancore:', 'v') : '—',
+        'var(--hijau)', terbaik ? `${d.model[terbaik].arit.persen}% dari ${d.model[terbaik].arit.total} percobaan` : 'belum ada skor')}
+      ${kartu('kelas cacat', `${d.cacat.jumlah}`, 'var(--teks)', `${d.cacat.dijaga} berpenjaga`)}
+      ${kartu('baris latih', Object.values(d.cluster).reduce((a, c) => a + c.baris, 0).toLocaleString('id-ID'),
+        'var(--teks)', `${Object.keys(d.cluster).length} cluster disiplin`)}
+      ${kartu('data ajar baru', `${totalAjar}`, totalAjar ? 'var(--biru)' : 'var(--redup)',
+        totalAjar ? 'belum dilatihkan' : 'belum ada')}
+    </div>
+
+    <div class="kartu" style="margin-top:var(--sela-4)">
+      <h2>Model — dibandingkan terhadap ${esc(d.analisa.acuan.replace('migancore:', 'v'))}</h2>
+      <table>
+        <tr><th>model</th><th>aritmetika</th><th>konversi ton</th><th>rata-rata</th>
+            <th>batas peran</th><th>hafalan</th><th>arah</th></tr>
+        ${model.map(([nama, m]) => {
+          const b = d.analisa.terhadapAcuan[nama];
+          const juara = nama === terbaik;
+          return `<tr>
+            <td style="${juara ? 'color:var(--teks);font-weight:var(--tebal-tebal)' : 'color:var(--redup)'}">${esc(nama.replace('migancore:', 'v'))}</td>
+            <td>${m.arit.benar}/${m.arit.total} <span class="kecil">${m.arit.persen}%</span></td>
+            <td>${esc(m.arit.ton ?? '—')}</td>
+            <td>${esc(m.arit.rata ?? '—')}</td>
+            <td>${esc(m.tolak ?? '—')}</td>
+            <td>${esc(m.kenari ?? '—')}</td>
+            <td>${arah(b?.arit)}</td>
+          </tr>`;
+        }).join('')}
+      </table>
+      <div class="catatan">
+        Semua model diukur dengan blok soal yang sama, dua lengan, suhu 0 dan 0,3.
+        Kolom arah membandingkan aritmetika terhadap acuan — bukan terhadap harapan.
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="kartu">
+        <h2>Data per disiplin</h2>
+        ${Object.entries(d.cluster).map(([nama, c]) => {
+          const maks = Math.max(...Object.values(d.cluster).map((x) => x.baris), 1);
+          const w = Math.round((c.baris / maks) * 100);
+          const warna = c.praDaftarCocok === false ? 'var(--kuning)' : 'var(--hijau)';
+          return `<div class="baris">
+            <div style="width:66px;font-size:var(--teks-sm)">${esc(nama)}</div>
+            <div class="bar"><i style="width:${w}%;background:${warna}"></i></div>
+            <div class="kecil" style="width:58px;text-align:right">${c.baris}</div>
+            <span class="pil ${c.praDaftarCocok === false ? 'awas' : 'ok'}">${
+              c.praDaftarCocok === false ? 'pra-daftar basi' : 'terkunci'}</span>
+          </div>`;
+        }).join('')}
+        <div class="catatan">
+          Pil “terkunci” berarti sidik data masih sama dengan yang dipakai saat ambang
+          ditulis. Kalau berubah, hasil latihan apa pun tidak bisa ditafsirkan.
+        </div>
+      </div>
+
+      <div class="kartu">
+        <h2>Cacat yang paling sering berulang</h2>
+        ${d.cacat.seringBerulang.map((c) => `
+          <div class="baris">
+            <div class="kecil" style="width:30px;font-weight:var(--tebal-tebal)">${esc(c.kode)}</div>
+            <div style="flex-grow:1;font-size:var(--teks-sm)">${esc(c.kelas)}</div>
+            <span class="pil ${c.berulang >= 5 ? 'awas' : ''}">${c.berulang}×</span>
+          </div>`).join('') || '<div class="kecil">belum ada yang berulang</div>'}
+        <div class="catatan">
+          Yang berulang bukan kesialan — itu kelas cacat yang penjaganya belum cukup
+          tajam. Angka di sini naik hanya kalau kesalahan yang sama terjadi lagi.
+        </div>
+      </div>
+    </div>
+
+    <div class="kartu" style="margin-top:var(--sela-4)">
+      <h2>Sanad artefak — rantai periwayatan bobot</h2>
+      ${Object.entries(d.sanad).map(([nama, s]) => `
+        <div class="baris">
+          <div style="width:150px;font-size:var(--teks-sm)">${esc(nama)}</div>
+          <div class="kecil" style="flex-grow:1">${s.mata} mata rantai${
+            s.belum ? ` · ${s.belum} belum diperiksa` : ''}</div>
+          <span class="pil ${s.dhaif ? 'awas' : 'ok'}">${
+            s.dhaif ? `${s.dhaif} dhaif` : 'bersambung'}</span>
+        </div>`).join('')}
+      <div class="catatan">
+        ${sanadRapuh.length
+          ? `Artefak dengan mata rantai <b>dhaif</b> tidak sah dipakai untuk klaim apa pun —
+             pengukuran lewat rantai yang belum tervalidasi pernah nyaris membuat bobot sehat dibuang.`
+          : 'Semua rantai bersambung: tiap artefak bisa dilacak dari sidik data sampai gerbang.'}
+      </div>
+    </div>
+
+    <div class="kecil" style="margin-top:var(--sela-4);text-align:right">
+      dibaca ${new Date(d.waktu).toLocaleString('id-ID')} · muat ulang halaman untuk keadaan terbaru
+    </div>`;
+}
+
+fetch('/api/studio')
+  .then((r) => r.json())
+  .then((d) => d.galat ? ($('#isi').innerHTML = `<div class="muat">gagal membaca keadaan: ${esc(d.galat)}</div>`) : gambar(d))
+  .catch((e) => { $('#isi').innerHTML = `<div class="muat">gagal menghubungi server: ${esc(e.message)}</div>`; });
+</script>
+</body>
+</html>

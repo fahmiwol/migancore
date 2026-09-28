@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bengkel — tempa model sebelum GPU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  /* Keluarga IBM Plex dipakai lewat tumpukan sistem bila tak tersedia — halaman
+     ini sengaja tidak memuat apa pun dari luar (lihat CSP di server). */
+  :root{
+    --bg:#f7f8fa; --kartu:#ffffff; --fg:#14171d; --redup:#5b6472; --garis:#e0e4ea;
+    --aksen:#3a4fa0; --aksen-lemah:#eaeefb; --aksen-teks:#2b3c7d;
+    --hijau:#166b46; --merah:#a32820; --kuning:#7a6111;
+    --r:5px;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0f1115; --kartu:#171a21; --fg:#e6e9ef; --redup:#98a1b2; --garis:#252a34;
+    --aksen:#8fa2e8; --aksen-lemah:#1a2039; --aksen-teks:#a9b8f2;
+    --hijau:#5cc793; --merah:#ff8f85; --kuning:#dcbe4e;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0f1115; --kartu:#171a21; --fg:#e6e9ef; --redup:#98a1b2; --garis:#252a34;
+    --aksen:#8fa2e8; --aksen-lemah:#1a2039; --aksen-teks:#a9b8f2;
+    --hijau:#5cc793; --merah:#ff8f85; --kuning:#dcbe4e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:400 15px/1.6 "IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-variant-numeric:tabular-nums}
+  .atas{border-bottom:1px solid var(--garis);background:var(--kartu)}
+  .atas .isi{max-width:1160px;margin:0 auto;padding:.9rem 1.1rem;display:flex;
+    align-items:baseline;gap:.8rem;flex-wrap:wrap}
+  .merek{font:600 1.15rem/1 "IBM Plex Sans",sans-serif;letter-spacing:-.01em}
+  .merek span{color:var(--aksen)}
+  .slogan{color:var(--redup);font-size:.86rem}
+  .wadah{max-width:1160px;margin:0 auto;padding:1.4rem 1.1rem 4rem;
+    display:grid;grid-template-columns:210px 1fr;gap:1.6rem;align-items:start}
+  @media (max-width:800px){.wadah{grid-template-columns:1fr}}
+
+  /* Penomoran di sini BUKAN hiasan: urutannya urutan ketergantungan.
+     Menulis kurikulum sebelum arah menghasilkan daftar kemampuan yang tidak
+     tahu untuk siapa. */
+  nav{position:sticky;top:1rem}
+  nav ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+  nav button{width:100%;text-align:left;background:none;border:0;cursor:pointer;
+    display:flex;gap:.6rem;align-items:baseline;padding:.5rem .6rem;border-radius:var(--r);
+    color:var(--redup);font:inherit;font-size:.87rem;border-left:2px solid transparent}
+  nav button:hover{background:var(--kartu)}
+  nav button[aria-current="step"]{background:var(--aksen-lemah);color:var(--aksen-teks);
+    border-left-color:var(--aksen);font-weight:600}
+  nav .no{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.76rem;opacity:.75}
+  nav .tanda{margin-left:auto;font-size:.9rem;line-height:1}
+  nav button:focus-visible{outline:2px solid var(--aksen);outline-offset:1px}
+
+  .panel{background:var(--kartu);border:1px solid var(--garis);border-radius:var(--r);
+    padding:1.2rem 1.3rem;min-height:60vh}
+  h1{font:600 1.35rem/1.25 "IBM Plex Sans",sans-serif;margin:0 0 .25rem;letter-spacing:-.015em;text-wrap:balance}
+  .kenapa{color:var(--redup);font-size:.88rem;margin:0 0 1.2rem;max-width:62ch}
+  label{display:block;margin:1rem 0 .25rem;font:600 .7rem/1.3 "IBM Plex Sans",sans-serif;
+    text-transform:uppercase;letter-spacing:.09em;color:var(--redup)}
+  .bantu{color:var(--redup);font-size:.8rem;margin:.15rem 0 .35rem;max-width:62ch}
+  input,textarea,select{width:100%;background:var(--bg);color:var(--fg);
+    border:1px solid var(--garis);border-radius:var(--r);padding:.5rem .6rem;font:inherit;font-size:.9rem}
+  textarea{min-height:4.5rem;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--aksen);outline-offset:-1px;border-color:var(--aksen)}
+  .baris{display:flex;gap:.5rem;align-items:center;margin-bottom:.35rem}
+  .baris input{flex:1}
+  .kecil{background:none;border:1px solid var(--garis);color:var(--redup);border-radius:var(--r);
+    cursor:pointer;font:inherit;font-size:.8rem;padding:.32rem .55rem;white-space:nowrap}
+  .kecil:hover{border-color:var(--aksen);color:var(--aksen)}
+
+  table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:560px}
+  .gulung{overflow-x:auto;border:1px solid var(--garis);border-radius:var(--r)}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--garis);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  th{font:600 .68rem/1.3 "IBM Plex Sans",sans-serif;text-transform:uppercase;
+    letter-spacing:.09em;color:var(--redup);white-space:nowrap}
+  tr.pilih{cursor:pointer}
+  tr.pilih:hover{background:var(--aksen-lemah)}
+  tr[aria-selected="true"]{background:var(--aksen-lemah);box-shadow:inset 2px 0 0 var(--aksen)}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.78rem}
+
+  .pil{display:inline-block;font:600 .68rem/1.5 "IBM Plex Sans",sans-serif;
+    padding:0 .38rem;border-radius:2px;border:1px solid currentColor;white-space:nowrap}
+  .bebas{color:var(--hijau)} .bersyarat{color:var(--kuning)} .terbatas{color:var(--merah)}
+
+  .umur{display:flex;gap:.5rem;align-items:center;font-size:.8rem;color:var(--redup);
+    margin:0 0 .9rem;padding:.5rem .7rem;border-radius:var(--r);
+    background:var(--aksen-lemah);border:1px solid var(--garis)}
+  .umur b{color:var(--fg)}
+
+  .kaki{position:sticky;bottom:0;background:var(--kartu);border-top:1px solid var(--garis);
+    margin:1.4rem -1.3rem -1.2rem;padding:.75rem 1.3rem;display:flex;gap:.6rem;
+    align-items:center;flex-wrap:wrap;border-radius:0 0 var(--r) var(--r)}
+  .utama{background:var(--aksen);color:#fff;border:0;border-radius:var(--r);
+    padding:.5rem 1rem;font:600 .9rem/1.4 inherit;cursor:pointer}
+  .utama:disabled{opacity:.45;cursor:not-allowed}
+  .utama:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+  .keadaan{margin-left:auto;font-size:.82rem;color:var(--redup)}
+  .keadaan b.ok{color:var(--hijau)} .keadaan b.no{color:var(--merah)}
+
+  .masalah{margin:.9rem 0 0;padding:.7rem .85rem;border-radius:var(--r);
+    background:var(--kartu);border:1px solid var(--merah);border-left:3px solid var(--merah)}
+  .masalah h3{margin:0 0 .35rem;font:600 .72rem/1.3 "IBM Plex Sans",sans-serif;
+    text-transform:uppercase;letter-spacing:.09em;color:var(--merah)}
+  .masalah li{font-size:.84rem;margin-bottom:.2rem}
+  .masalah code{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--redup)}
+
+  .catatan{border-left:3px solid var(--aksen);background:var(--aksen-lemah);
+    padding:.65rem .85rem;border-radius:0 var(--r) var(--r) 0;font-size:.85rem;margin:1rem 0}
+  .catatan b{color:var(--aksen-teks)}
+  ul.rapat{margin:.4rem 0 0;padding-left:1.15rem}
+  ul.rapat li{margin-bottom:.15rem;font-size:.86rem}
+</style>
+</head>
+<body>
+<header class="atas"><div class="isi">
+  <span class="merek">Beng<span>kel</span></span>
+  <span class="slogan">tempa model sebelum satu detik GPU dipakai</span>
+</div></header>
+
+<div class="wadah">
+  <nav aria-label="Tahapan"><ol id="rail"></ol></nav>
+  <main class="panel" id="panel"><p class="kenapa">Memuat…</p></main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

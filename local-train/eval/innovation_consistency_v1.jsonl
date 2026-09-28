@@ -1,0 +1,20 @@
+{"id": 1, "category": "diverge", "prompt": "Aku mau bikin fitur baru di MiganCore, kasih ide.", "expects": "3-5 ranked options with impact/effort/risk reasoning, no single answer"}
+{"id": 2, "category": "diverge", "prompt": "Saran arah strategis untuk Phase 3 ADO?", "expects": "Multiple strategic directions listed, ranked by ADO alignment"}
+{"id": 3, "category": "diverge", "prompt": "Apa next moat MiganCore yang sulit ditiru?", "expects": "Multiple moat candidates with defensibility ranking"}
+{"id": 4, "category": "diverge", "prompt": "Ide produk yang bisa dibangun di atas brain MiganCore?", "expects": "3-5 product ideas with ICP and ranking"}
+{"id": 5, "category": "rank", "prompt": "Bandingkan SFT vs ORPO vs DPO untuk voice training. Pilih.", "expects": "Scored table or bullets with impact/risk/feasibility, final choice"}
+{"id": 6, "category": "rank", "prompt": "Pilih: refactor tool registry atau tambah tool baru?", "expects": "Comparison table or scored bullets, explicit pick with reason"}
+{"id": 7, "category": "rank", "prompt": "Rank 3 backup strategy: HF Hub, S3, local disk.", "expects": "Cost/reliability/restore-time comparison, ranked"}
+{"id": 8, "category": "rank", "prompt": "Pilih: hot-swap auto, hot-swap manual, atau shadow deploy.", "expects": "Safety/velocity tradeoff analysis, recommendation"}
+{"id": 9, "category": "artifact", "prompt": "Gimana approach implementasi per-tenant KG?", "expects": "Concrete steps (schema, migration, RLS, test), not abstract advice"}
+{"id": 10, "category": "artifact", "prompt": "Bantu draft commit message untuk hot-swap migancore:0.8.", "expects": "Actual commit message with conventional commit prefix, structured body"}
+{"id": 11, "category": "artifact", "prompt": "Kasih roadmap 30 hari ke Phase 3.", "expects": "Day-by-day table or timeline, deliverables, gates"}
+{"id": 12, "category": "artifact", "prompt": "Approach test plan untuk Innovation Engine Phase 2.", "expects": "Numbered test categories with concrete probe descriptions"}
+{"id": 13, "category": "polish", "prompt": "Draft commit message: 'fix bug in chat'. Polish.", "expects": "Critique + sharpened version with scope/action/why structure"}
+{"id": 14, "category": "polish", "prompt": "Draft error message: 'Error 500 something went wrong'. Polish.", "expects": "Critique of user-blame tone, recovery-friendly rewrite"}
+{"id": 15, "category": "polish", "prompt": "Draft pitch line: 'MiganCore is an AI'. Polish.", "expects": "Critique of vagueness, sharpened pitch with moat + audience"}
+{"id": 16, "category": "polish", "prompt": "Draft API doc: 'POST /chat sends message'. Polish.", "expects": "Critique + full doc with auth/payload/response/errors"}
+{"id": 17, "category": "toolify", "prompt": "Saya sering minta brain cek 10 URL apakah masih live. Ribet copy-paste satu-satu.", "expects": "Tool proposal with id, schema, safety boundary; recognize repeating pattern"}
+{"id": 18, "category": "toolify", "prompt": "Tiap minggu saya tanya 'apa berita AI terbaru?'. Bisa otomatis?", "expects": "Tool proposal with cron trigger, schema, backing services"}
+{"id": 19, "category": "toolify", "prompt": "Saya pengen tiap commit Cycle baru, brain otomatis post ke Twitter draft.", "expects": "Event-triggered tool proposal with schema, draft-not-auto-post safety"}
+{"id": 20, "category": "toolify", "prompt": "Tiap user baru daftar, saya manually email welcome. Pengen otomatis.", "expects": "Event-triggered tool proposal with template/owner-approval flow"}

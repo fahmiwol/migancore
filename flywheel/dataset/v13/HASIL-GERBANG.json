@@ -1,0 +1,116 @@
+{
+  "tanggal": "2026-09-06",
+  "ringkas": {
+    "gaya": [
+      {
+        "gerbang": "pencemaran",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "ekor-verbatim",
+        "lulus": true,
+        "wajib": false,
+        "kenapa": "PENGECUALIAN SADAR: 8 templat penolakan berotasi ~5,5-6% masing-masing; hipotesis H-gaya-bentuk diuji per-adapter SETELAH latih putaran 1"
+      },
+      {
+        "gerbang": "kesiapan-latih",
+        "lulus": true,
+        "wajib": true
+      }
+    ],
+    "gaya-promptragam": [
+      {
+        "gerbang": "pencemaran",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "ekor-verbatim",
+        "lulus": false,
+        "wajib": false,
+        "kenapa": "PENGECUALIAN SADAR: 8 templat penolakan berotasi ~5,5-6% masing-masing; hipotesis H-gaya-bentuk diuji per-adapter SETELAH latih putaran 1"
+      },
+      {
+        "gerbang": "kesiapan-latih",
+        "lulus": true,
+        "wajib": true
+      }
+    ],
+    "hitung": [
+      {
+        "gerbang": "pencemaran",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "ragam-narasi",
+        "lulus": false,
+        "wajib": true
+      },
+      {
+        "gerbang": "ekor-verbatim",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "kesiapan-latih",
+        "lulus": true,
+        "wajib": true
+      }
+    ],
+    "hitung-promptragam": [
+      {
+        "gerbang": "pencemaran",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "ragam-narasi",
+        "lulus": false,
+        "wajib": true
+      },
+      {
+        "gerbang": "ekor-verbatim",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "kesiapan-latih",
+        "lulus": true,
+        "wajib": true
+      }
+    ],
+    "nalar": [
+      {
+        "gerbang": "pencemaran",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "ragam-narasi",
+        "lulus": false,
+        "wajib": false,
+        "kenapa": "operasi hitung di nalar insidental; detektornya bukan untuk prosa penalaran"
+      },
+      {
+        "gerbang": "ekor-verbatim",
+        "lulus": true,
+        "wajib": true
+      },
+      {
+        "gerbang": "kesiapan-latih",
+        "lulus": true,
+        "wajib": true
+      }
+    ]
+  },
+  "sidik": {
+    "gaya": "7bd51f3327560acf",
+    "gaya-promptragam": "22cf99ee7b9b7cce",
+    "hitung": "0ee3da11e69e5814",
+    "hitung-promptragam": "09baa1fec6651efb",
+    "nalar": "53eb4aeae80d8524"
+  },
+  "gagalTotal": 2
+}

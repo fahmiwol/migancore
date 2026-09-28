@@ -1,0 +1,167 @@
+{
+ "_": "Uji asap kanal juri D1 — diagnostik, butir kalibrasi, BUKAN data vonis.",
+ "pada": "2026-09-26T00:57:29.536Z",
+ "biner": "~\\AppData\\Roaming\\Claude\\claude-code\\2.1.281\\claude.exe",
+ "versiCli": "2.1.281 (Claude Code)",
+ "butir": [
+  "K009",
+  "K019",
+  "K023",
+  "K029",
+  "K037",
+  "K001",
+  "K002",
+  "K003",
+  "K004",
+  "K005",
+  "K006",
+  "K007",
+  "K008",
+  "K010",
+  "K011",
+  "K012",
+  "K013",
+  "K014",
+  "K015",
+  "K016",
+  "K017",
+  "K018",
+  "K020",
+  "K021",
+  "K022"
+ ],
+ "juri": {
+  "A": {
+   "model": "claude-opus-5-5",
+   "detik": 155,
+   "masalahInfra": null,
+   "masalahKeluaran": [],
+   "modelUtama": "claude-opus-5-5",
+   "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+     "inputTokens": 6992,
+     "outputTokens": 14,
+     "cacheReadInputTokens": 0,
+     "cacheCreationInputTokens": 0,
+     "webSearchRequests": 0,
+     "costUSD": 0.007062,
+     "contextWindow": 200000,
+     "maxOutputTokens": 32000,
+     "thinkingTokens": 0,
+     "canonicalModel": "claude-haiku-4-5",
+     "provider": "firstParty",
+     "costBasis": "list"
+    },
+    "claude-opus-5-5": {
+     "inputTokens": 2,
+     "outputTokens": 17877,
+     "cacheReadInputTokens": 0,
+     "cacheCreationInputTokens": 8305,
+     "webSearchRequests": 0,
+     "costUSD": 0.42398800000000003,
+     "contextWindow": 1000000,
+     "maxOutputTokens": 128000,
+     "thinkingTokens": 15688,
+     "canonicalModel": "claude-opus-5-5",
+     "provider": "firstParty",
+     "costBasis": "list"
+    }
+   },
+   "tokKeluar": 17877,
+   "batasTokKeluar": 128000,
+   "tokPikir": 15688,
+   "numTurns": 1,
+   "stopReason": "end_turn",
+   "stderr": null,
+   "fastMode": "off",
+   "kesepakatanDenganKalibrasi_DESKRIPTIF": {
+    "rujuk": {
+     "sama": 25,
+     "n": 25
+    },
+    "menolak": {
+     "sama": 24,
+     "n": 25
+    },
+    "tercakup": {
+     "sama": 5,
+     "n": 5
+    },
+    "salah": {
+     "sama": 5,
+     "n": 5
+    },
+    "mengarang": {
+     "sama": 20,
+     "n": 20
+    }
+   }
+  },
+  "B": {
+   "model": "claude-sonnet-5",
+   "detik": 130,
+   "masalahInfra": null,
+   "masalahKeluaran": [],
+   "modelUtama": "claude-sonnet-5",
+   "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+     "inputTokens": 6992,
+     "outputTokens": 12,
+     "cacheReadInputTokens": 0,
+     "cacheCreationInputTokens": 0,
+     "webSearchRequests": 0,
+     "costUSD": 0.007052,
+     "contextWindow": 200000,
+     "maxOutputTokens": 32000,
+     "thinkingTokens": 0,
+     "canonicalModel": "claude-haiku-4-5",
+     "provider": "firstParty",
+     "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+     "inputTokens": 2,
+     "outputTokens": 17862,
+     "cacheReadInputTokens": 0,
+     "cacheCreationInputTokens": 8368,
+     "webSearchRequests": 0,
+     "costUSD": 0.212096,
+     "contextWindow": 1000000,
+     "maxOutputTokens": 128000,
+     "thinkingTokens": 15452,
+     "canonicalModel": "claude-sonnet-5",
+     "provider": "firstParty",
+     "costBasis": "list"
+    }
+   },
+   "tokKeluar": 17862,
+   "batasTokKeluar": 128000,
+   "tokPikir": 15452,
+   "numTurns": 1,
+   "stopReason": "end_turn",
+   "stderr": null,
+   "fastMode": "off",
+   "kesepakatanDenganKalibrasi_DESKRIPTIF": {
+    "rujuk": {
+     "sama": 25,
+     "n": 25
+    },
+    "menolak": {
+     "sama": 25,
+     "n": 25
+    },
+    "tercakup": {
+     "sama": 5,
+     "n": 5
+    },
+    "salah": {
+     "sama": 5,
+     "n": 5
+    },
+    "mengarang": {
+     "sama": 20,
+     "n": 20
+    }
+   }
+  }
+ }
+}

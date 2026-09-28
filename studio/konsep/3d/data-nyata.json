@@ -1,0 +1,928 @@
+{
+  "_dibangkitkan": "2026-09-28T08:38:56.895Z",
+  "_commit": "b042f5c",
+  "_sumber": "studio/sumber-kebenaran.json",
+  "_catatan": "Angka nyata, dirakit dari sumbernya saat dibangkitkan. Angka lintas instrumen tidak boleh dibandingkan tanpa label.",
+  "modelBerlaku": {
+    "tag": "migancore:0.14",
+    "sejak": "2026-08-24",
+    "dilarangPromosi": [
+      "migancore:0.15-tool",
+      "migancore:0.14-tool-8b",
+      "migancore:uji-jujur-1"
+    ]
+  },
+  "praDaftar": [
+    {
+      "id": "A3-JANGKAR",
+      "judul": "Jangkar tidak sirkular — ukur base mentah qwen3:4b polos di petak-jujur2",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-15",
+      "dikunci": "2026-09-10T11:55Z",
+      "hasil": "SELESAI — 5 dari 5 putaran sah (53,6 · 64,3 · 46,4 · 57,1 · 60,7 %; rata 56,42, sd 6,88, SE 3,08, t(4)=2,776, CI95 47,88–64,96). GALAT 0/36 dan over-refusal 0 % di kelimanya; akurasi fakta 0,50–0,625. Jangkar A3 SAH dan "
+    },
+    {
+      "id": "A3I-JANGKAR-INSTRUCT",
+      "judul": "A3I — jangkar ulang pada base MiganCore yang SEBENARNYA (Qwen3-4B-Instruct-2507): apakah latihan MiganCore mengubah mengarang di petak-jujur2? Tiga lengan berpasangan, satu mesin, satu jendela.",
+      "keadaan": "netral",
+      "tanggal": "2026-09-24",
+      "dikunci": true,
+      "hasil": "INSTRUMEN_TIDAK_SAH — run 2026-09-23T17-03-47 terputus JARINGAN laptop di triplet 7; prosedur yang dikunci untuk kasus itu (catatan pelariMati → --vonis-dari-berkas) juga menghasilkan INSTRUMEN_TIDAK_SAH karena cacat ins"
+    },
+    {
+      "id": "A3I-ULANG",
+      "judul": "A3I-ULANG — jangkar base MiganCore (Qwen3-4B-Instruct-2507) vs migancore:0.14 di petak-jujur2, desain IDENTIK dengan A3I, dengan pelari yang tahan putus jaringan (F-278).",
+      "keadaan": "netral",
+      "tanggal": "2026-09-25",
+      "dikunci": true,
+      "hasil": "TIDAK_SAH_MENGELAK — arah D_bobot jelas (B − M = −39,08 pp, CI95 [−44,05 ; −34,11], 10 triplet sah): base Instruct-2507 pada sampler 0.14 mengarang JAUH lebih sedikit daripada migancore:0.14. Tetapi lengan yang lebih juj"
+    },
+    {
+      "id": "A4-BARU",
+      "judul": "A4-BARU — aturan ambang bibit MAKSARA pengganti (bertingkat: lantai bibit, sasaran lahir)",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "TERPASANG 2026-09-23 — konstanta dibaca dari pra-daftar ini oleh eval/ambang-bibit.mjs (bacaA4/nilaiA4, 39 uji lulus), dan migan status mencetak KEDUA ambang berdampingan sesuai medan pemasangan. Status \"syarat bibit MAK"
+    },
+    {
+      "id": "A6-TANYA",
+      "judul": "Sinyal TANYA sudah merosot jadi pendeteksi tanda tanya",
+      "keadaan": "belum",
+      "tanggal": null,
+      "dikunci": "2026-09-10T08:10Z",
+      "hasil": "BELUM DIJALANKAN — ambang dikunci 2026-09-10T08:10Z sebelum satu huruf kamus TANYA diubah. Prasyarat: A3 selesai dulu."
+    },
+    {
+      "id": "A6B-MENOLAK",
+      "judul": "Sinyal MENOLAK menyala pada kata yang MEMUAT \"salah\" — termasuk \"masalah\" dan \"salah satu\"",
+      "keadaan": "belum",
+      "tanggal": null,
+      "dikunci": "2026-09-10T17:45Z",
+      "hasil": "BELUM DIJALANKAN — bukti mekanis sudah terkumpul dan dampaknya sudah dihitung, tapi kamus TIDAK disentuh sampai A3 selesai (C29)."
+    },
+    {
+      "id": "D1-NPC-SPESIALIS",
+      "judul": "D1 — NPC spesialis Gedung Pabrik Aset: apakah otak lokal MERUJUK rekan yang benar tanpa mengarang, dan milik siapa efeknya (bobot migancore:0.14 vs base Qwen3-4B-Instruct-2507)?",
+      "keadaan": "belum",
+      "tanggal": null,
+      "dikunci": true,
+      "hasil": "DITUNDA 27 Sep — bukan vonis. Status: run penuh 2026-09-26T06-33-33 SAH (706b413); sensus + sampel (4a5268f) dan 32 batch × 2 juri (0105655) sudah dikomit. Pelabelan juri berhenti di 6/64 batch (A/01–A/06 dikomit) karena"
+    },
+    {
+      "id": "E1-LATENSI-NPC",
+      "judul": "E1 — jalur ramping: bisakah 4B menjawab sebagai NPC dalam anggaran waktu, di CPU?",
+      "keadaan": "gagal",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "Q_MODEL GAGAL (awal respons p50 2.16 dtk, p95 6.73 dtk) · Q_PRODUK GAGAL (p50 11.02 dtk, p95 15.81 dtk). Laju generasi dan galat lolos di keduanya. Dua masalah BERBEDA, terpisah bersih oleh rancangan dua-pertanyaan: mode"
+    },
+    {
+      "id": "E1B-RIWAYAT",
+      "judul": "E1b-riwayat — satu dial: riwayat percakapan dikirim ulang PERSIS seperti dikirim/dibangkitkan pertama kali",
+      "keadaan": "gagal",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "Q_MODEL GAGAL — HANYA pada syarat (2): awal respons p95 8,63 dtk (ambang ≤ 4,0); p50 1,04 dtk LOLOS. Q_PRODUK GAGAL (p50 10,44, p95 17,26 dtk), seperti diramalkan: probe tidak diubah."
+    },
+    {
+      "id": "E2-KEJUJURAN-NPC",
+      "judul": "E2' — kejujuran NPC: batas pengetahuan di persona yang tercache, tanpa probe",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "Q_JUJUR PASANG_BATAS (putaran pertama): mengarang 'luar' polos 28,9 % → batas 8,9 %, selisih 20,0 pp (CI95 10,0–30,0); tolak-berlebih 'tahu' 3,3 %, cakupan 96,7 %. Q_LATENSI LULUS (lengan batas p50 0.86 · p95 1.04 dtk)."
+    },
+    {
+      "id": "E2A-BOBOT-ATAU-PARAGRAF",
+      "judul": "E2A — lengan A doc 107: batas pengetahuan milik PARAGRAF atau milik PAKET MiganCore? (qwen3:4b stok vs migancore:0.14, serentak)",
+      "keadaan": "netral",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "INSTRUMEN_TIDAK_SAH — validasi buta #2 GAGAL terhadap pelabel Codex (tercakup: setuju 0,95, kappa −0,026 < 0,70); menurut aturanBerhenti_LEBIH_KETAT (amandemen 17:20Z) E2A tidak bervonis. Q_A1 dan Q_A2 TIDAK dijawab. Kun"
+    },
+    {
+      "id": "E2A2-VALIDASI-BERSTRATA",
+      "judul": "E2A2 — analisis ulang data run E2A dengan validasi buta BERSTRATA atas kedua model",
+      "keadaan": "netral",
+      "tanggal": "2026-09-23",
+      "dikunci": true,
+      "hasil": "INSTRUMEN_TIDAK_SAH — final untuk data 812962e. Validasi berstrata #3 GAGAL terhadap KEDUA pelabel, di dimensi tercakup SAJA: dari 19 butir yang oleh instrumen dinilai 'tidak tercakup', 11 dinilai TERCAKUP oleh Claude da"
+    },
+    {
+      "id": "E5-PASANG",
+      "judul": "E5-pasang — otak NPC Galantara di jalur HIDUP (VPS-2 → jalur → Bmax): setara, latensi, beban, gagal-terbuka",
+      "keadaan": "belum",
+      "tanggal": null,
+      "dikunci": true,
+      "hasil": "BELUM DIJALANKAN — menunggu 'ya' Fahmi untuk jalur jaringan & env (doc 108 §4 butir 1)."
+    },
+    {
+      "id": "GERBANG-JEBAKAN",
+      "judul": "pra-daftar-gerbang-jebakan",
+      "keadaan": "netral",
+      "tanggal": "2026-09-02",
+      "dikunci": null,
+      "hasil": "A1 LULUS (probe gen-1 82,1/100) · A3 GAGAL (41,8) · A3b LULUS (32,1 ±8,4) · A3f dial subjektif GAGAL (dicoret, kembali ke A3b) · A3d replikasi Bmax SEBAGIAN (34,3 ±6,5; CI atas 42,4) · gabungan 10 putaran 33,2, CI95 [28,"
+    },
+    {
+      "id": "GERBANG-ON",
+      "judul": "GERBANG-ON — apakah gerbang jebakan layak dinaikkan dari SHADOW ke ON pada jalur yang dilayankan?",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-21",
+      "dikunci": true,
+      "hasil": "PASANG_ON — keempat syarat terkunci terpenuhi. MENGARANG polos 52,2 % → gerbang 33,9 %; selisih rata 18,31 pp (CI95 6,59–30,03); over-refusal gerbang 1,6 %; fakta TIDAK turun (40,6 → 42,9 %). Pemasangan ke serving adalah"
+    },
+    {
+      "id": "GERBANG-S1",
+      "judul": "Gerbang-S1: encoder keputusan kecil menggantikan probe LLM sebagai gerbang kejujuran",
+      "keadaan": "netral",
+      "tanggal": "2026-09-28",
+      "dikunci": null,
+      "hasil": "DIHENTIKAN 28 Sep — bukan vonis, dan bukan GAGAL: tidak diuji. Aturan keputusan Fahmi 28 Sep: lanjut hanya bila peluang berhasil > 80 %. Audit peluang MENANG ≈ 0,20–0,35, batas atas skenario terbaik ≈ 0,78. Akibatnya sya"
+    },
+    {
+      "id": "H-ALUR",
+      "judul": "H-ALUR — apakah alur kerja NYATA menghasilkan data preferensi dengan laju yang berguna?",
+      "keadaan": "netral",
+      "tanggal": "2026-09-27",
+      "dikunci": true,
+      "hasil": "DIHENTIKAN 27 Sep — bukan vonis, dan bukan GAGAL. Keputusan arah Fahmi 27 Sep (docs/jarvis/111_TUTUP_ATAU_BELOK.md): jalur model generatif milik sendiri ditutup, sehingga tujuan H-ALUR (data preferensi untuk melatih mode"
+    },
+    {
+      "id": "H-ARAH",
+      "judul": "H-ARAH — apakah yang bekerja pada gerbang itu ROUTING-nya, atau cukup arahannya ada?",
+      "keadaan": "netral",
+      "tanggal": "2026-09-18",
+      "dikunci": true,
+      "hasil": "ROUTING MENANGGUNG — menurut aturan yang dikunci, dipicu over-refusal 20,83 % > 20,0 %. TETAPI marginnya 0,83 pp pada metrik yang rentangnya 12,5-25,0 antar putaran (sd 7,22): aturan menyala, buktinya tipis. Yang KUAT bu"
+    },
+    {
+      "id": "H-DEKODE",
+      "judul": "h-dekode-gemini",
+      "keadaan": "gagal",
+      "tanggal": "2026-08-30",
+      "dikunci": null,
+      "hasil": "KLAIM GEMINI TIDAK TERBUKTI - jangan adopsi. Decoding ketat membeli KONSISTENSI, bukan KEJUJURAN."
+    },
+    {
+      "id": "H-JUJUR",
+      "judul": "h-jalur-jujur",
+      "keadaan": "lulus",
+      "tanggal": "2026-08-30",
+      "dikunci": null,
+      "hasil": "LULUS seluruh ambang - jalur dipasang"
+    },
+    {
+      "id": "H-KONTRAS",
+      "judul": "h-kontras-neighborhood",
+      "keadaan": "lulus",
+      "tanggal": "2026-08-30",
+      "dikunci": null,
+      "hasil": "LULUS seluruh ambang - tetangga kontras DIPASANG"
+    },
+    {
+      "id": "H-MOGRPO",
+      "judul": "h-mogrpo-tool",
+      "keadaan": "netral",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "TIDAK BISA DIVONIS — nol dari enam adapter pernah diukur. Satu sub-temuan dipanen: ragamPerObjektif menunjukkan 3 dari 5 objektif bernilai ragam NOL (perilaku/format/isi) di 5.760 rollout, jadi tidak pernah menghasilkan "
+    },
+    {
+      "id": "H-PANCI",
+      "judul": "h-panci-cluster-vs-satu-panci",
+      "keadaan": "belum",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "TIDAK PERNAH DIJALANKAN — pra-daftarnya sendiri menyatakan belum terkunci, jadi ia tidak boleh divonis LULUS maupun GAGAL."
+    },
+    {
+      "id": "H-PENGUSUL",
+      "judul": "h-pengusul-klasifikasi",
+      "keadaan": "lulus",
+      "tanggal": "2026-08-29",
+      "dikunci": null,
+      "hasil": "LULUS — boleh dipasang, dengan cakupan yang jujur disebut kecil"
+    },
+    {
+      "id": "H-PETAK40",
+      "judul": "h-petak40-perbesar-jebakan",
+      "keadaan": "lulus",
+      "tanggal": "2026-08-30",
+      "dikunci": null,
+      "hasil": "LULUS - petak-40 dipakai. Derau turun 2,5x, kesahihan terkonfirmasi di KETIGA model."
+    },
+    {
+      "id": "H-RAGU",
+      "judul": "Ragu yang tidak diindahkan — apakah model TAHU ia tidak tahu, lalu tetap mengarang?",
+      "keadaan": "netral",
+      "tanggal": "2026-09-15",
+      "dikunci": "2026-09-15T12:55Z",
+      "hasil": "TIDAK MENENTUKAN — model MENULIS keraguannya, tetapi keraguan itu bukan sinyal pengetahuan. Pelabelan regex: DETEKSI 0,939 (31 dari 33 baris NGARANG menyala) dan ALARM_PALSU 0,889 (8 dari 9 baris fakta BENAR menyala). Am"
+    },
+    {
+      "id": "H4-KAMUS",
+      "judul": "pra-daftar-H4-kamus-penilai",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "DITERIMA — kedua syarat WAJIB lulus. Kriteria MENANG lulus pada metrik yang dikutip pra-daftar dan GAGAL pada metrik yang salah dinamai di pra-daftar; keduanya dilaporkan apa adanya, tidak dipilih salah satu."
+    },
+    {
+      "id": "K1-PENILAI-TINDAKAN",
+      "judul": "Penilai abstensi dibangun HANYA dari frasa TINDAKAN — uji jatuh terhadap klaim PAPER.md §5",
+      "keadaan": "netral",
+      "tanggal": "2026-09-11",
+      "dikunci": "2026-09-10T18:16Z",
+      "hasil": "TIDAK MENANG — lajuPalsu 6,05 % (dituntut <=2,64) dan recallTulen 89,46 % (dituntut >=90). BUKAN prinsip gugur (ambangnya >=7,15). Penilai TIDAK dipasang. TAPI ambang MENANG-nya sendiri ternyata TIDAK BISA DIMENANGKAN — "
+    },
+    {
+      "id": "L2B-RETRIEVAL",
+      "judul": "pra-daftar-L2B-retrieval",
+      "keadaan": "gagal",
+      "tanggal": "2026-09-09",
+      "dikunci": null,
+      "hasil": "GUGUR pada lengan bersih DAN plasebo (over-refusal +16,7 pp; anggaran +5). Pembungkus menyumbang SELURUH kerusakan over-refusal; isi catatan menambah nol."
+    },
+    {
+      "id": "L2C-P",
+      "judul": "pra-daftar-L2C-P-prompt",
+      "keadaan": "netral",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "KRITERIA TIDAK BISA DIPENUHI — ambang \"over-refusal turun >=15 pp\" mustahil sejak ditulis; lengan pembanding 10,4 %. Ambang TIDAK digeser. Penerusnya PRA-DAFTAR-L2C-P2.json."
+    },
+    {
+      "id": "L2C-P2",
+      "judul": "pra-daftar-L2C-P2-prompt",
+      "keadaan": "netral",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "TIDAK MENANG, tanpa kerusakan — over-refusal 10,4->6,3 · fakta 0,709->0,750 · karangan 4,2->8,3; ketiganya +/-4,1 pp, di bawah unit terkecil instrumen (6,25 pp). Prompt V2 TIDAK dipasang; serving tetap V1."
+    },
+    {
+      "id": "PAPAN-N5",
+      "judul": "pra-daftar-papan-n5",
+      "keadaan": "netral",
+      "tanggal": "2026-09-02",
+      "dikunci": null,
+      "hasil": "P1 DERAU — uji-jujur-1 TETAP DIARSIP: selisih menyusut 11,1 → 5,8 pp dan Welch t=1,74 (df 5,2; p≈0,14) GAGAL syarat (b) p<0,05. Keunggulan 11 pp papan perdana dinyatakan TIDAK TERBEDAKAN; TIDAK BOLEH dikutip sebagai keun"
+    },
+    {
+      "id": "SB1-SELEKSI-BASE",
+      "judul": "SB1 — seleksi base MiganCore: Qwen3-4B-Instruct-2507 vs Qwen3.5-4B vs Qwen3.5-9B di instrumen kejujuran yang sama (petak-jujur2 polos), mode TANPA berpikir, satu mesin, satu jendela.",
+      "keadaan": "netral",
+      "tanggal": "2026-09-26",
+      "dikunci": true,
+      "hasil": "TETAP_Q3 — alasanTetap TIDAK_ADA_KANDIDAT_LEBIH_JUJUR. E4 dirancang di Qwen3-4B-Instruct-2507 (tindakLanjut_DIKOMIT_perHasil.TETAP_Q3)."
+    },
+    {
+      "id": "V13",
+      "judul": "v13-cluster-lora",
+      "keadaan": "netral",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "LULUS SEBAGIAN — 0.13 dilatih, dikemas, dan diukur, tapi vonis formalnya tidak pernah ditulis dan angkanya kini TIDAK SEBANDING dengan ambang mana pun yang berlaku (protokolnya sudah tidak ada, C38)."
+    },
+    {
+      "id": "V14",
+      "judul": "v14-kandidat-merge",
+      "keadaan": "lulus",
+      "tanggal": "2026-09-10",
+      "dikunci": null,
+      "hasil": "LULUS — dan vonisnya sudah ada sejak 24 Agu, tapi ditulis di berkas LAIN (models/BERLAKU.json), bukan di pra-daftarnya."
+    },
+    {
+      "id": "V15",
+      "judul": "v15-tool-volume",
+      "keadaan": "gagal",
+      "tanggal": "2026-08-28",
+      "dikunci": null,
+      "hasil": "GAGAL pada gerbang REGRESI (dicabut 30 Agu) - migancore:0.15-tool TIDAK BOLEH DIPROMOSIKAN"
+    },
+    {
+      "id": "V16-JUJUR",
+      "judul": "v16-jujur",
+      "keadaan": "gagal",
+      "tanggal": "2026-08-31",
+      "dikunci": null,
+      "hasil": "GAGAL MENANG: 60,0% (ambang menang <=50%). Hipotesis DITOLAK - tidak dipromosikan, migancore:0.14 tetap berlaku."
+    },
+    {
+      "id": "V17-RLVR",
+      "judul": "v17-rlvr-jujur",
+      "keadaan": "belum",
+      "tanggal": "2026-09-01",
+      "dikunci": null,
+      "hasil": "BELUM DIVONIS — saldo habis di 71% merge. Adapter RLVR TERLATIH ada; evaluasi belum pernah dijalankan. Hipotesis H-V17-RLVR TETAP TERBUKA."
+    },
+    {
+      "id": "V18",
+      "judul": "V18",
+      "keadaan": "belum",
+      "tanggal": null,
+      "dikunci": null,
+      "hasil": "BELUM DIJALANKAN"
+    }
+  ],
+  "ringkasVonis": {
+    "lulus": 10,
+    "netral": 16,
+    "belum": 7,
+    "gagal": 6
+  },
+  "tanggaMengarang_petakJujur2": [
+    {
+      "model": "kimi:kimi-k3 · polos",
+      "putaranSah": 3,
+      "mengarangRata": 4.9,
+      "overRefusalRata": 0,
+      "faktaRata": 1
+    },
+    {
+      "model": "migancore:0.4-qwen3 · +sistem gerbang",
+      "putaranSah": 3,
+      "mengarangRata": 15.5,
+      "overRefusalRata": 8.3,
+      "faktaRata": 0.5
+    },
+    {
+      "model": "qwen3:4b-instruct-2507-q4_K_M · polos",
+      "putaranSah": 42,
+      "mengarangRata": 16.1,
+      "overRefusalRata": 18.2,
+      "faktaRata": 0.54
+    },
+    {
+      "model": "qwen3.5:9b · polos",
+      "putaranSah": 8,
+      "mengarangRata": 25,
+      "overRefusalRata": 1.6,
+      "faktaRata": 0.91
+    },
+    {
+      "model": "migancore:0.4-qwen3 · +sistem gerbang retrieval",
+      "putaranSah": 9,
+      "mengarangRata": 27,
+      "overRefusalRata": 27.8,
+      "faktaRata": 0.38
+    },
+    {
+      "model": "migancore:0.14-tool · polos",
+      "putaranSah": 6,
+      "mengarangRata": 27.4,
+      "overRefusalRata": 12.5,
+      "faktaRata": 0.54
+    },
+    {
+      "model": "codex:bawaan-config · polos",
+      "putaranSah": 1,
+      "mengarangRata": 28.6,
+      "overRefusalRata": 0,
+      "faktaRata": 1
+    },
+    {
+      "model": "openai:gpt-6-astra · polos",
+      "putaranSah": 1,
+      "mengarangRata": 28.6,
+      "overRefusalRata": 0,
+      "faktaRata": 1
+    },
+    {
+      "model": "migancore:0.4-qwen3 · polos",
+      "putaranSah": 8,
+      "mengarangRata": 30.4,
+      "overRefusalRata": 16.7,
+      "faktaRata": 0.43
+    },
+    {
+      "model": "qwen3.5:4b · polos",
+      "putaranSah": 8,
+      "mengarangRata": 32.6,
+      "overRefusalRata": 18.8,
+      "faktaRata": 0.67
+    },
+    {
+      "model": "qwen2.5:7b · polos",
+      "putaranSah": 3,
+      "mengarangRata": 34.2,
+      "overRefusalRata": 4.2,
+      "faktaRata": 0.71
+    },
+    {
+      "model": "migancore:0.14 · +sistem gerbang",
+      "putaranSah": 28,
+      "mengarangRata": 35.8,
+      "overRefusalRata": 1.3,
+      "faktaRata": 0.43
+    },
+    {
+      "model": "migancore:uji-jujur-1 · polos",
+      "putaranSah": 8,
+      "mengarangRata": 43.6,
+      "overRefusalRata": 6.3,
+      "faktaRata": 0.42
+    },
+    {
+      "model": "migancore:0.14 · polos",
+      "putaranSah": 40,
+      "mengarangRata": 49.9,
+      "overRefusalRata": 3.1,
+      "faktaRata": 0.43
+    },
+    {
+      "model": "qwen3:4b · polos",
+      "putaranSah": 5,
+      "mengarangRata": 56.4,
+      "overRefusalRata": 0,
+      "faktaRata": 0.57
+    }
+  ],
+  "kelahiran": {
+    "kriteria": "gerbang-s1",
+    "s1": {
+      "kriteria": "Gerbang-S1 MENANG_SETARA atau MENANG_LEBIH_BAIK",
+      "keputusan": "Fahmi, 28 Sep 2026: \"ya\" — MAKSARA lahir = Gerbang-S1 MENANG (doc 103, amandemen 28 Sep).",
+      "sumber": "flywheel/PRA-DAFTAR-GERBANG-S1.json",
+      "tingkat": "GUGUR",
+      "dikunci": false,
+      "vonisTerhitung": null,
+      "kodeVonisCocokKunci": null,
+      "vonis": {
+        "hasil": "DIHENTIKAN 28 Sep — bukan vonis, dan bukan GAGAL: tidak diuji. Aturan keputusan Fahmi 28 Sep: lanjut hanya bila peluang berhasil > 80 %. Audit peluang MENANG ≈ 0,20–0,35, batas atas skenario terbaik ≈ 0,78. Akibatnya syarat mati berlaku: MiganCore ditutup total (doc 111 §6). Rincian: penghentian_28Sep.",
+        "keadaan": "netral",
+        "tanggal": "2026-09-28"
+      },
+      "tenggat": "2026-10-11",
+      "hariTersisa": 14,
+      "kriteriaLama": "A4-BARU atas bobot generatif (eval/ambang-bibit.mjs) — basi sejak belok 27 Sep; ditampilkan sebagai sejarah."
+    },
+    "sumber": "flywheel/PRA-DAFTAR-A4-BARU.json",
+    "vonisA4": "TERPASANG 2026-09-23 — konstanta dibaca dari pra-daftar ini oleh eval/ambang-bibit.mjs (bacaA4/nilaiA4, 39 uji lulus), dan migan status mencetak KEDUA ambang berdampingan sesuai medan pemasangan. Status \"syarat bibit MAK",
+    "aturan": {
+      "lantaiBibit": {
+        "rataMaks": 42,
+        "ci95atasMaks": 50,
+        "overMaks": 20
+      },
+      "sasaranLahir": {
+        "rataMaks": 30,
+        "ci95atasMaks": 36,
+        "overMaks": 20
+      }
+    },
+    "bobot": [
+      {
+        "model": "migancore:0.14",
+        "rata": 49.99,
+        "ci95atas": 53.15,
+        "n": 13,
+        "tingkat": "BELUM"
+      },
+      {
+        "model": "migancore:0.4-qwen3",
+        "rata": 24.55,
+        "ci95atas": 29.19,
+        "n": 8,
+        "tingkat": "LAHIR"
+      }
+    ],
+    "sistem": {
+      "konfigurasi": "0.14 + gerbang",
+      "berkas": "eval/HASIL-GERBANG-ON-2026-09-20T21-33-32.json",
+      "rata": 33.92,
+      "ci95atas": 39.67,
+      "n": 8,
+      "tingkat": "BIBIT",
+      "polosPembanding": 52.24,
+      "jarakKeLahirPp": 3.92
+    },
+    "aturanTampil": "Bobot dan sistem yang dilayankan adalah dua pertanyaan — tidak pernah disatukan. Tidak ada persen kelahiran."
+  },
+  "sorotan": {
+    "A4": "A4-BARU terpasang. Bobot: migancore:0.14 BELUM (49,99 %, CI95 atas 53,15, n 13) · migancore:0.4-qwen3 LAHIR (24,55 %, CI95 atas 29,19, n 8). sistem 0.14 + gerbang BIBIT (33,92 %, CI95 atas 39,67, n 8). Dua pertanyaan, tidak disatukan.",
+    "KELAHIRAN": "MAKSARA GUGUR — lahir bila Gerbang-S1 MENANG (vonis netral; tenggat 2026-10-11, 14 hari). Kriteria lama A4-BARU: sejarah.",
+    "E2": "Q_JUJUR PASANG_BATAS (putaran pertama): mengarang 'luar' polos 28,9 % → batas 8,9 %, selisih 20,0 pp (CI95 10,0–30,0); tolak-berlebih 'tahu' 3,3 %, cakupan 96,7 %. Q_LATENSI LULUS (lengan batas p50 0.86 · p95 1.04 dtk).",
+    "A3": "SELESAI — 5 dari 5 putaran sah (53,6 · 64,3 · 46,4 · 57,1 · 60,7 %; rata 56,42, sd 6,88, SE 3,08, t(4)=2,776, CI95 47,88–64,96). GALAT 0/36 dan over-refusal 0 % di kelimanya; akurasi fakta 0,50–0,625. Jangkar A3 SAH dan ",
+    "HRAGU": "TIDAK MENENTUKAN — model MENULIS keraguannya, tetapi keraguan itu bukan sinyal pengetahuan. Pelabelan regex: DETEKSI 0,939 (31 dari 33 baris NGARANG menyala) dan ALARM_PALSU 0,889 (8 dari 9 baris fakta BENAR menyala). Am"
+  },
+  "sumberSorotan": {
+    "KELAHIRAN": "flywheel/PRA-DAFTAR-GERBANG-S1.json",
+    "A4": "flywheel/PRA-DAFTAR-A4-BARU.json",
+    "E2": "flywheel/PRA-DAFTAR-E2-KEJUJURAN-NPC.json",
+    "A3": "flywheel/PRA-DAFTAR-A3-JANGKAR.json",
+    "HRAGU": "flywheel/PRA-DAFTAR-H-RAGU.json"
+  },
+  "arah": {
+    "sumber": [
+      "docs/jarvis/111_TUTUP_ATAU_BELOK.md",
+      "docs/jarvis/103_ALIGNMENT_ARAH_ADO.md",
+      "flywheel/PRA-DAFTAR-GERBANG-S1.json",
+      "docs/jarvis/EXPERIMENT_LEDGER.md",
+      "riset/"
+    ],
+    "status": "KEPUTUSAN FAHMI, 27 Sep 2026 — \"belok, lanjut Gerbang-S1\".",
+    "tenggat": "2026-10-11",
+    "syaratMati": "Kalau vonis bukan MENANG_* paling lambat 2026-10-11, MiganCore DITUTUP TOTAL. Tidak ada perpanjangan. Amandemen hanya boleh memperketat.",
+    "eksperimenAktif": {
+      "id": "GERBANG-S1",
+      "judul": "Gerbang-S1: encoder keputusan kecil menggantikan probe LLM sebagai gerbang kejujuran",
+      "status": "DRAF v1.2 — BELUM DIKUNCI. v0 2026-09-27T10:35Z → v1 ±11:05Z → v1.1 ±12:40 WIB (lihat riwayatDraf) → v1.2 2026-09-27T12:05Z. Soal latih sudah ada (bf023a4) dan jawaban latih sedang dibuat di Bmax seja",
+      "dikunci": false,
+      "pertanyaan": "Bisakah encoder kecil yang dilatih dari data kita sendiri (tanpa label juri Claude) menggantikan probe LLM gerbang sekarang di depan base Qwen3-4B-Instruct-2507? Syaratnya: kejujuran tidak lebih buruk, fakta terjaga, dan latensi keputusannya ≤ 0,5 dtk di CPU.",
+      "sisaSebelumKunci": [
+        "Panjang masukan encoder (dari diagnostik latensi di Bmax sesudah jawaban latih selesai).",
+        "Pengait S, S_q, kontrol, dan alat vonis (reuse ciKlaster ukur-jujur2-seleksi: CI per putaran + klaster, tahan penilai, tahan-soal), uji unit + mutasi, gladi dengan encoder tiruan pada run SINTETIS.",
+        "Alat AUDIT-UJI (sampel berbenih, lengan tersembunyi, hitung syarat) — reuse halaman label validasi.mjs.",
+        "Keputusan (8) mengikat/laporan dari laju NGARANG base di jawaban LATIH.",
+        "Uji asap rantai penuh satu butir (8c): jawaban → label → latih mini → skor → vonis."
+      ],
+      "dariFahmi": [],
+      "ramalan": null,
+      "vonis": "DIHENTIKAN 28 Sep — bukan vonis, dan bukan GAGAL: tidak diuji. Aturan keputusan Fahmi 28 Sep: lanjut hanya bila peluang berhasil > 80 %. Audit peluang MENANG ≈ 0,20–0,35, batas atas skenario terbaik ≈"
+    },
+    "janganDiulang": [
+      {
+        "judul": "Jangan audit kebocoran fakta hanya dengan kemiripan teks soal.",
+        "isi": "21/60 fakta T2 adalah fakta latih yang ditulis ulang atau terbalik. Kecocokan kunci jawaban menangkapnya (F-284)."
+      },
+      {
+        "judul": "Jangan kunci ambang tanpa simulasi daya per syarat dan komposit.",
+        "isi": "Gerbang-S1 v1.1 lolos ≤ 0,22 walau S jauh lebih baik: syarat fakta antar-run lepas dengan 8 soal adalah undian, dan satu syarat menghukum tujuan latihnya sendiri (F-284)."
+      },
+      {
+        "judul": "Jangan minta model guru menulis regex penilai.",
+        "isi": "Ia menulis pola berjangkar ^…$ yang tak pernah cocok di dalam kalimat jawaban. Minta daftar frasa kunci dan bangun polanya dengan kode (F-284)."
+      },
+      {
+        "judul": "max_tokens kecil untuk deepseek-flash = keluaran kosong.",
+        "isi": "Model berpikir secara bawaan, max_tokens mencakup token nalar, dan temperature tidak didukung di mode berpikir. Nyatakan mode + anggaran ≥ 16K dan wajibkan finish_reason = stop (F-284, 27 Sep)."
+      },
+      {
+        "judul": "Agent dengan isolation: \"remote\" di sesi desktop berjalan LOKAL",
+        "isi": "(±382 ribu token kuota lokal, 26 Sep). Itu bukan jalur cloud."
+      },
+      {
+        "judul": "Pabrik soal tanpa berkas pola.",
+        "isi": "flywheel/pabrik-soal.mjs siap, tetapi flywheel/dataset/pola-jebakan.json tidak pernah dibuat (ditemukan 27 Sep). Jangan mengandalkannya sebelum polanya ada."
+      },
+      {
+        "judul": "Eksperimen data alur-kerja (H-ALUR) pada alur yang tidak dikerjakan harian = dihentikan hari ke-1.",
+        "isi": "Pastikan alirannya ada SEBELUM jam dimulai."
+      },
+      {
+        "judul": "Keluaran/label Claude tidak pernah jadi data latih",
+        "isi": "(Usage Policy Anthropic, F-282). API Gemini, Z.ai, Alibaba, dan OpenAI = tampil-saja. Status guru mengikuti jalur akses, bukan nama model."
+      },
+      {
+        "judul": "Subagen di sesi kerja BUKAN juri buta.",
+        "isi": "Ia mewarisi CLAUDE.md/AGENTS.md/memori. Pakai claude -p bebas-konteks (F-281)."
+      },
+      {
+        "judul": "Juri LLM lewat jatah paket Max tidak berkelanjutan.",
+        "isi": "Pelabelan D1 menghabiskan batas sesi 5 jam sesudah 6/64 batch. Anggarkan juri lewat kredit API, bukan jatah Max."
+      },
+      {
+        "judul": "Kerangka agen berat (Hermes) + 4B di CPU = timeout/RAM",
+        "isi": ", karena 16–71 ribu token per giliran (doc 30). Hermes sendiri mensyaratkan konteks ≥ 64K (F-282)."
+      },
+      {
+        "judul": "Probe LLM sebagai gerbang: efektif tetapi lambat.",
+        "isi": "Karangan turun 18 pp (GERBANG-ON), tetapi 3–17 dtk per soal, sehingga E1 GAGAL latensi. Penggantinya sedang diuji: Gerbang-S1."
+      },
+      {
+        "judul": "Ambang sinyal retrieval untuk gerbang = tidak memisahkan populasi.",
+        "isi": "Jebakan justru bersinyal lebih kuat (#vonisSinyalSumber_3Sep_HIPOTESIS_DITOLAK). Prompt probe \"sadar-konteks\" (A9): kenaikan recall-nya artefak (#vonisA9_3Sep)."
+      },
+      {
+        "judul": "Pemeriksa NLI sesudah jawaban, tanpa fine-tune = tidak layak.",
+        "isi": ""
+      },
+      {
+        "judul": "Gerbang terlatih dari fitur SOAL saja + data kecil = memblokir fakta.",
+        "isi": "A7 (3 Sep; k-NN atas bge-m3, 97 soal) menolak 7/8 soal fakta (PRA-DAFTAR-GERBANG-JEBAKAN.json#vonisA7_3Sep)."
+      },
+      {
+        "judul": "Base lebih baru/besar ≠ lebih jujur.",
+        "isi": "Qwen3.5-4B/9B tidak menang atas Qwen3-4B-Instruct-2507 di petak-jujur2 (SB1 TETAP_Q3, F-283). Ukuran menambah cakupan, bukan batas pengetahuan."
+      },
+      {
+        "judul": "Melatih 4B milik sendiri untuk kejujuran = memperburuknya.",
+        "isi": "Kadar mengarang naik 24,55 → 49,99 % (A4-BARU). 0.14 lebih mengarang daripada base-nya sendiri (F-280). Jalur model generatif DITUTUP ([doc 111](111_TUTUP_ATAU_BELOK.md)). Jangan buka lagi tanpa pra-daftar yang menjawab F-280."
+      },
+      {
+        "judul": "verl RL with verifiable rewards = DEFERRED",
+        "isi": "(premature + worst $/defensibility); do clustered-SFT first. (doc 44)"
+      },
+      {
+        "judul": "Native vision on CPU = infeasible",
+        "isi": "(vision encoder 10–82s/image). Keep modality-as-tool. (F-079)"
+      },
+      {
+        "judul": "SKIP (researched, not worth adopting):",
+        "isi": "ruvnet/ruvector (Rust over-promise), NVIDIA Cosmos (16–64B GPU, *generates* hallucinated frames), NeX-N2-mini 35B model (contradicts CPU-single-model), awesome-llm4ad (Autonomous *Driving*, name-collision), Qwen2.5-Omni native speech (5.5B, 18GB VRAM), big Qwe"
+      },
+      {
+        "judul": "RunPod GPU = burned $6.80 for 0 successful trains",
+        "isi": "(Day 49 allocation/boot failures). Use Vast.ai (5–9× cheaper, proven). (doc 44 multi-dim)"
+      },
+      {
+        "judul": "Substring keyword match (kw in text) over short tokens = latent bug",
+        "isi": "(ide⊂presiden, sintesis⊂fotosintesis, api⊂rapikan). Whole-word for single tokens. (EXP-074/F-053/F-072)"
+      },
+      {
+        "judul": "RRF _retrieval_score for relevance gating = unreliable",
+        "isi": "in small collections (rank-based, top ~0.83 even if irrelevant). Use dense cosine. (EXP-076)"
+      },
+      {
+        "judul": "Margin 6 for jina drops nothing",
+        "isi": "(its range is compressed ±4) — margin is model-specific. (EXP-081c)"
+      },
+      {
+        "judul": "MiniLM-L-6 (English) for ID semantic rerank = insufficient",
+        "isi": "(10/12, demotes relevant below junk). Use a MULTILINGUAL reranker for Indonesian. (EXP-081a)"
+      },
+      {
+        "judul": "Absolute drop-cutoff for episodic rerank = MOAT-UNSAFE.",
+        "isi": "Relevant Indonesian taught-facts score NEGATIVE on indirect queries (MiniLM −6.4, jina −1.9). Use relative-margin + always-keep-top. (EXP-081b)"
+      },
+      {
+        "judul": "A builder's own self-report is not validation",
+        "isi": "build_cycle12 said \"leak=0\" while an INDEPENDENT audit found inherited leak+volatile. Always validate with a separate script. (EXP-086c)"
+      },
+      {
+        "judul": "Greedy volatile regex (officeholder .{0,40} (saat ini|sekarang|adalah)) = false positives",
+        "isi": "it dropped GOOD abstain examples (\"belum punya info terkini tentang wali kota …\") + unrelated reasoning. Require an asserted Capitalized NAME AND exclude abstain-markers. (EXP-086b)"
+      },
+      {
+        "judul": "NEVER SFT a volatile officeholder fact even when CORRECT",
+        "isi": "(e.g. \"...adalah Prabowo Subianto\") — goes stale next election + teaches assert-without-RAG; national_kb serves it. SFT stable behaviors only. (EXP-086b/F-088)"
+      },
+      {
+        "judul": "Cumulative Growth-Ring prior carries contamination forever",
+        "isi": "a builder that filters only the NEW increment is insufficient; a holdout near-dup + a stale-wrong \"Presiden adalah Joko Widodo\" sat in prior and would re-train every cycle. Apply all quality guards to the PRIOR too; re-scan prior whenever a held-out probe is a"
+      },
+      {
+        "judul": "on-instance merged_16bit tar/GGUF-export is unreliable",
+        "isi": "(failed twice: GGUF export AND a 22MB weightless tar). For own-model trains, download the LoRA adapter (small, reliable) + merge on the VPS (CPU venv: transformers≥5 + peft matching the adapter version). That path recovered cycle-12. (F-091/092)"
+      },
+      {
+        "judul": "NEVER SFT an own-model on its OWN (or a weaker sibling's) generated outputs as chosen targets",
+        "isi": "self-distillation collapse. cycle-12 (EXP-087) trained on 22/58 organic pairs whose chosen came from local:migancore:0.3 (the weaker prod model) → 0.5 REGRESSED vs 0.4 (halu .94→.84, tool .92→.79, reason 1.0→.75), gate ROLLBACK. Use ONLY a STRONGER teacher's c"
+      },
+      {
+        "judul": "Don't load qwen3:30b-a3b under prod load on the 31GB box",
+        "isi": "OOM-kills llama-server (EXP-088); use qwen3:14b as escalation target until RAM upgrade."
+      },
+      {
+        "judul": "Small models (≤4B) can't do cortex state-extraction reliably",
+        "isi": "qwen2.5:0.5b hallucinates an agent-trace / echoes the field descriptions / captures the surface layer; 4B already failed (F-145). JSON-schema constraint fixes FORMAT (kills the hallucinated trace) but NOT content quality. The open_question field is load-bearin"
+      }
+    ],
+    "radar": []
+  },
+  "temuan": {
+    "jumlah": 316,
+    "entri": 311,
+    "terbaru": [
+      {
+        "id": "F-282",
+        "judul": "STATUS GURU DISTILASI MENGIKUTI JALUR AKSES, BUKAN NAMA MODEL; DEEPSEEK SATU-SATUNYA API YANG TERSURAT MENGIZINKAN DISTILASI; KETENTUAN KONS"
+      },
+      {
+        "id": "F-283",
+        "judul": "SB1 BERVONIS `TETAP_Q3`: QWEN3.5 TIDAK LEBIH JUJUR DARI BASE SEKARANG DI PETAK KITA — 4B MENGARANG ±2× (32,6 vs 16,5 %), 9B +8,5 PP (TIDAK M"
+      },
+      {
+        "id": "F-284",
+        "judul": "RANCANGAN GERBANG-S1 v1.1 NYARIS TAK BISA DIMENANGKAN OLEH SYARATNYA SENDIRI, DAN DUA ALAT GURU DIAM-DIAM RUSAK — SEMUANYA TERTANGKAP SEBELU"
+      },
+      {
+        "id": "F-285",
+        "judul": "ENCODER GERBANG-S1 FP32 TERLALU LAMBAT DI CPU UNTUK JAWABAN SUNGGUHAN; HANYA INT8 @256 TOKEN YANG LOLOS SYARAT LATENSI — DAN ANGKA \"0,12 DTK"
+      },
+      {
+        "id": "F-286",
+        "judul": "DUA PELABEL LATIH GERBANG-S1 BERSELISIH 45,5 % DAN SEARAH: NILAI2 MENGANGGAP AMAN JAWABAN PANJANG YANG MENURUT DEEPSEEK DIKARANG (TERBUKA — "
+      },
+      {
+        "id": "F-287",
+        "judul": "BATAS PEMILIHAN AMBANG HARUS SEJALAN DENGAN PENILAI YANG MENGIKAT, DAN BATAS PER SOAL DENGAN 2 SAMPEL BERKORELASI ADALAH UNDIAN (dua C55 yan"
+      },
+      {
+        "id": "F-288",
+        "judul": "PENJAGA \"UJI YATIM\" BUTA EJAAN: 13 BERKAS BERMODE UJI TIDAK PERNAH DIJALANKAN `migan periksa`; SIDIK BYTE MENTAH RAPUH TERHADAP autocrlf."
+      },
+      {
+        "id": "F-289",
+        "judul": "TINJAUAN ADVERSARIAL PUTARAN 2 GERBANG-S1: 5 PEMBLOKIR BARU SESUDAH PUTARAN 1 \"DITUTUP\"; DUA DI ANTARANYA C55 YANG TERSEMBUNYI DI GERBANG KE"
+      },
+      {
+        "id": "F-290",
+        "judul": "AUDIT TABEL t TERPOTONG (`ciBerpasangan` di `eval/ukur-jujur2-a3i.mjs`, df ≤ 9, selebihnya 2,262): TIDAK ADA VONIS YANG BERUBAH."
+      },
+      {
+        "id": "F-291",
+        "judul": "GERBANG-S1 TINJAUAN ADVERSARIAL PUTARAN 3 DITUTUP (3 pemblokir + 9 sebaiknya): alat kunci `patok-s1.mjs`, patok pra-vonis, kolam audit per a"
+      },
+      {
+        "id": "F-292",
+        "judul": "GERBANG-S1 TINJAUAN ADVERSARIAL PUTARAN 4 DITUTUP (3 pemblokir + 10 sebaiknya): kunci kini mematok KODE, pelari tidak bisa lagi \"menyelesaik"
+      },
+      {
+        "id": "F-293",
+        "judul": "GERBANG-S1 DIHENTIKAN SEBELUM KUNCI: di bawah aturan \"lanjut hanya bila peluang berhasil > 80 %\", skenario terbaik pun tidak lolos (≈ 0,78) "
+      }
+    ]
+  },
+  "hukum": {
+    "jumlah": 35,
+    "terbaru": [
+      {
+        "id": "C51",
+        "judul": "Data latih seragam lolos setiap pemeriksaan yang menghitung JUMLAH; keragaman harus dihitung sendiri"
+      },
+      {
+        "id": "C52",
+        "judul": "Berkas data yang namanya tidak cocok pola pemindai tidak pernah digerbang, dan ketiadaan gerbang tidak berbunyi"
+      },
+      {
+        "id": "C53",
+        "judul": "Parameter yang ditolak penyedia menghabiskan SATU PUTARAN PENUH untuk dipelajari, kecuali ada jurnal per-panggilan"
+      },
+      {
+        "id": "C54",
+        "judul": "Korpus retrieval yang mengindeks transkrip kerja kita sendiri memuat KUNCI JAWABAN petak"
+      },
+      {
+        "id": "C55",
+        "judul": "Ambang relatif yang LEBIH BESAR daripada baseline-nya tidak bisa dimenangkan"
+      },
+      {
+        "id": "C56",
+        "judul": "Batas waktu yang kami pasang bukan satu-satunya batas waktu"
+      },
+      {
+        "id": "C57",
+        "judul": "Laju kesalahan MENTAH tidak bisa membandingkan MUTU dua pendeteksi"
+      },
+      {
+        "id": "C58",
+        "judul": "Satu penangkap galat yang menelan semuanya menyembunyikan cacat yang BERTUMPUK"
+      },
+      {
+        "id": "C59",
+        "judul": "Data yang tidak disimpan adalah hipotesis yang tidak pernah bisa diuji"
+      },
+      {
+        "id": "C60",
+        "judul": "Sinyal yang menyala pada jawaban BENAR sesering pada jawaban salah bukan sinyal, melainkan gaya"
+      },
+      {
+        "id": "C61",
+        "judul": "Manfaat gerbang abstensi sebanding dengan kadar mengarang dasarnya; \"efek gerbang\" bukan konstanta"
+      },
+      {
+        "id": "C62",
+        "judul": "Awalan yang dikirim ulang harus stabil byte-demi-byte; satu byte berubah di DEPAN riwayat berarti seluruh riwayat dipros"
+      }
+    ]
+  },
+  "registerCacat": {
+    "jumlahKelas": 20,
+    "dijaga": 19
+  },
+  "backlog": [
+    {
+      "kode": "E4",
+      "apa": "distilasi dari koreksi manusia",
+      "tujuan": "model baru di ambang A4-BARU",
+      "status": "E3 LULUS"
+    },
+    {
+      "kode": "A7",
+      "apa": "panen MO-GRPO",
+      "tujuan": "pasang `safetensors` + skrip konversi llama.cpp?",
+      "status": "perubahan lingkungan laptop"
+    },
+    {
+      "kode": "M4",
+      "apa": "`llama-server`",
+      "tujuan": "pasang?",
+      "status": "**kini relevan**: kendali slot cache eksplisit — calon tuas E1b-cache"
+    },
+    {
+      "kode": "Pendanaan",
+      "apa": "email BRIN + dua aplikasi Anthropic",
+      "tujuan": "kirim?",
+      "status": "draf di `docs/pendanaan/`; Fahmi 23 Sep: *\"email nanti aja dulu\"*. ⚠️ tenggat Anthropic tetap **5 Okt**; pengingat 1 Okt 09:00"
+    },
+    {
+      "kode": "P3",
+      "apa": "**Modal Starter** — $30/bln berulang, **tanpa aplikasi**",
+      "tujuan": "Daftar saja",
+      "status": "—"
+    },
+    {
+      "kode": "P4",
+      "apa": "**Lacuna Fund** — hibah dataset bahasa minoritas, paling relevan untuk tolok ukur abstensi",
+      "tujuan": "**Coba lagi**: 21 Sep gagal, sertifikat TLS situsnya salah",
+      "status": "tidak diketahui"
+    },
+    {
+      "kode": "A6-antiuji",
+      "apa": "bangun anti-uji A6 dari baris NYATA, **tanpa menyentuh kamus**",
+      "tujuan": "jam",
+      "status": "Menyiapkan A6 supaya begitu A3 selesai ia tinggal jalan. Anti-uji wajib bentuk `(!lulusLama && lulusBaru)`."
+    },
+    {
+      "kode": "A8-sanad",
+      "apa": "lengkapi SANAD yang mata rantainya `dhaif`",
+      "tujuan": "jam",
+      "status": "3 dari 6 SANAD punya mata lemah; `04-qwen3` punya **3/5** — dan itu jangkar ambang bibit yang lama."
+    },
+    {
+      "kode": "D-pindah-model",
+      "apa": "bangun ulang uji `pindah-model` di atas manifes tiruan",
+      "tujuan": "jam",
+      "status": "Ia satu-satunya berkas di daftar KECUALI. Menutupnya = daftar kecuali kosong."
+    },
+    {
+      "kode": "D-alamat",
+      "apa": "satu penyelesai alamat Bmax lewat **sidik mesin**, dipakai 13 skrip ber-`.78`",
+      "tujuan": "jam",
+      "status": "Kelas yang sudah muncul tiga kali (10 Sep skrip, 15 Sep RDP, env MCP). Penjaga *ratchet*: jumlah alamat LAN tertanam di kode tidak boleh naik."
+    },
+    {
+      "kode": "L-tadabbur",
+      "apa": "tulis kajian Lab untuk 8 ayat kognisi yang belum dikaji (doc 97 §6.3)",
+      "tujuan": "per kajian",
+      "status": "Di repo Lab, dengan metode `tadabbur-lab` (grounding, validasi, status menunggu tinjauan). Bukan pekerjaan repo ini."
+    },
+    {
+      "kode": "M1",
+      "apa": "klien (4 klien, 3 bahasa)",
+      "tujuan": "✅ **SELESAI** — P1–P4 dikunci lebih dulu, keempatnya benar",
+      "status": ""
+    },
+    {
+      "kode": "M3",
+      "apa": "sistem operasi (Windows vs WSL2 vs VPS)",
+      "tujuan": "🟢 bagian `--batas` bisa sekarang",
+      "status": ""
+    },
+    {
+      "kode": "M5",
+      "apa": "retrieval",
+      "tujuan": "🟡 keputusan — **paling mungkin mengubah arah**",
+      "status": ""
+    },
+    {
+      "kode": "B7",
+      "apa": "sumber pengetahuan umum Indonesia",
+      "tujuan": "Menunggu vonis M5. Kalau M5 bilang \"sumbernya\", ini jadi pekerjaan utama proyek — dan ia besar.",
+      "status": ""
+    },
+    {
+      "kode": "C1",
+      "apa": "gerbang bahasa & gaya",
+      "tujuan": "Sumbu piagam dengan **0 baris gold**. Butuh Fahmi sebagai Guru, bukan agen.",
+      "status": ""
+    }
+  ],
+  "sensus": {
+    "sumber": "sensus data (dokumen privat)",
+    "lokasi": [
+      "laptop",
+      "GitHub",
+      "VPS-2",
+      "Bmax"
+    ],
+    "salinanTunggal": [
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)",
+      "artefak salinan tunggal (lokasi tidak diterbitkan)"
+    ]
+  },
+  "mesin": [
+    {
+      "nama": "Laptop",
+      "peran": "kerja Fahmi · repo kanonik · server Studio",
+      "catatan": "bukan mesin ukur"
+    },
+    {
+      "nama": "Bmax (MIGAN)",
+      "peran": "mesin ukur Ollama CPU · gudang model/adapter/dataset"
+    },
+    {
+      "nama": "VPS-2",
+      "peran": "server hidup banyak proyek · Ollama cadangan"
+    }
+  ],
+  "_catatanRilis": "Snapshot publik: catatan internal (langkah dari pemilik, radar riset, lokasi berkas sensus) dikosongkan."
+}

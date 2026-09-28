@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; background: #0d1117; color: #e6edf3;
+      font: 15px/1.6 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { color: #79c0ff; }
+  </style>
+</helmet>
+
+<div style="width: 1080px; min-height: 760px; background: {{bg}}; padding: 0 0 28px">
+
+  <!-- kepala -->
+  <div style="display: flex; align-items: center; gap: 14px; padding: 16px 24px; border-bottom: 1px solid #30363d">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px">
+      <path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/>
+      <circle cx="12" cy="12" r="4.2"/>
+    </svg>
+    <div style="font-size: 15px; font-weight: 650; letter-spacing: -0.01em">MiganCore Studio</div>
+    <div style="font-size: 13px; color: #8b949e">satu pintu untuk data, gerbang, latihan, dan vonis</div>
+    <div style="flex-grow: 1"></div>
+    <div style="display: flex; align-items: center; gap: 7px; background: rgba(63,185,80,0.12); border: 1px solid rgba(63,185,80,0.35); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: #3fb950; font-weight: 600">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: #3fb950; display: inline-block"></span>
+      ollama hidup
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 20px; padding: 20px 24px">
+
+    <!-- sisi kiri: kemampuan -->
+    <div style="width: 208px; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; color: #8b949e; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px 8px">Kemampuan</div>
+      <sc-for list="{{menu}}" as="m" hint-placeholder-count="6">
+        <div style="{{m.gaya}}">
+          <div style="display: flex; align-items: center; gap: 9px">
+            <span style="width: 7px; height: 7px; border-radius: 4px; background: {{m.warna}}; flex-shrink: 0"></span>
+            <span style="font-weight: {{m.tebal}}">{{m.nama}}</span>
+          </div>
+          <div style="font-size: 11px; color: #8b949e; margin-left: 16px; margin-top: 1px">{{m.guna}}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- sisi kanan -->
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px">
+
+      <!-- angka pokok -->
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{angka}}" as="a" hint-placeholder-count="4">
+          <div style="background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 13px 15px">
+            <div style="font-size: 11px; color: #8b949e; letter-spacing: 0.03em">{{a.label}}</div>
+            <div style="font-size: 23px; font-weight: 680; color: {{a.warna}}; margin-top: 3px; letter-spacing: -0.02em">{{a.nilai}}</div>
+            <div style="font-size: 11px; color: #8b949e">{{a.catatan}}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- perbandingan model -->
+      <div style="background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 13px">
+          <div style="font-size: 13px; font-weight: 650">Gerbang penuh — model dibandingkan di soal yang sama</div>
+          <div style="font-size: 11px; color: #8b949e">120 percobaan · dua lengan · suhu 0 dan 0,3</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 132px repeat(4, minmax(0, 1fr)); gap: 8px 10px; font-size: 12px">
+          <div style="color: #8b949e"></div>
+          <div style="color: #8b949e">aritmetika</div>
+          <div style="color: #8b949e">konversi ton</div>
+          <div style="color: #8b949e">batas peran</div>
+          <div style="color: #8b949e">hafalan</div>
+
+          <sc-for list="{{baris}}" as="b" hint-placeholder-count="3">
+            <div style="{{b.namaGaya}}">{{b.nama}}</div>
+            <div style="{{b.g1}}">{{b.arit}}</div>
+            <div style="{{b.g2}}">{{b.ton}}</div>
+            <div style="{{b.g3}}">{{b.tolak}}</div>
+            <div style="{{b.g4}}">{{b.kenari}}</div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top: 13px; padding-top: 12px; border-top: 1px solid #30363d; font-size: 12px; color: #8b949e; line-height: 1.65">
+          Selisih v13 terhadap model produksi <span style="color: #e6edf3">belum terbukti signifikan</span> (Fisher p = 0,0573) —
+          yang terbukti telak adalah pemulihan konversi ton, <span style="color: #e6edf3">0/12 menjadi 12/12</span> (p &lt; 0,0001).
+        </div>
+      </div>
+
+      <!-- dua kartu bawah -->
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+
+        <div style="background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px">
+          <div style="font-size: 13px; font-weight: 650; margin-bottom: 11px">Data per disiplin</div>
+          <sc-for list="{{cluster}}" as="c" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 9px">
+              <div style="width: 62px; font-size: 12px">{{c.nama}}</div>
+              <div style="flex-grow: 1; height: 7px; background: #0d1117; border-radius: 4px; overflow: hidden">
+                <div style="{{c.bar}}"></div>
+              </div>
+              <div style="font-size: 12px; color: #8b949e; width: 64px; text-align: right">{{c.baris}}</div>
+            </div>
+          </sc-for>
+          <div style="font-size: 11px; color: #8b949e; margin-top: 11px; line-height: 1.6">
+            554 baris lain — fakta bisnis dan dokumentasi — sengaja <span style="color: #e6edf3">tidak dilatihkan</span>; tempatnya di lapisan pencarian.
+          </div>
+        </div>
+
+        <div style="background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px">
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 11px">
+            <div style="font-size: 13px; font-weight: 650">Register cacat</div>
+            <div style="font-size: 11px; color: #8b949e">tiap kelas dijaga kode yang bisa dijalankan</div>
+          </div>
+          <sc-for list="{{cacat}}" as="k" hint-placeholder-count="4">
+            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 8px">
+              <span style="font-size: 11px; color: #8b949e; font-weight: 650; width: 26px; flex-shrink: 0; padding-top: 1px">{{k.kode}}</span>
+              <span style="font-size: 12px; line-height: 1.45">{{k.nama}}</span>
+              <span style="flex-grow: 1"></span>
+              <span style="{{k.tandaGaya}}">{{k.tanda}}</span>
+            </div>
+          </sc-for>
+          <div style="font-size: 11px; color: #8b949e; margin-top: 10px">
+            C01 sudah berulang enam kali — pemeriksa yang buta terhadap bentuk jawaban yang sah.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"bg":{"editor":"color","default":"#0d1117","options":["#0d1117","#161b22","#e6edf3"]},"aktif":{"editor":"enum","default":"Studio","options":["Studio","Ajar","Ukur","Gerbang","Latih","Cacat"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const aktif = this.props.aktif ?? 'Studio';
+    const dasar = 'border-radius:7px;padding:8px 10px;cursor:pointer;font-size:13px;';
+    const menu = [
+      { nama: 'Studio',  guna: 'ringkasan keadaan',        warna: '#3fb950' },
+      { nama: 'Ajar',    guna: 'kumpulkan data latih',     warna: '#58a6ff' },
+      { nama: 'Ukur',    guna: 'gerbang model penuh',      warna: '#d29922' },
+      { nama: 'Gerbang', guna: 'periksa data per cluster', warna: '#a371f7' },
+      { nama: 'Latih',   guna: 'sewa GPU, latih adapter',  warna: '#f85149' },
+      { nama: 'Cacat',   guna: 'register + penjaga',       warna: '#8b949e' },
+    ].map((m) => ({
+      ...m,
+      tebal: m.nama === aktif ? '640' : '400',
+      gaya: dasar + (m.nama === aktif
+        ? 'background:#161b22;border:1px solid #30363d;'
+        : 'border:1px solid transparent;'),
+    }));
+
+    const angka = [
+      { label: 'model produksi',  nilai: 'v13',    warna: '#3fb950', catatan: 'lulus empat ambang' },
+      { label: 'aritmetika',      nilai: '60/60',  warna: '#3fb950', catatan: 'dengan prompt produksi' },
+      { label: 'kelas cacat',     nilai: '16',     warna: '#e6edf3', catatan: '15 berpenjaga' },
+      { label: 'biaya GPU total', nilai: '$1,6',   warna: '#e6edf3', catatan: '15 kegagalan, nol yatim' },
+    ];
+
+    const sel = 'font-size: 12px;';
+    const hijau = sel + 'color:#3fb950;font-weight:640;';
+    const merah = sel + 'color:#f85149;font-weight:640;';
+    const biasa = sel + 'color:#8b949e;';
+    const baris = [
+      { nama: 'v13',            arit: '60/60', ton: '12/12', tolak: '9/10', kenari: '0/12',
+        g1: hijau, g2: hijau, g3: hijau, g4: hijau,
+        namaGaya: 'font-size: 12px;font-weight:650;color:#e6edf3;' },
+      { nama: 'v11 produksi',   arit: '55/60', ton: '12/12', tolak: '8/10', kenari: '—',
+        g1: biasa, g2: biasa, g3: biasa, g4: biasa,
+        namaGaya: 'font-size: 12px;color:#8b949e;' },
+      { nama: 'base Qwen3-4B',  arit: '58/60', ton: '11/12', tolak: '7/10', kenari: '—',
+        g1: biasa, g2: biasa, g3: biasa, g4: biasa,
+        namaGaya: 'font-size: 12px;color:#8b949e;' },
+      { nama: 'v11 tanpa obat', arit: '45/60', ton: '0/12',  tolak: '—',    kenari: '—',
+        g1: biasa, g2: merah, g3: biasa, g4: biasa,
+        namaGaya: 'font-size: 12px;color:#8b949e;' },
+    ];
+
+    const maks = 314;
+    const cluster = [
+      { nama: 'hitung', baris: '283 baris', warna: '#3fb950' },
+      { nama: 'nalar',  baris: '314 baris', warna: '#58a6ff' },
+      { nama: 'gaya',   baris: '200 baris', warna: '#d29922' },
+      { nama: 'tool',   baris: '26 benih',  warna: '#a371f7' },
+    ].map((c) => ({
+      ...c,
+      bar: `width:${Math.round((parseInt(c.baris, 10) / maks) * 100)}%;height:100%;background:${c.warna};border-radius:4px;`,
+    }));
+
+    const tandaOk = 'font-size:11px;color:#3fb950;border:1px solid rgba(63,185,80,0.35);border-radius:20px;padding:1px 8px;';
+    const cacat = [
+      { kode: 'C01', nama: 'pemeriksa buta penyangkalan',   tanda: 'dijaga', tandaGaya: tandaOk },
+      { kode: 'C13', nama: 'naskah dihafal, bukan operasi', tanda: 'dijaga', tandaGaya: tandaOk },
+      { kode: 'C15', nama: 'dua pengukuran serentak',       tanda: 'dijaga', tandaGaya: tandaOk },
+      { kode: 'C17', nama: 'ekor kalimat verbatim',         tanda: 'dijaga', tandaGaya: tandaOk },
+    ];
+
+    return { bg: this.props.bg ?? '#0d1117', menu, angka, baris, cluster, cacat };
+  }
+}
+</script>
+</body>
+</html>

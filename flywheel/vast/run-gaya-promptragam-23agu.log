@@ -1,0 +1,74 @@
+# Latih adapter v13-gaya-promptragam
+
+## 1. Segel pra-daftar
+   gaya-promptragam · sidik 22cf99ee7b9b7cce [32mcocok pra-daftar[0m
+
+## 1b. Kontrak masukan (manifest)
+     [33mcatatan[0m git: 4 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit
+   
+     sidik: data=22cf99ee7b9b7cce · soal=8a68b69a16c583a5 · kenari=87e91feb4fed4bc9 · resep=aa2d55baaca14ae1 · skrip=58dd7fa0b5572a4a · ukur=a7b568d9dd5462db · promptGerbang=04b8df92cb204dca · tahan=b2a25c6e323a3f9a
+     manifest: flywheel\dataset\v13\MANIFEST-gaya-promptragam.json
+   
+   [32mSIAP[0m — semua syarat wajib terpenuhi (3 catatan). [2mberikutnya: migan latih gaya-promptragam[0m
+
+## 2. Kredensial & host
+   saldo: $1.59
+   6 layak; termurah RTX 3090 $0.135/jam
+
+   percobaan 1/3 — RTX 3090 $0.135/jam (id 48396264)
+   instance 48483327 disewa
+   [ 0.0 mnt] ?
+   [ 0.7 mnt] loading
+   [33mtidak siap — pindah host[0m
+
+   percobaan 2/3 — RTX 3090 $0.149/jam (id 47131221)
+   instance 48483862 disewa
+   [ 0.0 mnt] ?
+   [ 0.4 mnt] loading
+   [ 0.7 mnt] running
+   [32msiap & SSH menjawab[0m
+
+## 3. Kirim bahan
+   terkirim: cluster.jsonl
+   terkirim: latih_cluster.py
+   terkirim: ukur_latih.py
+   terkirim: soal-aritmetika-bersih.json
+   terkirim: kenari.json
+   terkirim: resep.json
+   terkirim: prompt-gerbang.json
+   terkirim: tahan.jsonl
+   [32mterbukti utuh[0m: 200 baris
+
+## 4. Latih + gerbang tingkat-1
+   [32mproses hidup[0m
+   [ 1 mnt] == [1/7] pustaka ==
+   [ 1 mnt] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+   [ 2 mnt]  12%|??        | 3/24 [00:12<01:24,  4.01s/it]
+   [ 3 mnt]  58%|??????    | 14/24 [00:56<00:38,  3.88s/it]
+   [ 4 mnt]   warnings.warn(
+   [ 7 mnt]    arit-dengan: 7/10 ? ton 2/4 ? rata 2/2 ? terpotong 1
+   [ 9 mnt]    KODE7: True
+   [10 mnt] SELESAI dalam 9.2 menit
+
+## 5. Ambil (adapter DULU)
+   terambil: lora-gaya-promptragam.tgz
+   terambil: ringkasan-gaya-promptragam.json
+
+   loss 1.1914 · arit dengan 7/10 tanpa 9/10 · kenari 0/12 · terpotong data 0
+   petak tahan: base 3.6653 -> adapter 2.4748 (delta -1.1905)
+
+## 5b. Kontrak keluaran
+   # Kontrak keluaran — gaya-promptragam (v13)
+   
+     [33mcatatan[0m arit-dengan: 1 jawaban gerbang TERPOTONG (n_baru habis) — skor gagal bisa = buntung, bukan salah hitung
+     [33mcatatan[0m petak tahan: loss base 3.665302276611328 -> adapter 2.474762201309204 (delta -1.1905)
+     [31mWAJIB  [0m lengan arit-latih (prompt latih dominan) tidak ada padahal paritas prompt tidak penuh — gerbang buta naskah bersyarat (C20)
+   
+   [31mDHAIF[0m — 1 pelanggaran kontrak; jangan pakai ringkasan ini untuk klaim.
+   [31mRINGKASAN DHAIF — jangan dipakai untuk klaim; adapter tetap tersimpan.[0m
+
+## 6. Matikan instance
+   [32minstance 48483862 dimatikan[0m
+   hidup 11 menit · perkiraan $0.03
+
+[32mSELESAI gaya-promptragam[0m - ringkasan: models/v13/ringkasan-gaya-promptragam.json

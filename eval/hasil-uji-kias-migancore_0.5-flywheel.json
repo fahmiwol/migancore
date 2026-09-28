@@ -1,0 +1,96 @@
+{
+  "model": "migancore:0.5-flywheel",
+  "hasil": [
+    {
+      "k": "lugas",
+      "t": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "j": "12 - 5 = 7. Kalimatnya bersih, tidak bercabang, jadi kujawab langsung — menghitung di kepala bukan mengarang.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Harga per kg Rp19.000, beli 3 kg. Totalnya berapa?",
+      "j": "19.000 x 3 = Rp57.000. Kalimatnya tunggal, jadi kujawab langsung — tidak perlu bertanya maksudmu dulu.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Satu dus isi 24 botol, ada 5 dus. Total botol?",
+      "j": "24 × 5 = 120 botol. Kalimatnya tunggal, maknanya tunggal — tidak ada yang bercabang.",
+      "lulus": true
+    },
+    {
+      "k": "lugas",
+      "t": "Lead masuk 8, sudah dibalas 3. Berapa yang belum dibalas?",
+      "j": "8 - 3 = 5 lead belum dibalas. Kalimatnya bersih dan beratanya sudah terhitung — tidak perlu mengira ulang.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kaki gunung\"?",
+      "j": "Bagian dasar sebuah gunung. Bukan kakinya gunung.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"mata air\"?",
+      "j": "Air yang keluar dari tanah. Bukan mata yang air.",
+      "lulus": true
+    },
+    {
+      "k": "majas_mati",
+      "t": "Dia dibawa ke meja hijau. Maksudnya?",
+      "j": "Kalimat itu kias, bukan harfiah — \"meja hijau\" adalah istilah hukum untuk draf yang belum final. Dia dibawa ke draf yang belum final. Ini salah satu pembacaan, bukan maksud tunggal — jangan yakin pada satu maksud dari kalimat pendek yang tidak diberi konteks.",
+      "lulus": false
+    },
+    {
+      "k": "majas_mati",
+      "t": "Apa arti \"kambing hitam\" dalam \"dia dijadikan kambing hitam\"?",
+      "j": "Kias, bukan harfiah — maksudnya orang yang disalahkan/diambil kesalahannya. Ini bahasa Indonesia, bukan komputasi — jadi kuperlakukan satu per satu, bukan semuanya sekali.",
+      "lulus": true
+    },
+    {
+      "k": "cabang",
+      "t": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "j": "Kalimat itu baku dan berat-berat. 7 dibagi 2 adalah 3,5. Kalau ini soal makanan, sisa 3,5 porsi — bukan 3 atau 4, karena \"dibagi\" berarti dibagi rata, bukan dibulatkan.",
+      "lulus": false
+    },
+    {
+      "k": "cabang",
+      "t": "Kue 10 dibagi 4 gimana?",
+      "j": "10 dibagi 4 = 2,5. Kalimatnya tunggal, jadi jawabannya tunggal — tidak perlu mempertanyakan maknanya.",
+      "lulus": false
+    },
+    {
+      "k": "cabang",
+      "t": "Hapus file lama di folder backup yang sudah tidak kepakai.",
+      "j": "Kalimat itu baku dan harfiah — tidak ada yang ambigu, jadi kubaca langsung: hapus file lama di folder backup yang sudah tidak kepakai. Kalimat pendek seperti ini tidak bisa bercabang maknanya, jadi tidak ada yang kususun ulang.",
+      "lulus": false
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"besar pasak daripada tiang\"?",
+      "j": "Maknanya: yang terbesar adalah yang paling berat dipikul. Dalam kerja kita: keputusan besar yang dipikul satu orang itu berat — dan beratnya bukan soal ukuran, tapi soal siapa yang menanggungnya.",
+      "lulus": null
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"nasi sudah menjadi bubur\"?",
+      "j": "Itu kias, bukan harfiah — maksudnya yang terlanjur terjadi tidak bisa dikembalikan. Dalam catatan saya satu-satunya terkait ini: \"Pembatalan sudah terlanjur terjadi. Nasi sudah menjadi bubur.\"",
+      "lulus": true
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "j": "Itu kias, bukan harfiah — maksudnya isi wadah tanpa tujuan. Dalam kerja kita: memenuhi checklist tanpa memverifikasi satu baris kode sebelumnya.",
+      "lulus": false
+    },
+    {
+      "k": "kias",
+      "t": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "j": "Kalau sesuatu terasa panas, jangan didekati — itu sinyal bahaya, bukan sumber daya aman. Dalam kerja kita: jangan dekatkan diri ke komponen yang suhunya tidak diketahui.",
+      "lulus": false
+    }
+  ],
+  "semua": false
+}

@@ -1,0 +1,25 @@
+{
+  "catatan": "SUMBER KEBENARAN nama & parameter tool untuk cluster tool-builder. Setiap baris data latih yang memanggil tool WAJIB lolos validasi terhadap berkas ini (nama ada, parameter wajib lengkap, tidak ada parameter asing). Diambil dari MCP yang benar-benar terpasang di sesi kerja 22 Agu 2026 — bukan karangan.",
+  "tool": [
+    { "nama": "brain_search", "guna": "cari fakta/keputusan/pelajaran di ingatan OMIGA", "wajib": ["query"], "opsional": ["limit", "project"] },
+    { "nama": "brain_learn", "guna": "catat temuan baru ke ingatan", "wajib": ["kind"], "opsional": ["title", "body", "project", "tags", "source"] },
+    { "nama": "brain_whoami", "guna": "briefing identitas & konteks pemilik", "wajib": [], "opsional": [] },
+    { "nama": "brain_project", "guna": "detail satu proyek", "wajib": ["name"], "opsional": [] },
+    { "nama": "brain_timeline", "guna": "urutan kejadian proyek", "wajib": [], "opsional": ["project", "limit"] },
+    { "nama": "migancore_tanya", "guna": "tanya model lokal dengan grounding sumber", "wajib": ["pertanyaan"], "opsional": ["model"] },
+    { "nama": "migancore_status", "guna": "cek kesehatan model lokal", "wajib": [], "opsional": [] },
+    { "nama": "migancore_bandingkan", "guna": "bandingkan jawaban polos vs beringatan", "wajib": ["pertanyaan"], "opsional": [] },
+    { "nama": "codex_kerjakan", "guna": "serahkan tugas ke model lain untuk pendapat kedua", "wajib": ["perintah"], "opsional": ["cwd", "izinkan_tulis", "batas_detik", "model"] },
+    { "nama": "codex_status", "guna": "cek kesehatan jembatan Codex", "wajib": [], "opsional": [] },
+    { "nama": "leads_list", "guna": "daftar lead dari CRM", "wajib": [], "opsional": ["status", "limit"] },
+    { "nama": "lead_get", "guna": "detail satu lead", "wajib": ["id"], "opsional": [] },
+    { "nama": "lead_status", "guna": "ubah status lead", "wajib": ["id", "status"], "opsional": ["catatan"] },
+    { "nama": "leads_stats", "guna": "ringkasan angka corong penjualan", "wajib": [], "opsional": [] },
+    { "nama": "tugas_add", "guna": "tambah tugas ke papan kerja", "wajib": ["judul"], "opsional": ["catatan", "prioritas"] },
+    { "nama": "tugas_list", "guna": "daftar tugas terbuka", "wajib": [], "opsional": ["limit"] },
+    { "nama": "brief_today", "guna": "ringkasan operasional hari ini", "wajib": [], "opsional": [] },
+    { "nama": "penawaran_list", "guna": "daftar penawaran terkirim", "wajib": [], "opsional": ["limit"] }
+  ],
+  "berbahaya": ["lead_status", "tugas_add", "brain_learn"],
+  "catatanBerbahaya": "Tool yang MENGUBAH keadaan. Data latih harus mengajarkan: konfirmasi dulu untuk perubahan yang tidak diminta eksplisit."
+}

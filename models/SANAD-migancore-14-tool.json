@@ -1,0 +1,59 @@
+{
+  "catatan": "SANAD ARTEFAK migancore:0.14-tool. DITULIS TERLAMBAT 10 Sep 2026 — model ini dilatih 24-25 Agu, dilayankan, dan diukur belasan kali tanpa rantai periwayatan. Ditemukan oleh flywheel/lajur-latihan.mjs. Tiap mata di bawah dibangun dari bukti yang MASIH ADA; yang buktinya tipis ditandai dhaif, bukan dikarang.",
+  "berlakuUntuk": [
+    "migancore:0.14-tool"
+  ],
+  "matan": {
+    "apa": "Adapter LoRA cluster `tool` (389 baris) di atas basis v14. Cabang SPESIALIS ALAT, bukan penerus 0.14 — ia tidak pernah menggantikan model berlaku.",
+    "arsitektur": "Cluster-LoRA per Disiplin. LoRA r16 alpha32, base Qwen/Qwen3-4B-Instruct-2507."
+  },
+  "rantai": [
+    {
+      "mata": "data",
+      "riwayat": "cluster tool 389 baris",
+      "bukti": "flywheel/dataset/v14/cluster-tool.jsonl (389 baris, masih ada)",
+      "status": "sahih",
+      "alasan": "berkas ada dan jumlah barisnya cocok dengan yang dicatat pra-daftar V14"
+    },
+    {
+      "mata": "latih",
+      "riwayat": "Vast, 24-25 Agu; empat kemasan berurutan tersimpan sebagai lora-tool-sebelum-*",
+      "bukti": "models/v14/lora-tool.tgz + 3 varian bertanggal · flywheel/vast/*.log",
+      "status": "sahih",
+      "alasan": "adapter_config.json terbaca: base Qwen3-4B-Instruct-2507, r16 alpha32"
+    },
+    {
+      "mata": "kemas",
+      "riwayat": "GGUF q4_k_m + Modelfile",
+      "bukti": "models/v14/Modelfile.v14tool (FROM ./migancore-14-tool-q4_k_m.gguf, temperature 0.3, num_ctx 4096). GGUF-nya dipindah ke Bmax .-arsip\\v14 pada 9 Sep, SHA256 cocok 4/4.",
+      "status": "sahih",
+      "alasan": "Modelfile ada; GGUF ada di Bmax dengan sidik terverifikasi"
+    },
+    {
+      "mata": "gerbang-data",
+      "riwayat": "tidak ditemukan berkas hasil gerbang khusus untuk cluster tool v14",
+      "bukti": "-",
+      "status": "dhaif",
+      "alasan": "Tidak ada HASIL-GERBANG untuk cluster-tool v14 yang bisa saya temukan. Mungkin dijalankan tanpa menyimpan keluaran, mungkin tidak dijalankan. Tidak bisa dipulihkan sekarang — mata ini lemah dan disebut lemah."
+    },
+    {
+      "mata": "ukur",
+      "riwayat": "diukur berkali-kali di beberapa instrumen",
+      "bukti": "eval/hasil-jujur2-migancore_0.14-tool-p*.json (6 putaran sah) · eval/ULANG-uji-alat-migancore_0.14-tool*.json · eval/hasil-uji-TAHAN-migancore_0.14-tool.json",
+      "status": "sahih",
+      "alasan": "berkas hasil ada dan lolos saringan papan"
+    },
+    {
+      "mata": "vonis",
+      "riwayat": "tidak pernah dipromosikan; tidak ada pra-daftar yang khusus memvonisnya",
+      "bukti": "models/BERLAKU.json tidak menyebutnya sebagai berlaku maupun dilarang",
+      "status": "dhaif",
+      "alasan": "Model dilayankan sebagai cabang spesialis tanpa pernah melewati gerbang promosi formal. Itu keadaan yang sah untuk cabang riset, tapi harus disebut."
+    }
+  ],
+  "angkaTerakhirYangDIUKUR": {
+    "MENGARANG_petak_jujur2_kamus_H4": "26,8 % (CI95 24,1..29,5, n=6)",
+    "PERINGATAN": "Diukur dengan batas waktu 600 dtk, sementara 0.14 diukur 120 dtk. Membandingkan keduanya secara langsung TIDAK SAH — penjaga kondisi di eval/ambang-bibit.mjs menandainya."
+  },
+  "tanggal": "2026-09-10"
+}

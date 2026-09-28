@@ -1,0 +1,56 @@
+{
+  "nama": "resep-8b-tool-eksperimen",
+  "catatan": "VARIAN TERDAFTAR H-tool-8b (25 Agu): SATU-SATUNYA beda dari RESEP-V13 = base 4B-Instruct-2507 -> Qwen3-8B. Semua hiperparameter identik — eksperimen menjawab: hukum A12 (plafon SFT 81-91) itu batas kapasitas 4B atau batas data? Preseden 8B: v0.8-8b (Jun) dilatih Qwen3-8B di RTX 3090. RISIKO DICATAT: Qwen3-8B punya mode thinking (4B-2507 tidak) — kalau jawaban gerbang berisi <think> spam, itu temuan, bukan kejutan. VRAM: bf16 8B + LoRA + checkpointing muat 24GB; kalau OOM -> batch 2 akumulasi 8 (izin-beda kedua, dicatat).",
+  "base": "Qwen/Qwen3-8B",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.0,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "latih": {
+    "epoch": 2,
+    "batch": 4,
+    "akumulasi": 4,
+    "lr": 0.0002,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine",
+    "optim": "adamw_torch",
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "weight_decay": 0.0,
+    "seed": 42,
+    "maks_token": 1024,
+    "penopengan_prompt": true
+  },
+  "keputusanSadar": {
+    "weight_decay": "0.0 = bawaan TrainingArguments yang selama ini dipakai tanpa disadari (Databricks memakai 0.01 untuk full fine-tune; LoRA berbeda). Dicatat sebagai keputusan, bukan kebetulan — RISET-SUMBER-LUAR-22AGU.md §10.",
+    "seed": "42 = bawaan TrainingArguments yang selama ini berlaku diam-diam; kini eksplisit dan ikut tercatat di ringkasan.",
+    "lr_2e-4": "10x lebih besar dari full fine-tune (2e-5) — wajar untuk LoRA, bukan celah.",
+    "base_8B": "Qwen3-8B (hybrid thinking) dipakai karena 8B-Instruct-2507 tidak ada; SFT non-thinking targets menekan thinking."
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1",
+    "image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+  },
+  "gerbangTier1": {
+    "soal": "eval/soal-aritmetika-bersih.json",
+    "kenari": "flywheel/dataset/kenari.json",
+    "petakTahan": "flywheel/dataset/migancore-tahan.jsonl",
+    "promptGerbang": "eval/prompt-gerbang.json",
+    "n_baru": 400,
+    "suhu": 0
+  }
+}

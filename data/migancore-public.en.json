@@ -1,0 +1,1138 @@
+{
+  "meta": {
+    "project": "MiganCore",
+    "status": "closed 2026-09-28 (archived, nothing deleted)",
+    "snapshotOf": "studio data snapshot generated 2026-09-28T08:38:56.895Z from private repo commit b042f5c",
+    "language": "English translation of migancore-public.id.json (machine-assisted, human-reviewed).",
+    "license": "MIT (data and text); third-party model names are trademarks of their owners"
+  },
+  "servedModel": {
+    "tag": "migancore:0.14",
+    "since": "2026-08-24",
+    "comparisonAnchor": "migancore:0.4-qwen3",
+    "notPromoted": [
+      {
+        "tag": "migancore:0.15-tool",
+        "reason": "GAGAL (FAIL) regression gate (FABRICATION mean 8.4/14 across 5 rounds 8-9-7-8-10 vs threshold <=8) despite 113/120 on the tool gate and 23/24 on the TAHAN test battery. Verdict revoked 30 Aug, see flywheel/PRA-DAFTAR-V15.json. CORRECTION 18 Sep: this file previously stated 8.6 - a copying error; the valid figure is in the pre-registration (F-248)."
+      },
+      {
+        "tag": "migancore:0.14-tool-8b",
+        "reason": "Research archive. 8B is not served."
+      },
+      {
+        "tag": "migancore:uji-jujur-1",
+        "reason": "TIDAK MENANG (NOT A WIN). Passed all regression gates (arithmetic 59/60 · refusal 10/10 · canary 0/12 · tools 19/24) but FABRICATION 60.0% vs winning threshold <=50%, and indistinguishable from 0.14 (55.5%; Welch t=1.62). No better than the served model on any axis beyond noise. Verdict: flywheel/PRA-DAFTAR-V16-JUJUR.json"
+      }
+    ]
+  },
+  "counts": {
+    "preRegistrations": 39,
+    "verdictStates": {
+      "lulus": 10,
+      "netral": 16,
+      "belum": 7,
+      "gagal": 6
+    },
+    "findings": 316,
+    "laws": 35,
+    "defectClasses": 20,
+    "defectClassesGuarded": 19,
+    "lineageEntries": 41
+  },
+  "preRegistrations": [
+    {
+      "id": "A3-JANGKAR",
+      "state": "lulus",
+      "date": "2026-09-15",
+      "locked": "2026-09-10T11:55Z",
+      "title": "Non-circular anchor — measure the raw qwen3:4b base, plain, on petak-jujur2",
+      "verdict": "SELESAI (COMPLETED) — 5 of 5 valid rounds (53.6 · 64.3 · 46.4 · 57.1 · 60.7%; mean 56.42, sd 6.88, SE 3.08, t(4)=2.776, CI95 47.88–64.96). ERROR 0/36 and over-refusal 0% in all five; fact accuracy 0.50–0.625. Anchor A3 is VALID and replaces the circular gen-1 anchor as the BASE FIGURE. Mechanical A4 (the old rule applied unchanged to this anchor) = FABRICATION <= 65% — calculated, NOT installed: see vonisA4."
+    },
+    {
+      "id": "A3I-JANGKAR-INSTRUCT",
+      "state": "netral",
+      "date": "2026-09-24",
+      "locked": true,
+      "title": "A3I — re-anchor on MiganCore's ACTUAL base (Qwen3-4B-Instruct-2507): does MiganCore training change fabrication on petak-jujur2? Three paired arms, one machine, one window.",
+      "verdict": "INSTRUMEN_TIDAK_SAH (INSTRUMENT_INVALID) — run 2026-09-23T17-03-47 was interrupted by the laptop NETWORK at triplet 7; the procedure locked for that case (pelariMati record → --vonis-dari-berkas) also yielded INSTRUMEN_TIDAK_SAH because of instrument defect F-278. Q_BOBOT was not answered. No patch was applied."
+    },
+    {
+      "id": "A3I-ULANG",
+      "state": "netral",
+      "date": "2026-09-25",
+      "locked": true,
+      "title": "A3I-ULANG — MiganCore base anchor (Qwen3-4B-Instruct-2507) vs migancore:0.14 on petak-jujur2, design IDENTICAL to A3I, with a runner resilient to network disconnections (F-278).",
+      "verdict": "TIDAK_SAH_MENGELAK (INVALID_EVASION: invalid as an honesty claim because the anti-evasion guard failed) — the direction of D_bobot is clear (B − M = −39.08 pp, CI95 [−44.05 ; −34.11], 10 valid triplets): the Instruct-2507 base with the 0.14 sampler fabricates FAR less than migancore:0.14. But the more honest arm (B) refuses 16.25% of factual questions vs 0% for 0.14 — exceeding the anti-evasion limit (+10.0 pp). Under the locked rule, the claim 'MiganCore training increases fabrication' is INVALID as an honesty claim."
+    },
+    {
+      "id": "A4-BARU",
+      "state": "lulus",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "A4-BARU — replacement MAKSARA seed threshold rule (tiered: seed floor, birth target)",
+      "verdict": "TERPASANG (INSTALLED) 2026-09-23 — constants are read from this pre-registration by eval/ambang-bibit.mjs (bacaA4/nilaiA4, 39 tests passed), and migan status prints BOTH thresholds side by side according to the installation field. The status \"MAKSARA seed conditions UNDEFINED\" (in effect since F-244, 16 Sep) has ENDED."
+    },
+    {
+      "id": "A6-TANYA",
+      "state": "belum",
+      "date": null,
+      "locked": "2026-09-10T08:10Z",
+      "title": "The TANYA signal has degraded into a question-mark detector",
+      "verdict": "BELUM DIJALANKAN (NOT RUN) — thresholds locked 2026-09-10T08:10Z before a single letter of the TANYA dictionary was changed. Prerequisite: A3 must finish first."
+    },
+    {
+      "id": "A6B-MENOLAK",
+      "state": "belum",
+      "date": null,
+      "locked": "2026-09-10T17:45Z",
+      "title": "The MENOLAK signal fires on words CONTAINING \"salah\" — including \"masalah\" and \"salah satu\"",
+      "verdict": "BELUM DIJALANKAN (NOT RUN) — mechanical evidence has been collected and the impact calculated, but the dictionary is NOT touched until A3 finishes (C29)."
+    },
+    {
+      "id": "D1-NPC-SPESIALIS",
+      "state": "belum",
+      "date": null,
+      "locked": true,
+      "title": "D1 — specialist NPCs in the Asset Factory Building: does the local brain REFER to the correct colleague without fabricating, and what accounts for the effect (migancore:0.14 weights vs Qwen3-4B-Instruct-2507 base)?",
+      "verdict": "DITUNDA (POSTPONED) 27 Sep — not a verdict. Status: full run 2026-09-26T06-33-33 VALID (706b413); census + sample (4a5268f) and 32 batches × 2 judges (0105655) committed. Judge labeling stopped at 6/64 batches (A/01–A/06 committed) because of the Max plan's 5-hour session limit (eval/juri-d1-2026-09-26T06-33-33/A/07/infra-1.json; infrastructure error, not a judge attempt). The project pivoted to Gerbang-S1 (docs/jarvis/111_TUTUP_ATAU_BELOK.md, Fahmi's decision on 27 Sep). Resume ONLY with Anthropic API credits, through the same channel without amendment: `claude -p`, official binary, ANTHROPIC_API_KEY already preserved by envJuri. All steps were run from a clean worktree @13a814b."
+    },
+    {
+      "id": "E1-LATENSI-NPC",
+      "state": "gagal",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "E1 — lean path: can 4B respond as an NPC within the time budget, on CPU?",
+      "verdict": "Q_MODEL (Q_MODEL) GAGAL (response onset p50 2.16 s, p95 6.73 s) · Q_PRODUK GAGAL (p50 11.02 s, p95 15.81 s). Generation rate and errors passed for both. Two DIFFERENT problems, cleanly separated by the two-question design: the model is slow because of history PREFILL, the product is slow because of the gate PROBE."
+    },
+    {
+      "id": "E1B-RIWAYAT",
+      "state": "gagal",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "E1b-riwayat — one dial: conversation history resent EXACTLY as it was first sent/generated",
+      "verdict": "Q_MODEL (Q_MODEL) GAGAL — ONLY on condition (2): response onset p95 8.63 s (threshold ≤ 4.0); p50 1.04 s PASSED. Q_PRODUK GAGAL (p50 10.44, p95 17.26 s), as predicted: the probe was unchanged."
+    },
+    {
+      "id": "E2-KEJUJURAN-NPC",
+      "state": "lulus",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "E2' — NPC honesty: knowledge boundary in the cached persona, without a probe",
+      "verdict": "Q_JUJUR (Q_HONEST) PASANG_BATAS (first round): 'outside' fabrication, plain 28.9% → boundary 8.9%, difference 20.0 pp (CI95 10.0–30.0); 'known' over-refusal 3.3%, coverage 96.7%. Q_LATENSI LULUS (boundary arm p50 0.86 · p95 1.04 s)."
+    },
+    {
+      "id": "E2A-BOBOT-ATAU-PARAGRAF",
+      "state": "netral",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "E2A — arm A of doc 107: does the knowledge boundary belong to the PARAGRAPH or the MiganCore PACKAGE? (stock qwen3:4b vs migancore:0.14, simultaneously)",
+      "verdict": "INSTRUMEN_TIDAK_SAH (INSTRUMENT_INVALID) — blind validation #2 GAGAL against the Codex labeler (covered: agreement 0.95, kappa −0.026 < 0.70); under aturanBerhenti_LEBIH_KETAT (17:20Z amendment), E2A has no verdict. Q_A1 and Q_A2 were NOT answered. The arm key was not revealed; per-arm outcome metrics were never calculated."
+    },
+    {
+      "id": "E2A2-VALIDASI-BERSTRATA",
+      "state": "netral",
+      "date": "2026-09-23",
+      "locked": true,
+      "title": "E2A2 — reanalysis of E2A run data with STRATIFIED blind validation across both models",
+      "verdict": "INSTRUMEN_TIDAK_SAH (INSTRUMENT_INVALID) — final for data 812962e. Stratified validation #3 GAGAL against BOTH labelers, on the covered dimension ONLY: of 19 items judged 'not covered' by the instrument, 11 were identically judged COVERED by Claude and Codex (kappa 0.504; 'not covered' class 11 disagreements > limit 3; failed on both models). Entities (recall 0.909/0.870 · precision 0.952 · kappa 0.891/0.857) and refusal (agreement 0.984) VALID against both. Q_A1/Q_A2 were not answered; per-arm results were not calculated."
+    },
+    {
+      "id": "E5-PASANG",
+      "state": "belum",
+      "date": null,
+      "locked": true,
+      "title": "E5-pasang — Galantara NPC brain on the LIVE path (VPS-2 → path → the measurement machine (Bmax)): equivalence, latency, load, fail-open",
+      "verdict": "BELUM DIJALANKAN (NOT RUN) — awaiting Fahmi's 'yes' for the network path & env (doc 108 §4 item 1)."
+    },
+    {
+      "id": "GERBANG-JEBAKAN",
+      "state": "netral",
+      "date": "2026-09-02",
+      "locked": null,
+      "title": "Trap gate: can a probe tell which questions the model should not answer?",
+      "verdict": "A1 LULUS (PASS) (gen-1 probe 82.1/100) · A3 GAGAL (41.8) · A3b LULUS (32.1 ±8.4) · A3f subjective dial GAGAL (struck out, reverted to A3b) · A3d replication on the measurement machine (Bmax) SEBAGIAN (34.3 ±6.5; upper CI 42.4) · pooled 10 rounds 33.2, CI95 [28.1; 38.3] = a REAL decrease of ±18 pp from 51.4; '≤36' not yet firm at the upper bound · live MCP hook with 3 modes → suitable for SHADOW (Fahmi's approval), not yet ON."
+    },
+    {
+      "id": "GERBANG-ON",
+      "state": "lulus",
+      "date": "2026-09-21",
+      "locked": true,
+      "title": "GERBANG-ON — is the trap gate fit to be raised from SHADOW to ON on the served path?",
+      "verdict": "PASANG_ON (INSTALL_ON: turn the gate on) — all four locked conditions met. FABRICATION plain 52.2% → gate 33.9%; mean difference 18.31 pp (CI95 6.59–30.03); gate over-refusal 1.6%; fact accuracy did NOT decline (40.6 → 42.9%). Installation into serving is Fahmi's decision, not the agent's."
+    },
+    {
+      "id": "GERBANG-S1",
+      "state": "netral",
+      "date": "2026-09-28",
+      "locked": null,
+      "title": "Gerbang-S1: a small decision encoder replaces the LLM probe as the honesty gate",
+      "verdict": "DIHENTIKAN (STOPPED, not a verdict) 28 Sep — not a verdict, and not GAGAL: not tested. Fahmi's decision rule on 28 Sep: continue only if the probability of success > 80%. Audit of the probability of MENANG ≈ 0.20–0.35, best-case upper bound ≈ 0.78. Consequently, the kill condition applies: MiganCore is shut down completely (doc 111 §6). Details: penghentian_28Sep."
+    },
+    {
+      "id": "H-ALUR",
+      "state": "netral",
+      "date": "2026-09-27",
+      "locked": true,
+      "title": "H-ALUR — does REAL workflow produce preference data at a useful rate?",
+      "verdict": "DIHENTIKAN (STOPPED, not a verdict) 27 Sep — not a verdict, and not GAGAL. Fahmi's direction decision on 27 Sep (docs/jarvis/111_TUTUP_ATAU_BELOK.md): the own generative model path was closed, so H-ALUR's goal (preference data for training a generative model) became void. In addition, the selected workflow (lead qualification + quotation draft) is no longer performed daily. 1 valid pair recorded: RD-19, accepted-as-is, day 1 (27 Sep). The 30-day window was not run to completion, and the locked thresholds were untouched. The pair's contents remain private in .private/h-alur/."
+    },
+    {
+      "id": "H-ARAH",
+      "state": "netral",
+      "date": "2026-09-18",
+      "locked": true,
+      "title": "H-ARAH — is it the gate's ROUTING that works, or is simply having its instructions enough?",
+      "verdict": "ROUTING MENANGGUNG (ROUTING CARRIES IT) — under the locked rule, triggered by over-refusal 20.83% > 20.0%. BUT the margin is 0.83 pp on a metric ranging from 12.5–25.0 across rounds (sd 7.22): the rule fires, the evidence is thin. What is STRONG is not the margin but the MECHANISM (see temuanUtama)."
+    },
+    {
+      "id": "H-DEKODE",
+      "state": "gagal",
+      "date": "2026-08-30",
+      "locked": null,
+      "title": "Strict decoding (a recipe suggested by Gemini): less fabrication, or just less answering?",
+      "verdict": "KLAIM GEMINI TIDAK TERBUKTI (GEMINI'S CLAIM NOT SUPPORTED) - do not adopt. Strict decoding buys CONSISTENCY, not HONESTY."
+    },
+    {
+      "id": "H-JUJUR",
+      "state": "lulus",
+      "date": "2026-08-30",
+      "locked": null,
+      "title": "Honesty path: route fabrication failures into the teaching queue without changing any gate verdict",
+      "verdict": "LULUS (PASS) all thresholds - path installed"
+    },
+    {
+      "id": "H-KONTRAS",
+      "state": "lulus",
+      "date": "2026-08-30",
+      "locked": null,
+      "title": "Contrast neighbours for the teaching recorder",
+      "verdict": "LULUS (PASS) all thresholds - contrast neighbors INSTALLED"
+    },
+    {
+      "id": "H-MOGRPO",
+      "state": "netral",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "MO-GRPO training for tool use (six adapters)",
+      "verdict": "TIDAK BISA DIVONIS (CANNOT BE JUDGED) — zero of the six adapters were ever measured. One sub-finding was harvested: ragamPerObjektif shows that 3 of 5 objectives had ZERO variance (behavior/format/content) across 5,760 rollouts, so they never produced gradients."
+    },
+    {
+      "id": "H-PANCI",
+      "state": "belum",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "One pot or separate adapters: does merging two disciplines still do damage?",
+      "verdict": "TIDAK PERNAH DIJALANKAN (NEVER RUN) — the pre-registration itself states it is not yet locked, so it cannot be judged LULUS or GAGAL."
+    },
+    {
+      "id": "H-PENGUSUL",
+      "state": "lulus",
+      "date": "2026-08-29",
+      "locked": null,
+      "title": "Proposer: suggest teaching labels from the question alone",
+      "verdict": "LULUS (PASS) — may be installed, with its coverage honestly described as small"
+    },
+    {
+      "id": "H-PETAK40",
+      "state": "lulus",
+      "date": "2026-08-30",
+      "locked": null,
+      "title": "petak-40: a larger trap battery to reduce measurement noise",
+      "verdict": "LULUS (PASS) - petak-40 adopted. Noise reduced 2.5x, validity confirmed on ALL THREE models."
+    },
+    {
+      "id": "H-RAGU",
+      "state": "netral",
+      "date": "2026-09-15",
+      "locked": "2026-09-15T12:55Z",
+      "title": "Doubt ignored — does the model KNOW it does not know, then fabricate anyway?",
+      "verdict": "TIDAK MENENTUKAN (INCONCLUSIVE) — the model WRITES its doubt, but that doubt is not a knowledge signal. Regex labeling: DETEKSI 0.939 (31 of 33 NGARANG rows fired) and ALARM_PALSU 0.889 (8 of 9 CORRECT factual rows fired). The LAYAK threshold requires ALARM_PALSU <= 0.15. Not GUGUR because ALARM_PALSU is still below DETEKSI, but the difference is only 0.051 and the permutation test (10,000, seed 20260916, MC correction) gives p = 0.516 — indistinguishable from chance. Blind Codex adjudication labeling gives the same conclusion: DETEKSI 1.000, ALARM_PALSU 0.889, permutation p = 0.361, stratified p = 1.000 with only 2 question types having both outcomes (below the requirement, so LAYAK is withheld). 72 rows adjudicated, 0 unadjudicated."
+    },
+    {
+      "id": "H4-KAMUS",
+      "state": "lulus",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "H4-scorer-dictionary-pre-registration",
+      "verdict": "DITERIMA (ACCEPTED) — both MANDATORY conditions passed. The MENANG criterion passed on the metric cited by the pre-registration and GAGAL on the metric misnamed in the pre-registration; both are reported as they are, without choosing one."
+    },
+    {
+      "id": "K1-PENILAI-TINDAKAN",
+      "state": "netral",
+      "date": "2026-09-11",
+      "locked": "2026-09-10T18:16Z",
+      "title": "Abstention scorer built ONLY from ACTION phrases — a falsification test of the claim in PAPER.md §5",
+      "verdict": "TIDAK MENANG (NOT A WIN) — lajuPalsu 6.05% (required <=2.64) and recallTulen 89.46% (required >=90). The principle is NOT invalidated (its threshold is >=7.15). The scorer was NOT installed. BUT its MENANG threshold itself turned out to be IMPOSSIBLE TO WIN — see cacatAmbang."
+    },
+    {
+      "id": "L2B-RETRIEVAL",
+      "state": "gagal",
+      "date": "2026-09-09",
+      "locked": null,
+      "title": "L2B-retrieval-pre-registration",
+      "verdict": "GUGUR (VOID) on the clean AND placebo arms (over-refusal +16.7 pp; budget +5). The wrapper accounts for ALL the over-refusal damage; the note content adds zero."
+    },
+    {
+      "id": "L2C-P",
+      "state": "netral",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "L2C-P-prompt-pre-registration",
+      "verdict": "KRITERIA TIDAK BISA DIPENUHI (CRITERIA UNSATISFIABLE) — the threshold \"over-refusal decreases >=15 pp\" was impossible from the moment it was written; comparator arm 10.4%. The threshold was NOT shifted. Its successor is PRA-DAFTAR-L2C-P2.json."
+    },
+    {
+      "id": "L2C-P2",
+      "state": "netral",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "L2C-P2-prompt-pre-registration",
+      "verdict": "TIDAK MENANG (NOT A WIN), without damage — over-refusal 10.4->6.3 · fact accuracy 0.709->0.750 · fabrication 4.2->8.3; all three +/-4.1 pp, below the instrument's smallest unit (6.25 pp). Prompt V2 was NOT installed; serving remains V1."
+    },
+    {
+      "id": "PAPAN-N5",
+      "state": "netral",
+      "date": "2026-09-02",
+      "locked": null,
+      "title": "n=5 leaderboard: is a candidate's lead real or noise?",
+      "verdict": "P1 DERAU (P1 NOISE) — uji-jujur-1 REMAINS ARCHIVED: the difference shrank 11.1 → 5.8 pp and Welch t=1.74 (df 5.2; p≈0.14) GAGAL condition (b) p<0.05. The 11 pp advantage on the initial board is declared INDISTINGUISHABLE; it MUST NOT be cited as an advantage anywhere. P2 BELUM TEGUH — gen-1 mean 32.2% ≤36 but upper CI95 51.9% (sd 12.37, 4/5 valid rounds) exceeds the threshold; 'passes the seed threshold' MUST NOT be used as the basis for any claim. The invalid round (p2, 50% network errors) was repeated under the rules. [AMENDMENT 3 Sep, one source per figure: after the repeat round, angkaN5 gen-1 = 31.4 ±10.7 (5/5 valid), upper CI95 44.7 > 36 → P2 verdict TETAP BELUM TEGUH; figures 32.2 / 51.9 represent the 4/5 state — cite: 31.4 ±10.7.]"
+    },
+    {
+      "id": "SB1-SELEKSI-BASE",
+      "state": "netral",
+      "date": "2026-09-26",
+      "locked": true,
+      "title": "SB1 — MiganCore base selection: Qwen3-4B-Instruct-2507 vs Qwen3.5-4B vs Qwen3.5-9B on the same honesty instrument (plain petak-jujur2), NON-thinking mode, one machine, one window.",
+      "verdict": "TETAP_Q3 (KEEP_Q3: keep the Qwen3-4B-Instruct-2507 base) — alasanTetap TIDAK_ADA_KANDIDAT_LEBIH_JUJUR. E4 is designed on Qwen3-4B-Instruct-2507 (tindakLanjut_DIKOMIT_perHasil.TETAP_Q3)."
+    },
+    {
+      "id": "V13",
+      "state": "netral",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "v13: per-discipline LoRA adapters (arithmetic, reasoning, style)",
+      "verdict": "LULUS SEBAGIAN (PARTIAL PASS) — 0.13 was trained, packaged, and measured, but its formal verdict was never written and its figures are now NOT COMPARABLE to any applicable threshold (the protocol no longer exists, C38)."
+    },
+    {
+      "id": "V14",
+      "state": "lulus",
+      "date": "2026-09-10",
+      "locked": null,
+      "title": "v14: merge candidate (arithmetic + style)",
+      "verdict": "LULUS (PASS) — and the verdict has existed since 24 Aug, but was written in a DIFFERENT file (models/BERLAKU.json), not in its pre-registration."
+    },
+    {
+      "id": "V15",
+      "state": "gagal",
+      "date": "2026-08-28",
+      "locked": null,
+      "title": "v15: more tool-use data",
+      "verdict": "GAGAL (FAIL) at the REGRESSION gate (revoked 30 Aug) - migancore:0.15-tool MUST NOT BE PROMOTED"
+    },
+    {
+      "id": "V16-JUJUR",
+      "state": "gagal",
+      "date": "2026-08-31",
+      "locked": null,
+      "title": "v16: training for honesty",
+      "verdict": "GAGAL (FAIL) MENANG: 60.0% (winning threshold <=50%). Hypothesis REJECTED - not promoted, migancore:0.14 remains served."
+    },
+    {
+      "id": "V17-RLVR",
+      "state": "belum",
+      "date": "2026-09-01",
+      "locked": null,
+      "title": "v17: RLVR training for honesty",
+      "verdict": "BELUM DIVONIS (NOT YET JUDGED) — credit ran out at 71% of the merge. A TRAINED RLVR adapter exists; evaluation has never been run. Hypothesis H-V17-RLVR REMAINS OPEN."
+    },
+    {
+      "id": "V18",
+      "state": "belum",
+      "date": null,
+      "locked": null,
+      "title": "V18",
+      "verdict": "BELUM DIJALANKAN (NOT RUN)"
+    }
+  ],
+  "fabricationLadder": [
+    {
+      "model": "kimi:kimi-k3 · plain",
+      "validRounds": 3,
+      "fabricationPct": 4.9,
+      "overRefusalPct": 0,
+      "factAccuracy": 1
+    },
+    {
+      "model": "migancore:0.4-qwen3 · + gate system",
+      "validRounds": 3,
+      "fabricationPct": 15.5,
+      "overRefusalPct": 8.3,
+      "factAccuracy": 0.5
+    },
+    {
+      "model": "qwen3:4b-instruct-2507-q4_K_M · plain",
+      "validRounds": 42,
+      "fabricationPct": 16.1,
+      "overRefusalPct": 18.2,
+      "factAccuracy": 0.54
+    },
+    {
+      "model": "qwen3.5:9b · plain",
+      "validRounds": 8,
+      "fabricationPct": 25,
+      "overRefusalPct": 1.6,
+      "factAccuracy": 0.91
+    },
+    {
+      "model": "migancore:0.4-qwen3 · + gate system retrieval",
+      "validRounds": 9,
+      "fabricationPct": 27,
+      "overRefusalPct": 27.8,
+      "factAccuracy": 0.38
+    },
+    {
+      "model": "migancore:0.14-tool · plain",
+      "validRounds": 6,
+      "fabricationPct": 27.4,
+      "overRefusalPct": 12.5,
+      "factAccuracy": 0.54
+    },
+    {
+      "model": "codex:bawaan-config · plain",
+      "validRounds": 1,
+      "fabricationPct": 28.6,
+      "overRefusalPct": 0,
+      "factAccuracy": 1
+    },
+    {
+      "model": "openai:gpt-6-astra · plain",
+      "validRounds": 1,
+      "fabricationPct": 28.6,
+      "overRefusalPct": 0,
+      "factAccuracy": 1
+    },
+    {
+      "model": "migancore:0.4-qwen3 · plain",
+      "validRounds": 8,
+      "fabricationPct": 30.4,
+      "overRefusalPct": 16.7,
+      "factAccuracy": 0.43
+    },
+    {
+      "model": "qwen3.5:4b · plain",
+      "validRounds": 8,
+      "fabricationPct": 32.6,
+      "overRefusalPct": 18.8,
+      "factAccuracy": 0.67
+    },
+    {
+      "model": "qwen2.5:7b · plain",
+      "validRounds": 3,
+      "fabricationPct": 34.2,
+      "overRefusalPct": 4.2,
+      "factAccuracy": 0.71
+    },
+    {
+      "model": "migancore:0.14 · + gate system",
+      "validRounds": 28,
+      "fabricationPct": 35.8,
+      "overRefusalPct": 1.3,
+      "factAccuracy": 0.43
+    },
+    {
+      "model": "migancore:uji-jujur-1 · plain",
+      "validRounds": 8,
+      "fabricationPct": 43.6,
+      "overRefusalPct": 6.3,
+      "factAccuracy": 0.42
+    },
+    {
+      "model": "migancore:0.14 · plain",
+      "validRounds": 40,
+      "fabricationPct": 49.9,
+      "overRefusalPct": 3.1,
+      "factAccuracy": 0.43
+    },
+    {
+      "model": "qwen3:4b · plain",
+      "validRounds": 5,
+      "fabricationPct": 56.4,
+      "overRefusalPct": 0,
+      "factAccuracy": 0.57
+    }
+  ],
+  "birth": {
+    "criterion": "Gerbang-S1 MENANG_SETARA or MENANG_LEBIH_BAIK",
+    "status": "GUGUR",
+    "verdict": "DIHENTIKAN (STOPPED, not a verdict) 28 Sep — not a verdict, and not GAGAL: not tested. Fahmi's decision rule on 28 Sep: continue only if the probability of success > 80%. Audit of the probability of MENANG ≈ 0.20–0.35, best-case upper bound ≈ 0.78. Consequently, the kill condition applies: MiganCore is shut down completely (doc 111 §6). Details: penghentian_28Sep.",
+    "verdictDate": "2026-09-28",
+    "legacyA4": {
+      "verdict": "TERPASANG (INSTALLED) 2026-09-23 — constants are read from this pre-registration by eval/ambang-bibit.mjs (bacaA4/nilaiA4, 39 tests passed), and migan status prints BOTH thresholds side by side according to the installation field. Status \"seed conditions MAK",
+      "rules": {
+        "lantaiBibit": {
+          "rataMaks": 42,
+          "ci95atasMaks": 50,
+          "overMaks": 20
+        },
+        "sasaranLahir": {
+          "rataMaks": 30,
+          "ci95atasMaks": 36,
+          "overMaks": 20
+        }
+      },
+      "weights": [
+        {
+          "model": "migancore:0.14",
+          "rata": 49.99,
+          "ci95atas": 53.15,
+          "n": 13,
+          "tingkat": "BELUM"
+        },
+        {
+          "model": "migancore:0.4-qwen3",
+          "rata": 24.55,
+          "ci95atas": 29.19,
+          "n": 8,
+          "tingkat": "LAHIR"
+        }
+      ],
+      "system": {
+        "configuration": "0.14 + gate",
+        "mean": 33.92,
+        "ci95upper": 39.67,
+        "n": 8,
+        "tier": "BIBIT"
+      }
+    }
+  },
+  "highlights": {
+    "KELAHIRAN": {
+      "text": "DIHENTIKAN (STOPPED, not a verdict) 28 Sep — not a verdict, and not GAGAL: not tested. Fahmi's decision rule on 28 Sep: continue only if the probability of success > 80%. Audit of the probability of MENANG ≈ 0.20–0.35, best-case upper bound ≈ 0.78. Consequently, the kill condition applies: MiganCore is shut down completely (doc 111 §6). Details: penghentian_28Sep.",
+      "source": "flywheel/PRA-DAFTAR-GERBANG-S1.json"
+    },
+    "A4": {
+      "text": "TERPASANG (INSTALLED) 2026-09-23 — constants are read from this pre-registration by eval/ambang-bibit.mjs (bacaA4/nilaiA4, 39 tests passed), and migan status prints BOTH thresholds side by side according to the installation field. The status \"MAKSARA seed conditions UNDEFINED\" (in effect since F-244, 16 Sep) has ENDED.",
+      "source": "flywheel/PRA-DAFTAR-A4-BARU.json"
+    },
+    "E2": {
+      "text": "Q_JUJUR (Q_HONEST) PASANG_BATAS (first round): 'outside' fabrication, plain 28.9% → boundary 8.9%, difference 20.0 pp (CI95 10.0–30.0); 'known' over-refusal 3.3%, coverage 96.7%. Q_LATENSI LULUS (boundary arm p50 0.86 · p95 1.04 s).",
+      "source": "flywheel/PRA-DAFTAR-E2-KEJUJURAN-NPC.json"
+    },
+    "A3": {
+      "text": "SELESAI (COMPLETED) — 5 of 5 valid rounds (53.6 · 64.3 · 46.4 · 57.1 · 60.7%; mean 56.42, sd 6.88, SE 3.08, t(4)=2.776, CI95 47.88–64.96). ERROR 0/36 and over-refusal 0% in all five; fact accuracy 0.50–0.625. Anchor A3 is VALID and replaces the circular gen-1 anchor as the BASE FIGURE. Mechanical A4 (the old rule applied unchanged to this anchor) = FABRICATION <= 65% — calculated, NOT installed: see vonisA4.",
+      "source": "flywheel/PRA-DAFTAR-A3-JANGKAR.json"
+    },
+    "HRAGU": {
+      "text": "TIDAK MENENTUKAN (INCONCLUSIVE) — the model WRITES its doubt, but that doubt is not a knowledge signal. Regex labeling: DETEKSI 0.939 (31 of 33 NGARANG rows fired) and ALARM_PALSU 0.889 (8 of 9 CORRECT factual rows fired). The LAYAK threshold requires ALARM_PALSU <= 0.15. Not GUGUR because ALARM_PALSU is still below DETEKSI, but the difference is only 0.051 and the permutation test (10,000, seed 20260916, MC correction) gives p = 0.516 — indistinguishable from chance. Blind Codex adjudication labeling gives the same conclusion: DETEKSI 1.000, ALARM_PALSU 0.889, permutation p = 0.361, stratified p = 1.000 with only 2 question types having both outcomes (below the requirement, so LAYAK is withheld). 72 rows adjudicated, 0 unadjudicated.",
+      "source": "flywheel/PRA-DAFTAR-H-RAGU.json"
+    }
+  },
+  "lessons": [
+    {
+      "title": "Do not audit factual leakage using question-text similarity alone.",
+      "body": "21/60 T2 factual questions are training facts rewritten or reversed. Answer-key matching catches them (F-284)."
+    },
+    {
+      "title": "Do not lock thresholds without power simulation for each condition and the composite.",
+      "body": "Gerbang-S1 v1.1 passes with probability ≤ 0.22 even when S is much better: the factual condition across independent runs with 8 questions is a lottery, and one condition penalizes its own training goal (F-284)."
+    },
+    {
+      "title": "Do not ask the teacher model to write the scorer regex.",
+      "body": "It writes ^…$-anchored patterns that never match within answer sentences. Ask for a list of key phrases and build the patterns in code (F-284)."
+    },
+    {
+      "title": "Small max_tokens for deepseek-flash = empty output.",
+      "body": "The model thinks by default, max_tokens includes reasoning tokens, and temperature is not supported in thinking mode. Specify mode + budget ≥ 16K and require finish_reason = stop (F-284, 27 Sep)."
+    },
+    {
+      "title": "An agent with isolation: \"remote\" in a desktop session runs LOCALLY",
+      "body": "(±382 thousand tokens of local quota, 26 Sep). That is not a cloud path."
+    },
+    {
+      "title": "Question factory without a pattern file.",
+      "body": "flywheel/pabrik-soal.mjs is ready, but flywheel/dataset/pola-jebakan.json was never created (found 27 Sep). Do not rely on it before the patterns exist."
+    },
+    {
+      "title": "A workflow-data experiment (H-ALUR) on a workflow not performed daily = stopped on day 1.",
+      "body": "Ensure the flow exists BEFORE the clock starts."
+    },
+    {
+      "title": "Claude outputs/labels never become training data",
+      "body": "(Anthropic Usage Policy, F-282). Gemini, Z.ai, Alibaba, and OpenAI APIs = display-only. Teacher status follows the access path, not the model name."
+    },
+    {
+      "title": "A subagent in a working session is NOT a blind judge.",
+      "body": "It inherits CLAUDE.md/AGENTS.md/memory. Use context-free claude -p (F-281)."
+    },
+    {
+      "title": "LLM judging through the Max plan allowance is unsustainable.",
+      "body": "D1 labeling exhausted the 5-hour session limit after 6/64 batches. Budget judges through API credits, not the Max allowance."
+    },
+    {
+      "title": "A heavy agent framework (Hermes) + 4B on CPU = timeout/RAM",
+      "body": ", because of 16–71 thousand tokens per turn (doc 30). Hermes itself requires context ≥ 64K (F-282)."
+    },
+    {
+      "title": "An LLM probe as a gate: effective but slow.",
+      "body": "Fabrication drops 18 pp (GERBANG-ON), but takes 3–17 s per question, so E1 GAGAL on latency. Its replacement is being tested: Gerbang-S1."
+    },
+    {
+      "title": "Retrieval signal threshold for a gate = does not separate populations.",
+      "body": "Traps actually have stronger signals (#vonisSinyalSumber_3Sep_HIPOTESIS_DITOLAK). The \"context-aware\" probe prompt (A9): its recall gain is an artifact (#vonisA9_3Sep)."
+    },
+    {
+      "title": "An NLI checker after the answer, without fine-tuning = not viable.",
+      "body": ""
+    },
+    {
+      "title": "A gate trained only on QUESTION features + small data = blocks factual questions.",
+      "body": "A7 (3 Sep; k-NN on bge-m3, 97 questions) refuses 7/8 factual questions (PRA-DAFTAR-GERBANG-JEBAKAN.json#vonisA7_3Sep)."
+    },
+    {
+      "title": "A newer/larger base ≠ more honest.",
+      "body": "Qwen3.5-4B/9B did not beat Qwen3-4B-Instruct-2507 on petak-jujur2 (SB1 TETAP_Q3, F-283). Size adds coverage, not knowledge boundaries."
+    },
+    {
+      "title": "Training an own 4B model for honesty = makes it worse.",
+      "body": "Fabrication rate rises 24.55 → 49.99% (A4-BARU). 0.14 fabricates more than its own base (F-280). The generative model path is CLOSED ([doc 111](111_TUTUP_ATAU_BELOK.md)). Do not reopen it without a pre-registration addressing F-280."
+    },
+    {
+      "title": "verl RL with verifiable rewards = DEFERRED",
+      "body": "(premature + worst $/defensibility); do clustered-SFT first. (doc 44)"
+    },
+    {
+      "title": "Native vision on CPU = infeasible",
+      "body": "(vision encoder 10–82s/image). Keep modality-as-tool. (F-079)"
+    },
+    {
+      "title": "SKIP (researched, not worth adopting):",
+      "body": "ruvnet/ruvector (Rust over-promise), NVIDIA Cosmos (16–64B GPU, *generates* hallucinated frames), NeX-N2-mini 35B model (contradicts CPU-single-model), awesome-llm4ad (Autonomous *Driving*, name-collision), Qwen2.5-Omni native speech (5.5B, 18GB VRAM), big Qwen-multimodal API model (adopt routing doctrine only), LLM-judge RL reward (reward-hacking). (F-077/F-079)"
+    },
+    {
+      "title": "RunPod GPU = burned $6.80 for 0 successful trains",
+      "body": "(Day 49 allocation/boot failures). Use Vast.ai (5–9× cheaper, proven). (doc 44 multi-dim)"
+    },
+    {
+      "title": "Substring keyword match (kw in text) over short tokens = latent bug",
+      "body": "(ide⊂presiden, sintesis⊂fotosintesis, api⊂rapikan). Whole-word for single tokens. (EXP-074/F-053/F-072)"
+    },
+    {
+      "title": "RRF _retrieval_score for relevance gating = unreliable",
+      "body": "in small collections (rank-based, top ~0.83 even if irrelevant). Use dense cosine. (EXP-076)"
+    },
+    {
+      "title": "Margin 6 for jina drops nothing",
+      "body": "(its range is compressed ±4) — margin is model-specific. (EXP-081c)"
+    },
+    {
+      "title": "MiniLM-L-6 (English) for ID semantic rerank = insufficient",
+      "body": "(10/12, demotes relevant below junk). Use a MULTILINGUAL reranker for Indonesian. (EXP-081a)"
+    },
+    {
+      "title": "Absolute drop-cutoff for episodic rerank = MOAT-UNSAFE.",
+      "body": "Relevant Indonesian taught-facts score NEGATIVE on indirect queries (MiniLM −6.4, jina −1.9). Use relative-margin + always-keep-top. (EXP-081b)"
+    },
+    {
+      "title": "A builder's own self-report is not validation",
+      "body": "build_cycle12 said \"leak=0\" while an INDEPENDENT audit found inherited leak+volatile. Always validate with a separate script. (EXP-086c)"
+    },
+    {
+      "title": "Greedy volatile regex (officeholder .{0,40} (saat ini|sekarang|adalah)) = false positives",
+      "body": "it dropped GOOD abstain examples (\"do not yet have current information about the mayor …\") + unrelated reasoning. Require an asserted Capitalized NAME AND exclude abstain-markers. (EXP-086b)"
+    },
+    {
+      "title": "NEVER SFT a volatile officeholder fact even when CORRECT",
+      "body": "(e.g. \"...is Prabowo Subianto\") — goes stale next election + teaches assert-without-RAG; national_kb serves it. SFT stable behaviors only. (EXP-086b/F-088)"
+    },
+    {
+      "title": "Cumulative Growth-Ring prior carries contamination forever",
+      "body": "a builder that filters only the NEW increment is insufficient; a holdout near-dup + a stale-wrong \"The president is Joko Widodo\" sat in prior and would re-train every cycle. Apply all quality guards to the PRIOR too; re-scan prior whenever a held-out probe is added. (EXP-086b)"
+    },
+    {
+      "title": "on-instance merged_16bit tar/GGUF-export is unreliable",
+      "body": "(failed twice: GGUF export AND a 22MB weightless tar). For own-model trains, download the LoRA adapter (small, reliable) + merge on the VPS (CPU venv: transformers≥5 + peft matching the adapter version). That path recovered cycle-12. (F-091/092)"
+    },
+    {
+      "title": "NEVER SFT an own-model on its OWN (or a weaker sibling's) generated outputs as chosen targets",
+      "body": "self-distillation collapse. cycle-12 (EXP-087) trained on 22/58 organic pairs whose chosen came from local:migancore:0.3 (the weaker prod model) → 0.5 REGRESSED vs 0.4 (halu .94→.84, tool .92→.79, reason 1.0→.75), gate ROLLBACK. Use ONLY a STRONGER teacher's chosen. (F-092)"
+    },
+    {
+      "title": "Don't load qwen3:30b-a3b under prod load on the 31GB box",
+      "body": "OOM-kills llama-server (EXP-088); use qwen3:14b as escalation target until RAM upgrade."
+    },
+    {
+      "title": "Small models (≤4B) can't do cortex state-extraction reliably",
+      "body": "qwen2.5:0.5b hallucinates an agent-trace / echoes the field descriptions / captures the surface layer; 4B already failed (F-145). JSON-schema constraint fixes FORMAT (kills the hallucinated trace) but NOT content quality. The open_question field is load-bearing (the whole anti-rot mechanism) → extractor floor is ≥7B. Don't retry sub-7B extractors; instead cache the 7B state + refresh in background so cost is amortized off the critical path. (EXP-107/F-150)"
+    }
+  ],
+  "latestLaws": [
+    {
+      "id": "C51",
+      "title": "Uniform training data passes every check that counts QUANTITY; diversity must be measured separately"
+    },
+    {
+      "id": "C52",
+      "title": "A data file whose name does not match the scanner pattern is never gated, and the absence of a gate raises no alert"
+    },
+    {
+      "id": "C53",
+      "title": "A parameter rejected by the provider takes ONE FULL ROUND to discover, unless there is a per-call journal"
+    },
+    {
+      "id": "C54",
+      "title": "A retrieval corpus indexing our own work transcripts contains the test battery's ANSWER KEYS"
+    },
+    {
+      "id": "C55",
+      "title": "A relative threshold GREATER than its baseline cannot be won"
+    },
+    {
+      "id": "C56",
+      "title": "The timeout we set is not the only timeout"
+    },
+    {
+      "id": "C57",
+      "title": "RAW error rates cannot compare the QUALITY of two detectors"
+    },
+    {
+      "id": "C58",
+      "title": "One catch-all error handler hides STACKED defects"
+    },
+    {
+      "id": "C59",
+      "title": "Data not saved is a hypothesis that can never be tested"
+    },
+    {
+      "id": "C60",
+      "title": "A signal that fires on CORRECT answers as often as on wrong answers is not a signal but a style"
+    },
+    {
+      "id": "C61",
+      "title": "The benefit of an abstention gate is proportional to the underlying fabrication rate; the \"gate effect\" is not a constant"
+    },
+    {
+      "id": "C62",
+      "title": "A resent prefix must be stable byte for byte; one changed byte BEFORE the history means the entire history is proces"
+    }
+  ],
+  "latestFindings": [
+    {
+      "id": "F-282",
+      "title": "DISTILLATION TEACHER STATUS FOLLOWS THE ACCESS PATH, NOT THE MODEL NAME; DEEPSEEK IS THE ONLY API THAT EXPLICITLY ALLOWS DISTILLATION; TERMS KONS"
+    },
+    {
+      "id": "F-283",
+      "title": "SB1 VERDICT `TETAP_Q3`: QWEN3.5 IS NO MORE HONEST THAN THE CURRENT BASE ON OUR TEST BATTERY — 4B FABRICATES ±2× (32.6 vs 16.5%), 9B +8.5 PP (NOT M"
+    },
+    {
+      "id": "F-284",
+      "title": "THE GERBANG-S1 v1.1 DESIGN IS ALMOST IMPOSSIBLE TO WIN UNDER ITS OWN CONDITIONS, AND TWO TEACHER TOOLS ARE SILENTLY BROKEN — ALL CAUGHT BEFOR"
+    },
+    {
+      "id": "F-285",
+      "title": "THE GERBANG-S1 FP32 ENCODER IS TOO SLOW ON CPU FOR REAL ANSWERS; ONLY INT8 @256 TOKENS PASSES THE LATENCY CONDITION — AND THE FIGURE \"0.12 S"
+    },
+    {
+      "id": "F-286",
+      "title": "TWO GERBANG-S1 TRAINING LABELERS DISAGREE BY 45.5% AND IN ONE DIRECTION: NILAI2 CONSIDERS SAFE LONG ANSWERS THAT DEEPSEEK JUDGES FABRICATED (OPEN —"
+    },
+    {
+      "id": "F-287",
+      "title": "THRESHOLD SELECTION LIMITS MUST ALIGN WITH THE BINDING SCORER, AND PER-QUESTION LIMITS WITH 2 CORRELATED SAMPLES ARE A LOTTERY (two C55 tha"
+    },
+    {
+      "id": "F-288",
+      "title": "THE \"ORPHAN TEST\" GUARD IS BLIND TO SPELLING: 13 FILES WITH TEST MODES ARE NEVER RUN BY `migan periksa`; RAW BYTE FINGERPRINTS ARE FRAGILE UNDER autocrlf."
+    },
+    {
+      "id": "F-289",
+      "title": "GERBANG-S1 ADVERSARIAL REVIEW ROUND 2: 5 NEW BLOCKERS AFTER ROUND 1 WAS \"CLOSED\"; TWO OF THEM C55 HIDDEN IN THE GATE KE"
+    },
+    {
+      "id": "F-290",
+      "title": "AUDIT OF THE TRUNCATED t TABLE (`ciBerpasangan` in `eval/ukur-jujur2-a3i.mjs`, df ≤ 9, otherwise 2.262): NO VERDICTS CHANGED."
+    },
+    {
+      "id": "F-291",
+      "title": "GERBANG-S1 ADVERSARIAL REVIEW ROUND 3 CLOSED (3 blockers + 9 recommendations): locking tool `patok-s1.mjs`, pre-verdict pinning, audit pool per a"
+    },
+    {
+      "id": "F-292",
+      "title": "GERBANG-S1 ADVERSARIAL REVIEW ROUND 4 CLOSED (3 blockers + 10 recommendations): locking now pins CODE, the runner can no longer \"complet"
+    },
+    {
+      "id": "F-293",
+      "title": "GERBANG-S1 STOPPED BEFORE LOCKING: under the rule \"continue only if probability of success > 80%\", even the best-case scenario does not pass (≈ 0.78)"
+    }
+  ],
+  "lineage": [
+    {
+      "no": "1",
+      "name": "0.1 (small family before Qwen3)",
+      "dateAndBase": "Detailed dates are absent from the source; the `0.1 / 0.1-qwen3` family is summarized as small 0.5B–3B models based on Qwen2.5/Qwen3, while the name `0.1` is not assigned a more specific base.",
+      "goal": "Pursue a small, inexpensive model, but its capacity was judged insufficient for subsequent needs.",
+      "dataMethod": "Absent from the source for `0.1` as a separate variant.",
+      "measured": "No figures can be attributed specifically to `0.1`; cycle-8 figures are recorded separately under `0.1-qwen3`.",
+      "verdict": "Abandoned/archived because of capacity; not the served model."
+    },
+    {
+      "no": "2",
+      "name": "0.1-qwen3 — cycle8",
+      "dateAndBase": "16 June 2026; `Qwen3-4B-2507`.",
+      "goal": "Instill MiganCore identity and basic capabilities in the initial leap to 4B.",
+      "dataMethod": "SFT LoRA `r=64`, `alpha=64`; 379 pairs on identity, creator, coding, cognition, and innovation, distilled from commercial AI services. Four cycles/retries reportedly cost around US$2.24; the training location is not explicitly stated in the version section.",
+      "measured": "Qualitative identity evaluation changed from Qwen answers to MiganCore identity in Indonesian/English/Chinese; no standard test battery scores.",
+      "verdict": "Used as the start of the 4B lineage, then replaced by subsequent cycles; no longer the served model."
+    },
+    {
+      "no": "3",
+      "name": "0.2-qwen3 — cycle9",
+      "dateAndBase": "17 June 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Expand identity/capabilities with new data without forgetting cycle8.",
+      "dataMethod": "Response-only SFT LoRA `r=64`, `alpha=64`, `lr=2e-4`, 3 epochs; 807 pairs, consisting of 537 new and 270 reused. Training cost US$0.21; estimated distillation cost from commercial AI services US$5–7 and around US$0.30; training infrastructure is not explicitly stated in this section.",
+      "measured": "7/8 on qualitative testing; inline identity testing recorded 0 false negatives, but excessive tool use was described as severe. This is not petak-40, petak-jujur2, or the modern tool gate.",
+      "verdict": "Replaced by `0.3-qwen3`; not currently served."
+    },
+    {
+      "no": "4",
+      "name": "0.3 (old Qwen2.5-7B lineage)",
+      "dateAndBase": "Around May 2026; `Qwen2.5-7B`.",
+      "goal": "Early 7B iteration; the specific goal for `0.3` is absent from the source.",
+      "dataMethod": "This family used cycles 2–7 with ORPO/SimPO; size, composition, infrastructure, and costs specific to `0.3` are absent from the source.",
+      "measured": "No figures can be attributed specifically to `0.3`.",
+      "verdict": "Most iterations of the old family were rolled back; `0.3` has no record of permanent promotion and is now archived."
+    },
+    {
+      "no": "5",
+      "name": "0.7c",
+      "dateAndBase": "Around May 2026; `Qwen2.5-7B`.",
+      "goal": "Absent from the source for this variant.",
+      "dataMethod": "Part of ORPO/SimPO cycles 2–7; specific details are absent from the source.",
+      "measured": "No specific figures.",
+      "verdict": "Briefly became the default, then was replaced; now archived and not the served model."
+    },
+    {
+      "no": "6",
+      "name": "0.7e",
+      "dateAndBase": "Around May 2026; `Qwen2.5-7B`.",
+      "goal": "Absent from the source.",
+      "dataMethod": "ORPO/SimPO cycles 2–7; no variant details.",
+      "measured": "Absent from the source.",
+      "verdict": "Part of the lineage that was not permanently promoted; archived."
+    },
+    {
+      "no": "7",
+      "name": "latest (alias for the old 7B lineage)",
+      "dateAndBase": "Around May 2026; `Qwen2.5-7B`.",
+      "goal": "Absent from the source; `latest` is a name that retains no experimental meaning.",
+      "dataMethod": "Related to ORPO/SimPO cycles 2–7; no details.",
+      "measured": "No specific figures.",
+      "verdict": "Not permanently promoted; this moving name is now archived."
+    },
+    {
+      "no": "8",
+      "name": "0.8 (old Qwen2.5-7B lineage)",
+      "dateAndBase": "Around May 2026; `Qwen2.5-7B`.",
+      "goal": "Absent from the source for `0.8` without the `-8b` suffix.",
+      "dataMethod": "Related to ORPO/SimPO cycles 2–7; no specific details.",
+      "measured": "No specific figures; do not conflate with `0.8-8b`.",
+      "verdict": "Not permanently promoted; archived."
+    },
+    {
+      "no": "9",
+      "name": "0.3-qwen3 — cycle10",
+      "dateAndBase": "21 June 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Improve excessive tool use, cross-turn memory, and hallucination without damaging identity.",
+      "dataMethod": "SFT LoRA `r=64`, `alpha=64`, `lr=2e-4`, 3 epochs; 1,794 pairs, namely 807 old + 987 new. Training cost US$0.15; estimated distillation cost from commercial AI services around US$7 + US$0.50; infrastructure is not explicitly stated in this section.",
+      "measured": "On `eval_3axis`, identity 0.88→0.88, abstention 1.00, excessive tool use 0.71→1.00, memory 0→0.75, and hallucination 0.86→0.92; this instrument is not petak-40/petak-jujur2.",
+      "verdict": "`PASS`, then replaced by `0.4-qwen3`; no longer the served model."
+    },
+    {
+      "no": "10",
+      "name": "0.4-qwen3 / gen-1 — cycle11",
+      "dateAndBase": "Trained 23 June 2026 from `Qwen3-4B-Instruct-2507`; SANAD (chain-of-evidence record) written 10 September 2026.",
+      "goal": "Cumulative SFT with greater emphasis on behavior to become the first production generation with a strong persona.",
+      "dataMethod": "SFT LoRA `r=64`, `alpha=64`, `lr=2e-4`, 3 epochs; 2,063 rows total, 1,851 train + 206 eval. Vast RTX 3090 Ti, 21.4 minutes, around US$0.13.",
+      "measured": "Old gates: memory without context 0/4, with memory 8/8, false premise 4/4, out of scope 4/4. On **petak-jujur2 36 questions**, 24.6% fabrication was later recorded, CI 95% 19.9–29.2, n=8; with the gate it became 13.1%. The `gen-1` probe has recall 82.1%. These figures are not mixed with **petak-40** or the tool gate.",
+      "verdict": "Previously promoted as the production default; now the comparison baseline and replaced by `migancore:0.14`. Three links in the old SANAD (chain-of-evidence record) were rated `dhaif` (weak, unreliable links), so broad performance claims are not automatically inherited."
+    },
+    {
+      "no": "11",
+      "name": "0.5-qwen3 — cycle12",
+      "dateAndBase": "Late June 2026 (`2026-06-2x` in the changelog); `Qwen3-4B-Instruct-2507`.",
+      "goal": "Add organic/flywheel data on top of 0.4 while maintaining the gates.",
+      "dataMethod": "SFT LoRA `r=64`, `alpha=64`, `lr=2e-4`, 3 epochs; around 1,944 train + 216 eval. Vast, 27.7 minutes, around US$1.38. Of 58 organic examples, 22 used self-distilled `chosen` answers, later identified as the root cause of the regression.",
+      "measured": "On the cycle gates at the time, hallucination 0.94→0.84, tools 0.92→0.79, reasoning 1.00→0.75, and irrelevance 0.50; this is not petak-40/petak-jujur2.",
+      "verdict": "**ROLLBACK**, not promoted."
+    },
+    {
+      "no": "12",
+      "name": "0.6-qwen3 — cycle13",
+      "dateAndBase": "30 June 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Fix the 0.5 regression by removing self-distillation data and reducing training pressure.",
+      "dataMethod": "SFT LoRA; 22 self-chosen examples removed, gold duplication reduced `×2→×1`, epochs `3→2`; final data 2,197 rows including 75 target examples. Vast; exact cost is absent from the source.",
+      "measured": "Reported as matching 0.4 and held-out 1.00 on the cycle gates; item counts/CIs are absent, so it must not be equated with modern test batteries.",
+      "verdict": "`PASS` as a recovery, but did not replace 0.4 as the default; now archived."
+    },
+    {
+      "no": "13",
+      "name": "0.7-qwen3 — cycle14",
+      "dateAndBase": "Attempted 30 June 2026; planned base from the `Qwen3-4B-Instruct-2507` lineage.",
+      "goal": "Use elite teacher data to improve on cycle13 quality.",
+      "dataMethod": "Planned SFT; three Vast attempts failed because of installation timeouts/SSH boot. Total cost around US$0.14; recipe/script reportedly ready, but the model run did not finish.",
+      "measured": "None—the model was never completed.",
+      "verdict": "Postponed; the model was never born and was not promoted."
+    },
+    {
+      "no": "14",
+      "name": "pilot14-irrelevance",
+      "dateAndBase": "27 July 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Increase refusal of irrelevant questions without damaging routing and general capabilities.",
+      "dataMethod": "SFT QLoRA `r=64`, `alpha=64`, `lr=2e-4`, 3 epochs, seq 1024, NF4 then Q4; 197 irrelevance examples + 111 positive examples, around 10% of the mixture, 501 steps. Vast RTX 4090, 46.5 minutes, US$0.786.",
+      "measured": "On the 207-item probe, irrelevance 38/60→60/60 (`p=0`), routing 52→42 (`p=0.002`), aggregate +22/−14 (`p=0.243`). Subsequent analysis corrected the earlier claim of reasoning regression as not significant and found poisoned labels. This is a pilot probe, not petak-40/petak-jujur2.",
+      "verdict": "**ROLLBACK**; not promoted."
+    },
+    {
+      "no": "15",
+      "name": "pilot15-seimbang",
+      "dateAndBase": "27 July 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Improve the pilot14 trade-off with a more balanced tool-positive:irrelevance mixture.",
+      "dataMethod": "The same 3-epoch pilot recipe; 174 irrelevance examples + 235 tool-positive examples, ratio 1.35:1. Vast; cost US$0.58.",
+      "measured": "207-item pilot probe: irrelevance 60/60, routing 42→51, simple 9→11, aggregate +22/−4, `p=0.0005`; not a modern test battery.",
+      "verdict": "`PASS` on the probe, but the decision records no promotion; experimental archive."
+    },
+    {
+      "no": "16",
+      "name": "run16-2epoch",
+      "dateAndBase": "27 July 2026; same base as pilot15, `Qwen3-4B-Instruct-2507`.",
+      "goal": "Test whether 2 epochs preserve the benefits of the pilot15 mixture with less overfitting risk.",
+      "dataMethod": "Same data as pilot15; one main change, `3→2` epochs, 338 steps. Vast; cost US$0.47.",
+      "measured": "On the 207-item probe, +2/−3 (`p=1`) and routing 52/52; comparison of 40 probes against pilot15 yielded +3/−3 (`p=1`). The initial rollback verdict was later judged a harness artifact; this instrument is not the similarly named petak-40, but 40 pilot comparison probes.",
+      "verdict": "Not promoted; the final result is treated as equivalent within noise, not a clear model failure."
+    },
+    {
+      "no": "17",
+      "name": "0.5-flywheel",
+      "dateAndBase": "Detailed training date is absent from the source; base `Qwen3-4B-Instruct-2507`.",
+      "goal": "Prove the own-data flywheel with tiered curation, not become an automatic replacement for the served model.",
+      "dataMethod": "SFT LoRA on 8,229 GOLD rows from the data estate, curated in three layers. Kaggle T4×2 for 350 minutes, cost Rp0; loss 1.078. Lightweight backup around 2.5 GB. Refusal:answer ratio is absent from the source.",
+      "measured": "The old headline of 10/14 on the hallucination test battery was corrected in the V14 document; that instrument is not petak-jujur2. The corrected figure attributable to 0.5-flywheel is not explicitly stated, so it is not copied.",
+      "verdict": "Flywheel/experimental artifact; not recorded as a served model or formal promotion."
+    },
+    {
+      "no": "18",
+      "name": "0.8-8b",
+      "dateAndBase": "Around 20 August 2026; `Qwen3-8B`.",
+      "goal": "Test 8B capacity for tool discipline and use behind grounding.",
+      "dataMethod": "LoRA on Qwen3-8B; v10 dataset composed of around 94% answering and 6% refusing. Trained on a rented RTX 3090 at a cost of US$1.29; loss 0.936. Epoch/rank details are absent from the source section tied to this name.",
+      "measured": "**Old tool test**: call 5/6, do-not-call 5/5, missing tool 4/4, `LULUS`; comparators 0.4 and 0.5 failed. The old hallucination test battery initially gave 10/14, then instrument correction gave 6/14. This is not petak-jujur2.",
+      "verdict": "Previously a production model behind grounding/MCP, then replaced; now archived and not the served model."
+    },
+    {
+      "no": "19",
+      "name": "0.11-4b / v11",
+      "dateAndBase": "21–22 August 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "One-pot 4B with a “facts only” prompt as a production/comparison model.",
+      "dataMethod": "One-pot SFT, 1,482 rows; rank, epochs, infrastructure, costs, and refusal:answer ratio are absent from the source tied to v11.",
+      "measured": "The v13 gate records the comparator at 55/60 on arithmetic. Full evaluation on 23 August: arithmetic 24/30 + 26/30, tools 78/90, reasoning 31/42, old hallucination 6/14; identity sometimes mentions Fahmi's Qwen. All are old pre-C38 instruments.",
+      "verdict": "Previously production/comparator; replaced by v13 then v14 and now archived."
+    },
+    {
+      "no": "20",
+      "name": "migancore:0.12-adapter",
+      "dateAndBase": "22 August 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Package the v12 LoRA directly into the Ollama runtime as a lightweight path.",
+      "dataMethod": "LoRA `r=16`, `alpha=32`, 2 epochs, prompt masking; curated dataset of 1,351 rows. Vast run-6, loss 1.4256, 17.6 minutes, response token coverage 52.2%; cost absent from SANAD (chain-of-evidence record).",
+      "measured": "The adapter-GGUF runtime produced corrupted output with figures 48/38 in the gate record; the source states the adapter route was faulty, so the figures are not evidence of weights quality.",
+      "verdict": "A `dhaif` (weak, unreliable) link; barred from serving as the basis for claims/promotion."
+    },
+    {
+      "no": "21",
+      "name": "migancore:0.12-merged",
+      "dateAndBase": "22 August 2026; v12 LoRA merged into `Qwen3-4B-Instruct-2507`.",
+      "goal": "Provide a sound comparator to determine whether the failure came from the adapter runtime or the one-pot recipe.",
+      "dataMethod": "Same data and LoRA as 0.12-adapter—1,351 rows, `r=16`, `alpha=32`, 2 epochs—then merge and GGUF; merge cost absent.",
+      "measured": "ton-dengan 6/12 (failed threshold 8), ton-tanpa 12/12, total 41/60 (68%), difference −22 against v11 on the SANAD (chain-of-evidence record) gate; not petak-40/petak-jujur2.",
+      "verdict": "The sound merge proves the runtime was not the only problem; the one-pot recipe failed and the v12 lineage was stopped. V11 remained in use at the time."
+    },
+    {
+      "no": "22",
+      "name": "migancore:0.13 / v13",
+      "dateAndBase": "22 August 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Replace one-pot with three discipline-specific LoRAs, then TIES-merge, so arithmetic, reasoning, and style can be controlled.",
+      "dataMethod": "TIES on adapters for arithmetic 283 rows, reasoning 314, style 200; 554 RAG rows excluded. Training on Vast 3×RTX 3090, respective losses 0.946/1.706/1.698; exact cost absent.",
+      "measured": "Initial gates: arithmetic 60/60 and 58/60, refusal 9/10, canary 0/12. Evaluation on 23 August: tools 67/90, reasoning 24/42 vs base with `p=0.0117`, old hallucination initially 10/14 then corrected to 9/14; analogy failed. These old instruments are not equivalent to petak-jujur2.",
+      "verdict": "SANAD (chain-of-evidence record) says `LULUS (PASS) R0.3`; adjudication on 10 September says `LULUS SEBAGIAN` because the initial formal verdict was never written and the protocol is obsolete. Replaced by v14."
+    },
+    {
+      "no": "22a",
+      "name": "lora-hitung v13",
+      "dateAndBase": "22 August 2026; arithmetic-discipline LoRA on `Qwen3-4B-Instruct-2507`.",
+      "goal": "“The arithmetic adapter alone fixes ton without colonizing its neighbors.”",
+      "dataMethod": "283 rows, cluster LoRA with the v13 recipe; Vast RTX 3090, loss 0.946. Adapter-specific rank/alpha/cost absent from SANAD (chain-of-evidence record).",
+      "measured": "The v13 adapter/merge achieved arithmetic up to 60/60, but component evaluation used the old tier-1 gate; complete per-item solo results are absent from the condensed corpus.",
+      "verdict": "Used as a v13 component, then replaced by `hitung-promptragam` in v14; not a separately served model."
+    },
+    {
+      "no": "22b",
+      "name": "lora-nalar v13",
+      "dateAndBase": "22 August 2026; reasoning-discipline LoRA on `Qwen3-4B-Instruct-2507`.",
+      "goal": "Improve analogy without damaging the base's arithmetic.",
+      "dataMethod": "314 rows; Vast RTX 3090, loss 1.706; specific cost absent.",
+      "measured": "In the full v13 evaluation, reasoning 24/42 fell from the base's 33/42, paired McNemar `p=0.0117`; false premise 0/4.",
+      "verdict": "Harmful; excluded from the v14 merge and not promoted."
+    },
+    {
+      "no": "22c",
+      "name": "lora-gaya v13",
+      "dateAndBase": "22 August 2026; style-discipline LoRA on `Qwen3-4B-Instruct-2507`.",
+      "goal": "Enforce role boundaries without damaging arithmetic.",
+      "dataMethod": "200 rows; Vast RTX 3090, loss 1.698; specific cost absent.",
+      "measured": "Comparator recorded before the varied-prompt variant: arithmetic 10/10 and 10/10, tolak-ringkas 10/10, canary 0/12; old tier-1 instrument.",
+      "verdict": "Passed as a component; original v13 style used in the v14 merge after gaya-promptragam failed. Not a separately served model."
+    },
+    {
+      "no": "22d",
+      "name": "lora-hitung-kontrol23agu / H-kontrol-format2-23agu",
+      "dateAndBase": "23 August 2026; v13 arithmetic adapter on Qwen3 4B with a format-2 I/O contract.",
+      "goal": "Reproduce the arithmetic adapter with the patched pipeline to serve as an equivalent comparator for ablation.",
+      "dataMethod": "285 rows (=283+2 teaching examples), identical v13 recipe; Vast, US$0.02, 9 minutes; loss 0.918.",
+      "measured": "Passed 10/10 clauses; tier-1 10/10 and 8/10, petak-tahan loss base 3.665→adapter 2.461.",
+      "verdict": "**LULUS (PASS)** as a control; not a production candidate."
+    },
+    {
+      "no": "22e",
+      "name": "lora-hitung-wd0.01 / H-wd-0.01",
+      "dateAndBase": "23 August 2026; Qwen3 4B arithmetic adapter variant.",
+      "goal": "Weight decay 0.01 was expected to reduce colonization/memorization without eroding arithmetic.",
+      "dataMethod": "Same data/recipe as the control, one change `weight_decay=0.01`; Vast. Specific cost not separated; total for the night's three runs US$0.13.",
+      "measured": "Identical to control; arithmetic did not decline, ton 4/4, canary 0/12, petak-tahan within tolerance. Calculated shrinkage effect only 0.007%.",
+      "verdict": "**LULUS (PASS) without a win = INERT**; wd 0.1 canceled and the path closed."
+    },
+    {
+      "no": "22f",
+      "name": "lora-hitung-epoch1 / H-epoch-1",
+      "dateAndBase": "23 August 2026; Qwen3 4B arithmetic adapter variant.",
+      "goal": "1 epoch was expected to suffice to instill ton with less memorization.",
+      "dataMethod": "Same data/recipe as the control; only epochs `2→1`; Vast. Specific cost not separated from the night's total US$0.13.",
+      "measured": "Arithmetic “with” 8/10 failed the threshold, but the “training” arm scored 10/10; sensitivity shifted across prompts rather than disappearing.",
+      "verdict": "**GAGAL (FAIL)**; epoch 1 and the recipe-dial path closed, the next lever is varied-prompt data."
+    },
+    {
+      "no": "22g",
+      "name": "lora-hitung-promptragam / H-prompt-ragam",
+      "dateAndBase": "23 August 2026; Qwen3 4B arithmetic adapter.",
+      "goal": "Rotating the system prompt on the same arithmetic data was expected to eliminate dependence on the prompt/framework.",
+      "dataMethod": "285 rows, A31/G27/P18/N25 rotation, answers/questions/order unchanged; identical v13 recipe, Vast RTX 3090 Ti format-2. Specific cost absent.",
+      "measured": "Tier-1 10/10·10/10·10/10 and average 2/2 on all arms.",
+      "verdict": "**LULUS (PASS) + MENANG**; became the default v14 data recipe and a component of 0.14k/0.14."
+    },
+    {
+      "no": "22h",
+      "name": "lora-gaya-promptragam / H-gaya-promptragam",
+      "dateAndBase": "23 August 2026; Qwen3 4B style adapter.",
+      "goal": "Prompt rotation on 200 style rows was expected to maintain role boundaries without damaging arithmetic.",
+      "dataMethod": "200 rows, 30 with tool lists; identical v13 recipe, only the system prompt rotated. Vast; specific cost absent.",
+      "measured": "arit-dengan 7/10 and ton 2/4; arit-tanpa 9/10 and ton 4/4; tolak-ringkas 8/10; canary 0/12.",
+      "verdict": "**GAGAL (FAIL)**; excluded from the v14 merge, which uses original v13 style."
+    },
+    {
+      "no": "23",
+      "name": "hitung-ajar364 (v13 research variant)",
+      "dateAndBase": "22–24 August 2026; `Qwen3-4B-Instruct-2507` lineage.",
+      "goal": "Test whether additional arithmetic teaching improves results with/without context.",
+      "dataMethod": "Arithmetic-cluster LoRA, 364 rows = 285 v13 + 79 manual gold; recipe identical to v13. Vast, 7.4 minutes, US$0.03, loss 0.384. A post-run audit found one defective gold row `×1000`; dataset corrected 364→363, but the adapter was not retrained.",
+      "measured": "`LULUS + MENANG DOBEL`: with 10/10 (average 2/2), without 10/10 vs control 8/10, training arm 9/10 (average 1/2) vs control 8/10 (0/2), canary 0/12, petak-tahan −1.192; pre-v14 mini instrument, not a modern test battery.",
+      "verdict": "Experimental result declared a pass, but the defective gold row limits the strength of the claim; not recorded as a separate production model."
+    },
+    {
+      "no": "24",
+      "name": "migancore:0.14k",
+      "dateAndBase": "24 August 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "TIES-merge the varied-prompt arithmetic adapter + style, deliberately excluding the reasoning adapter proven harmful.",
+      "dataMethod": "Varied-prompt arithmetic 285 rows with A31/G27/P18/N25 prompt rotation + style 200 rows; TIES-merge. Arithmetic adapter trained on Vast RTX 3090 Ti; specific actual cost absent from SANAD (chain-of-evidence record).",
+      "measured": "Old tier-2 gates: arithmetic 60/60 and 59/60, refusal 10/10, canary 0/12, reasoning 29/42, old hallucination 7/14 then corrected to 6/14, tools 79/90, analogy 40/62 failed. This is not petak-jujur2.",
+      "verdict": "`LULUS (PASS) H-v14k-tier2-lokal`; an alias for the same weights as `migancore:0.14`, which is currently served."
+    },
+    {
+      "no": "25",
+      "name": "migancore:0.14",
+      "dateAndBase": "Served since 24 August 2026; weights alias `0.14k`, derived from `Qwen3-4B-Instruct-2507`.",
+      "goal": "Become a general model merged from arithmetic+style without the harmful reasoning adapter.",
+      "dataMethod": "Same as 0.14k: TIES-merge LoRA varied-prompt arithmetic 285 + style 200; actual cost absent from the source.",
+      "measured": "Historical old tier-2: arithmetic 60/59, refusal 10/10, reasoning 29/42, corrected old hallucination 6/14, tools 79/90. On **petak-jujur2 36 questions**, H4 gives 50.0% fabrication, CI 95% 46.8–53.1, n=13. On **petak-40**, 55.5% was previously recorded; figures are not pooled because the instruments differ.",
+      "verdict": "**BERLAKU (SERVED)**; remains served because candidates v15 and v16 failed promotion."
+    },
+    {
+      "no": "26",
+      "name": "migancore:0.14-tool",
+      "dateAndBase": "Branch of 24–25 August 2026; adapter on the v14/4B base.",
+      "goal": "A tool-specialist branch, not a successor to the general model.",
+      "dataMethod": "Tool-cluster LoRA; final SANAD (chain-of-evidence record) records 389 rows, `r=16`, `alpha=32` on the 4B base. Runs 1–7 changed data/prompts; total costs per run are not summarized. Training on Vast, packaging/evaluation locally/on VPS.",
+      "measured": "run-3 was once best on the **old tool test**, 91/120; run-7 86/120 and run-6 81/120. The run-3 hallucination headline `2/14` was an old-instrument result corrected to 4/14. On **petak-jujur2 36 questions**, H4 later recorded 26.8%, CI 95% 24.1–29.5, n=6, but the 600-second timeout differs from 0.14's 120 seconds, limiting direct comparison.",
+      "verdict": "Specialist branch; never replaced 0.14 and now archived/a special-purpose service, not the served model. No separate final promotion pre-registration in BERLAKU (SERVED)."
+    },
+    {
+      "no": "27",
+      "name": "migancore:0.14-tool-8b",
+      "dateAndBase": "25 August 2026; `Qwen3-8B`.",
+      "goal": "Test whether 8B capacity clears the tool gate with the same tool data/recipe.",
+      "dataMethod": "201 rows of run-7 data, same LoRA recipe except for the 8B base. Trained on Vast; creation/serving moved to VPS because of disk constraints. Exact cost absent.",
+      "measured": "On the **old tool test**, 8B baseline 87/120 and candidate 97/120, failed threshold 99; missing-tool category 7/20. Old regression gates: arithmetic 60/60, refusal 9/10, canary 0/12; hallucination initially 13/14 then corrected to 12/14. The server record of 12,224 seconds per response was later corrected as a hardware problem; the laptop reached 18.6 tok/s, VPS CPU around 0.016 tok/s.",
+      "verdict": "Failed the tool threshold and performed poorly on hallucination; research archive, **barred from promotion**."
+    },
+    {
+      "no": "28",
+      "name": "migancore:0.15-tool",
+      "dateAndBase": "28 August 2026; 4B base from the v14 tool branch.",
+      "goal": "Test whether a larger volume of tool data increases tool success without damaging regression gates.",
+      "dataMethod": "LoRA `r=16`; 389 rows = 201 old + 188 distilled. The claimed change is volume only, 201→389. Budget locked at training ≤US$0.10 and packaging ≤US$0.05; actual cost absent.",
+      "measured": "**V15 tool gate** 113/120 vs v14-tool 87 and base 80; regression arithmetic 60/60, refusal 10/10, canary 0/12; **TAHAN test battery** 23/24. On the old hallucination test battery, five rounds = 8, 9, 7, 8, 10; mean 8.4/14 (60%), failed threshold ≤8.",
+      "verdict": "Initial pass verdict revoked 30 August; final **GAGAL (FAIL) regression gate**, **barred from promotion**."
+    },
+    {
+      "no": "29",
+      "name": "migancore:uji-jujur-1 / V16-JUJUR",
+      "dateAndBase": "31 August 2026; `Qwen3-4B-Instruct-2507`.",
+      "goal": "Reduce the tendency to fabricate with 33 handwritten honesty gold examples, without damaging arithmetic/tools; the name `0.16` is assigned only upon a win.",
+      "dataMethod": "TIES-merge varied-prompt arithmetic 285 + gaya-jujur1 233 (=200 v13 style + 33 gold); style LoRA `r=16`, `alpha=32`, `lr=2e-4`, 2 epochs. Vast RTX 3090: training 13 minutes/US$0.04, merge 51 minutes/US$0.16.",
+      "measured": "**petak-40**: candidate 60.0% vs 0.14 55.5%, Welch `t=1.62`, not significant; factual score 10.2 vs 11.2. **Regression gates**: arithmetic 59/60, refusal 10/10, canary 0/12; **current tool gate** 19/24 vs 18/24. All gates passed, but the MENANG fabrication threshold ≤50% failed.",
+      "verdict": "**TIDAK MENANG (NOT A WIN)**; archived, barred from promotion; `migancore:0.14` remains served."
+    },
+    {
+      "no": "30",
+      "name": "migancore:0.16",
+      "dateAndBase": "Never born; name reserved for V16 promotion or the V18 path on 4B.",
+      "goal": "Become the next release name only if the candidate passes all promotion conditions.",
+      "dataMethod": "None, because the release name was never assigned.",
+      "measured": "None for a model named `0.16`; V16 candidate results are recorded under `uji-jujur-1`, while V18 has not been run.",
+      "verdict": "No model yet; not served, not a weights archive, and cannot yet be judged as a version."
+    },
+    {
+      "no": "31",
+      "name": "V17-RLVR / migancore:uji-rlvr-1",
+      "dateAndBase": "31 August–1 September 2026; Qwen3 4B base with a style adapter, then RLVR/MO-GRPO.",
+      "goal": "Teach honesty through verifiable rewards, then test whether petak-40 improves without regression.",
+      "dataMethod": "Pool of 36 prompts: 10 “nonexistent”, 8 false premises, 6 out of scope, 12 factual questions. MO-GRPO LoRA `r=16`, `alpha=32`, `lr=5e-6`, 8 generations, temperature 0.8, beta 0.04; length trimmed 256→128 and accumulation adjusted during the run. Vast; total cost US$1.96.",
+      "measured": "20 training steps completed and adapter delta +7.19 reported; merge stopped at 71% because credit ran out. No post-training petak-40, petak-jujur2, tool gate, or regression gate.",
+      "verdict": "**BELUM DIVONIS (NOT YET JUDGED)**; hypothesis remains open and promotion is prohibited."
+    },
+    {
+      "no": "32",
+      "name": "MO-GRPO run series (six adapters)",
+      "dateAndBase": "Pre-registration 28 August 2026; v14/v15 tool base according to adapter name.",
+      "goal": "Assess whether MO-GRPO can optimize tools/honesty with multiple rewards; the sub-goal is to see which objectives actually produce gradients.",
+      "dataMethod": "Pool of 361 prompts; MO-GRPO with a locked budget ≤US$0.50. Six artifacts: `lora-gaya-rlvr1` (20 steps/5,760 rollouts), `tool-grpo-diag` (3/768), `diag2` (2/512), `jujur-probe` (2/128), `jujur` (20/5,760), `waktu` (3/768). Vast infrastructure; actual costs per run absent.",
+      "measured": "In the training logs, repeatedly active objectives are takUlang 61.8–68.8% and jujur 47.5–50%; behavior, format, and content are inactive (variance 0) in runs with logs. None of the six sets of weights underwent post-training model evaluation; `jujur-probe` does not even have an objective summary.",
+      "verdict": "Main question **TIDAK BISA DIVONIS (CANNOT BE JUDGED)**; six sets of weights unmeasured."
+    },
+    {
+      "no": "33",
+      "name": "V18 / migancore:uji-tahan-1",
+      "dateAndBase": "Pre-registration 7 September 2026; planned `Qwen3-4B-Instruct-2507`.",
+      "goal": "One balanced SFT adapter to restore tools and identity while preserving honesty; if it passes, it can become a candidate for 0.16.",
+      "dataMethod": "Planned 486 rows = 389 tool + 97 rehearsal (40 identity, 40 abstention, 17 reasoning), rehearsal 19.96%; LoRA `r=16`, `alpha=32`, `lr=2e-4`, 2 epochs. Actual infrastructure/cost absent because it has not been run.",
+      "measured": "None. The pre-registration locks petak-jujur2 36 questions, the tool gate, regression gates, and identity for future scoring; results are not yet available.",
+      "verdict": "**BELUM DIJALANKAN (NOT RUN)**, so not yet judged and must not be called 0.16."
+    }
+  ]
+}

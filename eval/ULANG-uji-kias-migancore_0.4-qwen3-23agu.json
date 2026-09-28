@@ -1,0 +1,87 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.4-qwen3",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "23agu",
+  "sistemTambahan": "",
+  "keseluruhan": {
+    "lulus": 46,
+    "coba": 70,
+    "lo": 0.5403933101563948,
+    "hi": 0.7575417291710304,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 20,
+      "total": 20,
+      "v": "LULUS",
+      "lo": 0.8388698745050667,
+      "hi": 0.9999999999999998
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 14,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.4810232237710205,
+      "hi": 0.8545247260310062
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 5,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.15176100694691236,
+      "hi": 0.5828687484878702
+    },
+    {
+      "kategori": "kias",
+      "lulus": 7,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.24809225259746442,
+      "hi": 0.6988336984894922
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Apa arti \"mata air\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Arsipkan laporan bulan lalu di folder ekspor yang sudah tidak dipakai.",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "cabang"
+    }
+  ]
+}

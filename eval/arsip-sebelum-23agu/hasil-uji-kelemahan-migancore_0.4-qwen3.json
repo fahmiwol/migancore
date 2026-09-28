@@ -1,0 +1,135 @@
+{
+  "model": "migancore:0.4-qwen3",
+  "per": {
+    "berhenti-prematur": {
+      "n": 2,
+      "l": 2
+    },
+    "hilang-di-tengah": {
+      "n": 3,
+      "l": 3
+    },
+    "menolong-berlebihan": {
+      "n": 4,
+      "l": 2
+    },
+    "tercemar-pengecoh": {
+      "n": 2,
+      "l": 2
+    },
+    "terkunci-satu-giliran": {
+      "n": 1,
+      "l": 1
+    },
+    "mengulang-prompt": {
+      "n": 1,
+      "l": 1
+    }
+  },
+  "hasil": [
+    {
+      "kode": "A1-prematur",
+      "mode": "berhenti-prematur",
+      "tanya": "Tiga hal sekaligus: (1) sebutkan 1 ton berapa kilogram, (2) hitung 12 ton x Rp14.500 per kg, (3) sebutkan satu risiko kalau salah konversi satuan.",
+      "sebabGagal": "tidak menyelesaikan ketiga permintaan",
+      "lulus": true,
+      "jawab": "**Jawaban Tiga Hal Sekaligus:**\n\n(1) **1 ton = 1.000 kilogram** — definisi standar SI.\n\n(2) **Hitung:**  \n12 ton × Rp14.500/kg  \n= (12 × 1.000) kg × Rp14.500/kg  \n= 12.000 × 14.500  \n= **Rp174.000.000** (atau Rp174 juta).\n\n(3) **Satu risiko:** Kalau salah konversi (misal anggap 1 ton = 100 kg), hasilnya keliru — di sini akan menghasilkan **Rp12,600.000** yang jauh lebih rendah dari harga sebenarnya. Kesalahan ini bisa memicu **kerugian finansial nyata**, terutama jika dikonfirmasi setelah pembayaran sudah berlangsung.\n\n---\n\n**Ringkasan:**  \n1 ton = 1.000 kg → 12 ton × Rp14.500/kg = **Rp174 juta** → risiko: kesalahan konversi menyebabkan harga salah, bisa rugi besar."
+    },
+    {
+      "kode": "A2-prematur",
+      "mode": "berhenti-prematur",
+      "tanya": "Dua hal: pertama jelaskan singkat apa itu rata-rata berbobot, lalu hitung rata-rata berbobot dari 3 orang bernilai 60 dan 7 orang bernilai 90.",
+      "sebabGagal": "menjelaskan tapi tidak menghitung (atau sebaliknya)",
+      "lulus": true,
+      "jawab": "**Rata-rata Berbobot (Weighted Average):** Rata-rata yang nilai setiap komponen dihitung dengan bobotnya — bukan semua sama besar.\n\n---\n\n**Hitungan:**\n- Total siswa = 3 + 7 = **10 orang**\n- Kontribusi total = (3 × 60) + (7 × 90) = 180 + 630 = **810**\n- Rata-rata berbobot = 810 ÷ 10 = **81**\n\n**Jawaban: ⬛️81⬛️**"
+    },
+    {
+      "kode": "B-awal",
+      "mode": "hilang-di-tengah",
+      "tanya": "Konteks:\n[1] Kode gudang untuk pengiriman ekspor adalah GX-4471.\n[2] Catatan rapat: tim sepakat memindahkan jadwal pengiriman ke minggu depan.\n[3] Arsip: prosedur pengemasan memakai karung 25 kg berlapis dalam.\n[4] Memo: kendaraan operasional dijadwalkan servis rutin bulan ini.\n[5] Riwayat: gudang cabang timur sedang direnovasi sampai akhir kuartal.\n[6] Log: sistem pencatatan diperbarui, kolom lama tidak lagi dipakai.\n[7] Catatan: pelatihan operator baru dilaksanakan setiap Senin pagi.\n[8] Arsip: dokumen perizinan diperpanjang tanpa perubahan isi.\n[9] Memo: rapat mingguan dipindah dari Kamis ke Jumat siang.\n\nPertanyaan: apa kode gudang untuk pengiriman ekspor?",
+      "sebabGagal": "fakta di awal konteks tidak terpakai",
+      "lulus": true,
+      "jawab": "Berdasarkan konteks yang diberikan, kode gudang untuk pengiriman ekspor adalah GX-4471. (Sumber: [1])"
+    },
+    {
+      "kode": "B-tengah",
+      "mode": "hilang-di-tengah",
+      "tanya": "Konteks:\n[1] Catatan rapat: tim sepakat memindahkan jadwal pengiriman ke minggu depan.\n[2] Arsip: prosedur pengemasan memakai karung 25 kg berlapis dalam.\n[3] Memo: kendaraan operasional dijadwalkan servis rutin bulan ini.\n[4] Riwayat: gudang cabang timur sedang direnovasi sampai akhir kuartal.\n[5] Kode gudang untuk pengiriman ekspor adalah GX-4471.\n[6] Log: sistem pencatatan diperbarui, kolom lama tidak lagi dipakai.\n[7] Catatan: pelatihan operator baru dilaksanakan setiap Senin pagi.\n[8] Arsip: dokumen perizinan diperpanjang tanpa perubahan isi.\n[9] Memo: rapat mingguan dipindah dari Kamis ke Jumat siang.\n\nPertanyaan: apa kode gudang untuk pengiriman ekspor?",
+      "sebabGagal": "fakta di tengah konteks tidak terpakai",
+      "lulus": true,
+      "jawab": "Berdasarkan konteks, kode gudang untuk pengiriman ekspor adalah GX-4471. (Sumber: [5] Kode gudang untuk pengiriman ekspor adalah GX-4471.)"
+    },
+    {
+      "kode": "B-akhir",
+      "mode": "hilang-di-tengah",
+      "tanya": "Konteks:\n[1] Catatan rapat: tim sepakat memindahkan jadwal pengiriman ke minggu depan.\n[2] Arsip: prosedur pengemasan memakai karung 25 kg berlapis dalam.\n[3] Memo: kendaraan operasional dijadwalkan servis rutin bulan ini.\n[4] Riwayat: gudang cabang timur sedang direnovasi sampai akhir kuartal.\n[5] Log: sistem pencatatan diperbarui, kolom lama tidak lagi dipakai.\n[6] Catatan: pelatihan operator baru dilaksanakan setiap Senin pagi.\n[7] Arsip: dokumen perizinan diperpanjang tanpa perubahan isi.\n[8] Memo: rapat mingguan dipindah dari Kamis ke Jumat siang.\n[9] Kode gudang untuk pengiriman ekspor adalah GX-4471.\n\nPertanyaan: apa kode gudang untuk pengiriman ekspor?",
+      "sebabGagal": "fakta di akhir konteks tidak terpakai",
+      "lulus": true,
+      "jawab": "Kode gudang untuk pengiriman ekspor adalah GX-4471. (Sumber: [9] Kode gudang untuk pengiriman ekspor adalah GX-4471.)"
+    },
+    {
+      "kode": "C1-substitusi",
+      "mode": "menolong-berlebihan",
+      "tanya": "Konteks: Harga briket shisha grade A Rp30.000/kg. Harga briket BBQ grade A Rp19.000/kg.\n\nPertanyaan: berapa harga arang batok kelapa per kg?",
+      "sebabGagal": "mengganti entitas yang ditanya dengan yang mirip (atau mengarang angka)",
+      "lulus": false,
+      "jawab": "Tidak ditemukan informasi tentang harga arang batok kelapa dalam konteks yang diberikan. Jika Anda memiliki data lain, silakan berikan agar saya bisa membantu lebih lanjut."
+    },
+    {
+      "kode": "C2-substitusi",
+      "mode": "menolong-berlebihan",
+      "tanya": "Konteks: Kadar abu produk Alpha 3,2%. Kadar abu produk Beta 4,1%.\n\nPertanyaan: berapa kadar abu produk Gamma?",
+      "sebabGagal": "menyubstitusi nilai entitas lain",
+      "lulus": false,
+      "jawab": "Tidak ditemukan informasi tentang kadar abu produk Gamma dalam konteks yang diberikan. Jika perlu, saya bisa mencarikan data tambahan dari sumber resmi."
+    },
+    {
+      "kode": "C3-baris-tabel",
+      "mode": "menolong-berlebihan",
+      "tanya": "Daftar harga:\nBriket shisha Grade A: Rp30.000/kg\nBriket shisha Grade B: Rp27.000/kg\nBriket BBQ Grade A: Rp19.000/kg\nBriket BBQ Grade B: Rp13.000/kg\nArang batok kelapa: Rp14.500/kg\n\nPertanyaan: berapa total untuk 12 ton arang batok kelapa?",
+      "sebabGagal": "mengambil BARIS YANG SALAH dari tabel (bug produksi 20 Agu)",
+      "lulus": true,
+      "jawab": "Saya akan hitung total harga untuk 12 ton arang batok kelapa.\n\n**Langkah 1 — Konversi ton ke kilogram**\n12 ton = 12.000 kg\n\n**Langkah 2 — Gunakan harga per kg dari daftar**\nHarga arang batok kelapa: Rp14.500/kg\nTotal = 12.000 × 14.500\n\n**Langkah 3 — Hitung hasilnya**\n12.000 × 14.500 = 174.000.000\n\n**Jawaban: Rp174.000.000**\n\n(atau setara dengan Rp174 juta)"
+    },
+    {
+      "kode": "C4-baris-tabel",
+      "mode": "menolong-berlebihan",
+      "tanya": "Daftar harga:\nBriket shisha Grade A: Rp30.000/kg\nBriket shisha Grade B: Rp27.000/kg\nBriket BBQ Grade A: Rp19.000/kg\nBriket BBQ Grade B: Rp13.000/kg\nArang batok kelapa: Rp14.500/kg\n\nPertanyaan: berapa selisih harga per kg antara briket BBQ Grade B dan briket shisha Grade B?",
+      "sebabGagal": "salah memilih dua baris yang dibandingkan",
+      "lulus": true,
+      "jawab": "Selisih harga per kg antara briket BBQ Grade B (Rp13.000) dan briket shisha Grade B (Rp27.000) adalah:\n\n**Rp14.000**\n\n(27.000 - 13.000 = 14.000)."
+    },
+    {
+      "kode": "D1-pengecoh",
+      "mode": "tercemar-pengecoh",
+      "tanya": "Konteks:\n[SUMBER RESMI, per Agustus 2026] Harga arang batok kelapa: Rp14.500/kg.\n[Artikel blog lama, 2024] Harga arang batok kelapa sekitar Rp8.000/kg.\n\nPertanyaan: berapa harga arang batok kelapa yang berlaku sekarang, dan kenapa?",
+      "sebabGagal": "mengambil angka dari sumber usang, atau tidak menjelaskan pilihannya",
+      "lulus": true,
+      "jawab": "Berdasarkan sumber resmi yang ditemukan pada Agustus 2026, harga arang batok kelapa saat ini adalah Rp14.500/kg. Sumber ini lebih baru dibandingkan artikel blog dari tahun 2024 yang menyebutkan harga sekitar Rp8.000/kg.\n\nPerbedaan harga ini bisa disebabkan oleh berbagai faktor, seperti perubahan biaya produksi, inflasi, atau variasi pasar yang mempengaruhi harga di pasaran saat ini. Namun, informasi pasti mengenai penyebab perubahan harga tersebut tidak ditemukan dalam konteks yang diberikan."
+    },
+    {
+      "kode": "D2-pengecoh",
+      "mode": "tercemar-pengecoh",
+      "tanya": "Konteks:\n[Target] Pesanan pembeli: 12 ton.\n[Catatan lain] Kapasitas truk: 8 ton. Stok gudang: 40 ton.\n\nPertanyaan: berapa total tagihan untuk pesanan itu bila harga Rp14.500/kg?",
+      "sebabGagal": "memakai angka pengecoh (kapasitas truk / stok) sebagai jumlah pesanan",
+      "lulus": true,
+      "jawab": "Total tagihan = Pesanan × Harga per kg  \n= 12.000 kg × Rp14.500  \n= **Rp174.000.000**\n\nCatatan: Kapasitas truk (8 ton) dan stok gudang (40 ton) tidak relevan untuk perhitungan tagihan berdasarkan pesanan yang diminta."
+    },
+    {
+      "kode": "E1-dua-langkah",
+      "mode": "terkunci-satu-giliran",
+      "tanya": "Konteks: Harga briket BBQ grade B Rp13.000/kg.\n\nPertanyaan: pembeli minta 6 ton. Hitung total tagihannya, LALU hitung DP 40% dari total itu.",
+      "sebabGagal": "berhenti setelah langkah pertama",
+      "lulus": true,
+      "jawab": "Diketahui:\n- Harga briket BBQ grade B = Rp13.000/kg\n- Pembeli ingin membeli 6 ton\n\n**Langkah 1: Konversi ton ke kilogram**\n1 ton = 1.000 kg  \nJadi, 6 ton = 6 × 1.000 = **6.000 kg**\n\n**Langkah 2: Hitung total tagihan**\nTotal = harga per kg × jumlah kg  \n= Rp13.000 × 6.000  \n= **Rp78.000.000**\n\n**Langkah 3: Hitung DP 40% dari total**\nDP = 40% × Rp78.000.000  \n= (40/100) × Rp78.000.000  \n= **Rp31.200.000**\n\n**Jawaban akhir:**\n- Total tagihan untuk 6 ton = **Rp78.000.000**\n- DP yang harus dibayarkan (40%) = **Rp31.200.000**"
+    },
+    {
+      "kode": "F1-ulang",
+      "mode": "mengulang-prompt",
+      "tanya": "Sebutkan satu kelemahan memakai rata-rata sebagai ringkasan data.",
+      "sebabGagal": "menyalin ulang pertanyaan alih-alih menjawab",
+      "lulus": true,
+      "jawab": "Kelemahan menggunakan rata-rata sebagai ringkasan data adalah **rata-rata sangat terpengaruh oleh outlier** (data ekstrem). Misalnya, jika ada satu nilai yang jauh lebih besar atau lebih kecil dari nilai lain, rata-ratanya akan \"dorong\" keluar dari representasi sebenarnya distribusi data. Hal ini membuat rata-rata tidak akurat mencerminkan \"pusat\" data secara umum.\n\nContoh konkret: data gaji karyawan dengan 9 orang berpenghasilan Rp10 juta dan 1 orang berpenghasilan Rp100 juta. Rata-ratanya ~Rp12,5 juta, padahal mayoritas karyawan hanya dapat sekitar Rp10 juta. Informasi ini bisa menyesatkan jika disimpulkan bahwa \"rata-rata gaji\" cukup tinggi."
+    }
+  ]
+}

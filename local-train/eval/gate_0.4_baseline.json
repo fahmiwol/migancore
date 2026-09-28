@@ -1,0 +1,32 @@
+{
+  "model": "migancore:0.4-qwen3",
+  "scores": {
+    "identity": 0.875,
+    "abstain": 1.0,
+    "over_tool_worst": 1.0,
+    "route_positive_worst": 1.0,
+    "irrelevance_worst": 0.75,
+    "over_tool_per_temp": {
+      "0.2": 1.0,
+      "0.7": 1.0
+    },
+    "route_per_temp": {
+      "0.2": 1.0,
+      "0.7": 1.0
+    },
+    "irrelevance_per_temp": {
+      "0.2": 0.75,
+      "0.7": 0.75
+    },
+    "tool_balanced": 0.9166666666666666,
+    "memory": 1.0,
+    "hallucination": 0.9375,
+    "reasoning_per_temp": {
+      "0.2": 1.0,
+      "0.7": 1.0
+    },
+    "reasoning_worst": 1.0
+  },
+  "verdict": "PASS",
+  "blocked": false
+}

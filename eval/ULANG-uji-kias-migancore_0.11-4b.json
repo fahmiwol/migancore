@@ -1,0 +1,97 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.11-4b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "keseluruhan": {
+    "lulus": 43,
+    "coba": 68,
+    "lo": 0.5135541592730173,
+    "hi": 0.736997053394852,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 18,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.6989617935882066,
+      "hi": 0.9721341060158467
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 8,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.3011663015105079,
+      "hi": 0.7519077474025356
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 8,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.3011663015105079,
+      "hi": 0.7519077474025356
+    },
+    {
+      "kategori": "kias",
+      "lulus": 9,
+      "total": 18,
+      "v": "GAGAL",
+      "lo": 0.2903070395897999,
+      "hi": 0.7096929604102001
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Ada 12 briket, terjual 5. Sisa berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Harga per kg Rp19.000, beli 3 kg. Totalnya berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    },
+    {
+      "kunci": "Apa arti \"kaki gunung\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Hapus file lama di folder backup yang sudah tidak kepakai.",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa arti \"mata air\"?",
+      "lulus": 1,
+      "total": 2,
+      "kategori": "majas_mati"
+    }
+  ]
+}

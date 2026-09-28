@@ -1,0 +1,77 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-E2-KEJUJURAN-NPC.json",
+ "stempel": "2026-09-23T04-29-05",
+ "asap": false,
+ "host": "http://measure-host.local:11434",
+ "sesi": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "nGiliran": 480,
+ "Q_LATENSI": {
+  "polos": {
+   "vonis": "LULUS",
+   "sebab": [
+    "keempat syarat terpenuhi"
+   ],
+   "syarat": {
+    "1_awal_p50": {
+     "nilai": 0.8068555999999808,
+     "ambang": "<= 2",
+     "lulus": true
+    },
+    "2_awal_p95": {
+     "nilai": 1.0119812899999845,
+     "ambang": "<= 4",
+     "lulus": true
+    },
+    "3_laju_p50": {
+     "nilai": 9.07554630273182,
+     "ambang": ">= 4.8",
+     "lulus": true
+    },
+    "4_galat_pct": {
+     "nilai": 0,
+     "ambang": "<= 2",
+     "lulus": true
+    }
+   },
+   "nGiliran": 240,
+   "sesiSah": 5
+  },
+  "batas": {
+   "vonis": "LULUS",
+   "sebab": [
+    "keempat syarat terpenuhi"
+   ],
+   "syarat": {
+    "1_awal_p50": {
+     "nilai": 0.8550992999998852,
+     "ambang": "<= 2",
+     "lulus": true
+    },
+    "2_awal_p95": {
+     "nilai": 1.0381551699999603,
+     "ambang": "<= 4",
+     "lulus": true
+    },
+    "3_laju_p50": {
+     "nilai": 8.896454637004847,
+     "ambang": ">= 4.8",
+     "lulus": true
+    },
+    "4_galat_pct": {
+     "nilai": 0,
+     "ambang": "<= 2",
+     "lulus": true
+    }
+   },
+   "nGiliran": 240,
+   "sesiSah": 5
+  }
+ },
+ "jsonl": "e2-kejujuran-npc-2026-09-23T04-29-05.jsonl"
+}

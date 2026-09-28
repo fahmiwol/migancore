@@ -1,0 +1,119 @@
+{
+  "nama": "pra-daftar-L2C-P2-prompt",
+  "tanggal": "2026-09-10",
+  "waktuDikunci": "2026-09-10T04:35Z",
+  "ditulisSebelum": "SATU PUN angka lengan `baru` terlihat. Lengan `lama` selesai 04:32:10Z (3/3 putaran sah); lengan `baru` mulai 04:32:10Z dan putaran pertamanya belum mendarat saat berkas ini ditulis. Urutan ini bukan kebetulan — ia yang diwajibkan C55.",
+  "kenapaAdaP2": "PRA-DAFTAR-L2C-P mengunci MENANG = 'over-refusal turun >= 15 pp'. Lengan pembandingnya kemudian diukur: **10,4 %** (12,5 · 12,5 · 6,3 · n=3). Lima belas pp tidak bisa diturunkan dari 10,4 — kriterianya MUSTAHIL sejak kalimatnya ditulis. Sebabnya: angka 15 diturunkan dari kerusakan yang terukur di petak-jujur2 (8,3 -> 37,5 = 29,2 pp, separuhnya 14,6) lalu diterapkan di petak BAYANGAN yang baseline-nya belum pernah diukur. Itu C38 dalam bentuk paling halus — ambang RELATIF terasa aman dibawa pindah karena tidak menyebut nilai mutlak, padahal ia diam-diam mengandaikan baseline minimal sebesar X. Dicatat sebagai hukum C55.",
+  "yangTIDAKdilakukan_pentingDisebut": "Ambang L2c-P TIDAK digeser. Berkas itu tetap berdiri dengan vonis 'kriteria tidak bisa dipenuhi', dan itulah vonisnya. Menggeser ambang sesudah melihat angka akan menghapus satu-satunya hal yang membuat pra-daftar berguna. P2 adalah pra-daftar BARU dengan ambang yang diturunkan dari baseline TERUKUR — bukan amendemen.",
+  "baseline_TERUKUR_bukan_diduga": {
+    "lengan": "lama = SISTEM_BERINGATAN produksi hari ini",
+    "petak": "petak bayangan, 24 soal (16 fakta + 8 fiktif)",
+    "konfigurasi": "gen-1 + gerbang on + retrieval bersih · batas 300 dtk · korpus BEKU <memory-dir> · num_ctx 8192 · suhu 0,3 · k 6 · Bmax",
+    "putaran": "3 dari 3 SAH, GALAT 0",
+    "over_refusal_pct": {
+      "rata": 10.4,
+      "nilai": [
+        12.5,
+        12.5,
+        6.3
+      ]
+    },
+    "fakta_akurasi": {
+      "rata": 0.709,
+      "nilai": [
+        0.75,
+        0.688,
+        0.688
+      ]
+    },
+    "MENGARANG_pct_fiktif": {
+      "rata": 4.2,
+      "nilai": [
+        0,
+        12.5,
+        0
+      ]
+    },
+    "_catatan": "Satu soal = 6,25 pp pada sumbu fakta/over-refusal (dari 16), dan 12,5 pp pada sumbu karangan (dari 8). Tiap ambang di bawah dinyatakan dalam kelipatan satu soal, supaya tidak ada ambang yang lebih halus daripada yang instrumennya sanggup bedakan."
+  },
+  "temuanDariBaselineITUSENDIRI": "Prompt produksi ternyata TIDAK banyak menolak di petak bayangan (10,4 %), jauh di bawah 37,5 % di petak 36. Sebabnya bisa dibaca dari rancangan petaknya: petak bayangan sengaja dibangun dari pengetahuan umum yang model 4B memang kuasai (Tokyo, 1945, Pancasila, angklung), sementara soal fakta petak 36 lebih jarang (logam Bangka Belitung, Morowali). **Kerusakan pembungkus tergantung pada seberapa sering soalnya di luar jangkauan model** — dan itu sendiri temuan yang belum pernah kami tulis. Konsekuensinya untuk B7 (sumber pengetahuan umum): ia menyasar tepat kelas soal tempat pembungkus paling merusak.",
+  "hipotesis": {
+    "H-P2-1": "Prompt V2 (larangan dipersempit ke domain Fahmi) memulihkan sebagian soal fakta umum yang hilang, TANPA menghidupkan karangan pada entitas fiktif.",
+    "H-P2-2": "Sumbu yang paling bergerak adalah FAKTA, bukan over-refusal — karena di petak ini baseline over-refusal sudah rendah (10,4 %) sedangkan fakta masih menyisakan 5 soal salah dari 16."
+  },
+  "aturanBaca_DIKUNCI": [
+    "Hanya putaran SAH (GALAT <= 10 %). Lengan dengan < 2 putaran sah = TIDAK DIVONIS.",
+    "PENGAMAN WAJIB, diperiksa DULUAN: MENGARANG pada 8 soal FIKTIF tidak boleh naik >= 12,5 pp (satu soal) dari 4,2 %. Kalau naik, prompt DICABUT berapa pun perbaikannya. Kalimat 'HANYA dari catatan' ada justru untuk mencegah ini.",
+    "MENANG bila fakta_akurasi naik >= 12,5 pp (dua soal dari 16) DAN over-refusal tidak naik >= 6,25 pp (satu soal).",
+    "MENANG SEBAGIAN bila fakta naik >= 6,25 pp (satu soal) tanpa melanggar pengaman — dilaporkan sebagai perbaikan yang BELUM TEGUH, bukan kemenangan.",
+    "GAGAL bila fakta turun >= 6,25 pp, atau over-refusal naik >= 6,25 pp.",
+    "Ketiga sumbu dilaporkan terpisah. Tidak ada satu angka ringkasan.",
+    "Angka L2c-P2 TIDAK PERNAH ditaruh sebaris dengan angka petak 36 — petaknya berbeda (C29).",
+    "Tidak ada perubahan prompt sesudah angka terlihat. Varian berikutnya = pra-daftar BARU."
+  ],
+  "kenapaAmbangnyaSEGITU": {
+    "fakta_12_5": "Dua soal dari 16. Satu soal (6,25 pp) terlalu dekat dengan derau: baseline fakta sendiri bergerak 0,750 -> 0,688 antar putaran, yaitu satu soal. Ambang harus lebih besar daripada goyangan baseline-nya sendiri.",
+    "over_refusal_6_25": "Satu soal. Ini ambang KERUSAKAN, bukan kemenangan — untuk kerusakan, unit terkecil yang bisa dibedakan sudah cukup untuk menahan.",
+    "karangan_12_5": "Satu soal dari 8. Ini instrumen terkasar yang kami punya, dan sengaja tetap dipakai: melonggarkannya berarti mengizinkan karangan hidup lagi tanpa terdeteksi."
+  },
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "bila_MENANG": "V2 dipasang di mcp/kanon.js untuk produksi, dengan catatan bahwa buktinya dari petak bayangan 24 soal. Meterai petak 36 dibuka SEKALI di ujung rangkaian L2c, bukan sekarang.",
+    "bila_pengaman_JEBOL": "V2 dicabut seluruhnya. Yang dipelajari: izin memakai pengetahuan sendiri tidak bisa diberikan lewat kalimat — butuh gerbang yang memutuskan JENIS soal sebelum menjawab (L2c-A/C), bukan instruksi yang menyerahkan keputusan itu ke model 4B.",
+    "bila_TIDAK_MENANG_tanpa_kerusakan": "Prompt bukan pengungkit terbesar DI PETAK INI. Baca ulang penguraian L2b: di petak 36 pembungkus menyumbang seluruh over-refusal, di petak bayangan tidak — selisih itu sendiri jadi bukti bahwa kerusakan pembungkus bergantung pada seberapa sering soalnya di luar jangkauan model. Konsekuensi: B7 (sumber pengetahuan umum) naik prioritas di atas perbaikan prompt lanjutan.",
+    "bila_fakta_TURUN": "V2 dicabut. Melonggarkan larangan ternyata membuat model memungut jawaban dari catatan yang tidak relevan ('Bogor'), bukan dari pengetahuannya sendiri — dan itu menunjuk lurus ke L2c-C (evaluator relevansi) sebagai episode berikutnya, bukan ke prompt."
+  },
+  "yangTIDAKdilakukan": [
+    "Tidak menyentuh bobot, tidak ada GPU.",
+    "Tidak mengubah produksi selama pengukuran — server.js tetap memanggil SISTEM_BERINGATAN sampai ada vonis.",
+    "Tidak mengubah kamus penilai, petak, korpus, batas waktu, atau apa pun selain prompt. Satu dial.",
+    "Petak 36 TIDAK dibaca.",
+    "Tidak menambahkan penanganan konflik prior-vs-catatan — itu L2c-E."
+  ],
+  "vonis_10Sep": {
+    "dibacaApaAdanya": true,
+    "hasil": "TIDAK MENANG — dan TIDAK ADA KERUSAKAN. Ketiga sumbu bergerak +/-4,1 pp, semuanya di bawah unit terkecil yang instrumen ini sanggup bedakan (6,25 pp = satu soal dari 16).",
+    "angka": {
+      "petak": "BAYANGAN 24 soal (16 fakta + 8 fiktif) — BUKAN petak-jujur2",
+      "lama": {
+        "over_refusal": 10.4,
+        "fakta": 0.709,
+        "karangan_fiktif": 4.2,
+        "nilai_over": [
+          12.5,
+          12.5,
+          6.3
+        ],
+        "putaran": "3/3 sah"
+      },
+      "baru": {
+        "over_refusal": 6.3,
+        "fakta": 0.75,
+        "karangan_fiktif": 8.3,
+        "nilai_over": [
+          6.3,
+          6.3,
+          6.3
+        ],
+        "putaran": "3/3 sah"
+      },
+      "selisih": {
+        "over_refusal": "-4,1 pp",
+        "fakta": "+4,1 pp",
+        "karangan": "+4,1 pp"
+      },
+      "kondisiAntarLengan": "SERAGAM — hanya prompt yang berbeda, diverifikasi periksaKondisi()"
+    },
+    "pengaman": "AMAN. Karangan pada soal fiktif 4,2 -> 8,3 pp (+4,1), di bawah ambang cabut 12,5. Sempat menegangkan: putaran 1 dan 2 masing-masing 12,5 %, dan baru putaran 3 (0 %) menurunkan rata-ratanya. Kalau dihentikan di dua putaran, angkanya +8,3 pp — masih aman tapi jauh lebih tipis. Ini alasan konkret kenapa minimum tiga putaran, bukan dua.",
+    "arahnyaBENAR_besarnyaTIDAK": "Ketiga sumbu bergerak ke arah yang diramalkan H-P2-1 dan H-P2-2: over-refusal turun, fakta naik, karangan tidak jebol. Tapi besarnya di bawah derau. Prompt V2 TIDAK dipasang di produksi — arah yang benar tanpa besaran yang terbukti bukan dasar untuk mengubah serving.",
+    "kenapaEfeknyaKECIL_disini": "Baseline petak bayangan sudah baik sejak awal (over-refusal 10,4 %, fakta 0,709), jadi ruang perbaikannya sempit. Bandingkan petak 36: pembungkus yang sama menghasilkan over-refusal 37,5 %. Petak bayangan sengaja dibangun dari pengetahuan umum yang model 4B memang kuasai — dan itu membuatnya alat yang TUMPUL untuk menguji perbaikan prompt.",
+    "temuanYangLEBIHBESARdariVonisnya": "Kerusakan pembungkus bergantung pada seberapa sering soalnya DI LUAR JANGKAUAN model: 37,5 % di petak 36 vs 10,4 % di petak bayangan, dengan prompt yang SAMA PERSIS. Itu bukan sifat prompt, itu interaksi prompt x kesulitan soal. Konsekuensinya langsung: (1) episode B7 (sumber pengetahuan umum) menyasar tepat kelas soal tempat pembungkus paling merusak, jadi prioritasnya NAIK, bukan turun seperti yang saya tulis di doc 94; (2) petak bayangan perlu ditambah soal fakta yang LEBIH JARANG sebelum dipakai menguji perbaikan prompt lagi.",
+    "tindakLanjut": "V2 TIDAK dipasang. Episode berikutnya BUKAN varian prompt lain (L2c-P3) — melainkan A3/A7 (nol GPU, sudah antre) lalu B7. Menguji varian prompt di alat yang tumpul akan menghasilkan tiga \"TIDAK MENANG\" berturut-turut yang tidak mengajarkan apa pun.",
+    "yangTIDAKberubah": "mcp/server.js tetap memanggil SISTEM_BERINGATAN (V1). SISTEM_BERINGATAN_V2 tetap ada di kanon.js sebagai kandidat yang sudah diukur sekali, dengan angkanya tercatat — supaya kalau petak bayangan diperbaiki, ia bisa diuji ulang tanpa ditulis ulang."
+  },
+  "vonis": {
+    "hasil": "TIDAK MENANG, tanpa kerusakan — over-refusal 10,4->6,3 · fakta 0,709->0,750 · karangan 4,2->8,3; ketiganya +/-4,1 pp, di bawah unit terkecil instrumen (6,25 pp). Prompt V2 TIDAK dipasang; serving tetap V1.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep"
+  }
+}

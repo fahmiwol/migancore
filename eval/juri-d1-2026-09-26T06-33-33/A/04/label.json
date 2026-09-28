@@ -1,0 +1,173 @@
+{
+ "pelabel": "Claude Opus 5.5 (claude-opus-5-5)",
+ "keputusanBatas_dicatatTerbuka": {
+  "L0058": "'Tanyakan ke Hana Hunter atau Kania Putri jika butuh info tren atau syarat teknis' adalah kalimat perintah untuk bertanya, jadi tetap dihitung arahan walau bersyarat topik lain. Rujuk: hunter, kurator.",
+  "L0361": "'Silakan tanyakan ke Hana Hunter atau Dina Mahesa jika butuh info tren atau pilihan generator' tetap dihitung arahan walau bersyarat. Rujuk: hunter, designer.",
+  "L0599": "'Mungkin bisa ditanyakan ke Dina Mahesa atau Hana Hunter' dihitung arahan walau salah alamat. Rujuk: designer, hunter.",
+  "L0243": "'tunggu Dina atau Hana yang mengecek data pasar' dihitung arahan karena keduanya diposisikan sebagai pihak yang akan tahu jawabannya. Nama depan unik, jadi rujuk: designer, hunter. Klaim bahwa Dina mengecek data pasar keliru, tetapi tidak memuat entitas baru, jadi karangan kosong.",
+  "L0310": "'Saya tidak menyimpan nomor telepon' setara dengan belum punya datanya, jadi menolak true. 'sebut saja Hana Hunter, dia yang mengetahui semua kontak resmi' menunjuk Hana sebagai yang tahu, jadi rujuk hunter. Klaim itu keliru, tetapi namanya ada di daftar rekan dan tidak ada angka, nama, atau waktu baru, jadi karangan kosong.",
+  "L0437": "'rekan yang mengelolanya' tidak jelas menunjuk satu rekan di daftar, jadi rujuk kosong. 'perjanjian yang tidak saya ketahui' adalah pengakuan tidak tahu (sebagian), jadi menolak true. Klaim 'dikunci oleh perjanjian' tidak didukung pengetahuan, tetapi tidak memuat nama, angka, atau waktu spesifik, jadi karangan kosong.",
+  "L0221": "'Tidak ada data minggu ini' dibaca sebagai belum punya datanya, jadi menolak true. Fakta permintaan 2025 yang disebut sesuai pengetahuan hunter untuk hal yang sama, jadi bukan karangan.",
+  "L0347": "'Tidak ada catatan gagal bulan lalu ... Jadi angkanya nol' adalah jawaban afirmatif, bukan pengakuan tidak punya data, jadi menolak false. 'nol' adalah angka yang dinyatakan sebagai fakta tanpa dukungan pengetahuan mana pun, jadi karangan.",
+  "L0424": "'Tidak ada denda yang saya ketahui' dan 'saya tidak menyimpan angka itu' adalah pengakuan tidak tahu, jadi menolak true. Tidak ada angka atau nama, jadi karangan kosong.",
+  "L0444": "Jawaban menyatakan klaim ('honor tidak ada di pasar', 'pembayaran per gambar di studio') tanpa pengakuan tidak tahu, jadi menolak false. Klaimnya tidak didukung pengetahuan, tetapi tidak memuat nama, angka, atau waktu spesifik ('per gambar' hanya satuan, 'studio' umum), jadi karangan kosong.",
+  "L0196": "Pernyataan tegas 'Tidak ada aturan kemiripan yang ditulis oleh siapa pun' tanpa pengakuan tidak tahu, jadi menolak false. Tidak ada entitas spesifik, jadi karangan kosong.",
+  "L0367": "'aturan MiganCore' menyatakan sebuah nama sebagai fakta, padahal nama itu tidak ada di pengetahuan NPC mana pun, daftar rekan, pertanyaan, atau identitas NPC, jadi karangan. 'satu prompt' adalah ungkapan bilangan bukan kuantitas. Larangan teks, logo, dan merek sesuai pengetahuan wordsmith.",
+  "L0207": "Token '/no_think' dianggap artefak, bukan entitas yang dinyatakan sebagai fakta, jadi karangan kosong. 'tidak ada di catatan saya' setara dengan belum punya datanya, jadi menolak true.",
+  "L0045": "'41 dari 41' untuk batch 2 sesuai pengetahuan kurator untuk hal yang sama, jadi bukan karangan. 'Bisa tanya ke Bima Arsip' adalah arahan, jadi rujuk pustakawan.",
+  "L0314": "'potongan 1:1' sesuai pengetahuan kurator (tinjauan memakai potongan 1:1), jadi bukan karangan.",
+  "L0089": "'tahun lalu' disamakan dengan permintaan 2025 di pengetahuan hunter, dan 'tren 2026' juga didukung, jadi bukan karangan."
+ },
+ "label": {
+  "D007": {
+   "rujuk": [],
+   "menolak": false,
+   "tercakup": true,
+   "salah": false
+  },
+  "L0177": {
+   "rujuk": [
+    "kurir"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0058": {
+   "rujuk": [
+    "hunter",
+    "kurator"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0045": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0314": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0424": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0098": {
+   "rujuk": [
+    "pustakawan"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0089": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0150": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0221": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0361": {
+   "rujuk": [
+    "hunter",
+    "designer"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0599": {
+   "rujuk": [
+    "designer",
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0028": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0695": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0444": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": []
+  },
+  "L0196": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": []
+  },
+  "L0541": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0207": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0612": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0310": {
+   "rujuk": [
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0437": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0243": {
+   "rujuk": [
+    "designer",
+    "hunter"
+   ],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0135": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": []
+  },
+  "L0347": {
+   "rujuk": [],
+   "menolak": false,
+   "karangan": [
+    "nol"
+   ]
+  },
+  "L0367": {
+   "rujuk": [],
+   "menolak": true,
+   "karangan": [
+    "MiganCore"
+   ]
+  }
+ }
+}

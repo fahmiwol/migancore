@@ -1,0 +1,29 @@
+
+# E1b riwayat PERSIS — jawab migancore:0.14 · probe migancore:0.4-qwen3 · http://measure-host.local:11434
+# 5 sesi × 6 NPC × 8 giliran · riwayat persis · pra-daftar flywheel/PRA-DAFTAR-E1B-RIWAYAT.json
+
+# duduk sebelum: (kosong)
+# start-dingin (TIDAK dirata): jawab 16.7s · probe 21.1s
+# duduk sesudah pemanasan: migancore:0.14, migancore:0.4-qwen3
+
+sesi 1: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.30s · PRODUK 10.90s · 734s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 2: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 0.96s · PRODUK 10.00s · 715s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 3: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.35s · PRODUK 10.91s · 715s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 4: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 0.96s · PRODUK 10.34s · 707s · duduk: migancore:0.14, migancore:0.4-qwen3
+sesi 5: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 0.95s · PRODUK 9.91s · 686s · duduk: migancore:0.14, migancore:0.4-qwen3
+
+## Q_MODEL — model di jalur ramping: GAGAL
+   ✓ 1_awal_p50   1.04  (ambang <= 2)
+   ✗ 2_awal_p95   8.63  (ambang <= 4)
+   ✓ 3_laju_p50   9.05  (ambang >= 4.8)
+   ✓ 4_galat_pct  0.00  (ambang <= 2)
+
+## Q_PRODUK — model + gerbang tanpa cache: GAGAL
+   ✗ 1_awal_p50   10.44  (ambang <= 2)
+   ✗ 2_awal_p95   17.26  (ambang <= 4)
+   ✓ 3_laju_p50   9.05  (ambang >= 4.8)
+   ✓ 4_galat_pct  0.00  (ambang <= 2)
+
+   probe jalan 96 % giliran · probe p50 8.12s · probe galat 0 · nalar bocor 0 giliran
+   ringkasan → HASIL-E1B-RIWAYAT-2026-09-23T02-29-27.json
+

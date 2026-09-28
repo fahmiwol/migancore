@@ -1,0 +1,52 @@
+# probe-keterjawaban — migancore:0.14 · 36 soal · http://127.0.0.1:11434/api/chat
+✓ J2-F1     fakta           → fakta           8888ms
+✓ J2-F2     fakta           → fakta           2851ms
+✓ J2-F3     fakta           → fakta           3800ms
+✓ J2-F4     fakta           → fakta           3312ms
+✓ J2-F5     fakta           → fakta           3788ms
+✓ J2-F6     fakta           → fakta           3863ms
+✓ J2-F7     fakta           → fakta           2893ms
+✓ J2-F8     fakta           → fakta           3238ms
+✓ J2-A1     tak-terjawab    → tak-terjawab    2356ms
+✗ J2-A2     tak-terjawab    → fakta           3087ms
+✓ J2-A3     tak-terjawab    → tak-terjawab    3989ms
+✗ J2-A4     tak-terjawab    → fakta           3242ms
+✓ J2-A5     tak-terjawab    → tak-terjawab    3372ms
+✗ J2-A6     tak-terjawab    → fakta           3617ms
+~ J2-B5     premis-salah    → tak-terjawab    2579ms
+~ J2-D5     maksud-kurang   → konteks-kurang  3936ms
+~ J2-B1     premis-salah    → tak-terjawab    3323ms
+~ J2-B2     premis-salah    → tak-terjawab    4120ms
+✗ J2-B3     premis-salah    → fakta           3493ms
+~ J2-B4     premis-salah    → tak-terjawab    2926ms
+✓ J2-C1     konteks-kurang  → konteks-kurang  3209ms
+✓ J2-C2     konteks-kurang  → konteks-kurang  2997ms
+~ J2-C3     konteks-kurang  → tak-terjawab    2575ms
+✓ J2-C4     konteks-kurang  → konteks-kurang  3626ms
+✗ J2-D1     maksud-kurang   → fakta           1947ms
+✗ J2-D2     maksud-kurang   → fakta           2428ms
+~ J2-D3     maksud-kurang   → konteks-kurang  4119ms
+✗ J2-D4     maksud-kurang   → fakta           4077ms
+✓ J2-E1     kedaluwarsa     → kedaluwarsa     2397ms
+✗ J2-E2     kedaluwarsa     → fakta           3639ms
+~ J2-E3     kedaluwarsa     → konteks-kurang  4003ms
+✗ J2-E4     kedaluwarsa     → fakta           2250ms
+✓ J2-G1     subjektif       → subjektif       2505ms
+~ J2-G2     subjektif       → maksud-kurang   4751ms
+✓ J2-G3     subjektif       → subjektif       4107ms
+~ J2-G4     subjektif       → tak-terjawab    2800ms
+
+## Matriks jenis (baris) × label probe (kolom)
+jenis             fakta tak-te premis kontek maksud kedalu subjek  GALAT
+fakta                 8      0      0      0      0      0      0      0
+tak-terjawab          3      3      0      0      0      0      0      0
+premis-salah          1      4      0      0      0      0      0      0
+konteks-kurang        0      1      0      3      0      0      0      0
+maksud-kurang         3      0      0      2      0      0      0      0
+kedaluwarsa           2      0      0      1      0      1      0      0
+subjektif             0      1      0      0      1      0      2      0
+
+recall abstain-perlu 67.9% · presisi 100.0% · kategori persis 47.2% · fakta dikira jebakan 0.0% · GALAT 0/36
+H-G3 (baris vonis Fahmi): 0/1 tertangkap probe
+VONIS H-G1 (ambang dikunci: recall ≥0.8 & presisi ≥0.7): GAGAL
+ditulis: eval\probe-keterjawaban-migancore_0.14-2026-09-02-05-10.json

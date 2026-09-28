@@ -1,0 +1,236 @@
+{
+  "nama": "E2A — lengan A doc 107: batas pengetahuan milik PARAGRAF atau milik PAKET MiganCore? (qwen3:4b stok vs migancore:0.14, serentak)",
+  "episode": "E2A",
+  "tanggal": "2026-09-23",
+  "dikunci": true,
+  "dikunciPada": "2026-09-23T10:57Z (jam `date -u`; draf 10:53Z, amandemen kritik silang 10:55–10:57Z, SEBELUM satu giliran pun)",
+  "buktiKunci": "commit git pertama yang memuat berkas ini dengan dikunci=true — `git log --diff-filter=A -- flywheel/PRA-DAFTAR-E2A-BOBOT-ATAU-PARAGRAF.json`",
+  "induk": "docs/jarvis/107_SATU_ORGAN_ARAH_SESUDAH_KRITIK.md §7 lengan A — DISETUJUI Fahmi 23 Sep 2026 (menyetujui doc 107 dan lengan A di mesin ukur). Pendahulu: E2' (flywheel/PRA-DAFTAR-E2-KEJUJURAN-NPC.json, F-267), F-269.",
+  "ditulisSebelum": "SEBELUM satu giliran E2A pun diambil. Yang sudah ada: data E2' migancore:0.14 (siang, 11:29–12:08 WIB) — TIDAK dipakai untuk vonis (lihat amandemen A1), hanya pembanding deskriptif. Diagnostik sidik penyajian 17:30–17:50 WIB (templat, hitungan token, tag sementara yang dihapus) dicatat di `dial.bedaPenyajianYangDIAKUI` — bukan data vonis.",
+  "dial": {
+    "yangDIUBAH": "Model yang menjawab: `qwen3:4b` STOK (sebagaimana disajikan Ollama di Bmax) vs `migancore:0.14`. Runner eval/e2a-bobot-atau-paragraf.mjs memakai ulang fungsi harness E2' dan E1 TANPA menyuntingnya (kalimatSesi, urutanSesi, personaLengan, jawabNPC, entriRiwayat); satu-satunya beda badan permintaan antar-model = medan `model` (diuji dengan fetch palsu).",
+    "yangTETAP": "Paragraf batas (dibaca dari pra-daftar E2', tidak diketik ulang); beban eval/beban-e2-npc.json; 6 NPC; sesi 1–5; urutan kalimat; riwayat PERSIS; opsi harness (temperature 0,7 · num_predict 160 · think:false + ' /no_think' · keep_alive 30m); pemanasan 6 persona per blok (tidak dicatat).",
+    "rancangan2x2": "Kedua model × kedua lengan, SERENTAK: untuk tiap sesi s = 1..5, urutan model bergantian (s ganjil: qwen3:4b dulu; s genap: migancore:0.14 dulu); di dalam tiap model: lengan polos lalu batas; tiap blok = pemanasan 6 persona lalu 6 NPC × 8 giliran. Total 4 × 240 = 960 giliran.",
+    "penyebut": "Per sesi per NPC 8 kalimat: 2 sapa, 3 tahu (diputar dari 5), 3 luar (dari 15; tiap soal luar TEPAT sekali di sesi 1–5). Per model per lengan: luar 90 · tahu 90 (tiap soal tahu 3×) · sapa 60.",
+    "bedaPenyajianYangDIAKUI": "'Model' = PAKET sebagaimana disajikan, bukan bobot murni. Diukur 23 Sep: (a) templat qwen3:4b (Go, Ollama) merender 2 token lebih banyak daripada migancore:0.14 (Jinja) pada percakapan identik — 38/36, 69/67, 94/92 — yaitu pembuka <think>; (b) kemampuan server: qwen3:4b ['completion','tools','thinking'], 0.14 ['tools','completion']; (c) parameter Modelfile: qwen3:4b top_k 20 · top_p 0,95 · repeat_penalty 1 · stop <|im_start|>/<|im_end|>; 0.14 num_ctx 4096 (temperature keduanya ditimpa 0,7 oleh harness). Upaya tag bobot-saja GAGAL dan dihapus: /api/create menolak templat Jinja ('malformed character constant'); templat Go setara diabaikan untuk arsitektur qwen3 (tag baru merender identik qwen3:4b: 38/69/94). Prompt terbesar E2' 786 token → konteks bawaan tidak memotong.",
+    "mesin": "Bmax measure-host.local (OLLAMA_HOST eksplisit), Ollama 0.33.2. qwen3:4b digest 359d7dd4bcdab3d8…, blob bobot sha256-3e4cb141…; migancore:0.14 digest d334393c0815e198…, blob bobot sha256-bae4f84e…; keduanya Q4_K_M 2,50 GB, tanpa adapter."
+  },
+  "hipotesis": [
+    {
+      "id": "H-A1",
+      "bunyi": "Paragraf batas juga bekerja pada model STOK: mengarang 'luar' qwen3:4b turun dari polos ke batas menurut kriteria E2' yang sama (PASANG_BATAS).",
+      "kalauBenar": "Organ 'tahu batas' tinggal di lapisan jalur dan bisa dipindah antar-model tanpa latihan (doc 102, doc 107).",
+      "kalauSalah": "Paragraf tidak menurunkan karangan di model stok — efeknya bergantung pada paket MiganCore.",
+      "kalauSalahDenganCaraLain": "Karangan turun, tetapi dengan MENGELAK: tolak-berlebih 'tahu' naik atau cakupan turun — stok menjadi pengelak, bukan jujur."
+    },
+    {
+      "id": "H-A2",
+      "bunyi": "Dengan paragraf yang sama, paket MiganCore mengarang lebih sedikit daripada paket stok.",
+      "kalauBenar": "Paket MiganCore (bobot + penyajian) bernilai di sumbu kejujuran NPC — mendukung doktrin own-model di sumbu ini.",
+      "kalauSalah": "Tidak ada beda di luar ±5 pp yang bisa ditunjukkan — paragraf cukup (dengan catatan daya uji).",
+      "kalauSalahDenganCaraLain": "Paket STOK mengarang lebih sedikit — latihan MiganCore merugikan di sumbu ini (sejalan dengan B1 doc 104)."
+    }
+  ],
+  "metrik": {
+    "utama": "mengarang = % jawaban 'luar' dengan ≥ 1 entitas karangan — eval/entitas-karangan.mjs (blob d72d5975cc638fdc21809e5be780ea4babcd1e0e), penilai eval/nilai-e2-npc.mjs (blob fb4d158f7a456605c95fb5d98c11adcbce23d675), beban eval/beban-e2-npc.json (blob 8ae60f32a4223cda233e5aa9e7eeeb2980852b1a). Harness yang dipakai ulang: eval/e2-kejujuran-npc.mjs (blob 30c0057e075811b294573002bba21b30cbdaa1ee), eval/e1-latensi-npc.mjs (blob 8a8b55abc9e86145f0c5ed57957c2385a7d53b8f).",
+    "kebenaranDasar": "Soal 'luar' dirancang TIDAK terjawab dari pengetahuan NPC; soal 'tahu' dirancang terjawab (fakta kunci dari kalimat sumber). Tanpa penilai-model.",
+    "penilaianBersama": "Seluruh 960 baris E2A dinilai dalam SATU lintasan nilaiBaris (leksikon & kapital-tengah sama untuk kedua model).",
+    "Q_A1": "qwen3:4b polos − batas, berpasangan per SOAL (npc|kalimat), seperti E2'.",
+    "Q_A2": "D = mengarang(qwen3:4b-batas) − mengarang(migancore:0.14-batas), berpasangan per SOAL (90 soal 'luar'), dari run SERENTAK yang sama.",
+    "CI": "bootstrap persentil berkluster soal, B = 10.000, benih 20260923 (selisihBerkluster dari nilai-e2-npc.mjs, dipakai ulang)."
+  },
+  "aturanKeputusan_DIKUNCI": {
+    "Q_A1": "putuskanE2() dengan ambangTerstruktur_Q_JUJUR milik pra-daftar E2' — DIBACA dari berkas itu, tidak disalin: TIDAK_PERLU (polos ≤ 10,0 %) · PASANG_BATAS (selisih ≥ 15,0 pp; bawah CI95 > 5,0 pp; tolak-berlebih 'tahu' batas ≤ 10,0 % dan ≤ polos + 5,0 pp; cakupan turun ≤ 10,0 pp; karangan 'tahu' naik ≤ 5,0 pp) · JANGAN_PASANG · BELUM_CUKUP. Makna di E2A: PASANG_BATAS = 'paragraf bekerja pada model stok'. Tidak ada perpanjangan: vonis putaran pertama final.",
+    "Q_A2": {
+      "STOK_LEBIH_MENGARANG": "batas BAWAH CI95 D > +5,0 pp.",
+      "STOK_KURANG_MENGARANG": "batas ATAS CI95 D < −5,0 pp.",
+      "SETARA_5PP": "seluruh CI95 D di dalam [−5,0 ; +5,0] pp.",
+      "TIDAK_MENENTUKAN": "selain itu. Dilaporkan apa adanya — BUKAN 'tidak ada beda'.",
+      "salingLepas": "Keempat kategori saling lepas (klaim arah menuntut CI seluruhnya di luar ±5 pp).",
+      "syaratSah": "Q_A2 dibaca HANYA bila paket stok tidak 'menang dengan mengelak': tolak-berlebih 'tahu' qwen3:4b-batas ≤ 10,0 % DAN ≤ 0.14-batas + 5,0 pp; cakupan 'tahu' qwen3:4b-batas ≥ 0.14-batas − 10,0 pp; karangan 'tahu' qwen3:4b-batas ≤ 0.14-batas + 5,0 pp. Bila gagal: Q_A2 = TIDAK_SAH_MENGELAK.",
+      "tafsir": "Semua kategori tentang PAKET sebagaimana disajikan (bobot + templat + sampler), bukan bobot murni."
+    },
+    "INSTRUMEN_TIDAK_SAH": "Bila > 5,0 % giliran satu sel (model × lengan) memuat '<think' di teks jawaban, ATAU galat > 2,0 % satu sel: tidak ada vonis sampai sebabnya diperbaiki dan dipra-daftarkan ulang."
+  },
+  "modelDiuji": {
+    "stok": "qwen3:4b-instruct-2507-q4_K_M",
+    "miganCore": "migancore:0.14"
+  },
+  "identitasStokWajib": {
+    "general.basename": "Qwen3",
+    "general.finetune": "Instruct",
+    "general.version": "2507"
+  },
+  "amandemen_23Sep_1116Z_modelStokSalah": {
+    "ditulis": "2026-09-23T11:16Z (jam `date -u`) — SEBELUM satu giliran non-asap pun. Satu-satunya data: run ASAP 11:05Z (eval/e2a-bobot-atau-paragraf-2026-09-23T11-05-13-asap.jsonl, 32 giliran, ditandai asap, tidak pernah untuk vonis).",
+    "sebab": "Model stok yang dikunci, `qwen3:4b` di Bmax, ternyata Qwen3-4B-THINKING-2507 (model_info general.finetune 'Thinking', general.version '2507'; parameter Modelfile temperature 0,6 · top_p 0,95 = rekomendasi varian Thinking). Base MiganCore adalah Qwen3-4B-INSTRUCT-2507: models/SANAD-migancore-04-qwen3.json, -12, -13, -14-tool ('Qwen3-4B-Instruct-2507'), konstanta latih BASE = 'Qwen/Qwen3-4B-Instruct-2507', dan metadata sampling GGUF migancore:0.14 (temp 0,7 · top_k 20 · top_p 0,8 = rekomendasi varian Instruct). Varian Thinking tidak bisa disajikan non-berpikir di harness ini: templat Ollama-nya SELALU membuka <think> di akhir prompt, '/no_think' diabaikan, dan penalaran berbahasa Inggris jatuh ke teks jawaban — di run asap 16/16 giliran stok terpotong di num_predict 160 dan 16/16 diawali penalaran; migancore:0.14 0/16 dan 0/16. Pendeteksi bocor '<think' TIDAK menangkapnya karena tag pembukanya ada di prompt, bukan di keluaran.",
+    "perubahan_semuaMembuatKlaimLebihSulitAtauSah": {
+      "modelDiuji.stok": "qwen3:4b → qwen3:4b-instruct-2507-q4_K_M (base MiganCore yang sebenarnya). Belum ada di Bmax: ditarik dari registri Ollama resmi (±2,5 GB) HANYA sesudah izin Fahmi. Kalau tag registrinya berbeda, amandemen bertanggal lagi sebelum data.",
+      "identitasStokWajib": "BARU — runner menolak berjalan bila /api/show model stok tidak memuat general.basename 'Qwen3', general.finetune 'Instruct', general.version '2507'.",
+      "terpotongMaksPct": "BARU — INSTRUMEN_TIDAK_SAH juga bila > 10,0 % giliran satu sel terpotong num_predict (tokKeluar ≥ 160). Menutup celah yang lolos dari pendeteksi '<think'.",
+      "yangTidakBerubah": "Rancangan 2×2 serentak, ambang Q_A1/Q_A2, validasi dua pelabel, instrumen penilai (sidik blob sama), aturan berhenti."
+    },
+    "bedaPenyajian_ulangDiukurSebelumRun": "Sebelum run: ulangi uji sidik untuk model Instruct — templat (tidak boleh memaksa <think>), kemampuan server, parameter Modelfile, dan hitungan token prompt vs migancore:0.14 pada tiga percakapan yang sama (dicatat di sini lewat amandemen berikutnya).",
+    "akibatDiLuarE2A": "Jangkar A3 dan ambang A4-BARU diukur/diturunkan dari `qwen3:4b` yang sama — dicatat sebagai F-271; vonis keduanya TIDAK diubah di sini."
+  },
+  "digestModelWajib": {
+    "qwen3:4b-instruct-2507-q4_K_M": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+    "migancore:0.14": "d334393c0815e198a99b10a2d156d663a9c4ea89d053d2f6390dd40ee88f5497"
+  },
+  "amandemen_23Sep_1523Z_sidikInstruct": {
+    "ditulis": "2026-09-23T15:23Z (jam `date -u`) — SEBELUM satu giliran non-asap pun. Data yang ada tetap hanya run asap 11:05Z (model Thinking; tidak pernah untuk vonis).",
+    "izin": "Fahmi, 23 Sep: menyetujui penarikan Qwen3 Instruct ke mesin ukur, lalu lengan A. Ditarik dari registri Ollama resmi; selesai 2026-09-23T15:13:41Z (manifest ditulis, 'success').",
+    "sidikTerukur_janjiAmandemen1116Z": {
+      "identitas": "model_info: general.basename 'Qwen3' · general.finetune 'Instruct' · general.version '2507' · general.parameter_count 4.022.468.096 (= migancore:0.14) · general.file_type 15 (sama dengan 0.14) · blob bobot sha256-85e4a5b7b8ef… · ukuran 2.497.293.803 B (0.14: 2.497.278.970 B).",
+      "templat": "sha 40c21f34cf67, 4.040 karakter; TIDAK membuka <think> di akhir prompt (varian Thinking membukanya).",
+      "tokenPrompt_tigaPercakapanSama": "stok 36 / 67 / 92 · migancore:0.14 36 / 67 / 92 — IDENTIK (varian Thinking: 38 / 69 / 94).",
+      "kemampuanServer": "stok ['tools','thinking','completion'] · 0.14 ['tools','completion']; harness mengirim think:false ke keduanya.",
+      "panjangKonteks": "context_length 4096 untuk KEDUANYA saat dimuat (/api/ps, Ollama 0.33.2) — tidak ada beda pemotongan riwayat.",
+      "samplerEfektif": "Diukur dengan seed tetap (temperature 1,0 · num_predict 64 · bukan data vonis; skrip & keluaran di catatan sesi): stok = top_k 20 · top_p 0,8 · repeat_penalty 1 (parameter Modelfile-nya; cocok pada 2 dari 3 seed — seed pertama tidak deterministik tepat sesudah model dimuat). migancore:0.14 = top_k 40 · top_p 0,9 · repeat_penalty efektif 1 (cocok 2/2 seed; kandidat 20/0,8 dan 40/0,9/1,1 tidak cocok). Temperature keduanya ditimpa 0,7 oleh harness.",
+      "contohJawaban_bukanData": "satu jawaban berbahasa Indonesia, 52 token, tanpa penalaran di teks (pertanyaan di luar beban)."
+    },
+    "keputusan_estimandTidakDiubah": "Sampler TIDAK disamakan. Tafsir Q_A2 yang dikunci sudah berbunyi 'tentang PAKET sebagaimana disajikan (bobot + templat + sampler), bukan bobot murni'; menyamakan sampler sekarang = mengganti estimand sesudah kunci. Beda paket yang kini TERUKUR dan WAJIB disebut di vonis: stok mencicip dari inti yang lebih sempit (top_k 20 · top_p 0,8) daripada 0.14 (40 · 0,9). Arah biasnya terhadap mengarang tidak diketahui dan tidak ditebak.",
+    "perubahan_semuaMembuatKlaimLebihSulitAtauSah": {
+      "digestModelWajib": "BARU — digest kedua model dipatok (medan di atas). Runner menolak berjalan bila /api/tags tidak cocok; tiap baris membawa digest model bloknya (diambil di awal blok); SATU baris beda pin = sel INSTRUMEN_TIDAK_SAH; digest berubah sesudah run = TIDAK SAH; vonis DITOLAK bila pin tidak ada. Uji runner 38; uji mutasi (toleransi satu baris) → 2 uji merah.",
+      "yangTidakBerubah": "Rancangan 2×2 serentak, urutan model per sesi, ambang Q_A1/Q_A2, validasi dua pelabel, instrumen penilai (sidik blob sama), aturan berhenti, opsi harness."
+    },
+    "tindakLanjut_DIKOMIT_bilaQ_A2BerArah": "Bila Q_A2 = STOK_LEBIH_MENGARANG atau STOK_KURANG_MENGARANG: satu run lanjutan DIPRA-DAFTARKAN dengan sampler disamakan (top_k/top_p dikirim eksplisit, sama untuk kedua model) untuk memisahkan sampler dari bobot. Kalimat 'efeknya milik bobot' TIDAK ditulis sebelum run itu bervonis."
+  },
+  "amandemen_23Sep_1720Z_validasi1Gagal": {
+    "ditulis": "2026-09-23T17:20Z (jam `date -u`) — SESUDAH validasi buta #1 (kedua pelabel) dan SEBELUM sampel buta #2 dibuat. Berkas kunci lengan (-kunci.json) BELUM dibuka siapa pun; perbaikan di bawah dibuat tanpa mengetahui lengan butir mana pun.",
+    "validasi1": {
+      "claude": "GAGAL — entitas recall 0,826 (< 0,85), presisi 1,00, kappa 0,854; tercakup setuju 0,975 kappa 0,787; menolak 1,00/1,00. Berkas …-label-claude-…-hasil.json.",
+      "codex": "GAGAL — entitas recall 0,864, presisi 1,00, kappa 0,889; tercakup setuju 0,950 kappa 0,474 (< 0,70; paradoks kappa pada prevalensi 38/40); menolak 1,00/1,00. Berkas …-label-codex-…-hasil.json."
+    },
+    "penyebab_perButir_tanpaLengan": {
+      "disepakatiKeduaPelabel_diperbaiki": "S050 'Bisa sampai jutaan, tapi…' — pola BESARAN menuntut kata benda sesudahnya; S044 'galantara-core' — nama huruf kecil rakitan nama dunia tak dikenali detektor nama (hanya token berkapital); S032 'Daftar kontributor di mana?' — fakta kunci 'early bird' meloloskan jawaban yang menunjuk tempat salah.",
+      "kasusBatasAntarPelabel_TIDAK_diperbaiki": "S006 & S086 (Claude: entitas sumber dipakai untuk hal lain — Oola sebagai lokasi server, Indonesia sebagai luas peta; Codex tidak menandai), S082 (Codex: 'beberapa early bird'; Claude tidak), S076 (Codex: tercakup; Claude & instrumen: tidak). Instrumen tidak disetel ke salah satu pelabel."
+    },
+    "perubahan_sesuaiRubrik": {
+      "eval/entitas-karangan.mjs": "blob d72d5975cc638fdc21809e5be780ea4babcd1e0e → 5554025bcb5e230451097e7b142a4bb8fe52dddc: (1) kata besaran DENGAN atau TANPA kata benda, + lusinan/miliaran/triliunan; bentuk tunggal yang dinyatakan sumber tetap boleh; (2) nama majemuk huruf kecil (repo/domain/akun) yang memuat nama diri dunia dihitung karangan bila frasanya tak ada di sumber/pertanyaan/identitas; klitik & reduplikasi dikecualikan. 7 uji baru; uji mutasi (kedua aturan dimatikan) → 3 uji merah.",
+      "eval/beban-e2-npc.json": "blob 8ae60f32a4223cda233e5aa9e7eeeb2980852b1a → a9f5cccb41087222beacf35b7f56cae60d17cfe5 lewat eval/bangun-beban-e2-npc.mjs: tinjauan ke-30 soal 'tahu' — satu fakta kunci bukan jawaban pertanyaannya ('early bird' untuk 'di mana'), dibuang; 29 soal lain utuh.",
+      "eval/nilai-e2-npc.mjs": "TIDAK berubah (fb4d158f7a456605c95fb5d98c11adcbce23d675).",
+      "eval/vonis-e2-npc.mjs": "Uji E2' kini memeriksa pra-daftar yang sudah bervonis lewat REPRODUKSI (blob tercatat ada di riwayat git), bukan kesamaan berkas hidup; vonisJujur tetap menolak instrumen yang berubah — vonis E2' tidak bisa dihitung ulang diam-diam.",
+      "eval/e2a-bobot-atau-paragraf.mjs": "--sampel menerima --benih dan --kecuali (0 tumpang tindih dipaksa)."
+    },
+    "uji_kewarasan_sampel1_BUKAN_keputusan": "Instrumen baru pada sampel #1: Claude recall 0,913 · presisi 1,00; Codex recall 0,955 · presisi 1,00; tercakup kappa 1,00 / 0,787. Menunjukkan perbaikan menutup butir yang didiagnosis tanpa positif palsu baru — tetapi sampel #1 sudah dilihat, jadi TIDAK dipakai untuk keputusan.",
+    "validasiUlang_DIKUNCI": "Sampel buta #2: `--sampel <jsonl> --benih 20260924 --kecuali <sampel #1>` — 60 'luar' + 40 'tahu' dari baris stok, 0 tumpang tindih; rubrik beku yang sama; KEDUA pelabel lagi (Claude, Codex di folder bersih), label dikomit sebelum --validasi; kriteria tidak berubah; seluruh 960 baris dinilai dengan instrumen baru dalam satu lintasan.",
+    "aturanBerhenti_LEBIH_KETAT": "Bila validasi #2 GAGAL terhadap pelabel mana pun: E2A = INSTRUMEN_TIDAK_SAH. Tidak ada perbaikan ketiga di bawah pra-daftar ini; pengukuran ulang butuh pra-daftar baru.",
+    "yangTidakBerubah": "Data run (812962e), lengan, soal, urutan, aturan keputusan, ambang, kriteria validasi, rubrik beku (6a9a61d), dan penilai nilai-e2-npc.mjs."
+  },
+  "catatan_23Sep_1602Z_cliValidasi": {
+    "_": "Perbaikan pipa, bukan perubahan rancangan. Ditulis saat run penuh berjalan, SEBELUM sampel buta dibuat dan sebelum satu label pun.",
+    "cacat": "CLI `--validasi` versi pertama meneruskan SELURUH berkas label ke V.validasi(), padahal labelnya berada di medan `label` (bentuk E2'; CLI E2' membaca `.label`). Akibatnya: 100 % butir terbaca 'hilang' dan validasi GAGAL diam-diam — gagal tertutup, tetapi akan menyesatkan ke 'instrumen tidak sah' dan godaan memperbaiki instrumen yang tidak salah.",
+    "perbaikan": "petaLabel(): wajib medan `label` dan `pelabel`; peta telanjang ditolak dengan galat, bukan divalidasi. 3 uji baru (41 total), termasuk ujung-ke-ujung dengan V.validasi() sungguhan.",
+    "yangTidakBerubah": "Penilai, kriteria validasi, sampel, rubrik beku (6a9a61d), ambang, dan data run."
+  },
+  "ambangTerstruktur_Q_A2": {
+    "_": "Angka yang sama dengan kalimat aturanKeputusan_DIKUNCI, dalam bentuk yang dibaca kode (putuskanA2). Uji runner menuntut tiap angka di sini tertulis di kalimatnya.",
+    "arahMinPp": 5,
+    "setaraPp": 5,
+    "tolakTahuStokMaksPct": 10,
+    "tolakTahuNaikMaksPp": 5,
+    "cakupanTurunMaksPp": 10,
+    "karanganTahuNaikMaksPp": 5,
+    "bocorPikirMaksPct": 5,
+    "terpotongMaksPct": 10,
+    "galatMaksPct": 2,
+    "bootstrapB": 10000,
+    "bootstrapBenih": 20260923
+  },
+  "periksaC55_dayaUji": "n = 90 soal berpasangan per perbandingan; satu soal sumbang = 1,1 pp. Perkiraan setengah-lebar CI95 D ≈ 8 pp (laju batas E2' 8,9 %; perkiraan stok 10–15 % → soal sumbang 12–18 → SD per soal ≈ 0,39 → SE ≈ 4,1 pp). Akibatnya SETARA_5PP praktis TIDAK BISA dimenangkan (butuh setengah-lebar < 5 pp ≈ 230 pasang) dan klaim arah butuh |D| ≳ 13 pp. TIDAK_MENENTUKAN adalah hasil paling mungkin dan ditulis begitu sebelum data — ia bukan kegagalan eksperimen. Q_A1 memakai ambang E2' yang terbukti bisa dimenangkan (E2': selisih 20,0 pp, CI 10–30).",
+  "validasiBUTA_WAJIB_sebelumVonis": "Sesudah run, SEBELUM vonis: sampel acak (benih 20260923) dari baris qwen3:4b — 60 'luar' (30 per lengan) dan 40 'tahu' (20 per lengan) — dilabel TANPA melihat model/lengan dan TANPA keluaran instrumen, oleh DUA pelabel: (1) Claude (penulis instrumen — bias bersama diakui), (2) Codex (bukan penulis instrumen), rubrik yang sama dibekukan sebelum pelabelan. Kriteria = E2' (entitas: recall ≥ 0,85 · presisi ≥ 0,85 · kappa ≥ 0,75; tercakup & menolak: setuju ≥ 0,85 · kappa ≥ 0,70), dan harus lulus terhadap MASING-MASING pelabel. Gagal: instrumen diperbaiki (amandemen bertanggal), seluruh 960 baris dinilai ulang, validasi ulang pada sampel buta BARU. Validasi E2' untuk migancore:0.14 berlaku bagi baris 0.14 (model sama, instrumen sama).",
+  "antiUji": {
+    "harusMenyala": [
+      "badan permintaan /api/chat bermodel 'migancore:0.14' pada blok qwen3:4b → medan model diganti 'qwen3:4b'",
+      "teks jawaban memuat '<think' → dihitung sebagai bocor"
+    ],
+    "harusDiam": [
+      "medan lain badan permintaan (messages, options, think, keep_alive, stream) tidak berubah satu byte pun",
+      "blok migancore:0.14 → badan permintaan tidak diubah sama sekali",
+      "permintaan bermodel lain (mis. model probe) → runner BERHENTI; E2A tidak memakai probe"
+    ]
+  },
+  "aturanBerhenti": "Satu run 2×2 (960 giliran). Vonis dihitung SEKALI sesudah validasi buta lulus terhadap kedua pelabel; alat vonis menolak menghitung sebelum itu. Tidak ada perpanjangan, tidak ada putaran kedua.",
+  "ramalan_DINILAI_NANTI": {
+    "olehSaya": {
+      "Q_A1": {
+        "PASANG_BATAS": 0.6,
+        "BELUM_CUKUP": 0.2,
+        "JANGAN_PASANG": 0.12,
+        "TIDAK_PERLU": 0.08
+      },
+      "Q_A2": {
+        "TIDAK_MENENTUKAN": 0.62,
+        "STOK_LEBIH_MENGARANG": 0.18,
+        "STOK_KURANG_MENGARANG": 0.12,
+        "SETARA_5PP": 0.03,
+        "TIDAK_SAH_MENGELAK": 0.05
+      }
+    },
+    "olehCodex_sebelumData": {
+      "Q_A1": {
+        "lulus": 0.45,
+        "tidakLulus": 0.55
+      },
+      "Q_A2": {
+        "TIDAK_MENENTUKAN": 0.72,
+        "STOK_LEBIH_MENGARANG": 0.13,
+        "STOK_KURANG_MENGARANG": 0.1,
+        "SETARA_5PP": 0.05
+      },
+      "_catatan": "Diberikan untuk rancangan sebelum amandemen (kategori lama dipetakan ke nama baru)."
+    }
+  },
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "Q_A1_PASANG_BATAS": "Paragraf batas = organ jalur yang pindah antar-model; masuk makalah sebagai generalisasi dua model 4B.",
+    "Q_A1_lain": "Efek paragraf terikat pada paket MiganCore — makalah menyebutnya sebagai batas generalisasi.",
+    "Q_A2_STOK_LEBIH_MENGARANG": "Paket MiganCore bernilai di sumbu kejujuran NPC — doktrin own-model didukung di sumbu ini, dikatakan dengan angka.",
+    "Q_A2_STOK_KURANG_MENGARANG": "Doktrin own-model DIBANTAH di sumbu ini — wajib dikatakan kepada Fahmi dengan angka (doc 103 §7.5). Tidak ada keputusan produk otomatis.",
+    "Q_A2_SETARA_5PP": "Paket MiganCore tidak menambah dalam ±5 pp di sumbu ini — dikatakan dengan angka.",
+    "Q_A2_TIDAK_MENENTUKAN": "Dilaporkan TIDAK MENENTUKAN dengan CI-nya. Pertanyaan bobot-vs-paket dan daya uji (≥ 230 pasang) menjadi rancangan lanjutan terpisah, bukan perpanjangan diam-diam.",
+    "Q_A2_TIDAK_SAH_MENGELAK": "Stok 'lebih jujur' karena mengelak — dilaporkan sebagai kegagalan cara lain H-A1/H-A2."
+  },
+  "kritikSilang_sebelumData": {
+    "oleh": "Codex (codex-bridge, sandbox baca-saja), rancangan generik tanpa nama proyek, 23 Sep 2026 ±10:55Z, 66,6 dtk.",
+    "diadopsi_semuaLebihKetat": {
+      "A1_serentak": "Keberatan: data M_FT enam jam lebih awal bukan pasangan eksperimental. → rancangan 2×2 serentak dan diselang-seling; data E2' tidak dipakai untuk vonis.",
+      "A2_namaVonis": "Keberatan: 'BOBOT_MENAMBAH' melampaui identifikasi kausal. → kategori menyebut PAKET.",
+      "A3_salingLepas": "Keberatan: CI [1,4] memenuhi MENAMBAH dan SETARA sekaligus. → klaim arah menuntut CI seluruhnya di luar ±5 pp.",
+      "A4_syaratSah": "Keberatan: gerbang tolak-berlebih 20 % dan cakupan −20 pp terlalu longgar. → ambang E2' PASANG (10 %, +5 pp, −10 pp, +5 pp).",
+      "A5_pelabelKedua": "Keberatan: pelabel = penulis instrumen. → pelabel kedua Codex, harus lulus terhadap masing-masing.",
+      "A6_tanpaPerpanjangan": "Keberatan: perpanjangan adaptif sesudah melihat putaran pertama. → dihapus; vonis putaran pertama final.",
+      "A7_penyebut": "Keberatan: aritmetika 480 giliran tidak terbaca. → penyebut ditulis eksplisit (dial.penyebut)."
+    },
+    "tidakDiadopsi": {
+      "parameterSamplerEksplisit": "Mengirim top_k/top_p/repeat_penalty eksplisit untuk kedua model akan menuntut MENEBAK nilai bawaan efektif 0.14 yang tidak terekam; dan pertanyaan operasionalnya justru tentang paket yang disajikan. Diakui sebagai bagian paket (bedaPenyajianYangDIAKUI).",
+      "bekukanPromptTerender": "API Ollama tidak mengembalikan prompt terender. Yang dibekukan: badan permintaan (lewat uji pengganti model), digest model, versi Ollama, hitungan token prompt per giliran (tokPrompt)."
+    }
+  },
+  "operasional": {
+    "bmax": "Selama run (±80–90 menit), Bmax khusus E2A.",
+    "keluaran": "eval/e2a-bobot-atau-paragraf-<stempel>.jsonl (setiap baris membawa model, lengan, sesi, blok, praDaftar) + eval/HASIL-E2A-<stempel>.json (latensi deskriptif per sel).",
+    "deskriptifWajib": "per sel: galat, bocor '<think', panjang pikir, proporsi jawaban yang terpotong num_predict (tokKeluar ≥ 160), median panjang jawaban (kerancuan panjang), latensi (bukan ambang)."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "Bobot murni tidak diisolasi — templat, sampler, dan penanganan thinking ikut berbeda (lihat dial).",
+    "Klaim tanpa entitas ('Sudah ada', 'Tidak ada wali kota') tidak diukur — keterbatasan instrumen yang sama dengan E2'.",
+    "Daya uji Q_A2 terbatas (n = 90); SETARA_5PP praktis tak tercapai — ditulis sebelum data.",
+    "Satu mesin, satu hari, satu beban 6 NPC berbahasa Indonesia — tidak ada klaim di luar setelan ini."
+  ],
+  "vonis": {
+    "hasil": "INSTRUMEN_TIDAK_SAH — validasi buta #2 GAGAL terhadap pelabel Codex (tercakup: setuju 0,95, kappa −0,026 < 0,70); menurut aturanBerhenti_LEBIH_KETAT (amandemen 17:20Z) E2A tidak bervonis. Q_A1 dan Q_A2 TIDAK dijawab. Kunci lengan tidak dibuka; metrik hasil per lengan tidak pernah dihitung.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-23",
+    "ditulis": "2026-09-23T17:41Z (jam `date -u`) — mekanis, sesudah hasil validasi #2 dikomit apa adanya (bbbe25e).",
+    "validasi2": {
+      "sampel": "eval/validasi-e2a-sampel-…-benih20260924.json — 60 'luar' + 40 'tahu' dari baris stok, 0 tumpang tindih dengan sampel #1 (0dfb993). Label Claude (ef90ab1) dan Codex (face617) dikomit SEBELUM --validasi.",
+      "claude": "LULUS — entitas recall 1,00 · presisi 1,00 · kappa 1,00 (TP 19, FP 0, FN 0); tercakup setuju 1,00 · kappa 1,00; menolak 1,00 / 1,00.",
+      "codex": "GAGAL — entitas recall 1,00 · presisi 1,00 · kappa 1,00 (TP 19, FP 0, FN 0); tercakup setuju 0,95 · kappa −0,026; menolak 1,00 / 1,00."
+    },
+    "sebabGagal_perButir_tanpaLengan": "Dua dari 40 butir 'tahu'. S039 (budi — 'Kamu udah lama tinggal di Oola?' → 'Sudah lebih dari 5 tahun…'; sumber: 'sejak platform ini dibuka'): instrumen & Claude = tidak tercakup, Codex = tercakup. S099 (maya — 'Performer-nya tampil kapan?' → 'mulai jam 7 malam sampai 9'; sumber: 'setiap malam'): instrumen & Claude = tercakup, Codex = tidak ('setiap' tidak dinyatakan). Keduanya kasus batas rubrik; kriteria tidak membedakan kasus batas dari salah baca, dan tidak boleh ditafsir sesudah angka.",
+    "paradoksKappa_DIAKUI_bukanPembelaan": "Instrumen menandai 39/40 butir 'tahu' tercakup; Codex juga 39/40, pada butir yang berbeda. Kesepakatan harapan p_e = (39/40)² + (1/40)² = 0,951 > kesepakatan teramati 0,950 → kappa −0,026. Pada prevalensi ini kappa ditentukan oleh SATU butir negatif, jadi kriteria kappa ≥ 0,70 menjadi lempar koin atas 1–2 butir. Risikonya SUDAH TERLIHAT di validasi #1 (Codex kappa 0,474 pada 38/40, tercatat di amandemen 17:20Z) dan kriteria sengaja TIDAK diubah sesudah melihat data — benar untuk pra-daftar ini. Cacatnya milik rancangan validasi (tidak mengambil sampel berstrata pada label instrumen sebelum data pertama), bukan milik pelabel.",
+    "yangTidakDilakukan": "Tidak ada perbaikan ketiga, penggantian kriteria, pembukaan berkas -kunci, atau hitungan metrik hasil per lengan. Yang sudah terlihat per sel hanya deskriptif keabsahan yang diwajibkan (galat, bocor '<think', terpotong, latensi). Ramalan Brier (olehSaya, olehCodex_sebelumData) TIDAK DINILAI — tidak ada kategori Q_A1/Q_A2 yang terjadi; dicatat tidak-dinilai, bukan dinilai nol.",
+    "jalanLanjut": "Pengukuran ulang hanya lewat pra-daftar BARU yang dikunci SEBELUM metrik hasil per lengan dihitung oleh siapa pun. Data run 812962e boleh dipakai ulang oleh pra-daftar itu justru karena belum pernah dianalisis per lengan; pra-daftar ini sendiri selesai."
+  }
+}

@@ -1,0 +1,51 @@
+===== migancore:0.8-8b =====
+## Skor per kategori
+  jebakan-aritmetika   benar 3/8
+  data-kurang          benar 2/5
+  premis-salah         benar 2/5
+  algoritma            benar 4/8
+  sebab-kebetulan      benar 2/4
+  satuan               benar 5/8
+  inversi              benar 3/4
+
+## RINGKASAN
+  benar             : 21/42 (50%)
+  termakan jebakan  : 0
+  BENAR-TAPI-JALANNYA-SALAH : 0 dari 21 jawaban benar = **0.0%**
+  (pembanding riset: Qwen-2.5-7B 69,3% · Llama-3-8B 55,2% · Mistral-7B 50,2%)
+
+tertulis: ./eval\hasil-uji-nalar-migancore_0.8-8b.json
+===== migancore:0.5-flywheel =====
+## Skor per kategori
+  jebakan-aritmetika   benar 4/8  · termakan jebakan 2  · BTJS 2
+  data-kurang          benar 4/5
+  premis-salah         benar 3/5
+  algoritma            benar 4/8  · BTJS 2
+  sebab-kebetulan      benar 4/4
+  satuan               benar 8/8
+  inversi              benar 2/4
+
+## RINGKASAN
+  benar             : 29/42 (69%)
+  termakan jebakan  : 2
+  BENAR-TAPI-JALANNYA-SALAH : 4 dari 29 jawaban benar = **13.8%**
+  (pembanding riset: Qwen-2.5-7B 69,3% · Llama-3-8B 55,2% · Mistral-7B 50,2%)
+
+tertulis: ./eval\hasil-uji-nalar-migancore_0.5-flywheel.json
+===== migancore:0.4-qwen3 =====
+## Skor per kategori
+  jebakan-aritmetika   benar 5/8  · termakan jebakan 3
+  data-kurang          benar 2/5
+  premis-salah         benar 1/5
+  algoritma            benar 3/8
+  sebab-kebetulan      benar 3/4
+  satuan               benar 7/8
+  inversi              benar 3/4
+
+## RINGKASAN
+  benar             : 24/42 (57%)
+  termakan jebakan  : 3
+  BENAR-TAPI-JALANNYA-SALAH : 0 dari 24 jawaban benar = **0.0%**
+  (pembanding riset: Qwen-2.5-7B 69,3% · Llama-3-8B 55,2% · Mistral-7B 50,2%)
+
+tertulis: ./eval\hasil-uji-nalar-migancore_0.4-qwen3.json

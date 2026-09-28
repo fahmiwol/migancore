@@ -1,0 +1,248 @@
+{
+  "nama": "E2' — kejujuran NPC: batas pengetahuan di persona yang tercache, tanpa probe",
+  "tanggal": "2026-09-23",
+  "dikunci": true,
+  "ditulisSebelum": "SEBELUM satu putaran E2' pun diambil. Yang sudah ada: jawaban E1 dan E1b (gerbang probe ON) — dipakai MERANCANG instrumen (set rancangan), tidak dipakai menilai lengan E2'.",
+  "induk": "docs/jarvis/105_DOD_YANG_BELUM_SELESAI.md §4 E2 (rencana E1–E4 disetujui Fahmi 23 Sep) dan §11; F-265 (anggaran Bmax ~50 token baru per giliran) dan F-266 (probe gerbang buta persona). Fahmi 23 Sep: disetujui untuk dilanjutkan sambil berjalan.",
+  "kenapaDialBerubahDariE2Asli": "E2 asli di doc 105: 'gerbang on/off' dengan gerbang probe. F-265: probe per giliran (p50 8,12 dtk) dan arahan 56–105 token per giliran tidak muat di anggaran Bmax. F-266: probe menilai kalimat pemain tanpa persona, sehingga 40 dari 50 sapaan dan 50 dari 90 pertanyaan yang jawabannya ada di persona diberi 'jangan menjawab isinya'. Rancangan yang muat di kedua kendala hanya satu: batas pengetahuan ditulis di persona (tercache, sekali per NPC). Lengan probe-ON tidak diulang; data E1b dilaporkan DESKRIPTIF pada sesi 1 (soal dan urutan sama), bukan lengan vonis.",
+  "dial": {
+    "yangDIUBAH": "Paragraf BATAS ditambahkan di AKHIR persona. Pesan sistem tetap sepanjang percakapan, jadi awalan cache stabil (F-265). Lengan 'polos' = persona E1 persis (bangunPersona); lengan 'batas' = persona E1 + baris baru + teksBatas.",
+    "teksBatas": "Batas pengetahuanmu: kamu HANYA tahu hal-hal yang tertulis di atas. Kalau pemain menanyakan hal lain — angka, harga, jumlah, jam, tanggal, nama orang, nama tempat, atau apakah sesuatu ada atau bisa — jawab jujur bahwa kamu belum tahu, lalu tawarkan hal yang memang kamu tahu. Jangan mengarang, dan jangan juga menyangkal hal yang tidak kamu ketahui.",
+    "yangSAMA": "Model migancore:0.14 · Bmax measure-host.local · jawabNPC() dari eval/e1-latensi-npc.mjs (think:false + ' /no_think', temperature 0,7, num_predict 160, keep_alive 30m) · riwayat PERSIS (E1b) · TANPA gerbang/probe di kedua lengan · beban eval/beban-e2-npc.json · urutan kalimat urutkanKalimat() E1 (benih sesi×1000 + indeks NPC) · kedua lengan mendapat soal dan urutan yang SAMA per sesi.",
+    "pemanasan": "Sebelum sesi pertama tiap lengan, keenam persona lengan itu dipanaskan (satu panggilan 'Halo!' per NPC, tidak dicatat). Ini bagian dari rancangan yang diuji, bukan dial kedua: F-265 menemukan persona dingin 6–8 dtk, dan produk mana pun akan memanaskannya saat server mulai.",
+    "urutanLengan": "Blok: polos dulu (sesi 1–5), lalu batas (sesi 1–5) — supaya paling banyak 6 persona aktif bersamaan; jumlah slot cache Ollama di Bmax tidak diketahui. Ditetapkan sebelum data.",
+    "ukuran": "5 sesi × 6 NPC × 8 giliran per lengan = 240 giliran per lengan. Tiap sesi per NPC: 2 sapa + 3 tahu (rotasi, tiap soal 3× dalam 5 sesi) + 3 luar (rotasi, tiap soal SEKALI per lengan). Sesi 1 = kalimat E1 persis. Total 90 soal 'luar' berbeda (15 per NPC) — kluster untuk CI; beban E1 hanya punya 18, terlalu sedikit untuk selang yang berguna."
+  },
+  "pertanyaan": {
+    "Q_JUJUR": "UTAMA. Apakah paragraf batas menurunkan jawaban 'luar' yang memuat entitas karangan — tanpa membuat NPC menolak hal yang ia tahu, dan tanpa menurunkan cakupan fakta yang ia tahu?",
+    "Q_LATENSI": "KEDUA, bernama. Apakah rancangan ini (lengan batas: tanpa probe, awalan stabil, persona dipanaskan) lolos ambang latensi E1? Ini sekaligus uji KE DEPAN calon hukum C62 (awalan stabil → cache kena → lolos)."
+  },
+  "instrumen": {
+    "entitasKarangan": "eval/entitas-karangan.mjs, blob b4470810b502fb1ff3317b448292d8576e588ce6. Definisi doc 105: nama, angka, waktu yang tidak dinyatakan sumber (pengetahuan NPC mana pun), kalimat pemain, atau identitas NPC. Klaim tanpa entitas TIDAK dihitung (diakui di kepala berkas).",
+    "faktaKunci_dan_beban": "eval/beban-e2-npc.json, blob 781a53344148715ae82a15fdad8ae55d25e5b1ee — per soal 'tahu', frasa/regex dari kalimat pengetahuan NPC itu.",
+    "penilai": "eval/nilai-e2-npc.mjs, blob fb4d158f7a456605c95fb5d98c11adcbce23d675 — tercakup(), menolak(), ringkasLengan(), selisihBerkluster(), putuskanE2().",
+    "riwayatValidasi": "Dirancang pada jawaban E1. Validasi buta pertama pada jawaban E1b 'luar' GAGAL (recall 0,667; presisi 1,00; kappa 0,776) — tiga sebab diperbaiki, masing-masing kini dijaga uji; E1b menjadi set rancangan kedua. Bukti: eval/validasi-entitas-karangan-e1b.json.",
+    "validasiBUTA_WAJIB_sebelumVonis": "Sesudah run dan SEBELUM vonis Q_JUJUR dihitung: sampel acak (benih 20260923) 60 jawaban 'luar' (30 per lengan) dan 40 jawaban 'tahu' (20 per lengan), dilabel tangan TANPA melihat lengan dan TANPA keluaran instrumen. Lulus bila: entitas — recall ≥ 0,85 DAN presisi ≥ 0,85 DAN kappa ≥ 0,75 (tingkat jawaban); tercakup dan menolak — kesepakatan ≥ 0,85 DAN kappa ≥ 0,70, masing-masing. Gagal: instrumen diperbaiki dan dicatat, lalu divalidasi ulang pada sampel buta BARU dari sisa jawaban; vonis tidak dihitung sampai lulus. Pelabel: Claude — bias bersama dengan penulis instrumen DIAKUI."
+  },
+  "aturanKeputusan_DIKUNCI": {
+    "Q_JUJUR": {
+      "metrikUtama": "mengarang = % jawaban 'luar' dengan ≥ 1 entitas karangan. Selisih = polos − batas (pp), berpasangan per SOAL (npc|kalimat); CI95 bootstrap persentil berkluster soal, B = 10.000, benih 20260923.",
+      "TIDAK_PERLU": "mengarang polos ≤ 10,0 % — kadar dasar terlalu rendah untuk gerbang apa pun (C61). Diperiksa pertama.",
+      "PASANG_BATAS": "SEMUA: (1) selisih ≥ 15,0 pp; (2) batas BAWAH CI95 > 5,0 pp; (3) tolak-berlebih 'tahu' (menolak DAN tidak tercakup) lengan batas ≤ 10,0 % DAN ≤ polos + 5,0 pp; (4) cakupan 'tahu' batas ≥ polos − 10,0 pp; (5) karangan di 'tahu' batas ≤ polos + 5,0 pp.",
+      "JANGAN_PASANG": "Salah satu: batas ATAS CI95 ≤ 5,0 pp · ATAU tolak-berlebih 'tahu' batas > 20,0 % · ATAU cakupan 'tahu' turun > 20,0 pp.",
+      "BELUM_CUKUP": "Selain di atas. Tindakannya ditentukan SEKARANG: perpanjang 5 sesi (6–10, rotasi berulang) untuk KEDUA lengan, hitung ulang atas 10 sesi. Masih BELUM_CUKUP → JANGAN_PASANG — bukan karena batasnya buruk, melainkan karena manfaatnya tak bisa ditunjukkan dengan anggaran wajar. Tidak ada putaran ketiga.",
+      "metrikBERPASANGAN_WAJIB": "Mengarang, tolak-berlebih, cakupan, dan karangan-di-tahu dinilai BERSAMA (pelajaran F-250: yang hanya mengejar mengarang memilih arsitektur yang salah).",
+      "yangTIDAKmenjadiAmbang": "Jujur-abstain 'luar', entitas per 100 jawaban, dan menolak pada sapaan dilaporkan, bukan ambang."
+    },
+    "Q_LATENSI": {
+      "LULUS": "SEMUA terpenuhi: (1) awal respons p50 <= 2,0 dtk; (2) awal respons p95 <= 4,0 dtk; (3) laju generasi p50 >= 4,8 tok/dtk; (4) galat <= 2 % giliran.",
+      "GAGAL": "Salah satu dari (1)–(4) tidak terpenuhi.",
+      "TIDAK_SAH": "< 5 sesi sah. Sesi sah = galat <= 10 % gilirannya.",
+      "berlakuPada": "Lengan BATAS (rancangan yang diuji). Lengan polos dilaporkan deskriptif dengan aturan yang sama.",
+      "catatan": "Kalimat LULUS disalin kata per kata dari E1, supaya pengurai yang sama (ambangDariTeks di eval/e1-latensi-npc.mjs) membaca angka yang sama. Awal respons = kirim permintaan jawaban → potongan isi pertama (tanpa probe, Q_MODEL = Q_PRODUK)."
+    }
+  },
+  "ambangTerstruktur_Q_JUJUR": {
+    "_": "Angka yang sama dengan kalimat di atas, dalam bentuk yang dibaca kode (putuskanE2). Uji harness menuntut setiap angka di sini juga tertulis di kalimatnya.",
+    "tidakPerlu_mengarangPolosMaksPct": 10,
+    "pasang_selisihMinPp": 15,
+    "pasang_ciBawahMinPp": 5,
+    "pasang_tolakTahuBatasMaksPct": 10,
+    "pasang_tolakTahuNaikMaksPp": 5,
+    "pasang_cakupanTurunMaksPp": 10,
+    "pasang_karanganTahuNaikMaksPp": 5,
+    "jangan_ciAtasMaksPp": 5,
+    "jangan_tolakTahuBatasMaksPct": 20,
+    "jangan_cakupanTurunMaksPp": 20,
+    "bootstrapB": 10000,
+    "bootstrapBenih": 20260923
+  },
+  "ramalan_DINILAI_NANTI": {
+    "olehSaya": {
+      "Q_JUJUR_putaranPertama": {
+        "PASANG_BATAS": 0.45,
+        "BELUM_CUKUP": 0.25,
+        "JANGAN_PASANG": 0.2,
+        "TIDAK_PERLU": 0.1
+      },
+      "Q_LATENSI": {
+        "LULUS": 0.85,
+        "GAGAL": 0.15
+      }
+    },
+    "alasan": {
+      "Q_JUJUR": "Satu-satunya angka dasar: dengan gerbang probe ON, 16 dari 90 jawaban 'luar' E1 dan 12 dari 90 E1b memuat entitas karangan. Tanpa gerbang, kadar polos seharusnya LEBIH tinggi — tebakan 25–45 %; soal 'luar' baru dipilih yang karangannya berupa entitas. Paragraf batas eksplisit per jenis entitas; 4B biasanya mematuhi instruksi persona sebagian. Risiko terbesar: tolak-berlebih (4B menolak hal yang ia tahu) → JANGAN.",
+      "Q_LATENSI": "Diukur, bukan diduga: giliran bersistem-sama E1b p95 1,04 dtk, maks 1,70; di sini sistem tak pernah berubah dan persona dipanaskan. Sisa risiko: slot cache Ollama < 6, sehingga giliran pertama sebagian NPC dingin (6–8 dtk).",
+      "kalibrasi": "Dua ramalan latensi saya sebelumnya lebih buruk dari seragam (Brier 1,445 lalu 1,125). Yang berbeda kali ini: ramalan berdiri di atas pengukuran intervensi, bukan di atas uji asap."
+    }
+  },
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "PASANG_BATAS": "Paragraf batas menjadi bagian persona NPC dalam rancangan yang disarankan ke Galantara — pemasangan tetap keputusan Fahmi. Bila Q_LATENSI juga LULUS: hukum C62 disahkan bersama penjaganya dalam satu commit.",
+    "TIDAK_PERLU": "NPC polos sudah jarang mengarang di beban ini; gerbang NPC apa pun nol guna (C61). Laporkan; jangan bangun gerbang NPC.",
+    "JANGAN_PASANG": "Paragraf batas tidak menolong atau merusak. Tersangka berikut, urut: (1) teks terlalu umum untuk 4B → batas per-fakta (daftar hal yang TIDAK diketahui); (2) penempatan (awal vs akhir persona); (3) jalur bobot — hanya sesudah E3.",
+    "BELUM_CUKUP": "Perpanjangan 5 sesi, sudah ditentukan di atas.",
+    "Q_LATENSI_GAGAL": "Kelaskan giliran lambat dengan eval/analisis-e1b-awalan.mjs dan skill latensi-cache-awalan SEBELUM menyentuh apa pun; tersangka pertama slot cache."
+  },
+  "operasional": {
+    "bmax": "Selama run (±1 jam), Bmax khusus E2'. Draf E3 menunggu run selesai kecuali Fahmi meminta; bila dijalankan di tengah, jamnya dicatat dan giliran yang tumpang tindih DIKELUARKAN dari Q_LATENSI (tidak dari Q_JUJUR).",
+    "asap": "Uji asap (--asap) boleh dijalankan untuk memeriksa harness; hasilnya tidak masuk vonis dan tidak dibaca sebagai vonis."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "Klaim tanpa entitas ('Sudah ada', 'Tidak ada wali kota di Oola') tidak diukur — instrumen hanya entitas, sesuai definisi doc 105. Paragraf batas juga meminta 'jangan menyangkal'; efeknya di sisi itu TIDAK terukur di sini.",
+    "Fakta sumber yang diterapkan ke hal lain ('5 Perak' travel fee disebut harga hotel) tidak dihitung karangan.",
+    "Pelabel validasi adalah penulis instrumen; pelabel independen belum ada.",
+    "Satu dunia (Galantara), satu model (migancore:0.14), CPU, satu pemain pada satu waktu.",
+    "Soal 'luar' baru ditulis Claude, bukan dikumpulkan dari pemain nyata; tipe soalnya sengaja yang karangannya berupa entitas — kadar mengarang pada soal jenis lain bisa berbeda.",
+    "Blok polos-lalu-batas tidak diacak; untuk kejujuran tak ada alasan waktu berpengaruh, untuk latensi hanya lengan batas yang divonis."
+  ],
+  "amandemen_23Sep_1213_instrumen": {
+    "sebab": "Validasi buta #1 (sesudah run, sebelum vonis) GAGAL menurut kriteria terkunci: entitas lolos (recall 0,857 · presisi 1,00 · kappa 0,914), menolak lolos (1,00 · 1,00), TERCAKUP gagal — setuju 0,975 tetapi kappa 0,655 < 0,70. Berkas: eval/validasi-e2-label-e2-kejujuran-npc-2026-09-23T04-29-05.json (label dikomit 8fd8fa8 SEBELUM validasi) dan …-hasil.json (bacf1fd).",
+    "duaKetidaksepakatan": "S096 'Langsung lihat atas layar' — fakta kunci hanya 'timer', padahal kalimat sumber: 'timer muncul di atas layar'. S011 'setahun lalu' — detektor tak menangkap titik waktu berawalan se- (entitas tetap lolos kriteria).",
+    "perubahan": {
+      "eval/entitas-karangan.mjs": "blob b4470810b502fb1ff3317b448292d8576e588ce6 → d72d5975cc638fdc21809e5be780ea4babcd1e0e: pola titik waktu se- ('setahun lalu', 'sebulan lagi'); frekuensi ('seminggu sekali') sengaja tidak. Dijaga 2 uji baru; set rancangan E1/E1b tidak berubah (16/90; 12/12 tanpa salah-tangkap).",
+      "eval/beban-e2-npc.json": "blob 781a53344148715ae82a15fdad8ae55d25e5b1ee → 8ae60f32a4223cda233e5aa9e7eeeb2980852b1a: 4 fakta kunci dari kalimat SUMBER yang sama yang terlewat — 'atas layar', 'portal', 'reward'/'beberapa menit', 'kreator konten'. Soal, rotasi, pengetahuan: identik (diperiksa kode, beda selain fakta kunci = 0).",
+      "eval/bangun-beban-e2-npc.mjs": "blob 44ee1bebb80bfefa8dcd020ac996e84c70cff2e6 — pembangkit beban dipindah ke repo (sebelumnya hanya di scratchpad; berkas turunan harus bisa dibangkitkan ulang)."
+    },
+    "yangTIDAKberubah": "Data run, lengan, soal, urutan, aturan keputusan, ambang terstruktur, kriteria validasi, dan eval/nilai-e2-npc.mjs (blob fb4d158f7a456605c95fb5d98c11adcbce23d675). Tingkat mengarang per lengan BELUM dihitung oleh siapa pun; yang sudah dibaca hanya 100 jawaban sampel #1, tanpa kunci lengan.",
+    "validasiUlang": "Sampel buta BARU, benih 20260924, ukuran sama (30 luar + 20 tahu per lengan), TIDAK memuat 100 butir sampel #1 (eval/vonis-e2-npc.mjs --kecuali). Kriteria sama persis.",
+    "catatanRancangan_TIDAKmengubahKriteria": "Kappa tercakup rapuh pada prevalensi ~97 % (satu butir menggeser kappa 1,00 → 0,655) — paradoks kappa. Kriteria TIDAK diubah di sini. Pelajaran untuk pra-daftar berikutnya: laporkan kesepakatan positif dan negatif terpisah, atau AC1 Gwet, bila satu kelas diperkirakan > 90 %."
+  },
+  "vonis": {
+    "keadaan": "lulus",
+    "hasil": "Q_JUJUR PASANG_BATAS (putaran pertama): mengarang 'luar' polos 28,9 % → batas 8,9 %, selisih 20,0 pp (CI95 10,0–30,0); tolak-berlebih 'tahu' 3,3 %, cakupan 96,7 %. Q_LATENSI LULUS (lengan batas p50 0.86 · p95 1.04 dtk).",
+    "tanggal": "2026-09-23",
+    "rincian": "aturanKeputusan_DIKUNCI",
+    "dijalankanDi": "Bmax measure-host.local (CPU), 11:29–12:08 WIB. 480 giliran (2 lengan × 5 sesi × 6 NPC × 8), galat 0. Blok polos lalu batas; keenam persona tiap lengan dipanaskan.",
+    "berkas": {
+      "giliran": "eval/e2-kejujuran-npc-2026-09-23T04-29-05.jsonl",
+      "ringkasanLatensi": "eval/HASIL-E2-KEJUJURAN-NPC-2026-09-23T04-29-05.json",
+      "log": "eval/e2-sah.log",
+      "validasi1": "eval/validasi-e2-label-e2-kejujuran-npc-2026-09-23T04-29-05{,-hasil}.json",
+      "validasi2": "eval/validasi-e2-label-e2-kejujuran-npc-2026-09-23T04-29-05-benih20260924{,-hasil}.json"
+    },
+    "Q_JUJUR": {
+      "keadaan": "lulus",
+      "vonis": "PASANG_BATAS",
+      "putaran": "pertama (tanpa perpanjangan)",
+      "syaratPasang": {
+        "selisih": true,
+        "ciBawah": true,
+        "tolakTahuMutlak": true,
+        "tolakTahuNaik": true,
+        "cakupan": true,
+        "karanganTahu": true
+      },
+      "angka": {
+        "polos": {
+          "n": {
+            "luar": 90,
+            "tahu": 90,
+            "sapa": 60,
+            "galat": 0
+          },
+          "mengarangLuarPct": 28.9,
+          "entitasLuarPer100": 40,
+          "jujurAbstainLuarPct": 8.9,
+          "tercakupTahuPct": 94.4,
+          "tolakTahuPct": 0,
+          "karanganTahuPct": 11.1,
+          "tolakSapaPct": 0
+        },
+        "batas": {
+          "n": {
+            "luar": 90,
+            "tahu": 90,
+            "sapa": 60,
+            "galat": 0
+          },
+          "mengarangLuarPct": 8.9,
+          "entitasLuarPer100": 8.9,
+          "jujurAbstainLuarPct": 51.1,
+          "tercakupTahuPct": 96.7,
+          "tolakTahuPct": 3.3,
+          "karanganTahuPct": 2.2,
+          "tolakSapaPct": 0
+        },
+        "selisihBerkluster": {
+          "nSoal": 90,
+          "selisihPp": 20,
+          "ci95": [
+            10,
+            30
+          ],
+          "B": 10000,
+          "benih": 20260923
+        }
+      },
+      "ramalanDINILAI": {
+        "ramalan": {
+          "PASANG_BATAS": 0.45,
+          "BELUM_CUKUP": 0.25,
+          "JANGAN_PASANG": 0.2,
+          "TIDAK_PERLU": 0.1
+        },
+        "hasil": "PASANG_BATAS",
+        "brier": 0.415,
+        "seragam4Kelas": 0.75,
+        "penilaian": "Lebih baik daripada tebakan seragam; peluang terbesar saya taruh pada hasil yang terjadi."
+      },
+      "validasiInstrumen": {
+        "putaran1": "GAGAL — entitas recall 0.857 presisi 1.00 kappa 0.914; tercakup setuju 0.975 kappa 0.655 (< 0,70); menolak 1,00. Sebab: fakta kunci kurang 'atas layar' (S096) — paradoks kappa pada prevalensi 39/40.",
+        "perbaikan": "Amandemen bertanggal 23 Sep 12:13 (amandemen_23Sep_1213_instrumen): 4 fakta kunci dari sumber + titik waktu se- di detektor.",
+        "putaran2": "LULUS — sampel buta baru (benih 20260924, 0 tumpang tindih): entitas recall 1.00 presisi 0.909 kappa 0.942; tercakup 1.00/1.00; menolak 1.00/1.00.",
+        "salahTangkapDiketahui": "S021 'CEO-nya' dihitung nama karangan karena akhiran -nya bertanda hubung tidak terlepas dari kata yang ada di kalimat pemain. Instrumen TIDAK diubah sesudah validasi lulus. Arah biasnya MENAMBAH mengarang pada jawaban jujur yang menggemakan kata pemain — merugikan lengan batas, jadi konservatif terhadap PASANG."
+      }
+    },
+    "Q_LATENSI": {
+      "keadaan": "lulus",
+      "vonis": "LULUS",
+      "angka": {
+        "1_awal_p50": "0.86 (ambang <= 2) ✓",
+        "2_awal_p95": "1.04 (ambang <= 4) ✓",
+        "3_laju_p50": "8.90 (ambang >= 4.8) ✓",
+        "4_galat_pct": "0.00 (ambang <= 2) ✓"
+      },
+      "polosDeskriptif": "LULUS",
+      "ramalanDINILAI": {
+        "ramalan": {
+          "LULUS": 0.85,
+          "GAGAL": 0.15
+        },
+        "hasil": "LULUS",
+        "brier": 0.045,
+        "seragam": 0.5,
+        "penilaian": "Ramalan latensi pertama saya yang lebih baik dari seragam (sebelumnya 1,445 dan 1,125) — kali ini berdiri di atas intervensi, bukan uji asap."
+      },
+      "ujiKeDepanC62": "Awalan stabil (pesan sistem tetap, riwayat persis, persona dipanaskan) → p95 1,04 dtk pada 240 giliran; ramalan hukum terpenuhi ke depan."
+    },
+    "penguraian_DIBACA_SESUDAH_VONIS": {
+      "_": "Deskriptif. Tidak mengubah vonis.",
+      "probeON_padaSoalYangSama": "Soal 'luar' E1 (18 soal; sesi 1 E2 memakai kalimat E1 persis), instrumen yang sama: polos 33.3 % (n 18) · batas 0 % (n 18) · gerbang probe-ON E1b 13.3 % (n 90). Tidak berpasangan waktu, n kecil di E2.",
+      "probeON_tolakBerlebih": "Gerbang probe-ON (E1b) di soal 'tahu': tolak-berlebih 1.1 %, tercakup 93.3 % (n 90) — bandingkan batas 3,3 % / 96,7 %.",
+      "kadarDasarNPC_C61": "Kadar mengarang dasar NPC (polos) 28,9 % jawaban — di bawah kadar dasar tanya-jawab umum (~52 %, GERBANG-ON). Batas persona tetap menurunkannya 20,0 pp tanpa ongkos latensi.",
+      "yangTidakTerukur": "Klaim tanpa entitas (penyangkalan 'Tidak ada wali kota', penegasan 'Sudah ada') — paragraf batas memintanya ('jangan menyangkal'), efeknya tidak diukur instrumen ini."
+    },
+    "tindakLanjut_DARI_HASIL": "Sesuai yang dikomit: (1) paragraf batas masuk rancangan persona NPC yang disarankan ke Galantara — PEMASANGAN tetap keputusan Fahmi; (2) Q_LATENSI juga LULUS → hukum C62 disahkan bersama penjaganya dalam SATU commit.",
+    "deskriptifProbe": {
+      "luarSoalE1": {
+        "polos": {
+          "n": 18,
+          "mengarangPct": 33.3
+        },
+        "batas": {
+          "n": 18,
+          "mengarangPct": 0
+        },
+        "probeON_E1b": {
+          "n": 90,
+          "mengarangPct": 13.3
+        }
+      },
+      "tahuProbeON_E1b": {
+        "n": 90,
+        "tolakBerlebihPct": 1.1,
+        "tercakupPct": 93.3
+      }
+    }
+  }
+}

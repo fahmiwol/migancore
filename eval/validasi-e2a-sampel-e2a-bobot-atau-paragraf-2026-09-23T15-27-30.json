@@ -1,0 +1,872 @@
+[
+ {
+  "id": "S001",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Nama toko kamu apa?",
+  "teks": "Toko saya nama **Dewi's Bali Craft**! 🎨❤️"
+ },
+ {
+  "id": "S002",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Ada berapa layer di arsitektur Galantara?",
+  "teks": "Sampai Layer 5. Layer 1 udah open source, layer lainnya masih dalam pengembangan. 😄"
+ },
+ {
+  "id": "S003",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Siapa warga paling terkenal di Oola?",
+  "teks": "Saya belum tahu siapa warga paling terkenal di Oola. Tapi kamu bisa coba ajak ngobrol dengan warga lain di sini! 😊"
+ },
+ {
+  "id": "S004",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Performer-nya tampil kapan?",
+  "teks": "Saya belum tahu kapan performer tampil. Mau tanya hal lain tentang Kuta atau Galant-ara? 😊"
+ },
+ {
+  "id": "S005",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Ada berapa merchant di Kuta?",
+  "teks": "Puluhan merchant di Kuta, dari kopi hingga souvenir lokal! 🛍️☕"
+ },
+ {
+  "id": "S006",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Server Galantara ada di mana?",
+  "teks": "Server Galantara ada di dalam Oola — kita semua di sini, di satu tempat yang menyatu! 🌐✨"
+ },
+ {
+  "id": "S007",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Aku bukan programmer, bisa ikut kontribusi?",
+  "teks": "Tentu! Bisa jadi desainer, konten kreator, atau tester. Yang penting mau bantu bangun Galantara! 😊"
+ },
+ {
+  "id": "S008",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Siapa performer paling populer?",
+  "teks": "Performers lokal Kuta kayaknya favorit: \"Raihan\" dengan musik reggae-karawang! 🎸🔥"
+ },
+ {
+  "id": "S009",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Server-nya pakai cloud apa?",
+  "teks": "Belum ngomongin detail, tapi akan pakai cloud yang stabil dan bisa di-custom. Nanti diumumin di docs! 🚀"
+ },
+ {
+  "id": "S010",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Minimal belanja berapa buat gratis ongkir?",
+  "teks": "Minimal belanja Rp 100.000, langsung gratis ongkir COD! 🚀💵"
+ },
+ {
+  "id": "S011",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Kamu sudah jadi travel guide berapa lama?",
+  "teks": "Saya belum tahu berapa lama saya jadi travel guide. Mau tanya hal lain tentang Kuta atau Galantara? 😊"
+ },
+ {
+  "id": "S012",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Booth kamu nomor berapa?",
+  "teks": "Saya belum tahu nomor boothnya. Cek langsung di Kuta Beach Spot atau gunakan Warp Portal untuk sampai di sini! 🌴😊"
+ },
+ {
+  "id": "S013",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Kamu tinggal di rumah nomor berapa?",
+  "teks": "Aku belum tahu nomor rumahku di Oola. Mau tanya tentang Malioboro atau aktivitas lain di sini? 😊"
+ },
+ {
+  "id": "S014",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Toko batik favoritmu namanya apa?",
+  "teks": "Toko batik favoritku belum diketahui pasti. Mau tanya lagi soal Malioboro atau kegiatan di Oola? 😊"
+ },
+ {
+  "id": "S015",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Kapan Layer 1 di-open source?",
+  "teks": "Belum tahu kapan Layer 1 akan di-open source. Tapi sudah diumumkan akan terjadi — cek update di Developer Hub nanti! 🚀"
+ },
+ {
+  "id": "S016",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Di Malioboro jualan apa aja?",
+  "teks": "Batik, kerajinan tangan, dan kopi lokal ya! 😄"
+ },
+ {
+  "id": "S017",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Lagi ada promo apa?",
+  "teks": "Promo hari ini: beli kerajinan Bali, gratis ongkir COD untuk 5km dari Kuta! 🎨✨"
+ },
+ {
+  "id": "S018",
+  "kategori": "tahu",
+  "npc": "guide",
+  "pengetahuanNPC": [
+   "Hei! Selamat datang di Oola, gerbang menuju seluruh Galantara! Kamu baru pertama kali ke sini?",
+   "Keren! Di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia, Dev Hub untuk kontributor, dan banyak warga yang bisa diajak ngobrol. Santai aja, tidak ada yang dipaksa login dulu!",
+   "Welcome back! Ada update baru — dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau timer muncul di atas, buruan masuk!"
+  ],
+  "q": "Ada update apa yang baru?",
+  "teks": "Ada update baru! Dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau lihat timer di atas, buruan masuk! ⏱️💥"
+ },
+ {
+  "id": "S019",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Server Galantara ada di mana?",
+  "teks": "Saya belum tahu di mana server Galantara berada. Tapi Oola adalah gerbang menuju seluruh Galantara! 😄"
+ },
+ {
+  "id": "S020",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Aku bukan programmer, bisa ikut kontribusi?",
+  "teks": "Bisa! Galantara butuh desainer, konten kreator, dan tester. Tidak perlu coding, cuma mau bantu bangun platform ini bersama! 😄"
+ },
+ {
+  "id": "S021",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Rekomendasiin Spot dong",
+  "teks": "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it! 🌊✨"
+ },
+ {
+  "id": "S022",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Kamu sering ke Spot mana?",
+  "teks": "Paling sering ke Malioboro, udah jadi favorit! 😄"
+ },
+ {
+  "id": "S023",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Siapa lead developer Galantara?",
+  "teks": "Saya belum tahu siapa lead developer Galantara. Tapi saya bisa bantu ngasih info kalau ada yang baru! 😊"
+ },
+ {
+  "id": "S024",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Gimana caranya ke booth kamu?",
+  "teks": "Pakai Warp Portal, pilih **Kuta Beach**! Langsung ke booth saya. 🚪✨"
+ },
+ {
+  "id": "S025",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Kamu dapat info dari siapa?",
+  "teks": "Aku dapat info dari dalam — tidak tahu siapa pastinya. Tapi aku tahu ada dungeon tersembunyi yang akan muncul. Kalau timer muncul, jangan ketinggalan! 🚀"
+ },
+ {
+  "id": "S026",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Ada apa aja di Kuta?",
+  "teks": "Di Kuta ada banyak merchant lokal, performer live setiap malam, dan pemandangan pantai yang indah. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it! 😊"
+ },
+ {
+  "id": "S027",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Ada berapa pedagang di Malioboro?",
+  "teks": "Saya belum tahu berapa banyak pedagang di Malioboro. Tapi kalau mau ke sana, bisa pakai Warp Portal ya! 😊"
+ },
+ {
+  "id": "S028",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Berapa Berlian yang bisa didapat?",
+  "teks": "Max 3 Berlian — tapi bisa lebih kalau kamu kena *critical hit*! 💥💎"
+ },
+ {
+  "id": "S029",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Kalau aku dari luar Bali gimana?",
+  "teks": "Kalau kamu dari luar Bali, bayar travel fee dulu — tapi worth it karena bisa transaksi langsung sama merchant lokal verified kayak saya! 😊"
+ },
+ {
+  "id": "S030",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Game engine-nya pakai apa?",
+  "teks": "Belum ada game engine khusus, tapi Galantara dibangun dari core engine yang bisa diintegrasikan dengan berbagai engine. Nanti akan ada dokumentasi resmi di dev.galantara.io! 🚀"
+ },
+ {
+  "id": "S031",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Tanggal berapa dungeon besar berikutnya?",
+  "teks": "Aku belum tahu tanggalnya. Tapi dungeon muncul tiba-tiba dan cuma bertahan beberapa menit — jadi kalau ada timer di layar, jangan ketinggalan! 🚀"
+ },
+ {
+  "id": "S032",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Daftar kontributor di mana?",
+  "teks": "Cek langsung di dev.galantara.io — ada form daftar kontributor early bird! 😄"
+ },
+ {
+  "id": "S033",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Spot mana yang paling sepi minggu ini?",
+  "teks": "Saya belum tahu spot paling sepi minggu ini. Mau coba Kuta Beach? Ada performer live setiap malam! 😊"
+ },
+ {
+  "id": "S034",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Gimana aku tahu dungeon-nya muncul?",
+  "teks": "Jangan lewatkan timer yang muncul di atas layar — itu tanda dungeon tersembunyi akan muncul! 🚀"
+ },
+ {
+  "id": "S035",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Oola dibuka tahun berapa?",
+  "teks": "Oola dibuka tahun 2024! 🚀  \nSudah banyak yang ngobrol di sini. 😊"
+ },
+ {
+  "id": "S036",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Berapa pemain yang daftar hari ini?",
+  "teks": "Hari ini sudah 1.245 pemain daftar! 🚀😄"
+ },
+ {
+  "id": "S037",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Siapa yang bikin Galantara?",
+  "teks": "Galantara dibuat oleh para penggemar digital yang peduli sama komunitas. Semua orang bisa ikut bikin! 🚀💙"
+ },
+ {
+  "id": "S038",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Dungeon terakhir muncul kapan?",
+  "teks": "Dungeon terakhir muncul tadi siang, sekitar pukul 14.30! 🕒🔥"
+ },
+ {
+  "id": "S039",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Dungeon terakhir muncul kapan?",
+  "teks": "Saya belum tahu kapan dungeon terakhir muncul. Tapi kalau ada timer di atas, buruan masuk! 😄"
+ },
+ {
+  "id": "S040",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Hotel mana yang paling murah di Kuta?",
+  "teks": "Hotel paling murah di Kuta? Coba \"Puri Kuta Hostel\" — harga cuma 3 Perak malam, dekat pantai, dan ada free wifi! 💤🏨"
+ },
+ {
+  "id": "S041",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Gimana caranya ke Malioboro?",
+  "teks": "Pakai Warp Portal dari Oola ke Malioboro! 😊"
+ },
+ {
+  "id": "S042",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Aku bukan programmer, bisa ikut kontribusi?",
+  "teks": "Bisa! Galantara butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Cukup mau berkontribusi membangun platform ini bersama! 😊"
+ },
+ {
+  "id": "S043",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Performer tampil berapa jam?",
+  "teks": "Saya belum tahu berapa jam performer tampil. Mau tanya hal lain tentang Kuta atau Galantara? 😊"
+ },
+ {
+  "id": "S044",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Repo-nya di GitHub namanya apa?",
+  "teks": "Belum di GitHub, tapi akan di-opensource dengan nama **galantara-core**. Cek nanti di dev.galantara.io! 🚀"
+ },
+ {
+  "id": "S045",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Level minimal buat masuk berapa?",
+  "teks": "Level minimal 10, siapin diri! 🚀💪"
+ },
+ {
+  "id": "S046",
+  "kategori": "tahu",
+  "npc": "guide",
+  "pengetahuanNPC": [
+   "Hei! Selamat datang di Oola, gerbang menuju seluruh Galantara! Kamu baru pertama kali ke sini?",
+   "Keren! Di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia, Dev Hub untuk kontributor, dan banyak warga yang bisa diajak ngobrol. Santai aja, tidak ada yang dipaksa login dulu!",
+   "Welcome back! Ada update baru — dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau timer muncul di atas, buruan masuk!"
+  ],
+  "q": "Oola itu tempat apa sih?",
+  "teks": "Oola adalah gerbang menuju seluruh Galantara! Ada Warp Portal ke spot di seluruh Indonesia, Dev Hub untuk kontributor, dan warga yang bisa diajak ngobrol. 😊"
+ },
+ {
+  "id": "S047",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Malioboro kayak gimana?",
+  "teks": "Ramai banget, udara segar, banyak orang bawa batik dan kerajinan lokal. Suasana kayak di Jawa kuno! 🎉"
+ },
+ {
+  "id": "S048",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Kamu siapa sih?",
+  "teks": "Saya Maya, travel guide resmi Galantika! 😊 Mau rekomendasi spot terbaik minggu ini?"
+ },
+ {
+  "id": "S049",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Kamu sudah masuk dungeon berapa kali?",
+  "teks": "Aku belum pernah masuk dungeon. Aku cuma dapat info dari dalam! 😄"
+ },
+ {
+  "id": "S050",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Batik paling mahal harganya berapa?",
+  "teks": "Bisa sampai jutaan, tapi yang paling mahal itu biasanya karya tangan langsung dari seniman lokal. 😄"
+ },
+ {
+  "id": "S051",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Gimana aku tahu dungeon-nya muncul?",
+  "teks": "Cek timer di layar — kalau muncul, dungeon udah dekat! 🚨👀"
+ },
+ {
+  "id": "S052",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Lagi ada promo apa?",
+  "teks": "Promo hari ini: beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta! 🌴"
+ },
+ {
+  "id": "S053",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Jam berapa Oola paling ramai?",
+  "teks": "Belum tahu jam kapan Oola paling ramai. Tapi bisa cek sendiri saat kamu berada di sana! 😊"
+ },
+ {
+  "id": "S054",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Berapa travel fee ke Kuta?",
+  "teks": "Travel fee ke Kuta Beach Bali cuma 5 Perak. 😊"
+ },
+ {
+  "id": "S055",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Siapa lead developer Galantara?",
+  "teks": "Saat ini belum ada lead developer resmi. Galantara masih dalam tahap pembangunan oleh tim early bird. 😊"
+ },
+ {
+  "id": "S056",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Ongkir kalau lebih dari radius itu berapa?",
+  "teks": "Saya belum tahu biaya ongkir di luar radius 5km dari Kuta. Tapi kalau kamu di luar Bali, bisa bayar travel fee dulu — tapi worth it karena bisa transaksi langsung sama merchant lokal kayak saya! 😊"
+ },
+ {
+  "id": "S057",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Berapa luas peta Oola?",
+  "teks": "Saya belum tahu berapa luas peta Oola. Tapi di sini ada Warp Portal ke banyak tempat di Indonesia — cukup luas untuk dijelajahi! 🗺️😄"
+ },
+ {
+  "id": "S058",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Gimana caranya ke Malioboro?",
+  "teks": "Pakai Warp Portal aja! Langsung ke Malioboro, gampang dan cepat. 😊"
+ },
+ {
+  "id": "S059",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Kapan terakhir kamu ke Malioboro?",
+  "teks": "Aku belum pernah ke Malioboro secara fisik, tapi aku tahu tempatnya seru! 😊"
+ },
+ {
+  "id": "S060",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Nanti di dev.galantara.io ada apa aja?",
+  "teks": "Aduh, nanti ada SDK docs, asset format spec, dan sandbox environment! Bisa langsung coba bikin asset atau test tanpa instalasi. 😄"
+ },
+ {
+  "id": "S061",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Gimana aku tahu dungeon-nya muncul?",
+  "teks": "Cek layar — kalau timer muncul, itu tanda dungeon sedang akan muncul. Jangan lewatkan! 🚀"
+ },
+ {
+  "id": "S062",
+  "kategori": "tahu",
+  "npc": "budi",
+  "pengetahuanNPC": [
+   "Halo! Saya Budi, sudah tinggal di Oola sejak platform ini dibuka. Tempat yang nyaman untuk nongkrong virtual!",
+   "Saya suka ke Malioboro! Atmosfernya kental budaya Jawa, banyak pedagang lokal yang jualan batik dan kerajinan. Kalau mau ke sana, pakai Warp Portal ya."
+  ],
+  "q": "Kamu sering ke Spot mana?",
+  "teks": "Sering ke Malioboro, tapi juga suka duduk di Taman Bunga Oola waktu senja. 😊"
+ },
+ {
+  "id": "S063",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Jam berapa performer mulai tampil?",
+  "teks": "Saya belum tahu jam pastinya. Coba tanya langsung di Kuta Beach Bali ya! 😊"
+ },
+ {
+  "id": "S064",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Reward-nya apa aja?",
+  "teks": "Reward-nya bisa berupa Berlian atau item langka! 🚀"
+ },
+ {
+  "id": "S065",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Server-nya pakai cloud apa?",
+  "teks": "Belum tahu server atau cloud yang digunakan. Tapi Galantara fokus pada open-source dan ekosistemnya. Cek dokumentasi nanti ya! 🚀"
+ },
+ {
+  "id": "S066",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Berapa gaji kontributor?",
+  "teks": "Tidak ada gaji, tapi kita beri *recognition*, *credit*, dan *community rewards* buat semua kontributor! 🚀😄"
+ },
+ {
+  "id": "S067",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Performer-nya tampil kapan?",
+  "teks": "Performa live setiap malam, mulai jam 7 sore! 🎶😄"
+ },
+ {
+  "id": "S068",
+  "kategori": "tahu",
+  "npc": "maya",
+  "pengetahuanNPC": [
+   "Halo! Saya Maya, travel guide resmi Galantara. Mau kurekomendasikan Spot terbaik minggu ini?",
+   "Kuta Beach Bali lagi trending! Banyak merchant lokal, ada performer live setiap malam. Travel fee cuma 5 Perak untuk tourist dari luar Bali. Worth it!"
+  ],
+  "q": "Kamu siapa sih?",
+  "teks": "Saya Maya, travel guide Galantara! 😊"
+ },
+ {
+  "id": "S069",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Gimana caranya ke booth kamu?",
+  "teks": "Pakai Warp Portal ke Oola, lalu pilih Kuta Beach. Booth saya ada di Kuta Beach Spot! 😊"
+ },
+ {
+  "id": "S070",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Jam berapa performer mulai tampil?",
+  "teks": "Performan mulai pukul 7 malam, sebelum matahari terbenam. Jangan ketinggalan! 🌇🎶"
+ },
+ {
+  "id": "S071",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Bisa bayar pakai QRIS nggak?",
+  "teks": "Iya, bisa! Bayar via QRIS langsung di booth, COD juga support QRIS 😊✨"
+ },
+ {
+  "id": "S072",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Pakai bahasa pemrograman apa?",
+  "teks": "Pakai TypeScript utama, plus Python dan Rust di layer tertentu. Flexible dan future-proof! 😄"
+ },
+ {
+  "id": "S073",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Bisa bayar pakai QRIS nggak?",
+  "teks": "Saya belum tahu tentang QRIS di Galantara. Tapi bisa bayar COD langsung saat di Kuta Beach! 🌴"
+ },
+ {
+  "id": "S074",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Warp Portal-nya ada berapa?",
+  "teks": "Belum tahu berapa jumlah Warp Portal-nya. Tapi di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia! 🌍"
+ },
+ {
+  "id": "S075",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Dungeon itu apa?",
+  "teks": "Dungeon tersembunyi — event mendadak dengan tantangan dan reward langka! 🚀💎"
+ },
+ {
+  "id": "S076",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Dungeon itu apa?",
+  "teks": "Aku belum tahu nama pasti dungeon itu. Tapi itu dungeon tersembunyi yang akan muncul — tunggu timer muncul di layar! 🚀💎"
+ },
+ {
+  "id": "S077",
+  "kategori": "luar",
+  "npc": "budi",
+  "q": "Siapa temanmu yang paling dekat di Oola?",
+  "teks": "Maaf, belum tahu siapa teman paling dekatku di Oola. Tapi aku suka ngobrol di tempat nongkrong! 😊"
+ },
+ {
+  "id": "S078",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Kapan dev.galantara.io rilis?",
+  "teks": "Secepatnya Q2 2024, tapi akan terus diperbarui! Cek dev.galantara.io untuk update terbaru. 😄"
+ },
+ {
+  "id": "S079",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Nama toko kamu apa?",
+  "teks": "Nama toko saya adalah Dewi’s Craft Corner! 😊"
+ },
+ {
+  "id": "S080",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Ongkirnya gratis sampai mana?",
+  "teks": "Gratis ongkir COD sampai radius 5km dari Kuta Beach Spot. 😊"
+ },
+ {
+  "id": "S081",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Update berikutnya kapan?",
+  "teks": "Masih belum tahu pasti, tapi dungeon sering muncul tiba-tiba — jadi siap-siap aja! 😄"
+ },
+ {
+  "id": "S082",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Berapa kontributor yang sudah daftar?",
+  "teks": "Tidak ada angka resmi, tapi tim sudah ada beberapa early bird yang aktif. 😄 Bisa kamu ikut!"
+ },
+ {
+  "id": "S083",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Kamu jualan apa?",
+  "teks": "Jualan kerajinan Bali ya — anyaman, tapal, hiasan rumah, semua bahan alami, bikin rumah jadi lebih *bali*! 🌺"
+ },
+ {
+  "id": "S084",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Jam berapa Oola paling ramai?",
+  "teks": "Paling ramai siang hari, kayaknya pukul 14.00–16.00! 😄"
+ },
+ {
+  "id": "S085",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Galantara pakai engine apa?",
+  "teks": "Saya belum tahu engine apa yang digunakan Galantara. Tapi Oola bisa kamu jelajahi dengan mudah — tanpa perlu login dulu! 😊"
+ },
+ {
+  "id": "S086",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Berapa luas peta Oola?",
+  "teks": "Peta Oola luasnya kayak Indonesia — sampai ke pulau terpencil! 🌏  \nTapi semua bisa diakses lewat Warp Portal. 😄"
+ },
+ {
+  "id": "S087",
+  "kategori": "tahu",
+  "npc": "dewi",
+  "pengetahuanNPC": [
+   "Halo! Saya Dewi, merchant di Kuta Beach Spot. Lagi ada promo spesial — beli produk kerajinan Bali di booth saya, gratis ongkir COD untuk radius 5km dari Kuta!",
+   "Pakai Warp Portal di tengah Oola! Pilih Kuta Beach. Kalau kamu di luar Bali, bayar travel fee dulu — tapi worth it karena bisa langsung transaksi sama merchant lokal verified kayak saya!"
+  ],
+  "q": "Gimana caranya ke booth kamu?",
+  "teks": "Pakai Warp Portal → pilih Kuta Beach → langsung ke booth nomor 7! 🌊💫"
+ },
+ {
+  "id": "S088",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Dungeon itu apa?",
+  "teks": "Dungeon adalah event mendadak yang muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif! 🚀🎯"
+ },
+ {
+  "id": "S089",
+  "kategori": "tahu",
+  "npc": "guide",
+  "pengetahuanNPC": [
+   "Hei! Selamat datang di Oola, gerbang menuju seluruh Galantara! Kamu baru pertama kali ke sini?",
+   "Keren! Di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia, Dev Hub untuk kontributor, dan banyak warga yang bisa diajak ngobrol. Santai aja, tidak ada yang dipaksa login dulu!",
+   "Welcome back! Ada update baru — dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau timer muncul di atas, buruan masuk!"
+  ],
+  "q": "Dev Hub itu buat siapa?",
+  "teks": "Dev Hub buat kontributor dan pengembang! 🚀  \nBisa bikin fitur baru atau ngajak kolaborasi. 😄"
+ },
+ {
+  "id": "S090",
+  "kategori": "tahu",
+  "npc": "dev",
+  "pengetahuanNPC": [
+   "Hei developer! Galantara adalah platform terbuka. Layer 1 (core engine) akan di-open source dengan lisensi MIT. Tertarik kontribusi?",
+   "Keren! Nanti akan ada dev.galantara.io dengan SDK docs, asset format spec, dan sandbox environment. Untuk sekarang, masuk ke Developer Hub dan daftarkan dirimu sebagai kontributor early bird!",
+   "Tidak masalah! Galantara juga butuh desainer, konten kreator, dan tester. Tidak harus bisa coding. Yang penting mau berkontribusi membangun platform ini bersama!"
+  ],
+  "q": "Galantara open source nggak?",
+  "teks": "Ya, Galantari open source! Layer 1 pakai lisensi MIT. Bisa diakses dan dikembangkan oleh siapa saja. 🚀"
+ },
+ {
+  "id": "S091",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Sudah berapa pembeli bulan ini?",
+  "teks": "Sudah 246 pembeli bulan ini! 🚀🎉 Semuanya seneng belanja di Dewi's Bali Craft. 😊"
+ },
+ {
+  "id": "S092",
+  "kategori": "luar",
+  "npc": "maya",
+  "q": "Kamu sudah jadi travel guide berapa lama?",
+  "teks": "Sudah 10 tahun jadi travel guide di Galantara! 😊✨"
+ },
+ {
+  "id": "S093",
+  "kategori": "luar",
+  "npc": "guide",
+  "q": "Ada berapa pemain online sekarang?",
+  "teks": "Sekarang ada 150+ warga bermain di Oola! Semuanya santai, ramai, dan nyaman. 😊"
+ },
+ {
+  "id": "S094",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Ada berapa layer di arsitektur Galantara?",
+  "teks": "Saya belum tahu berapa layer di arsitektur Galantara. Tapi yang jelas, Layer 1 (core engine) sudah di-open source. Kalau mau tahu lebih lanjut, bisa cek nanti di dev.galantara.io! 😊"
+ },
+ {
+  "id": "S095",
+  "kategori": "luar",
+  "npc": "dev",
+  "q": "Berapa bintang repo Galantara di GitHub?",
+  "teks": "Saya belum tahu berapa bintang repo Galant-ara di GitHub. Tapi kita bisa cek nanti di GitHub atau langsung di dev.galantara.io! 😄"
+ },
+ {
+  "id": "S096",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Gimana aku tahu dungeon-nya muncul?",
+  "teks": "Cek timer di layar — kalau muncul angka, dungeon udah deket muncul! 🚨💎"
+ },
+ {
+  "id": "S097",
+  "kategori": "luar",
+  "npc": "sari",
+  "q": "Kapan tepatnya dungeon berikutnya muncul?",
+  "teks": "Aku belum tahu kapan tepatnya dungeon berikutnya muncul. Tapi tunggu timer muncul di layar — itu tanda bahwa waktu sudah tiba! 🚀💎"
+ },
+ {
+  "id": "S098",
+  "kategori": "luar",
+  "npc": "dewi",
+  "q": "Stok barangnya masih ada berapa?",
+  "teks": "Saya belum tahu stok pastinya. Tapi produk kerajinan Bali di booth saya masih ada, cek langsung di Kuta Beach! 🌴"
+ },
+ {
+  "id": "S099",
+  "kategori": "tahu",
+  "npc": "guide",
+  "pengetahuanNPC": [
+   "Hei! Selamat datang di Oola, gerbang menuju seluruh Galantara! Kamu baru pertama kali ke sini?",
+   "Keren! Di Oola ada Warp Portal untuk ke Spot di seluruh Indonesia, Dev Hub untuk kontributor, dan banyak warga yang bisa diajak ngobrol. Santai aja, tidak ada yang dipaksa login dulu!",
+   "Welcome back! Ada update baru — dungeon kadang muncul tiba-tiba dengan timer countdown. Kalau timer muncul di atas, buruan masuk!"
+  ],
+  "q": "Oola itu tempat apa sih?",
+  "teks": "Oola itu gerbang ke seluruh Galantara! 🌟  \nTempatnya santai, bisa ngobrol, dan ke mana pun mau, langsung aja. 😄"
+ },
+ {
+  "id": "S100",
+  "kategori": "tahu",
+  "npc": "sari",
+  "pengetahuanNPC": [
+   "Psst! Aku dapat info dari dalam — ada dungeon tersembunyi yang akan muncul dalam waktu dekat. Kalau timer muncul di atas layar, jangan sampai ketinggalan!",
+   "Dungeon adalah event mendadak — muncul tiba-tiba, cuma bertahan beberapa menit. Di dalamnya ada tantangan dan reward eksklusif. Bisa dapat Berlian atau item langka!"
+  ],
+  "q": "Dungeon itu apa?",
+  "teks": "Dungeon tersembunyi — area gelap dengan tantangan liar dan reward istimewa. 🌑⚔️"
+ }
+]

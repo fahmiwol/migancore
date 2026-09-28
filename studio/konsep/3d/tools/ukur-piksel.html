@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><title>Kalibrasi cahaya belum selesai</title></head>
+<body><canvas id="ukur" width="960" height="540"></canvas><pre id="hasil">mengukur…</pre>
+<script type="module">
+  import * as THREE from "../vendor/three.module.min.js";
+  import { buatDunia } from "../js/dunia.mjs";
+  import { buatKameraUkur, kalibrasiSemuaFase } from "./ukur-piksel.mjs";
+  const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#ukur"), antialias: false, powerPreference: "high-performance" });
+  renderer.setPixelRatio(1);
+  renderer.setSize(960, 540, false);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.82;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const scene = new THREE.Scene();
+  const camera = buatKameraUkur(THREE, 960 / 540);
+  const dunia = buatDunia(THREE, scene, { kualitasRendah: false });
+  try {
+    const hasil = { _diukur: new Date().toISOString(), renderer: "three.js WebGL 960x540, pixelRatio 1, ACES exposure 0.82", ...kalibrasiSemuaFase(THREE, { renderer, scene, camera, dunia }) };
+    document.querySelector("#hasil").textContent = JSON.stringify(hasil, null, 2);
+    document.title = `KALIBRASI_OK:${btoa(JSON.stringify(hasil))}`;
+    window.__HASIL_KALIBRASI = hasil;
+  } catch (error) {
+    document.querySelector("#hasil").textContent = error.stack;
+    document.title = `KALIBRASI_GAGAL:${error.message}`;
+    console.error(error);
+  }
+</script></body></html>

@@ -1,0 +1,57 @@
+{
+  "_diukur": "2026-09-20T22:02:39.990Z",
+  "renderer": "three.js WebGL 960x540, pixelRatio 1, ACES exposure 0.82",
+  "_alat": "tools/ukur-piksel.mjs",
+  "_metode": "13 langkah pencarian biner; median 15 titik tanah terproyeksi; pemindaian RGB seluruh bingkai",
+  "samplePoints": 15,
+  "uncontrolledLights": [],
+  "baselineStatic": {
+    "sampleCount": 15,
+    "medianRgb": [84, 111, 92],
+    "maxChannel": 207,
+    "clippedChannels": 0,
+    "framePixels": 518400
+  },
+  "phases": [
+    {
+      "id": "kandungan-hening",
+      "target": { "channel": "g", "value": 68, "tolerance": 2 },
+      "scale": 3.389375,
+      "sampleCount": 15,
+      "medianRgb": [47, 68, 54],
+      "maxChannel": 179,
+      "clippedChannels": 0,
+      "framePixels": 518400
+    },
+    {
+      "id": "pijar-pertama",
+      "target": { "channel": "r", "value": 88, "tolerance": 2 },
+      "scale": 6.945937,
+      "sampleCount": 15,
+      "medianRgb": [88, 82, 47],
+      "maxChannel": 205,
+      "clippedChannels": 0,
+      "framePixels": 518400
+    },
+    {
+      "id": "kabut-magrib",
+      "target": { "channel": "r", "value": 62, "tolerance": 2 },
+      "scale": 10.5025,
+      "sampleCount": 15,
+      "medianRgb": [62, 55, 58],
+      "maxChannel": 190,
+      "clippedChannels": 0,
+      "framePixels": 518400
+    },
+    {
+      "id": "malam-dalam",
+      "target": { "channel": "b", "value": 40, "tolerance": 2 },
+      "scale": 6.75875,
+      "sampleCount": 15,
+      "medianRgb": [21, 37, 40],
+      "maxChannel": 157,
+      "clippedChannels": 0,
+      "framePixels": 518400
+    }
+  ]
+}

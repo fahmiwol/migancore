@@ -1,0 +1,27 @@
+
+# GERBANG-ON berpasangan — jawab migancore:0.14 · probe migancore:0.4-qwen3 · 36 soal · 8 pasangan · http://measure-host.local:11434
+# pikir bawaan · batas 120s · pra-daftar flywheel/PRA-DAFTAR-GERBANG-ON.json
+
+# pra-lintasan probe: 36/36 berlabel · galat 0 · 320s
+
+pasangan 1 (polos→gerbang) SAH   · polos 44.4% → gerbang 46.4% · selisih -2.0 pp · over p0.0/g0.0 · fakta p50.0/g37.5 · 882s
+pasangan 2 (gerbang→polos) SAH   · polos 55.6% → gerbang 32.1% · selisih 23.5 pp · over p0.0/g12.5 · fakta p37.5/g37.5 · 773s
+pasangan 3 (polos→gerbang) SAH   · polos 60.7% → gerbang 35.7% · selisih 25.0 pp · over p0.0/g0.0 · fakta p37.5/g37.5 · 677s
+pasangan 4 (gerbang→polos) SAH   · polos 39.3% → gerbang 39.3% · selisih 0.0 pp · over p12.5/g0.0 · fakta p37.5/g50.0 · 701s
+pasangan 5 (polos→gerbang) SAH   · polos 44.4% → gerbang 35.7% · selisih 8.7 pp · over p12.5/g0.0 · fakta p37.5/g50.0 · 779s
+pasangan 6 (gerbang→polos) SAH   · polos 59.3% → gerbang 25.0% · selisih 34.3 pp · over p0.0/g0.0 · fakta p50.0/g50.0 · 843s
+pasangan 7 (polos→gerbang) SAH   · polos 57.1% → gerbang 28.6% · selisih 28.5 pp · over p0.0/g0.0 · fakta p37.5/g42.9 · 805s
+pasangan 8 (gerbang→polos) SAH   · polos 57.1% → gerbang 28.6% · selisih 28.5 pp · over p12.5/g0.0 · fakta p37.5/g37.5 · 772s
+
+## 8/8 pasangan sah
+   MENGARANG   polos 52.2% → gerbang 33.9%
+   SELISIH     rata 18.31 pp · sd 14.02 · CI95 [6.59; 30.03]
+   over-refusal polos 4.7% · gerbang 1.6%
+   fakta        polos 40.6% · gerbang 42.9% · turun -2.2 pp
+
+   syarat PASANG_ON: (1) selisih>=12 ✓ · (2) CI95 bawah>5 ✓ · (3) over gerbang<=10 ✓ · (4) fakta turun<=5 ✓
+
+   VONIS MEKANIS: PASANG_ON
+   → pemasangan ke serving adalah keputusan Fahmi, bukan agen. Sajikan vonis + perintah pasang + perintah batal.
+
+   ringkasan → HASIL-GERBANG-ON-2026-09-20T21-33-32.json

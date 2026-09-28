@@ -1,0 +1,8 @@
+{
+  "catatan": "SATU SUMBER untuk system prompt gerbang aritmetika. Dipakai oleh eval/uji-aritmetika.mjs (tier-2, Ollama) DAN flywheel/vast/latih_cluster.py (tier-1, fp16 di dalam run). Sebelum 23 Agu 2026 kalimat ini ditulis dua kali di dua berkas — paritas prompt latih/ukur tidak pernah diperiksa (lubang yang tercatat di RISET-SUMBER-LUAR-22AGU.md §6). Mengubah kalimat ini = mengubah instrumen: semua angka lama tidak sah dibandingkan dengan yang baru (STANDAR-UKUR §1).",
+  "dasar": "Kerjakan bertahap dan tunjukkan angka antaranya. Jawab dengan angka yang jelas.",
+  "sidikMaksud": "kalimat identik dengan SIS_DASAR di uji-aritmetika.mjs dan SIS di latih_cluster.py per 22 Agu 2026",
+  "lenganTanpa": null,
+  "n_baru_tier1": 400,
+  "catatanNBaru": "Tier-1 sebelumnya memakai max_new_tokens=300 sedangkan STANDAR-UKUR §1 mewajibkan num_predict >= 400 (tier-2 memakai 400). Satu 'gagal' fp16 v13-merged (soal selisih harga, lengan tanpa) berawalan preambule panjang dan diduga terpotong — sejak 23 Agu tier-1 merekam terpotong/tidak per soal."
+}

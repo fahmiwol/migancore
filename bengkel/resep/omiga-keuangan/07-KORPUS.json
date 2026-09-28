@@ -1,0 +1,26 @@
+{
+  "sumber": [
+    {
+      "nama": "soal hitung buatan sendiri",
+      "jenis": "bangkitan",
+      "lisensi": "milik sendiri",
+      "modalitas": "teks",
+      "rencanaRAG": "tidak perlu — ini kemampuan, bukan fakta"
+    },
+    {
+      "nama": "glosarium istilah keuangan Indonesia",
+      "jenis": "susunan sendiri",
+      "lisensi": "milik sendiri",
+      "modalitas": "teks",
+      "rencanaRAG": "masuk indeks RAG supaya bisa diperbarui tanpa melatih ulang"
+    },
+    {
+      "nama": "peraturan pajak resmi",
+      "jenis": "dokumen publik",
+      "lisensi": "dokumen publik pemerintah",
+      "modalitas": "teks",
+      "rencanaRAG": "HANYA lewat RAG, jangan dilatihkan — aturannya berubah dan model tidak boleh menghafalnya"
+    }
+  ],
+  "pemisahan": "Fakta yang berubah -> RAG. Kemampuan dan perilaku -> latih. Pemisahan ini yang menentukan: menghafalkan tarif pajak ke dalam bobot berarti model akan salah DENGAN PERCAYA DIRI begitu aturannya berubah."
+}

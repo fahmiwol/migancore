@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Misi &amp; Kabut — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>PAPAN MISI · KABUT BELUM</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">Backlog &amp; wilayah tak teruji</div><h1>Papan Misi &amp; Kabut Belum</h1><p class="subjudul">Papan menyalin status sumber. Kabut hanya berisi pra-daftar yang eksplisit “belum” dan backlog yang belum selesai secara tersurat.</p></div><div class="legenda-ringkas"><span class="status status-lulus">selesai tersurat</span><span class="status status-belum">belum / selain selesai</span></div></header>
+    <div id="misi"><div class="panel pemuatan">membaca papan…</div></div>
+  </main>
+  <footer class="kaki"><span>Tampilan tidak mengubah status backlog.</span><span>Status kosong tetap ditulis “kosong di sumber”.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded',async()=>{
+      const root=document.querySelector('#misi');let d;try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      const diawaliSelesai=(teks)=>/^[^A-Za-z0-9]{0,8}(?:\*\*)?SELESAI\b/i.test(String(teks||'').trim());
+      const selesai=(x)=>diawaliSelesai(x.status)||diawaliSelesai(x.tujuan);
+      const jumlahSelesai=d.backlog.filter(selesai).length, lainnya=d.backlog.length-jumlahSelesai;
+      const kabut=d.praDaftar.filter(x=>x.keadaan==='belum');
+      root.innerHTML=`
+        <section class="grid grid-4"><article class="panel kartu-metrik"><span class="label-panel">Total backlog · instrumen backlog</span><div class="nilai">${Nadi.angka(d.backlog.length,d,'backlog.length')}</div><p>butir sumber</p></article><article class="panel kartu-metrik"><span class="label-panel">Selesai tersurat · penyaringan</span><div class="nilai hijau">${Nadi.angka(jumlahSelesai,d,'backlog status/tujuan diawali SELESAI')}</div><p>bukan status buatan</p></article><article class="panel kartu-metrik"><span class="label-panel">Selain selesai tersurat</span><div class="nilai oranye">${Nadi.angka(lainnya,d,'backlog selain penanda awal SELESAI')}</div><p>teks aslinya tetap ditampilkan</p></article><article class="panel kartu-metrik"><span class="label-panel">Pra-daftar belum · instrumen riset</span><div class="nilai oranye">${Nadi.angka(kabut.length,d,'praDaftar[keadaan=belum].length')}</div><p>tidak dibandingkan sebagai satu total</p></article></section>
+        <div class="misi-layout" style="margin-top:16px">
+          <section class="panel panel-pad"><div class="kepala-layar" style="margin:0 0 14px"><div><span class="label-panel">Papan Misi</span><h2 style="margin-top:6px">Backlog apa adanya</h2></div><div class="filter"><button class="tombol hantu" data-mf="semua" aria-pressed="true">Semua</button><button class="tombol hantu" data-mf="selesai">Selesai tersurat</button><button class="tombol hantu" data-mf="lain">Selain selesai</button></div></div><div class="grid grid-2" id="daftar-misi">${d.backlog.map((x,i)=>`<article class="panel panel-tanpa-bayang misi-kartu" data-kelompok="${selesai(x)?'selesai':'lain'}"><div class="kode">${Nadi.teksData(x.kode,d,`backlog[${i}].kode`)}</div><h3 style="margin-top:7px">${Nadi.teksData(x.apa||'Uraian kosong di sumber',d,`backlog[${i}].apa`)}</h3><p><b>Tujuan:</b> ${x.tujuan?Nadi.teksData(x.tujuan,d,`backlog[${i}].tujuan`):'kosong di sumber'}</p><div class="misi-status-asli"><b>Status sumber:</b><br>${x.status?Nadi.teksData(x.status,d,`backlog[${i}].status`):'kosong di sumber'}</div></article>`).join('')}</div></section>
+          <aside id="kabut" class="panel panel-pad kabut"><span class="label-panel">Kabut belum dijelajah</span><h2 style="margin-top:7px">Pra-daftar berkeadaan “belum”</h2><p class="redup">Bukan saran prioritas. Hanya daftar yang belum pernah selesai diuji menurut sumber.</p>${kabut.map((x,i)=>`<article class="ide-belum"><span class="status status-belum">BELUM</span><h3 style="margin:8px 0 0">${Nadi.teksData(x.id,d,`praDaftar[keadaan=belum][${i}].id`)} · ${Nadi.teksData(x.judul||'Judul tidak tersedia',d,`praDaftar[keadaan=belum][${i}].judul`)}</h3><p>${Nadi.teksData(x.hasil,d,`praDaftar[keadaan=belum][${i}].hasil`)}</p></article>`).join('')}<div class="pita-peringatan" style="margin-top:16px"><span>≋</span><div><b>Kabut bukan antrian otomatis.</b><br>Prasyarat, izin, biaya, dan keputusan Fahmi tetap berlaku sesuai teks setiap butir.</div></div></aside>
+        </div>`;
+      document.querySelectorAll('[data-mf]').forEach(btn=>btn.addEventListener('click',()=>{const f=btn.dataset.mf;document.querySelectorAll('[data-mf]').forEach(x=>x.setAttribute('aria-pressed',String(x===btn)));document.querySelectorAll('[data-kelompok]').forEach(x=>x.hidden=f!=='semua'&&x.dataset.kelompok!==f)}));
+    });
+  </script>
+</body></html>

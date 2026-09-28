@@ -1,0 +1,79 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.4-qwen3",
+  "putaran": 5,
+  "ambang": 0.8,
+  "keseluruhan": {
+    "lulus": 43,
+    "coba": 72,
+    "lo": 0.4818046137128726,
+    "hi": 0.702790647990467,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 20,
+      "total": 20,
+      "v": "LULUS",
+      "lo": 0.8388698745050667,
+      "hi": 0.9999999999999998
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 13,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.43285051021946475,
+      "hi": 0.8188104521320554
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 2,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.037360469891359285,
+      "hi": 0.3788249920651624
+    },
+    {
+      "kategori": "kias",
+      "lulus": 8,
+      "total": 17,
+      "v": "GAGAL",
+      "lo": 0.26164801196088106,
+      "hi": 0.6903710268845051
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Apa arti \"mata air\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Apa arti \"kambing hitam\" dalam \"dia dijadikan kambing hitam\"?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 2,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"server panas membawa rezeki dingin\"?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "kias"
+    }
+  ]
+}

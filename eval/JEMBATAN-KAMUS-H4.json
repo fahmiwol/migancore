@@ -1,0 +1,243 @@
+{
+  "tanggal": "2026-09-10T02:51:06.379Z",
+  "apa": "Konversi angka papan dari kamus MENOLAK2 lama ke kamus H4 (10 Sep). Dihitung ulang pada jawaban tersimpan; tidak ada model yang dipanggil.",
+  "aturanKutip": "Sesudah H4 diterima, angka kolom `lama` TIDAK BOLEH dikutip tanpa label. Papan ditulis ulang dari kolom `baru`.",
+  "totalBarisBerubah": 74,
+  "totalTercabut": 0,
+  "baris": [
+    {
+      "nama": "migancore:0.4-qwen3 +gerbang(migancore:0.4-qwen3) +retrieval(plasebo)",
+      "frontier": false,
+      "putaran": 3,
+      "berubah": 24,
+      "naik": 21,
+      "turun": 0,
+      "lama": {
+        "mengarang": 28.5,
+        "fakta": 0.375,
+        "overRefusal": 25
+      },
+      "baru": {
+        "mengarang": 3.6,
+        "fakta": 0.375,
+        "overRefusal": 37.5
+      }
+    },
+    {
+      "nama": "kimi:kimi-k3",
+      "frontier": true,
+      "putaran": 3,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 4.9,
+        "fakta": 1,
+        "overRefusal": 0
+      },
+      "baru": {
+        "mengarang": 4.9,
+        "fakta": 1,
+        "overRefusal": 0
+      }
+    },
+    {
+      "nama": "migancore:0.4-qwen3 +gerbang(migancore:0.4-qwen3) +retrieval(bersih)",
+      "frontier": false,
+      "putaran": 3,
+      "berubah": 16,
+      "naik": 13,
+      "turun": 0,
+      "lama": {
+        "mengarang": 22.6,
+        "fakta": 0.292,
+        "overRefusal": 25
+      },
+      "baru": {
+        "mengarang": 7.1,
+        "fakta": 0.292,
+        "overRefusal": 37.5
+      }
+    },
+    {
+      "nama": "migancore:0.4-qwen3 +gerbang(migancore:0.4-qwen3) +retrieval(penuh)",
+      "frontier": false,
+      "putaran": 3,
+      "berubah": 17,
+      "naik": 16,
+      "turun": 0,
+      "lama": {
+        "mengarang": 29.8,
+        "fakta": 0.458,
+        "overRefusal": 33.3
+      },
+      "baru": {
+        "mengarang": 10.7,
+        "fakta": 0.458,
+        "overRefusal": 37.5
+      }
+    },
+    {
+      "nama": "migancore:0.4-qwen3 +gerbang(migancore:0.4-qwen3)",
+      "frontier": false,
+      "putaran": 3,
+      "berubah": 2,
+      "naik": 2,
+      "turun": 0,
+      "lama": {
+        "mengarang": 15.5,
+        "fakta": 0.5,
+        "overRefusal": 8.3
+      },
+      "baru": {
+        "mengarang": 13.1,
+        "fakta": 0.5,
+        "overRefusal": 8.3
+      }
+    },
+    {
+      "nama": "migancore:0.4-qwen3",
+      "frontier": false,
+      "putaran": 8,
+      "berubah": 13,
+      "naik": 13,
+      "turun": 0,
+      "lama": {
+        "mengarang": 30.4,
+        "fakta": 0.432,
+        "overRefusal": 16.7
+      },
+      "baru": {
+        "mengarang": 24.6,
+        "fakta": 0.432,
+        "overRefusal": 16.7
+      }
+    },
+    {
+      "nama": "openai:gpt-6-astra",
+      "frontier": true,
+      "putaran": 1,
+      "berubah": 1,
+      "naik": 1,
+      "turun": 0,
+      "lama": {
+        "mengarang": 28.6,
+        "fakta": 1,
+        "overRefusal": 0
+      },
+      "baru": {
+        "mengarang": 25,
+        "fakta": 1,
+        "overRefusal": 0
+      }
+    },
+    {
+      "nama": "migancore:0.14-tool",
+      "frontier": false,
+      "putaran": 6,
+      "berubah": 1,
+      "naik": 1,
+      "turun": 0,
+      "lama": {
+        "mengarang": 27.4,
+        "fakta": 0.542,
+        "overRefusal": 12.5
+      },
+      "baru": {
+        "mengarang": 26.8,
+        "fakta": 0.542,
+        "overRefusal": 12.5
+      }
+    },
+    {
+      "nama": "codex:bawaan-config",
+      "frontier": true,
+      "putaran": 1,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 28.6,
+        "fakta": 1,
+        "overRefusal": 0
+      },
+      "baru": {
+        "mengarang": 28.6,
+        "fakta": 1,
+        "overRefusal": 0
+      }
+    },
+    {
+      "nama": "qwen2.5:7b",
+      "frontier": false,
+      "putaran": 3,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 34.2,
+        "fakta": 0.708,
+        "overRefusal": 4.2
+      },
+      "baru": {
+        "mengarang": 34.2,
+        "fakta": 0.708,
+        "overRefusal": 4.2
+      }
+    },
+    {
+      "nama": "migancore:0.14 +gerbang(migancore:0.4-qwen3)",
+      "frontier": false,
+      "putaran": 20,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 36.5,
+        "fakta": 0.438,
+        "overRefusal": 1.3
+      },
+      "baru": {
+        "mengarang": 36.5,
+        "fakta": 0.438,
+        "overRefusal": 1.3
+      }
+    },
+    {
+      "nama": "migancore:uji-jujur-1",
+      "frontier": false,
+      "putaran": 8,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 43.6,
+        "fakta": 0.422,
+        "overRefusal": 6.3
+      },
+      "baru": {
+        "mengarang": 43.6,
+        "fakta": 0.422,
+        "overRefusal": 6.3
+      }
+    },
+    {
+      "nama": "migancore:0.14",
+      "frontier": false,
+      "putaran": 13,
+      "berubah": 0,
+      "naik": 0,
+      "turun": 0,
+      "lama": {
+        "mengarang": 50,
+        "fakta": 0.471,
+        "overRefusal": 1
+      },
+      "baru": {
+        "mengarang": 50,
+        "fakta": 0.471,
+        "overRefusal": 1
+      }
+    }
+  ]
+}

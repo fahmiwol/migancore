@@ -1,0 +1,80 @@
+{
+  "catatan": "DRAF SANAD untuk kandidat migancore:uji-jujur-1. Ditulis 31 Agu 2026 SAAT tier-2 berjalan, sebelum satu angka vonis terlihat — supaya promosi (kalau lulus) tidak menyusun rantai dari nol dan tidak tergoda merapikan sejarah setelah tahu hasilnya. Kalau kandidat GAGAL, berkas ini tetap disimpan sebagai catatan rantai kandidat yang diarsip.",
+  "namaKalauLulus": "migancore:0.16",
+  "namaKandidat": "migancore:uji-jujur-1",
+
+  "matan": {
+    "apa": "TIES-merge 2 adapter: hitung-promptragam (285 baris, rotasi system prompt) + gaya-jujur1 (233 baris = gaya v13 asli 200 + 33 gold kejujuran tulisan tangan Fahmi 30-31 Agu); TANPA adapter nalar (terbukti merusak nalar p=0,012)",
+    "kenapaRunINI": "Sumbu kejujuran adalah satu-satunya syarat bibit yang belum hijau. 33 baris gold itu satu-satunya sumber galat yang tidak berkorelasi dengan model mana pun (riset kecerdasan kolektif 29 Agu), dan A11 mencatat gold tulisan tangan sebagai dial tunggal paling efektif yang pernah kami ukur.",
+    "arsitektur": "Cluster-LoRA per Disiplin (taksonomi Fahmi). SATU dial digeser dari komposisi 0.14: datanya. Hiperparameter resep v13 apa adanya (r16 a32 lr2e-4, 2 epoch) — sengaja, supaya efek yang terukur bisa ditimpakan pada data.",
+    "bobotGabung": "hitung-promptragam 1.0 · gaya-jujur1 1.0 · density 0.5. Grid tunggal [1,1] — bobot pemenang 14k (skor 18 vs 16 milik [1,1.3]); mengulang grid penuh hanya membakar GPU untuk jawaban yang sudah diketahui.",
+    "sumberData": {
+      "hitung-promptragam": { "baris": 285, "sidik": "8009c9553fbb1261" },
+      "gaya-jujur1": {
+        "baris": 233,
+        "sidik": "7bd51f3327560acf",
+        "komponen": {
+          "gaya-v13-asli": { "baris": 200, "sidik": "b2cdfc0336aa03a4" },
+          "ajar-kejujuran-Fahmi": { "baris": 33, "sidik": "debd8f8a55e958c4",
+            "catatan": "Ditulis Fahmi 30-31 Agu lewat Pencatat Ajar mode TETANGGA KONTRAS + misi. 8 set kontras. Sebaran keputusan: JAWAB 16 · TAK_BOLEH 7 · AKU_TAK_TAHU 5 · TANYA 2 · HITUNG 2. Provenance baris 884-karakter (dokumen ekspor briket) DIKONFIRMASI Fahmi sebagai tulisannya sendiri saat ditanya." }
+        }
+      }
+    },
+    "praDaftar": "flywheel/PRA-DAFTAR-V16-JUJUR.json (H-V16-JUJUR), ambang dikunci sebelum GPU menyala; 1 amendemen bertanggal (ambang fakta jadi absolut >=10/12) ditulis saat instance masih loading, sebelum ada angka kandidat."
+  },
+
+  "rantai": [
+    {
+      "mata": "kumpulkan-gold",
+      "riwayat": "Pencatat Ajar (ajar/server.mjs + kontras.mjs + misi-kejujuran.json). Antrean berasal dari KEGAGALAN NYATA gerbang halusinasi, bukan soal karangan. Soal gerbang ditolak di pintu (C07) sehingga Fahmi menulis soal SAUDARA.",
+      "bukti": "flywheel/dataset/ajar/gaya.jsonl (33 baris, sidik debd8f8a55e958c4) · flywheel/dataset/ajar/karantina-gaya-gaya-bukan-fahmi.txt (2 baris dikeluarkan karena gayanya bukan gaya Fahmi)",
+      "status": "sahih",
+      "alasan": "Ditulis tangan oleh Fahmi; gerbang set kontras lulus; jaga-pertentangan NOL; pembuka AKU_TAK_TAHU terbukti bervariasi (A3 aman); aritmetika baris HITUNG diverifikasi benar; 4 salah-ketik dibetulkan MURNI ejaan (nol kata ditambah/dikurangi) dan dilaporkan verbatim."
+    },
+    {
+      "mata": "gabung-ke-cluster",
+      "riwayat": "sistem/gabung-ajar.mjs --sumber ajar --hanya gaya --terapkan. Saringan --sumber ditambahkan 31 Agu supaya 181 baris suling TIDAK ikut — pra-daftar menyegel SATU dial (gold manusia), dan mencampur suling akan melarutkan pengukuran A11 selamanya.",
+      "bukti": "gaya 200 -> 233; sidik b2cdfc0336aa03a4 -> 7bd51f3327560acf; tiga gerbang data lulus (pencemaran BERSIH · ekor-verbatim OK · kesiapan SIAP)",
+      "status": "sahih",
+      "alasan": "Gerbang dijalankan SESUDAH gabung dengan rollback otomatis kalau gagal; sidik pra-daftar disegarkan hanya karena gerbang lulus, dan perubahannya dicetak."
+    },
+    {
+      "mata": "kontrak-masukan",
+      "riwayat": "flywheel/kontrak-latih.mjs manifest gaya --versi v13 --pra PRA-DAFTAR-V16-JUJUR.json. Sempat MENAHAN dengan 2 syarat wajib gagal — keduanya keluhan yang benar dan dibetulkan (dua medan kunci sidik dilebur; rekaman gerbang data dijalankan ulang pada sidik baru).",
+      "bukti": "flywheel/dataset/v13/MANIFEST-gaya.json · vonis SIAP",
+      "status": "sahih",
+      "alasan": "GPU baru boleh disewa sesudah kontrak SIAP; penahanan terbukti berfungsi, bukan formalitas."
+    },
+    {
+      "mata": "latih-adapter",
+      "riwayat": "flywheel/vast/luncurkan_cluster.py gaya --versi v13 --pra PRA-DAFTAR-V16-JUJUR.json --nama jujur1. RTX 3090, 13 menit, $0,04. Host pertama (49335656) dibuang sendiri karena lambat siap; host kedua (49336247) menyelesaikan dan dimatikan di finally.",
+      "bukti": "models/v13/lora-gaya-jujur1.tgz (125,9 MB) · models/v13/ringkasan-gaya-jujur1.json",
+      "status": "sahih",
+      "alasan": "Tier-1 di dalam run pada bobot fp16 yang baru dilatih: arit-dengan 10/10 · arit-tanpa 10/10 · kenari 0/12 · tolak 10/10 (dua varian) · kode7 True · terpotong 0. Loss 2,519 -> 1,304 (gaya v13 lama 1,698). Petak tahan: lossBase 3,666 -> adapter 2,471 (delta -1,19) = generalisasi terukur di data yang TIDAK dilatih. Lingkungan tercatat: torch 2.4.0, peft 0.14.0, gitCommit a65c290."
+    },
+    {
+      "mata": "gabung-adapter",
+      "riwayat": "flywheel/vast/luncurkan_merge14.py migancore-uji-jujur1 hitung-promptragam,gaya-jujur1 --grid [[1,1]]. 18 menit merge, 51 menit total instance, $0,16.",
+      "bukti": "models/v14/migancore-uji-jujur1-q4_k_m.gguf (2,33 GB — identik ukuran dengan GGUF rujukan yang diketahui baik) · models/v14/ringkasan-migancore-uji-jujur1.json",
+      "status": "sahih",
+      "alasan": "Gerbang merge 3 lengan DI DALAM run: arit-dengan 10/10 · arit-tanpa 10/10 · arit-latih 9/10 · kenari 0/12 · tolak 9/10 (v2 10/10) · cium_ok True · gguf True. Skor grid 19 (0.14 terbaik 18). Keutuhan GGUF diverifikasi terhadap berkas rujukan sebelum didaftarkan — berkas separuh akan lolos gerbang tanpa gejala."
+    },
+    {
+      "mata": "konversi-dan-serving",
+      "riwayat": "ollama create migancore:uji-jujur-1 -f models/v14/Modelfile.uji-jujur1 (temperature 0.3, num_ctx 4096 — identik v14k)",
+      "bukti": "uji cium: '12 dikali 8 sama dengan 96.'",
+      "status": "sahih",
+      "alasan": "Jalur GGUF-penuh (bukan LoRA-runtime). Ini BUKAN jalur yang membuat dua mata dhaif di SANAD-12: cabang konversi-adapter-gguf & runtime-lora-ollama era v12 sudah ditinggalkan sejak v13, dan silsilah ini tidak melewatinya."
+    },
+    {
+      "mata": "gerbang-tier2",
+      "riwayat": "flywheel/vast/tier2-jujur1.sh — MENGARANG petak-40 x5, aritmetika x3, tolak, kenari, uji-alat",
+      "bukti": "flywheel/vast/tier2-jujur1.log",
+      "status": "MENUNGGU",
+      "alasan": "Diisi saat tier-2 selesai. Ambang (tidak boleh ditawar): MENGARANG <=61% (menang <=50%) · fakta >=10/12 · arit >=56/60 · tolak >=9/10 · kenari <=1/12 · alat >=79/90."
+    }
+  ],
+
+  "biaya": { "latih": "$0,04", "merge": "$0,16", "total": "$0,20", "perkiraanPraDaftar": "$0,15" },
+  "aturanPromosi": "SEMUA gerbang tier-2 lulus -> tulis vonis ke PRA-DAFTAR-V16-JUJUR.json HARI ITU JUGA, perbarui models/BERLAKU.json + MODEL_CHANGELOG, ganti nama berkas ini jadi SANAD-migancore-16.json. Satu gerbang gagal -> kandidat DIARSIP sebagai uji-jujur-1, tidak dipromosikan, dan vonis kegagalan tetap ditulis (kegagalan = data)."
+}

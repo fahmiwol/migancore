@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arah — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>MENARA PANTAU</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html" aria-current="page">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">Kompas</div><h1>Arah MiganCore</h1><p class="subjudul">Ke mana kita, apa yang sedang diuji, dan apa yang sudah dicoba — dirakit dari sumbernya, bukan diketik.</p></div><div class="legenda-ringkas"><span class="pil">ⓘ arahkan teks untuk sumber</span></div></header>
+    <div id="arah"><div class="panel pemuatan">membaca data nyata…</div></div>
+  </main>
+  <footer class="kaki"><span>Arah dibaca dari doc 111, doc 103, pra-daftar aktif, ledger eksperimen §3, dan folder riset.</span><span>Halaman ini tidak membuat keputusan — keputusan tetap milik Fahmi.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', async()=>{
+      const root=document.querySelector('#arah'); let d;
+      try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      const a=d.arah;
+      if(!a){root.innerHTML='<div class="kosong-jujur"><strong>Arah belum terbaca</strong>data-nyata.json dibangkitkan sebelum bagian arah ada. Jalankan ulang studio/alat/bangkitkan-data-nyata.mjs.</div>';return;}
+      const e=a.eksperimenAktif;
+      const sisaHari=a.tenggat?Math.ceil((new Date(`${a.tenggat}T23:59:59+07:00`)-new Date())/86400000):null;
+      const kelas=(k)=>({lulus:'lulus',gagal:'gagal',netral:'netral',belum:'belum'})[k]||'belum';
+      const ramalan=e.ramalan?Object.entries(e.ramalan).map(([k,v])=>`<div class="baris-data"><div><strong>${Nadi.esc(k.replace(/_/g,' '))}</strong></div><span class="pil">${Nadi.angka(Math.round(v*100)+' %',d,`arah.eksperimenAktif.ramalan.${k}`)}</span></div>`).join(''):'<p class="redup">belum ada ramalan</p>';
+      const vonis=[...d.praDaftar].sort((x,y)=>String(y.tanggal||'').localeCompare(String(x.tanggal||'')));
+      root.innerHTML=`
+        <section class="grid grid-2">
+          <article class="panel panel-pad"><span class="label-panel">Kompas · keputusan berlaku</span><h2 style="margin-top:7px">${Nadi.teksData(a.status,d,'arah.status')}</h2><p class="redup">${Nadi.teksData(a.syaratMati,d,'arah.syaratMati')}</p><p class="catatan-sumber">Organ tetap: tahu batas pengetahuan sendiri. Uang tidak dari MiganCore — lihat portofolio OMIGA.</p></article>
+          <article class="panel kartu-metrik"><span class="label-panel">Tenggat syarat mati</span><div class="nilai ${sisaHari!==null&&sisaHari<=3?'merah':''}">${sisaHari===null?'—':Nadi.angka(sisaHari+' hari',d,'arah.tenggat → hitungan hari di peramban')}</div><p>sampai ${Nadi.teksData(a.tenggat,d,'arah.tenggat')} · lewat tanpa MENANG = MiganCore ditutup total</p></article>
+        </section>
+
+        <section class="panel panel-pad" style="margin-top:16px"><span class="label-panel">Eksperimen aktif</span> <span class="status status-${e.dikunci?'lulus':'belum'}">${e.dikunci?'DIKUNCI':'BELUM DIKUNCI'}</span>
+          <h2 style="margin-top:9px">${Nadi.teksData(`${e.id} — ${e.judul}`,d,'arah.eksperimenAktif.judul')}</h2>
+          <p>${Nadi.teksData(e.pertanyaan,d,'arah.eksperimenAktif.pertanyaan')}</p>
+          <p class="catatan-sumber">${Nadi.teksData(e.status,d,'arah.eksperimenAktif.status')} · vonis: ${Nadi.teksData(e.vonis,d,'arah.eksperimenAktif.vonis')}</p>
+          <div class="grid grid-2" style="margin-top:10px">
+            <div><strong>Sisa sebelum kunci</strong>${e.sisaSebelumKunci.map((x,i)=>`<div class="baris-data"><p>${i+1}. ${Nadi.teksData(x,d,`arah.eksperimenAktif.sisaSebelumKunci[${i}]`)}</p></div>`).join('')}</div>
+            <div><strong>Dari Fahmi</strong>${e.dariFahmi.map((x,i)=>`<div class="baris-data"><p>${Nadi.teksData(x,d,`arah.eksperimenAktif.dariFahmi[${i}]`)}</p></div>`).join('')}<strong style="display:block;margin-top:10px">Ramalan saya — dinilai Brier sesudah vonis</strong>${ramalan}</div>
+          </div>
+        </section>
+
+        <section class="panel panel-pad" style="margin-top:16px"><span class="label-panel">Jangan diulang · ledger eksperimen §3</span><h2 style="margin-top:7px">${Nadi.angka(a.janganDiulang.length,d,'arah.janganDiulang.length')} pelajaran mahal — terbaru di atas</h2>
+          ${a.janganDiulang.map((x,i)=>`<div class="baris-data"><div><strong>${Nadi.teksData(x.judul,d,`arah.janganDiulang[${i}].judul`)}</strong><p class="redup">${Nadi.teksData(x.isi,d,`arah.janganDiulang[${i}].isi`)}</p></div></div>`).join('')}
+          <p class="catatan-sumber">Sumber: docs/jarvis/EXPERIMENT_LEDGER.md §3. Menambah pelajaran = menulis di ledger, lalu bangkitkan ulang.</p></section>
+
+        <section class="panel panel-pad" style="margin-top:16px"><span class="label-panel">Sudah dicoba · vonis pra-daftar</span><h2 style="margin-top:7px">${Nadi.angka(vonis.length,d,'praDaftar.length')} pra-daftar — vonis dibaca dari berkasnya</h2>
+          ${vonis.map((p,i)=>`<div class="baris-data"><div><strong>${Nadi.esc(p.id)}</strong><p class="redup">${Nadi.teksData(Nadi.teksRingkas(p.hasil,200),d,`praDaftar[${d.praDaftar.indexOf(p)}].hasil`)}</p></div><span class="status status-${kelas(p.keadaan)}">${Nadi.esc(p.keadaan||'—')}${p.tanggal?` · ${Nadi.esc(p.tanggal)}`:''}</span></div>`).join('')}</section>
+
+        <section class="panel panel-pad" style="margin-top:16px"><span class="label-panel">Radar riset · folder riset/</span><h2 style="margin-top:7px">Riset terbaru</h2>
+          ${a.radar.length?a.radar.map((r,i)=>`<div class="baris-data"><div><strong>${Nadi.teksData(r.judul,d,`arah.radar[${i}].judul`)}</strong><p class="redup">${Nadi.esc(r.folder)}</p></div><span class="pil">${Nadi.esc(r.tanggal)}</span></div>`).join(''):'<div class="kosong-jujur"><strong>Belum ada data</strong>Tidak ada folder riset bertanggal.</div>'}
+          <p class="catatan-sumber">${a.radar.some((r)=>r.jenis==='radar')?'Radar harian: tugas terjadwal radar-riset-migancore (07.00 WIB) menulis riset/radar/YYYY-MM-DD.md.':'Belum ada berkas radar harian di riset/radar/. Tugas terjadwal radar-riset-migancore (07.00 WIB) akan menulisnya.'} Riset lain dibaca dari folder riset/.</p></section>`;
+    });
+  </script>
+</body></html>

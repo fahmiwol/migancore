@@ -1,0 +1,19 @@
+
+# E1 latensi NPC — jawab migancore:0.14 · probe migancore:0.4-qwen3 · http://measure-host.local:11434
+# 1 sesi × 6 NPC × 8 giliran · pra-daftar flywheel/PRA-DAFTAR-E1-LATENSI-NPC.json · ASAP (bukan vonis)
+
+# duduk sebelum: migancore:0.14
+# start-dingin (TIDAK dirata): jawab 9.9s · probe 21.0s
+# duduk sesudah pemanasan: migancore:0.14, migancore:0.4-qwen3
+
+sesi 1: 48 giliran · galat 0 · probe jalan 46/48 · awal p50 MODEL 2.71s · PRODUK 11.81s · 769s · duduk: migancore:0.14, migancore:0.4-qwen3
+
+## Q_MODEL — model di jalur ramping: TIDAK_SAH (ASAP — bukan vonis)
+   sesi sah 1 < 5
+
+## Q_PRODUK — model + gerbang tanpa cache: TIDAK_SAH (ASAP — bukan vonis)
+   sesi sah 1 < 5
+
+   probe jalan 96 % giliran · probe p50 8.11s · probe galat 0 · nalar bocor 0 giliran
+   ringkasan → HASIL-E1-LATENSI-NPC-2026-09-22T21-41-54-asap.json
+

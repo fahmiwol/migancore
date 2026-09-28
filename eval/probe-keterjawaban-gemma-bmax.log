@@ -1,0 +1,52 @@
+# probe-keterjawaban — gemma3:12b · 36 soal · http://laptop.local:11434/api/chat
+✓ J2-F1     fakta           → fakta           51295ms
+✓ J2-F2     fakta           → fakta           27064ms
+✓ J2-F3     fakta           → fakta           28135ms
+✓ J2-F4     fakta           → fakta           29421ms
+✓ J2-F5     fakta           → fakta           28229ms
+✓ J2-F6     fakta           → fakta           28281ms
+✓ J2-F7     fakta           → fakta           26817ms
+✓ J2-F8     fakta           → fakta           25811ms
+✗ J2-A1     tak-terjawab    → fakta           27955ms
+✗ J2-A2     tak-terjawab    → fakta           31574ms
+✓ J2-A3     tak-terjawab    → tak-terjawab    36401ms
+~ J2-A4     tak-terjawab    → konteks-kurang  36944ms
+✗ J2-A5     tak-terjawab    → fakta           31216ms
+✗ J2-A6     tak-terjawab    → fakta           27904ms
+✓ J2-B5     premis-salah    → premis-salah    37538ms
+~ J2-D5     maksud-kurang   → konteks-kurang  38170ms
+✗ J2-B1     premis-salah    → fakta           34983ms
+~ J2-B2     premis-salah    → konteks-kurang  36055ms
+~ J2-B3     premis-salah    → kedaluwarsa     31529ms
+✗ J2-B4     premis-salah    → fakta           34232ms
+✓ J2-C1     konteks-kurang  → konteks-kurang  30678ms
+✓ J2-C2     konteks-kurang  → konteks-kurang  33385ms
+~ J2-C3     konteks-kurang  → kedaluwarsa     27290ms
+✓ J2-C4     konteks-kurang  → konteks-kurang  34413ms
+~ J2-D1     maksud-kurang   → konteks-kurang  34624ms
+~ J2-D2     maksud-kurang   → konteks-kurang  37061ms
+~ J2-D3     maksud-kurang   → konteks-kurang  34018ms
+✓ J2-D4     maksud-kurang   → maksud-kurang   30159ms
+✓ J2-E1     kedaluwarsa     → kedaluwarsa     29259ms
+✓ J2-E2     kedaluwarsa     → kedaluwarsa     27181ms
+✓ J2-E3     kedaluwarsa     → kedaluwarsa     28576ms
+✓ J2-E4     kedaluwarsa     → kedaluwarsa     31896ms
+✓ J2-G1     subjektif       → subjektif       33914ms
+✓ J2-G2     subjektif       → subjektif       34361ms
+✓ J2-G3     subjektif       → subjektif       31344ms
+✓ J2-G4     subjektif       → subjektif       30146ms
+
+## Matriks jenis (baris) × label probe (kolom)
+jenis             fakta tak-te premis kontek maksud kedalu subjek  GALAT
+fakta                 8      0      0      0      0      0      0      0
+tak-terjawab          4      1      0      1      0      0      0      0
+premis-salah          2      0      1      1      0      1      0      0
+konteks-kurang        0      0      0      3      0      1      0      0
+maksud-kurang         0      0      0      4      1      0      0      0
+kedaluwarsa           0      0      0      0      0      4      0      0
+subjektif             0      0      0      0      0      0      4      0
+
+recall abstain-perlu 78.6% · presisi 100.0% · kategori persis 61.1% · fakta dikira jebakan 0.0% · GALAT 0/36
+H-G3 (baris vonis Fahmi): 0/1 tertangkap probe
+VONIS H-G1 (ambang dikunci: recall ≥0.8 & presisi ≥0.7): GAGAL
+ditulis: eval\probe-keterjawaban-gemma3_12b-2026-09-02-05-30.json

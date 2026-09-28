@@ -1,0 +1,122 @@
+{
+  "nama": "H-ALUR — apakah alur kerja NYATA menghasilkan data preferensi dengan laju yang berguna?",
+  "tanggal": "2026-09-21",
+  "dikunci": true,
+  "ditulisSebelum": "SEBELUM satu pasangan preferensi pun dikumpulkan. Tidak ada angka saat berkas ini ditulis. Mengubah ambang sesudah melihat hasil = menawar ambang; kalau kalibrasinya salah, tulis AMENDEMEN BERTANGGAL.",
+  "asalUsul": {
+    "pengamatanFahmi": "Fahmi, 21 Sep 2026: penyedia alat (Cursor, OpenCode, Higgsfield, dan banyak lainnya) mengumpulkan pengguna lewat BYOK — biaya dan kepercayaan sama-sama dihapus karena pengguna memakai kunci sendiri — lalu menangkap ALUR KERJANYA, bukan inferensinya. Dari alur kerja itu lahir data preferensi yang tidak bisa dibeli, dan dari data itu lahir model kecil yang mengalahkan model frontier pada alur kerja spesifik.",
+    "kenapaIniMENGENAIkami": "Empat bulan terakhir kami melatih dari data GURU SINTETIS — dan kami sudah MENGUKUR bahwa jalur itu jenuh pada skala ini (F-104/F-106: 0.6 setara 0.4 meski datanya ditambah). Sementara dokumen visi Mei 2026 sudah menuliskan jalur yang benar sebagai Trend 4 (*'setiap thumbs_down = potential DPO pair'*) dan mencatat gapnya sendiri: **0 real feedback pairs di DB**. Sampai 21 Sep 2026 angka itu masih NOL.",
+    "urutanYangTerbalik": "Bukan 'bangun model lalu cari pengguna', melainkan 'bangun alat, tangkap alur kerjanya, model lahir dari situ'. Episode ini menguji langkah PERTAMA dari urutan yang benar."
+  },
+  "yangDIUJI_danYangTIDAK": {
+    "diuji": "Apakah satu alur kerja nyata yang Fahmi kerjakan sendiri dapat menghasilkan PASANGAN PREFERENSI SAH dengan laju yang cukup untuk jadi bahan latih, dalam 30 hari.",
+    "TIDAKdiuji": [
+      "Apakah data itu MENGALAHKAN data guru sintetis. Itu butuh latihan, dan latihan butuh volume — pertanyaan episode berikutnya.",
+      "Apakah model hasil latihnya lebih baik. Sama: episode berikutnya.",
+      "Apakah alur kerja lain juga cocok. Satu alur per episode (satu dial)."
+    ],
+    "kenapaDipisah": "Menggabungkan 'bisakah dikumpulkan' dengan 'apakah berguna' membuat kegagalan tidak bisa ditafsirkan — kalau hasilnya buruk, kita tidak akan tahu apakah datanya kurang atau metodenya salah."
+  },
+  "alurYangDIPILIH": {
+    "alur": "Kualifikasi lead + draf penawaran untuk bisnis pemilik.",
+    "kenapaAlurINI": [
+      "FREKUENSI: dikerjakan Fahmi minimal mingguan — tanpa frekuensi tidak ada data.",
+      "DATA INTERNAL: harga, margin, riwayat pembeli tidak boleh keluar — di sinilah keunggulan lokal berlaku, dan model awan tidak bisa masuk.",
+      "KELUARAN TEKS dengan terima/tolak yang jelas — pasangan preferensi terbentuk secara alami, bukan dipaksakan.",
+      "INFRASTRUKTUR SEBAGIAN SUDAH ADA: MCP `abra-ops` (lead_get, leads_list, penawaran_list, tangkap_add) dan skill `jurus-cari-buyer`."
+    ],
+    "yangHarusDIBANGUN": "Hanya satu lapisan: pencatat terima/tolak/perbaiki. Bukan alat baru."
+  },
+  "definisi_PASANGAN_SAH": {
+    "wajibAdaKetiganya": [
+      "KONTEKS tugas tersimpan (lead/permintaan apa, data apa yang tersedia saat itu)",
+      "KELUARAN ASLI dari model",
+      "KELUARAN YANG DIPAKAI — hasil perbaikan Fahmi, atau penanda 'diterima apa adanya'"
+    ],
+    "TIDAKdihitungSah": [
+      "Penolakan tanpa perbaikan (tahu salah, tidak tahu benarnya seperti apa — tidak bisa jadi pasangan)",
+      "Perbaikan yang hanya kosmetik: selisih < 10 % karakter DAN tidak mengubah angka, nama, atau tindakan",
+      "Keluaran yang dibuang karena galat sistem, bukan karena isinya"
+    ],
+    "kenapaSYARATini": "Pelajaran F-250: satu metrik tanpa pasangannya menyesatkan. Di sini, 'ditolak' tanpa 'seharusnya begini' adalah setengah data — ia menunjukkan ketidaksukaan tanpa arah perbaikan."
+  },
+  "gerbangDIPASANG_didepan": {
+    "apa": "Gerbang abstensi dipasang di depan alur ini: model DIAM kalau tidak yakin, alih-alih mengarang harga/nama/tanggal.",
+    "kenapa": "Di alur kerja nyata, mengarang bukan salah jawab — ia salah TINDAKAN, dan biayanya rupiah. Ini juga yang menyambungkan episode ini dengan seluruh program abstensi kami.",
+    "catatan": "Konfigurasi gerbang mengikuti vonis GERBANG-ON. Kalau GERBANG-ON belum selesai saat pengumpulan dimulai, dipakai moda SHADOW dan itu dicatat."
+  },
+  "aturanKeputusan_DIKUNCI": {
+    "jendela": "30 hari sejak pasangan pertama tercatat.",
+    "LULUS": ">= 120 pasangan SAH dalam 30 hari. Artinya alur nyata memang bisa jadi sumber data latih, dan episode berikutnya (melatih darinya) layak dibayar.",
+    "GAGAL": "< 40 pasangan SAH. Artinya alur ini terlalu jarang dipakai untuk jadi sumber data — dan yang harus diganti adalah ALURNYA, bukan ambangnya.",
+    "TIDAK_MENENTUKAN": "40-119 pasangan. Tindakannya sudah ditentukan sekarang: perpanjang SATU KALI 30 hari lagi. Kalau pada hari ke-60 masih < 120, vonisnya menjadi GAGAL.",
+    "asalAngka120": "Catatan proyek kami sendiri: 'targeted 50-100 pairs per kategori = perbaikan gerbang bermakna', dan 80 pasang menggeser skor +0,077. 120 dipilih sebagai satu kategori penuh dengan margin. Diakui sebagai PENILAIAN yang dikalibrasi ke pengalaman sendiri, bukan turunan rumus.",
+    "metrikPENDAMPING_wajibDILAPORKAN": [
+      "Laju: pasangan per minggu (menunjukkan apakah LULUS datang dari kebiasaan atau dari satu ledakan)",
+      "Rasio diterima-apa-adanya vs diperbaiki (kalau 100 % diperbaiki, modelnya tidak berguna; kalau 100 % diterima, pencatatnya tidak jujur)",
+      "Berapa kali gerbang membuat model DIAM, dan berapa dari diam itu yang menurut Fahmi benar"
+    ]
+  },
+  "privasi_TIDAK_BISA_DITAWAR": {
+    "aturan": "Seluruh pasangan preferensi disimpan LOKAL. Tidak ada yang dikirim ke layanan luar, tidak ada yang masuk ke repo publik.",
+    "dasar": "Non-negotiable ketiga yang dikunci ulang 21 Sep (doc 103 sekat 7.4): data tidak pernah keluar. Episode ini menyentuh data bisnis nyata — harga, margin, nama pembeli.",
+    "kalauKelakDITERBITKAN": "Hanya METODE dan angka agregat yang boleh terbit. Isi pasangan tidak pernah, kecuali Fahmi menyetujui per-baris dan pihak ketiga yang disebut sudah diurus.",
+    "pembedaPasar": "Di pasar tempat penyedia lain memanen diam-diam, 'kami memanen dengan izinmu, kamu lihat apa yang diambil, dan modelnya jalan di mesinmu' adalah keunggulan — dan untuk Indonesia (UU PDP, aturan OJK) ia syarat hukum, bukan pilihan moral."
+  },
+  "ramalan_DINILAI_NANTI": {
+    "olehSaya": {
+      "LULUS": 0.3,
+      "TIDAK_MENENTUKAN": 0.45,
+      "GAGAL": 0.25
+    },
+    "alasan": "Yang saya ragukan bukan nilainya, melainkan FREKUENSINYA. 120 pasangan dalam 30 hari berarti ~4 per hari kerja, dan kualifikasi lead komoditas tidak sepadat itu setiap hari. Saya menaruh bobot terbesar pada TIDAK MENENTUKAN karena laju kemungkinan besar berada di bawah target tetapi jauh di atas ambang gagal. GAGAL 0,25 karena risiko nyata: pencatatnya dibangun lalu tidak dipakai — itu kegagalan kebiasaan, bukan kegagalan ide.",
+    "yangMembuatSayaSALAH": "Kalau ternyata satu sesi kerja menghasilkan banyak pasangan sekaligus (mis. satu batch 20 lead), laju harian bukan ukuran yang tepat dan ramalan saya meleset karena salah memodelkan bentuk kerjanya."
+  },
+  "kalauGagal": {
+    "jikaGAGAL": "Alur diganti, bukan ambang. Kandidat berikutnya sudah ada dan tidak perlu dicari: operasi Shopee (shopee-gateway), atau panen sosmed harian — dua-duanya lebih sering dipakai. Temuannya tetap berharga: ia memberi tahu bentuk alur seperti apa yang cocok jadi sumber data.",
+    "jikaLULUS": "Episode berikutnya: latih dari pasangan itu dan bandingkan dengan data guru sintetis pada instrumen yang sama. Di situlah klaim 'data alur kerja tidak jenuh' baru boleh diuji.",
+    "risikoYangDIAKUI": "Kegagalan paling mungkin bukan teknis melainkan KEBIASAAN — pencatat dibangun, lalu Fahmi lupa memakainya. Karena itu metrik laju per minggu wajib dilaporkan, supaya ini terlihat di minggu pertama, bukan di hari ke-30."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "Tidak mengukur mutu model dalam episode ini. Hanya laju dan kelayakan data.",
+    "Tidak membandingkan dengan alur kerja lain.",
+    "Tidak membangun produk untuk pengguna luar. Pengguna episode ini SATU orang: Fahmi sendiri. Itu disengaja — alat yang penciptanya sendiri tidak pakai tidak akan dipakai siapa pun.",
+    "Tidak menyentuh konfigurasi serving MiganCore di luar pemasangan gerbang di depan alur ini."
+  ],
+  "vonis": {
+    "hasil": "DIHENTIKAN 27 Sep — bukan vonis, dan bukan GAGAL. Keputusan arah Fahmi 27 Sep (docs/jarvis/111_TUTUP_ATAU_BELOK.md): jalur model generatif milik sendiri ditutup, sehingga tujuan H-ALUR (data preferensi untuk melatih model generatif) gugur. Selain itu, alur yang dipilih (kualifikasi lead + draf penawaran) tidak lagi dikerjakan harian. Tercatat 1 pasangan sah: RD-19, terima-apa-adanya, hari ke-1 (27 Sep). Jendela 30 hari tidak dijalankan sampai habis, dan ambang terkunci tidak disentuh. Isi pasangan tetap privat di .private/h-alur/.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-27",
+    "rincian": "aturanKeputusan_DIKUNCI"
+  },
+  "amandemen_23Sep": {
+    "tanggal": "2026-09-23",
+    "sifat": "PENCATAT TERPASANG + tafsir implementasi + temuan literatur. Ambang dan definisi terkunci TIDAK diubah.",
+    "pencatat": {
+      "berkas": "flywheel/pencatat-h-alur.mjs (42 uji; uji mutasi: 4 dari 4 mutasi aturan kritis tertangkap)",
+      "gudang": ".private/h-alur/pasangan.jsonl — diabaikan git (.gitignore:13, dibuktikan dengan git check-ignore). Penjaga \"data privat H-ALUR tidak terlacak git\" memeriksa git-nya sendiri, bukan polanya.",
+      "pakai": "node flywheel/pencatat-h-alur.mjs catat <berkas.json> · node flywheel/pencatat-h-alur.mjs laporan"
+    },
+    "tafsirImplementasi_DAN_ARAHNYA": {
+      "_": "Setiap tafsir menyebut ke mana ia mendorong vonis. Tafsir yang membuat LULUS lebih MUDAH tidak boleh diambil diam-diam; di sini tidak ada satu pun.",
+      "penyebutSelisih": "Pra-daftar menulis \"selisih < 10 % karakter\" tanpa menyebut penyebutnya. Dipakai max(|asli|, |dipakai|) — penyebut TERBESAR, sehingga persen terkecil, lebih banyak suntingan jatuh \"kosmetik\", dan LULUS LEBIH SULIT. PRELUDE (Gao dkk. 2024) memakai penyebut yang sama. Hitungan mentah disimpan supaya penyebut lain bisa dihitung ulang kelak.",
+      "syaratLayakLatih": "Hitungan vonis mensyaratkan pembuat draf ada di daftar IZIN AGENTS.md (migancore, deepseek, qwen). Dasarnya pertanyaan pra-daftar ini sendiri: data \"untuk jadi bahan latih\", dan draf model berpemilik tidak bisa jadi bahan latih walau sudah disunting (AGENTS.md, dikoreksi 23 Sep). Arah: LULUS LEBIH SULIT.",
+      "tolakDenganPengganti": "Penolakan yang disertai teks pengganti tulisan Fahmi dihitung sebagai pasangan-koreksi — itu \"hasil perbaikan Fahmi\" harfiah. Penolakan TANPA pengganti tetap tidak sah. Bukan perluasan definisi.",
+      "jamMulai": "Jam 30 hari mulai pada rekaman pertama yang SAH dan LAYAK-LATIH. Draf model berpemilik tidak memulai jam."
+    },
+    "temuanLiteratur": {
+      "sumber": "riset/2026-09-23-e3-preferensi-suntingan/TEMUAN.md — kutipan inti Smaug (arXiv:2402.13228) diperiksa silang ke API arXiv 23 Sep; judul dan penulis cocok.",
+      "suntinganKecilBukanSampah": "Tidak satu pun makalah terverifikasi membuang suntingan kecil berdasarkan ambang ukuran; suntingan tak-nol = sinyal yang bobotnya naik bersama ukurannya. Maka pencatat MENYIMPAN SEMUA suntingan — termasuk yang \"kosmetik\" — dan definisi terkunci hanya mengatur HITUNGAN VONIS. Penyimpanan lebih luas daripada hitungan; keduanya tidak dicampur.",
+      "terimaBukanPasanganDPO": "Rekaman \"diterima apa adanya\" tidak punya sisi ditolak, jadi bukan pasangan DPO — ia data SFT/KTO. Definisi terkunci menghitungnya sah, dan itu DIPERTAHANKAN. Konsekuensinya sudah dijaga metrik pendamping wajib: rasio terima-vs-perbaiki dilaporkan terpisah, dan kalau 100 % diterima, pra-daftar sendiri menyebut pencatatnya tidak jujur.",
+      "DPOgagalPadaSuntinganKecil": "Smaug/DPO-Positive (Pal dkk. 2024): DPO biasa dapat MENURUNKAN peluang contoh yang disukai justru pada pasangan berjarak sunting kecil — dan koreksi manusia adalah pasangan berjarak kecil menurut konstruksinya. Ini peringatan untuk E4 (latihan), bukan aturan pencatat: E4 wajib memakai DPOP/SFT-dulu/rugi tingkat-token, dan karena itu pencatat menyimpan KEDUA teks utuh plus ukuran tingkat-token.",
+      "tingkatTokenBukanKarakter": "Semua makalah terverifikasi mengukur suntingan pada tingkat token, bukan persen karakter. Definisi terkunci memakai karakter dan TETAP dipakai untuk vonis; ukuran tingkat-kata dicatat berdampingan sebagai data, bukan sebagai pengganti."
+    },
+    "celahDefinisi_SENSITIVITAS": {
+      "_": "Riset menandai celah pada klausul \"angka, nama, atau tindakan\". Dicatat sebagai bendera TERPISAH dan analisis sensitivitas; TIDAK dilebur ke vonis, karena meleburnya membuat lebih banyak suntingan sah — arah yang lebih mudah.",
+      "negasi": "\"Kami bisa kirim\" → \"Kami belum bisa kirim\": makna terbalik, selisih < 10 %, tanpa angka/nama/tindakan berubah → KOSMETIK menurut definisi harfiah. Salah secara substansi. Ditandai negasiBerubah.",
+      "satuan": "\"5 ton\" → \"5 kg\": angkanya sama, maknanya berbeda seribu kali → KOSMETIK menurut definisi harfiah. Ditandai satuanBerubah.",
+      "yangDilaporkan": "Laporan mencetak DUA hitungan: vonis (harfiah) dan sensitif (+negasi/satuan). Kalau keduanya berbeda jauh, itu temuan tentang definisinya — bahan amandemen sebelum jam berikutnya, bukan penyesuaian diam-diam."
+    },
+    "gerbang": "Konfigurasi gerbang mengikuti vonis GERBANG-ON = PASANG_ON (21 Sep). Catatan dari E1 (23 Sep): sentinel gerbang menyala pada ~93 % kalimat NPC. Untuk alur bisnis pemilik (kualifikasi lead, penawaran) hampir semua masukan memang menuntut fakta, jadi kelebaran sentinel tidak merugikan di sini — tetapi latensi probe (~9 dtk) ikut dirasakan Fahmi saat bekerja."
+  }
+}

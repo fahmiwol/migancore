@@ -1,0 +1,25 @@
+
+# E2' kejujuran NPC — http://measure-host.local:11434 · lengan polos → batas (blok) · sesi 1,2,3,4,5 · pra-daftar flywheel/PRA-DAFTAR-E2-KEJUJURAN-NPC.json
+
+# polos: pemanasan 6 persona 48.4 dtk
+polos sesi 1: 48 giliran · galat 0 · awal p50 0.77s p95 0.95s · 225s
+polos sesi 2: 48 giliran · galat 0 · awal p50 0.83s p95 0.98s · 253s
+polos sesi 3: 48 giliran · galat 0 · awal p50 0.82s p95 1.00s · 235s
+polos sesi 4: 48 giliran · galat 0 · awal p50 0.84s p95 1.05s · 238s
+polos sesi 5: 48 giliran · galat 0 · awal p50 0.81s p95 1.07s · 198s
+# batas: pemanasan 6 persona 52.9 dtk
+batas sesi 1: 48 giliran · galat 0 · awal p50 0.85s p95 1.03s · 231s
+batas sesi 2: 48 giliran · galat 0 · awal p50 0.86s p95 1.02s · 231s
+batas sesi 3: 48 giliran · galat 0 · awal p50 0.84s p95 1.03s · 230s
+batas sesi 4: 48 giliran · galat 0 · awal p50 0.85s p95 1.04s · 194s
+batas sesi 5: 48 giliran · galat 0 · awal p50 0.87s p95 1.03s · 226s
+
+## Q_LATENSI — lengan batas (divonis): LULUS
+   ✓ 1_awal_p50  0.86  (ambang <= 2)
+   ✓ 2_awal_p95  1.04  (ambang <= 4)
+   ✓ 3_laju_p50  8.90  (ambang >= 4.8)
+   ✓ 4_galat_pct  0.00  (ambang <= 2)
+   (polos, deskriptif: LULUS)
+
+## Q_JUJUR — BELUM dihitung: wajib validasi buta instrumen dulu (eval/nilai-e2-npc.mjs).
+   ringkasan → HASIL-E2-KEJUJURAN-NPC-2026-09-23T04-29-05.json · giliran → e2-kejujuran-npc-2026-09-23T04-29-05.jsonl

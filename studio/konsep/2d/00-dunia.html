@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Peta Dunia — MiganCore Studio</title>
+  <link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>PETA KANDUNGAN</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar">
+      <div><div class="alis">Atlas instrumen</div><h1>Dunia Kandungan</h1><p class="subjudul">Klik wilayah untuk membaca keadaan ringkasnya. Bentuk dunia adalah metafora navigasi; status di panel kanan tetap datang dari sumber data.</p></div>
+      <div class="legenda-ringkas"><span class="status status-lulus">ada bukti</span><span class="status status-belum">belum / terkunci</span><span class="status status-kosong">data belum ada</span></div>
+    </header>
+
+    <section class="panel dunia-bingkai">
+      <div class="dunia-kanvas" id="peta-dunia">
+        <canvas id="terrain" aria-hidden="true"></canvas><div class="dunia-kabut" aria-hidden="true"></div>
+        <button class="wilayah" data-region="inti" aria-pressed="true"><b>Inti Kandungan</b><span>Embrio MAKSARA · terkunci</span></button>
+        <button class="wilayah" data-region="silsilah"><b>Pohon Silsilah</b><span>versi &amp; sejarah</span></button>
+        <button class="wilayah" data-region="lab"><b>Observatorium</b><span>riset &amp; eksperimen</span></button>
+        <button class="wilayah" data-region="arsip"><b>Perpustakaan</b><span>temuan &amp; hukum</span></button>
+        <button class="wilayah" data-region="galat"><b>Tugu Galat</b><span>register cacat</span></button>
+        <button class="wilayah" data-region="misi"><b>Papan Misi</b><span>backlog apa adanya</span></button>
+        <button class="wilayah" data-region="kabut"><b>Kabut Belum</b><span>belum dicoba</span></button>
+        <button class="wilayah" data-region="ajar"><b>Lapangan Latihan</b><span>playground ajar</span></button>
+        <button class="wilayah" data-region="bicara"><b>Balai Bicara</b><span>chat berpemandu</span></button>
+        <button class="wilayah" data-region="majelis"><b>Lingkar Majelis</b><span>data belum ada</span></button>
+        <button class="wilayah" data-region="akar"><b>Akar Pengetahuan</b><span>retrieval belum ada</span></button>
+        <button class="wilayah" data-region="mesin"><b>Ruang Mesin</b><span>laptop · Bmax · VPS-2</span></button>
+        <button class="wilayah" data-region="gudang"><b>Gudang Aset</b><span>sensus salinan</span></button>
+      </div>
+      <aside class="dunia-panel panel" aria-live="polite">
+        <div class="label-panel">Pratinjau wilayah</div>
+        <div class="pratinjau-region" id="pratinjau"><div class="pemuatan">membaca data nyata…</div></div>
+      </aside>
+    </section>
+  </main>
+  <footer class="kaki"><span>Dunia = lapisan orientasi. Panel = lapisan bukti.</span><span>Mode Baca mengubah atlas menjadi daftar 2D dengan data yang sama.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let data;
+      try { data = await Nadi.data(); } catch (e) { return Nadi.galat('#pratinjau', e); }
+      const belum = data.praDaftar.filter(x => x.keadaan === 'belum').length;
+      const wilayah = {
+        inti: { simbol:'◇', judul:'Inti Kandungan', status: data.kelahiran?.s1 ? `GERBANG-S1 ${data.kelahiran.s1.tingkat} · TENGGAT ${data.kelahiran.s1.tenggat}` : 'TIDAK TERBACA', kelas: ({LAHIR:'lulus',EMBRIO:'netral',GUGUR:'gagal'})[data.kelahiran?.s1?.tingkat] || 'belum', isi:`${Nadi.teksData(data.sorotan.KELAHIRAN,data,'sorotan.KELAHIRAN')} Tidak ada persen kelahiran — hanya tingkat dari vonis pra-daftarnya.`, taut:'01-beranda.html', label:'Baca keadaan hari ini' },
+        silsilah: { simbol:'⌘', judul:'Pohon Silsilah', status:'MODEL BERLAKU', kelas:'lulus', isi:`Model yang berlaku adalah <b>${Nadi.angka(data.modelBerlaku.tag,data,'modelBerlaku.tag')}</b>, sejak ${Nadi.angka(data.modelBerlaku.sejak,data,'modelBerlaku.sejak')}. Riwayat kandidat tetap diberi vonis aslinya.`, taut:'02-silsilah-sejarah.html', label:'Buka silsilah' },
+        lab: { simbol:'⌬', judul:'Observatorium', status:'INSTRUMEN AKTIF', kelas:'netral', isi:`Ada ${Nadi.angka(data.praDaftar.length,data,'praDaftar.length')} pra-daftar: ${Nadi.angka(data.ringkasVonis.lulus,data,'ringkasVonis.lulus')} lulus, ${Nadi.angka(data.ringkasVonis.gagal,data,'ringkasVonis.gagal')} gagal, ${Nadi.angka(data.ringkasVonis.netral,data,'ringkasVonis.netral')} netral.`, taut:'03-riset-lab.html', label:'Masuk laboratorium' },
+        arsip: { simbol:'▦', judul:'Perpustakaan Arsip', status:'TERCATAT', kelas:'lulus', isi:`${Nadi.angka(data.temuan.jumlah,data,'temuan.jumlah')} temuan dan ${Nadi.angka(data.hukum.jumlah,data,'hukum.jumlah')} hukum. Angka berbeda instrumen dan diberi label terpisah.`, taut:'01-beranda.html#arsip', label:'Lihat ringkasan arsip' },
+        galat: { simbol:'⚑', judul:'Tugu Galat', status:'REGISTER CACAT', kelas:'gagal', isi:`Register memuat ${Nadi.angka(data.registerCacat.jumlahKelas,data,'registerCacat.jumlahKelas')} kelas cacat. Ini hitungan kelas, bukan jumlah insiden.`, taut:'01-beranda.html#galat', label:'Lihat register' },
+        misi: { simbol:'☷', judul:'Papan Misi', status:'STATUS SUMBER', kelas:'netral', isi:`${Nadi.angka(data.backlog.length,data,'backlog.length')} butir ditampilkan dengan teks status asli. Mockup tidak menaikkan status yang ambigu.`, taut:'05-misi-kabut.html', label:'Buka papan misi' },
+        kabut: { simbol:'≋', judul:'Kabut Belum Dijelajah', status:'BELUM DICOBA', kelas:'belum', isi:`${Nadi.angka(belum,data,'praDaftar[keadaan=belum].length')} pra-daftar secara eksplisit berkeadaan “belum”, ditambah episode backlog yang belum selesai secara tersurat.`, taut:'05-misi-kabut.html#kabut', label:'Masuk kabut' },
+        ajar: { simbol:'△', judul:'Lapangan Latihan', status:'PLAYGROUND KONSEP', kelas:'netral', isi:'Bidang untuk mencoba alur Ajar: tanya model, baca jawaban, tulis koreksi. Mockup tidak menyimpan data dan tidak memanggil model.', taut:'04-ajar-chat.html#ajar', label:'Buka playground' },
+        bicara: { simbol:'◉', judul:'Balai Bicara', status:'SIMULASI STATIS', kelas:'netral', isi:`Avatar memandu chat. Label mesin dan model selalu terlihat: model sumber <b>${Nadi.angka(data.modelBerlaku.tag,data,'modelBerlaku.tag')}</b>; mesin belum dihubungkan.`, taut:'04-ajar-chat.html#bicara', label:'Buka balai bicara' },
+        majelis: { simbol:'○', judul:'Lingkar Majelis & Guru', status:'BELUM ADA DATA', kelas:'kosong', isi:'Sumber data belum menyediakan daftar majelis atau guru. Wilayah ini sengaja kosong, tanpa avatar atau hitungan rekaan.', taut:'01-beranda.html#kosong', label:'Baca keadaan kosong' },
+        akar: { simbol:'⌁', judul:'Akar / Sungai Retrieval', status:'BELUM ADA DATA', kelas:'kosong', isi:'Sumber data belum menyediakan indeks, korpus, cakupan, atau mutu retrieval. Tidak ada visual aliran palsu.', taut:'01-beranda.html#kosong', label:'Baca keadaan kosong' },
+        mesin: { simbol:'▣', judul:'Tempa / Ruang Mesin', status:'TERCATAT', kelas:'lulus', isi:`${Nadi.angka(data.mesin.length,data,'mesin.length')} mesin/lingkungan tercatat: ${data.mesin.map((x,i)=>Nadi.teksData(x.nama,data,`mesin[${i}].nama`)).join(' · ')}.`, taut:'01-beranda.html#mesin', label:'Lihat mesin' },
+        gudang: { simbol:'▤', judul:'Gudang Data & Aset', status:'SENSUS', kelas:'belum', isi:`${Nadi.angka(data.sensus.salinanTunggal.length,data,'sensus.salinanTunggal.length')} artefak salinan tunggal (dibaca dari doc 99).`, taut:'01-beranda.html#gudang', label:'Lihat sensus' }
+      };
+      const tampil = (k) => {
+        const w = wilayah[k];
+        document.querySelectorAll('.wilayah').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.region===k)));
+        document.querySelector('#pratinjau').innerHTML = `<div class="simbol" aria-hidden="true">${w.simbol}</div><span class="status status-${w.kelas}">${w.status}</span><h2 style="margin-top:12px">${w.judul}</h2><p>${w.isi}</p><a class="tombol hantu" href="${w.taut}">${w.label} →</a><p class="catatan-sumber">Sumber: data-nyata.json · commit ${Nadi.esc(data._commit)}</p>`;
+      };
+      document.querySelectorAll('.wilayah').forEach(b=>b.addEventListener('click',()=>tampil(b.dataset.region)));
+      tampil('inti');
+      buatTerrain();
+    });
+
+    function buatTerrain() {
+      const c=document.querySelector('#terrain'), x=c.getContext('2d'), reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let w=0,h=0,t=0,raf;
+      const ukur=()=>{ const r=c.getBoundingClientRect(); const d=Math.min(devicePixelRatio||1,1.5); w=r.width;h=r.height;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);gambar(); };
+      const gambar=()=>{ x.clearRect(0,0,w,h); x.fillStyle='#07110e';x.fillRect(0,0,w,h); const layers=11; for(let j=0;j<layers;j++){ x.beginPath(); for(let i=0;i<=90;i++){ const px=i/90*w; const py=h*.5 + Math.sin(i*.16+j*.62+t*.00018)*36 + Math.cos(i*.07-j)*25 + (j-layers/2)*24; i?x.lineTo(px,py):x.moveTo(px,py); } x.strokeStyle=`rgba(${j%3?47:255},${j%3?227:138},${j%3?154:36},${0.055+j*.006})`;x.lineWidth=1;x.stroke(); } for(let i=0;i<70;i++){ const px=(i*83)%w,py=(i*137)%h; x.fillStyle=i%7?'rgba(126,240,189,.18)':'rgba(255,193,92,.25)';x.fillRect(px,py,1.4,1.4); } };
+      const putar=(n)=>{t=n;gambar();raf=requestAnimationFrame(putar)};
+      new ResizeObserver(ukur).observe(c); ukur(); if(!reduced&&!document.body.classList.contains('mode-baca'))raf=requestAnimationFrame(putar);
+      addEventListener('migancore:mode',e=>{cancelAnimationFrame(raf); if(!e.detail.modeBaca&&!reduced)raf=requestAnimationFrame(putar); else gambar();});
+    }
+  </script>
+</body>
+</html>

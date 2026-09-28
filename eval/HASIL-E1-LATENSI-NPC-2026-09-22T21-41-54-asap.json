@@ -1,0 +1,131 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-E1-LATENSI-NPC.json",
+ "stempel": "2026-09-22T21-41-54",
+ "asap": true,
+ "host": "http://measure-host.local:11434",
+ "modelJawab": "migancore:0.14",
+ "modelProbe": "migancore:0.4-qwen3",
+ "opsi": {
+  "temperature": 0.7,
+  "num_predict": 160
+ },
+ "nSesi": 1,
+ "nGiliran": 48,
+ "ambang": {
+  "p50MaksDtk": 2,
+  "p95MaksDtk": 4,
+  "lajuMinTok": 4.8,
+  "galatMaksPct": 2,
+  "sesiMin": 5,
+  "galatSesiMaksPct": 10
+ },
+ "startDingin": {
+  "jawabMs": 9925.719,
+  "probeMs": 21010.995199999998
+ },
+ "dudukSebelum": [
+  "migancore:0.14"
+ ],
+ "dudukSesudahPemanasan": [
+  "migancore:0.14",
+  "migancore:0.4-qwen3"
+ ],
+ "dudukPerSesi": [
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ]
+ ],
+ "probeJalanPct": 95.83333333333333,
+ "probeP50Dtk": 8.10976569999999,
+ "probeGalat": 0,
+ "pikirBocorGiliran": 0,
+ "Q_MODEL": {
+  "vonis": "TIDAK_SAH",
+  "sebab": [
+   "sesi sah 1 < 5"
+  ],
+  "sesiSah": 1
+ },
+ "Q_PRODUK": {
+  "vonis": "TIDAK_SAH",
+  "sebab": [
+   "sesi sah 1 < 5"
+  ],
+  "sesiSah": 1
+ },
+ "perIndeks": [
+  {
+   "indeks": 0,
+   "n": 6,
+   "p50ModelDtk": 6.426484150000004,
+   "p50TokPrompt": 261
+  },
+  {
+   "indeks": 1,
+   "n": 6,
+   "p50ModelDtk": 2.3989749999999948,
+   "p50TokPrompt": 303
+  },
+  {
+   "indeks": 2,
+   "n": 6,
+   "p50ModelDtk": 1.8719345000000032,
+   "p50TokPrompt": 355.5
+  },
+  {
+   "indeks": 3,
+   "n": 6,
+   "p50ModelDtk": 2.209790000000023,
+   "p50TokPrompt": 414.5
+  },
+  {
+   "indeks": 4,
+   "n": 6,
+   "p50ModelDtk": 7.028982849999993,
+   "p50TokPrompt": 496
+  },
+  {
+   "indeks": 5,
+   "n": 6,
+   "p50ModelDtk": 2.8746070499999914,
+   "p50TokPrompt": 506.5
+  },
+  {
+   "indeks": 6,
+   "n": 6,
+   "p50ModelDtk": 2.7638528000000226,
+   "p50TokPrompt": 548
+  },
+  {
+   "indeks": 7,
+   "n": 6,
+   "p50ModelDtk": 2.9846706999999877,
+   "p50TokPrompt": 616
+  }
+ ],
+ "perKategori": [
+  {
+   "kategori": "sapa",
+   "n": 12,
+   "probeJalanPct": 83.33333333333333,
+   "p50ModelDtk": 2.6815794499999903,
+   "p50ProdukDtk": 12.508921799999982
+  },
+  {
+   "kategori": "tahu",
+   "n": 18,
+   "probeJalanPct": 100,
+   "p50ModelDtk": 3.2098754999999946,
+   "p50ProdukDtk": 11.401029249999992
+  },
+  {
+   "kategori": "luar",
+   "n": 18,
+   "probeJalanPct": 100,
+   "p50ModelDtk": 2.614947650000002,
+   "p50ProdukDtk": 11.39672535000005
+  }
+ ],
+ "jsonl": "e1-latensi-npc-2026-09-22T21-41-54-asap.jsonl"
+}

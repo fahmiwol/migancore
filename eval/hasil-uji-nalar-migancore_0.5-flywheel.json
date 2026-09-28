@@ -1,0 +1,185 @@
+{
+  "model": "migancore:0.5-flywheel",
+  "n": 14,
+  "totalBenar": 9,
+  "totalBtjs": 2,
+  "rasioBtjs": 22.22222222222222,
+  "kat": {
+    "jebakan-aritmetika": {
+      "n": 2,
+      "lulus": 2,
+      "btjs": 1,
+      "jebakan": 0
+    },
+    "data-kurang": {
+      "n": 2,
+      "lulus": 1,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "premis-salah": {
+      "n": 2,
+      "lulus": 0,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "algoritma": {
+      "n": 2,
+      "lulus": 1,
+      "btjs": 1,
+      "jebakan": 0
+    },
+    "sebab-kebetulan": {
+      "n": 2,
+      "lulus": 2,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "satuan": {
+      "n": 2,
+      "lulus": 2,
+      "btjs": 0,
+      "jebakan": 0
+    },
+    "inversi": {
+      "n": 2,
+      "lulus": 1,
+      "btjs": 0,
+      "jebakan": 0
+    }
+  },
+  "hasil": [
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Harga Rp270.000 kena diskon 25% lalu diskon 15% lagi dari harga setelah diskon pertama. Berapa harga akhirnya?",
+      "jawab": "Hitung satu diskon sebelum yang lain:\n25% dari Rp270.000 = Rp270.000 x 0,25 = Rp67.500.\nHarga setelah diskon pertama: Rp270.000 - Rp67.500 = Rp202.500.\nLalu diskon kedua:\n15% dari Rp202.500 = Rp202.500 x 0,15 = Rp30.375.\nHasil akhir: Rp202.500 - Rp30.375 = Rp172.125.\nKemungkinan besar ini bukan harga bulat yang diharapkan — kalau begitu diskon kedua mungkin diambil dari harga asli, bukan dari hasil diskon pertama. Yang mana yang kamu maksud?",
+      "panjang": 445
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Mesin baru menghemat 4 jam kerja per hari. Berapa penghematan biayanya sebulan?",
+      "jawab": "Satu jam kerja di 20.000 = Rp 20.000 : 60 = Rp 333. Penghematan 4 jam = 4 x Rp 333 = Rp 1.333 per hari. Sebulan 30 hari: Rp 1.333 x 30 = Rp 40.000. Itu penghematan berikutnya — bukan margin, bukan ROI, dan bukan angka yang bisa dipakai untuk memutuskan beli mesin itu. Kenapa: angka ini belum memasukkan biaya mesin, belum memasukkan biaya pelatihan, belum memasukkan biaya downtime kalau mesin gagal, dan belum memasukkan biaya yang hilang kalau mesin gagal. Semua itu ada di dokumen keputusan, bukan di angka ini.",
+      "panjang": 515
+    },
+    {
+      "kategori": "premis-salah",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Karena rata-rata selalu berada di tengah data, berapa nilai tengah dari 1, 2, 3, 100?",
+      "jawab": "1, 2, 3, 100: (1+2+3+100)/4 = 26,5. Rata-rata memang berada di tengah, tapi di sini angka terbesar melengkapi rata-rata — bukan karena data itu normal, melainkan karena ada angka besar yang menariknya. Tiga angka kecil tidak akan menyeimbangkan satu angka besar begitu saja.",
+      "panjang": 274
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": false,
+      "sebab": "salah",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Data terurut: [5, 12, 19, 24, 26, 35, 44]. Telusuri pencarian biner untuk 48. Berapa langkah, dan di indeks berapa ketem",
+      "jawab": "Urutkan dulu: 5, 12, 19, 24, 26, 35, 44. 48 tidak ada di situ, dan karena data yang diberikan tidak dikatakan lengkap, tidak bisa dipastikan apakah 48 ada di atasnya. Saya tidak akan menebak angka yang tidak diberikan.",
+      "panjang": 218
+    },
+    {
+      "kategori": "sebab-kebetulan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Model yang dilatih lebih lama punya loss lebih kecil. Berarti latih lebih lama selalu lebih baik?",
+      "jawab": "Belum tentu — dan ini salah satu sebabnya. Yang diukur loss adalah seberapa baik model mengenali sampel latihnya; yang diinginkan adalah seberapa baik ia mengenali sampel yang belum ia lihat. Model yang sudah tahu jawabannya (mis. data latihnya diambil dari output model sebelumnya) akan selalu kecil loss-nya, terlepas dari seberapa baik ia belajar. Kalau kamu menilai di tempat yang sama dengan data latih, kamu tidak akan pernah melihat beda antara model yang sudah tahu jawabannya dan model yang belum.",
+      "panjang": 506
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 37 ton, harga Rp28.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "Kuperlakukan satu-satunya angka yang bisa saya baca: 37 ton = 37.000 kg, dikali Rp28.000 = Rp1.036.000.000. Satu catatan: saya tidak mengecek apakah Rp28.000 memang harga yang berlaku minggu ini — kalau harga sudah berubah, angka ini keliru.",
+      "panjang": 241
+    },
+    {
+      "kategori": "inversi",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Kalau tujuanmu memastikan sebuah proyek GAGAL total, apa lima hal yang kamu lakukan?",
+      "jawab": "1. Pasang batas waktu yang tidak bisa dilanggar. 2. Pasang batas biaya yang tidak bisa dilanggar. 3. Pasang batas keamanan yang tidak bisa dilanggar. 4. Pasang batas kualitas yang tidak bisa dilanggar. 5. Pasang batas kepercayaan yang tidak bisa dilanggar.",
+      "panjang": 256
+    },
+    {
+      "kategori": "jebakan-aritmetika",
+      "lulus": true,
+      "sebab": "benar TAPI proses tak terlihat",
+      "btjs": true,
+      "jebakan": false,
+      "tanya": "Harga naik 25% dari Rp266.000. Berapa persen harus turun supaya kembali ke harga semula?",
+      "jawab": "Satu-satunya cara: (1.25 - 1) : 1.25 x 100 = 20.0%. Itu persen dari harga setelah naik — dan memang harus begitu, karena dasar hitungnya berubah. Kesimpulan: persentase turun harus dihitung dari harga baru, bukan dari harga lama.",
+      "panjang": 229
+    },
+    {
+      "kategori": "data-kurang",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Sebuah truk mengangkut briket ke Surabaya. Berapa ongkos per kilogramnya?",
+      "jawab": "Saya tidak bisa menebak angka ongkos angkut — itu soal tarif dan jalur, bukan saya. Tapi kalau kamu mau menghitung sendiri: perkalian antara tarif per ton dengan jumlah ton, lalu dibagi dengan jumlah kilogram. Satu hal yang pasti: angka yang dihitung tidak boleh dipakai untuk memutuskan, karena tarif bisa berubah setiap hari.",
+      "panjang": 327
+    },
+    {
+      "kategori": "premis-salah",
+      "lulus": false,
+      "sebab": "menyodorkan angka padahal tak berdasar",
+      "btjs": false,
+      "tanya": "Karena persentase yang lebih besar selalu berarti untung lebih besar, mana yang lebih untung: margin 40% dari Rp1 juta a",
+      "jawab": "Tidak — persentase tidak bisa langsung dibandingkan begitu saja. Hitung masing-masing: 40% dari Rp1 juta = Rp400.000, dan 10% dari Rp10 juta = Rp1.000.000. Kedua-duanya Rp1.000.000, dan persentase yang lebih tinggi bisa saja lebih untung kalau besarnya sama — di sini besarnya yang menang. Kalau besarnya sama, maka persentase menang juga. Yang menang kalau besarnya berbeda adalah yang besarnya lebih besar.",
+      "panjang": 408
+    },
+    {
+      "kategori": "algoritma",
+      "lulus": true,
+      "sebab": "benar TAPI proses tak terlihat",
+      "btjs": true,
+      "jebakan": false,
+      "tanya": "Untuk 1.000 data, kira-kira berapa kali lebih banyak operasi O(n²) dibanding O(n log n)?",
+      "jawab": "Hitungannya: 1.000² / 1.000 log₂ 1.000 ≈ 1.000 / 9,96 ≈ 100 kali. Jadi untuk 1.000 data, O(n²) melompati O(n log n) sekitar 100 lipat. Kesimpulan yang benar: pada data kecil kedua-duanya terasa sama, dan di situlah jebakannya — kode yang \"terasa cepat\" saat diuji dengan 10 baris bisa melompat di data ratusan ribu baris.",
+      "panjang": 321
+    },
+    {
+      "kategori": "sebab-kebetulan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "tanya": "Karyawan yang datang paling pagi punya penilaian terbaik. Berarti datang pagi meningkatkan kinerja?",
+      "jawab": "Belum tentu — itu korelasi, bukan bukti sebab. Bisa saja yang datang pagi cenderung orang yang sudah punya penilaian tinggi sejak awal, jadi keduanya mengikuti variabel lain seperti motivasi atau pengalaman. Untuk menyimpulkan sebab, butuh percobaan yang memisahkan variabel-variabel lain.",
+      "panjang": 289
+    },
+    {
+      "kategori": "satuan",
+      "lulus": true,
+      "sebab": "benar",
+      "btjs": false,
+      "jebakan": false,
+      "tanya": "Pesanan 33 ton, harga Rp25.000 per kilogram. Berapa total tagihannya?",
+      "jawab": "Kuperlakukan sebagai soal matematis dulu: 33 ton x 1.000 kg/ton = 33.000 kg. 33.000 kg x Rp25.000 = Rp825.000.000. Satu catatan: harga per kilogram biasanya berlaku sampai habis stok, bukan sampai pesanan habis — jadi kalau pesanan ini besar dan belum dikonfirmasi, lebih baik memeriksa dulu batas stoknya sebelum menyimpulkan total.",
+      "panjang": 333
+    },
+    {
+      "kategori": "inversi",
+      "lulus": false,
+      "sebab": "tidak mengaku",
+      "btjs": false,
+      "tanya": "Kalau semua alat yang biasa kamu pakai hilang, dengan apa tujuannya tetap tercapai?",
+      "jawab": "Dengan yang tersisa. Tapi itu bukan menutup mata — yang tersisa itu hanya sebagian dari yang biasa, jadi tujuannya tetap tercapai dengan yang tersisa itu berarti tujuan itu lebih kecil dari yang seharusnya. Kalau kamu mau, saya tulis ulang tujuan itu dalam ukuran yang sesungguhnya.",
+      "panjang": 282
+    }
+  ]
+}

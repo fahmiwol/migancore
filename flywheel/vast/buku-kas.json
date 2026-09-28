@@ -1,0 +1,42 @@
+{
+  "_": "Biaya NYATA tiap run GPU. Perkiraan sewa.py lahir dari sini (median per jenis), bukan dari tebakan. Diisi pertama kali 1 Sep 2026 dari sesi RLVR V17.",
+  "_kenapa": "Peluncur merge mencetak 'perkiraan $0,05' untuk instance yang menghabiskan $0,36 — meleset 7x. Perkiraan sejauh itu LEBIH BERBAHAYA daripada tidak ada perkiraan, karena ia dipercaya dan dipakai memutuskan. Buku ini membuat perkiraan bisa dikoreksi kenyataan.",
+
+  "_SELISIH_YANG_BELUM_TERJAWAB": "Untuk beberapa run, biaya sewa menurut aritmetika (menit x dph/60) JAUH lebih kecil daripada penurunan saldo yang sebenarnya. Contoh paling tajam: merge 1 Sep hidup 20 menit pada $0,148/jam = $0,049 secara aritmetika, tapi saldo turun $0,36. Selisihnya BELUM dijelaskan — kandidat: biaya penyimpanan disk, bandwidth, atau tagihan minimum per instance. JANGAN memakai aritmetika sewa sebagai perkiraan sampai ini terjawab; pakai kolom `biaya` (penurunan saldo NYATA) yang tercatat di sini.",
+
+  "catatan": [
+    { "jenis": "probe-grpo", "menit": 15.0, "dphJam": 0.148, "biaya": 0.05,
+      "catatan": "probe-1, mati KeyError 'k' — kolam kejujuran pakai `jenis`, bukan `k`" },
+    { "jenis": "probe-grpo", "menit": 8.0, "dphJam": 0.148, "biaya": 0.05,
+      "catatan": "probe-2 BERHASIL, 2 langkah, 128 rollout, jujur mentah 0,531" },
+    { "jenis": "latih-grpo", "menit": 18.0, "dphJam": 0.148, "biaya": 0.14,
+      "catatan": "run-1 OOM: 256 token pada kartu 31,47 GiB, minta 9,31 bebas 6,78" },
+    { "jenis": "latih-grpo", "menit": 15.0, "dphJam": 0.148, "biaya": 0.10,
+      "catatan": "run-2 OOM: 128 token pada kartu 23,55 GiB — kartunya yang kekecilan" },
+    { "jenis": "latih-grpo", "menit": 25.0, "dphJam": 0.148, "biaya": 0.13,
+      "catatan": "run-3 DIBUNUH watchdog diam-12-menit padahal sehat; sebab lahirnya watchdog-tanya-GPU" },
+    { "jenis": "latih-grpo", "menit": 18.0, "dphJam": 0.148, "biaya": 0.11,
+      "catatan": "run pengukur waktu, 3 langkah SELESAI: 1,71 menit/langkah" },
+    { "jenis": "latih-grpo", "menit": 18.0, "dphJam": 0.148, "biaya": 0.08,
+      "catatan": "diagnostik-1: dtype float32, |w| selisih 0,0 — teori presisi bf16 MATI" },
+    { "jenis": "latih-grpo", "menit": 14.0, "dphJam": 0.148, "biaya": 0.08,
+      "catatan": "diagnostik-2: global_step=0, pengoptimasi 0 tensor — A21 KETEMU" },
+    { "jenis": "latih-grpo", "menit": 29.0, "dphJam": 0.148, "biaya": 0.11,
+      "catatan": "host rusak jaringan: pip gagal capai PyPI (SSL EOF); sebab lahirnya gerbang pasang-pustaka" },
+    { "jenis": "sewa-gagal", "menit": 2.0, "dphJam": 0.148, "biaya": 0.02,
+      "catatan": "tiga host gagal boot dalam 7 menit; peluncur mematikan semuanya sendiri" },
+    { "jenis": "latih-grpo", "menit": 52.0, "dphJam": 0.148, "biaya": 0.30,
+      "catatan": "run latih 20 langkah BERHASIL — |w| bergeser 7,19, pengoptimasi 504 tensor" },
+    { "jenis": "merge14", "menit": 20.0, "dphJam": 0.148, "biaya": 0.36,
+      "catatan": "MATI di 71% kuantisasi karena pemeriksa-hidup satu-tembakan (C41). Peluncur mencetak 'perkiraan $0,05'; saldo turun $0,36 — selisih 7x yang belum terjawab." }
+  ],
+
+  "_ringkasan_1sep": {
+    "totalSesi": 1.96,
+    "jumlahRun": 12,
+    "yangMenghasilkanBobotBergerak": 1,
+    "yangMenghasilkanAngkaEvaluasi": 0,
+    "yangDibeli": "Sebab kegagalan sesungguhnya (A21), sembilan penjaga permanen, dan satu adapter terlatih.",
+    "pelajaranTermahal": "Run penuh dijalankan SEBELUM dibuktikan bahwa satu langkah pengoptimasi benar-benar terjadi. Probe membuktikan tumpukan pustaka JALAN; ia tidak pernah membuktikan ada yang BERUBAH. Diagnostik bobot berbiaya NOL dan seharusnya ada sejak probe pertama."
+  }
+}

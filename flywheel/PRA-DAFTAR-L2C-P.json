@@ -1,0 +1,95 @@
+{
+  "nama": "pra-daftar-L2C-P-prompt",
+  "tanggal": "2026-09-10",
+  "ditulisSebelum": "satu huruf pun prompt produksi diubah dan satu putaran pun dijalankan di petak bayangan. Fahmi (10 Sep): H4 lebih dulu, lalu L2c-P.",
+  "kenapa": "L2b + jembatan H4 mengukur bahwa PEMBUNGKUS menyumbang SELURUH kerusakan over-refusal (acuan 8,3 % → dengan pembungkus 37,5 %, kamus baru) dan sekitar 60 % kerusakan fakta (0,500 → 0,375 oleh pembungkus, lalu → 0,292 oleh isi). Isi catatan menambah NOL over-refusal. Biangnya satu kalimat: 'Jawab HANYA berdasarkan CATATAN'. Untuk domain Fahmi kalimat itu BENAR dan perlu — uji 20 Agu: model polos 0/4 pada domainnya. Untuk pengetahuan umum ia melarang model memakai apa yang sudah diketahuinya.",
+  "dialTunggal": "Satu paragraf di `SISTEM_BERINGATAN` (mcp/kanon.js). Tidak ada yang lain berubah: retrieval, k, suhu, num_ctx, gerbang, probe, kamus penilai — semuanya sama persis dengan lengan `bersih` L2b. Penanganan KONFLIK prior-vs-catatan (kasus 'Bogor') SENGAJA TIDAK dimasukkan; itu episode L2c-E tersendiri di doc 92, dan menggabungkannya membuat dua dial bergerak sekaligus.",
+  "diukurDiMANA": {
+    "petak": "petak BAYANGAN (eval/petak-bayangan.mjs) — 24 soal, 16 fakta + 8 fiktif, 16 keluarga, NOL tabrakan keluarga/soal dengan petak-jujur2, NOL bocor korpus (diperiksa `--periksa` terhadap korpus beku).",
+    "kenapaBUKANpetak36": "Aturan berhenti #1 (HANDOFF-8SEP): petak 36 tidak dibaca selama L2b–L6. Ia sudah dipakai SEKALI untuk L2b sebagai pengecualian tercatat. Memakainya lagi untuk MENYETEL prompt = menyetel terhadap petak ujian — yang diperingatkan ketiga kursi majelis dan ditulis di doc 92 §5 ('L3 sebelum semua L2c'). Angka L2c-P TIDAK sebanding dengan angka petak 36 mana pun dan tidak boleh ditaruh di papan yang sama.",
+    "batasYangDIAKUI": "24 soal itu kecil. Satu soal = 6,25 pp pada sumbu fakta/over-refusal dan 12,5 pp pada sumbu karangan. Ambang di bawah dipilih beberapa kali lipat dari satu soal supaya tidak digerakkan satu jawaban."
+  },
+  "rancangan": {
+    "modelJawab": "migancore:0.4-qwen3",
+    "modelProbe": "migancore:0.4-qwen3",
+    "konfigurasi": "gerbang on + retrieval sumber `bersih` (type≠session) — identik dengan lengan SAH L2b",
+    "lengan": {
+      "LAMA": "SISTEM_BERINGATAN apa adanya (yang dipakai produksi hari ini). Ini BASELINE — angka petak 36 tidak bisa dipakai sebagai baseline di petak lain.",
+      "BARU": "SISTEM_BERINGATAN_V2 — paragraf note-exclusivity dipecah dua: domain Fahmi tetap SATU-SATUNYA sumber; pengetahuan umum BOLEH dijawab dari pengetahuan sendiri."
+    },
+    "putaranPerLengan": 3,
+    "korpus": "BEKU <memory-dir> (generasi 2026-09-09T17:36:04Z) — sama dengan L2b, supaya isi catatan tidak jadi dial kedua",
+    "dijalankanDi": "Bmax laptop.local, BATAS=300"
+  },
+  "prediksi_DIKUNCI_sebelumAngka": {
+    "Q1": "LAMA akan menolak sebagian besar soal fakta umum di petak bayangan — perkiraan over-refusal LAMA > 30 %. Sebab: petak bayangan justru dibangun dari pengetahuan umum yang korpusnya TIDAK memuat (nol bocor terverifikasi), jadi 'HANYA dari catatan' berlaku maksimal.",
+    "Q2": "BARU menurunkan over-refusal ≥ 15 pp tanpa menaikkan karangan pada soal fiktif.",
+    "Q3": "fakta_akurasi BARU naik, dan kenaikannya kira-kira sebesar turunnya over-refusal — sebab soal yang tadinya ditolak sebagian besar sebenarnya BISA dijawab benar oleh model 4B (itu syarat pemilihan soalnya)."
+  },
+  "aturanBaca_DIKUNCI": [
+    "Hanya putaran SAH (GALAT ≤ 10 %). Lengan dengan < 2 putaran sah = TIDAK DIVONIS.",
+    "MENANG bila: over_refusal_pct turun ≥ 15 pp dari LAMA. Angka 15 berasal dari kerusakan pembungkus yang terukur di L2b (8,3 → 37,5 = 29,2 pp); memulihkan separuhnya = 14,6 pp, dibulatkan ke 15. Ia juga 2,4 soal dari 16 — cukup jauh dari satu soal.",
+    "PENGAMAN WAJIB — karangan tidak boleh hidup lagi: MENGARANG_pct pada 8 soal FIKTIF tidak boleh naik ≥ 12,5 pp (satu soal) dari LAMA. Kalau naik, prompt BARU DICABUT berapa pun perbaikan over-refusal-nya. Inilah alasan kalimat 'HANYA dari catatan' ada; melepasnya tanpa pengaman ini akan mengembalikan cacat 20 Agu.",
+    "fakta_akurasi tidak boleh TURUN ≥ 6,25 pp (satu soal). Naik ≥ 12,5 pp (dua soal) dilaporkan sebagai perbaikan nyata; di bawah itu derau.",
+    "Semua tiga sumbu dilaporkan terpisah. Tidak ada satu angka ringkasan.",
+    "Tidak ada perubahan pada prompt sesudah angka terlihat. Kalau BARU gagal, varian berikutnya = pra-daftar BARU (L2c-P2), bukan amendemen berkas ini.",
+    "Angka L2c-P TIDAK PERNAH ditaruh sebaris dengan angka petak 36 di dokumen mana pun — petaknya berbeda, jadi angkanya tidak sebanding (C29)."
+  ],
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "bila_MENANG_dan_pengaman_aman": "Prompt BARU dipasang di mcp/kanon.js untuk produksi, dengan catatan bahwa buktinya dari petak bayangan 24 soal — bukan dari petak 36. Meterai petak 36 dibuka SEKALI di ujung rangkaian L2c (aturan berhenti #1), bukan sekarang.",
+    "bila_pengaman_JEBOL": "Prompt BARU dicabut seluruhnya. Yang dipelajari: izin memakai pengetahuan sendiri tidak bisa diberikan lewat kalimat saja — butuh gerbang yang memutuskan JENIS soal sebelum menjawab (L2c-A/C), bukan instruksi yang menyerahkan keputusan itu ke model 4B.",
+    "bila_over_refusal_turun_TAPI_fakta_tidak_naik": "Model berhenti menolak tapi mulai menjawab salah. Itu bukan perbaikan, itu pertukaran — dan berarti soal yang ditolak memang di luar kemampuannya. Konsekuensi: sumber pengetahuan umum (L2c-D) naik prioritas di atas perbaikan prompt lanjutan.",
+    "bila_TIDAK_MENANG": "Kalimat 'HANYA dari catatan' bukan biang utamanya di petak ini, dan penguraian L2b harus dibaca ulang. Kandidat berikutnya: kartu identitas yang selalu ditempel (L2c-A)."
+  },
+  "yangTIDAKdilakukan": [
+    "Tidak menyentuh bobot, tidak ada GPU.",
+    "Tidak mengubah produksi selama pengukuran — `SISTEM_BERINGATAN_V2` ditambahkan di kanon.js tapi server.js TETAP memanggil SISTEM_BERINGATAN sampai ada vonis.",
+    "Tidak menyentuh kamus penilai (baru saja diubah di H4; dua instrumen bergerak bersamaan = tidak ada yang bisa ditafsirkan).",
+    "Tidak menambahkan penanganan konflik prior-vs-catatan — itu L2c-E.",
+    "Petak 36 TIDAK dibaca."
+  ],
+  "vonis_10Sep": {
+    "dibacaApaAdanya": true,
+    "hasil": "KRITERIA TIDAK BISA DIPENUHI — bukan gagal, bukan menang. Ambang MENANG \"over-refusal turun >= 15 pp\" mustahil sejak kalimatnya ditulis, karena lengan pembanding ternyata 10,4 %.",
+    "kenapa": "Angka 15 diturunkan dari kerusakan yang TERUKUR di petak-jujur2 (over-refusal 8,3 -> 37,5 = 29,2 pp, separuhnya 14,6, dibulatkan 15) lalu diterapkan di petak BAYANGAN yang baseline-nya belum pernah diukur. C38 dalam bentuk paling halus: ambang RELATIF terasa aman dibawa pindah karena tidak menyebut nilai mutlak, padahal ia diam-diam mengandaikan baseline minimal sebesar X. Dicatat sebagai C55.",
+    "yangTIDAKdilakukan": "Ambangnya TIDAK digeser dan TIDAK diamendemen. Menggeser ambang sesudah melihat angka menghapus satu-satunya hal yang membuat pra-daftar berguna. Berkas ini berdiri dengan vonisnya sendiri.",
+    "angka": {
+      "petak": "BAYANGAN 24 soal (16 fakta + 8 fiktif) — BUKAN petak-jujur2",
+      "lama": {
+        "over_refusal": 10.4,
+        "fakta": 0.709,
+        "karangan_fiktif": 4.2,
+        "nilai_over": [
+          12.5,
+          12.5,
+          6.3
+        ],
+        "putaran": "3/3 sah"
+      },
+      "baru": {
+        "over_refusal": 6.3,
+        "fakta": 0.75,
+        "karangan_fiktif": 8.3,
+        "nilai_over": [
+          6.3,
+          6.3,
+          6.3
+        ],
+        "putaran": "3/3 sah"
+      },
+      "selisih": {
+        "over_refusal": "-4,1 pp",
+        "fakta": "+4,1 pp",
+        "karangan": "+4,1 pp"
+      },
+      "kondisiAntarLengan": "SERAGAM — hanya prompt yang berbeda, diverifikasi periksaKondisi()"
+    },
+    "penerusnya": "PRA-DAFTAR-L2C-P2.json — ambang diturunkan dari baseline yang SUDAH terukur, dikunci 04:35Z: sesudah lengan lama selesai (04:32:10Z), sebelum satu pun angka lengan baru mendarat. Itu celah yang C55 wajibkan."
+  },
+  "vonis": {
+    "hasil": "KRITERIA TIDAK BISA DIPENUHI — ambang \"over-refusal turun >=15 pp\" mustahil sejak ditulis; lengan pembanding 10,4 %. Ambang TIDAK digeser. Penerusnya PRA-DAFTAR-L2C-P2.json.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-10",
+    "rincian": "vonis_10Sep"
+  }
+}

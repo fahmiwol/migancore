@@ -1,0 +1,81 @@
+{
+  "berkas": "uji-kias.mjs",
+  "model": "migancore:0.11-4b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "sufiks": "23agu",
+  "sistemTambahan": "",
+  "keseluruhan": {
+    "lulus": 42,
+    "coba": 71,
+    "lo": 0.47538570815444975,
+    "hi": 0.6983144799762155,
+    "vonis": "GAGAL"
+  },
+  "perKategori": [
+    {
+      "kategori": "lugas",
+      "lulus": 19,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.7638641064874331,
+      "hi": 0.9911187805671267
+    },
+    {
+      "kategori": "majas_mati",
+      "lulus": 11,
+      "total": 18,
+      "v": "GAGAL",
+      "lo": 0.3861866858065617,
+      "hi": 0.7969500807306884
+    },
+    {
+      "kategori": "cabang",
+      "lulus": 4,
+      "total": 15,
+      "v": "GAGAL",
+      "lo": 0.10897276103182811,
+      "hi": 0.5195088965768675
+    },
+    {
+      "kategori": "kias",
+      "lulus": 8,
+      "total": 18,
+      "v": "GAGAL",
+      "lo": 0.24559231101389123,
+      "hi": 0.6628393057174836
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "Apa arti \"mata air\"?",
+      "lulus": 1,
+      "total": 4,
+      "kategori": "majas_mati"
+    },
+    {
+      "kunci": "Ada makanan 7 dibagi 2, sisa berapa?",
+      "lulus": 1,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Kue 10 dibagi 4 gimana?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "cabang"
+    },
+    {
+      "kunci": "Apa maksud peribahasa \"keranjang belanja penuh, hati kosong\"?",
+      "lulus": 3,
+      "total": 5,
+      "kategori": "kias"
+    },
+    {
+      "kunci": "Harga per kg Rp21.500, beli 6 kg. Totalnya berapa?",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "lugas"
+    }
+  ]
+}

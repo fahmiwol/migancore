@@ -1,0 +1,94 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-D1-NPC-SPESIALIS.json",
+ "stempel": "2026-09-26T06-33-33",
+ "asap": false,
+ "host": "http://measure-host.local:11434",
+ "mesin": "migan",
+ "sesi": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "nGiliran": 2160,
+ "berhenti": null,
+ "identitasB": {
+  "cocok": true,
+  "alasan": "cocok"
+ },
+ "digestAwal": {
+  "cocok": true,
+  "alasan": "cocok"
+ },
+ "digestAkhir": {
+  "cocok": true,
+  "alasan": "cocok"
+ },
+ "badanSetara": {
+  "lulus": true,
+  "mPolos": true,
+  "opsiTepat": true,
+  "sisaSama": true,
+  "modelB": true
+ },
+ "pembungkus": {
+  "diubah": 1200,
+  "apaAdanya": 1200
+ },
+ "keabsahanRun": {
+  "lulus": true,
+  "sel": {
+   "M": {
+    "n": 1080,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 3,
+    "digestBeda": 0,
+    "tokPromptMaks": 1566
+   },
+   "B": {
+    "n": 1080,
+    "galat": 0,
+    "bocor": 0,
+    "terpotong": 0,
+    "digestBeda": 0,
+    "tokPromptMaks": 1423
+   }
+  },
+  "masalah": []
+ },
+ "latensi_DESKRIPTIF": {
+  "M": {
+   "n": 1080,
+   "ttftP50": 1.1602855999995954,
+   "ttftP95": 1.5355674150000675,
+   "totalP50": 6.802340799999424,
+   "tokKeluarRata": 45.425
+  },
+  "B": {
+   "n": 1080,
+   "ttftP50": 1.137352700000163,
+   "ttftP95": 1.4689465200003236,
+   "totalP50": 6.006234699999913,
+   "tokKeluarRata": 38.62407407407407
+  }
+ },
+ "jsonl": "d1-npc-spesialis-2026-09-26T06-33-33.jsonl",
+ "lulus": true
+}

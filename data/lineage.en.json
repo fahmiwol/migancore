@@ -1,0 +1,392 @@
+{
+  "_about": "English one-line lineage of all 41 MiganCore variants (numbering follows the private lineage reference, doc 101). Written from that reference; the long Indonesian fields are in migancore-public.id.json -> lineage. 'family' and 'status' are categories for charts.",
+  "families": {
+    "small": "Small models (0.5B-3B), before Qwen3",
+    "qwen25-7b": "Qwen2.5-7B line (May 2026)",
+    "qwen3-4b": "Qwen3-4B line (Jun-Sep 2026)",
+    "qwen3-8b": "Qwen3-8B experiments",
+    "component": "LoRA 'discipline' components and recipe variants (Aug 2026)"
+  },
+  "statuses": {
+    "served": "Served model (the one in production at closure)",
+    "former-default": "Was the default/production model at some point, later replaced",
+    "superseded": "Replaced by a later version",
+    "rolled-back": "Rolled back after evaluation",
+    "not-promoted": "Measured and explicitly barred from promotion",
+    "component": "Building block of a merged model, not served on its own",
+    "never-born": "Planned or named, but the model was never produced",
+    "not-judged": "Trained or pre-registered, but never measured to a verdict",
+    "archived": "Archived without a formal verdict"
+  },
+  "entries": [
+    {
+      "no": "1",
+      "name": "0.1",
+      "date": "early 2026 (exact date not recorded)",
+      "base": "Qwen2.5 / Qwen3 small (0.5B-3B)",
+      "family": "small",
+      "status": "archived",
+      "note": "Small, cheap models abandoned for lack of capacity; no numbers attributable to this name."
+    },
+    {
+      "no": "2",
+      "name": "0.1-qwen3 (cycle 8)",
+      "date": "2026-06-16",
+      "base": "Qwen3-4B-2507",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "First 4B identity cycle: SFT LoRA r=64 on 379 pairs distilled from commercial AI services (~US$2.24). Qualitative evaluation only."
+    },
+    {
+      "no": "3",
+      "name": "0.2-qwen3 (cycle 9)",
+      "date": "2026-06-17",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "807 pairs (537 new + 270 reused); distillation from commercial AI services, estimated at ~US$5-7 plus ~US$0.30; training cost US$0.21. 7/8 on a qualitative test; heavy over-use of tools."
+    },
+    {
+      "no": "4",
+      "name": "0.3 (Qwen2.5-7B line)",
+      "date": "~May 2026",
+      "base": "Qwen2.5-7B",
+      "family": "qwen25-7b",
+      "status": "archived",
+      "note": "Cycles 2-7 used ORPO/SimPO; most iterations of this line were rolled back (F-041)."
+    },
+    {
+      "no": "5",
+      "name": "0.7c",
+      "date": "~May 2026",
+      "base": "Qwen2.5-7B",
+      "family": "qwen25-7b",
+      "status": "former-default",
+      "note": "Briefly the default, then replaced; archived."
+    },
+    {
+      "no": "6",
+      "name": "0.7e",
+      "date": "~May 2026",
+      "base": "Qwen2.5-7B",
+      "family": "qwen25-7b",
+      "status": "archived",
+      "note": "Not promoted permanently; archived."
+    },
+    {
+      "no": "7",
+      "name": "latest (moving alias, 7B line)",
+      "date": "~May 2026",
+      "base": "Qwen2.5-7B",
+      "family": "qwen25-7b",
+      "status": "archived",
+      "note": "A moving tag rather than a version; archived."
+    },
+    {
+      "no": "8",
+      "name": "0.8 (Qwen2.5-7B line)",
+      "date": "~May 2026",
+      "base": "Qwen2.5-7B",
+      "family": "qwen25-7b",
+      "status": "archived",
+      "note": "Not promoted permanently; archived."
+    },
+    {
+      "no": "9",
+      "name": "0.3-qwen3 (cycle 10)",
+      "date": "2026-06-21",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "PASS on its cycle gate, then replaced by 0.4-qwen3."
+    },
+    {
+      "no": "10",
+      "name": "0.4-qwen3 / gen-1 (cycle 11)",
+      "date": "2026-06-23",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "former-default",
+      "note": "Promoted to production default; later kept as the cross-generation comparison anchor; replaced by migancore:0.14."
+    },
+    {
+      "no": "11",
+      "name": "0.5-qwen3 (cycle 12)",
+      "date": "late June 2026",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "rolled-back",
+      "note": "Rolled back; not promoted."
+    },
+    {
+      "no": "12",
+      "name": "0.6-qwen3 (cycle 13)",
+      "date": "2026-06-30",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "PASS as a recovery run, but did not replace 0.4 as default; archived."
+    },
+    {
+      "no": "13",
+      "name": "0.7-qwen3 (cycle 14)",
+      "date": "attempted 2026-06-30",
+      "base": "Qwen3-4B-Instruct-2507 (planned)",
+      "family": "qwen3-4b",
+      "status": "never-born",
+      "note": "Postponed; the model was never produced."
+    },
+    {
+      "no": "14",
+      "name": "pilot14-irrelevance",
+      "date": "2026-07-27",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "rolled-back",
+      "note": "QLoRA pilot to refuse irrelevant questions without hurting routing or general ability (197 irrelevance + 111 positive examples; one RTX 4090, 46.5 min, US$0.79). Rolled back."
+    },
+    {
+      "no": "15",
+      "name": "pilot15-seimbang (balanced)",
+      "date": "2026-07-27",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "not-promoted",
+      "note": "PASS on the probe, but the decision record keeps it unpromoted; experiment archive."
+    },
+    {
+      "no": "16",
+      "name": "run16-2epoch",
+      "date": "2026-07-27",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "not-promoted",
+      "note": "Not promoted; the result was within noise rather than a clear failure."
+    },
+    {
+      "no": "17",
+      "name": "0.5-flywheel",
+      "date": "not recorded",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "archived",
+      "note": "Artifact of the data-flywheel experiments; never formally promoted."
+    },
+    {
+      "no": "18",
+      "name": "0.8-8b",
+      "date": "~2026-08-20",
+      "base": "Qwen3-8B",
+      "family": "qwen3-8b",
+      "status": "former-default",
+      "note": "Served for a while behind grounding/MCP, then replaced; archived."
+    },
+    {
+      "no": "19",
+      "name": "0.11-4b / v11",
+      "date": "2026-08-21/22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "former-default",
+      "note": "Production/comparison model for a short time; replaced by v13 and then v14."
+    },
+    {
+      "no": "20",
+      "name": "migancore:0.12-adapter",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "not-promoted",
+      "note": "Weak link in the evidence chain; barred as a basis for claims or promotion."
+    },
+    {
+      "no": "21",
+      "name": "migancore:0.12-merged",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507 + merged v12 LoRA",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "A healthy merge proved the runtime was not the only problem; the one-pot recipe failed and the v12 line was stopped."
+    },
+    {
+      "no": "22",
+      "name": "migancore:0.13 / v13",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "superseded",
+      "note": "Adjudicated on 10 Sep as PARTIAL PASS; replaced by v14."
+    },
+    {
+      "no": "22a",
+      "name": "lora-hitung (arithmetic discipline) v13",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "component",
+      "status": "component",
+      "note": "Component of v13; replaced in v14 by the prompt-variety arithmetic adapter."
+    },
+    {
+      "no": "22b",
+      "name": "lora-nalar (reasoning discipline) v13",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "component",
+      "status": "rolled-back",
+      "note": "Harmful; removed from the v14 merge."
+    },
+    {
+      "no": "22c",
+      "name": "lora-gaya (style discipline) v13",
+      "date": "2026-08-22",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "component",
+      "status": "component",
+      "note": "Kept: the original v13 style adapter is part of the v14 merge."
+    },
+    {
+      "no": "22d",
+      "name": "lora-hitung control (format contract)",
+      "date": "2026-08-23",
+      "base": "Qwen3-4B",
+      "family": "component",
+      "status": "component",
+      "note": "PASS as a control arm; not a production candidate."
+    },
+    {
+      "no": "22e",
+      "name": "lora-hitung weight-decay 0.01",
+      "date": "2026-08-23",
+      "base": "Qwen3-4B",
+      "family": "component",
+      "status": "not-promoted",
+      "note": "PASS without a win = inert; the weight-decay path was closed."
+    },
+    {
+      "no": "22f",
+      "name": "lora-hitung epoch-1",
+      "date": "2026-08-23",
+      "base": "Qwen3-4B",
+      "family": "component",
+      "status": "rolled-back",
+      "note": "FAIL; the recipe-dial path was closed and the next lever became prompt variety."
+    },
+    {
+      "no": "22g",
+      "name": "lora-hitung prompt-variety",
+      "date": "2026-08-23",
+      "base": "Qwen3-4B",
+      "family": "component",
+      "status": "component",
+      "note": "PASS and WIN: became the default v14 data recipe and a component of 0.14k/0.14."
+    },
+    {
+      "no": "22h",
+      "name": "lora-gaya prompt-variety",
+      "date": "2026-08-23",
+      "base": "Qwen3-4B",
+      "family": "component",
+      "status": "rolled-back",
+      "note": "FAIL; not merged, v14 used the original v13 style adapter."
+    },
+    {
+      "no": "23",
+      "name": "hitung-ajar364 (v13 research variant)",
+      "date": "2026-08-22/24",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "component",
+      "status": "not-promoted",
+      "note": "Reported as passing, but a one-row gold-label defect limits the claim; not promoted."
+    },
+    {
+      "no": "24",
+      "name": "migancore:0.14k",
+      "date": "2026-08-24",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "served",
+      "note": "PASS on the local tier-2 gate; same weights as migancore:0.14 (alias)."
+    },
+    {
+      "no": "25",
+      "name": "migancore:0.14",
+      "date": "served from 2026-08-24",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "served",
+      "note": "TIES-merge of the arithmetic (prompt-variety, 285 rows) and style (200 rows) LoRAs. About 50% fabrication on the petak-jujur2 battery (49.9% mean over 40 valid rounds); kept in service because the v15 and v16 candidates failed promotion."
+    },
+    {
+      "no": "26",
+      "name": "migancore:0.14-tool",
+      "date": "2026-08-24/25",
+      "base": "0.14 (4B) + tool adapter",
+      "family": "qwen3-4b",
+      "status": "archived",
+      "note": "Tool-use specialist branch; never replaced 0.14."
+    },
+    {
+      "no": "27",
+      "name": "migancore:0.14-tool-8b",
+      "date": "2026-08-25",
+      "base": "Qwen3-8B",
+      "family": "qwen3-8b",
+      "status": "not-promoted",
+      "note": "Missed the tool threshold and was poor on hallucination; research archive, barred from promotion."
+    },
+    {
+      "no": "28",
+      "name": "migancore:0.15-tool",
+      "date": "2026-08-28",
+      "base": "0.14 tool branch (4B)",
+      "family": "qwen3-4b",
+      "status": "not-promoted",
+      "note": "Early PASS revoked on 30 Aug: FAIL on the regression gate (fabrication 8.4/14 mean over 5 rounds vs <= 8), despite 113/120 on the tool gate."
+    },
+    {
+      "no": "29",
+      "name": "migancore:uji-jujur-1 (V16-JUJUR)",
+      "date": "2026-08-31",
+      "base": "Qwen3-4B-Instruct-2507",
+      "family": "qwen3-4b",
+      "status": "not-promoted",
+      "note": "NOT A WIN: 60.0% fabrication vs the <= 50% win threshold, statistically indistinguishable from 0.14; archived."
+    },
+    {
+      "no": "30",
+      "name": "migancore:0.16",
+      "date": "never produced",
+      "base": "-",
+      "family": "qwen3-4b",
+      "status": "never-born",
+      "note": "Name reserved for a V16 or V18 promotion that never happened."
+    },
+    {
+      "no": "31",
+      "name": "V17-RLVR / uji-rlvr-1",
+      "date": "2026-08-31 to 09-01",
+      "base": "Qwen3-4B + style adapter",
+      "family": "qwen3-4b",
+      "status": "not-judged",
+      "note": "GPU budget ran out at 71% of the merge; the RLVR adapter exists but was never evaluated."
+    },
+    {
+      "no": "32",
+      "name": "MO-GRPO runs (six adapters)",
+      "date": "pre-registered 2026-08-28",
+      "base": "v14/v15 tool branch",
+      "family": "qwen3-4b",
+      "status": "not-judged",
+      "note": "None of the six adapters was ever measured, so the main question cannot be judged."
+    },
+    {
+      "no": "33",
+      "name": "V18 / uji-tahan-1",
+      "date": "pre-registered 2026-09-07",
+      "base": "Qwen3-4B-Instruct-2507 (planned)",
+      "family": "qwen3-4b",
+      "status": "not-judged",
+      "note": "Never run; therefore never judged and never called 0.16."
+    }
+  ]
+}

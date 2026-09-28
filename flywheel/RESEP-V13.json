@@ -1,0 +1,47 @@
+{
+  "nama": "resep-v13-cluster-lora",
+  "catatan": "SATU SUMBER hiperparameter resep cluster-LoRA v13 (sebelumnya tertanam sebagai literal di flywheel/vast/latih_cluster.py). Nilai di sini IDENTIK dengan yang melatih tiga adapter v13 pada 22 Agu 2026 — mengubah satu nilai = resep baru = pra-daftar baru. latih_cluster.py membaca berkas ini bila dikirim sebagai /workspace/resep.json dan MENOLAK jalan bila nilainya berbeda dari bawaan kecuali env RESEP_IZIN_BEDA=1 (keputusan sadar, tercatat di ringkasan).",
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.0,
+    "bias": "none",
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  },
+  "latih": {
+    "epoch": 2,
+    "batch": 4,
+    "akumulasi": 4,
+    "lr": 0.0002,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine",
+    "optim": "adamw_torch",
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "weight_decay": 0.0,
+    "seed": 42,
+    "maks_token": 1024,
+    "penopengan_prompt": true
+  },
+  "keputusanSadar": {
+    "weight_decay": "0.0 = bawaan TrainingArguments yang selama ini dipakai tanpa disadari (Databricks memakai 0.01 untuk full fine-tune; LoRA berbeda). Dicatat sebagai keputusan, bukan kebetulan — RISET-SUMBER-LUAR-22AGU.md §10.",
+    "seed": "42 = bawaan TrainingArguments yang selama ini berlaku diam-diam; kini eksplisit dan ikut tercatat di ringkasan.",
+    "lr_2e-4": "10x lebih besar dari full fine-tune (2e-5) — wajar untuk LoRA, bukan celah."
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1",
+    "image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+  },
+  "gerbangTier1": {
+    "soal": "eval/soal-aritmetika-bersih.json",
+    "kenari": "flywheel/dataset/kenari.json",
+    "petakTahan": "flywheel/dataset/migancore-tahan.jsonl",
+    "promptGerbang": "eval/prompt-gerbang.json",
+    "n_baru": 400,
+    "suhu": 0
+  }
+}

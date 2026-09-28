@@ -1,0 +1,193 @@
+{
+ "praDaftar": "flywheel/PRA-DAFTAR-E1B-RIWAYAT.json",
+ "riwayat": "persis",
+ "stempel": "2026-09-23T02-29-27",
+ "asap": false,
+ "host": "http://measure-host.local:11434",
+ "modelJawab": "migancore:0.14",
+ "modelProbe": "migancore:0.4-qwen3",
+ "opsi": {
+  "temperature": 0.7,
+  "num_predict": 160
+ },
+ "nSesi": 5,
+ "nGiliran": 240,
+ "ambang": {
+  "p50MaksDtk": 2,
+  "p95MaksDtk": 4,
+  "lajuMinTok": 4.8,
+  "galatMaksPct": 2,
+  "sesiMin": 5,
+  "galatSesiMaksPct": 10
+ },
+ "startDingin": {
+  "jawabMs": 16683.6108,
+  "probeMs": 21104.346
+ },
+ "dudukSebelum": [],
+ "dudukSesudahPemanasan": [
+  "migancore:0.14",
+  "migancore:0.4-qwen3"
+ ],
+ "dudukPerSesi": [
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ],
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ],
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ],
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ],
+  [
+   "migancore:0.14",
+   "migancore:0.4-qwen3"
+  ]
+ ],
+ "probeJalanPct": 95.83333333333333,
+ "probeP50Dtk": 8.12223600000015,
+ "probeGalat": 0,
+ "pikirBocorGiliran": 0,
+ "Q_MODEL": {
+  "vonis": "GAGAL",
+  "sebab": [
+   "2_awal_p95"
+  ],
+  "syarat": {
+   "1_awal_p50": {
+    "nilai": 1.0445703499999945,
+    "ambang": "<= 2",
+    "lulus": true
+   },
+   "2_awal_p95": {
+    "nilai": 8.631759835000045,
+    "ambang": "<= 4",
+    "lulus": false
+   },
+   "3_laju_p50": {
+    "nilai": 9.04814496396192,
+    "ambang": ">= 4.8",
+    "lulus": true
+   },
+   "4_galat_pct": {
+    "nilai": 0,
+    "ambang": "<= 2",
+    "lulus": true
+   }
+  },
+  "nGiliran": 240,
+  "sesiSah": 5
+ },
+ "Q_PRODUK": {
+  "vonis": "GAGAL",
+  "sebab": [
+   "1_awal_p50",
+   "2_awal_p95"
+  ],
+  "syarat": {
+   "1_awal_p50": {
+    "nilai": 10.43521300000028,
+    "ambang": "<= 2",
+    "lulus": false
+   },
+   "2_awal_p95": {
+    "nilai": 17.26296811999988,
+    "ambang": "<= 4",
+    "lulus": false
+   },
+   "3_laju_p50": {
+    "nilai": 9.04814496396192,
+    "ambang": ">= 4.8",
+    "lulus": true
+   },
+   "4_galat_pct": {
+    "nilai": 0,
+    "ambang": "<= 2",
+    "lulus": true
+   }
+  },
+  "nGiliran": 240,
+  "sesiSah": 5
+ },
+ "perIndeks": [
+  {
+   "indeks": 0,
+   "n": 30,
+   "p50ModelDtk": 0.3209171999999089,
+   "p50TokPrompt": 261
+  },
+  {
+   "indeks": 1,
+   "n": 30,
+   "p50ModelDtk": 0.8314542000001529,
+   "p50TokPrompt": 314
+  },
+  {
+   "indeks": 2,
+   "n": 30,
+   "p50ModelDtk": 0.9224513000000734,
+   "p50TokPrompt": 367.5
+  },
+  {
+   "indeks": 3,
+   "n": 30,
+   "p50ModelDtk": 2.5717838999999225,
+   "p50TokPrompt": 407
+  },
+  {
+   "indeks": 4,
+   "n": 30,
+   "p50ModelDtk": 3.4591668000000646,
+   "p50TokPrompt": 475
+  },
+  {
+   "indeks": 5,
+   "n": 30,
+   "p50ModelDtk": 2.2608713999998873,
+   "p50TokPrompt": 519
+  },
+  {
+   "indeks": 6,
+   "n": 30,
+   "p50ModelDtk": 1.4754960000000428,
+   "p50TokPrompt": 560
+  },
+  {
+   "indeks": 7,
+   "n": 30,
+   "p50ModelDtk": 2.40417415000021,
+   "p50TokPrompt": 634
+  }
+ ],
+ "perKategori": [
+  {
+   "kategori": "sapa",
+   "n": 60,
+   "probeJalanPct": 83.33333333333333,
+   "p50ModelDtk": 0.7401597499999917,
+   "p50ProdukDtk": 9.987938200000034
+  },
+  {
+   "kategori": "tahu",
+   "n": 90,
+   "probeJalanPct": 100,
+   "p50ModelDtk": 1.0851044500000426,
+   "p50ProdukDtk": 10.336889150000069
+  },
+  {
+   "kategori": "luar",
+   "n": 90,
+   "probeJalanPct": 100,
+   "p50ModelDtk": 2.5607909999997647,
+   "p50ProdukDtk": 11.114510349999765
+  }
+ ],
+ "jsonl": "e1b-riwayat-2026-09-23T02-29-27.jsonl"
+}

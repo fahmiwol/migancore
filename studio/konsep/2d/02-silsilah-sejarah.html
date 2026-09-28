@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Silsilah &amp; Sejarah — MiganCore Studio</title><link rel="stylesheet" href="gaya.css"><script defer src="nadi.js"></script></head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html"><span class="merek-tanda" aria-hidden="true"></span><span><strong>MIGANCORE STUDIO</strong><small>POHON SILSILAH</small></span></a>
+    <nav class="navigasi-utama" aria-label="Layar utama"><a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a></nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca>Mode Baca</button></div>
+  </header>
+  <main id="isi" class="bungkus">
+    <header class="kepala-layar"><div><div class="alis">Genealogi model</div><h1>Pohon Silsilah &amp; Strata Sejarah</h1><p class="subjudul">Versi bukan “level”. Setiap simpul membawa vonis atau larangan yang benar-benar tercatat.</p></div><div class="legenda-ringkas"><span class="status status-lulus">berlaku</span><span class="status status-gagal">dilarang promosi</span><span class="status status-netral">riwayat / netral</span></div></header>
+    <div id="silsilah"><div class="panel pemuatan">membaca silsilah…</div></div>
+  </main>
+  <footer class="kaki"><span>Garis adalah urutan penyajian, bukan klaim hubungan bobot yang tidak tersedia.</span><span>Riwayat disarikan dari modelBerlaku, dilarangPromosi, dan praDaftar.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded',async()=>{
+      const root=document.querySelector('#silsilah');let d;try{d=await Nadi.data()}catch(e){return Nadi.galat(root,e)}
+      const ambil=(id)=>d.praDaftar.find(x=>x.id===id)||{};
+      const versi=['V13','V14','V15','V16-JUJUR','V17-RLVR','V18'].map(ambil).filter(x=>x.id);
+      const dilarang=new Set(d.modelBerlaku.dilarangPromosi);
+      const simpul=(judul,label,kelas,catatan,jalur)=>`<article class="simpul-model ${kelas}"><span class="status status-${kelas==='berlaku'?'lulus':kelas==='dilarang'?'gagal':'netral'}">${label}</span><b>${Nadi.angka(judul,d,jalur)}</b><p>${catatan}</p></article>`;
+      root.innerHTML=`
+        <section class="panel silsilah-panggung"><div class="label-panel">Pohon keadaan · bukan bagan kemajuan</div><div class="pohon" style="margin-top:20px">
+          <div class="generasi">${simpul('qwen3:4b','JANGKAR BASE','',`Diukur melalui A3 sebagai base mentah; bukan model produksi.`,'praDaftar[A3-JANGKAR]')}</div>
+          <div class="generasi">${simpul(d.modelBerlaku.tag,'BERLAKU','berlaku',`Berlaku sejak ${Nadi.angka(d.modelBerlaku.sejak,d,'modelBerlaku.sejak')}.`,'modelBerlaku.tag')}</div>
+          <div class="generasi">${d.modelBerlaku.dilarangPromosi.map((x,i)=>simpul(x,'DILARANG PROMOSI','dilarang','Larangan tercatat; tidak dipromosikan. ',`modelBerlaku.dilarangPromosi[${i}]`)).join('')}</div>
+        </div><p class="catatan-sumber">Hubungan visual: base ukur → model berlaku → kandidat yang dilarang. Sumber tidak menyediakan silsilah bobot lengkap, jadi garis tidak menyatakan pewarisan parameter.</p></section>
+
+        <section class="grid grid-hud" style="margin-top:16px">
+          <article class="panel panel-pad"><span class="label-panel">Lapisan strata versi</span><h2 style="margin-top:7px">Riwayat vonis</h2><div class="garis-waktu">${versi.map((v,i)=>`<div class="waktu-item"><time>${v.tanggal?Nadi.angka(v.tanggal,d,`praDaftar[${v.id}].tanggal`):'tanggal belum ada'}</time><span class="waktu-titik"></span><div class="waktu-isi"><span class="status status-${Nadi.status(v.keadaan)}">${Nadi.esc(v.keadaan).toUpperCase()}</span><h3 style="margin:7px 0 0">${Nadi.teksData(v.id,d,`praDaftar[${v.id}].id`)}</h3><p>${Nadi.teksData(Nadi.teksRingkas(v.hasil,220),d,`praDaftar[${v.id}].hasil`)}</p></div></div>`).join('')}</div></article>
+          <aside class="tumpuk">
+            <article class="panel panel-pad"><span class="label-panel">Aturan baca</span><h2 style="margin-top:7px">Urutan tidak berarti naik pangkat</h2><p class="redup">“Lulus”, “gagal”, “netral”, dan “belum” adalah keadaan uji. Versi bernomor lebih tinggi tidak otomatis lebih baik atau berlaku.</p></article>
+            <article class="panel panel-pad"><span class="label-panel">Model frontier</span><h2 style="margin-top:7px">n kecil selalu terlihat</h2><p class="redup">Perbandingan model frontier ditaruh di Laboratorium dengan <i>putaran sah</i> (n) per baris. Tidak dipakai sebagai cabang silsilah.</p><a class="tombol hantu" href="03-riset-lab.html#tangga">Buka tangga MENGARANG →</a></article>
+          </aside>
+        </section>`;
+    });
+  </script>
+</body></html>

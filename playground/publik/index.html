@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adu Model MiganCore</title>
+<style>
+  :root{
+    --bg:#f7f8f7; --kartu:#fff; --fg:#151915; --redup:#5c6a5e; --garis:#dfe5e0;
+    --aksen:#2f6b45; --aksen-lemah:#e8f2ec; --aksen-teks:#245538;
+    --hijau:#166b46; --merah:#a32820; --kuning:#7a6111; --r:5px;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0f130f; --kartu:#171c18; --fg:#e6ece7; --redup:#97a59a; --garis:#252d27;
+    --aksen:#5fc48c; --aksen-lemah:#152c1f; --aksen-teks:#8fd9b0;
+    --hijau:#5cc793; --merah:#ff8f85; --kuning:#dcbe4e;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0f130f; --kartu:#171c18; --fg:#e6ece7; --redup:#97a59a; --garis:#252d27;
+    --aksen:#5fc48c; --aksen-lemah:#152c1f; --aksen-teks:#8fd9b0;
+    --hijau:#5cc793; --merah:#ff8f85; --kuning:#dcbe4e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:400 15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-variant-numeric:tabular-nums}
+  header{border-bottom:1px solid var(--garis);background:var(--kartu)}
+  header div{max-width:1200px;margin:0 auto;padding:.85rem 1.1rem;display:flex;
+    gap:.8rem;align-items:baseline;flex-wrap:wrap}
+  h1{font-size:1.12rem;margin:0;letter-spacing:-.01em;font-weight:600}
+  .slogan{color:var(--redup);font-size:.84rem}
+  main{max-width:1200px;margin:0 auto;padding:1.2rem 1.1rem 3rem}
+  .atur{display:grid;grid-template-columns:1fr 1fr auto auto;gap:.6rem;align-items:end;margin-bottom:1rem}
+  @media (max-width:760px){.atur{grid-template-columns:1fr 1fr}}
+  label{display:block;font:600 .68rem/1.3 inherit;text-transform:uppercase;
+    letter-spacing:.09em;color:var(--redup);margin-bottom:.25rem}
+  select,input,textarea{width:100%;background:var(--kartu);color:var(--fg);
+    border:1px solid var(--garis);border-radius:var(--r);padding:.45rem .55rem;
+    font:inherit;font-size:.88rem}
+  textarea{min-height:3.4rem;resize:vertical}
+  select:focus,input:focus,textarea:focus{outline:2px solid var(--aksen);outline-offset:-1px}
+  button{background:var(--aksen);color:#fff;border:0;border-radius:var(--r);
+    padding:.5rem 1rem;font:600 .88rem/1.4 inherit;cursor:pointer;white-space:nowrap}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button.kecil{background:none;border:1px solid var(--garis);color:var(--redup);
+    font-weight:400;font-size:.8rem;padding:.3rem .55rem}
+  button.kecil:hover{border-color:var(--aksen);color:var(--aksen)}
+  button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+
+  .bank{background:var(--kartu);border:1px solid var(--garis);border-radius:var(--r);
+    padding:.8rem .9rem;margin-bottom:1rem}
+  .bank h2{font:600 .7rem/1.3 inherit;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--aksen);margin:0 0 .2rem}
+  .bank p{color:var(--redup);font-size:.8rem;margin:0 0 .5rem;max-width:70ch}
+  .bank + .bank{margin-top:-.5rem}
+  .cip{display:flex;flex-wrap:wrap;gap:.35rem}
+  .cip button{background:var(--bg);border:1px solid var(--garis);color:var(--fg);
+    font-weight:400;font-size:.8rem;padding:.28rem .5rem;text-align:left}
+  .cip button:hover{border-color:var(--aksen);background:var(--aksen-lemah)}
+
+  .hasil{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .kolom{background:var(--kartu);border:1px solid var(--garis);border-radius:var(--r);
+    display:flex;flex-direction:column;overflow:hidden}
+  .kepala{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;
+    border-bottom:1px solid var(--garis);font-size:.82rem}
+  .kepala b{font-family:ui-monospace,SFMono-Regular,monospace;font-size:.8rem;font-weight:600}
+  .kepala .waktu{margin-left:auto;color:var(--redup);font-size:.76rem}
+  .vonis{font-weight:700;font-size:.76rem;padding:0 .35rem;border-radius:2px;border:1px solid currentColor}
+  .vonis.ya{color:var(--hijau)} .vonis.tidak{color:var(--merah)}
+  .isi{padding:.7rem .75rem;white-space:pre-wrap;font-size:.87rem;line-height:1.65;flex:1}
+  .isi.gagal{color:var(--merah)}
+  .harap{padding:.5rem .75rem;border-top:1px solid var(--garis);
+    color:var(--redup);font-size:.79rem;background:var(--aksen-lemah)}
+  .kosong{color:var(--redup);font-size:.87rem;padding:2rem 0;text-align:center}
+  .galat{border:1px solid var(--merah);border-left:3px solid var(--merah);
+    background:var(--kartu);border-radius:var(--r);padding:.7rem .85rem;color:var(--merah);font-size:.85rem}
+</style>
+</head>
+<body>
+<header><div>
+  <h1>Adu Model MiganCore</h1>
+  <span class="slogan">gerbang menjawab <b>berapa</b> · halaman ini menjawab <b>bagaimana</b></span>
+</div></header>
+<main>
+  <div id="galat"></div>
+  <div class="atur">
+    <div><label for="m1">Model kiri</label><select id="m1"></select></div>
+    <div><label for="m2">Model kanan</label><select id="m2"></select></div>
+    <div><label for="suhu">Suhu</label><input id="suhu" type="number" min="0" max="1" step="0.1" value="0" style="width:5rem"></div>
+    <div><button id="kirim">Adu</button></div>
+  </div>
+  <div><label for="tanya">Pertanyaan</label>
+    <textarea id="tanya" placeholder="Tulis sendiri, atau pilih dari bank soal di bawah"></textarea></div>
+  <div style="margin:.6rem 0 1.2rem"><label for="sistem">System prompt (opsional)</label>
+    <input id="sistem" placeholder="kosongkan untuk menguji perilaku bawaannya"></div>
+  <div id="bank"></div>
+  <div id="hasil" class="hasil"></div>
+</main>
+<script src="./app.js"></script>
+</body>
+</html>

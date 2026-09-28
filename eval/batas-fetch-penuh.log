@@ -1,0 +1,13 @@
+
+# reproduksi batas fetch — PENUH (bawaan undici)
+  peladen diam    : 305s
+  headersTimeout  : 300s
+  BATAS kita      : 1800s  ← jauh lebih longgar
+
+  hasil  : TypeError: fetch failed
+  detik  : 304.8
+  sebab  : headers
+
+  TEREPRODUKSI — fetch menyerah di 304.8s walau BATAS kita 1800s.
+  Sebabnya headersTimeout undici, BUKAN model dan BUKAN setelan kita.
+

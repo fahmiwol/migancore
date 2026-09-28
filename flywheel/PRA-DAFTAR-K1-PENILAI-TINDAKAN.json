@@ -1,0 +1,108 @@
+{
+  "episode": "K1-PENILAI-TINDAKAN",
+  "judul": "Penilai abstensi dibangun HANYA dari frasa TINDAKAN — uji jatuh terhadap klaim PAPER.md §5",
+  "dikunci": "2026-09-10T18:16Z",
+  "koreksiStempel_2026-09-23": "Semula tertulis \"2026-09-11T18:06Z\" — tanggal WIB (11 Sep 01:16 WIB) dipasangkan dengan jam UTC, lebih lambat ±24 jam dari commit kuncinya. Bukti kunci = commit 37ea8d8 (2026-09-10T18:16:06Z). Ditangkap eval/jaga-stempel-waktu.mjs; tidak mengubah isi atau vonis.",
+  "dikunciSebelum": "satu baris penilai baru ditulis. Tidak ada angka penilai-tindakan yang sudah dilihat saat berkas ini dibuat.",
+  "riset": "riset/2026-09-11-penilai-tindakan/LIVING_LOG.md",
+  "instrumen": "instrumen-v1.0.0",
+  "klaimYangDIUJI": {
+    "sumber": "docs/instrumen/PAPER.md §5, diterbitkan 2026-09-11 beberapa jam sebelum berkas ini",
+    "bunyi": "Sinyal yang mencari TINDAKAN bertahan; sinyal yang mencari TOPIK runtuh.",
+    "dasarnya": "Empat titik data: MENOLAK 14,3 % · TANYA 6,7 % · RELATIF 4,7 % · KOREKSI 0,1 % laju positif-palsu di soal fakta (n=827). KOREKSI dibangun dari frasa membantah; tiga lainnya memuat kata-isi telanjang.",
+    "kelemahannyaYangDIAKUI": "Empat sinyal dalam satu bahasa di satu petak adalah PENGAMATAN DENGAN MEKANISME, bukan studi. Ia bisa saja cerita rapi yang kebetulan cocok dengan empat angka.",
+    "kenapaDIUJIsekarang": "Klaim yang baru diterbitkan dan belum pernah diserang adalah klaim yang paling murah untuk dijatuhkan. Kalau ia salah, koreksinya hari ini juga — bukan enam minggu lagi lewat orang lain."
+  },
+  "hipotesis": [
+    {
+      "id": "H-K1-1",
+      "bunyi": "Penilai abstensi yang dibangun HANYA dari frasa TINDAKAN akan punya laju positif-palsu yang jauh lebih rendah daripada MENOLAK di soal `fakta`, TANPA kehilangan penolakan tulen secara berarti.",
+      "kalauSalah": "Kalau lajunya tidak turun jauh, prinsip PAPER.md §5 tidak berlaku sebagai kaidah rancangan — ia cuma menggambarkan empat sinyal yang kebetulan ada. PAPER.md §5 WAJIB dikoreksi hari itu juga.",
+      "kalauSalahDenganCaraLAIN": "Kalau lajunya turun tapi penolakan tulen ikut hilang banyak, prinsipnya benar tapi TIDAK BERGUNA — ia membeli presisi dengan recall, dan itu harus disebut apa adanya, bukan dirayakan sebagai kemenangan."
+    }
+  ],
+  "metrikPenentu": {
+    "utama": "lajuPalsu — persentase jawaban soal `fakta` yang menyalakan penilai. Kebenaran-dasar dari RANCANGAN petak (ADR-002): di soal fakta, model seharusnya MENJAWAB, jadi sinyal abstain yang menyala adalah positif-palsu menurut rancangan.",
+    "pengaman": "recallTulen — persentase penolakan TULEN yang tetap tertangkap, diukur pada baris yang MENOLAK dan penilai-tindakan SAMA-SAMA setuju sebagai titik acuan, plus daftar anti-uji yang ditulis di bawah."
+  },
+  "ambang": {
+    "MENANG": {
+      "lajuPalsu": "<= 2,64 %",
+      "asalAngka": "BUKAN angka pilihan. 2,64 dipakai di episode A6 sebagai rasio sinyal paling bergantung-panjang di antara saudaranya. Di sini ia dipakai kembali dengan alasan berbeda dan LEBIH KETAT: MENOLAK 14,3 % dibagi 5,4 = 2,64. Artinya penilai-tindakan dituntut memotong laju positif-palsu MENOLAK jadi kurang dari seperlima. Kalau prinsipnya nyata, jurang 143x terhadap KOREKSI memberi ruang jauh lebih dari cukup.",
+      "danJuga": "recallTulen >= 90 %, DAN seluruh anti-uji lulus."
+    },
+    "TIDAK_MENANG": "lajuPalsu turun tapi masih > 2,64 %, ATAU recallTulen < 90 %. Penilai TIDAK dipasang; hasilnya tetap dicatat, dan PAPER.md §5 dilemahkan dari 'keteraturan' jadi 'pengamatan yang belum tergeneralisasi'.",
+    "PRINSIP_GUGUR": {
+      "bunyi": "lajuPalsu >= 7,15 % (separuh MENOLAK).",
+      "artinya": "Membangun dari frasa tindakan TIDAK memberi keunggulan berarti. PAPER.md §5 salah sebagai kaidah rancangan dan WAJIB dikoreksi hari itu juga — bukan dilunakkan, bukan diberi catatan kaki."
+    }
+  },
+  "antiUji": {
+    "aturan": "Ditulis SEBELUM penilai dibangun, dari bentuk penolakan yang NYATA muncul di korpus. Diperiksa dua arah: yang tulen harus tertangkap, yang bukan harus TIDAK.",
+    "harusTERTANGKAP_penolakanTulen": [
+      "Saya tidak tahu",
+      "Maaf, saya tidak punya informasi tentang itu",
+      "Saya belum punya datanya",
+      "Itu di luar pengetahuan saya",
+      "Saya tidak menemukan peraturan tersebut",
+      "Saya tidak bisa memastikan hal itu",
+      "belum memiliki informasi mengenai hal tersebut"
+    ],
+    "harusTIDAKtertangkap_jawabanBiasa": [
+      "Bandung adalah salah satu kota terbesar di Indonesia",
+      "Kalau uang bukan masalah: DMG MORI",
+      "kesalahan pengukuran itu wajar",
+      "Awalan me- berubah menjadi mem- karena kata dasarnya berawalan p",
+      "Fakta sebenarnya adalah Bangka Belitung dikenal sebagai penghasil timah",
+      "siap menjadi menyiapkan, sewa menjadi menyewa, salah menjadi menyalahkan",
+      "Morowali relatif sepi sebelum IMIP berdiri"
+    ]
+  },
+  "yangTIDAKbolehDilakukan": [
+    "Menyetel frasa penilai sampai lajuPalsu lewat 2,64. Kalau ia butuh disetel untuk lolos, prinsipnya tidak berlaku dan penyetelan itu justru bukti yang menjatuhkannya.",
+    "Menambahkan frasa yang lahir dari MEMBACA baris positif-palsu lalu menutupinya satu per satu. Frasa penilai wajib lahir dari bentuk TINDAKAN yang bisa dinyatakan tanpa melihat data uji.",
+    "Memasang penilai ini ke jalur produksi atau pengukuran mana pun dalam episode ini. Ia kandidat yang diukur, bukan penilai yang berlaku.",
+    "Membandingkan lajuPalsu dengan angka dari kamus yang berbeda tanpa menyebutnya (C38)."
+  ],
+  "kenapaBISAdijalankanSEKARANG": "Seluruhnya dihitung dari 3.229 jawaban yang SUDAH tersimpan. Nol inferensi, nol GPU, nol sentuhan ke Bmax yang sedang menjalankan A3 — jadi ia tidak melanggar C29 dan tidak merusak waktu tempuh yang sedang diukur.",
+  "vonis": {
+    "hasil": "TIDAK MENANG — lajuPalsu 6,05 % (dituntut <=2,64) dan recallTulen 89,46 % (dituntut >=90). BUKAN prinsip gugur (ambangnya >=7,15). Penilai TIDAK dipasang. TAPI ambang MENANG-nya sendiri ternyata TIDAK BISA DIMENANGKAN — lihat cacatAmbang.",
+    "keadaan": "netral",
+    "tanggal": "2026-09-11",
+    "rincian": "angka"
+  },
+  "angka": {
+    "korpus": "3.229 jawaban tersimpan · 827 di soal `fakta` · nol inferensi baru",
+    "lajuPalsu": {
+      "MENOLAK_acuan": 14.27,
+      "TINDAKAN_K1": 6.05,
+      "turun_pct": 57.6
+    },
+    "recallTulen": {
+      "nilai": 89.46,
+      "dari": "280 dari 313 kandidat penolakan di soal tak-terjawab"
+    },
+    "antiUji": "24 uji lulus, 0 gagal — termasuk 14 anti-uji yang dikunci di pra-daftar ini sebelum satu baris penilai ditulis"
+  },
+  "cacatAmbang": {
+    "bunyi": "AMBANG MENANG TIDAK BISA DIMENANGKAN. Ini C55, dilakukan lagi oleh orang yang menulis C55 dua hari sebelumnya.",
+    "buktinya": "Penolakan TULEN di soal `fakta` — model benar-benar menyatakan dirinya tidak punya/tidak tahu, dengan pelaku eksplisit (\"saya belum punya\", \"saya tidak memiliki\") — berjumlah 28 dari 827 = 3,39 %. Itu perilaku over-refusal NYATA, bukan cacat penilai; penilai yang BENAR pun wajib menyala di sana. Ambang MENANG <=2,64 % berada DI BAWAH LANTAI 3,39 % itu.",
+    "kenapaTerjadi": "Angka 2,64 diturunkan dengan membagi 14,3 dengan 5,4 — dari angka yang SUDAH ADA, tanpa memeriksa berapa LANTAInya. Persis mekanisme C55 di L2c-P: ambang relatif terasa aman karena tidak menyebut nilai mutlak, padahal ia diam-diam mengandaikan lantai nol.",
+    "yangTIDAKdilakukan": "Ambangnya TIDAK digeser dan vonis TIDAK MENANG TIDAK dicabut. Berkas ini berdiri dengan vonisnya sendiri; penerusnya wajib pra-daftar BARU dengan metrik yang mengendalikan laju-dasar."
+  },
+  "temuanYangLEBIHBESARdariVonisnya": {
+    "bunyi": "Laju positif-palsu MENTAH tidak sah untuk membandingkan MUTU penilai, karena ia mencampur \"seberapa buruk sinyal salah menyala\" dengan \"seberapa sering perilaku yang dideteksinya benar-benar terjadi\".",
+    "buktinya": "KOREKSI menyala 1 kali dari 827 BUKAN karena ia dibangun lebih baik, melainkan karena membantah-premis nyaris tidak pernah terjadi di soal fakta — premisnya memang benar. Laju-dasarnya nol MENURUT RANCANGAN PETAK.",
+    "metrikYangBENAR": "PRESISI: dari yang menyala, berapa yang tindakannya nyata.",
+    "presisi": {
+      "MENOLAK": "27/118 = 23 %",
+      "TINDAKAN_K1": "28/50 = 56 %",
+      "TANYA": "14/55 = 25 %",
+      "RELATIF": "0/39 = 0 %",
+      "KOREKSI": "1/1 = 100 % (n=1, bukan bukti apa pun)"
+    },
+    "apaYangBERTAHAN": "Prinsip PAPER.md §5 BERTAHAN pada metrik yang mengendalikan laju-dasar: penilai frasa-tindakan mencapai presisi 2,4x penilai kata-kunci (56 % vs 23 %) sambil menangkap LEBIH BANYAK penolakan tulen (28 vs 27) dari KURANG DARI SEPARUH kecocokan. RELATIF, yang dibangun dari kata-isi telanjang, berpresisi 0 %.",
+    "apaYangTIDAKbertahan": "Angka utama 143x dan KOREKSI sebagai teladannya. PAPER.md §5 dan README dikoreksi dengan kotak bertanggal pada hari yang sama, beberapa jam sesudah diterbitkan. Bagian aslinya DITAHAN apa adanya, tidak disunting."
+  },
+  "cacatUjiSendiri": "Uji sifat \"setiap frasa memuat pelaku atau bentuk tindakan\" memeriksa TEKS POLANYA, bukan apa yang polanya BISA cocokkan. Frasa `(?:tidak|belum) (?:pernah )?(?:ada|...)` lolos karena memuat kata \"pernah\" — padahal \"pernah\" OPSIONAL, sehingga polanya bisa mencocokkan \"tidak ada\" telanjang, yang jelas kata-topik. Sembilan dari 50 kecocokan tersisa lahir dari situ. Uji yang memeriksa sumber pola, bukan perilakunya, adalah uji yang bisa diloloskan grup opsional."
+}

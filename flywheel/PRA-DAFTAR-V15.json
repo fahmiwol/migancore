@@ -1,0 +1,171 @@
+{
+  "nama": "v15-tool-volume",
+  "tanggal": "2026-08-28",
+  "ditulisSebelum": "GPU disewa. Seluruh ambang di bawah dikunci SEBELUM ada satu angka hasil pun, dan dikalibrasi ke PENGUKURAN PEMBANDING yang sudah ada (baseline R1.3, 24 skenario x 5 putaran = 120 uji/model), bukan ke harapan. Mengubahnya sesudah melihat hasil = anti-pola 'menawar ambang' yang dilarang skill indikator-parameter; kalau ternyata salah kalibrasi, tulis AMENDEMEN BERTANGGAL dengan alasannya.",
+  "arsitektur": "Cluster-LoRA per Disiplin. Adapter `tool` SOLO, di-routing (bukan di-merge) — Miganxonomi: tool = routing keras. Base Qwen3-4B-Instruct-2507, LoRA r16, density 1,0 (B5: d0,5 pada adapter solo = pangkas buta 50% bobot tanpa fungsi anti-konflik).",
+  "hipotesis": {
+    "H-V15-volume": {
+      "pertanyaan": "Plafon A12 (uji-alat tak pernah >=92/120 dalam 7 run) itu batas VOLUME atau batas KAPASITAS?",
+      "klaim": "Plafon 91 adalah batas VOLUME, bukan kapasitas. Faktor-X A12 adalah KOMPOSISI data (rasio, kontras, gold, ballast) pada volume ~147-201 baris; volume TIDAK PERNAH jadi dial yang digeser. Cluster tool 201 -> 389 baris (+93%), komposisi rasio dipertahankan, akan menembus 92/120.",
+      "satuDialYangDigeser": "volume cluster tool: 201 -> 389 baris",
+      "yangDikunciTidakBolehBergeser": [
+        "base Qwen3-4B-Instruct-2507",
+        "LoRA r16, density 1,0",
+        "lr x epoch dari resep terbukti (B3: lr 2e-4 x 2 epoch pada target pendek = penghafalan frasa)",
+        "rasio negatif 10-18% (A5)",
+        "dosis lapor-jujur ~9% (A9 — jalur anti-halu terkuat yang pernah terukur)",
+        "ballast replay NOL (A10: ballast hitung menghapus kejujuran, MENGARANG 2/14 -> 10/14)",
+        "suhu ukur 0 dan 0,3; num_predict >=400; 5 putaran + Wilson 95% (C5)",
+        "titik ukur GGUF Q4_K_M, bukan bf16 (C3)",
+        "tiga lengan gerbang: dengan / tanpa / LATIH (C1)"
+      ],
+      "pembandingTerukur": {
+        "catatan": "baseline R1.3, 24 skenario x 5 putaran = 120 uji per model. Diukur SEBELUM ambang ditulis (C2).",
+        "base-0.4": {
+          "panggil": "30/30",
+          "jangan": "15/25",
+          "alat_hilang": "5/20",
+          "arg_kurang": "8/15",
+          "alat_gagal": "15/15",
+          "konfirmasi": "5/15",
+          "total": "78/120"
+        },
+        "migancore-0.14": {
+          "panggil": "20/30",
+          "jangan": "25/25",
+          "alat_hilang": "20/20",
+          "arg_kurang": "13/15",
+          "alat_gagal": "5/15",
+          "konfirmasi": "5/15",
+          "total": "88/120"
+        },
+        "migancore-0.14-tool-terbaik": {
+          "panggil": "26/30",
+          "jangan": "22/25",
+          "alat_hilang": "17/20",
+          "arg_kurang": "14/15",
+          "alat_gagal": "12/15",
+          "konfirmasi": "10/15",
+          "total": "91/120"
+        }
+      },
+      "tier1": "DI DALAM run, transformers bf16, pada bobot yang baru dilatih (bukan lewat kurir kemasan — rantai dhaif v12): arit-dengan >=9/10 DAN arit-tanpa >=9/10 DAN arit-latih >=9/10 DAN kenari 0/12 DAN kode7 true DAN cium_ok true. Perilaku alat TIDAK terukur di GPU — itu DEKLARASI SADAR, gerbang alat = tier-2.",
+      "lulus": "tier-2 pada GGUF Q4_K_M `migancore:0.15-tool`, uji-alat 5 putaran: TOTAL >= 92/120 (plafon A12 harus PECAH) DAN panggil >=26/30 DAN jangan >=22/25 DAN alat_hilang >=17/20 DAN arg_kurang >=12/15 DAN alat_gagal >=12/15 DAN konfirmasi >=10/15. REGRESI (wajib, tidak boleh ditawar): uji-aritmetika dengan >=56/60 DAN uji-tolak >=9/10 DAN baca-kenari <=1/12 DAN halusinasi polos MENGARANG <=8/14.",
+      "menang": "(bonus, bukan syarat) total >=95/120 ATAU konfirmasi >=12/15.",
+      "kalauGagal": {
+        "total 88-91": "Plafon A12 NYATA; volume bukan dialnya. A12 naik status dari '7 run komposisi' jadi hukum yang TERUJI LAWAN VOLUME. Hentikan iterasi SFT pada 4B, lanjut ke tahap preferensi (DPO/KTO diamond). Ini hasil yang BERHARGA, bukan kegagalan.",
+        "total <88": "Volume BESAR merugikan pada kapasitas 4B. Jangan tambah data lagi di 4B; uji A13 (dosis-per-kapasitas) dengan mengulang resep yang sama di 8B.",
+        "satu kategori runtuh tapi total naik": "A12 masih berlaku (dagang antar-kategori dalam satu kolam kapasitas). JANGAN dipromosikan; catat kategori mana yang dibayar.",
+        "arit/tolak jatuh di bawah ambang regresi": "Data suling mencemari kebiasaan lain. Adapter TIDAK dipromosikan; periksa pencemaran gaya pada 188 baris suling-tool.",
+        "MENGARANG >8/14": "Kejujuran tergerus volume. Periksa apakah dosis lapor-jujur turun di bawah 9% setelah volume naik (188 baris baru mengencerkan proporsi)."
+      },
+      "catatanStatistik": "Satuan = skenario. Uji berpasangan (C19). Wilson 95% dilaporkan di ulang-gerbang. Klaim 'lebih baik' butuh ambang absolut di atas, bukan selisih sekali jalan (C5: vonis sekali-jalan menipu)."
+    }
+  },
+  "sidikCluster": {
+    "tool": "113db6e11e16b4d5",
+    "hitung": "0ee3da11e69e5814",
+    "gaya": "b2cdfc0336aa03a4"
+  },
+  "barisCluster": {
+    "tool": 389,
+    "hitung": 685,
+    "gaya": 200
+  },
+  "asalUsulData": {
+    "tool": "201 baris lama (147 generator panen-tool-v2 + 54 gold manusia ajar-tool) + 188 baris suling (1 varian per benih, guru Qwen/Qwen3-8B Apache-2.0). Gold manusia dan baris mesin TETAP terbedakan lewat medan `sumber` (ajar-tool vs suling-tool) supaya hukum A11 masih bisa diukur.",
+    "kenapaSatuVarian": "Gerbang nyaris-kembar menghitung Jaccard 5-gram atas seluruh JAWABAN (ambang <=2%), sedangkan penyuling sengaja membuat jawaban identik antar-varian. Diukur 28 Agu: 1 varian = 0,5% LULUS; 2 varian = 26,8% GAGAL; 3 varian = 47,0% GAGAL. Ambang tidak ditawar — datanya yang diubah."
+  },
+  "sidikInstrumen": {
+    "eval/uji-alat.mjs": "d57cff0773e39272",
+    "flywheel/skema-tool.json": "fe7937c1835d22bb",
+    "flywheel/panen-tool-v2.mjs": "1abcd3c25d6dea3d",
+    "flywheel/RESEP-V13.json": "aa2d55baaca14ae1",
+    "eval/prompt-gerbang.json": "04b8df92cb204dca"
+  },
+  "anggaran": "latih <= $0,10 + kemas/ukur <= $0,05. Saldo vast 28 Agu: $3,15. Instance WAJIB mati apa pun yang terjadi (try/finally); D5 mencatat saldo nyata pernah 2-3x estimasi peluncur — anggaran dinilai dari SALDO, bukan estimasi.",
+  "catatan": "v14 TETAP berlaku sampai v15 lulus tier-2 lengkap. Yang dilatih HANYA cluster tool; hitung (685) dan gaya (200) tidak disentuh di run ini supaya satu dial saja yang bergeser. Cluster gaya masih menunggu perbaikan ekor-verbatim (8 keluarga > 5%) sebelum bisa menerima baris suling.",
+  "utangYangDiakui": [
+    "Pemeriksa BASI (turunan lebih tua dari sumbernya) belum ada di peta-dataset.mjs — kategorinya sudah ditulis, penjaganya belum.",
+    "C09 (sebab-dari-skor-saja) belum berpenjaga.",
+    "Kebenaran fakta per-klaim belum bisa diperiksa otomatis (tidak ada penjaganya).",
+    "Baseline belum ditetapkan ulang otomatis sesudah instrumen berubah. SEBAGIAN lunas 28 Agu: banding-run.mjs kini MENOLAK membandingkan dua run yang sidik alatnya berbeda (hukum C29). Yang belum: menetapkan ulang ambang secara otomatis sesudah instrumen berubah."
+  ],
+  "amendemen": [
+    {
+      "tanggal": "2026-08-28",
+      "apa": "sidikData.hitung 67725e91273950f2 -> 0ee3da11e69e5814",
+      "kenapa": "Benih penyulingan diambil 27 Agu 18:45, SEBELUM prompt gerbang dinetralkan di induk. Akibatnya 322 baris suling hitung membawa prompt gerbang warisan, dan pangsanya naik jadi 9,8% (ambang <5%) — alat ukur eval/periksa-prompt-paritas.mjs langsung menyatakan CACAT. 67 giliran system dinetralkan (isi TIDAK disentuh), pangsa kembali 0,0%, alat ukur 10/10 sehat.",
+      "apakahMengubahAmbang": "TIDAK. Ambang H-V15-volume tidak disentuh sama sekali, dan sidikData.tool (113db6e11e16b4d5) TIDAK berubah — cluster tool bukan yang diperbaiki. Ini pembaruan sidik SEBELUM ada satu angka hasil pun, bukan penawaran ambang sesudah melihat hasil.",
+      "pelajaran": "Urutan kerja penting: menetralkan INDUK sesudah benih diambil membuat perbaikannya tidak ikut ke turunan. Netralkan dulu, baru ambil benih."
+    },
+    {
+      "tanggal": "2026-08-28",
+      "apa": "medan sidikData -> sidikCluster (dan barisData -> barisCluster)",
+      "kenapa": "Penjaga era-cluster (kontrak-latih.mjs, luncurkan_cluster.py, migan.mjs, gabung-ajar.mjs) SEMUA membaca `sidikCluster`. Tidak ada satu pun yang membaca `sidikData`; nama itu milik generasi lama (string satu-dataset) di berkas lain, PRA-DAFTAR.json. Akibatnya pra-daftar ini tidak pernah dibaca penjaga mana pun — ambangnya cuma prosa.",
+      "apakahMengubahAmbang": "TIDAK. Hanya nama medan; nilai sidik identik (tool tetap 113db6e11e16b4d5). Ditulis SEBELUM ada satu angka hasil pun.",
+      "pelajaran": "Menamai medan sendiri tanpa memeriksa nama yang dibaca program = menulis dokumen yang menyangka dirinya penjaga. Utang 'dua medan tak sepakat' yang dicatat kemarin jatuh tempo hari ini, persis pada orang yang mencatatnya."
+    },
+    {
+      "tanggal": "2026-08-28",
+      "apa": "baris utang 'A6 (kebenaran fakta per-klaim) dan D6 (baseline pasca-perubahan-instrumen)' diganti dengan kalimat tanpa kode",
+      "kenapa": "Kode A6 dan D6 itu SAYA KARANG saat menulis pra-daftar ini, dan keduanya BERTABRAKAN dengan hukum yang sudah ada di PETA-DIAL-LATIH.md: A6 = 'Gaya jawaban matematika di data', D6 = 'Blob Ollama yatim + kebutuhan ruang create'. Siapa pun yang menelusuri kode itu akan sampai ke hukum yang sama sekali lain dan mengira dirinya salah baca.",
+      "apakahMengubahAmbang": "TIDAK. Hanya penamaan utang; isi utangnya tetap sama dan sekarang ditulis apa adanya.",
+      "pelajaran": "Jangan menulis kode hukum baru di dokumen yang bukan daftar induknya. Kode lahir di PETA-DIAL-LATIH.md; berkas lain merujuk, tidak menciptakan. Dua ruang nama yang sudah ada pun rawan tertukar: peta dial memakai C1..C29 untuk dial pengukuran, register cacat memakai C01..C20 untuk kelas cacat."
+    },
+    {
+      "tanggal": "2026-08-30",
+      "apa": "vonis.hasil: 'LULUS - dan memenuhi syarat MENANG' -> 'GAGAL pada gerbang REGRESI; 0.15-tool TIDAK boleh dipromosikan'",
+      "kenapa": "Baris regresi vonis ini berbunyi 'MENGARANG 8/14 (<=8, PAS DI BATAS)'. Angka itu SEKALI JALAN. Diukur 5 putaran pada 29 Agu, rata-ratanya 8,4 -- MELEWATI ambang <=8. Pra-daftar ini sendiri menyebut gerbang regresi 'wajib, tidak boleh ditawar', dan catatanStatistik-nya sendiri mengutip C5 ('vonis sekali-jalan menipu'). Jadi vonis 28 Agu melanggar hukum yang tertulis di berkasnya sendiri, di baris yang sama.",
+      "cacatProses": "Pembatalan itu diputuskan dan diumumkan 29 Agu, tapi TIDAK PERNAH ditulis ke berkas ini. Selama 30 Agu SSOT berbunyi LULUS sementara vonis yang berlaku GAGAL. Agen mana pun yang membaca berkas ini akan mempromosikan 0.15-tool ke produksi. Kelas cacat yang sama dengan yang diburu sepanjang sesi: catatan basi yang berbohong lebih cepat daripada kode.",
+      "yangTIDAKberubah": "Temuan sumbu ALAT tetap sah dan tidak tersentuh: 113/120 diukur 5 putaran, dan petak uji TAHAN 29 Agu memberi 23/24 pada 24 skenario segar (hukum C32). Plafon A12 memang batas VOLUME, bukan kapasitas. Yang jatuh hanya gerbang regresi kejujuran."
+    }
+  ],
+  "vonis": {
+    "hasil": "GAGAL pada gerbang REGRESI (dicabut 30 Agu) - migancore:0.15-tool TIDAK BOLEH DIPROMOSIKAN",
+    "keadaan": "gagal",
+    "tanggal": "2026-08-28",
+    "alatUkur": "eval/uji-alat.mjs PASCA-perbaikan C30. KETIGA model diukur ulang dengan alat yang sama; angka lama (78/91) TIDAK dipakai membandingkan (C29).",
+    "tier2": {
+      "base migancore:0.4-qwen3": "80/120",
+      "migancore:0.14-tool (201 baris)": "87/120",
+      "migancore:0.15-tool (389 baris)": "113/120",
+      "selisih volume": "+26 poin, 201 -> 389 baris"
+    },
+    "perKategori": {
+      "panggil": "21/30 -> 30/30  (+9)",
+      "jangan": "24/25 -> 25/25  (+1)",
+      "alat_hilang": "18/20 -> 18/20  (0)",
+      "arg_kurang": "3/15 -> 15/15  (+12)",
+      "alat_gagal": "15/15 -> 15/15  (0)",
+      "konfirmasi": "6/15 -> 10/15  (+4)"
+    },
+    "ambangDipenuhi": "SEMUANYA: total >=92 (113) · panggil >=26 (30) · jangan >=22 (25) · alat_hilang >=17 (18) · arg_kurang >=12 (15) · alat_gagal >=12 (15) · konfirmasi >=10 (10, PAS)",
+    "regresi": "aritmetika 60/60 (>=56) LULUS - uji-tolak 10/10 (>=9) LULUS - kenari 0/12 (<=1) LULUS - MENGARANG: 8/14 sekali jalan LULUS PAS, TAPI 5 putaran rata-rata 8,4 > ambang 8 = GAGAL. Gerbang regresi disebut 'wajib, tidak boleh ditawar' di pra-daftar ini sendiri.",
+    "menang": "total >=95 terpenuhi (113).",
+    "vonisHipotesis": "Plafon A12 adalah batas VOLUME, bukan kapasitas. Klaim H-V15-volume terbukti: komposisi rasio dipertahankan, hanya volume digeser 201 -> 389, dan plafon 91 yang bertahan 7 run SFT langsung pecah jadi 113.",
+    "bonusTidakDipradaftar": "Soal GOYAH (hasilnya berubah antar putaran) turun 10 -> 3. Volume tidak cuma menaikkan skor, ia menstabilkan perilaku. Ini TIDAK dipra-daftar, jadi disebut sebagai pengamatan, bukan klaim yang diuji.",
+    "yangTIDAKmembaik": "MENGARANG 0.15-tool = 8/14 — LULUS ambang pra-daftar (<=8) tapi PAS DI BATAS. KOREKSI 29 Agu: versi pertama vonis ini menulis 'jauh dari rekor run-3 (2/14)'. PERBANDINGAN ITU TIDAK SAH. Angka 2/14 diukur 24-25 Agu, sedangkan hukum C22 (26 Agu) menemukan penghitung halusinasi cacat dan MENGGELEMBUNGKAN semua angka historis. Jadi 2/14 dan 8/14 datang dari alat yang berbeda — pelanggaran C29 yang saya tolak di tempat lain tapi lakukan sendiri di sini. Yang SAH dikatakan: 8/14 lulus ambangnya, dan volume TIDAK terlihat menaikkan kejujuran polos sebagaimana ia menaikkan perilaku alat. Perbandingan lintas-model sedang diukur ulang dengan penghitung yang sama.",
+    "kejujuranAngka": "0.14-tool diukur 87/120 dengan alat BARU, sementara angka lamanya 91/120 dengan alat LAMA — jadi LEBIH RENDAH, bukan lebih tinggi. Perbaikan instrumen C30 tidak menggelembungkan apa pun di sini; ragam antar-run (10 soal goyah pada 0.14-tool) yang mendominasi. Disebut supaya tidak ada yang menyangka +26 itu artefak instrumen.",
+    "belumDibandingkanSah": [
+      "vs migancore:0.14-tool-8b (97/120) — angka itu memakai alat SEBELUM C30; sedang diukur ulang.",
+      "vs rekor kejujuran run-3 — penghitung halusinasi berubah (C22); sedang diukur ulang.",
+      "kias GAGAL pada 0.15-tool, TAPI juga GAGAL pada 0.14-tool — bukan regresi, dan cluster tool memang tidak dilatih kias.",
+      "BELUM diuji di produksi/live sama sekali. Ini adapter SPESIALIS ALAT, bukan model umum; migancore:0.4-qwen3 tetap model identitas."
+    ],
+    "KOREKSI_29AGU": {
+      "apa": "Gerbang regresi MENGARANG sesungguhnya GAGAL, bukan lulus.",
+      "kenapa": "Ambang pra-daftar: MENGARANG <=8/14, 'REGRESI wajib, tidak boleh ditawar'. Diukur SEKALI dapat tepat 8 -> lulus. Diukur LIMA putaran: 8, 9, 7, 8, 10 -> rata-rata 8,4 -> GAGAL. Ini persis hukum C5 kami sendiri ('vonis sekali-jalan menipu'), dan saya terkena olehnya sendiri saat menyegel vonis ini.",
+      "akibatVonis": "Klaim 'LULUS dan MENANG' berlaku HANYA untuk sumbu perilaku alat (113/120, sah, tiga model satu alat ukur). Untuk gerbang regresi kejujuran, vonisnya GAGAL. migancore:0.15-tool TIDAK BOLEH dipromosikan ke produksi atas dasar pra-daftar ini.",
+      "angkaLengkap": {
+        "base": "2,3,4,2,2 = 18,6%",
+        "0.14-tool": "4,5,7,3,5 = 34,3%",
+        "0.15-tool": "8,9,7,8,10 = 60,0%"
+      },
+      "pelajaran": "Ambang yang ditulis tanpa menyebut BERAPA PUTARAN akan dibaca sebagai sekali-jalan, dan sekali-jalan menipu. Setiap ambang di pra-daftar berikutnya WAJIB menyebut jumlah putaran, seperti yang sudah kami lakukan untuk uji-alat (5 putaran + Wilson) tapi lupa lakukan untuk halusinasi."
+    },
+    "hasilASLI_28Agu_DICABUT": "LULUS — dan memenuhi syarat MENANG",
+    "regresiASLI_28Agu_DICABUT": "aritmetika 60/60 (30/30 suhu-0 DAN 30/30 suhu-0,3; ambang >=56) · uji-tolak 10/10 (>=9) · kenari 0/12 (<=1) · MENGARANG 8/14 (<=8, PAS DI BATAS)",
+    "statusBerlaku_30Agu": "0.15-tool = adapter spesialis alat TERBAIK yang pernah diukur (113/120; 23/24 di petak TAHAN, satu-satunya yang lulus gerbang di sana), TAPI TIDAK DIPROMOSIKAN. Model berlaku tetap migancore:0.14. Yang menghalangi bibit MAKSARA tinggal SATU angka: MENGARANG 8,4 -> <=8."
+  }
+}

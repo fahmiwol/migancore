@@ -1,0 +1,71 @@
+{
+  "berkas": "uji-kelemahan.mjs",
+  "model": "migancore:0.8-8b",
+  "putaran": 5,
+  "ambang": 0.8,
+  "keseluruhan": {
+    "lulus": 54,
+    "coba": 65,
+    "lo": 0.721833508048396,
+    "hi": 0.9027888133386723,
+    "vonis": "TIDAK PASTI"
+  },
+  "perKategori": [
+    {
+      "kategori": "berhenti-prematur",
+      "lulus": 9,
+      "total": 10,
+      "v": "TIDAK PASTI",
+      "lo": 0.5958436145024278,
+      "hi": 0.9821242504842789
+    },
+    {
+      "kategori": "hilang-di-tengah",
+      "lulus": 15,
+      "total": 15,
+      "v": "TIDAK PASTI",
+      "lo": 0.7961107336956521,
+      "hi": 1
+    },
+    {
+      "kategori": "menolong-berlebihan",
+      "lulus": 15,
+      "total": 20,
+      "v": "TIDAK PASTI",
+      "lo": 0.5312949900419365,
+      "hi": 0.888139947210597
+    },
+    {
+      "kategori": "tercemar-pengecoh",
+      "lulus": 5,
+      "total": 10,
+      "v": "GAGAL",
+      "lo": 0.2365895936154873,
+      "hi": 0.7634104063845127
+    },
+    {
+      "kategori": "terkunci-satu-giliran",
+      "lulus": 5,
+      "total": 5,
+      "v": "TIDAK PASTI",
+      "lo": 0.565508505247919,
+      "hi": 1
+    },
+    {
+      "kategori": "mengulang-prompt",
+      "lulus": 5,
+      "total": 5,
+      "v": "TIDAK PASTI",
+      "lo": 0.565508505247919,
+      "hi": 1
+    }
+  ],
+  "goyah": [
+    {
+      "kunci": "A2-prematur",
+      "lulus": 4,
+      "total": 5,
+      "kategori": "berhenti-prematur"
+    }
+  ]
+}

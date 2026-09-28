@@ -1,0 +1,102 @@
+{
+  "formatKontrak": 2,
+  "cluster": "hitung",
+  "versi": "v13",
+  "nama": "wd0.01",
+  "tanggal": "2026-08-23",
+  "resepBerkas": "flywheel\\RESEP-V13-wd0.01.json",
+  "baris": 285,
+  "sidik": {
+    "data": "500de80a5a2cd162",
+    "soal": "8a68b69a16c583a5",
+    "kenari": "87e91feb4fed4bc9",
+    "resep": "5f4a3569fc30ab3d",
+    "skrip": "00f2593b636ccd58",
+    "ukur": "a7b568d9dd5462db",
+    "promptGerbang": "04b8df92cb204dca",
+    "tahan": "b2a25c6e323a3f9a"
+  },
+  "resep": {
+    "base": "Qwen/Qwen3-4B-Instruct-2507",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0,
+      "bias": "none",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "latih": {
+      "epoch": 2,
+      "batch": 4,
+      "akumulasi": 4,
+      "lr": 0.0002,
+      "warmup_ratio": 0.05,
+      "scheduler": "cosine",
+      "optim": "adamw_torch",
+      "bf16": true,
+      "gradient_checkpointing": true,
+      "weight_decay": 0.01,
+      "seed": 42,
+      "maks_token": 1024,
+      "penopengan_prompt": true
+    }
+  },
+  "pin": {
+    "transformers": "4.51.3",
+    "peft": "0.14.0",
+    "datasets": "3.2.0",
+    "accelerate": "1.2.1"
+  },
+  "git": {
+    "commit": "3484283",
+    "kotor": 26
+  },
+  "paritasPrompt": {
+    "cluster": "hitung",
+    "baris": 285,
+    "pangsaGerbang": 0.007017543859649123,
+    "pangsaTanpa": 0,
+    "dominan": {
+      "n": 201,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum menjawab. Kalau kamu tidak yakin, katakan tidak yakin — jangan menyodorkan angka atau kesimpulan yang belum kamu cek."
+    },
+    "paritas": "sebagian",
+    "butuhDeklarasi": true,
+    "ok": true,
+    "sebab": "beda DISENGAJA & tercatat: data memakai prompt identitas MiganCore (70,5% + 26,7%); gerbang memakai prompt netral + tanpa prompt untuk mengukur kem"
+  },
+  "promptSistem": [
+    {
+      "n": 201,
+      "teks": "Kamu MiganCore, agent AI milik Fahmi Ghani. Kerjakan bertahap dan tunjukkan langkahnya. Periksa hasilmu sendiri sebelum "
+    },
+    {
+      "n": 76,
+      "teks": "Kamu MiganCore. Kerjakan hitungan bertahap, dan periksa hasilmu lewat jalan lain sebelum menyebutnya final."
+    },
+    {
+      "n": 6,
+      "teks": "Kamu MiganCore. Jawab dari catatan yang kamu punya."
+    },
+    {
+      "n": 2,
+      "teks": "Kerjakan bertahap dan tunjukkan angka antaranya. Jawab dengan angka yang jelas."
+    }
+  ],
+  "pemeriksaan": {
+    "wajib": [],
+    "catatan": [
+      "kenari: 6/12 penanda ada di data (yang ada = terukur hafalannya)",
+      "paritas prompt: 0.7% gerbang · 0.0% tanpa · sebagian — beda DISENGAJA & tercatat: data memakai prompt identitas MiganCore (70,5% + 26,7%); gerbang memakai prompt netral + tanpa prompt untuk mengukur kem",
+      "git: 26 berkas belum di-commit — run tetap sah, tapi commit DULU supaya sidik skrip bisa dilacak ke commit"
+    ]
+  }
+}

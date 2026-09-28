@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Konsep visual interaktif MiganCore Studio — Kandungan, dunia kelahiran Migan.">
+  <title>MiganCore Studio — Kandungan</title>
+  <link rel="stylesheet" href="gaya.css">
+  <script defer src="nadi.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#isi">Lewati ke isi</a>
+  <header class="bilah-atas">
+    <a class="merek" href="index.html" aria-label="MiganCore Studio — pintu masuk">
+      <span class="merek-tanda" aria-hidden="true"></span>
+      <span><strong>MIGANCORE STUDIO</strong><small>KANDUNGAN · DUNIA KELAHIRAN MIGAN</small></span>
+    </a>
+    <nav class="navigasi-utama" aria-label="Layar utama">
+      <a href="index.html">Pintu</a><a href="00-dunia.html">Dunia</a><a href="01-beranda.html">Beranda</a><a href="06-arah.html">Arah</a><a href="02-silsilah-sejarah.html">Silsilah</a><a href="03-riset-lab.html">Lab</a><a href="04-ajar-chat.html">Ajar &amp; Bicara</a><a href="05-misi-kabut.html">Misi &amp; Kabut</a>
+    </nav>
+    <div class="aksi-atas"><span class="cap-sumber" data-meta-sumber>membaca sumber…</span><button class="tombol-mode" data-mode-baca aria-pressed="false">Mode Baca</button></div>
+  </header>
+
+  <main id="isi" class="pintu">
+    <section class="pintu-copy">
+      <div class="alis">Konsep visual · bukan aplikasi produksi</div>
+      <h1>Tempat <em>ruh Migan</em> masih bertumbuh.</h1>
+      <p class="subjudul">Satu studio untuk mengajar, menguji, menelusuri silsilah, membaca temuan dan galat, serta melihat wilayah yang belum pernah dicoba—dibingkai sebagai dunia, tetap sejujur buku laboratorium.</p>
+      <div class="pintu-aksi">
+        <a class="tombol utama" href="00-dunia.html">Masuki dunia</a>
+        <a class="tombol hantu" href="01-beranda.html">Buka keadaan hari ini</a>
+      </div>
+      <div class="pita-peringatan" style="margin-top:22px">
+        <span aria-hidden="true">◇</span>
+        <div><b>Status kelahiran MAKSARA dibaca dari data.</b><br>Sejak 28 Sep (keputusan Fahmi): MAKSARA lahir bila <b>Gerbang-S1 MENANG</b> — dibaca dari vonis pra-daftarnya lewat <code>eval/gerbang-s1/kelahiran-s1.mjs</code>. Kriteria lama A4-BARU tetap tampil sebagai sejarah. Tidak ada bar kemajuan atau persen kelahiran rekaan.</div>
+      </div>
+      <div class="pintu-fakta" id="fakta-pintu" aria-live="polite">
+        <div class="fakta-mini"><b>—</b><span>membaca model berlaku</span></div>
+        <div class="fakta-mini"><b>—</b><span>membaca pra-daftar</span></div>
+        <div class="fakta-mini"><b>—</b><span>membaca temuan</span></div>
+      </div>
+    </section>
+
+    <section class="pintu-visual" aria-label="Pratinjau peta Kandungan">
+      <div class="peta-mini" aria-hidden="true"></div>
+      <a class="orbit-label" href="02-silsilah-sejarah.html"><b>Pohon Silsilah</b>riwayat versi</a>
+      <a class="orbit-label" href="03-riset-lab.html"><b>Observatorium</b>uji &amp; vonis</a>
+      <a class="orbit-label" href="04-ajar-chat.html"><b>Balai Bicara</b>ajar &amp; chat</a>
+      <a class="orbit-label" href="05-misi-kabut.html"><b>Kabut Timur</b>belum dicoba</a>
+      <a class="orbit-label" href="01-beranda.html"><b>Menara Pantau</b>keadaan hari ini</a>
+      <div class="orb-embrio" aria-hidden="true">
+        <span class="selaput"></span><span class="inti"></span><span class="kunci" id="kunci-embrio">STATUS KELAHIRAN · DIBACA DARI DATA</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="kaki"><span>Mockup HTML statis · tanpa build, CDN, atau koneksi luar.</span><span>Setiap angka bertitik memiliki sumber saat diarahkan atau difokuskan.</span></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const d = await Nadi.data();
+        const kunci = document.querySelector('#kunci-embrio');
+        if (kunci) kunci.textContent = d.kelahiran?.s1 ? `GERBANG-S1 ${d.kelahiran.s1.tingkat} · TENGGAT ${d.kelahiran.s1.tenggat} · ${d.kelahiran.s1.tingkat === 'LAHIR' ? 'LAHIR' : d.kelahiran.s1.tingkat === 'GUGUR' ? 'GUGUR' : 'BELUM LAHIR'}` : 'STATUS KELAHIRAN TIDAK TERBACA';
+        document.querySelector('#fakta-pintu').innerHTML = `
+          <div class="fakta-mini"><b class="hijau">${Nadi.angka(d.modelBerlaku.tag,d,'modelBerlaku.tag')}</b><span>model berlaku · sejak ${Nadi.angka(d.modelBerlaku.sejak, d, 'modelBerlaku.sejak')}</span></div>
+          <div class="fakta-mini"><b>${Nadi.angka(d.praDaftar.length, d, 'praDaftar.length')}</b><span>pra-daftar dalam buku</span></div>
+          <div class="fakta-mini"><b>${Nadi.angka(d.temuan.jumlah, d, 'temuan.jumlah')}</b><span>temuan tercatat</span></div>`;
+      } catch (e) { Nadi.galat('#fakta-pintu', e); }
+    });
+  </script>
+</body>
+</html>

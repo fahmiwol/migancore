@@ -1,0 +1,13 @@
+{
+  "name": "nli-mdeberta",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Organ sumbu-kebenaran MiganCore: mDeBERTa-XNLI (ONNX) sebagai layanan HTTP di Bmax. Sengaja TERPISAH dari repo utama supaya akar tetap nol-dependensi.",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.7.6"
+  }
+}

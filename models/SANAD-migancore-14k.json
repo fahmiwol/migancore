@@ -1,0 +1,136 @@
+{
+  "catatan": "SANAD ARTEFAK migancore:0.14k (kandidat v14). Pengukuran hanya sah bila rantai bersambung dan tiap mata terverifikasi. Ditulis 24 Agu 2026 00:30 saat tier-2 berjalan.",
+  "matan": {
+    "apa": "TIES-merge 2 adapter: hitung-promptragam (data hitung 285 dengan system prompt dirotasi A31/G27/P18/N25) + gaya v13 asli (200); TANPA adapter nalar (terbukti merusak nalar p=0,012, premis-salah 0/4)",
+    "arsitektur": "Cluster-LoRA per Disiplin (taksonomi Fahmi) — resep data default v14: rotasi prompt untuk cluster kebiasaan; cluster penolakan rotasi A/P/N saja (H-gaya-promptragam gagal)",
+    "bobotGabung": "hitung-promptragam 1.0 · gaya 1.0 · density 0.5 (grid [1,1.3] kalah: skor 16 vs 18)",
+    "sumberData": {
+      "hitung-promptragam": {
+        "baris": 285,
+        "sidik": "8009c9553fbb1261"
+      },
+      "gaya": {
+        "baris": 200,
+        "sidik": "b2cdfc0336aa03a4"
+      }
+    },
+    "praDaftar": "flywheel/PRA-DAFTAR-V13.json (H-prompt-ragam) + flywheel/PRA-DAFTAR-V14.json (H-merge-v14k-tier1, H-v14k-tier2-lokal)"
+  },
+  "rantai": [
+    {
+      "mata": "turunkan-data",
+      "riwayat": "flywheel/ragam-prompt.mjs (11/11 -> 15/15) garam ragam-prompt-23agu; soal & jawaban & urutan id IDENTIK cluster hitung",
+      "bukti": "flywheel/dataset/v13/cluster-hitung-promptragam.jsonl · MANIFEST-hitung-promptragam.json",
+      "status": "sahih",
+      "alasan": "deterministik, diverifikasi identik per baris; paritas prompt penuh (51,2%)"
+    },
+    {
+      "mata": "gerbang-data",
+      "riwayat": "jalankan-gerbang-v13 (kontrak induk hitung): pencemaran · ragam-narasi · ekor · kesiapan",
+      "bukti": "flywheel/dataset/v13/HASIL-GERBANG.json (sidik hitung-promptragam 8009c9553fbb1261)",
+      "status": "sahih",
+      "alasan": "semua hijau"
+    },
+    {
+      "mata": "kontrak-masukan",
+      "riwayat": "migan kontrak manifest hitung-promptragam (7 sidik masukan, resep = RESEP-V13 identik, petak tahan 0 tumpang tindih)",
+      "bukti": "MANIFEST-hitung-promptragam.json",
+      "status": "sahih",
+      "alasan": "SIAP"
+    },
+    {
+      "mata": "latih-adapter-hitung-promptragam",
+      "riwayat": "latih_cluster.py di vast 3090 Ti, format-2, 3 lengan",
+      "bukti": "models/v13/ringkasan-hitung-promptragam.json (SAHIH periksa-hasil) · lora-hitung-promptragam.tgz sidik 3c26581fc55385c4",
+      "status": "sahih",
+      "alasan": "tier-1 10/10·10/10·10/10, rata-rata 2/2 semua lengan, kenari 0/12, petak-tahan 2,448; pra-daftar H-prompt-ragam LULUS 9/9 + menang"
+    },
+    {
+      "mata": "adapter-gaya-v13",
+      "riwayat": "adapter gaya asli 22 Agu (ringkasan-gaya.json: arit 10/10 & 10/10, tolak 10/10, kenari 0/12)",
+      "bukti": "models/v13/lora-gaya.tgz sidik 89f4cd1640538b7c (cadangan asli-22agu sha cocok)",
+      "status": "sahih",
+      "alasan": "artefak v13 yang sama, tidak diubah"
+    },
+    {
+      "mata": "merge-TIES",
+      "riwayat": "kemas_merge14.py (turunan kemas_merge13, pin identik) — grid [[1,1],[1,1.3]], gerbang merged 3 lengan n_baru 400, cium",
+      "bukti": "models/v14/ringkasan-migancore-14k.json",
+      "status": "sahih-dengan-catatan",
+      "alasan": "arit 10/9/10, ton 4/4 & rata 2/2 ketiga lengan, kenari 0/12, cium_ok; tolak-ringkas 8/10 < ambang 9 (pengukur daftar-kata tier-1, C01 — preseden v13: 6/10 tier-1 -> 9/10 tier-2). Klausul tolak tier-1 GAGAL dicatat apa adanya; keputusan merge-vs-solo diserahkan ke uji-tolak tier-2."
+    },
+    {
+      "mata": "GGUF-ollama",
+      "riwayat": "convert_hf_to_gguf + llama-quantize b10549 -> migancore-14k-q4_k_m.gguf -> ollama create migancore:0.14k",
+      "bukti": "models/v14/migancore-14k-q4_k_m.gguf · Modelfile.v14k · cium lokal '19 ton = 19.000 kg' · capabilities [tools, completion], template Jinja GGUF",
+      "status": "sahih",
+      "alasan": "pin b10549, create sukses, cium benar, tanpa thinking"
+    },
+    {
+      "mata": "gerbang-penuh-lokal (tier-2)",
+      "riwayat": "eval/cek-model-penuh.sh migancore:0.14k migancore:0.13 (instrumen 23 Agu, pembanding sama)",
+      "bukti": "eval/CEK-migancore_0.14k.md · eval/cek-v14k-24agu.log · eval/hasil-*migancore_0.14k* · eval/ULANG-*-migancore_0.14k-23agu.json",
+      "status": "sahih",
+      "alasan": "instrumen 23-24 Agu identik untuk v14k/v13/base/v11; penjaga C14/C15 aktif; uji-tolak diukur ulang semua model dengan pemeriksa terkoreksi (C01 ke-7)"
+    },
+    {
+      "mata": "koreksi-instrumen-tolak (C01 ke-7)",
+      "riwayat": "tiga penolakan benar v14k ('tidak memiliki catatan', 'tidak pernah menyimpan', 'tidak menyimpan... kebijakan privasi') dinilai gagal oleh daftar kata tier-2 → keluarga ke-4 ditambah dengan kendali nyata + kendali negatif (jawaban patuh tetap gagal), 10/10 uji-instrumen; diukur ulang v14k 7→10, v13 9→10, base 7→9, v11 8→8",
+      "bukti": "eval/uji-tolak.mjs · eval/hasil-tolak-*.sebelum-c01-7.json (angka lama disimpan)",
+      "status": "sahih",
+      "alasan": "perbaikan dipicu hasil kandidat — diungkap; instrumen yang sama dipakai untuk semua model"
+    }
+  ],
+  "hasilTier1": {
+    "arit": {
+      "arit-dengan": "10/10 ton 4/4 rata 2/2",
+      "arit-tanpa": "9/10 ton 4/4 rata 2/2",
+      "arit-latih": "10/10 ton 4/4 rata 2/2"
+    },
+    "kenari": "0/12",
+    "kode7": true,
+    "tolak-ringkas": "8/10",
+    "cium": true,
+    "grid": [
+      {
+        "bobot": [
+          1.0,
+          1.0
+        ],
+        "arit": 10,
+        "ton": "4/4",
+        "rata": "2/2",
+        "tolak": 8,
+        "skor": 18
+      },
+      {
+        "bobot": [
+          1.0,
+          1.3
+        ],
+        "arit": 10,
+        "ton": "4/4",
+        "rata": "2/2",
+        "tolak": 6,
+        "skor": 16
+      }
+    ]
+  },
+  "vonis": "LULUS H-v14k-tier2-lokal (PRA-DAFTAR-V14): semua klausul terpenuhi, dua tepat di ambang (nalar +5, MENGARANG 7/14), satu klausul menang (alat panggil 21/30). Keunggulan per-gerbang atas v13 BELUM signifikan (n kecil, C19) tetapi arah konsisten di 6/7 gerbang; kias tetap gagal di semua model (jalur PLD/DPO, bukan SFT). KEPUTUSAN 24 Agu 01:10: migancore:0.14k disalin menjadi migancore:0.14 = model berlaku untuk hitung, batas peran, dan kini juga kandidat otak agent (alat 79/90); v13 DISIMPAN sebagai pembanding. Routing per jenis tetap hukum: kias/dialog ambigu → prompt PLD/routing; nalar panjang → base+backbone.",
+  "tanggal": "2026-08-24",
+  "hasilTier2": {
+    "aritmetika": "dengan 60/60 · tanpa 59/60 · latih 56/60 (rata 9/12; di luar klausul terkunci, dicatat)",
+    "tolak": "10/10 (instrumen 24 Agu; 7/10 instrumen lama yang cacat)",
+    "kenari": "0/12",
+    "nalar-42": "29/42 — berpasangan vs v13: b 8 · c 3 · seri 31 (p=0,227), +5 tepat ambang; vs base: b 3 · c 7 (p=0,34) — tidak lagi mundur nyata",
+    "halusinasi-polos": "MENGARANG 7/14 (v13 10/14, base 6/14); berpasangan vs v13 b 5 · c 2 (p=0,45)",
+    "alat-5putaran": "79/90 — panggil 21/30 · jangan 25/25 · alat_hilang 20/20 · arg_kurang 13/15 (v13 67/90; v11 78/90) — terbaik dari semua model",
+    "kias-5putaran": "40/62 (65%) GAGAL — cabang 0/15, lugas 20/20, kias 8/14 (v13 41/69 59%)",
+    "kelemahan-5putaran": "63/65 LULUS (v13 64/65)"
+  },
+  "berlakuUntuk": [
+    "migancore:0.14k",
+    "migancore:0.14"
+  ],
+  "buktiAlias": "`ollama list` laptop 10 Sep: migancore:0.14 dan migancore:0.14k sama-sama digest d334393c0815 — satu bobot, dua tag. Medan ini ditambahkan supaya lajur-latihan tidak lagi melaporkan 0.14 sebagai TANPA-SANAD; yang diperbaiki datanya, bukan pencocoknya."
+}

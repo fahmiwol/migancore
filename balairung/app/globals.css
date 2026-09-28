@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glow: #00e6ff; --accent: #00b7ff; --interactive: #008cff; --data: #0056cc;
+  --panel: #0a1f33; --elevated: #07121e; --bg: #03111a;
+}
+
+html, body { background: var(--bg); color: #dff4f7; margin: 0; }
+body { font-family: var(--font-inter), sans-serif; }
+
+/* Balairung panel — the glass HUD card (Denyut applies motion on top) */
+.pusaka {
+  background: rgba(10, 31, 51, 0.55);
+  border: 1px solid rgba(0, 230, 255, 0.20);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 1px rgba(0,230,255,.08), 0 8px 32px rgba(0,230,255,.06);
+}
+.pusaka-hd {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--glow);
+}
+.glow-text { text-shadow: 0 0 12px rgba(0,230,255,.6); }

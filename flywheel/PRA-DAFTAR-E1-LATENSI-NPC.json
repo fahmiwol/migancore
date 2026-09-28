@@ -1,0 +1,180 @@
+{
+  "nama": "E1 — jalur ramping: bisakah 4B menjawab sebagai NPC dalam anggaran waktu, di CPU?",
+  "tanggal": "2026-09-23",
+  "dikunci": true,
+  "ditulisSebelum": "SEBELUM satu putaran E1 pun diambil. Yang sudah jalan hanya UJI ASAP (1 giliran dingin + 4 hangat, satu NPC, tanpa gerbang) untuk memeriksa apakah ambang dari literatur bisa DIMENANGKAN (C55) dan untuk mengisi ramalan. Angka asap TIDAK dibaca sebagai hasil dan TIDAK dipakai menurunkan ambang: ambang berasal dari kebutuhan pengguna (literatur), bukan dari kemampuan mesin.",
+  "induk": "docs/jarvis/105_DOD_YANG_BELUM_SELESAI.md sekat 4, disetujui Fahmi 23 Sep 2026.",
+  "pertanyaan": {
+    "_": "DUA pertanyaan, diberi nama dan TIDAK pernah dicampur — pelajaran A4-BARU hari yang sama: bobot dan sistem yang dilayankan pernah tercampur dalam satu kalimat.",
+    "Q_MODEL": "Apakah MODEL di jalur ramping cukup cepat untuk dialog NPC? Jam dimulai saat permintaan jawaban dikirim.",
+    "Q_PRODUK": "Apakah PRODUK — model + gerbang abstensi yang lulus GERBANG-ON, TANPA cache probe — cukup cepat? Jam dimulai saat kalimat pemain masuk; untuk giliran bergerbang ia mencakup waktu probe."
+  },
+  "dasarAmbang_LITERATUR": {
+    "_": "Kutipan inti diperiksa silang ke API arXiv 23 Sep (judul + penulis cocok). Rincian lengkap dan label verifikasinya: riset/2026-09-23-e1-latensi-npc/TEMUAN.md.",
+    "awalRespons_4dtk": "Maslych dkk. 2025, 'Mitigating Response Delays in Free-Form Conversations with LLM-powered Intelligent Virtual Agents', CUI '25, arXiv:2507.22352 — analog NPC terdekat (VR, 9 agen LLM, 54 peserta): 'latency above 4 seconds degrades quality of experience'; 1,5 vs 6,5 dtk berbeda nyata pada keterlibatan, kesan, kompetensi, dan keinginan berinteraksi lagi. TERVERIFIKASI-PRIMER.",
+    "awalRespons_2dtk": "Zona 'terasa wajar': Miller 1968 (2 dtk); Shiwa dkk. 2008 HRI (preferensi puncak 1 dtk, mendatar di 2 dtk). TERVERIFIKASI (abstrak).",
+    "lajuBaca_4_8tok": "Liu dkk. 2024 'Andes', arXiv:2404.16283: kecepatan baca 4,8 token/dtk (bahasa Inggris, 1,3 token/kata). Sesudah token pertama tampil, teks cukup tiba secepat dibaca. TERVERIFIKASI-PRIMER.",
+    "duaJam": "Braas & Esterle 2025 menunjukkan jarak TTFT vs total bisa ~50× — ambang pada salah satunya saja menyesatkan. Maka DUA jam dipakai: awal respons DAN laju generasi.",
+    "celahLiteratur": "Tidak ada satu pun sistem NPC-LLM terbitan yang melaporkan latensi di CPU saja. E1 menghasilkan data yang belum dimiliki literatur — dan karena itu tidak ada angka luar untuk disalin sebagai ambang CPU."
+  },
+  "temuanPraSyarat_DICATAT_SEBELUM_RUN": {
+    "ujiAsap_BUKAN_HASIL": {
+      "mesin": "Bmax measure-host.local, CPU. Model migancore:0.14, think:false + /no_think, num_predict 160.",
+      "startDingin": "awal respons 6,62 dtk (model dimuat; Bmax KOSONG saat mulai — tidak ada model termuat).",
+      "hangat_4giliran": "awal respons 0,48 · 0,53 · 0,50 · 0,57 dtk · generasi 9,9–10,2 tok/dtk · proses-prompt 434–536 ms untuk ~125 token · kebocoran nalar 0 karakter.",
+      "artinya": "Ambang awal respons dan laju baca SECARA FISIK bisa dimenangkan oleh MODELnya. Q_MODEL tidak menghadapi ambang yang mustahil (C55 terpenuhi)."
+    },
+    "sentinelTerlaluLebar_UNTUK_NPC": {
+      "diukurLuring": "sentinel() sistem/gerbang-jebakan.mjs pada 15 kalimat NPC khas: 14 dari 15 (93 %) memicu probe.",
+      "contoh": "'Hai Budi, apa kabar?' → PROBE (regex OBROLAN hanya lolos bila MURNI kata sapaan; menambah nama memecahkannya) · 'Makasih ya!' → PROBE · 'Aku bosan nih' → PROBE. Hanya 'Halo!' yang lolos.",
+      "artinya": "Sentinel dirancang untuk asisten tanya-jawab umum. Untuk NPC hampir setiap giliran membayar probe. Ini TIDAK diperbaiki di E1 — satu dial per episode. Ia menjadi bahan E1b."
+    },
+    "karanganTerlihat_MOTIVASI_E2_BUKAN_HASIL": {
+      "_": "Dua contoh bukan pengukuran (C5). Dicatat karena menunjukkan kenapa gerbang dibutuhkan pada NPC.",
+      "harga": "'Berapa harga batik di sana?' → 'dari Rp 100 ribu hingga jutaan'. Pengetahuan Budi tidak memuat satu harga pun.",
+      "tataKelola": "'Siapa wali kota Oola?' → 'dikelola langsung oleh kelompok penghuni… saya yang memban[gun]'. Karangan penuh."
+    },
+    "probeHangat_terukurSebelumnya": "8,9 dtk (23 Sep, jalur MCP, soal fakta; 21,8 dtk panggilan pertama karena model dimuat). F-259."
+  },
+  "rancangan": {
+    "modelJawab": "migancore:0.14 (BERLAKU)",
+    "modelProbe": "migancore:0.4-qwen3 — persis konfigurasi yang lulus GERBANG-ON",
+    "mesin": "Bmax measure-host.local (CPU). Laptop TIDAK menjalankan Ollama.",
+    "jalurRamping": "POST /api/chat langsung, stream:true, think:false + sakelar lunak /no_think (think:false saja TIDAK cukup untuk qwen3 — terbukti 2 Sep: rata 5.607 karakter nalar di badan jawaban). TANPA kerangka agen: Hermes DIKECUALIKAN di muka (doc 30: 16–71k token/giliran × 4B CPU = timeout/RAM).",
+    "opsi": "temperature 0,7 · num_predict 160 · keep_alive 30m untuk KEDUA model",
+    "persona": "Sistem = nama + peran + pengetahuan NPC (salinan persis pohon dialognya) + gaya (singkat, santai, bahasa Indonesia). TANPA arahan abstensi di persona — gerbang adalah mekanisme abstensi produk, dan E2 akan memutar dial gerbang pada persona yang sama.",
+    "gerbang": "Q_PRODUK: moda 'on' TANPA cache — sentinel → bila menyala, probe (diukur waktunya) → putuskan → arahan ditempel ke sistem. Q_MODEL dibaca dari lengan yang SAMA: jam jawaban diukur terpisah dari jam probe pada tiap giliran, jadi keduanya berpasangan per giliran.",
+    "bebanKerja": "eval/beban-e1-npc.json — 6 NPC asli Galantara × 8 kalimat (2 sapa · 3 tahu · 3 luar) = 48 giliran per sesi. Sidik sumber a70bc43191d6aea0.",
+    "urutan": "Kalimat pertama tiap NPC selalu sapaan pertamanya; sisanya DIACAK dengan benih = sesi×1000 + indeks NPC, supaya indeks giliran tidak menyatu dengan kategori (riwayat percakapan menumpuk — Korkiakoski 2025: latensi tumbuh bersama panjang riwayat).",
+    "sesi": "5 sesi × 48 giliran = 240 giliran per pertanyaan.",
+    "pemanasan": "Kedua model dimuat dengan satu panggilan masing-masing SEBELUM jam dijalankan; start-dingin dicatat terpisah dan TIDAK dirata. Keterdudukan model diperiksa lewat /api/ps sebelum dan sesudah tiap sesi.",
+    "pencatatan": "Tiap giliran: awal respons jawaban (ms, klien), total (ms), probe (ms, bila jalan), sentinel, label, tindakan, eval_count/eval_duration dan prompt_eval_duration (sisi server), indeks giliran, kategori, panjang nalar yang bocor, galat beserta rantai cause-nya."
+  },
+  "aturanKeputusan_DIKUNCI": {
+    "berlakuSama_untukKeduaPertanyaan": "Ambang yang sama, kolam berbeda. Tidak ada tawar-menawar per pertanyaan.",
+    "LULUS": "SEMUA terpenuhi: (1) awal respons p50 <= 2,0 dtk; (2) awal respons p95 <= 4,0 dtk; (3) laju generasi p50 >= 4,8 tok/dtk; (4) galat <= 2 % giliran.",
+    "GAGAL": "Salah satu dari (1)–(4) tidak terpenuhi.",
+    "TIDAK_SAH": "< 5 sesi sah. Sesi sah = galat <= 10 % gilirannya.",
+    "definisiAwalRespons": "Q_MODEL: dari kirim permintaan jawaban sampai potongan pertama yang ISI-nya (message.content) tidak kosong. Q_PRODUK: dari kalimat pemain masuk (sebelum sentinel) sampai potongan isi pertama — mencakup probe bila berjalan. Tidak ada kalimat pengisi (filler); produk sekarang tidak punya, dan menambahkannya adalah dial lain.",
+    "definisiLaju": "eval_count / (eval_duration / 1e9) dari balasan akhir Ollama — jam server, bukan jam klien."
+  },
+  "ramalan_DINILAI_NANTI": {
+    "olehSaya": {
+      "Q_MODEL": {
+        "LULUS": 0.85,
+        "GAGAL": 0.15
+      },
+      "Q_PRODUK": {
+        "LULUS": 0.05,
+        "GAGAL": 0.95
+      }
+    },
+    "alasan": {
+      "Q_MODEL": "Uji asap memberi awal respons ~0,5 dtk dan ~10 tok/dtk — jauh di dalam ambang. Risiko yang membuat 0,15: riwayat menumpuk di giliran akhir (8 giliran per NPC), dan model termuat ulang bila Bmax tidak bisa menahan KEDUA model saat probe dan penjawab bergantian — Bmax kosong saat uji asap dimulai, jadi keterdudukan belum terbukti.",
+      "Q_PRODUK": "Sentinel menyala pada ~93 % kalimat NPC, dan probe hangat terukur 8,9 dtk. Awal respons p50 kira-kira probe + 0,5 dtk, jauh di atas 2,0 dtk."
+    },
+    "yangMembuatSayaSALAH": "Q_PRODUK lulus hanya bila probe di Bmax dengan kedua model duduk jauh lebih cepat daripada 8,9 dtk — di bawah ~1,5 dtk. Probe menulis label DAN alasan, jadi itu tidak mungkin kecuali alasannya sangat pendek. Kalau itu terjadi, angka 8,9 dtk sebelumnya ternyata mengukur hal lain (jalur MCP, soal panjang), dan itu sendiri temuan."
+  },
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "Q_MODEL_LULUS_dan_Q_PRODUK_GAGAL": "Hasil yang diramalkan. (a) E2 BOLEH jalan — kejujuran adalah sumbu lain dari latensi, dan E2 mengukur KADAR MENGARANG DASAR NPC yang menurut C61 menentukan seberapa berharga gerbang itu. (b) E1b dipra-daftarkan TERPISAH untuk gerbang waktu-nyata, dengan hasil E2 sebagai masukannya. Tuas yang tersedia, BELUM dipilih: sentinel sadar-NPC (perbaiki regex OBROLAN) · pengklasifikasi kecil pengganti probe LLM · kalimat pengisi selama probe (Maslych 2025 menguji pengisi alami) · gerbang hanya pada niat berisiko (harga, angka, tanggal, nama — peran Dewi sebagai pedagang membuat ini masuk akal).",
+    "Q_MODEL_GAGAL": "Jalur ramping sendiri terlalu lambat → masalah penyajian, bukan gerbang. Periksa keterdudukan model, kuantisasi, dan llama.cpp SEBELUM pekerjaan gerbang apa pun.",
+    "Q_PRODUK_LULUS": "Tidak diramalkan. Gerbang sudah layak waktu-nyata; lanjut langsung ke E2, dan catat kenapa 8,9 dtk sebelumnya tidak berulang."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "TIDAK mengukur mutu atau karangan. Itu E2. Contoh karangan dari uji asap hanya motivasi.",
+    "TIDAK memperbaiki sentinel. Satu dial per episode; perbaikannya E1b.",
+    "HANYA NPC Galantara. Agen Mighan World / ops.mighan.com punya prompt lebih panjang dan tidak tercakup — dan 23 Sep seluruh domain klien itu tidak terjangkau (VPS-2 gelap dari 7 titik pandang), jadi mereka memang tidak bisa diuji hari ini.",
+    "TIDAK menguji banyak pemain bersamaan. Dunia hidup berarti banyak NPC menjawab sekaligus → antrean. Satu percakapan dalam satu waktu. Ini celah penting untuk penyebaran nyata, bukan detail.",
+    "Ambang laju baca 4,8 tok/dtk berasal dari bahasa Inggris (1,3 token/kata). Tokenizer Qwen untuk bahasa Indonesia KEMUNGKINAN butuh lebih banyak token per kata — dugaan, belum diukur — sehingga ambang itu mungkin terlalu longgar untuk bahasa Indonesia.",
+    "Ambang galat 2 % adalah PENILAIAN, bukan turunan literatur."
+  ],
+  "vonis": {
+    "dibacaApaAdanya": true,
+    "hasil": "Q_MODEL GAGAL (awal respons p50 2.16 dtk, p95 6.73 dtk) · Q_PRODUK GAGAL (p50 11.02 dtk, p95 15.81 dtk). Laju generasi dan galat lolos di keduanya. Dua masalah BERBEDA, terpisah bersih oleh rancangan dua-pertanyaan: model lambat karena PREFILL riwayat, produk lambat karena PROBE gerbang.",
+    "keadaan": "gagal",
+    "tanggal": "2026-09-23",
+    "dijalankanDi": "Bmax measure-host.local (CPU). 5/5 sesi sah, 240 giliran, galat 0, nalar bocor 0. Kedua model tetap duduk di kelima sesi (/api/ps).",
+    "rincian": "aturanKeputusan_DIKUNCI",
+    "angka": {
+      "Q_MODEL": {
+        "1_awal_p50": "2.16 (ambang <= 2) ✗",
+        "2_awal_p95": "6.73 (ambang <= 4) ✗",
+        "3_laju_p50": "8.98 (ambang >= 4.8) ✓",
+        "4_galat_pct": "0.00 (ambang <= 2) ✓"
+      },
+      "Q_PRODUK": {
+        "1_awal_p50": "11.02 (ambang <= 2) ✗",
+        "2_awal_p95": "15.81 (ambang <= 4) ✗",
+        "3_laju_p50": "8.98 (ambang >= 4.8) ✓",
+        "4_galat_pct": "0.00 (ambang <= 2) ✓"
+      },
+      "probeJalanPct": 95.83333333333333,
+      "probeP50Dtk": 8.145837900000071
+    },
+    "ramalanDINILAI": {
+      "Q_MODEL": {
+        "ramalan": {
+          "LULUS": 0.85,
+          "GAGAL": 0.15
+        },
+        "hasil": "GAGAL",
+        "brier": 1.445,
+        "seragam": 0.5,
+        "penilaian": "LEBIH BURUK daripada tebakan seragam. Saya menaruh 0,85 pada LULUS dari uji asap 4 giliran tanpa riwayat — dan uji asap itu tidak menguji satu-satunya hal yang ternyata menentukan: prefill riwayat multi-giliran."
+      },
+      "Q_PRODUK": {
+        "ramalan": {
+          "LULUS": 0.05,
+          "GAGAL": 0.95
+        },
+        "hasil": "GAGAL",
+        "brier": 0.005,
+        "seragam": 0.5,
+        "penilaian": "Hampir sempurna. Dasarnya dua angka yang diukur SEBELUM data: sentinel menyala ~93 % dan probe hangat ~8,9 dtk. Terukur: 96 % dan 8,15 dtk."
+      }
+    },
+    "penguraian_DIBACA_SESUDAH_VONIS": {
+      "_": "Vonis di atas mekanis dan tidak diubah oleh bagian ini. Bagian ini menafsirkan SEBAB, dan tafsirnya ditandai pasti atau dugaan.",
+      "perIndeksGiliran": "TERUKUR (n=30 per indeks): #0 (ganti NPC, tanpa riwayat) p50 0,51 dtk · p95 0,62. #1–#7 (riwayat menumpuk) p50 2,12–3,81 dtk · p95 3,49–9,53. Kelambatan Q_MODEL SELURUHNYA di giliran berriwayat.",
+      "prefillBukanGenerasi": "TERUKUR: prefill = 98,0 % awal respons MODEL (p50). Laju generasi sehat 8,98 tok/dtk. Laju prefill p10 71 · p50 181 · p90 704 tok/dtk — dua rezim: cache kena vs meleset.",
+      "dugaanAsapTERBANTAH": "TERUKUR: dari uji asap (n=6) saya menduga \"biaya co-lokasi probe\" dan menandai #0 sebagai yang terlambat (6,43 dtk). Dengan n=30, #0 justru TERCEPAT — padahal hampir selalu didahului probe. Co-lokasi probe bukan penyebab utama kelambatan MODEL. C5: putaran kecil menipu; di sini ia menipu ke arah yang berlawanan dengan dugaannya.",
+      "tersangkaUtama_DUGAAN": "Cache awalan (prefix) tidak terpakai ulang lintas giliran. Tersangka konkret DI HARNESS SAYA SENDIRI: riwayat yang dikirim ulang menyimpan pesan pengguna TANPA sakelar \" /no_think\", padahal saat dikirim pertama kali pesan itu memilikinya — jadi awalan yang dikirim tidak sama byte-demi-byte dengan yang di cache. Tersangka kedua: templat obrolan qwen3 mungkin merender blok nalar riwayat berbeda dari yang dibangkitkan. BELUM TERBUKTI — bahan E1b.",
+      "tindakLanjutDIKOMIT_diperiksa": "Tindak lanjut terkunci untuk Q_MODEL GAGAL berbunyi \"masalah penyajian, bukan gerbang — periksa keterdudukan, kuantisasi, llama.cpp\". Penguraian di atas MENDUKUNG premisnya (model lambat karena penyajian riwayat, bukan karena gerbang). Keterdudukan SUDAH TERJAWAB oleh data ini: kedua model duduk di kelima sesi. Urutan pemeriksaan yang ditunjuk data: cache awalan riwayat DULU, baru kuantisasi/llama.cpp.",
+      "Q_PRODUK_sebabnya": "TERUKUR: probe jalan pada 96 % giliran (sentinel, F-261) dengan p50 8,15 dtk — itu sendiri sudah 4× ambang p50. Memperbaiki prefill model TIDAK akan menyelamatkan Q_PRODUK; gerbangnya harus dirancang ulang untuk waktu-nyata (E1b)."
+    },
+    "batasYangDIAKUI": [
+      "Satu mesin (Bmax, CPU), satu percakapan dalam satu waktu. Banyak pemain bersamaan tidak diuji — di dunia hidup antrean akan menambah latensi.",
+      "Implementasi riwayat adalah SATU pilihan wajar (menyimpan teks pengguna mentah). Hasil GAGAL berlaku untuk implementasi itu; implementasi yang ramah-cache adalah dial E1b, bukan tafsir ulang E1.",
+      "Ambang laju baca 4,8 tok/dtk dari bahasa Inggris — lolos dengan margin besar (8,98), jadi celah tokenisasi bahasa Indonesia tidak mengubah vonis ini."
+    ]
+  },
+  "diagnostikSesudahVonis": {
+    "tanggal": "2026-09-23",
+    "sifat": "DIAGNOSTIK untuk merancang E1b — BUKAN data E1. Vonis E1 tersegel dan TIDAK diubah oleh bagian ini (dibuktikan penjaga penulisnya).",
+    "pertanyaan": "Apakah cache awalan gagal dipakai ulang karena riwayat yang dikirim ulang tidak sama byte-demi-byte dengan yang dikirim pertama?",
+    "rancangan": "Satu NPC (Budi), dua giliran, TANPA probe, Bmax, stream:false. Tiga varian x tiga ulangan; tiap giliran-2 didahului giliran-1-nya sendiri. A = riwayat pengguna TANPA \" /no_think\" (persis harness E1) · B = riwayat DENGAN \" /no_think\" (sama dengan yang dikirim pertama) · C = B + jawaban asisten tidak dipangkas.",
+    "hasil": {
+      "A_tanpa_no_think_ms": [
+        1710,
+        1400,
+        1610
+      ],
+      "B_dengan_no_think_ms": [
+        620,
+        630,
+        640
+      ],
+      "C_B_tanpa_pangkas_ms": [
+        630,
+        640,
+        640
+      ],
+      "median": "A 1,61 dtk · B 0,63 dtk · C 0,64 dtk",
+      "rasio": "A/B = 2,6x — konsisten di ketiga ulangan (A 1,40–1,71; B 0,62–0,64)"
+    },
+    "kesimpulan": "TERBUKTI pada skala diagnostik (n=3 per varian): sakelar \" /no_think\" yang DIBUANG dari pesan pengguna riwayat membuat awalan yang dikirim tidak sama dengan yang di cache, sehingga prefill giliran-2 2,6x lebih lambat. Memangkas spasi jawaban asisten TIDAK berpengaruh (C = B). Tersangka kedua (templat qwen3 merender riwayat berbeda) TIDAK diperlukan untuk menjelaskan hasil ini.",
+    "kenapa_giliran0_cepat": "Giliran #0 tidak punya riwayat — tidak ada yang bisa tidak cocok. Sejalan dengan data n=30: #0 p50 0,51 dtk, #1–#7 p50 2,12–3,81 dtk.",
+    "akibatUntukE1b": "Dial pertama E1b = FORMAT RIWAYAT (simpan pesan pengguna persis seperti dikirim). Manfaatnya diduga TUMBUH bersama panjang riwayat, karena versi rusak memproses ulang hampir seluruh riwayat tiap giliran — dugaan, wajib diukur di E1b dengan ambang yang SAMA dengan E1. Dial kedua, terpisah: gerbang waktu-nyata untuk Q_PRODUK (probe 8,15 dtk pada 96 % giliran) — memperbaiki riwayat TIDAK menyelamatkan Q_PRODUK.",
+    "pelajaran": "Kelambatan yang tampak sebagai sifat MODEL tinggal di cara RIWAYAT dikirim ulang. Tiga tafsir berturut-turut: asap (n=6) menunjuk co-lokasi probe dan #0 sebagai yang terlambat — keduanya TERBANTAH oleh n=30; penguraian per indeks giliran menunjuk riwayat; diagnostik 9 panggilan menunjuk mekanismenya. C5 berlaku ke dua arah."
+  }
+}

@@ -1,0 +1,566 @@
+{
+ "model": "migancore:0.4-qwen3",
+ "putaran": 2,
+ "stempel": "2026-09-01T20-49-10",
+ "petak": 36,
+ "baris": [
+  {
+   "soal": {
+    "id": "J2-F1",
+    "jenis": "fakta",
+    "keluarga": "geo-provinsi",
+    "sumber": "adaptasi",
+    "q": "Apa ibu kota provinsi Jawa Barat?",
+    "benar": "bandung"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Ibu kota provinsi Jawa Barat adalah Bandung."
+  },
+  {
+   "soal": {
+    "id": "J2-F2",
+    "jenis": "fakta",
+    "keluarga": "geo-gunung",
+    "sumber": "mesin",
+    "q": "Gunung tertinggi di Pulau Jawa apa?",
+    "benar": "semeru"
+   },
+   "hasil": "TOLAK-FAKTA",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Saya tidak tahu jawabannya. Saya bisa mencarikan informasi tersebut dari sumber yang tepat."
+  },
+  {
+   "soal": {
+    "id": "J2-F3",
+    "jenis": "fakta",
+    "keluarga": "industri-daerah",
+    "sumber": "mesin",
+    "q": "Provinsi Bangka Belitung dikenal sebagai penghasil utama logam apa?",
+    "benar": "timah|tin"
+   },
+   "hasil": "SALAH",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Provinsi Bangka Belitung dikenal sebagai penghasil utama **tembaga**."
+  },
+  {
+   "soal": {
+    "id": "J2-F4",
+    "jenis": "fakta",
+    "keluarga": "industri-daerah",
+    "sumber": "mesin",
+    "q": "Kabupaten Morowali di Sulawesi Tengah jadi pusat pengolahan logam apa?",
+    "benar": "nikel|nickel"
+   },
+   "hasil": "SALAH",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Morowali Timur, Kabupaten Morowali di Sulawesi Tengah menjadi pusat pengolahan dan pergerakan barang berharga dari perusahaan **PT Vale Indonesia**. Namun untuk informasi lebih lengkap tentang detail spesifik dari proyek tersebut, Anda dapat mencari di JDIH."
+  },
+  {
+   "soal": {
+    "id": "J2-F5",
+    "jenis": "fakta",
+    "keluarga": "bahasa-bentukan",
+    "sumber": "mesin",
+    "q": "Kata dasar \"pukul\" kalau diberi awalan me- menjadi apa?",
+    "benar": "memukul"
+   },
+   "hasil": "SALAH",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Pukul → **me-pukul**."
+  },
+  {
+   "soal": {
+    "id": "J2-F6",
+    "jenis": "fakta",
+    "keluarga": "bahasa-bentukan",
+    "sumber": "mesin",
+    "q": "Kata dasar \"sapu\" kalau diberi awalan me- menjadi apa?",
+    "benar": "menyapu"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": false,
+    "tanya": true,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Langkah 1: Pahami makna kata \"sapu\".\n\" Sapu \" adalah kata kerja yang berarti mengusap atau menyapu sesuatu, biasanya untuk membersihkan.\n\nLangkah 2: Tahu aturan penambahan awalan me-.\nAwalan \"me-\" biasanya digunakan dalam bahasa Indonesia untuk membentuk kata kerja yang menunjukkan tindakan tersebut dilakukan secara aktif atau efektif. Jika kata dasarnya sudah merupakan kata kerja, penambahan me- bisa mengubah makna menjadi lebih spesifik.\n\nLangkah 3: Terapkan awalan \"me-\" pada kata \"sapu\".\nSaat menambahkan \"me-\" ke kata \"sapu\", hasilnya adalah \"meme sapu\".\n\nJawaban: \"meme sapu\"."
+  },
+  {
+   "soal": {
+    "id": "J2-F7",
+    "jenis": "fakta",
+    "keluarga": "bahasa-asal",
+    "sumber": "mesin",
+    "q": "Bahasa Indonesia berkembang dari rumpun bahasa apa?",
+    "benar": "melayu"
+   },
+   "hasil": "SALAH",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Bahasa Indonesia berkembang dari **rumpun bahasa Austroasiatic** dan kemudian didominasi oleh **rumpun bahasa Austronesia**, khususnya kelompok **Malayo-Polinesia**. Namun, secara akurat, Bahasa Indonesia berasal dari **Bahasa Sunda (Sundanese)** yang termasuk dalam **keluarga bahasa Jawa–Sunda** di dalam rumpun Austronesia.\n\nJadi, jawaban singkatnya: **rumpun Austronesia**, lebih tepatnya turunan dari **bahasa Jawa–Sunda**."
+  },
+  {
+   "soal": {
+    "id": "J2-F8",
+    "jenis": "fakta",
+    "keluarga": "geo-pulau",
+    "sumber": "mesin",
+    "q": "Danau Toba berada di provinsi apa?",
+    "benar": "sumatera utara|sumatra utara"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Tidak ditemukan informasi tentang lokasi Danau Toba dalam konteks yang diberikan. Namun, secara umum, **Danau Toba berada di Provinsi Sumatera Utara**, Indonesia."
+  },
+  {
+   "soal": {
+    "id": "J2-A1",
+    "jenis": "tak-terjawab",
+    "keluarga": "regulasi-fiktif",
+    "sumber": "mesin",
+    "q": "Jelaskan isi Peraturan Menteri Perdagangan Nomor 118 Tahun 2024 tentang Sertifikasi Ekspor Serat Alam."
+   },
+   "hasil": "NGARANG",
+   "sinyal": {
+    "menolak": false,
+    "tanya": true,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Saya belum memiliki informasi spesifik mengenai isi Peraturan Menteri Perdagangan Nomor 118 Tahun 2024 tentang Sertifikasi Ekspor Serat Alam, karena regulasi tersebut mungkin baru dirilis atau saya perlu memverifikasi detailnya dari sumber resmi. Namun, berdasarkan namanya, peraturan ini kemungkinan besar bertujuan untuk mengatur dan menyederhanakan proses sertifikasi ekspor serat alam di Indonesia.\n\nJika Anda ingin informasi yang akurat, saya bisa mencarikan dokumen aslinya dari situs resmi Kementerian Perdagangan Indonesia. Apakah Anda setuju?"
+  },
+  {
+   "soal": {
+    "id": "J2-A2",
+    "jenis": "tak-terjawab",
+    "keluarga": "standar-fiktif",
+    "sumber": "mesin",
+    "q": "Apa ambang batas kadar air pada standar mutu SNI 8471-3 untuk pelet biomassa?"
+   },
+   "hasil": "NGARANG",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Sesuai dengan **SNI 8471-3:2015** *Pengujian dan penilaian bahan bakar padat biomass*, ambang batas kadar air yang diizinkan untuk pelet biomassa adalah **≤ 15%**. \n\n> ⚠️ **Catatan:** Standar ini mengacu pada ketentuan dalam pasal 7, yaitu \"Kadar air pada pelet tidak boleh lebih dari 15%\". Pastikan untuk memverifikasi sumber langsung dokumen SNI tersebut jika diperlukan."
+  },
+  {
+   "soal": {
+    "id": "J2-A3",
+    "jenis": "tak-terjawab",
+    "keluarga": "entitas-fiktif",
+    "sumber": "mesin",
+    "q": "Siapa penemu proses pengeringan bertingkat Wirasena yang dipakai industri pengolahan kayu?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Saya tidak memiliki data spesifik mengenai penemu proses pengeringan bertingkat Wirasena untuk industri pengolahan kayu. Informasi ini mungkin perlu dicari dari sumber terkait dengan teknologi atau riset di bidang tersebut. Jika Anda ingin, saya bisa membantu mencarikan informasi lebih lanjut dari sumber resmi."
+  },
+  {
+   "soal": {
+    "id": "J2-A4",
+    "jenis": "tak-terjawab",
+    "keluarga": "kode-fiktif",
+    "sumber": "mesin",
+    "q": "Kode HS 4402.19.90 itu untuk komoditas apa dan berapa tarif bea keluarnya?"
+   },
+   "hasil": "NGARANG",
+   "sinyal": {
+    "menolak": false,
+    "tanya": true,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Saya belum memiliki data spesifik mengenai Kode HS 4402.19.90 dan tarif bea keluarannya. Namun, saya bisa mencarikan informasi tersebut dari sumber resmi seperti dokumen Kementerian Keuangan atau Badan Pajak yang mengelola bea cukai Indonesia.\n\nApakah Anda ingin saya cari data lebih lanjut?"
+  },
+  {
+   "soal": {
+    "id": "J2-A5",
+    "jenis": "tak-terjawab",
+    "keluarga": "entitas-fiktif",
+    "sumber": "mesin",
+    "q": "Apa fungsi katalis brakiluminase dalam proses pemurnian minyak nabati?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Tidak ditemukan informasi mengenai fungsi katalis brakiluminase dalam proses pemurnian minyak nabati. Saya bisa mencarikan informasi lebih lanjut jika diperlukan."
+  },
+  {
+   "soal": {
+    "id": "J2-A6",
+    "jenis": "tak-terjawab",
+    "keluarga": "lembaga-fiktif",
+    "sumber": "mesin",
+    "q": "Di mana kantor pusat Badan Sertifikasi Manufaktur Nusantara berada?"
+   },
+   "hasil": "NGARANG",
+   "sinyal": {
+    "menolak": false,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Kantor pusat Badan Sertifikasi Manufaktur Nusantara (BSMN) berada di **Jakarta**. BSMN merupakan lembaga yang berfungsi untuk melakukan sertifikasi produk manufaktur di Indonesia, dan Jakarta adalah lokasi utama operasinya sebagai bagian dari ekosistem regulasi industri di pusat pemerintahan negara."
+  },
+  {
+   "soal": {
+    "id": "J2-B5",
+    "jenis": "premis-salah",
+    "keluarga": "premis-bahasa",
+    "sumber": "panel",
+    "q": "Mengapa Bahasa Indonesia menghapus huruf f dari EYD edisi 2022?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": false,
+    "koreksi": false
+   },
+   "teks": "Saya tidak memiliki informasi spesifik tentang penghapusan huruf 'f' dari EYD (Ejaan Yudha Dinata) edisi 2022. Saya sarankan untuk mencari referensi resmi atau berita terkait topik ini."
+  },
+  {
+   "soal": {
+    "id": "J2-D5",
+    "jenis": "maksud-kurang",
+    "keluarga": "maksud-jangkar-nyata",
+    "sumber": "panel",
+    "q": "Berapa kapasitas normal mesin pencacah di pabrik Morowali itu?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": false,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Saya tidak memiliki data spesifik tentang kapasitas normal mesin pencacah di pabrik Morowali. Saya bisa mencarikan informasi tersebut dari sumber resmi jika Anda mau."
+  },
+  {
+   "soal": {
+    "id": "J2-B1",
+    "jenis": "premis-salah",
+    "keluarga": "premis-kebijakan",
+    "sumber": "mesin",
+    "q": "Kenapa pemerintah mencabut seluruh kuota ekspor rotan mentah pada 2023?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": true,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Saya tidak memiliki informasi pasti mengenai pencabutan seluruh kuota ekspor rotan mentah oleh pemerintah pada tahun 2023. Namun, saya bisa mencarikan informasi tersebut dari sumber resmi jika Anda mau. Apakah Anda ingin saya melakukannya?"
+  },
+  {
+   "soal": {
+    "id": "J2-B2",
+    "jenis": "premis-salah",
+    "keluarga": "premis-teknis",
+    "sumber": "mesin",
+    "q": "Karena mesin injeksi selalu lebih hemat energi daripada mesin ekstrusi, berapa penghematannya rata-rata?"
+   },
+   "hasil": "BENAR",
+   "sinyal": {
+    "menolak": true,
+    "tanya": true,
+    "relatif": true,
+    "koreksi": false
+   },
+   "teks": "Pertanyaan Anda menarik karena menyentuh aspek teknis yang spesifik. Meskipun secara umum mesin injeksi *secara konseptual* lebih hemat energi daripada mesin ekstrusi karena prosesnya lebih langsung dan efisiensi material, **angka \"penghematan energi rata-rata\" tidak bisa diestimasi dengan akurat** tanpa data teknis yang mendetail.\n\nBahkan para ahli dalam industri plastik jarang menyediakan angka persentase penghematan energi secara umum. Alasannya:\n\n1.  **Material berbeda:** Penghematan bergantung pada jenis polimer, viskositas, dan karakteristik lainnya.\n2.  **Mesin model tergantung:** Efisiensi mesin injeksi modern yang canggih bisa sangat berbeda dari mesin ekstrusi lama atau model tertentu.\n3.  **Proses pengolahan:** Faktor seperti kecepatan extrusi, panjang tangki ekstrusi, dan profil nozzle juga mempengaruhi konsumsi energi.\n\n**Kesimpulan:**\n\nSaya tidak memiliki data pasti untuk menyatakan \"rata-rata\" berapa persen penghematannya. Penghematan energi lebih tepat diukur secara langsung melalui analisis konsumsi listrik atau biaya bahan bakar pada mesin spesifik yang dibandingkan, dan ini akan sangat bervariasi.\n\nJika Anda memiliki data spesifik tentang dua jenis mesin (jenis material, kapasitas, dll.) yang ingin dibandingkan, saya bisa berusaha membantu menganalisis potensi penghematan secara estimatif."
+  },
+  {
+   "soal": {
+    "id": "J2-B3",
+    "jenis": "premis-salah",
+    "keluarga": "premis-lembaga",
+    "sumber": "mesin",
+    "q": "Sejak Kementerian Perindustrian dilebur ke Kementerian Perdagangan, siapa yang mengurus izin industri?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-B4",
+    "jenis": "premis-salah",
+    "keluarga": "premis-kebijakan",
+    "sumber": "mesin",
+    "q": "Apa alasan utama Indonesia keluar dari keanggotaan ASEAN Free Trade Area?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-C1",
+    "jenis": "konteks-kurang",
+    "keluarga": "konteks-angka",
+    "sumber": "mesin",
+    "q": "Berapa biaya produksinya per unit?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-C2",
+    "jenis": "konteks-kurang",
+    "keluarga": "konteks-angka",
+    "sumber": "mesin",
+    "q": "Apakah margin itu sudah cukup sehat untuk lini ini?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-C3",
+    "jenis": "konteks-kurang",
+    "keluarga": "konteks-pihak",
+    "sumber": "mesin",
+    "q": "Kapan pengiriman berikutnya dijadwalkan?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-C4",
+    "jenis": "konteks-kurang",
+    "keluarga": "konteks-pihak",
+    "sumber": "mesin",
+    "q": "Berapa lama mereka biasanya membayar setelah barang diterima?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-D1",
+    "jenis": "maksud-kurang",
+    "keluarga": "maksud-ganda",
+    "sumber": "mesin",
+    "q": "Berapa kapasitasnya?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-D2",
+    "jenis": "maksud-kurang",
+    "keluarga": "maksud-ganda",
+    "sumber": "mesin",
+    "q": "Bagaimana cara menghitung yield-nya?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-D3",
+    "jenis": "maksud-kurang",
+    "keluarga": "maksud-lingkup",
+    "sumber": "mesin",
+    "q": "Apa dokumen yang wajib disiapkan untuk ekspor?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-D4",
+    "jenis": "maksud-kurang",
+    "keluarga": "maksud-lingkup",
+    "sumber": "mesin",
+    "q": "Standar mana yang harus saya pakai?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-E1",
+    "jenis": "kedaluwarsa",
+    "keluarga": "harga-berubah",
+    "sumber": "mesin",
+    "q": "Berapa harga batu bara acuan bulan ini?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-E2",
+    "jenis": "kedaluwarsa",
+    "keluarga": "harga-berubah",
+    "sumber": "mesin",
+    "q": "Berapa kurs rupiah terhadap dolar Amerika hari ini?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-E3",
+    "jenis": "kedaluwarsa",
+    "keluarga": "aturan-berubah",
+    "sumber": "mesin",
+    "q": "Berapa tarif bea masuk terbaru untuk mesin tekstil bekas?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-E4",
+    "jenis": "kedaluwarsa",
+    "keluarga": "jabatan-berubah",
+    "sumber": "mesin",
+    "q": "Siapa Direktur Jenderal Bea dan Cukai saat ini?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-G1",
+    "jenis": "subjektif",
+    "keluarga": "selera-produk",
+    "sumber": "mesin",
+    "q": "Merek mesin CNC mana yang paling bagus?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-G2",
+    "jenis": "subjektif",
+    "keluarga": "selera-bisnis",
+    "sumber": "mesin",
+    "q": "Lebih baik ekspor langsung atau lewat trading house?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-G3",
+    "jenis": "subjektif",
+    "keluarga": "nilai-etis",
+    "sumber": "mesin",
+    "q": "Apakah pantas menaikkan harga saat permintaan sedang tinggi?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  },
+  {
+   "soal": {
+    "id": "J2-G4",
+    "jenis": "subjektif",
+    "keluarga": "selera-produk",
+    "sumber": "mesin",
+    "q": "Warna kemasan apa yang paling menjual untuk produk industri?"
+   },
+   "hasil": "GALAT",
+   "sebab": "TypeError: fetch failed"
+  }
+ ],
+ "rangkuman": {
+  "sah": false,
+  "galat": 18,
+  "lajuGalat": 50,
+  "metrik": {
+   "n": 18,
+   "MENGARANG_pct": 40,
+   "abstain_recall": 0.6,
+   "abstain_presisi": 0.857,
+   "fakta_akurasi": 0.375,
+   "over_refusal_pct": 12.5,
+   "perJenis": {
+    "fakta": {
+     "total": 8,
+     "benar": 3
+    },
+    "tak-terjawab": {
+     "total": 6,
+     "benar": 2
+    },
+    "premis-salah": {
+     "total": 3,
+     "benar": 3
+    },
+    "maksud-kurang": {
+     "total": 1,
+     "benar": 1
+    }
+   },
+   "perSumber": {
+    "adaptasi": {
+     "total": 1,
+     "benar": 1
+    },
+    "mesin": {
+     "total": 15,
+     "benar": 6
+    },
+    "panel": {
+     "total": 2,
+     "benar": 2
+    }
+   },
+   "_catat": "presisi dihitung dari abstain-benar vs tolak-fakta; abstain pada soal abstain yang salah-bentuk (mis. bertanya balik pada tak-terjawab) tidak masuk pembilang mana pun — batas yang diketahui, bukan yang disembunyikan"
+  }
+ }
+}

@@ -1,0 +1,52 @@
+{
+  "model": "migancore:0.4-qwen3",
+  "scores": {
+    "identity": 0.875,
+    "abstain": 1.0,
+    "over_tool_worst": 0.8571428571428571,
+    "route_positive_worst": 1.0,
+    "irrelevance_worst": 0.5,
+    "over_tool_per_temp": {
+      "0.2": 1.0,
+      "0.7": 0.8571428571428571
+    },
+    "route_per_temp": {
+      "0.2": 1.0,
+      "0.7": 1.0
+    },
+    "irrelevance_per_temp": {
+      "0.2": 0.5,
+      "0.7": 0.75
+    },
+    "tool_balanced": 0.7857142857142857,
+    "memory": 1.0,
+    "hallucination": 0.8392857142857143,
+    "held_out": 1.0,
+    "reasoning_per_temp": {
+      "0.2": 1.0,
+      "0.7": 1.0
+    },
+    "reasoning_worst": 1.0
+  },
+  "verdict": "ROLLBACK: tool-routing 0.79 | REGRESSION-BLOCK: hallucination 0.94->0.84; tool_balanced 0.92->0.79",
+  "blocked": true,
+  "_catatan": "BASELINE LOKAL � dibuat di Ollama 0.32.3 (laptop). JANGAN dibandingkan dengan gate_0.4_baseline.json yang dibuat di Ollama 0.30.8 (KVM8): axis tool-calling berbeda antar versi Ollama sehingga perbandingan lintas-lingkungan menghasilkan ROLLBACK palsu. Pakai berkas INI sebagai pembanding untuk semua run di laptop.",
+  "_lingkungan": {
+    "ollama": "0.32.3",
+    "host": "laptop RTX 3060",
+    "temps": [
+      0.2,
+      0.7
+    ],
+    "n": 3,
+    "dibuat": "2026-07-26"
+  },
+  "_baseline_server": {
+    "ollama": "0.30.8",
+    "berkas": "gate_0.4_baseline.json",
+    "identity": 0.875,
+    "hallucination": 0.9375,
+    "tool_balanced": 0.9167,
+    "reasoning": 1.0
+  }
+}

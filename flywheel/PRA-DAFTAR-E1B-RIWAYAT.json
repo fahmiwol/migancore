@@ -1,0 +1,134 @@
+{
+  "nama": "E1b-riwayat — satu dial: riwayat percakapan dikirim ulang PERSIS seperti dikirim/dibangkitkan pertama kali",
+  "tanggal": "2026-09-23",
+  "dikunci": true,
+  "ditulisSebelum": "SEBELUM satu putaran E1b pun diambil, dan sebelum harness diubah. Yang sudah ada: vonis E1 (tersegel) dan diagnostik 9 panggilan (F-262) yang membuktikan MEKANISME pada giliran-2. Pertanyaan E1b berbeda: apakah memperbaiki format riwayat CUKUP untuk lolos ambang E1 pada percakapan 8 giliran, 6 NPC, 5 sesi?",
+  "induk": "flywheel/PRA-DAFTAR-E1-LATENSI-NPC.json — tindak lanjut terkunci untuk Q_MODEL GAGAL: 'masalah penyajian, bukan gerbang'. Data E1 menunjuk format riwayat sebagai pemeriksaan pertama (medan diagnostikSesudahVonis). Disetujui lanjut oleh Fahmi 23 Sep, dengan sumber daya yang ada.",
+  "dial": {
+    "yangDIUBAH": "Format riwayat. E1 ('mentah'): pesan pengguna riwayat disimpan TANPA ' /no_think', jawaban asisten dipangkas. E1b ('persis'): pesan pengguna riwayat = string PERSIS yang dikirim ke model (termasuk ' /no_think'), jawaban asisten = string PERSIS yang diterima (tidak dipangkas). Identik MENURUT KONSTRUKSI — harness menyimpan apa yang dikirimnya, bukan menyusun ulang.",
+    "kenapaDuaHalDalamSatuDial": "Keduanya satu hal: 'kirim ulang apa adanya'. Diagnostik F-262 sudah memisahkannya — memangkas jawaban asisten TIDAK berpengaruh (varian C = B), jadi efek yang terukur dapat diatribusikan pada sakelar /no_think.",
+    "yangSAMA_denganE1": "Model migancore:0.14 · probe migancore:0.4-qwen3 (gerbang TETAP jalan, tanpa cache) · Bmax measure-host.local · think:false + /no_think · temperature 0,7 · num_predict 160 · keep_alive 30m · beban kerja eval/beban-e1-npc.json (sidik a70bc43191d6aea0) · benih urutan sesi×1000+indeks NPC · 5 sesi × 48 giliran · pemanasan kedua model · ambang dan definisi di bawah.",
+    "kenapaGerbangTETAPjalan": "Supaya Q_MODEL E1b sebanding dengan Q_MODEL E1 pada kondisi yang sama, dan supaya pertanyaan 'apakah co-lokasi probe merugikan model' ikut terjawab: kalau Q_MODEL lolos dengan probe tetap bergantian, co-lokasi bukan masalah."
+  },
+  "pertanyaan": {
+    "Q_MODEL": "Pertanyaan UTAMA. Jam dimulai saat permintaan jawaban dikirim — definisi sama dengan E1.",
+    "Q_PRODUK": "Dilaporkan dengan aturan yang sama, tetapi BUKAN sasaran episode ini: probe tidak diubah, jadi kegagalannya sudah diramalkan dan tidak dibaca sebagai temuan baru."
+  },
+  "aturanKeputusan_DIKUNCI": {
+    "berlakuSama_untukKeduaPertanyaan": "Disalin kata per kata dari E1 supaya pengurai ambang membaca angka yang sama; uji harness menuntut nilai persisnya.",
+    "LULUS": "SEMUA terpenuhi: (1) awal respons p50 <= 2,0 dtk; (2) awal respons p95 <= 4,0 dtk; (3) laju generasi p50 >= 4,8 tok/dtk; (4) galat <= 2 % giliran.",
+    "GAGAL": "Salah satu dari (1)–(4) tidak terpenuhi.",
+    "TIDAK_SAH": "< 5 sesi sah. Sesi sah = galat <= 10 % gilirannya.",
+    "definisiAwalRespons": "Sama dengan E1: Q_MODEL dari kirim permintaan jawaban sampai potongan isi pertama; Q_PRODUK dari kalimat pemain masuk, mencakup probe.",
+    "definisiLaju": "eval_count / (eval_duration / 1e9) — jam server."
+  },
+  "perbandinganDenganE1": "DESKRIPTIF dan TIDAK BERPASANGAN (waktu berbeda). Vonis dijatuhkan pada ambang MUTLAK di atas, BUKAN pada selisih dengan E1. Selisih dilaporkan per indeks giliran supaya efek 'tumbuh bersama panjang riwayat' bisa dilihat — tetapi ia tidak menentukan vonis.",
+  "ramalan_DINILAI_NANTI": {
+    "olehSaya": {
+      "Q_MODEL": {
+        "LULUS": 0.75,
+        "GAGAL": 0.25
+      },
+      "Q_PRODUK": {
+        "LULUS": 0.02,
+        "GAGAL": 0.98
+      }
+    },
+    "alasan": {
+      "Q_MODEL": "Dua bukti dari pengukuran, bukan dugaan: (a) diagnostik F-262 — prefill giliran-2 turun 1,61 → 0,63 dtk dengan riwayat persis; (b) giliran #0 E1 — tanpa riwayat, didahului probe — p50 0,51 dtk, p95 0,62 dtk: giliran yang cache-nya cocok sudah lolos ambang MESKI probe bergantian. Dengan riwayat persis, tiap giliran seharusnya berperilaku seperti #0 plus pesan baru saja.",
+      "Q_PRODUK": "Probe tidak diubah: 8,15 dtk pada 96 % giliran di E1."
+    },
+    "kenapaTIDAK0_9": "Ramalan Q_MODEL E1 saya 0,85 dan salah (Brier 1,445). Kalibrasinya diturunkan dengan sengaja: diagnostik hanya menguji giliran-2, dan riwayat 8 giliran belum pernah diuji dengan format persis.",
+    "yangMembuatSayaSALAH": "(1) Templat obrolan qwen3 merender giliran asisten riwayat berbeda dari token yang dibangkitkan (mis. menyisipkan blok nalar kosong), sehingga awalan tetap meleset mulai giliran asisten pertama — diagnostik giliran-2 hanya punya SATU giliran asisten, jadi kasus ini belum teruji. (2) Slot cache Ollama tergusur saat berpindah NPC atau saat probe berjalan, sehingga ekor p95 tetap panjang."
+  },
+  "tindakLanjut_DIKOMIT_perHasil": {
+    "Q_MODEL_LULUS": "Separuh-MODEL dari DoD NPC terpenuhi di jalur ramping. (a) Calon hukum F-262 disahkan sebagai hukum bernomor BERSAMA ujinya dalam satu commit (aturan metode kami). (b) Episode berikutnya: E1b-gerbang — gerbang waktu-nyata untuk Q_PRODUK, pra-daftar TERPISAH, dial terpisah.",
+    "Q_MODEL_GAGAL": "Riwayat persis TIDAK cukup. Urutan tersangka berikutnya, dari data: templat qwen3 merender riwayat asisten berbeda (uji dengan membandingkan prompt_eval_count per giliran terhadap panjang pesan baru) → slot cache Ollama (OLLAMA_NUM_PARALLEL) → kuantisasi/llama.cpp (daftar terkunci E1)."
+  },
+  "yangTIDAKdilakukanDanDIAKUI": [
+    "TIDAK mengubah gerbang, sentinel, atau probe. Q_PRODUK akan gagal lagi, dan itu bukan temuan.",
+    "TIDAK menguji banyak pemain bersamaan (sama dengan E1) — celah penting untuk penyebaran nyata.",
+    "Perbandingan dengan E1 tidak berpasangan; vonis tidak bergantung padanya.",
+    "Hanya NPC Galantara. Klien lain (MighanWorld, ops) tidak bisa diuji: VPS-2 gelap (F-260)."
+  ],
+  "vonis": {
+    "dibacaApaAdanya": true,
+    "hasil": "Q_MODEL GAGAL — HANYA pada syarat (2): awal respons p95 8,63 dtk (ambang ≤ 4,0); p50 1,04 dtk LOLOS. Q_PRODUK GAGAL (p50 10,44, p95 17,26 dtk), seperti diramalkan: probe tidak diubah.",
+    "keadaan": "gagal",
+    "tanggal": "2026-09-23",
+    "dijalankanDi": "Bmax measure-host.local (CPU). 5/5 sesi sah, 240 giliran, galat 0, nalar bocor 0. Model dimuat DINGIN (duduk sebelum: kosong); kedua model tetap duduk di kelima sesi (/api/ps).",
+    "rincian": "aturanKeputusan_DIKUNCI",
+    "berkas": {
+      "hasil": "eval/HASIL-E1B-RIWAYAT-2026-09-23T02-29-27.json",
+      "giliran": "eval/e1b-riwayat-2026-09-23T02-29-27.jsonl",
+      "log": "eval/e1b-sah.log"
+    },
+    "angka": {
+      "Q_MODEL": {
+        "1_awal_p50": "1.04 (ambang <= 2) ✓",
+        "2_awal_p95": "8.63 (ambang <= 4) ✗",
+        "3_laju_p50": "9.05 (ambang >= 4.8) ✓",
+        "4_galat_pct": "0.00 (ambang <= 2) ✓"
+      },
+      "Q_PRODUK": {
+        "1_awal_p50": "10.44 (ambang <= 2) ✗",
+        "2_awal_p95": "17.26 (ambang <= 4) ✗",
+        "3_laju_p50": "9.05 (ambang >= 4.8) ✓",
+        "4_galat_pct": "0.00 (ambang <= 2) ✓"
+      },
+      "p50ModelPerSesi": [
+        2.3,
+        0.96,
+        2.35,
+        0.96,
+        0.95
+      ],
+      "probeJalanPct": 95.83333333333333,
+      "probeP50Dtk": 8.12
+    },
+    "ramalanDINILAI": {
+      "Q_MODEL": {
+        "ramalan": {
+          "LULUS": 0.75,
+          "GAGAL": 0.25
+        },
+        "hasil": "GAGAL",
+        "brier": 1.125,
+        "seragam": 0.5,
+        "penilaian": "LEBIH BURUK daripada tebakan seragam untuk kedua kalinya berturut-turut (E1 1,445 · E1b 1,125). Kedua tersangka yang saya tulis di \"yangMembuatSayaSALAH\" bukan penyebabnya; penyebabnya ada di baris harness saya sendiri yang menyusun pesan sistem, dan tidak masuk daftar mana pun."
+      },
+      "Q_PRODUK": {
+        "ramalan": {
+          "LULUS": 0.02,
+          "GAGAL": 0.98
+        },
+        "hasil": "GAGAL",
+        "brier": 0.0008,
+        "seragam": 0.5,
+        "penilaian": "Tepat, dan tidak berarti apa-apa: probe tidak diubah."
+      }
+    },
+    "penguraian_DIBACA_SESUDAH_VONIS": {
+      "_": "Vonis di atas mekanis dan tidak diubah oleh bagian ini. Alat: eval/analisis-e1b-awalan.mjs (dengan uji). Tiap giliran dibanding giliran sebelumnya di percakapan yang sama: apakah STRING arahan gerbang — yang disisipkan ke pesan SISTEM — berubah.",
+      "tigaKelas_TERUKUR": {
+        "sistem-sama": "n 103 · p50 0,85 · p95 1,04 · maks 1,70 dtk",
+        "sistem-BERUBAH": "n 107 · p50 4,65 · p95 9,64 · maks 11,99 dtk",
+        "awal": "n 30 · p50 0,32 · p95 6,90 · maks 7,80 dtk"
+      },
+      "giliranLambat_TERUKUR": "68 giliran > 4 dtk = 63 sistem-BERUBAH + 5 awal + 0 sistem-sama. Kelima giliran awal yang lambat semuanya di SESI 1 (budi, maya, sari, dev, dewi; 6,1–7,8 dtk): model baru dimuat dan persona NPC itu belum pernah diproses — pemanasan harness hanya memanaskan NPC pertama (guide). Sesi 2–5: giliran awal p50 0,31 dtk, prefill 0,12 dtk (cache persona utuh).",
+      "mekanisme_TERUKUR": "Pesan sistem ada di paling depan prompt: satu arahan berbeda memutus awalan di ujung persona, dan riwayat sesudahnya diproses ulang. DIBUKTIKAN LEWAT INTERVENSI (eval/diag-e1c-biaya-token.mjs, 3 ulangan, riwayat 4 giliran yang sama, cache dipancing sebelum tiap varian): arahan klarifikasi di pesan SISTEM 6,33 dtk vs arahan yang SAMA di ekor pesan pengguna 3,30 dtk vs tanpa arahan 0,70 dtk. Biayanya tumbuh bersama panjang riwayat — itu sebabnya p95 yang jatuh, bukan p50.",
+      "perbaikanF262TERBUKTI_diTempatSistemStabil": "Alat yang sama pada data E1 (riwayat mentah): sistem-sama p50 1,82 · p95 2,59 dtk → E1b 0,85 · 1,04 dtk. Sistem-BERUBAH E1 p50 4,17 · p95 8,31 → E1b 4,65 · 9,64: perbaikan riwayat tidak menolong karena putusnya terjadi SEBELUM riwayat. Jumlah giliran sistem-BERUBAH per sesi SAMA PERSIS di E1 dan E1b (21/20/25/20/21) — probe mengulang keputusannya, jadi kedua run sebanding pada keputusan gerbang (tetap tidak berpasangan waktu).",
+      "selangSelingP50_BUKANgejala": "p50 per sesi 2,30/0,96/2,35/0,96/0,95 tampak berselang-seling. Bukan periodik: distribusinya dua-puncak (≤ 1,7 dtk vs 2,5–12 dtk) dan median 48 giliran jatuh tepat di tepinya. Sesi dengan ≥ 27 giliran cepat (≤ 2 dtk) → p50 ≈ 0,95; dengan 22–23 → ≈ 2,3. Median dari distribusi dua-puncak peka pada selisih satu-dua giliran; jangan membaca polanya sebagai sifat sistem.",
+      "tersangkaTerkunci_DINILAI": {
+        "1_templat_qwen3": "TIDAK TERDUKUNG. Giliran sistem-sama berprefill p50 0,82 dtk; pada 40 tok/dtk itu ≈ 25–30 token = pesan pengguna baru saja (diag-e1c V0: 0,70 dtk untuk pesan baru yang sama). Jawaban asisten giliran lalu tetap tercache. (Draf penguraian ini sempat menulis \"nyata tetapi terbatas\" dari laju yang salah — dibetulkan sebelum dikomit.)",
+        "2_slot_cache_Ollama": "BUKAN penyebab. Giliran awal sesi 2–5 kena cache persona (prefill 0,12 dtk) — Ollama menyimpan percakapan tiap NPC lintas sesi.",
+        "3_kuantisasi_llamacpp": "Tidak relevan: laju generasi 9,05 tok/dtk, dan giliran yang cache-nya utuh sudah jauh di bawah ambang.",
+        "dugaan_probe_menggusur_cache": "TERBANTAH oleh data vonis: 96 % giliran didahului probe, dan tak satu pun giliran sistem-sama melewati 1,70 dtk. Diagnostik eval/diag-e1b-cache-probe.mjs (ditulis sebelum vonis) TIDAK dijalankan: kedua lengannya memakai pesan sistem tetap, jadi ia akan menemukan \"tidak ada beda\" dan melewatkan penyebab sebenarnya. Dikonfirmasi lewat intervensi: probe dijalankan di antara pancingan dan giliran → 3,41 dtk vs 3,30 dtk tanpa probe (1.03×)."
+      },
+      "penyebabTIDAKadaDiDaftar": "Penyebab sebenarnya — arahan gerbang di pesan sistem — tidak ada di daftar tersangka pra-daftar ini, tidak di ramalan, dan tidak di tindak lanjut terkunci. Ia terlihat di baris harness yang saya tulis sendiri (`sistem = tambahan ? `${persona}\\n\\n${tambahan}` : persona`). Data E1 sudah memuatnya sejak kemarin; alat pemisahnya belum ada.",
+      "lajuPrefill_TERUKUR": "Laju prefill Bmax untuk migancore:0.14 = ~40 tok/dtk (diag-e1c: +104 token arahan = +2,60 dtk), cocok dengan lima giliran dingin sesi 1 (39–40 tok/dtk). KOREKSI atas draf penguraian ini sendiri (sebelum dikomit): saya sempat menulis \"~95 tok/dtk\" dari rasio tokPrompt/prefill — rasio itu BUKAN laju, karena sebagian prompt (persona) tetap tercache.",
+      "gerbangSalahUkuranUntukPersona_TERUKUR": "Keputusan gerbang per kategori (E1b; E1 identik): sapa → klarifikasi 40/60, tahu → klarifikasi 50/90, luar → abstain 20 · klarifikasi 45 · jawab 25 (dari 90). Probe menilai kalimat pemain TANPA persona, jadi tidak bisa tahu apa yang diketahui NPC: dua pertiga sapaan dan lebih dari separuh pertanyaan yang jawabannya ADA di persona diberi arahan \"JANGAN menjawab isinya sama sekali\". Ini hitungan keputusan (parser), bukan penilaian jawaban."
+    },
+    "tindakLanjut_DARI_DATA": "Tindak lanjut terkunci (templat → slot → kuantisasi) DIGANTIKAN oleh data: templat tidak terdukung, slot sehat, kuantisasi tak relevan. Obat yang langsung terpikir — memindah arahan ke ekor pesan pengguna (rencana E1c) — DIBATALKAN SEBELUM dipra-daftarkan: pada 40 tok/dtk, arahan 104 token menambah 2,60 dtk, dan 65 % giliran membawa arahan, jadi p50 akan jatuh (≈ 3 dtk). Anggaran nyata Bmax untuk p50 ≤ 2 dtk: ~50 token BARU per giliran. Akibatnya jalur NPC di Bmax hanya bisa lolos kalau (1) tidak ada probe di jalur kritis dan (2) batas pengetahuan NPC tinggal di awalan yang tercache (persona). Episode berikutnya menguji KEJUJURAN rancangan itu (E2), bukan latensinya. Calon hukum C62 TIDAK disahkan di sini — vonisnya GAGAL."
+  }
+}

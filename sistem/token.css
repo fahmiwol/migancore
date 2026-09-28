@@ -1,0 +1,99 @@
+/* ===========================================================================
+   token.css — SUMBER KEBENARAN TUNGGAL untuk tampilan MiganCore.
+   ===========================================================================
+
+   Kenapa berkas ini ada (audit 22 Agu 2026): 232 nilai warna tertulis
+   langsung di enam permukaan, dan TIGA berkas masing-masing mendefinisikan
+   :root sendiri. Akibatnya sudah terlihat — dua merah yang beda tipis
+   (#f85149 dan #ff8f85) dan dua kuning (#d29922 dan #dcbe4e) hidup
+   berdampingan tanpa ada yang memutuskan mana yang benar.
+
+   Aturan pakai:
+     1. Tautkan berkas ini; JANGAN menyalin blok :root ke halaman lain.
+     2. Warna baru tidak ditulis langsung di komponen — tambahkan token di
+        sini dulu, dengan nama yang menjelaskan PERANNYA.
+     3. Berkas .dc.html (artboard desain) tidak bisa menautkan CSS luar —
+        di sana nilainya ditulis inline, tapi WAJIB nilai yang sama persis
+        dengan token di bawah. Berkas ini tetap rujukannya.
+
+   Skala sengaja pendek. Skala yang panjang bukan sistem, itu daftar. */
+
+:root {
+  /* ── permukaan ──────────────────────────────────────────────────────── */
+  --bg:        #0d1117;   /* latar halaman */
+  --panel:     #161b22;   /* kartu, panel, bidang yang naik satu tingkat */
+  --cekung:    #0d1117;   /* kolom isian & bidang yang masuk ke dalam */
+  --garis:     #30363d;   /* semua garis pemisah dan bingkai */
+  --tombol2:   #21262d;   /* tombol sekunder */
+
+  /* ── teks ───────────────────────────────────────────────────────────── */
+  --teks:      #e6edf3;   /* teks utama */
+  --redup:     #8b949e;   /* label, keterangan, teks pendukung */
+
+  /* ── warna peran (bukan warna hias) ─────────────────────────────────── */
+  --hijau:     #3fb950;   /* lulus, sehat, hidup */
+  --merah:     #f85149;   /* gagal, ditolak, berhenti */
+  --kuning:    #d29922;   /* peringatan, tahan dulu, perlu dilihat */
+  --biru:      #58a6ff;   /* tautan, pilihan aktif, penanda jenis */
+  --ungu:      #a371f7;   /* jenis keempat — dipakai kalau tiga di atas sudah terpakai */
+  --biru-terang: #79c0ff; /* HANYA untuk keadaan hover tautan. Ditambahkan 22 Agu
+                             sesudah penjaga menandai #79c0ff sebagai drift: ia
+                             memang mirip --biru, tapi perannya beda (hover), dan
+                             peran yang berbeda berhak punya nama. Menghapusnya
+                             begitu saja membuat tautan tidak punya keadaan hover. */
+  --aksi:      #238636;   /* tombol utama (lebih gelap dari --hijau, sengaja) */
+
+  /* Latar lembut untuk pesan berwarna. Nilai alfa dijaga sama supaya
+     empat kotak pesan terasa satu keluarga. */
+  --hijau-lembut:  rgba(63, 185, 80, 0.12);
+  --hijau-tepi:    rgba(63, 185, 80, 0.40);
+  --merah-lembut:  rgba(248, 81, 73, 0.12);
+  --merah-tepi:    rgba(248, 81, 73, 0.40);
+  --kuning-lembut: rgba(210, 153, 34, 0.12);
+  --kuning-tepi:   rgba(210, 153, 34, 0.40);
+  --biru-lembut:   rgba(88, 166, 255, 0.15);
+  --biru-tepi:     rgba(88, 166, 255, 0.35);
+
+  /* ── sudut ──────────────────────────────────────────────────────────── */
+  /* Audit menemukan delapan nilai (2,3,4,6,7,8,10,20). Dirapikan jadi empat:
+     kecil untuk penanda, sedang untuk kontrol, besar untuk kartu, penuh
+     untuk pil. Yang lain adalah improvisasi, bukan keputusan. */
+  --sudut-kecil:  4px;
+  --sudut:        7px;
+  --sudut-besar:  10px;
+  --sudut-pil:    20px;
+
+  /* ── jarak ──────────────────────────────────────────────────────────── */
+  --sela-1:  4px;
+  --sela-2:  8px;
+  --sela-3: 12px;
+  --sela-4: 16px;
+  --sela-5: 24px;
+  --sela-6: 32px;
+
+  /* ── tipografi ──────────────────────────────────────────────────────── */
+  /* Audit menemukan 11,5px dan 12,5px — setengah piksel yang lahir dari
+     improvisasi, bukan dari skala. Dibulatkan ke tangga di bawah. */
+  --huruf: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --huruf-mono: ui-monospace, "Cascadia Code", "Consolas", monospace;
+
+  --teks-xs:  11px;   /* lencana, label kecil */
+  --teks-sm:  12px;   /* keterangan, tabel padat */
+  --teks-md:  13px;   /* teks pendukung, isi tabel */
+  --teks-base: 15px;  /* teks utama */
+  --teks-lg:  17px;   /* judul bagian */
+  --teks-xl:  23px;   /* angka besar di kartu ringkasan */
+
+  --tinggi-baris: 1.6;
+  --tinggi-baris-rapat: 1.45;
+
+  --tebal-biasa: 400;
+  --tebal-sedang: 600;
+  --tebal-tebal: 650;
+
+  /* ── ukuran kontrol ─────────────────────────────────────────────────── */
+  --kontrol-tinggi: 38px;   /* tombol & kolom isian di desktop */
+  --sentuh-min:     44px;   /* ambang sentuh di rancangan layar sentuh */
+  --ikon:           16px;
+  --ikon-besar:     22px;
+}

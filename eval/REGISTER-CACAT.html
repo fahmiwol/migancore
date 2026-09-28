@@ -1,0 +1,150 @@
+<title>Register Cacat MiganCore</title>
+<style>
+  :root { --bg:#fbfbfa; --fg:#1a1a19; --garis:#e3e3e0; --redup:#6b6b68; --hijau:#1a7f4b; --merah:#b3261e; --kuning:#8a6d00; --kartu:#fff; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#161614; --fg:#eceae5; --garis:#33312c; --redup:#9a968d; --hijau:#5ec98d; --merah:#ff8a80; --kuning:#e0c35c; --kartu:#201e1b; } }
+  :root[data-theme="dark"] { --bg:#161614; --fg:#eceae5; --garis:#33312c; --redup:#9a968d; --hijau:#5ec98d; --merah:#ff8a80; --kuning:#e0c35c; --kartu:#201e1b; }
+  body { background:var(--bg); color:var(--fg); font:15px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif; margin:0; padding:2rem 1.25rem; }
+  .bungkus { max-width:1080px; margin:0 auto; }
+  h1 { font-size:1.5rem; margin:0 0 .25rem; letter-spacing:-.01em; }
+  .sub { color:var(--redup); margin:0 0 1.5rem; }
+  .kutip { border-left:3px solid var(--kuning); padding:.6rem 1rem; background:var(--kartu); border-radius:0 6px 6px 0; margin:0 0 1.5rem; }
+  .angka { display:flex; gap:.75rem; flex-wrap:wrap; margin:0 0 1.5rem; }
+  .angka div { background:var(--kartu); border:1px solid var(--garis); border-radius:8px; padding:.7rem 1rem; min-width:96px; }
+  .angka b { display:block; font-size:1.5rem; line-height:1.2; }
+  .angka span { color:var(--redup); font-size:.8rem; }
+  .gulung { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; min-width:720px; background:var(--kartu); border:1px solid var(--garis); border-radius:8px; }
+  th,td { text-align:left; padding:.7rem .8rem; border-bottom:1px solid var(--garis); vertical-align:top; }
+  th { font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; color:var(--redup); }
+  .kode { font-family:ui-monospace,monospace; color:var(--redup); }
+  .kelas { font-size:.8rem; color:var(--redup); margin-top:.15rem; }
+  .ulang { color:var(--merah); font-weight:600; }
+  code { font-family:ui-monospace,SFMono-Regular,monospace; font-size:.82rem; background:var(--bg); padding:.1rem .3rem; border-radius:4px; display:inline-block; max-width:100%; overflow-wrap:anywhere; }
+  details { margin-top:.4rem; } summary { cursor:pointer; color:var(--redup); font-size:.82rem; }
+  .akibat { font-size:.85rem; color:var(--redup); }
+  .vonis { font-weight:700; white-space:nowrap; }
+  tr.dijaga .vonis { color:var(--hijau); } tr.merah .vonis { color:var(--merah); } tr.belum-dijaga .vonis { color:var(--kuning); }
+  footer { color:var(--redup); font-size:.82rem; margin-top:1.5rem; }
+</style>
+<div class="bungkus">
+  <h1>Register Cacat MiganCore</h1>
+  <p class="sub">Setiap cacat wajib punya penjaga yang bisa dijalankan. Catatan tanpa penjaga tetap merah.</p>
+  <div class="kutip">“kamu selalu bilang temuan, atau emas, tapi dikemudian ada lagi kebocoran.”<br><span style="color:var(--redup)">— Fahmi, 21 Agu 2026. Papan ini jawabannya.</span></div>
+  <div class="angka">
+    <div><b>13</b><span>tercatat</span></div>
+    <div><b style="color:var(--hijau)">10</b><span>dijaga</span></div>
+    <div><b style="color:var(--merah)">1</b><span>merah</span></div>
+    <div><b style="color:var(--kuning)">1</b><span>belum dijaga</span></div>
+    <div><b style="color:var(--merah)">3</b><span>pernah berulang</span></div>
+  </div>
+  <div class="gulung"><table>
+    <thead><tr><th>Kode</th><th>Cacat</th><th>Penjaga</th><th>Vonis</th></tr></thead>
+    <tbody>
+      <tr class="dijaga">
+        <td class="kode">C01</td>
+        <td><strong>Pencocokan kata kunci tanpa melihat penyangkalan di sekitarnya</strong><div class="kelas">cocok-kata-abai-penyangkalan · <span class="ulang">berulang 5x</span></div>
+            <details><summary>bukti nyata</summary><code>"Ini bukan kias, jadi tidak ada dua tafsir yang berlaku sekaligus." -> dihitung MENCABANG karena memuat kata 'tafsir' dan 'ada dua'.</code>
+            <p class="akibat"><b>Akibat:</b> Jawaban benar dinilai gagal; skor gerbang kias salah selama berhari-hari.</p></details></td>
+        <td><code>node uji-kias.mjs --uji-instrumen</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C02</td>
+        <td><strong>Kendali uji ditulis dari tebakan saya, bukan keluaran nyata model</strong><div class="kelas">kendali-dikarang-sendiri · <span class="ulang">berulang 3x</span></div>
+            <details><summary>bukti nyata</summary><code>MENGAKU_KATA hanya memuat 'tidak diberikan'; model menjawab 'tidak memuat' -> jawaban sempurna dinilai gagal.</code>
+            <p class="akibat"><b>Akibat:</b> Instrumen tampak sehat padahal buta.</p></details></td>
+        <td><code>node uji-instrumen.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C03</td>
+        <td><strong>Memakai tumpang-tindih selang sebagai uji beda</strong><div class="kelas">uji-beda-salah</div>
+            <details><summary>bukti nyata</summary><code>8B (66-89%) vs v11 (83-95%) bertumpang tindih; Fisher exact memberi p=0,035 BEDA NYATA.</code>
+            <p class="akibat"><b>Akibat:</b> Nyaris membuang kemenangan yang sungguhan.</p></details></td>
+        <td><code>node banding-proporsi.mjs --uji-instrumen</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C04</td>
+        <td><strong>Angka model lain dipakai sebagai baseline model ini</strong><div class="kelas">angka-salah-label</div>
+            <details><summary>bukti nyata</summary><code>RENCANA-TIGA-MODEL menulis '53% (30 percobaan)' sebagai v10-4B; sumbernya ULANG-uji-alat-migancore_0.8-8b.json.</code>
+            <p class="akibat"><b>Akibat:</b> Hampir melaporkan '4B naik 53%->83%' — angka benar, model salah.</p></details></td>
+        <td><code>node banding-proporsi.mjs --uji-instrumen</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C05</td>
+        <td><strong>Menyunting alat ukur sementara rantai pengukuran sedang memakainya</strong><div class="kelas">sunting-alat-saat-dipakai</div>
+            <details><summary>bukti nyata</summary><code>ulang-gerbang.mjs: 'SyntaxError: Illegal return statement' — dan laporan tetap terbaca 'SELESAI'.</code>
+            <p class="akibat"><b>Akibat:</b> Satu jam pengukuran hilang, dan diamnya disangka lulus.</p></details></td>
+        <td><code>node periksa-alat.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C06</td>
+        <td><strong>Templat jawaban tidak memakai parameternya sehingga melahirkan baris kembar</strong><div class="kelas">templat-abai-parameter · <span class="ulang">berulang 2x</span></div>
+            <details><summary>bukti nyata</summary><code>115 baris panen-perbaikan runtuh jadi 37; 3 peribahasa karangan menghasilkan jawaban identik di panen-kias.</code>
+            <p class="akibat"><b>Akibat:</b> Data latih jauh lebih sedikit daripada yang dikira.</p></details></td>
+        <td><code>node ../flywheel/panen-kias.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dilewati">
+        <td class="kode">C07</td>
+        <td><strong>Soal gerbang eval ada di dalam data latih</strong><div class="kelas">pencemaran-soal-eval</div>
+            <details><summary>bukti nyata</summary><code>Baris latih 3419ab91305b: 'Harga per kg Rp19.000, beli 3 kg. Totalnya?' -> '19.000 x 3 = Rp57.000'. Soal uji-kias lugas identik.</code>
+            <p class="akibat"><b>Akibat:</b> Skor lugas 18-20/20 di semua model sebagian adalah hafalan.</p></details></td>
+        <td><code>node periksa-pencemaran.mjs</code></td>
+        <td class="vonis">dilewati</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C08</td>
+        <td><strong>Kunci jawaban gerbang veto ada di data latih meski kalimat soalnya berbeda</strong><div class="kelas">kunci-jawaban-bocor</div>
+            <details><summary>bukti nyata</summary><code>v11: '12 ton : 10 = 1.200 kg. 1.200 x 14.500 = Rp174.000.000.' Dua langkah salah, hasil tepat — karena 174.000.000 ada di data latih.</code>
+            <p class="akibat"><b>Akibat:</b> Kerusakan aritmetika yang terukur adalah BATAS BAWAH; yang sebenarnya lebih buruk.</p></details></td>
+        <td><code>node susun-soal-bersih.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="belum-dijaga">
+        <td class="kode">C09</td>
+        <td><strong>Menyimpulkan PENYEBAB dari skor gerbang tanpa membaca satu pun jawaban</strong><div class="kelas">sebab-dari-skor-saja</div>
+            <details><summary>bukti nyata</summary><code>Saya menulis '8-3 rusak, kerusakan aritmetika muncul di dua alat ukur'. Jawaban aslinya: '8 - 3 = 5' — BENAR; yang gagal kalibrasinya.</code>
+            <p class="akibat"><b>Akibat:</b> Klaim salah diterbitkan, di commit yang sama dengan ceramah saya tentang verifikasi.</p></details></td>
+        <td><code>—</code></td>
+        <td class="vonis">BELUM DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C10</td>
+        <td><strong>Menyimpulkan 'tidak ada beda' dari percobaan yang terlalu sedikit</strong><div class="kelas">kuasa-statistik-diabaikan</div>
+            <details><summary>bukti nyata</summary><code>majas_mati butuh 33 percobaan/model untuk memutus; yang dipakai 15-20.</code>
+            <p class="akibat"><b>Akibat:</b> Perbaikan nyata bisa dibuang sebagai kebisingan.</p></details></td>
+        <td><code>node banding-proporsi.mjs --uji-instrumen</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C11</td>
+        <td><strong>git add -A menelan 2 GB biner</strong><div class="kelas">repo-telan-biner</div>
+            <details><summary>bukti nyata</summary><code>sd/cublasLt64_12.dll 674 MB, sd/cudart.zip 563 MB — total 2.032 MB dalam satu commit.</code>
+            <p class="akibat"><b>Akibat:</b> Kalau lolos, push gagal (batas GitHub 100 MB) dan repo tercemar permanen.</p></details></td>
+        <td><code>node jaga-repo.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="dijaga">
+        <td class="kode">C12</td>
+        <td><strong>Membandingkan TOTAL saja, padahal ada dua jenis yang berlawanan besar</strong><div class="kelas">agregat-menyembunyikan-arah-berlawanan</div>
+            <details><summary>bukti nyata</summary><code>Aritmetika v11 vs 0.4-qwen3: agregat 48/60 vs 52/60 p=0,4632 (belum terbukti). Per jenis: ton-harga 0/12 vs 8/12, p=0,0013 NYATA.</code>
+            <p class="akibat"><b>Akibat:</b> Cacat total pada satu operasi hampir lolos sebagai "tidak ada apa-apa".</p></details></td>
+        <td><code>node banding-jenis.mjs</code></td>
+        <td class="vonis">DIJAGA</td>
+      </tr>
+      <tr class="merah">
+        <td class="kode">C13</td>
+        <td><strong>Data latih padat tapi seragam bentuknya: model menghafal naskah langkah, bukan operasinya</strong><div class="kelas">narasi-dihafal-bukan-operasi</div>
+            <details><summary>bukti nyata</summary><code>116 baris mengajarkan 1 ton = 1.000 kg, tapi 3 templat menutupi 47%-nya. v11 menjawab "Kupecah jadi langkah kecil: 1. Ubah ton ke kg: 19 ton : 10 = 1.900 kg" - templat nomor satu, kata demi kata, angka ngawur. 0/12.</code>
+            <p class="akibat"><b>Akibat:</b> Operasi yang PALING sering dinarasikan justru yang paling rusak.</p></details></td>
+        <td><code>node ragam-narasi.mjs</code></td>
+        <td class="vonis">MERAH</td>
+      </tr>
+    </tbody>
+  </table></div>
+  <footer>VONIS: <b>MERAH — ada cacat yang kembali</b> · jalankan ulang: <code>node eval/register-cacat.mjs --html</code></footer>
+</div>

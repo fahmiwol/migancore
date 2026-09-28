@@ -1,0 +1,54 @@
+{
+  "catatan": "SANAD ARTEFAK migancore:0.4-qwen3 (gen-1). DITULIS SANGAT TERLAMBAT 10 Sep 2026 — model ini mendahului praktik SANAD di proyek ini, dan rantainya memang tidak pernah dicatat. Ditulis sekarang karena ia ternyata model PALING JUJUR yang kami punya (MENGARANG 24,6 %, mengalahkan qwen2.5:7b stok 34,2 %) dan jadi JANGKAR ambang bibit — artefak sepenting itu tidak boleh tanpa rantai.",
+  "berlakuUntuk": [
+    "migancore:0.4-qwen3"
+  ],
+  "matan": {
+    "apa": "Generasi PERTAMA MiganCore yang dilayankan. Persona kuat, dipakai berbulan-bulan.",
+    "perannyaSEKARANG": "Tiga peran sekaligus: (1) pembanding lintas-generasi (BERLAKU.json: \"jangan dihapus\"); (2) PROBE keterjawaban gerbang jebakan — A1 recall 82,1 %, tangga probe gen-1 82,1 > base 71,4 > 0.14 67,9; (3) JANGKAR ambang bibit MAKSARA sesudah penurunan ulang 10 Sep."
+  },
+  "rantai": [
+    {
+      "mata": "base",
+      "riwayat": "Qwen3-4B-Instruct-2507",
+      "bukti": "SILSILAH-MODEL.md baris 206: \"0.4-qwen3 | Qwen3-4B-Instruct-2507 | 4B\". Blob Ollama Bmax sha256-93f148dc0d5cf... (berbeda dari qwen3:4b stok 3e4cb141..., jadi ia memang fine-tune, bukan base mentah).",
+      "status": "sahih",
+      "alasan": "dua sumber sepakat: dokumen dan blob"
+    },
+    {
+      "mata": "data",
+      "riwayat": "tidak diketahui — mendahului praktik pencatatan cluster",
+      "bukti": "-",
+      "status": "dhaif",
+      "alasan": "Tidak ada cluster/manifest yang bisa saya tunjuk sebagai bahan latihnya. Ini mata paling lemah di seluruh rantai, dan konsekuensinya nyata: kami memakainya sebagai JANGKAR ambang bibit tanpa tahu ia dilatih dari apa."
+    },
+    {
+      "mata": "latih",
+      "riwayat": "tidak diketahui — tidak ada log vast yang bisa dipetakan ke model ini",
+      "bukti": "-",
+      "status": "dhaif",
+      "alasan": "Log vast tertua yang ada bertanggal 22-23 Agu (era v13). 0.4-qwen3 lebih tua."
+    },
+    {
+      "mata": "ukur",
+      "riwayat": "diukur sangat banyak, di hampir semua instrumen yang pernah kami punya",
+      "bukti": "eval/hasil-jujur2-migancore_0.4-qwen3-p*.json (8 putaran polos sah) · hasil-jujur2-*-gerbang-on-* (3 putaran) · hasil-jujur2-*-retrieval-* (9 putaran) · probe-keterjawaban-migancore_0.4-qwen3-*.json (A1)",
+      "status": "sahih",
+      "alasan": "berkas hasil melimpah dan lolos saringan papan"
+    },
+    {
+      "mata": "vonis",
+      "riwayat": "tidak pernah melewati gerbang promosi formal — ia mendahului gerbangnya",
+      "bukti": "models/BERLAKU.json: \"pembanding\" + \"_pembanding: Basis identitas & pembanding lintas-generasi. Jangan dihapus.\"",
+      "status": "dhaif",
+      "alasan": "Statusnya ditetapkan lewat keputusan, bukan lewat gerbang. Sah sebagai sejarah, tapi harus disebut ketika ia dipakai sebagai jangkar."
+    }
+  ],
+  "angkaTerakhirYangDIUKUR": {
+    "MENGARANG_polos_petak_jujur2_kamus_H4": "24,6 % (CI95 19,9..29,2, n=8)",
+    "MENGARANG_dengan_gerbang": "13,1 %",
+    "probe_keterjawaban_A1": "recall 82,1 % · presisi 100 %"
+  },
+  "konsekuensiRantaiLEMAH": "Tiga dari lima mata dhaif — data, latih, dan vonis. Artinya: ambang bibit MAKSARA hari ini dijangkarkan pada model yang kami tidak tahu dilatih dari apa. Itu SENDIRI alasan episode A3 (ukur base mentah qwen3:4b sebagai jangkar non-sirkular) jadi simpul kritis doc 93.",
+  "tanggal": "2026-09-10"
+}
