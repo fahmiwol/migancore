@@ -258,7 +258,10 @@ Daftar lengkap dan caranya: [docs/privacy-and-release.md](docs/privacy-and-relea
   [Tiranyx/migancore-research-record](https://huggingface.co/datasets/Tiranyx/migancore-research-record)
 - Penjelajah yang di-hosting: [Tiranyx/migancore-explorer](https://huggingface.co/spaces/Tiranyx/migancore-explorer)
 - Model yang dilayankan (arsip): [Tiranyx/migancore-0.14](https://huggingface.co/Tiranyx/migancore-0.14)
-- Proyek pendahulu: [fahmiwol/sidix](https://github.com/fahmiwol/sidix)
+- Koleksi Hugging Face:
+  [MiganCore: open-source Indonesian LLM research (2026)](https://huggingface.co/collections/Tiranyx/migancore-open-source-indonesian-llm-research-2026-6abad0de31e130496ebd6194)
+- Proyek pendahulu: [fahmiwol/sidix](https://github.com/fahmiwol/sidix), dengan adapter arsipnya di
+  [koleksi SIDIX](https://huggingface.co/collections/Tiranyx/sidix-archived-research-build-apr-aug-2026-6abad0947994b29f55b1fff9)
 
 ## Tanya jawab
 
